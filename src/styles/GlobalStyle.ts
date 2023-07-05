@@ -159,6 +159,13 @@ ${reset}
 
 * {
     box-sizing: border-box;
+    // 버튼 음영 제거
+    -webkit-tap-highlight-color:rgba(255,255,255,0);
+    // 글자 선택 방지
+    user-select: none;
+    // 링크 터치 금지
+    -webkit-touch-callout: none;
+    
 }
     
 `;
