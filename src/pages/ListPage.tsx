@@ -1,4 +1,4 @@
-import TattooList from "../components/TattooList";
+import TattooList from "../components/List/TattooList";
 
 const ListPage = () => {
   return (
