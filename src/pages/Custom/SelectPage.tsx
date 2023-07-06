@@ -1,6 +1,13 @@
+import React from 'react';
 import { styled } from 'styled-components';
 
 const SelectPage = () => {
+  const handleClickSelBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const target = e.target as HTMLElement;
+    console.log(target);
+    target.classList.toggle('isClicked');
+  };
+
   return (
     <St.SelectWrapper>
       <St.SelectInfoContainer>
@@ -9,14 +16,18 @@ const SelectPage = () => {
       </St.SelectInfoContainer>
 
       <St.SelectBtnContainer>
-        <St.SelectBtnContent>
-          <St.SelectBtnTitle type='exist'>이미 그려 둔 도안이 있어요</St.SelectBtnTitle>
-          <St.SelectBtnDetail type='exist'>이미지 파일을 그대로 제작 해드릴게요</St.SelectBtnDetail>
+        <St.SelectBtnContent type='button' id='exist' onClick={handleClickSelBtn}>
+          <St.SelectBtnTitle $case='exist'>이미 그려 둔 도안이 있어요</St.SelectBtnTitle>
+          <St.SelectBtnDetail $case='exist'>
+            이미지 파일을 그대로 제작 해드릴게요
+          </St.SelectBtnDetail>
         </St.SelectBtnContent>
 
-        <St.SelectBtnContent>
-          <St.SelectBtnTitle type='make'>커스텀 도안을 제작하고 싶어요</St.SelectBtnTitle>
-          <St.SelectBtnDetail type='make'>신청서에 맞게 세심하게 제작해드릴게요</St.SelectBtnDetail>
+        <St.SelectBtnContent type='button' id='make' onClick={handleClickSelBtn}>
+          <St.SelectBtnTitle $case='make'>커스텀 도안을 제작하고 싶어요</St.SelectBtnTitle>
+          <St.SelectBtnDetail $case='make'>
+            신청서에 맞게 세심하게 제작해드릴게요
+          </St.SelectBtnDetail>
         </St.SelectBtnContent>
       </St.SelectBtnContainer>
     </St.SelectWrapper>
@@ -83,10 +94,14 @@ const St = {
     border-radius: 0.5rem;
 
     cursor: pointer;
+
+    &.isClicked {
+      border: 0.1rem solid ${({ theme }) => theme.colors.pink5};
+    }
   `,
 
-  SelectBtnTitle: styled.h3<{ type: string }>`
-    width: ${({ type }) => (type === 'exist' ? 8.6 : 10)}rem;
+  SelectBtnTitle: styled.h3<{ $case: string }>`
+    width: ${(props) => (props.$case === 'exist' ? 8.6 : 10)}rem;
 
     color: ${({ theme }) => theme.colors.gray7};
 
@@ -94,10 +109,12 @@ const St = {
 
     text-align: center;
     white-space: pre-line;
+
+    pointer-events: none;
   `,
 
-  SelectBtnDetail: styled.p<{ type: string }>`
-    width: ${({ type }) => (type === 'exist' ? 10.6 : 11.6)}rem;
+  SelectBtnDetail: styled.p<{ $case: string }>`
+    width: ${(props) => (props.$case === 'exist' ? 10.6 : 11.6)}rem;
 
     color: ${({ theme }) => theme.colors.gray3};
 
@@ -105,5 +122,7 @@ const St = {
 
     text-align: center;
     white-space: pre-line;
+
+    pointer-events: none;
   `,
 };
