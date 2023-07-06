@@ -25,7 +25,7 @@ const TattooList = () => {
       <St.Header>ALL</St.Header>
       <St.BtnContainer>
         {BUTTON.map((el)=>(
-          <St.FilterBtn>
+          <St.FilterBtn key={el}>
             {el}
             <IcDownArrow/>
           </St.FilterBtn>
@@ -35,7 +35,7 @@ const TattooList = () => {
       <St.CardContainer>
         {
           TATTOO_LIST.map((el)=>(
-            <St.Card>
+            <St.Card key={el.name}>
               <St.CardImg></St.CardImg>
               <h2>{el.name}</h2>
               <p>{el.price.toLocaleString()}원</p>
