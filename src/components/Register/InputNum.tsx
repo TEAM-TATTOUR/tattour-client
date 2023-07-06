@@ -1,15 +1,31 @@
 import styled from 'styled-components';
 import TitleForm from './TitleForm';
 import { TITLE, SUB_TITLE } from '../../constants/TitleInfo';
+import { useEffect, useState } from 'react';
 
 const InputNum = () => {
+  const [isChanged, setIsChanged] = useState(false);
+
+  const handleIsChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.value.length === 0 ? setIsChanged(false) : setIsChanged(true);
+  };
+
+  useEffect(() => {
+    setIsChanged(isChanged);
+  }, [isChanged]);
+
   return (
     <St.InputNameWrapper>
       <TitleForm title={TITLE[1]} subTitle={SUB_TITLE[1]} />
 
       <St.InputContentsWrapper>
-        <St.InputContent placeholder='전화번호를 입력해주세요'></St.InputContent>
-        <St.CertificationBtn type='button'>인증하기</St.CertificationBtn>
+        <St.InputContent
+          placeholder='전화번호를 입력해주세요'
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleIsChanged(e)}
+        ></St.InputContent>
+        <St.CertificationBtn type='button' ischanged={isChanged ? 'true' : 'false'}>
+          인증하기
+        </St.CertificationBtn>
       </St.InputContentsWrapper>
     </St.InputNameWrapper>
   );
@@ -49,7 +65,7 @@ const St = {
     }
   `,
 
-  CertificationBtn: styled.button`
+  CertificationBtn: styled.button<{ ischanged?: string }>`
     width: 9.2rem;
     height: 4.5rem;
 
@@ -58,7 +74,8 @@ const St = {
 
     color: ${({ theme }) => theme.colors.white};
 
-    background-color: ${({ theme }) => theme.colors.gray3};
+    background-color: ${({ ischanged, theme }) =>
+      ischanged === 'true' ? theme.colors.gray7 : theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.title_semibold_16};
   `,
