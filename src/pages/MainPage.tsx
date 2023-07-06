@@ -6,7 +6,7 @@ const MainPage = () => {
   const reanderMainPageHeader = () => {
     return (
       <Header
-        isTransparent={true}
+        transparent={true}
         leftSection={<div>left</div>}
         title='Test'
         rightSection={<div>right</div>}

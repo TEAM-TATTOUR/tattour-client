@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 
 interface HeaderProps {
-  leftSection: React.ReactElement | React.ReactNode;
+  leftSection: React.ReactNode;
   title?: string;
-  rightSection: React.ReactElement | React.ReactNode;
+  rightSection: React.ReactNode;
   transparent?: boolean;
 }
 
@@ -26,8 +26,8 @@ const St = {
     width: 100%;
     height: 5.6rem;
 
-    background-color: ${({ theme }) => theme.colors.white};
-    ${({ transparent }) => transparent && `background-color: transparent;`}
+    ${({ transparent }) =>
+      transparent ? 'background-color: transparent;' : 'background-color: white;'}
   `,
 
   title: styled.h1`

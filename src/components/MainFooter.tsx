@@ -11,7 +11,9 @@ const MainFooter = () => {
 
   return (
     <St.footer>
-      <St.button onClick={handleClickButton}>나만의 커스텀 타투 만들기</St.button>
+      <St.button type='button' onClick={handleClickButton}>
+        나만의 커스텀 타투 만들기
+      </St.button>
     </St.footer>
   );
 };
