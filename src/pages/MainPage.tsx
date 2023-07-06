@@ -1,3 +1,4 @@
+import MainFooter from '../components/Footer';
 import Header from '../components/Header';
 import PageLayout from '../components/PageLayout';
 
@@ -7,7 +8,7 @@ const MainPage = () => {
   };
 
   return (
-    <PageLayout renderHeader={reanderMainPageHeader}>
+    <PageLayout renderHeader={reanderMainPageHeader} footer={<MainFooter />}>
       <div>메인 페이지</div>
     </PageLayout>
   );
