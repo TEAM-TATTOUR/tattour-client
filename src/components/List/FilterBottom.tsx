@@ -8,7 +8,12 @@ const FilterBottom = () => {
     return (
         <>
         <button onClick={() => setOpen(true)}>Open sheet</button>
-        <Sheet isOpen={isOpen} onClose={() => setOpen(false)}>
+        <Sheet 
+            isOpen={isOpen} 
+            onClose={() => setOpen(false)}
+            detent="content-height"
+            disableDrag={true}
+            >
             <Sheet.Container>
             <Sheet.Header />
             <Sheet.Content>
