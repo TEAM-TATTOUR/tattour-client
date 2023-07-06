@@ -103,6 +103,18 @@ const St = {
       .swiper-button-prev::after {
         display: none;
       }
+
+      .swiper-pagination-bullet {
+        height: 0.6rem;
+        width: 0.6rem;
+        background-color: ${({ theme }) => theme.colors.gray1};
+      }
+
+      .swiper-pagination-bullet-active {
+        height: 0.6rem;
+        width: 0.6rem;
+        background-color: ${({ theme }) => theme.colors.gray9};
+      }
     }
   `,
 
