@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { TITLE, SUB_TITLE } from '../../constants/TitleInfo';
 import TitleForm from './TitleForm';
+import InputNameFooter from './InputNameFooter';
 
 const InputName = () => {
   return (
@@ -10,6 +11,8 @@ const InputName = () => {
       <St.InputContentsWrapper>
         <St.InputContent placeholder='실명을 입력해주세요'></St.InputContent>
       </St.InputContentsWrapper>
+
+      <InputNameFooter />
     </St.InputNameWrapper>
   );
 };
