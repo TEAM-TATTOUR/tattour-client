@@ -29,7 +29,7 @@ const FilterBottom = () => {
                     </St.Footer>
                 </Sheet.Content>
                 </Sheet.Container>
-                <Sheet.Backdrop />
+                <Sheet.Backdrop onClick={() => setOpen(false)}/>
             </CustomSheet>
         </>
 
