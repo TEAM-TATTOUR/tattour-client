@@ -31,7 +31,19 @@ const TattooList = ({setSortOpen, setGenreOpen, setStyleOpen} : TattooListProps)
       <St.Header>ALL</St.Header>
       <St.BtnContainer>
         {BUTTON.map((el)=>(
-          <St.FilterBtn key={el}>
+          <St.FilterBtn key={el} onClick={()=>{
+            switch (el) {
+              case '정렬':
+                setSortOpen(true);
+                break;
+              case '장르':
+                setGenreOpen(true);
+                break;
+              case '스타일':
+                setStyleOpen(true);
+                break;
+            }
+          }}>
             {el}
             <IcDownArrow/>
           </St.FilterBtn>
