@@ -7,6 +7,8 @@ import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import ImgTestOnBoarding from '../../assets/ImgTestOnBoarding.png';
+import IcCarouselLeftArrow from '../../assets/icon/IcCarouselLeftArrow.svg';
+import IcCarouselRightArrow from '../../assets/icon/IcCarouselRightArrow.svg';
 
 const OnBoardingCarousel = () => {
   return (
@@ -84,6 +86,21 @@ const St = {
       }
 
       .swiper-button-disabled {
+        display: none;
+      }
+
+      .swiper-button-next {
+        background: url(${IcCarouselLeftArrow}) no-repeat;
+        background-position: center;
+      }
+
+      .swiper-button-prev {
+        background: url(${IcCarouselRightArrow}) no-repeat;
+        background-position: center;
+      }
+
+      .swiper-button-next::after,
+      .swiper-button-prev::after {
         display: none;
       }
     }
