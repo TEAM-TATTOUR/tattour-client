@@ -3,8 +3,8 @@ import { styled } from 'styled-components';
 import { IcActvieSelect, IcInActvieSelect } from '../../assets/icon';
 
 const SelectPage = () => {
-  const [activeBtn, setActiveBtn] = useState('');
-  const btnRef = useRef<HTMLButtonElement[]>([]);
+  const [activeBtn, setActiveBtn] = useState(''); //선택 된 버튼의 상황
+  const btnRef = useRef<HTMLButtonElement[]>([]); //상황 선택 버튼 리스트 ref
 
   const handleClickSelBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;
@@ -12,8 +12,8 @@ const SelectPage = () => {
   };
 
   useEffect(() => {
+    //버튼 하나씩만 누를 수 있도록
     btnRef.current.forEach((ref) => {
-      console.log(activeBtn, '??');
       if (ref.id === activeBtn) {
         ref.classList.add('isClicked');
       } else {
@@ -21,8 +21,6 @@ const SelectPage = () => {
       }
     });
   }, [activeBtn]);
-
-  console.log(activeBtn, '!!!');
 
   return (
     <St.SelectWrapper>
@@ -100,10 +98,6 @@ const St = {
   SelectBtnContainer: styled.article`
     display: flex;
     gap: 1.5rem;
-
-    & > a {
-      text-decoration: none;
-    }
   `,
 
   SelectBtnContent: styled.button`
@@ -115,7 +109,7 @@ const St = {
 
     width: 16rem;
     height: 16.8rem;
-    padding: 0 2.7rem;
+    padding: 0.8rem 0 3rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
 
