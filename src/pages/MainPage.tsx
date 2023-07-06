@@ -4,7 +4,14 @@ import PageLayout from '../components/PageLayout';
 
 const MainPage = () => {
   const reanderMainPageHeader = () => {
-    return <Header leftSection={<div>left</div>} title='Test' rightSection={<div>right</div>} />;
+    return (
+      <Header
+        isTransparent={true}
+        leftSection={<div>left</div>}
+        title='Test'
+        rightSection={<div>right</div>}
+      />
+    );
   };
 
   return (
