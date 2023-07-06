@@ -2,7 +2,13 @@ import styled from "styled-components";
 import { IcDownArrow } from "../../assets/icon";
 import { useState } from "react";
 
-const TattooList = () => {
+interface TattooListProps {
+  setSortOpen : React.Dispatch<React.SetStateAction<boolean>>,
+  setGenreOpen : React.Dispatch<React.SetStateAction<boolean>>,
+  setStyleOpen : React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const TattooList = ({setSortOpen, setGenreOpen, setStyleOpen} : TattooListProps) => {
   const BUTTON = ['정렬','장르','스타일'];
   const [count,setCount] = useState(17);
   const TATTOO_LIST = [

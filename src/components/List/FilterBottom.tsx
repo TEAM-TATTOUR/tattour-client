@@ -1,18 +1,27 @@
 import styled from "styled-components"
 import Sheet from 'react-modal-sheet';
-import { useState } from 'react';
 
-const FilterBottom = () => {
+interface FilterBottomProps {
+    isSortOpen : boolean;
+    setSortOpen : React.Dispatch<React.SetStateAction<boolean>>,
+    isGenreOpen : boolean;
+    setGenreOpen : React.Dispatch<React.SetStateAction<boolean>>,
+    isStyleOpen : boolean;
+    setStyleOpen : React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isStyleOpen, setStyleOpen} : FilterBottomProps) => {
     const SORT = ['인기 순', '가격 낮은 순', '가격 높은 순'];
-    const [isOpen, setOpen] = useState(false);
+    const GENRE = ['일러스트', '동양화', '블랙워크', '라인 타투', '레터링', '수채화'];
+    const STYLE = ['추상적인', '심플한','귀여운', '사실적인', '감성적인', '다크한'];
 
 
     return (
         <>
-            <button onClick={() => setOpen(true)}>Open sheet</button>
+            <button onClick={() => setSortOpen(true)}>Open sheet</button>
             <CustomSheet 
-                isOpen={isOpen} 
-                onClose={() => setOpen(false)}
+                isOpen={isSortOpen} 
+                onClose={() => setSortOpen(false)}
                 detent="content-height"
                 disableDrag={true}
                 >
@@ -29,7 +38,51 @@ const FilterBottom = () => {
                     </St.Footer>
                 </Sheet.Content>
                 </Sheet.Container>
-                <Sheet.Backdrop onClick={() => setOpen(false)}/>
+                <Sheet.Backdrop onClick={() => setSortOpen(false)}/>
+            </CustomSheet>
+
+            <CustomSheet 
+                isOpen={isGenreOpen} 
+                onClose={() => setGenreOpen(false)}
+                detent="content-height"
+                disableDrag={true}
+                >
+                <Sheet.Container>
+                <Sheet.Header disableDrag={true}/>
+                <Sheet.Content>
+                    {GENRE.map((el)=>(
+                        <St.TagBox key={el}>{el}</St.TagBox>
+                    ))}
+                    <St.Footer>
+                        <St.Button type='button'>
+                            적용하기
+                        </St.Button>
+                    </St.Footer>
+                </Sheet.Content>
+                </Sheet.Container>
+                <Sheet.Backdrop onClick={() => setGenreOpen(false)}/>
+            </CustomSheet>
+
+            <CustomSheet 
+                isOpen={isStyleOpen} 
+                onClose={() => setStyleOpen(false)}
+                detent="content-height"
+                disableDrag={true}
+                >
+                <Sheet.Container>
+                <Sheet.Header disableDrag={true}/>
+                <Sheet.Content>
+                    {STYLE.map((el)=>(
+                        <St.TagBox key={el}>{el}</St.TagBox>
+                    ))}
+                    <St.Footer>
+                        <St.Button type='button'>
+                            적용하기
+                        </St.Button>
+                    </St.Footer>
+                </Sheet.Content>
+                </Sheet.Container>
+                <Sheet.Backdrop onClick={() => setStyleOpen(false)}/>
             </CustomSheet>
         </>
 
