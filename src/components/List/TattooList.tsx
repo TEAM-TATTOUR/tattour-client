@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { IcDownArrow } from "../../assets/icon";
+import { useState } from "react";
 
 const TattooList = () => {
   const BUTTON = ['정렬','장르','스타일'];
+  const [count,setCount] = useState(17);
 
   return (
     <St.Wrapper>
@@ -14,6 +16,7 @@ const TattooList = () => {
             <IcDownArrow/>
           </St.FilterBtn>
         ))}
+        <St.CountText>전체 {count}개</St.CountText>
       </St.BtnContainer>
     </St.Wrapper>
   )
@@ -45,6 +48,11 @@ const St = {
     background-color: ${({ theme }) => theme.colors.bg};
     
     color: ${({ theme }) => theme.colors.gray3};
+    ${({ theme }) => theme.fonts.body_medium_14};
+  `,
+  CountText: styled.p`
+    margin: 2.8rem 0rem 1.6rem 2.2rem;
+    color: ${({ theme }) => theme.colors.gray4};
     ${({ theme }) => theme.fonts.body_medium_14};
   `
 }
