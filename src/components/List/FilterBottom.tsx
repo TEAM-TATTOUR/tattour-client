@@ -18,7 +18,6 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
 
     return (
         <>
-            <button onClick={() => setSortOpen(true)}>Open sheet</button>
             <CustomSheet 
                 isOpen={isSortOpen} 
                 onClose={() => setSortOpen(false)}
