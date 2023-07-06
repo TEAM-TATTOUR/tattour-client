@@ -10,7 +10,7 @@ const Header = ({ leftSection, title, rightSection }: HeaderProps) => {
   return (
     <St.header>
       {leftSection}
-      {title && <h1>{title}</h1>}
+      {title && <St.title>{title}</St.title>}
       {rightSection}
     </St.header>
   );
@@ -21,8 +21,13 @@ const St = {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 16px;
-    height: 56px;
+    padding: 0 1.8rem;
+    width: 100%;
+    height: 5.6rem;
+  `,
+
+  title: styled.h1`
+    font: ${({ theme }) => theme.fonts.title_semibold_18};
   `,
 };
 

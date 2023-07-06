@@ -1,4 +1,4 @@
-import MainFooter from '../components/Footer';
+import MainFooter from '../components/MainFooter';
 import Header from '../components/Header';
 import PageLayout from '../components/PageLayout';
 

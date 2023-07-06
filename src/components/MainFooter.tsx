@@ -27,7 +27,7 @@ const St = {
     background-color: ${({ theme }) => theme.colors.gray9};
   `,
 
-  button: styled.button<{ color: string }>`
+  button: styled.button`
     width: 100%;
     height: 100%;
 
