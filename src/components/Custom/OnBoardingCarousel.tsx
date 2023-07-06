@@ -6,7 +6,7 @@ import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import ImgTestOnBoarding from '../../assets/ImgTestOnBoarding.png';
+import ImgTestOnBoarding from '../../assets/ImgTestOnBoarding.png'; // 테스트용 목업 이미지
 import IcCarouselLeftArrow from '../../assets/icon/IcCarouselLeftArrow.svg';
 import IcCarouselRightArrow from '../../assets/icon/IcCarouselRightArrow.svg';
 
