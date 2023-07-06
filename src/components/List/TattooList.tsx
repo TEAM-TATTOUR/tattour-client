@@ -16,8 +16,8 @@ const TattooList = () => {
             <IcDownArrow/>
           </St.FilterBtn>
         ))}
-        <St.CountText>전체 {count}개</St.CountText>
       </St.BtnContainer>
+      <St.CountText>전체 {count}개</St.CountText>
     </St.Wrapper>
   )
 }
@@ -26,7 +26,8 @@ export default TattooList
 
 const St = {
   Wrapper : styled.section`
-
+    display: flex;
+    flex-direction: column;
   `,
   Header : styled.h1`
     margin: 2.8rem 0rem 2.2rem 2rem;
