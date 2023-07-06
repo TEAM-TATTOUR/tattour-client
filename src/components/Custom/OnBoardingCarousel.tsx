@@ -32,5 +32,9 @@ const St = {
     .swiper-slide {
       height: 63.6rem;
     }
+
+    .swiper-button-disabled {
+      display: none;
+    }
   `,
 };
