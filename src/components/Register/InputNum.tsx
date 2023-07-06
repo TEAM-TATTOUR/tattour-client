@@ -4,11 +4,17 @@ import { TITLE, SUB_TITLE } from '../../constants/TitleInfo';
 import { useEffect, useState } from 'react';
 
 const InputNum = () => {
+  // 임의의 인증번호
+  const CERTIFICATION_NUM = 1234;
+
   // 전화번호 입력 체크를 위한 상태
   const [isChanged, setIsChanged] = useState(false);
 
   // 전화번호 입력 후, 인증 버튼이 클릭되었는지 여부를 확인하기 위한 상태
   const [visible, setVisible] = useState(false);
+
+  // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
+  const [isCorrect, setIsCorrect] = useState(false);
 
   const handleIsChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 전화번호 입력이 되지 않았을 경우
@@ -28,6 +34,17 @@ const InputNum = () => {
       setVisible(true);
 
       /* 인증 문자가 전송될 부분 */
+    }
+  };
+
+  const checkInputNum = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (parseInt(e.target.value) === CERTIFICATION_NUM) {
+      setIsCorrect(true);
+
+      // alert 대신 회원가입 완료 페이지로 넘어가게 하기
+      setTimeout(() => alert('success!'), 500);
+    } else {
+      setIsCorrect(false);
     }
   };
 
@@ -58,8 +75,16 @@ const InputNum = () => {
       {/* visible이 true인 경우에만 인증번호 입력 폼 나옴 */}
       {visible && (
         <St.CertificationInputWrapper id='certificationInput'>
-          <St.CertificationInput placeholder='인증번호를 입력해주세요'></St.CertificationInput>
+          <St.CertificationInput
+            placeholder='인증번호를 입력해주세요'
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => checkInputNum(e)}
+          ></St.CertificationInput>
         </St.CertificationInputWrapper>
+      )}
+      {!isCorrect && visible && (
+        <St.NotificationWrapper>
+          <St.Notification>인증번호가 잘못되었어요.</St.Notification>
+        </St.NotificationWrapper>
       )}
     </St.InputNumWrapper>
   );
@@ -114,6 +139,7 @@ const St = {
     ${({ theme }) => theme.fonts.title_semibold_16};
   `,
   CertificationInputWrapper: styled.article`
+    display: flex;
     width: 100%;
     padding: 0rem 2rem;
     margin-top: 1.4rem;
@@ -131,8 +157,23 @@ const St = {
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray2};
+
       ${({ theme }) => theme.fonts.body_medium_16};
     }
+  `,
+
+  NotificationWrapper: styled.div`
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    padding-top: 0.8rem;
+    padding-left: 2.2rem;
+  `,
+
+  Notification: styled.p`
+    color: ${({ theme }) => theme.colors.red};
+
+    ${({ theme }) => theme.fonts.body_medium_14};
   `,
 };
 
