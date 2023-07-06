@@ -111,8 +111,6 @@ const St = {
     border-radius: 0.5rem;
     background-color: ${({ theme }) => theme.colors.bg};
 
-    cursor: pointer;
-
     &.isClicked {
       border: 0.1rem solid ${({ theme }) => theme.colors.pink5};
     }
