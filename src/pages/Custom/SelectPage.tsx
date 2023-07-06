@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { styled } from 'styled-components';
+import { IcActvieSelect, IcInActvieSelect } from '../../assets/icon';
 
 const SelectPage = () => {
   const [activeBtn, setActiveBtn] = useState('');
@@ -37,9 +38,10 @@ const SelectPage = () => {
           ref={(element: HTMLButtonElement) => (btnRef.current[0] = element)}
           onClick={handleClickSelBtn}
         >
+          {activeBtn === 'exist' ? <IcActvieSelect /> : <IcInActvieSelect />}
           <St.SelectBtnTitle $case='exist'>이미 그려 둔 도안이 있어요</St.SelectBtnTitle>
           <St.SelectBtnDetail $case='exist'>
-            이미지 파일을 그대로 제작 해드릴게요
+            이미지 파일을 그대로 제작해 드릴게요
           </St.SelectBtnDetail>
         </St.SelectBtnContent>
 
@@ -49,9 +51,10 @@ const SelectPage = () => {
           ref={(element: HTMLButtonElement) => (btnRef.current[1] = element)}
           onClick={handleClickSelBtn}
         >
+          {activeBtn === 'make' ? <IcActvieSelect /> : <IcInActvieSelect />}
           <St.SelectBtnTitle $case='make'>커스텀 도안을 제작하고 싶어요</St.SelectBtnTitle>
           <St.SelectBtnDetail $case='make'>
-            신청서에 맞게 세심하게 제작해드릴게요
+            신청서에 맞게 세심하게 제작해 드릴게요
           </St.SelectBtnDetail>
         </St.SelectBtnContent>
       </St.SelectBtnContainer>
