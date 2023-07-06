@@ -1,9 +1,12 @@
 import { styled } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const InputNameFooter = () => {
+  const navigate = useNavigate();
+
   return (
     <St.Footer>
-      <St.FooterContents>다음</St.FooterContents>
+      <St.FooterContents onClick={() => navigate('/input-number')}>다음</St.FooterContents>
     </St.Footer>
   );
 };
