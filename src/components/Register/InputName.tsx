@@ -24,7 +24,7 @@ const St = {
     align-items: center;
   `,
 
-  InputContentsWrapper: styled.div`
+  InputContentsWrapper: styled.article`
     width: 100%;
     padding: 0rem 2rem;
   `,
