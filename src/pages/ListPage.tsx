@@ -1,3 +1,4 @@
+import FilterBottom from "../components/List/FilterBottom";
 import TattooList from "../components/List/TattooList";
 import styled from "styled-components";
 
@@ -7,6 +8,7 @@ const ListPage = () => {
         ListPage
         <St.Line/>
         <TattooList/>
+        <FilterBottom/>
     </div>
   )
 }
