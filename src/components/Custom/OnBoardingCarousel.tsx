@@ -8,8 +8,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 const OnBoardingCarousel = () => {
   return (
-    <>
-      <St.Swiper
+    <St.SwiperWrapper>
+      <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={50}
         slidesPerView={1}
@@ -20,21 +20,23 @@ const OnBoardingCarousel = () => {
         <SwiperSlide>Slide 2</SwiperSlide>
         <SwiperSlide>Slide 3</SwiperSlide>
         <SwiperSlide>Slide </SwiperSlide>
-      </St.Swiper>
-    </>
+      </Swiper>
+    </St.SwiperWrapper>
   );
 };
 
 export default OnBoardingCarousel;
 
 const St = {
-  Swiper: styled(Swiper)`
-    .swiper-slide {
-      height: 63.6rem;
-    }
+  SwiperWrapper: styled.section`
+    .swiper {
+      .swiper-slide {
+        height: 63.6rem;
+      }
 
-    .swiper-button-disabled {
-      display: none;
+      .swiper-button-disabled {
+        display: none;
+      }
     }
   `,
 };
