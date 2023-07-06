@@ -85,10 +85,13 @@ const St = {
         height: 63.6rem;
       }
 
+      /* swiper 버튼 커스텀 스타일링 */
+      /* swiper 버튼 커스텀 첫 시작 / 맨 끝은 안보이게 */
       .swiper-button-disabled {
         display: none;
       }
 
+      /* swiper 버튼 svg 아이콘으로 커스텀 */
       .swiper-button-next {
         background: url(${IcCarouselLeftArrow}) no-repeat;
         background-position: center;
@@ -99,11 +102,13 @@ const St = {
         background-position: center;
       }
 
+      /* 버튼 커스텀을 위해 원래 라이브러리의 버튼은 안보이게 */
       .swiper-button-next::after,
       .swiper-button-prev::after {
         display: none;
       }
 
+      /* swiper 페이지네이션 bullet 커스텀 스타일링 */
       .swiper-pagination-bullet {
         height: 0.6rem;
         width: 0.6rem;
