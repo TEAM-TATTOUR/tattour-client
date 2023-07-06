@@ -4,12 +4,12 @@ interface HeaderProps {
   leftSection: React.ReactElement | React.ReactNode;
   title?: string;
   rightSection: React.ReactElement | React.ReactNode;
-  isTransparent?: boolean;
+  transparent?: boolean;
 }
 
-const Header = ({ leftSection, title, rightSection, isTransparent }: HeaderProps) => {
+const Header = ({ leftSection, title, rightSection, transparent }: HeaderProps) => {
   return (
-    <St.header isTransparent={isTransparent}>
+    <St.header transparent={transparent}>
       {leftSection}
       {title && <St.title>{title}</St.title>}
       {rightSection}
@@ -18,7 +18,7 @@ const Header = ({ leftSection, title, rightSection, isTransparent }: HeaderProps
 };
 
 const St = {
-  header: styled.header<{ isTransparent?: boolean }>`
+  header: styled.header<{ transparent?: boolean }>`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -27,7 +27,7 @@ const St = {
     height: 5.6rem;
 
     background-color: ${({ theme }) => theme.colors.white};
-    ${({ isTransparent }) => isTransparent && `background-color: transparent;`}
+    ${({ transparent }) => transparent && `background-color: transparent;`}
   `,
 
   title: styled.h1`

@@ -21,7 +21,7 @@ const St = {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 37.5rem;
+    width: 100%;
     height: 7rem;
 
     background-color: ${({ theme }) => theme.colors.gray9};
