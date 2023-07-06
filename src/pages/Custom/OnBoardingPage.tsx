@@ -1,7 +1,12 @@
 import React from 'react';
+import OnBoardingCarousel from '../../components/Custom/OnBoardingCarousel';
 
 const OnBoardingPage = () => {
-  return <div>캐러셀 샥샥</div>;
+  return (
+    <div>
+      <OnBoardingCarousel />
+    </div>
+  );
 };
 
 export default OnBoardingPage;
