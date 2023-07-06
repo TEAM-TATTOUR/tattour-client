@@ -5,6 +5,20 @@ import { useState } from "react";
 const TattooList = () => {
   const BUTTON = ['정렬','장르','스타일'];
   const [count,setCount] = useState(17);
+  const TATTOO_LIST = [
+    { 
+      name: '고양이 리본 타투',
+      price: 4000,
+      discount: 25,
+      finalPrice: 2500
+    },
+    { 
+      name: '고양이 리본 타투2',
+      price: 4000,
+      discount: 25,
+      finalPrice: 2500
+    }
+  ]
 
   return (
     <St.Wrapper>
@@ -19,24 +33,19 @@ const TattooList = () => {
       </St.BtnContainer>
       <St.CountText>전체 {count}개</St.CountText>
       <St.CardContainer>
-          <St.Card>
-            <St.CardImg></St.CardImg>
-            <h2>고양이 리본 타투</h2>
-            <p>4000원</p>
-            <div>
-              <St.CardDiscount>25%</St.CardDiscount>
-              <St.CardPrice>2,500원</St.CardPrice>
-            </div>
-          </St.Card>
-          <St.Card>
-            <St.CardImg></St.CardImg>
-            <h2>고양이 리본 타투</h2>
-            <p>4000원</p>
-            <div>
-              <St.CardDiscount>25%</St.CardDiscount>
-              <St.CardPrice>2,500원</St.CardPrice>
-            </div>
-          </St.Card>
+        {
+          TATTOO_LIST.map((el)=>(
+            <St.Card>
+              <St.CardImg></St.CardImg>
+              <h2>{el.name}</h2>
+              <p>{el.price.toLocaleString()}원</p>
+              <div>
+                <St.CardDiscount>{el.discount}%</St.CardDiscount>
+                <St.CardPrice>{el.finalPrice.toLocaleString()}원</St.CardPrice>
+              </div>
+            </St.Card>
+          ))
+        }
       </St.CardContainer>
     </St.Wrapper>
   )
