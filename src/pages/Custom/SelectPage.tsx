@@ -77,21 +77,18 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1.2rem;
 
     margin-bottom: 4rem;
-
-    gap: 1.2rem;
   `,
 
   InfoMainText: styled.h2`
     color: ${({ theme }) => theme.colors.gray8};
-
     ${({ theme }) => theme.fonts.title_semibold_20};
   `,
 
   InfoSubText: styled.p`
     color: ${({ theme }) => theme.colors.gray3};
-
     ${({ theme }) => theme.fonts.body_medium_14};
   `,
 
@@ -111,9 +108,8 @@ const St = {
     height: 16.8rem;
     padding: 0.8rem 0 3rem;
 
-    background-color: ${({ theme }) => theme.colors.bg};
-
     border-radius: 0.5rem;
+    background-color: ${({ theme }) => theme.colors.bg};
 
     cursor: pointer;
 
@@ -126,10 +122,10 @@ const St = {
     width: ${(props) => (props.$case === 'exist' ? 8.6 : 10)}rem;
 
     color: ${({ theme }) => theme.colors.gray7};
-
     ${({ theme }) => theme.fonts.title_semibold_16};
 
     text-align: center;
+
     white-space: pre-line;
 
     pointer-events: none;
@@ -139,10 +135,10 @@ const St = {
     width: ${(props) => (props.$case === 'exist' ? 10.6 : 11.6)}rem;
 
     color: ${({ theme }) => theme.colors.gray3};
-
     ${({ theme }) => theme.fonts.detail_medium_12};
 
     text-align: center;
+
     white-space: pre-line;
 
     pointer-events: none;
