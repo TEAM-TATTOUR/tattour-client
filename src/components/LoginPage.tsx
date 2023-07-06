@@ -1,18 +1,18 @@
 import { styled } from 'styled-components';
-import logo from '../assets/logo.png';
-import kakao from '../assets/logo_kakao.png';
+import IcTattourLogo from '../assets/logo.png';
+import IcKakaoLogo from '../assets/logo_kakao.png';
 
 function LoginPage() {
   return (
     <St.LoginWrapper>
       <St.ContentsWrapper>
-        <img src={logo} />
+        <img src={IcTattourLogo} />
         <St.Title>후회없는 선택의 여정을 함께,</St.Title>
         <St.SubTitle>1초만에 가입하고 지금만 받을 수 있는 혜택 받아가세요!</St.SubTitle>
       </St.ContentsWrapper>
 
       <St.LoginFooter>
-        <img src={kakao} />
+        <img src={IcKakaoLogo} />
         <St.FooterText>카카오로 계속하기</St.FooterText>
       </St.LoginFooter>
     </St.LoginWrapper>
@@ -71,7 +71,7 @@ const St = {
 
   FooterText: styled.p`
     // 임의지정 -> 스타일 가이드 나오면 바꾸기!!
-    ${({ theme }) => theme.fonts.title_semibold_18};
+    ${({ theme }) => theme.fonts.title_semibold_18}
   `,
 };
 
