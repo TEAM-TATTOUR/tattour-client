@@ -4,12 +4,12 @@ interface HeaderProps {
   leftSection: React.ReactNode;
   title?: string;
   rightSection: React.ReactNode;
-  transparent?: boolean;
+  transparent: boolean;
 }
 
 const Header = ({ leftSection, title, rightSection, transparent }: HeaderProps) => {
   return (
-    <St.header transparent={transparent}>
+    <St.header className={transparent ? 'transparent' : ''}>
       {leftSection}
       {title && <St.title>{title}</St.title>}
       {rightSection}
@@ -18,7 +18,7 @@ const Header = ({ leftSection, title, rightSection, transparent }: HeaderProps) 
 };
 
 const St = {
-  header: styled.header<{ transparent?: boolean }>`
+  header: styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,8 +28,11 @@ const St = {
 
     position: fixed;
 
-    ${({ transparent }) =>
-      transparent ? 'background-color: transparent;' : 'background-color: white;'}
+    background-color: ${({ theme }) => theme.colors.white};
+
+    &.transparent {
+      background-color: transparent;
+    }
   `,
 
   title: styled.h1`

@@ -41,8 +41,8 @@ function App() {
   return (
     <Wrapper>
       <RecoilRoot>
+        <GlobalStyle />
         <ThemeProvider theme={theme}>
-          <GlobalStyle />
           <Router />
         </ThemeProvider>
       </RecoilRoot>

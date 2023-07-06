@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from 'styled-components';
 
 const MainBanner = () => {
@@ -28,7 +27,7 @@ const St = {
     color: ${({ theme }) => theme.colors.white};
   `,
 
-  SmallCopy: styled.span`
+  SmallCopy: styled.p`
     padding-top: 6.6rem;
 
     ${({ theme }) => theme.fonts.body_medium_16};
