@@ -116,7 +116,7 @@ const St = {
     flex-direction: column;
     gap: 1.2rem;
 
-    padding: 2.2rem 0 5.6rem; /* 캐러셀 구조 다 나오면 여백 수정 필요 */
+    padding: 2.2rem 2.6rem 5.6rem 0; /* 캐러셀 구조 다 나오면 여백 수정 필요 */
   `,
 
   HeaderMainText: styled.h2`
