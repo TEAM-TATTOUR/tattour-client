@@ -26,6 +26,8 @@ const St = {
     width: 100%;
     height: 5.6rem;
 
+    position: fixed;
+
     ${({ transparent }) =>
       transparent ? 'background-color: transparent;' : 'background-color: white;'}
   `,
