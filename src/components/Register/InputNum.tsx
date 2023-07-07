@@ -12,22 +12,28 @@ const InputNum = () => {
   // 전화번호 입력 체크를 위한 상태
   const [isChanged, setIsChanged] = useState(false);
   // 전화번호 입력 후, 인증 버튼이 클릭되었는지 여부를 확인하기 위한 상태
-  const [visible, setVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
   const [isCorrect, setIsCorrect] = useState(false);
-  // 입력 번호 자릿수
+
+  // 입력한 전화번호 자릿수
   const [numLength, setNumLength] = useState(0);
 
-  const isError = !isCorrect && numLength === 4;
+  // 입력한 인증번호 자릿수
+  const [certificationLen, setCertificationLen] = useState(0);
+
+  const isError = !isCorrect && certificationLen === 4;
 
   const handleIsChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 전화번호 입력이 되지 않았을 경우
     if (e.target.value.length === 0) {
       // 인증번호 입력 폼은 나오지 않음
       setIsChanged(false);
-      setVisible(false);
+      setIsVisible(false);
+      setNumLength(0);
     } else {
       setIsChanged(true);
+      setNumLength(e.target.value.length);
     }
   };
 
@@ -35,7 +41,7 @@ const InputNum = () => {
     // 전화번호 입력이 된 경우
     if (isChanged) {
       // 인증번호 입력 폼 나옴
-      setVisible(true);
+      setIsVisible(true);
 
       /* 인증 문자가 전송될 부분 */
     }
@@ -49,7 +55,7 @@ const InputNum = () => {
       setTimeout(() => alert('success!'), 500);
     } else {
       setIsCorrect(false);
-      setNumLength(e.target.value.length);
+      setCertificationLen(e.target.value.length);
     }
   };
 
@@ -62,10 +68,10 @@ const InputNum = () => {
   // 전화번호가 입력되거나, 지워진 경우 상태 업데이트
   useEffect(() => {
     setIsChanged(isChanged);
-    setVisible(visible);
+    setIsVisible(isVisible);
     setIsCorrect(isCorrect);
-    setNumLength(numLength);
-  }, [isChanged, visible, isCorrect, numLength]);
+    setCertificationLen(certificationLen);
+  }, [isChanged, isVisible, isCorrect, certificationLen]);
 
   return (
     <St.InputNumWrapper>
@@ -73,14 +79,15 @@ const InputNum = () => {
 
       <InputNumForm
         isChanged={isChanged}
-        visible={visible}
+        isVisible={isVisible}
         handleCertification={handleCertification}
         handleIsChanged={handleIsChanged}
         checkMaxLength={checkMaxLength}
+        length={numLength}
       />
 
-      {/* visible이 true인 경우에만 인증번호 입력 폼 나옴 */}
-      {visible && (
+      {/* isVisible이 true인 경우에만 인증번호 입력 폼 나옴 */}
+      {isVisible && (
         <InputCertificationForm
           checkMaxLength={checkMaxLength}
           checkInputNum={checkInputNum}

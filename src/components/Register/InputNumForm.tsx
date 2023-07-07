@@ -2,18 +2,20 @@ import { styled } from 'styled-components';
 
 interface InputNumFormProps {
   isChanged: boolean;
-  visible: boolean;
+  isVisible: boolean;
   handleIsChanged: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleCertification: () => void;
   checkMaxLength: (e: React.ChangeEvent<HTMLInputElement>, maxLength: number) => void;
+  length: number;
 }
 
 const InputNumForm = ({
   isChanged,
-  visible,
+  isVisible,
   handleIsChanged,
   handleCertification,
   checkMaxLength,
+  length,
 }: InputNumFormProps) => {
   return (
     <St.InputContentsWrapper>
@@ -25,10 +27,11 @@ const InputNumForm = ({
       <St.SendMessageBtn
         type='button'
         ischanged={isChanged ? 'true' : 'false'}
-        visible={visible ? 'true' : 'false'}
+        isvisible={isVisible ? 'true' : 'false'}
+        length={length}
         onClick={handleCertification}
       >
-        {visible ? '재요청' : '인증하기'}
+        {isVisible ? '재요청' : '인증하기'}
       </St.SendMessageBtn>
     </St.InputContentsWrapper>
   );
@@ -62,7 +65,7 @@ const St = {
     }
   `,
 
-  SendMessageBtn: styled.button<{ ischanged: string; visible: string }>`
+  SendMessageBtn: styled.button<{ ischanged: string; isvisible: string; length: number }>`
     width: 9.2rem;
     height: 4.5rem;
 
@@ -71,8 +74,10 @@ const St = {
 
     color: ${({ theme }) => theme.colors.white};
 
-    background-color: ${({ ischanged, visible, theme }) =>
-      ischanged && visible === 'true' ? theme.colors.gray7 : theme.colors.gray3};
+    background-color: ${({ ischanged, isvisible, theme, length }) =>
+      (ischanged && isvisible === 'true') || length === 13
+        ? theme.colors.gray7
+        : theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.title_semibold_16};
   `,
