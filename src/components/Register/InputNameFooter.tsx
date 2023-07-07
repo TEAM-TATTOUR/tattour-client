@@ -1,12 +1,24 @@
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-const InputNameFooter = () => {
+interface InputNameFooterProps {
+  userName: string;
+}
+
+const InputNameFooter = ({ userName }: InputNameFooterProps) => {
   const navigate = useNavigate();
 
+  const goNext = () => {
+    if (userName) {
+      navigate('/input-number');
+
+      /* 나중에 userName을 로컬스토리지에 저장 */
+    }
+  };
+
   return (
-    <St.Footer>
-      <St.FooterContents onClick={() => navigate('/input-number')}>다음</St.FooterContents>
+    <St.Footer onClick={goNext}>
+      <St.FooterContents>다음</St.FooterContents>
     </St.Footer>
   );
 };

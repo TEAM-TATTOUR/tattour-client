@@ -2,17 +2,27 @@ import styled from 'styled-components';
 import { TITLE, SUB_TITLE } from '../../constants/TitleInfo';
 import TitleForm from './TitleForm';
 import InputNameFooter from './InputNameFooter';
+import { useState } from 'react';
 
 const InputName = () => {
+  const [userName, setUserName] = useState('');
+
+  const handleIsChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserName(e.target.value);
+  };
+
   return (
     <St.InputNameWrapper>
       <TitleForm title={TITLE[0]} subTitle={SUB_TITLE[0]} />
 
       <St.InputContentsWrapper>
-        <St.InputContent placeholder='실명을 입력해주세요'></St.InputContent>
+        <St.InputContent
+          placeholder='실명을 입력해주세요'
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleIsChanged(e)}
+        ></St.InputContent>
       </St.InputContentsWrapper>
 
-      <InputNameFooter />
+      <InputNameFooter userName={userName} />
     </St.InputNameWrapper>
   );
 };
