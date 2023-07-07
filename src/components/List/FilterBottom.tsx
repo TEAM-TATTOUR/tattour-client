@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import Sheet from 'react-modal-sheet';
 import { useRef, useState } from "react";
+import { IcCheckMiniDark } from "../../assets/icon";
 
 interface FilterBottomProps {
     isSortOpen : boolean;
@@ -87,8 +88,6 @@ export default FilterBottom
 const St = {
     TagBox : styled.p`
         text-align: center;
-
-        width:100%;
         padding: 1.7rem 0rem;
         color: ${({ theme }) => theme.colors.gray4};
         ${({ theme }) => theme.fonts.title_medium_18};
@@ -96,7 +95,16 @@ const St = {
         &.select {
             color: ${({ theme }) => theme.colors.gray8};
             ${({ theme }) => theme.fonts.title_semibold_18};
-            /* 나중에 ::after로 체크 아이콘 추가  */
+
+            &::after {
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 0.3rem;
+                width: 2rem;
+                height: 2rem;
+                background-image: url('/src/assets/icon/ic_check_mini_dark.svg');   //component로 하는 방법을 찾지 못함
+                content: '';
+            }
         }
     `,
     Footer: styled.footer<{$sel : boolean}>`
