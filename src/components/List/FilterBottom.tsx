@@ -67,7 +67,6 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                                     key={el}
                                     onClick={()=>handleTag(filter.data.indexOf(el))}
                                     >{el}</St.TagBox>
-                                <IcCheckMiniDark/>
                             ))}
                             <St.Footer $sel={isSelected}>
                                 <St.Button type='button'>
