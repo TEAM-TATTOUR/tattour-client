@@ -50,6 +50,13 @@ const InputNum = () => {
     }
   };
 
+  const checkMaxLength = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const maxLength = 4;
+    if (e.target.value.length > maxLength) {
+      e.target.value = e.target.value.slice(0, maxLength);
+    }
+  };
+
   // 전화번호가 입력되거나, 지워진 경우 상태 업데이트
   useEffect(() => {
     setIsChanged(isChanged);
@@ -73,6 +80,7 @@ const InputNum = () => {
       {visible && (
         <St.CertificationInputWrapper id='certificationInput'>
           <St.CertificationInput
+            onInput={checkMaxLength}
             placeholder='인증번호를 입력해주세요'
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => checkInputNum(e)}
           ></St.CertificationInput>
