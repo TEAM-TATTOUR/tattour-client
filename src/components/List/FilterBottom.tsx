@@ -81,7 +81,7 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
 export default FilterBottom
 
 const St = {
-    TagBox : styled.p<{$isSelected : boolean}>`
+    TagBox : styled.p`
         text-align: center;
 
         width:100%;
