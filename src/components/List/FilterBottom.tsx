@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import Sheet from 'react-modal-sheet';
-import { useState } from "react";
+import { useRef } from "react";
 
 interface FilterBottomProps {
     isSortOpen : boolean;
@@ -12,7 +12,8 @@ interface FilterBottomProps {
 }
 
 const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isStyleOpen, setStyleOpen} : FilterBottomProps) => {
-    const [isSelected, setSelected] = useState(false);
+
+    const filterRef = useRef<HTMLElement>(null);
 
     const FILTER = [
         {
@@ -36,6 +37,13 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
 
     ]
 
+    const handleTag = (index : number) => {
+        document.querySelectorAll('.select').forEach(el => {
+            el.classList.remove('select');
+        })
+        filterRef.current?.childNodes[index].classList.add('select');
+    }
+
     return (
         <>
             {FILTER.map((filter)=>(
@@ -48,12 +56,11 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                     >
                     <Sheet.Container>
                         <Sheet.Header disableDrag={true}/>
-                        <Sheet.Content>
+                        <Sheet.Content ref={filterRef}>
                             {filter.data.map((el)=>(
                                 <St.TagBox 
                                     key={el}
-                                    $isSelected={isSelected}
-                                    onClick={()=>setSelected(true)}
+                                    onClick={()=>handleTag(filter.data.indexOf(el))}
                                     >{el}</St.TagBox>
                             ))}
                             <St.Footer>
@@ -79,8 +86,14 @@ const St = {
 
         width:100%;
         padding: 1.7rem 0rem;
-        color: ${({ theme, $isSelected }) => $isSelected? theme.colors.gray8 : theme.colors.gray4};
+        color: ${({ theme }) => theme.colors.gray4};
         ${({ theme }) => theme.fonts.title_medium_18};
+
+        &.select {
+            color: ${({ theme }) => theme.colors.gray8};
+            ${({ theme }) => theme.fonts.title_semibold_18};
+            /* 나중에 ::after로 체크 아이콘 추가  */
+        }
     `,
     Footer: styled.footer`
         display: flex;
