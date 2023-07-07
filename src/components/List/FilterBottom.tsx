@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import Sheet from 'react-modal-sheet';
 import { useRef, useState } from "react";
-import { IcCheckMiniDark } from "../../assets/icon";
+//import { IcCheckMiniDark } from "../../assets/icon";
 
 interface FilterBottomProps {
     isSortOpen : boolean;
@@ -67,6 +67,7 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                                     key={el}
                                     onClick={()=>handleTag(filter.data.indexOf(el))}
                                     >{el}</St.TagBox>
+                                <IcCheckMiniDark/>
                             ))}
                             <St.Footer $sel={isSelected}>
                                 <St.Button type='button'>
