@@ -1,23 +1,31 @@
 import { styled } from 'styled-components';
 
-interface InputNumFormProps{
-    isChanged: boolean;
-    visible: boolean;
-    handleIsChanged: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleCertification: () => void;
+interface InputNumFormProps {
+  isChanged: boolean;
+  visible: boolean;
+  handleIsChanged: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleCertification: () => void;
+  checkMaxLength: (e: React.ChangeEvent<HTMLInputElement>, maxLength: number) => void;
 }
 
-const InputNumForm = ({isChanged, visible, handleIsChanged, handleCertification} : InputNumFormProps) => {
-
+const InputNumForm = ({
+  isChanged,
+  visible,
+  handleIsChanged,
+  handleCertification,
+  checkMaxLength,
+}: InputNumFormProps) => {
   return (
     <St.InputContentsWrapper>
       <St.InputContent
         placeholder='전화번호를 입력해주세요'
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleIsChanged(e)}
+        onInput={(e: React.ChangeEvent<HTMLInputElement>) => checkMaxLength(e, 13)}
       ></St.InputContent>
       <St.SendMessageBtn
         type='button'
         ischanged={isChanged ? 'true' : 'false'}
+        visible={visible ? 'true' : 'false'}
         onClick={handleCertification}
       >
         {visible ? '재요청' : '인증하기'}
@@ -54,7 +62,7 @@ const St = {
     }
   `,
 
-  SendMessageBtn: styled.button<{ ischanged?: string }>`
+  SendMessageBtn: styled.button<{ ischanged: string; visible: string }>`
     width: 9.2rem;
     height: 4.5rem;
 
@@ -63,8 +71,8 @@ const St = {
 
     color: ${({ theme }) => theme.colors.white};
 
-    background-color: ${({ ischanged, theme }) =>
-      ischanged === 'true' ? theme.colors.gray7 : theme.colors.gray3};
+    background-color: ${({ ischanged, visible, theme }) =>
+      ischanged && visible === 'true' ? theme.colors.gray7 : theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.title_semibold_16};
   `,
