@@ -52,7 +52,7 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                             {filter.data.map((el)=>(
                                 <St.TagBox 
                                     key={el}
-                                    isSelected={isSelected}
+                                    $isSelected={isSelected}
                                     onClick={()=>setSelected(true)}
                                     >{el}</St.TagBox>
                             ))}
@@ -74,12 +74,12 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
 export default FilterBottom
 
 const St = {
-    TagBox : styled.p<{isSelected : boolean}>`
+    TagBox : styled.p<{$isSelected : boolean}>`
         text-align: center;
 
         width:100%;
         padding: 1.7rem 0rem;
-        color: ${({ theme, isSelected }) => isSelected? theme.colors.gray8 : theme.colors.gray4};
+        color: ${({ theme, $isSelected }) => $isSelected? theme.colors.gray8 : theme.colors.gray4};
         ${({ theme }) => theme.fonts.title_medium_18};
     `,
     Footer: styled.footer`
