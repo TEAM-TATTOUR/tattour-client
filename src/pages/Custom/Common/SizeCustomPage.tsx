@@ -1,5 +1,11 @@
+import SelectSizeCustom from '../../../components/Custom/Common/SelectSizeCustom';
+
 const SizeCustomPage = () => {
-  return <div>사이즈 골라골라</div>;
+  return (
+    <>
+      <SelectSizeCustom />
+    </>
+  );
 };
 
 export default SizeCustomPage;
