@@ -1,11 +1,11 @@
 import { styled } from 'styled-components';
 
-interface TitleFormProps {
+interface RegisterTitleFormProps {
   title: string;
   subTitle: string;
 }
 
-const TitleForm = ({ title, subTitle }: TitleFormProps) => {
+const RegisterTitleForm = ({ title, subTitle }: RegisterTitleFormProps) => {
   return (
     <St.TitleContentsWrapper>
       <St.Title>{title}</St.Title>
@@ -39,4 +39,4 @@ const St = {
   `,
 };
 
-export default TitleForm;
+export default RegisterTitleForm;

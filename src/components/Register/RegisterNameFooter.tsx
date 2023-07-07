@@ -1,11 +1,11 @@
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-interface InputNameFooterProps {
+interface RegisterNameFooterProps {
   userName: string;
 }
 
-const InputNameFooter = ({ userName }: InputNameFooterProps) => {
+const RegisterNameFooter = ({ userName }: RegisterNameFooterProps) => {
   const navigate = useNavigate();
 
   const goNext = () => {
@@ -44,4 +44,4 @@ const St = {
   `,
 };
 
-export default InputNameFooter;
+export default RegisterNameFooter;

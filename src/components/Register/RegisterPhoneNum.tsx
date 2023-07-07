@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import TitleForm from './TitleForm';
+import TitleForm from './RegisterTitleForm';
 import { TITLE, SUB_TITLE } from '../../constants/TitleInfo';
 import { useEffect, useState } from 'react';
-import InputNumForm from './InputNumForm';
+import RegisterPhoneNumForm from './RegisterPhoneNumForm';
 import InputCertificationForm from './InputCertificationForm';
 import ErrorMessage from './ErrorMessage';
 
@@ -57,7 +57,7 @@ const InputNum = () => {
     }
   };
 
-  const checkMaxLength = (e: React.ChangeEvent<HTMLInputElement>, maxLength: number) => {
+  const sliceMaxLength = (e: React.ChangeEvent<HTMLInputElement>, maxLength: number) => {
     if (e.target.value.length > maxLength) {
       e.target.value = e.target.value.slice(0, maxLength);
     }
@@ -75,19 +75,19 @@ const InputNum = () => {
     <St.InputNumWrapper>
       <TitleForm title={TITLE[1]} subTitle={SUB_TITLE[1]} />
 
-      <InputNumForm
+      <RegisterPhoneNumForm
         isChanged={isChanged}
         isVisible={isVisible}
         handleCertification={handleCertification}
         handleIsChanged={handleIsChanged}
-        checkMaxLength={checkMaxLength}
+        sliceMaxLength={sliceMaxLength}
         length={numLength}
       />
 
       {/* isVisible이 true인 경우에만 인증번호 입력 폼 나옴 */}
       {isVisible && (
         <InputCertificationForm
-          checkMaxLength={checkMaxLength}
+          sliceMaxLength={sliceMaxLength}
           checkInputNum={checkInputNum}
           isCorrect={isCorrect}
           isError={isError}

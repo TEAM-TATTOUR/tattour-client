@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { TITLE, SUB_TITLE } from '../../constants/TitleInfo';
-import TitleForm from './TitleForm';
-import InputNameFooter from './InputNameFooter';
+import RegisterTitleForm from './RegisterTitleForm';
+import RegisterNameFooter from './RegisterNameFooter';
 import { useState } from 'react';
 
-const InputName = () => {
+const RegisterName = () => {
   const [userName, setUserName] = useState('');
 
   const handleIsChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,8 +12,8 @@ const InputName = () => {
   };
 
   return (
-    <St.InputNameWrapper>
-      <TitleForm title={TITLE[0]} subTitle={SUB_TITLE[0]} />
+    <St.RegisterNameWrapper>
+      <RegisterTitleForm title={TITLE[0]} subTitle={SUB_TITLE[0]} />
 
       <St.InputContentsWrapper>
         <St.InputContent
@@ -22,13 +22,13 @@ const InputName = () => {
         ></St.InputContent>
       </St.InputContentsWrapper>
 
-      <InputNameFooter userName={userName} />
-    </St.InputNameWrapper>
+      <RegisterNameFooter userName={userName} />
+    </St.RegisterNameWrapper>
   );
 };
 
 const St = {
-  InputNameWrapper: styled.section`
+  RegisterNameWrapper: styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,4 +58,4 @@ const St = {
   `,
 };
 
-export default InputName;
+export default RegisterName;

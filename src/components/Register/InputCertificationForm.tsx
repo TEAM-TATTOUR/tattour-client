@@ -5,20 +5,20 @@ interface InputCertificationFormProps {
   isCorrect: boolean;
   isError: boolean;
   checkInputNum: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  checkMaxLength: (e: React.ChangeEvent<HTMLInputElement>, maxLength: number) => void;
+  sliceMaxLength: (e: React.ChangeEvent<HTMLInputElement>, maxLength: number) => void;
 }
 
 const InputCertificationForm = ({
   isCorrect,
   isError,
   checkInputNum,
-  checkMaxLength,
+  sliceMaxLength,
 }: InputCertificationFormProps) => {
   return (
     <St.CertificationInputWrapper>
       <St.CertificationInput
         id={isError ? 'errorInput' : 'successInput'}
-        onInput={(e: React.ChangeEvent<HTMLInputElement>) => checkMaxLength(e, 4)}
+        onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 4)}
         placeholder='인증번호를 입력해주세요'
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => checkInputNum(e)}
       ></St.CertificationInput>

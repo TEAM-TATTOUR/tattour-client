@@ -1,28 +1,28 @@
 import { styled } from 'styled-components';
 
-interface InputNumFormProps {
+interface RegisterPhoneNumFormProps {
   isChanged: boolean;
   isVisible: boolean;
   handleIsChanged: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleCertification: () => void;
-  checkMaxLength: (e: React.ChangeEvent<HTMLInputElement>, maxLength: number) => void;
+  sliceMaxLength: (e: React.ChangeEvent<HTMLInputElement>, maxLength: number) => void;
   length: number;
 }
 
-const InputNumForm = ({
+const RegisterPhoneNumForm = ({
   isChanged,
   isVisible,
   handleIsChanged,
   handleCertification,
-  checkMaxLength,
+  sliceMaxLength,
   length,
-}: InputNumFormProps) => {
+}: RegisterPhoneNumFormProps) => {
   return (
     <St.InputContentsWrapper>
       <St.InputContent
         placeholder='전화번호를 입력해주세요'
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleIsChanged(e)}
-        onInput={(e: React.ChangeEvent<HTMLInputElement>) => checkMaxLength(e, 13)}
+        onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13)}
       ></St.InputContent>
       <St.SendMessageBtn
         type='button'
@@ -83,4 +83,4 @@ const St = {
   `,
 };
 
-export default InputNumForm;
+export default RegisterPhoneNumForm;
