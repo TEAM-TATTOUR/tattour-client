@@ -8,15 +8,14 @@ import InputNumForm from './InputNumForm';
 const InputNum = () => {
   // 임의의 인증번호
   const CERTIFICATION_NUM = 1234;
-
   // 전화번호 입력 체크를 위한 상태
   const [isChanged, setIsChanged] = useState(false);
-
   // 전화번호 입력 후, 인증 버튼이 클릭되었는지 여부를 확인하기 위한 상태
   const [visible, setVisible] = useState(false);
-
   // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
   const [isCorrect, setIsCorrect] = useState(false);
+
+  const [numLength, setNumLength] = useState(0);
 
   const handleIsChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 전화번호 입력이 되지 않았을 경우
@@ -47,6 +46,7 @@ const InputNum = () => {
       setTimeout(() => alert('success!'), 500);
     } else {
       setIsCorrect(false);
+      setNumLength(e.target.value.length);
     }
   };
 
@@ -55,7 +55,8 @@ const InputNum = () => {
     setIsChanged(isChanged);
     setVisible(visible);
     setIsCorrect(isCorrect);
-  }, [isChanged, visible, isCorrect]);
+    setNumLength(numLength);
+  }, [isChanged, visible, isCorrect, numLength]);
 
   return (
     <St.InputNumWrapper>
@@ -78,7 +79,7 @@ const InputNum = () => {
           <Timer isCorrect={isCorrect} />
         </St.CertificationInputWrapper>
       )}
-      {!isCorrect && visible && (
+      {!isCorrect && numLength === 4 && (
         <St.NotificationWrapper>
           <St.Notification>인증번호가 잘못되었어요.</St.Notification>
         </St.NotificationWrapper>
