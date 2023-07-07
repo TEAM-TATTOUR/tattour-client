@@ -12,7 +12,7 @@ const RegisterNameFooter = ({ userName }: RegisterNameFooterProps) => {
     if (userName) {
       navigate('/input-number');
 
-      /* 나중에 userName을 로컬스토리지에 저장 */
+      /* 나중에 userName을 useLocation 등으로 넘겨줘도 됨 (굳이 스토리지 사용안해도 ㄱㅊ) */
     }
   };
 

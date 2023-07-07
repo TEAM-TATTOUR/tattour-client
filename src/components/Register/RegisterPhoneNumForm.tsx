@@ -1,11 +1,11 @@
 import { styled } from 'styled-components';
+import sliceMaxLength from '../../utils/sliceMaxLength';
 
 interface RegisterPhoneNumFormProps {
   isChanged: boolean;
   isVisible: boolean;
   handleIsChanged: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleCertification: () => void;
-  sliceMaxLength: (e: React.ChangeEvent<HTMLInputElement>, maxLength: number) => void;
   length: number;
 }
 
@@ -14,7 +14,6 @@ const RegisterPhoneNumForm = ({
   isVisible,
   handleIsChanged,
   handleCertification,
-  sliceMaxLength,
   length,
 }: RegisterPhoneNumFormProps) => {
   return (

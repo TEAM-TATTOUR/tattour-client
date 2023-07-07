@@ -57,12 +57,6 @@ const InputNum = () => {
     }
   };
 
-  const sliceMaxLength = (e: React.ChangeEvent<HTMLInputElement>, maxLength: number) => {
-    if (e.target.value.length > maxLength) {
-      e.target.value = e.target.value.slice(0, maxLength);
-    }
-  };
-
   // 전화번호가 입력되거나, 지워진 경우 상태 업데이트
   useEffect(() => {
     setIsChanged(isChanged);
@@ -80,14 +74,12 @@ const InputNum = () => {
         isVisible={isVisible}
         handleCertification={handleCertification}
         handleIsChanged={handleIsChanged}
-        sliceMaxLength={sliceMaxLength}
         length={numLength}
       />
 
       {/* isVisible이 true인 경우에만 인증번호 입력 폼 나옴 */}
       {isVisible && (
         <InputCertificationForm
-          sliceMaxLength={sliceMaxLength}
           checkInputNum={checkInputNum}
           isCorrect={isCorrect}
           isError={isError}

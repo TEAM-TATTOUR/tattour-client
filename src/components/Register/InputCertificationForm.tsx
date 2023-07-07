@@ -1,18 +1,17 @@
 import { styled } from 'styled-components';
 import Timer from './Timer';
+import sliceMaxLength from '../../utils/sliceMaxLength';
 
 interface InputCertificationFormProps {
   isCorrect: boolean;
   isError: boolean;
   checkInputNum: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  sliceMaxLength: (e: React.ChangeEvent<HTMLInputElement>, maxLength: number) => void;
 }
 
 const InputCertificationForm = ({
   isCorrect,
   isError,
   checkInputNum,
-  sliceMaxLength,
 }: InputCertificationFormProps) => {
   return (
     <St.CertificationInputWrapper>
