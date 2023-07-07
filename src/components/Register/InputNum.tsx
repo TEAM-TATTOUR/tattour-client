@@ -15,10 +15,8 @@ const InputNum = () => {
   const [isVisible, setIsVisible] = useState(false);
   // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
   const [isCorrect, setIsCorrect] = useState(false);
-
   // 입력한 전화번호 자릿수
   const [numLength, setNumLength] = useState(0);
-
   // 입력한 인증번호 자릿수
   const [certificationLen, setCertificationLen] = useState(0);
 
