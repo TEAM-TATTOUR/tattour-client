@@ -47,17 +47,17 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                 disableDrag={true}
                 >
                 <Sheet.Container>
-                <Sheet.Header disableDrag={true}/>
-                <Sheet.Content>
-                    {GENRE.map((el)=>(
-                        <St.TagBox key={el}>{el}</St.TagBox>
-                    ))}
-                    <St.Footer>
-                        <St.Button type='button'>
-                            적용하기
-                        </St.Button>
-                    </St.Footer>
-                </Sheet.Content>
+                    <Sheet.Header disableDrag={true}/>
+                    <Sheet.Content>
+                        {GENRE.map((el)=>(
+                            <St.TagBox key={el}>{el}</St.TagBox>
+                        ))}
+                        <St.Footer>
+                            <St.Button type='button'>
+                                적용하기
+                            </St.Button>
+                        </St.Footer>
+                    </Sheet.Content>
                 </Sheet.Container>
                 <Sheet.Backdrop onClick={() => setGenreOpen(false)}/>
             </CustomSheet>
