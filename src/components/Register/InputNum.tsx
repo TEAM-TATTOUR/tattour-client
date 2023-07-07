@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import TitleForm from './TitleForm';
 import { TITLE, SUB_TITLE } from '../../constants/TitleInfo';
 import { useEffect, useState } from 'react';
+import Timer from './Timer';
+import InputNumForm from './InputNumForm';
 
 const InputNum = () => {
   // 임의의 인증번호
@@ -58,19 +60,12 @@ const InputNum = () => {
     <St.InputNumWrapper>
       <TitleForm title={TITLE[1]} subTitle={SUB_TITLE[1]} />
 
-      <St.InputContentsWrapper>
-        <St.InputContent
-          placeholder='전화번호를 입력해주세요'
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleIsChanged(e)}
-        ></St.InputContent>
-        <St.SendMessageBtn
-          type='button'
-          ischanged={isChanged ? 'true' : 'false'}
-          onClick={handleCertification}
-        >
-          {visible ? '재요청' : '인증하기'}
-        </St.SendMessageBtn>
-      </St.InputContentsWrapper>
+      <InputNumForm
+        isChanged={isChanged}
+        visible={visible}
+        handleCertification={handleCertification}
+        handleIsChanged={handleIsChanged}
+      />
 
       {/* visible이 true인 경우에만 인증번호 입력 폼 나옴 */}
       {visible && (
@@ -79,6 +74,7 @@ const InputNum = () => {
             placeholder='인증번호를 입력해주세요'
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => checkInputNum(e)}
           ></St.CertificationInput>
+          <Timer />
         </St.CertificationInputWrapper>
       )}
       {!isCorrect && visible && (
@@ -97,47 +93,6 @@ const St = {
     align-items: center;
   `,
 
-  InputContentsWrapper: styled.article`
-    display: flex;
-    width: 100%;
-    padding: 0rem 2rem;
-
-    gap: 1.2rem;
-  `,
-
-  InputContent: styled.input`
-    width: 23.1rem;
-    height: 4.5rem;
-    padding-left: 2rem;
-
-    border: none;
-    border-radius: 0.5rem;
-
-    color: ${({ theme }) => theme.colors.gray5};
-    background-color: ${({ theme }) => theme.colors.bg};
-
-    ${({ theme }) => theme.fonts.body_medium_16};
-
-    &::placeholder {
-      color: ${({ theme }) => theme.colors.gray2};
-      ${({ theme }) => theme.fonts.body_medium_16};
-    }
-  `,
-
-  SendMessageBtn: styled.button<{ ischanged?: string }>`
-    width: 9.2rem;
-    height: 4.5rem;
-
-    border: none;
-    border-radius: 0.6rem;
-
-    color: ${({ theme }) => theme.colors.white};
-
-    background-color: ${({ ischanged, theme }) =>
-      ischanged === 'true' ? theme.colors.gray7 : theme.colors.gray3};
-
-    ${({ theme }) => theme.fonts.title_semibold_16};
-  `,
   CertificationInputWrapper: styled.article`
     display: flex;
     width: 100%;
