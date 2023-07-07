@@ -14,8 +14,10 @@ const InputNum = () => {
   const [visible, setVisible] = useState(false);
   // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
   const [isCorrect, setIsCorrect] = useState(false);
-
+  // 입력 번호 자릿수
   const [numLength, setNumLength] = useState(0);
+
+  const isError = !isCorrect && numLength === 4;
 
   const handleIsChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 전화번호 입력이 되지 않았을 경우
@@ -78,8 +80,9 @@ const InputNum = () => {
 
       {/* visible이 true인 경우에만 인증번호 입력 폼 나옴 */}
       {visible && (
-        <St.CertificationInputWrapper id='certificationInput'>
+        <St.CertificationInputWrapper>
           <St.CertificationInput
+            id={isError ? 'errorInput' : 'successInput'}
             onInput={checkMaxLength}
             placeholder='인증번호를 입력해주세요'
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => checkInputNum(e)}
@@ -87,7 +90,7 @@ const InputNum = () => {
           <Timer isCorrect={isCorrect} />
         </St.CertificationInputWrapper>
       )}
-      {!isCorrect && numLength === 4 && (
+      {isError && (
         <St.NotificationWrapper>
           <St.Notification>인증번호가 잘못되었어요.</St.Notification>
         </St.NotificationWrapper>
@@ -124,6 +127,10 @@ const St = {
       color: ${({ theme }) => theme.colors.gray2};
 
       ${({ theme }) => theme.fonts.body_medium_16};
+    }
+
+    &#errorInput {
+      border: 0.1rem solid ${({ theme }) => theme.colors.red};
     }
   `,
 
