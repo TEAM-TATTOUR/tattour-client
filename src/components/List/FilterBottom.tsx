@@ -11,78 +11,55 @@ interface FilterBottomProps {
 }
 
 const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isStyleOpen, setStyleOpen} : FilterBottomProps) => {
-    const SORT = ['인기 순', '가격 낮은 순', '가격 높은 순'];
-    const GENRE = ['일러스트', '동양화', '블랙워크', '라인 타투', '레터링', '수채화'];
-    const STYLE = ['추상적인', '심플한','귀여운', '사실적인', '감성적인', '다크한'];
 
+    const FILTER = [
+        {
+            type : '정렬',
+            isOpen : isSortOpen,
+            onClose : () => setSortOpen(false),
+            data : ['인기 순', '가격 낮은 순', '가격 높은 순']
+        },
+        {
+            type : '장르',
+            isOpen : isGenreOpen,
+            onClose : () => setGenreOpen(false),
+            data : ['일러스트', '동양화', '블랙워크', '라인 타투', '레터링', '수채화']
+        },
+        {
+            type : '스타일',
+            isOpen : isStyleOpen,
+            onClose : () => setStyleOpen(false),
+            data : ['추상적인', '심플한','귀여운', '사실적인', '감성적인', '다크한']
+        },
+
+    ]
 
     return (
         <>
-            <CustomSheet 
-                isOpen={isSortOpen} 
-                onClose={() => setSortOpen(false)}
-                detent="content-height"
-                disableDrag={true}
-                >
-                <Sheet.Container>
-                <Sheet.Header disableDrag={true}/>
-                <Sheet.Content>
-                    {SORT.map((el)=>(
-                        <St.TagBox key={el}>{el}</St.TagBox>
-                    ))}
-                    <St.Footer>
-                        <St.Button type='button'>
-                            적용하기
-                        </St.Button>
-                    </St.Footer>
-                </Sheet.Content>
-                </Sheet.Container>
-                <Sheet.Backdrop onClick={() => setSortOpen(false)}/>
-            </CustomSheet>
-
-            <CustomSheet 
-                isOpen={isGenreOpen} 
-                onClose={() => setGenreOpen(false)}
-                detent="content-height"
-                disableDrag={true}
-                >
-                <Sheet.Container>
-                    <Sheet.Header disableDrag={true}/>
-                    <Sheet.Content>
-                        {GENRE.map((el)=>(
-                            <St.TagBox key={el}>{el}</St.TagBox>
-                        ))}
-                        <St.Footer>
-                            <St.Button type='button'>
-                                적용하기
-                            </St.Button>
-                        </St.Footer>
-                    </Sheet.Content>
-                </Sheet.Container>
-                <Sheet.Backdrop onClick={() => setGenreOpen(false)}/>
-            </CustomSheet>
-
-            <CustomSheet 
-                isOpen={isStyleOpen} 
-                onClose={() => setStyleOpen(false)}
-                detent="content-height"
-                disableDrag={true}
-                >
-                <Sheet.Container>
-                <Sheet.Header disableDrag={true}/>
-                <Sheet.Content>
-                    {STYLE.map((el)=>(
-                        <St.TagBox key={el}>{el}</St.TagBox>
-                    ))}
-                    <St.Footer>
-                        <St.Button type='button'>
-                            적용하기
-                        </St.Button>
-                    </St.Footer>
-                </Sheet.Content>
-                </Sheet.Container>
-                <Sheet.Backdrop onClick={() => setStyleOpen(false)}/>
-            </CustomSheet>
+            {FILTER.map((filter)=>(
+                <CustomSheet 
+                    key={filter.type}
+                    isOpen={filter.isOpen} 
+                    onClose={filter.onClose}
+                    detent="content-height"
+                    disableDrag={true}
+                    >
+                    <Sheet.Container>
+                        <Sheet.Header disableDrag={true}/>
+                        <Sheet.Content>
+                            {filter.data.map((el)=>(
+                                <St.TagBox key={el}>{el}</St.TagBox>
+                            ))}
+                            <St.Footer>
+                                <St.Button type='button'>
+                                    적용하기
+                                </St.Button>
+                            </St.Footer>
+                        </Sheet.Content>
+                    </Sheet.Container>
+                    <Sheet.Backdrop onClick={filter.onClose}/>
+                </CustomSheet>
+            ))}
         </>
 
     )
