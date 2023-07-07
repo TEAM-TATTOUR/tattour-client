@@ -4,6 +4,7 @@ import { TITLE, SUB_TITLE } from '../../constants/TitleInfo';
 import { useEffect, useState } from 'react';
 import InputNumForm from './InputNumForm';
 import InputCertificationForm from './InputCertificationForm';
+import ErrorMessage from './ErrorMessage';
 
 const InputNum = () => {
   // 임의의 인증번호
@@ -79,11 +80,7 @@ const InputNum = () => {
           isError={isError}
         />
       )}
-      {isError && (
-        <St.NotificationWrapper>
-          <St.Notification>인증번호가 잘못되었어요.</St.Notification>
-        </St.NotificationWrapper>
-      )}
+      {isError && <ErrorMessage />}
     </St.InputNumWrapper>
   );
 };
@@ -93,20 +90,6 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-  `,
-
-  NotificationWrapper: styled.div`
-    display: flex;
-    justify-content: start;
-    width: 100%;
-    padding-top: 0.8rem;
-    padding-left: 2.2rem;
-  `,
-
-  Notification: styled.p`
-    color: ${({ theme }) => theme.colors.red};
-
-    ${({ theme }) => theme.fonts.body_medium_14};
   `,
 };
 
