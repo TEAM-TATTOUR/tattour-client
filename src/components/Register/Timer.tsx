@@ -38,20 +38,22 @@ const Timer = memo(({ isCorrect }: TimerProps) => {
   }, [timeLeft, isCorrect]);
 
   return (
-    <St.AuthTimer>
-      {minutes} : {second}
-    </St.AuthTimer>
+    <St.AuthTimerWrapper>
+      <St.AuthTimer>
+        {minutes} : {second}
+      </St.AuthTimer>
+    </St.AuthTimerWrapper>
   );
 });
 
 const St = {
-  AuthTimer: styled.div`
+  AuthTimerWrapper: styled.div`
     display: flex;
-    justify-content: end;
     align-items: center;
-    /* margin-right: 2rem; */
-
-    z-index: 2;
+  `,
+  AuthTimer: styled.p`
+    position: absolute;
+    right: 4rem;
 
     color: ${({ theme }) => theme.colors.gray7};
 
