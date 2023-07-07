@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import Sheet from 'react-modal-sheet';
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 interface FilterBottomProps {
     isSortOpen : boolean;
@@ -14,6 +14,7 @@ interface FilterBottomProps {
 const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isStyleOpen, setStyleOpen} : FilterBottomProps) => {
 
     const filterRef = useRef<HTMLElement>(null);
+    const [isSelected, setSelected] = useState(false);
 
     const FILTER = [
         {
@@ -42,7 +43,10 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
             el.classList.remove('select');
         })
         filterRef.current?.childNodes[index].classList.add('select');
+
+        setSelected(true);
     }
+    
 
     return (
         <>
@@ -63,7 +67,7 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                                     onClick={()=>handleTag(filter.data.indexOf(el))}
                                     >{el}</St.TagBox>
                             ))}
-                            <St.Footer>
+                            <St.Footer $sel={isSelected}>
                                 <St.Button type='button'>
                                     적용하기
                                 </St.Button>
@@ -95,7 +99,7 @@ const St = {
             /* 나중에 ::after로 체크 아이콘 추가  */
         }
     `,
-    Footer: styled.footer`
+    Footer: styled.footer<{$sel : boolean}>`
         display: flex;
         justify-content: center;
         align-items: center;
@@ -103,7 +107,7 @@ const St = {
         height: 7rem;
         margin-top: 4rem;
 
-        background-color: ${({ theme }) => theme.colors.gray3};
+        background-color: ${({ theme, $sel }) => ($sel? theme.colors.gray9 : theme.colors.gray3)};
     `,
     Button: styled.button`
         width: 100%;
