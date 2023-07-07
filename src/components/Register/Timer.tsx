@@ -2,7 +2,11 @@ import { memo } from 'react';
 import { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 
-const Timer = memo(() => {
+interface TimerProps {
+  isCorrect: boolean;
+}
+
+const Timer = memo(({ isCorrect }: TimerProps) => {
   const MINUTES_IN_MS = 5 * 60 * 1000;
   const INTERVAL = 1000;
   const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
@@ -24,10 +28,14 @@ const Timer = memo(() => {
       alert('제한 시간이 끝났습니다.');
     }
 
+    if (isCorrect) {
+      clearInterval(timer);
+    }
+
     return () => {
       clearInterval(timer);
     };
-  }, [timeLeft]);
+  }, [timeLeft, isCorrect]);
 
   return (
     <St.AuthTimer>

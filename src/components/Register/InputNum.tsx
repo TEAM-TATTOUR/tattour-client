@@ -54,7 +54,8 @@ const InputNum = () => {
   useEffect(() => {
     setIsChanged(isChanged);
     setVisible(visible);
-  }, [isChanged, visible]);
+    setIsCorrect(isCorrect);
+  }, [isChanged, visible, isCorrect]);
 
   return (
     <St.InputNumWrapper>
@@ -74,7 +75,7 @@ const InputNum = () => {
             placeholder='인증번호를 입력해주세요'
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => checkInputNum(e)}
           ></St.CertificationInput>
-          <Timer />
+          <Timer isCorrect={isCorrect} />
         </St.CertificationInputWrapper>
       )}
       {!isCorrect && visible && (
