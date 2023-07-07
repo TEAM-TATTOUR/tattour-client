@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import TitleForm from './TitleForm';
 import { TITLE, SUB_TITLE } from '../../constants/TitleInfo';
 import { useEffect, useState } from 'react';
-import Timer from './Timer';
 import InputNumForm from './InputNumForm';
+import InputCertificationForm from './InputCertificationForm';
 
 const InputNum = () => {
   // 임의의 인증번호
@@ -52,13 +52,6 @@ const InputNum = () => {
     }
   };
 
-  const checkMaxLength = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const maxLength = 4;
-    if (e.target.value.length > maxLength) {
-      e.target.value = e.target.value.slice(0, maxLength);
-    }
-  };
-
   // 전화번호가 입력되거나, 지워진 경우 상태 업데이트
   useEffect(() => {
     setIsChanged(isChanged);
@@ -80,15 +73,11 @@ const InputNum = () => {
 
       {/* visible이 true인 경우에만 인증번호 입력 폼 나옴 */}
       {visible && (
-        <St.CertificationInputWrapper>
-          <St.CertificationInput
-            id={isError ? 'errorInput' : 'successInput'}
-            onInput={checkMaxLength}
-            placeholder='인증번호를 입력해주세요'
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => checkInputNum(e)}
-          ></St.CertificationInput>
-          <Timer isCorrect={isCorrect} />
-        </St.CertificationInputWrapper>
+        <InputCertificationForm
+          checkInputNum={checkInputNum}
+          isCorrect={isCorrect}
+          isError={isError}
+        />
       )}
       {isError && (
         <St.NotificationWrapper>
@@ -104,34 +93,6 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-  `,
-
-  CertificationInputWrapper: styled.article`
-    display: flex;
-    width: 100%;
-    padding: 0rem 2rem;
-    margin-top: 1.4rem;
-  `,
-
-  CertificationInput: styled.input`
-    width: 100%;
-    height: 4.5rem;
-    padding-left: 2rem;
-
-    border: none;
-    border-radius: 0.5rem;
-
-    background-color: ${({ theme }) => theme.colors.bg};
-
-    &::placeholder {
-      color: ${({ theme }) => theme.colors.gray2};
-
-      ${({ theme }) => theme.fonts.body_medium_16};
-    }
-
-    &#errorInput {
-      border: 0.1rem solid ${({ theme }) => theme.colors.red};
-    }
   `,
 
   NotificationWrapper: styled.div`
