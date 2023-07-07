@@ -38,10 +38,12 @@ const St = {
     border-radius: 0.5rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
+    color: ${({ theme }) => theme.colors.gray5};
+
+    ${({ theme }) => theme.fonts.body_medium_16}
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray2};
-      ${({ theme }) => theme.fonts.body_medium_16};
     }
   `,
 };
