@@ -50,7 +50,11 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                         <Sheet.Header disableDrag={true}/>
                         <Sheet.Content>
                             {filter.data.map((el)=>(
-                                <St.TagBox key={el}>{el}</St.TagBox>
+                                <St.TagBox 
+                                    key={el}
+                                    isSelected={isSelected}
+                                    onClick={()=>setSelected(true)}
+                                    >{el}</St.TagBox>
                             ))}
                             <St.Footer>
                                 <St.Button type='button'>
@@ -70,12 +74,12 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
 export default FilterBottom
 
 const St = {
-    TagBox : styled.p`
+    TagBox : styled.p<{isSelected : boolean}>`
         text-align: center;
 
         width:100%;
         padding: 1.7rem 0rem;
-        color: ${({ theme }) => theme.colors.gray4};
+        color: ${({ theme, isSelected }) => isSelected? theme.colors.gray8 : theme.colors.gray4};
         ${({ theme }) => theme.fonts.title_medium_18};
     `,
     Footer: styled.footer`
