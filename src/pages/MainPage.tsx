@@ -4,6 +4,8 @@ import PageLayout from '../components/PageLayout';
 import MainBanner from '../components/MainBanner';
 import { useEffect, useState } from 'react';
 import { throttle } from 'lodash';
+import { ImgLogoDark, ImgLogoLight } from '../assets/icon';
+import MainHeaderButton from '../components/MainHeaderButton';
 
 const MainPage = () => {
   const [isHeaderTransparent, setIsHeaderTransparent] = useState(true);
@@ -27,8 +29,8 @@ const MainPage = () => {
     return (
       <Header
         transparent={isHeaderTransparent}
-        leftSection={<div>left</div>}
-        rightSection={<div>right</div>}
+        leftSection={isHeaderTransparent ? <ImgLogoLight /> : <ImgLogoDark />}
+        rightSection={<MainHeaderButton light={isHeaderTransparent} />}
       />
     );
   };
