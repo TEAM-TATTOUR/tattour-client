@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import Sheet from 'react-modal-sheet';
+import { useState } from "react";
 
 interface FilterBottomProps {
     isSortOpen : boolean;
@@ -11,6 +12,7 @@ interface FilterBottomProps {
 }
 
 const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isStyleOpen, setStyleOpen} : FilterBottomProps) => {
+    const [isSelected, setSelected] = useState(false);
 
     const FILTER = [
         {
