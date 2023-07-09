@@ -1,4 +1,6 @@
 import { styled } from 'styled-components';
+import { IcApplyCheckLight } from '../../../assets/icon';
+import img_home from '../../../assets/icon/img_home.svg';
 
 const SelectSizeCustom = () => {
   return (
@@ -9,7 +11,9 @@ const SelectSizeCustom = () => {
       </St.SizeInfoContainer>
       <St.SizeBntContainer>
         <St.SizeBtn type='button'>
-          <St.SizeBtnImgBox></St.SizeBtnImgBox>
+          <St.SizeBtnImgBox>
+            <IcApplyCheckLight />
+          </St.SizeBtnImgBox>
           <St.SizeBtnTextBox>
             <St.SizeBtnTitle>5cm 이하</St.SizeBtnTitle>
             <St.SizeBtnDetail>동전크기</St.SizeBtnDetail>
@@ -94,7 +98,12 @@ const St = {
 
     border-radius: 0.5rem 0.5rem 0 0;
 
-    background-color: ${({ theme }) => theme.colors.gray1};
+    /* background-color: ${({ theme }) => theme.colors.gray1}; */
+    background: url(${img_home});
+
+    & > svg {
+      padding-top: 0.8rem;
+    }
   `,
 
   SizeBtnTextBox: styled.div`
