@@ -1,18 +1,36 @@
 import { styled } from 'styled-components';
+import { useState, useEffect } from 'react';
 import Timer from './Timer';
 import sliceMaxLength from '../../utils/sliceMaxLength';
+import ErrorMessage from './ErrorMessage';
 
-interface InputCertificationFormProps {
-  isCorrect: boolean;
-  isError: boolean;
-  checkInputNum: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+const InputCertificationForm = () => {
+  // 임의의 인증번호
+  const CERTIFICATION_NUM = 1234;
+  // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
+  const [isCorrect, setIsCorrect] = useState(false);
+  // 입력한 인증번호 자릿수
+  const [certificationLen, setCertificationLen] = useState(0);
 
-const InputCertificationForm = ({
-  isCorrect,
-  isError,
-  checkInputNum,
-}: InputCertificationFormProps) => {
+  const isError = !isCorrect && certificationLen === 4;
+
+  const checkInputNum = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (parseInt(e.target.value) === CERTIFICATION_NUM) {
+      setIsCorrect(true);
+
+      // alert 대신 회원가입 완료 페이지로 넘어가게 하기
+      setTimeout(() => alert('success!'), 500);
+    } else {
+      setIsCorrect(false);
+      setCertificationLen(e.target.value.length);
+    }
+  };
+
+  useEffect(() => {
+    setIsCorrect(isCorrect);
+    setCertificationLen(certificationLen);
+  }, [isCorrect, certificationLen]);
+
   return (
     <St.CertificationInputWrapper>
       <St.CertificationInput
@@ -22,6 +40,8 @@ const InputCertificationForm = ({
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => checkInputNum(e)}
       ></St.CertificationInput>
       <Timer isCorrect={isCorrect} />
+
+      {isError && <ErrorMessage />}
     </St.CertificationInputWrapper>
   );
 };
@@ -29,6 +49,7 @@ const InputCertificationForm = ({
 const St = {
   CertificationInputWrapper: styled.article`
     display: flex;
+    flex-direction: column;
     width: 100%;
     padding: 0rem 2rem;
     margin-top: 1.4rem;
