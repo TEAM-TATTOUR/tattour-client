@@ -17,9 +17,12 @@ const DeliveryInfo = () => {
                 </St.Info>
                 <St.Info>
                     <label>배송지</label>
-                    <input type="text" name="posecode" placeholder="우편번호"/>
-                    <input type="text" name="address" placeholder="주소"/>
-                    <input type="text" name="detail" placeholder="상세주소"/>
+                    <St.AddressBox>
+                        <input type="text" name="posecode" placeholder="우편번호"/>
+                        <St.SearchBtn type="button"/>
+                        <input type="text" name="address" placeholder="주소"/>
+                        <input type="text" name="detail" placeholder="상세주소"/>
+                    </St.AddressBox>
                 </St.Info>
             </St.InfoList>
 
@@ -44,6 +47,9 @@ const St = {
 
     `,
     Info : styled.li`
+    
+    `,
+    AddressBox : styled.div`
     
     `,
     SearchBtn : styled.button`
