@@ -18,9 +18,9 @@ const DeliveryInfo = () => {
                 <St.Info>
                     <label>배송지</label>
                     <St.AddressBox>
-                        <input type="text" name="postcode" placeholder="우편번호"/>
-                        <St.SearchBtn type="button"/>
-                        <input type="text" name="address" placeholder="주소"/>
+                        <input type="text" name="postcode" placeholder="우편번호" disabled/>
+                        <St.SearchBtn type="button">우편번호 검색</St.SearchBtn>
+                        <input type="text" name="address" placeholder="주소" disabled/>
                         <input type="text" name="detail" placeholder="상세주소"/>
                     </St.AddressBox>
                 </St.Info>
@@ -56,7 +56,7 @@ const St = {
             ${({ theme }) => theme.fonts.body_medium_14};
             color: ${({ theme }) => theme.colors.gray3};
         }
-        & > input {
+        & input {
             width: 100%;
             padding: 1.2rem 2rem;
             margin-top: 1rem;
@@ -68,14 +68,26 @@ const St = {
             &::placeholder {
                 color: ${({ theme }) => theme.colors.gray2};
             }
+
+            &:nth-child(3), &:nth-child(4) {
+                grid-column: 1 / 3;
+            }
         }
 
     `,
     AddressBox : styled.div`
-    
+        display: grid;
+        grid-template-columns: 21.5rem 1fr;
     `,
     SearchBtn : styled.button`
-    
+        padding: 1.3rem 1.6rem;
+        margin: 1rem 0rem 0rem 1.2rem;
+
+        background-color: ${({ theme }) => theme.colors.gray7};
+        border-radius: 0.6rem;
+
+        ${({ theme }) => theme.fonts.body_semibold_14};
+        color: ${({ theme }) => theme.colors.white};
     `,
 
 }
