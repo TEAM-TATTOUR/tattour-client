@@ -3,6 +3,7 @@ import { TITLE, SUB_TITLE } from '../../constants/TitleInfo';
 import RegisterTitleForm from './RegisterTitleForm';
 import RegisterNameFooter from './RegisterNameFooter';
 import { useState } from 'react';
+import sliceMaxLength from '../../utils/sliceMaxLength';
 
 const RegisterName = () => {
   const [userName, setUserName] = useState('');
@@ -19,6 +20,7 @@ const RegisterName = () => {
         <St.InputContent
           placeholder='실명을 입력해주세요'
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleIsChanged(e)}
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 5)}
         ></St.InputContent>
       </St.InputContentsWrapper>
 
