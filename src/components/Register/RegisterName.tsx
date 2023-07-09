@@ -8,7 +8,7 @@ import sliceMaxLength from '../../utils/sliceMaxLength';
 const RegisterName = () => {
   const [userName, setUserName] = useState('');
 
-  const handleIsChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeInputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
   };
 
@@ -19,7 +19,7 @@ const RegisterName = () => {
       <St.InputContentsWrapper>
         <St.InputContent
           placeholder='실명을 입력해주세요'
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleIsChanged(e)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 5)}
         ></St.InputContent>
       </St.InputContentsWrapper>

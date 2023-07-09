@@ -15,7 +15,7 @@ const RegisterPhoneNumForm = ({ isVisible, setIsVisible }: RegisterPhoneNumFormP
   const [numLength, setNumLength] = useState(0);
 
   // 전화번호 입력 여부를 체크하는 함수
-  const handleIsChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeInputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 전화번호 입력이 되지 않았을 경우
     if (e.target.value.length === 0) {
       // 인증번호 입력 폼은 나오지 않음
@@ -48,7 +48,7 @@ const RegisterPhoneNumForm = ({ isVisible, setIsVisible }: RegisterPhoneNumFormP
     <St.InputContentsWrapper>
       <St.InputContent
         placeholder='전화번호를 입력해주세요'
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleIsChanged(e)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
         onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13)}
       ></St.InputContent>
       <St.SendMessageBtn

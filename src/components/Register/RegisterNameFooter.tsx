@@ -8,7 +8,7 @@ interface RegisterNameFooterProps {
 const RegisterNameFooter = ({ userName }: RegisterNameFooterProps) => {
   const navigate = useNavigate();
 
-  const goNext = () => {
+  const handleClickFooter = () => {
     if (userName) {
       navigate('/input-number');
 
@@ -17,7 +17,7 @@ const RegisterNameFooter = ({ userName }: RegisterNameFooterProps) => {
   };
 
   return (
-    <St.Footer onClick={goNext}>
+    <St.Footer onClick={handleClickFooter}>
       <St.FooterContents>다음</St.FooterContents>
     </St.Footer>
   );
