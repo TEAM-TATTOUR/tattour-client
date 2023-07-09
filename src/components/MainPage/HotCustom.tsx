@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { IcArrowRightDark } from '../assets/icon';
+import { IcArrowRightDark } from '../../assets/icon';
 
 interface HotCustomItemProps {
   id: number;

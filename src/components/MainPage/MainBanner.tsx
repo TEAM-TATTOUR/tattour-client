@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { IcArrowRightDark, ImgHome } from '../assets/icon';
+import { IcArrowRightDark, ImgHome } from '../../assets/icon';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 const MainBanner = () => {

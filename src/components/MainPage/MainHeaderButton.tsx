@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { IcMenuDark, IcMenuLight, IcSearchDark, IcSearchLight } from '../assets/icon';
+import { IcMenuDark, IcMenuLight, IcSearchDark, IcSearchLight } from '../../assets/icon';
 
 const MainHeaderButton = ({ light }: { light: boolean }) => {
   return (

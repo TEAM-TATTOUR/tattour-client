@@ -1,15 +1,15 @@
-import MainFooter from '../components/MainFooter';
+import MainFooter from '../components/MainPage/MainFooter';
 import Header from '../components/Header';
 import PageLayout from '../components/PageLayout';
-import MainBanner from '../components/MainBanner';
+import MainBanner from '../components/MainPage/MainBanner';
 import { useEffect, useState } from 'react';
 import { throttle } from 'lodash';
 import { ImgLogoDark, ImgLogoLight } from '../assets/icon';
-import MainHeaderButton from '../components/MainHeaderButton';
-import HotCustom from '../components/HotCustom';
-import MainTheme from '../components/MainTheme';
-import MainEventBanner from '../components/MainEventBanner';
-import MainStyle from '../components/MainStyle';
+import MainHeaderButton from '../components/MainPage/MainHeaderButton';
+import HotCustom from '../components/MainPage/HotCustom';
+import MainTheme from '../components/MainPage/MainTheme';
+import MainEventBanner from '../components/MainPage/MainEventBanner';
+import MainStyle from '../components/MainPage/MainStyle';
 
 const MainPage = () => {
   const [isHeaderTransparent, setIsHeaderTransparent] = useState(true);
