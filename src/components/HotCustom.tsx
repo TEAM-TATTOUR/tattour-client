@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { IcArrowRightDark } from '../assets/icon';
 
 interface HotCustomItemProps {
+  id: number;
   img: string;
   title: string;
   originalPrice: number;
@@ -159,6 +160,7 @@ const St = {
     // font title_extra_bold_16 추가 필요
     font-size: 1.6rem;
     font-weight: bold;
+    margin-right: 0.5rem;
 
     color: ${({ theme }) => theme.colors.pink5};
   `,
