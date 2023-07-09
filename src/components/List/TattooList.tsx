@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IcDownArrow } from "../../assets/icon";
+import { IcArrowBottomSmallGray } from "../../assets/icon";
 import { useState } from "react";
 
 interface TattooListProps {
@@ -45,7 +45,7 @@ const TattooList = ({setSortOpen, setGenreOpen, setStyleOpen} : TattooListProps)
             }
           }}>
             {el}
-            <IcDownArrow/>
+            <IcArrowBottomSmallGray/>
           </St.FilterBtn>
         ))}
       </St.BtnContainer>
