@@ -10,7 +10,7 @@ const PaymentInfo = () => {
     const LEFT_POINT = 4500;
 
     return (
-        <St.Wrapper>
+        <div>
             <St.PriceContainer>
                 <St.Title>
                     결제 정보
@@ -48,16 +48,13 @@ const PaymentInfo = () => {
                     </St.MainText>
                 </St.PointText>
             </St.PointContainer>
-
-        </St.Wrapper>
+        </div>
     )
 }
 
 export default PaymentInfo
 
 const St = {
-    Wrapper : styled.section`
-    `,
     PriceContainer : styled.article`
         padding : 2.8rem 2rem 3.4rem 2rem
     `,
