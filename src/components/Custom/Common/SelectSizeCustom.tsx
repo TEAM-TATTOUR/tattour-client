@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
-import { IcApplyCheckLight } from '../../../assets/icon';
-import img_home from '../../../assets/icon/img_home.svg';
+import SelectSizeCustomBtn from './SelectSizeCustomBtn';
 
 const SelectSizeCustom = () => {
   return (
@@ -10,36 +9,10 @@ const SelectSizeCustom = () => {
         <St.InfoSubText>고민되는 크기를 선택해주세요!</St.InfoSubText>
       </St.SizeInfoContainer>
       <St.SizeBntContainer>
-        <St.SizeBtn type='button'>
-          <St.SizeBtnImgBox>
-            <IcApplyCheckLight />
-          </St.SizeBtnImgBox>
-          <St.SizeBtnTextBox>
-            <St.SizeBtnTitle>5cm 이하</St.SizeBtnTitle>
-            <St.SizeBtnDetail>동전크기</St.SizeBtnDetail>
-          </St.SizeBtnTextBox>
-        </St.SizeBtn>
-        <St.SizeBtn type='button'>
-          <St.SizeBtnImgBox></St.SizeBtnImgBox>
-          <St.SizeBtnTextBox>
-            <St.SizeBtnTitle>5cm 이하</St.SizeBtnTitle>
-            <St.SizeBtnDetail>동전크기</St.SizeBtnDetail>
-          </St.SizeBtnTextBox>
-        </St.SizeBtn>
-        <St.SizeBtn type='button'>
-          <St.SizeBtnImgBox></St.SizeBtnImgBox>
-          <St.SizeBtnTextBox>
-            <St.SizeBtnTitle>5cm 이하</St.SizeBtnTitle>
-            <St.SizeBtnDetail>동전크기</St.SizeBtnDetail>
-          </St.SizeBtnTextBox>
-        </St.SizeBtn>
-        <St.SizeBtn type='button'>
-          <St.SizeBtnImgBox></St.SizeBtnImgBox>
-          <St.SizeBtnTextBox>
-            <St.SizeBtnTitle>5cm 이하</St.SizeBtnTitle>
-            <St.SizeBtnDetail>동전크기</St.SizeBtnDetail>
-          </St.SizeBtnTextBox>
-        </St.SizeBtn>
+        <SelectSizeCustomBtn title='5cm 이하' detail='동전 크기' />
+        <SelectSizeCustomBtn title='A4 1/8' detail='신용카드, 담뱃값 크기' />
+        <SelectSizeCustomBtn title='A4 1/4' detail='엽서, 손바닥 크기' />
+        <SelectSizeCustomBtn title='5cm 이하' detail='동전 크기' />
       </St.SizeBntContainer>
     </St.SizeWrapper>
   );
@@ -82,55 +55,5 @@ const St = {
 
     width: 33.5rem;
     height: 43.3rem;
-  `,
-
-  SizeBtn: styled.button`
-    display: flex;
-    flex-direction: column;
-
-    width: 16rem;
-    height: 20.9rem;
-    padding: 0;
-  `,
-  SizeBtnImgBox: styled.div`
-    height: 16rem;
-    width: 100%;
-
-    border-radius: 0.5rem 0.5rem 0 0;
-
-    /* background-color: ${({ theme }) => theme.colors.gray1}; */
-    background: url(${img_home});
-
-    & > svg {
-      padding-top: 0.8rem;
-    }
-  `,
-
-  SizeBtnTextBox: styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-
-    width: 100%;
-    height: 6.5rem;
-
-    border-radius: 0 0 0.5rem 0.5rem;
-
-    background-color: ${({ theme }) => theme.colors.bg};
-  `,
-
-  SizeBtnTitle: styled.span`
-    margin-top: 1rem;
-
-    color: ${({ theme }) => theme.colors.gray5};
-    ${({ theme }) => theme.fonts.body_medium_16};
-  `,
-
-  SizeBtnDetail: styled.span`
-    margin-bottom: 1.5rem;
-
-    color: ${({ theme }) => theme.colors.gray3};
-    ${({ theme }) => theme.fonts.detail_medium_12};
   `,
 };
