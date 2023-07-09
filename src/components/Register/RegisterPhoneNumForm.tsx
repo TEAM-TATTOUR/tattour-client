@@ -1,21 +1,49 @@
 import { styled } from 'styled-components';
 import sliceMaxLength from '../../utils/sliceMaxLength';
+import { useState, useEffect } from 'react';
 
 interface RegisterPhoneNumFormProps {
-  isChanged: boolean;
   isVisible: boolean;
-  handleIsChanged: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleCertification: () => void;
-  length: number;
+  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const RegisterPhoneNumForm = ({
-  isChanged,
-  isVisible,
-  handleIsChanged,
-  handleCertification,
-  length,
-}: RegisterPhoneNumFormProps) => {
+const RegisterPhoneNumForm = ({ isVisible, setIsVisible }: RegisterPhoneNumFormProps) => {
+  // 전화번호 입력 체크를 위한 상태
+  const [isChanged, setIsChanged] = useState(false);
+
+  // 입력한 전화번호 자릿수
+  const [numLength, setNumLength] = useState(0);
+
+  // 전화번호 입력 여부를 체크하는 함수
+  const handleIsChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // 전화번호 입력이 되지 않았을 경우
+    if (e.target.value.length === 0) {
+      // 인증번호 입력 폼은 나오지 않음
+      setIsChanged(false);
+      setIsVisible(false);
+      setNumLength(0);
+    } else {
+      setIsChanged(true);
+      setNumLength(e.target.value.length);
+    }
+  };
+
+  // 인증번호 폼을 나오게 하는 함수
+  const handleCertification = () => {
+    // 전화번호 입력이 된 경우
+    if (isChanged) {
+      // 인증번호 입력 폼 나옴
+      setIsVisible(true);
+
+      /* 인증 문자가 전송될 부분 */
+    }
+  };
+
+  useEffect(() => {
+    setIsChanged(isChanged);
+    setIsVisible(isVisible);
+  }, [isChanged, isVisible, setIsVisible]);
+
   return (
     <St.InputContentsWrapper>
       <St.InputContent
@@ -27,7 +55,7 @@ const RegisterPhoneNumForm = ({
         type='button'
         ischanged={isChanged ? 'true' : 'false'}
         isvisible={isVisible ? 'true' : 'false'}
-        length={length}
+        length={numLength}
         onClick={handleCertification}
       >
         {isVisible ? '재요청' : '인증하기'}
