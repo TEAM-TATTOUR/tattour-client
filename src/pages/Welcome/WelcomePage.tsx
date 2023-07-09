@@ -1,11 +1,12 @@
 import { styled } from 'styled-components';
 import WelcomeHome from '../../components/Welcome/WelcomeHome';
+import WelcomeFooter from '../../components/Welcome/WelcomeFooter';
 
 const WelcomePage = () => {
   return (
     <St.WelcomeWrapper>
       <WelcomeHome />
-      <WelcomePage />
+      <WelcomeFooter />
     </St.WelcomeWrapper>
   );
 };
