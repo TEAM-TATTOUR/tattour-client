@@ -3,6 +3,7 @@ import { css, DefaultTheme } from "styled-components";
 const colors = {
     white: '#FFFFFF',
     bg: '#F7F7FA',
+    gray0: '#EDEEF2',
     gray1: '#D8D9DD',
     gray2: '#B2B4BA',
     gray3: '#8B8E98',
