@@ -27,7 +27,8 @@ const St = {
   `,
 
   FooterText: styled.p`
-    // 임의지정 -> 스타일 가이드 나오면 바꾸기!!
+    color: ${({ theme }) => theme.colors.brown};
+
     ${({ theme }) => theme.fonts.title_semibold_18}
   `,
 };
