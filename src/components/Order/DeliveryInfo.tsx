@@ -35,7 +35,7 @@ export default DeliveryInfo
 
 const St = {
     Wrapper : styled.section`
-        padding : 2.8rem 0rem 3.6rem 2rem
+        padding : 2.8rem 2rem 3.6rem 2rem
     `,
     Title : styled.h2`
         margin-left: 0.2rem;
@@ -43,11 +43,33 @@ const St = {
         color: ${({ theme }) => theme.colors.gray8};
     `,
     InfoList : styled.ul`
-        
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
 
+        margin-top: 2.2rem;
     `,
     Info : styled.li`
-    
+
+        & > label {
+            margin: 2rem 0rem 1rem 0rem;
+            ${({ theme }) => theme.fonts.body_medium_14};
+            color: ${({ theme }) => theme.colors.gray3};
+        }
+        & > input {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            margin-top: 1rem;
+            background-color: ${({ theme }) => theme.colors.bg};
+            border-width: 0rem;
+            border-radius: 0.5rem;
+            ${({ theme }) => theme.fonts.body_medium_16};
+            
+            &::placeholder {
+                color: ${({ theme }) => theme.colors.gray2};
+            }
+        }
+
     `,
     AddressBox : styled.div`
     
