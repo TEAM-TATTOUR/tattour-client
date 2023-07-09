@@ -101,7 +101,7 @@ const St = {
                 margin-left: 0.3rem;
                 width: 2rem;
                 height: 2rem;
-                background-image: url('/src/assets/icon/ic_check_mini_dark.svg');   //component로 하는 방법을 찾지 못함
+                background-image: url('/src/assets/icon/ic_check_small_pink.svg');   //component로 하는 방법을 찾지 못함
                 content: '';
             }
         }
