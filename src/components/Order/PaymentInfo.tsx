@@ -1,48 +1,56 @@
 import styled from "styled-components"
 
 const PaymentInfo = () => {
-  return (
-    <St.Wrapper>
-        <St.PriceContainer>
-            <St.Title>
-                결제 정보
-            </St.Title>
-            <St.TextBox>
-                <St.MainText>총 결제 금액</St.MainText>
-                <St.PriceBox>
-                    <St.MainPrice>5500</St.MainPrice>
-                    <St.MainText>원</St.MainText>
-                </St.PriceBox>
-            </St.TextBox>
-            <St.TextBox>
-                <St.SubText>총 상품 금액</St.SubText>
-                <St.SubText>2500원</St.SubText>
-            </St.TextBox>
-            <St.TextBox>
-                <St.SubText>총 배송비</St.SubText>
-                <St.SubText>3000원</St.SubText>
-            </St.TextBox>
-        </St.PriceContainer>
-        <St.LightLine/>
-        <St.PointContainer>
-            <St.PointText>
-                <St.MainText>보유 포인트</St.MainText>
-                <St.MainText>
-                    <span>10000</span>
-                    <span>P</span>
-                </St.MainText>
-            </St.PointText>
-            <St.PointText>
-                <St.MainText>남는 포인트</St.MainText>
-                <St.MainText>
-                    <span>4500</span>
-                    <span>P</span>
-                </St.MainText>
-            </St.PointText>
-        </St.PointContainer>
 
-    </St.Wrapper>
-  )
+    // 추후 서버통신 시 변수 변경 예정 
+    const FINAL_PRICE = 5500;
+    const ITEM_PRICE = 2500;
+    const DELIVERY_PRICE = 3000;
+    const MY_POINT = 10000;
+    const LEFT_POINT = 4500;
+
+    return (
+        <St.Wrapper>
+            <St.PriceContainer>
+                <St.Title>
+                    결제 정보
+                </St.Title>
+                <St.TextBox>
+                    <St.MainText>총 결제 금액</St.MainText>
+                    <St.PriceBox>
+                        <St.MainPrice>{FINAL_PRICE.toLocaleString()}</St.MainPrice>
+                        <St.MainText>원</St.MainText>
+                    </St.PriceBox>
+                </St.TextBox>
+                <St.TextBox>
+                    <St.SubText>총 상품 금액</St.SubText>
+                    <St.SubText>{ITEM_PRICE.toLocaleString()}원</St.SubText>
+                </St.TextBox>
+                <St.TextBox>
+                    <St.SubText>총 배송비</St.SubText>
+                    <St.SubText>{DELIVERY_PRICE.toLocaleString()}원</St.SubText>
+                </St.TextBox>
+            </St.PriceContainer>
+            <St.LightLine/>
+            <St.PointContainer>
+                <St.PointText>
+                    <St.MainText>보유 포인트</St.MainText>
+                    <St.MainText>
+                        <span>{MY_POINT.toLocaleString()}</span>
+                        <span>P</span>
+                    </St.MainText>
+                </St.PointText>
+                <St.PointText>
+                    <St.MainText>남는 포인트</St.MainText>
+                    <St.MainText>
+                        <span>{LEFT_POINT.toLocaleString()}</span>
+                        <span>P</span>
+                    </St.MainText>
+                </St.PointText>
+            </St.PointContainer>
+
+        </St.Wrapper>
+    )
 }
 
 export default PaymentInfo
@@ -106,7 +114,7 @@ const St = {
         display: flex;
         flex-direction: column;
         gap: 1.2rem;
-        
+
         padding: 3.4rem 2.2rem 3.6rem 2.2rem;
     `,
     PointText: styled.p`
