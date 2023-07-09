@@ -7,10 +7,21 @@ const OrderPage = () => {
   return (
     <div>
         <ProductInfo/>
+        <St.Line/>
         <DeliveryInfo/>
+        <St.Line/>
         <PaymentInfo/>
     </div>
   )
 }
 
 export default OrderPage
+
+const St = {
+    Line : styled.hr`
+        height: 1.3rem;
+
+        background-color: ${({ theme }) => theme.colors.bg};
+        border-width: 0rem;
+    `
+}
