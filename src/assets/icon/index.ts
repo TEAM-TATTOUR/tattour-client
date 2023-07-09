@@ -10,8 +10,6 @@ export { ReactComponent as IcArrowBottomMediumGray } from './ic_arrow_bottom_med
 export { ReactComponent as IcArrowBottomMediumLight } from './ic_arrow_bottom_medium_light.svg'
 export { ReactComponent as IcArrowBottomSmallLight } from './ic_arrow_bottom_small_light.svg'
 export { ReactComponent as IcArrowLeftGray } from './ic_arrow_left_gray.svg'
-export { ReactComponent as IcArrowDownDark } from './ic_arrow_down_dark.svg'
-export { ReactComponent as IcArrowDownLight } from './ic_arrow_down_light.svg'
 export { ReactComponent as IcArrowRightDark } from './ic_arrow_right_dark.svg'
 export { ReactComponent as IcArrowRightGray } from './ic_arrow_right_gray.svg'
 export { ReactComponent as IcArrowRightLight } from './ic_arrow_right_light.svg'
