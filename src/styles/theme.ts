@@ -3,6 +3,7 @@ import { css, DefaultTheme } from "styled-components";
 const colors = {
     white: '#FFFFFF',
     bg: '#F7F7FA',
+    gray0: '#EDEEF2',
     gray1: '#D8D9DD',
     gray2: '#B2B4BA',
     gray3: '#8B8E98',
@@ -175,6 +176,36 @@ const fonts = {
         font-weight: 500;
         line-height: 130%;
         letter-spacing: -0.012rem;
+    `,
+    title_extrabold_16: css`
+        font-family: 'Pretendard Variable', system-ui, 'Helvetica Neue', 'Segoe UI',
+            'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+            'Segoe UI Symbol', sans-serif;
+        font-size: 1.6rem;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 130%;
+        letter-spacing: -0.016rem;
+    `,
+    title_extrabold_22: css`
+        font-family: 'Pretendard Variable', system-ui, 'Helvetica Neue', 'Segoe UI',
+            'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+            'Segoe UI Symbol', sans-serif;
+        font-size: 2.2rem;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 130%;
+        letter-spacing: -0.022rem;
+    `,
+    title_extrabold_24: css`
+        font-family: 'Pretendard Variable', system-ui, 'Helvetica Neue', 'Segoe UI',
+            'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+            'Segoe UI Symbol', sans-serif;
+        font-size: 2.4rem;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 130%;
+        letter-spacing: -0.024rem;
     `,
 };
 
