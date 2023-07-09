@@ -3,6 +3,13 @@ import SelectSizeCustomBtn from './SelectSizeCustomBtn';
 import { useState, useRef, useEffect } from 'react';
 
 const SelectSizeCustom = () => {
+  const BTN_DATA = [
+    { id: 'size 1', title: '5cm 이하', detail: '동전 크기' },
+    { id: 'size 2', title: 'A4 1/8', detail: '신용카드, 담뱃값 크기' },
+    { id: 'size 3', title: 'A4 1/4', detail: '엽서, 손바닥 크기' },
+    { id: 'size 4', title: '5cm 이하', detail: '아래팔 한 쪽 면 크기' },
+  ];
+
   const [selectedBtn, setSelectedBtn] = useState('');
   const sizeBtnRef = useRef<HTMLButtonElement[]>([]);
 
@@ -15,15 +22,12 @@ const SelectSizeCustom = () => {
     //버튼 하나씩만 누를 수 있도록
     sizeBtnRef.current.forEach((ref) => {
       if (ref.id === selectedBtn) {
-        console.log(ref);
         ref.classList.add('isSelected');
       } else {
         ref.classList.remove('isSelected');
       }
     });
   }, [selectedBtn]);
-
-  console.log(selectedBtn, '???');
 
   return (
     <St.SizeWrapper>
@@ -32,38 +36,19 @@ const SelectSizeCustom = () => {
         <St.InfoSubText>고민되는 크기를 선택해주세요!</St.InfoSubText>
       </St.SizeInfoContainer>
       <St.SizeBntContainer>
-        <SelectSizeCustomBtn
-          id='size 1'
-          title='5cm 이하'
-          detail='동전 크기'
-          ref={(element: HTMLButtonElement) => (sizeBtnRef.current[0] = element)}
-          onClick={handleClickSelBtn}
-          selectedBtn={selectedBtn}
-        />
-        <SelectSizeCustomBtn
-          id='size 2'
-          title='A4 1/8'
-          detail='신용카드, 담뱃값 크기'
-          ref={(element: HTMLButtonElement) => (sizeBtnRef.current[1] = element)}
-          onClick={handleClickSelBtn}
-          selectedBtn={selectedBtn}
-        />
-        <SelectSizeCustomBtn
-          id='size 3'
-          title='A4 1/4'
-          detail='엽서, 손바닥 크기'
-          ref={(element: HTMLButtonElement) => (sizeBtnRef.current[2] = element)}
-          onClick={handleClickSelBtn}
-          selectedBtn={selectedBtn}
-        />
-        <SelectSizeCustomBtn
-          id='size 4'
-          title='A4 1/2'
-          detail='아래팔 한 쪽 면 크기'
-          ref={(element: HTMLButtonElement) => (sizeBtnRef.current[3] = element)}
-          onClick={handleClickSelBtn}
-          selectedBtn={selectedBtn}
-        />
+        {BTN_DATA.map(({ id, title, detail }, idx) => {
+          return (
+            <SelectSizeCustomBtn
+              key={id}
+              id={id}
+              title={title}
+              detail={detail}
+              ref={(element: HTMLButtonElement) => (sizeBtnRef.current[idx] = element)}
+              onClick={handleClickSelBtn}
+              selectedBtn={selectedBtn}
+            />
+          );
+        })}
       </St.SizeBntContainer>
     </St.SizeWrapper>
   );
