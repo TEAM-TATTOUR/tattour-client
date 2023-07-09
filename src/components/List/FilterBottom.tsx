@@ -62,10 +62,10 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                     <Sheet.Container>
                         <Sheet.Header disableDrag={true}/>
                         <Sheet.Content ref={filterRef}>
-                            {filter.data.map((el)=>(
+                            {filter.data.map((el, idx)=>(
                                 <St.TagBox 
                                     key={el}
-                                    onClick={()=>handleTag(filter.data.indexOf(el))}
+                                    onClick={()=>handleTag(idx)}
                                     >{el}</St.TagBox>
                             ))}
                             <St.Footer $sel={isSelected}>
