@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import Sheet from 'react-modal-sheet';
 import { useRef, useState } from "react";
-//import { IcCheckMiniDark } from "../../assets/icon";
 
 interface FilterBottomProps {
     isSortOpen : boolean;
