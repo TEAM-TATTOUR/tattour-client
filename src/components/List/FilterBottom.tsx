@@ -39,7 +39,7 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
 
     ]
 
-    const handleTag = (index : number) => {
+    const handleClickTag = (index : number) => {
         document.querySelectorAll('.select').forEach(el => {
             el.classList.remove('select');
         })
@@ -65,7 +65,7 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                             {filter.data.map((el, idx)=>(
                                 <St.TagBox 
                                     key={el}
-                                    onClick={()=>handleTag(idx)}
+                                    onClick={()=>handleClickTag(idx)}
                                     >{el}</St.TagBox>
                             ))}
                             <St.Footer $sel={isSelected}>
