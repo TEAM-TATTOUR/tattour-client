@@ -14,7 +14,7 @@ const St = {
     justify-content: start;
     width: 100%;
     padding-top: 0.8rem;
-    padding-left: 2.2rem;
+    padding-left: 0.2rem;
   `,
 
   Notification: styled.p`
