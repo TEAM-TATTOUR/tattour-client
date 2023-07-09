@@ -1,14 +1,14 @@
 import { styled } from 'styled-components';
-import IcKakaoLogo from '../../assets/logo_kakao.png';
+import { IcKakao } from '../../assets/icon';
 
 const LoginFooter = () => {
   return (
     <St.LoginFooter>
-      <img src={IcKakaoLogo} />
+      <IcKakao />
       <St.FooterText>카카오로 계속하기</St.FooterText>
     </St.LoginFooter>
   );
-}
+};
 
 const St = {
   LoginFooter: styled.footer`
