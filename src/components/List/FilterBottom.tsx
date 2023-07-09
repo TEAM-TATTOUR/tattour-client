@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import Sheet from 'react-modal-sheet';
+import { useRef, useState } from "react";
 
 interface FilterBottomProps {
     isSortOpen : boolean;
@@ -11,6 +12,9 @@ interface FilterBottomProps {
 }
 
 const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isStyleOpen, setStyleOpen} : FilterBottomProps) => {
+
+    const filterRef = useRef<HTMLElement>(null);
+    const [isSelected, setSelected] = useState(false);
 
     const FILTER = [
         {
@@ -34,6 +38,16 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
 
     ]
 
+    const handleClickTag = (index : number) => {
+        document.querySelectorAll('.select').forEach(el => {
+            el.classList.remove('select');
+        })
+        filterRef.current?.childNodes[index].classList.add('select');
+
+        setSelected(true);
+    }
+    
+
     return (
         <>
             {FILTER.map((filter)=>(
@@ -46,11 +60,14 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                     >
                     <Sheet.Container>
                         <Sheet.Header disableDrag={true}/>
-                        <Sheet.Content>
-                            {filter.data.map((el)=>(
-                                <St.TagBox key={el}>{el}</St.TagBox>
+                        <Sheet.Content ref={filterRef}>
+                            {filter.data.map((el, idx)=>(
+                                <St.TagBox 
+                                    key={el}
+                                    onClick={()=>handleClickTag(idx)}
+                                    >{el}</St.TagBox>
                             ))}
-                            <St.Footer>
+                            <St.Footer $sel={isSelected}>
                                 <St.Button type='button'>
                                     적용하기
                                 </St.Button>
@@ -70,13 +87,26 @@ export default FilterBottom
 const St = {
     TagBox : styled.p`
         text-align: center;
-
-        width:100%;
         padding: 1.7rem 0rem;
         color: ${({ theme }) => theme.colors.gray4};
         ${({ theme }) => theme.fonts.title_medium_18};
+
+        &.select {
+            color: ${({ theme }) => theme.colors.gray8};
+            ${({ theme }) => theme.fonts.title_semibold_18};
+
+            &::after {
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 0.3rem;
+                width: 2rem;
+                height: 2rem;
+                background-image: url('/src/assets/icon/ic_check_mini_dark.svg');   //component로 하는 방법을 찾지 못함
+                content: '';
+            }
+        }
     `,
-    Footer: styled.footer`
+    Footer: styled.footer<{$sel : boolean}>`
         display: flex;
         justify-content: center;
         align-items: center;
@@ -84,7 +114,7 @@ const St = {
         height: 7rem;
         margin-top: 4rem;
 
-        background-color: ${({ theme }) => theme.colors.gray3};
+        background-color: ${({ theme, $sel }) => ($sel? theme.colors.gray9 : theme.colors.gray3)};
     `,
     Button: styled.button`
         width: 100%;
