@@ -53,9 +53,9 @@ const RegisterPhoneNumForm = ({ isVisible, setIsVisible }: RegisterPhoneNumFormP
       ></St.InputContent>
       <St.SendMessageBtn
         type='button'
-        ischanged={isChanged ? 'true' : 'false'}
-        isvisible={isVisible ? 'true' : 'false'}
-        length={numLength}
+        $ischanged={isChanged}
+        $isvisible={isVisible}
+        $length={numLength}
         onClick={handleCertification}
       >
         {isVisible ? '재요청' : '인증하기'}
@@ -92,7 +92,7 @@ const St = {
     }
   `,
 
-  SendMessageBtn: styled.button<{ ischanged: string; isvisible: string; length: number }>`
+  SendMessageBtn: styled.button<{ $ischanged: boolean; $isvisible: boolean; $length: number }>`
     width: 9.2rem;
     height: 4.5rem;
 
@@ -101,8 +101,8 @@ const St = {
 
     color: ${({ theme }) => theme.colors.white};
 
-    background-color: ${({ ischanged, isvisible, theme, length }) =>
-      (ischanged && isvisible === 'true') || length === 13
+    background-color: ${({ ischanged, isvisible, theme, $length }) =>
+      (ischanged && isvisible) || length === 13
         ? theme.colors.gray7
         : theme.colors.gray3};
 
