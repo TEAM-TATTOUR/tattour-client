@@ -6,6 +6,10 @@ import { useEffect, useState } from 'react';
 import { throttle } from 'lodash';
 import { ImgLogoDark, ImgLogoLight } from '../assets/icon';
 import MainHeaderButton from '../components/MainHeaderButton';
+import HotCustom from '../components/HotCustom';
+import MainTheme from '../components/MainTheme';
+import MainEventBanner from '../components/MainEventBanner';
+import MainStyle from '../components/MainStyle';
 
 const MainPage = () => {
   const [isHeaderTransparent, setIsHeaderTransparent] = useState(true);
@@ -22,7 +26,6 @@ const MainPage = () => {
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
-    console.log(scrollY);
     setIsHeaderTransparent(scrollY === 0);
   };
   const reanderMainPageHeader = () => {
@@ -38,6 +41,10 @@ const MainPage = () => {
   return (
     <PageLayout renderHeader={reanderMainPageHeader} footer={<MainFooter />}>
       <MainBanner />
+      <HotCustom />
+      <MainEventBanner />
+      <MainTheme />
+      <MainStyle />
     </PageLayout>
   );
 };
