@@ -39,6 +39,7 @@ const St = {
     `,
     Title : styled.h2`
         margin-left: 0.2rem;
+        
         ${({ theme }) => theme.fonts.title_semibold_18};
         color: ${({ theme }) => theme.colors.gray8};
     `,
@@ -53,6 +54,7 @@ const St = {
 
         & > label {
             margin: 2rem 0rem 1rem 0rem;
+
             ${({ theme }) => theme.fonts.body_medium_14};
             color: ${({ theme }) => theme.colors.gray3};
         }
