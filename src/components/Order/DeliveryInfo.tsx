@@ -8,11 +8,11 @@ const DeliveryInfo = () => {
             </St.Title>
             <St.InfoList>
                 <St.Info>
-                    <label for="receiver">수령인</label>
+                    <label htmlFor="receiver">수령인</label>
                     <input type="text" id="receiver" name="receiver" placeholder="홍길동"/>
                 </St.Info>
                 <St.Info>
-                    <label for="phone">연락처</label>
+                    <label htmlFor="phone">연락처</label>
                     <input type="text" id="phone" name="phone" placeholder="010-0000-0000"/>
                 </St.Info>
                 <St.Info>
