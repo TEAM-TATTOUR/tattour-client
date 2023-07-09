@@ -8,28 +8,28 @@ const ProductInfo = () => {
     const ITEM_PRICE = 2500;
     const COUNT = 1;
 
-  return (
-    <St.Wrapper>
-        <St.Image/>
-        <St.InfoContainer>
-            <St.Name>
-                우리집고양이츄르
-            </St.Name>
-            <St.Description>
-                <St.ItemPrice>
-                    {ITEM_PRICE.toLocaleString()}원
-                </St.ItemPrice>
-                <St.OriginalPrice>
-                    {ORIGINAL_PRICE.toLocaleString()}원
-                </St.OriginalPrice>
-                <St.Line></St.Line>
-                <St.Count>
-                    {COUNT}개
-                </St.Count>
-            </St.Description>
-        </St.InfoContainer>
-    </St.Wrapper>
-)
+    return (
+        <St.Wrapper>
+            <St.Image/>
+            <St.InfoContainer>
+                <St.Name>
+                    우리집고양이츄르
+                </St.Name>
+                <St.Description>
+                    <St.ItemPrice>
+                        {ITEM_PRICE.toLocaleString()}원
+                    </St.ItemPrice>
+                    <St.OriginalPrice>
+                        {ORIGINAL_PRICE.toLocaleString()}원
+                    </St.OriginalPrice>
+                    <St.Line></St.Line>
+                    <St.Count>
+                        {COUNT}개
+                    </St.Count>
+                </St.Description>
+            </St.InfoContainer>
+        </St.Wrapper>
+    )
 }
 
 export default ProductInfo
