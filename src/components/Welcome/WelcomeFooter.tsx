@@ -1,8 +1,15 @@
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 const WelcomeFooter = () => {
+  const navigate = useNavigate();
+
+  const handleClickWelcomeFooter = () => {
+    navigate('/');
+  };
+
   return (
-    <St.WelcomeFooter>
+    <St.WelcomeFooter onClick={handleClickWelcomeFooter}>
       <St.FooterText>홈으로 이동하기</St.FooterText>
     </St.WelcomeFooter>
   );
