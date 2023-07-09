@@ -18,7 +18,7 @@ const DeliveryInfo = () => {
                 <St.Info>
                     <label>배송지</label>
                     <St.AddressBox>
-                        <input type="text" name="posecode" placeholder="우편번호"/>
+                        <input type="text" name="postcode" placeholder="우편번호"/>
                         <St.SearchBtn type="button"/>
                         <input type="text" name="address" placeholder="주소"/>
                         <input type="text" name="detail" placeholder="상세주소"/>
