@@ -4,14 +4,32 @@ import { useNavigate } from 'react-router-dom';
 
 interface ModalProps {
   onClose: () => void;
+  pageName: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ onClose }) => {
+const Modal: React.FC<ModalProps> = ({ onClose, pageName }) => {
   const navigate = useNavigate();
 
   const handleClickStopBtn = () => {
     onClose();
-    navigate('/');
+    switch (pageName) {
+      // 페이지 이름과 라우팅 주소는 나중에 보고 수정
+      case 'LoginPage':
+        navigate('/login');
+        break;
+
+      case 'ChargePage':
+        navigate('/charge');
+        break;
+
+      case 'CustomSizePage':
+        navigate('/custom-size');
+        break;
+
+      default:
+        navigate('/');
+        break;
+    }
   };
 
   return (
@@ -46,7 +64,7 @@ const St = {
     width: 100%;
     height: 100vh;
 
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.6);
   `,
 
   ModalContent: styled.div`
