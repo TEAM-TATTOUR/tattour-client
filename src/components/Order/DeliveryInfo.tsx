@@ -14,7 +14,7 @@ const DeliveryInfo = () => {
                 </St.Info>
                 <St.Info>
                     <label htmlFor="phone">연락처</label>
-                    <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" maxlength="13"/>
+                    <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" maxLength="13"/>
                 </St.Info>
                 <St.Info>
                     <label>배송지</label>
