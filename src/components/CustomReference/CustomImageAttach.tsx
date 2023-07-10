@@ -1,7 +1,15 @@
 import { styled } from 'styled-components';
 import { IcDraw, IcPhoto } from '../../assets/icon';
+interface PaintBottomProps {
+  isBottomOpen: boolean;
+  setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const CustomImageAttach = () => {
+const CustomImageAttach = ({ isBottomOpen, setBottomOpen }: PaintBottomProps) => {
+  const handleClickButton = () => {
+    setBottomOpen(true);
+  };
+
   return (
     <St.CustomReferenceWrapper>
       <St.Image>
@@ -12,7 +20,7 @@ const CustomImageAttach = () => {
           <IcPhoto />
           사진 첨부하기
         </St.ReferenceButton>
-        <St.ReferenceButton type='button'>
+        <St.ReferenceButton type='button' onClick={handleClickButton}>
           <IcDraw />
           대충 그리기
         </St.ReferenceButton>
