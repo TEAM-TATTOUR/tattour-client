@@ -96,6 +96,8 @@ export default FilterBottom
 
 const St = {
     TagBox : styled.p`
+        display: flex;
+        justify-content: center;
         text-align: center;
         padding: 1.7rem 0rem;
         color: ${({ theme }) => theme.colors.gray4};
@@ -103,7 +105,6 @@ const St = {
 
         & > span {
             display: inline-block;
-            vertical-align: middle;
             margin: 0rem 0.3rem;
             width: 2rem;
             height: 2rem;
@@ -111,7 +112,6 @@ const St = {
 
         & > i {
             display: inline-block;
-            vertical-align: middle;
             margin: 0rem 0.3rem;
             width: 2rem;
             height: 2rem;
