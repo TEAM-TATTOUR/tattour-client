@@ -7,7 +7,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<MainPage />} />
-        <Route path='/sizeCustom' element={<SizeCustomPage />} />
+        <Route path='/size-custom' element={<SizeCustomPage />} />
       </Routes>
     </BrowserRouter>
   );

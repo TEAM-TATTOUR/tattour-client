@@ -45,7 +45,7 @@ const SelectSizeCustom = () => {
               detail={detail}
               ref={(element: HTMLButtonElement) => (sizeBtnRef.current[idx] = element)}
               onClick={handleClickSelBtn}
-              selectedBtn={selectedBtn}
+              isSelected={selectedBtn === id ? true : false}
             />
           );
         })}

@@ -8,18 +8,17 @@ interface SelectSizeCustomBtnProps {
   id: string;
   title: string;
   detail: string;
-  selectedBtn: string;
-  // ref: (element: HTMLButtonElement) => HTMLButtonElement;
+  isSelected: boolean;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export type Ref = HTMLButtonElement;
 
 const SelectSizeCustomBtn = forwardRef<Ref, SelectSizeCustomBtnProps>(
-  ({ id, title, detail, onClick, selectedBtn }, ref) => {
+  ({ id, title, detail, onClick, isSelected }, ref) => {
     return (
       <St.SizeBtnWrapper type='button' id={id} onClick={onClick} ref={ref}>
-        {selectedBtn === id ? (
+        {isSelected ? (
           <St.SelectedSizeBtnImgBox>
             <IcApplyCheckPink />
           </St.SelectedSizeBtnImgBox>
