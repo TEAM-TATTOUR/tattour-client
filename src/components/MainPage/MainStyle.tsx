@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import ScrollContainer from 'react-indiana-drag-scroll';
 
 interface MainStyleItemProps {
   id: number;
@@ -33,7 +34,7 @@ const renderMainStyleDummyImage = () => {
     <div
       style={{
         width: '15.3rem',
-        height: '14.5rem',
+        height: '9.6rem',
         backgroundColor: 'gray',
       }}
     ></div>
@@ -47,15 +48,17 @@ const MainStyle = () => {
         <St.MainStyleTitle>STYLE</St.MainStyleTitle>
       </St.MainStyleHeader>
       <St.MainStyleWrapper>
-        {dummyStyleList.map((item) => {
-          return (
-            <St.MainStyleItem key={item.id}>
-              {renderMainStyleDummyImage()}
-              <St.MainThemeItemTitle>{item.title}</St.MainThemeItemTitle>
-              <St.MainThemeItemDescription>{item.description}</St.MainThemeItemDescription>
-            </St.MainStyleItem>
-          );
-        })}
+        <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
+          {dummyStyleList.map((item) => {
+            return (
+              <St.MainStyleItem key={item.id}>
+                {renderMainStyleDummyImage()}
+                <St.MainThemeItemTitle>{item.title}</St.MainThemeItemTitle>
+                <St.MainThemeItemDescription>{item.description}</St.MainThemeItemDescription>
+              </St.MainStyleItem>
+            );
+          })}
+        </ScrollContainer>
       </St.MainStyleWrapper>
     </St.MainStyleSection>
   );
@@ -80,17 +83,14 @@ const St = {
   `,
 
   MainStyleWrapper: styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1.2rem;
     margin-top: 1rem;
     margin-right: 1.2rem;
 
-    overflow-x: scroll;
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
+    .scroll-container {
+      display: flex;
+      flex-direction: row;
+      gap: 1.2rem;
+      width: 100%;
     }
   `,
 
