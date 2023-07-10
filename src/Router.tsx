@@ -3,7 +3,7 @@ import MainPage from './pages/MainPage';
 import LoginPage from './pages/Login/LoginPage';
 import RegisterPage from './pages/Register/RegisterPage';
 import RegisterPhoneNum from './components/Register/RegisterPhoneNum';
-import SizeCustomPage from './pages/Custom/Common/SizeCustomPage';
+import CustomSizePage from './pages/Custom/Common/CustomSizePage';
 
 const Router = () => {
   return (
@@ -13,7 +13,7 @@ const Router = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/input-number' element={<RegisterPhoneNum />} />
-        <Route path='/size-custom' element={<SizeCustomPage />} />
+        <Route path='/custom-size' element={<CustomSizePage />} />
       </Routes>
     </BrowserRouter>
   );

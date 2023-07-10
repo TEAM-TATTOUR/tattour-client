@@ -1,8 +1,8 @@
 import { styled } from 'styled-components';
-import SelectSizeCustomBtn from './SelectSizeCustomBtn';
+import CustomSelectSizeBtn from './CustomSelectSizeBtn';
 import { useState, useRef, useEffect } from 'react';
 
-const SelectSizeCustom = () => {
+const CustomSelectSize = () => {
   const BTN_DATA = [
     { id: 'size 1', title: '5cm 이하', detail: '동전 크기' },
     { id: 'size 2', title: 'A4 1/8', detail: '신용카드, 담뱃값 크기' },
@@ -38,7 +38,7 @@ const SelectSizeCustom = () => {
       <St.SizeBntContainer>
         {BTN_DATA.map(({ id, title, detail }, idx) => {
           return (
-            <SelectSizeCustomBtn
+            <CustomSelectSizeBtn
               key={id}
               id={id}
               title={title}
@@ -54,7 +54,7 @@ const SelectSizeCustom = () => {
   );
 };
 
-export default SelectSizeCustom;
+export default CustomSelectSize;
 
 const St = {
   SizeWrapper: styled.section`

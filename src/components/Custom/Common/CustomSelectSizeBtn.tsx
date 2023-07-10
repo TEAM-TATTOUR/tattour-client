@@ -4,7 +4,7 @@ import { IcApplyCheckLight, IcApplyCheckPink } from '../../../assets/icon';
 import img_home from '../../../assets/icon/img_home.svg';
 import { forwardRef } from 'react';
 
-interface SelectSizeCustomBtnProps {
+interface CustomSelectSizeBtnProps {
   id: string;
   title: string;
   detail: string;
@@ -14,7 +14,7 @@ interface SelectSizeCustomBtnProps {
 
 export type Ref = HTMLButtonElement;
 
-const SelectSizeCustomBtn = forwardRef<Ref, SelectSizeCustomBtnProps>(
+const CustomSelectSizeBtn = forwardRef<Ref, CustomSelectSizeBtnProps>(
   ({ id, title, detail, onClick, isSelected }, ref) => {
     return (
       <St.SizeBtnWrapper type='button' id={id} onClick={onClick} ref={ref}>
@@ -36,7 +36,7 @@ const SelectSizeCustomBtn = forwardRef<Ref, SelectSizeCustomBtnProps>(
   },
 );
 
-export default SelectSizeCustomBtn;
+export default CustomSelectSizeBtn;
 
 // 버튼 스타일 확장을 위한 styled component 템플릿
 const SizeBtnImgBoxTemplate = styled.div`
