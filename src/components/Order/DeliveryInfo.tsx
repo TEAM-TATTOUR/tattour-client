@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
 const DeliveryInfo = () => {
+
     return (
         <St.Wrapper>
             <St.Title>
@@ -13,7 +14,7 @@ const DeliveryInfo = () => {
                 </St.Info>
                 <St.Info>
                     <label htmlFor="phone">연락처</label>
-                    <input type="text" id="phone" name="phone" placeholder="010-0000-0000"/>
+                    <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" maxlength="13"/>
                 </St.Info>
                 <St.Info>
                     <label>배송지</label>
