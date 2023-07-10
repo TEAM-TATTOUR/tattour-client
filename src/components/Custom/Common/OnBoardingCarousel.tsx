@@ -6,11 +6,18 @@ import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import ImgTestOnBoarding from '../../../assets/ImgTestOnBoarding.png'; // 테스트용 목업 이미지
 import ic_arrow_left_gray from '../../../assets/icon/ic_arrow_left_gray.svg';
 import ic_arrow_right_gray from '../../../assets/icon/ic_arrow_right_gray.svg';
+import {
+  HAVE_DESIGN_CUSTOM_CAROUSEL_DATA,
+  NO_DESIGN_CUSTOM_CAROUSEL_DATA,
+} from '../../../assets/data/ONBOARDING_CAROUSEL_CONTNET';
 
 const OnBoardingCarousel = () => {
+  const haveDesign = true;
+
+  const currData = haveDesign ? HAVE_DESIGN_CUSTOM_CAROUSEL_DATA : NO_DESIGN_CUSTOM_CAROUSEL_DATA;
+
   return (
     <St.SwiperWrapper>
       <Swiper
@@ -20,50 +27,21 @@ const OnBoardingCarousel = () => {
         pagination={{ clickable: true }}
         navigation
       >
-        <SwiperSlide>
-          <St.SwiperContainer>
-            <St.SwiperHeader>
-              <St.HeaderMainText>크기를 선택해주세요000</St.HeaderMainText>
-              <St.HeaderSubText>고민 중인 실제 사이즈를 선택해보세요!</St.HeaderSubText>
-            </St.SwiperHeader>
-            <St.SwiperImgContainer>
-              <img src={ImgTestOnBoarding} alt='온보딩 이미지' />
-            </St.SwiperImgContainer>
-          </St.SwiperContainer>
-        </SwiperSlide>
-        <SwiperSlide>
-          <St.SwiperContainer>
-            <St.SwiperHeader>
-              <St.HeaderMainText>크기를 선택해주세요1111</St.HeaderMainText>
-              <St.HeaderSubText>고민 중인 실제 사이즈를 선택해보세요!</St.HeaderSubText>
-            </St.SwiperHeader>
-            <St.SwiperImgContainer>
-              <img src={ImgTestOnBoarding} alt='온보딩 이미지' />
-            </St.SwiperImgContainer>
-          </St.SwiperContainer>
-        </SwiperSlide>
-        <SwiperSlide>
-          <St.SwiperContainer>
-            <St.SwiperHeader>
-              <St.HeaderMainText>크기를 선택해주세요2222</St.HeaderMainText>
-              <St.HeaderSubText>고민 중인 실제 사이즈를 선택해보세요!</St.HeaderSubText>
-            </St.SwiperHeader>
-            <St.SwiperImgContainer>
-              <img src={ImgTestOnBoarding} alt='온보딩 이미지' />
-            </St.SwiperImgContainer>
-          </St.SwiperContainer>
-        </SwiperSlide>
-        <SwiperSlide>
-          <St.SwiperContainer>
-            <St.SwiperHeader>
-              <St.HeaderMainText>크기를 선택해주세요333</St.HeaderMainText>
-              <St.HeaderSubText>고민 중인 실제 사이즈를 선택해보세요!</St.HeaderSubText>
-            </St.SwiperHeader>
-            <St.SwiperImgContainer>
-              <img src={ImgTestOnBoarding} alt='온보딩 이미지' />
-            </St.SwiperImgContainer>
-          </St.SwiperContainer>
-        </SwiperSlide>
+        {currData.map(({ id, mainText, subText, mockUpImg, imgAlt }) => {
+          return (
+            <SwiperSlide key={id}>
+              <St.SwiperContainer>
+                <St.SwiperHeader>
+                  <St.HeaderMainText>{mainText}</St.HeaderMainText>
+                  <St.HeaderSubText>{subText}</St.HeaderSubText>
+                </St.SwiperHeader>
+                <St.SwiperImgContainer>
+                  <img src={mockUpImg} alt={imgAlt} />
+                </St.SwiperImgContainer>
+              </St.SwiperContainer>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </St.SwiperWrapper>
   );
