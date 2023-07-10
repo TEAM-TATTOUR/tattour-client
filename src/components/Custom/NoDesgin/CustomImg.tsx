@@ -16,13 +16,16 @@ const CustomImg = () => {
         </St.ImgInfoDetail>
       </St.ImgInfoContainer>
       <St.ImgAttachContainer>
+        <input id='img-input' type='file' accept='image/png' />
         <St.ImgAttachArea>
           <p>도안 이미지를 첨부해주세요</p>
         </St.ImgAttachArea>
-        <St.ImgAttachBtn type='button'>
-          <IcPhoto />
-          <span>사진 첨부하기</span>
-        </St.ImgAttachBtn>
+        <label htmlFor='img-input'>
+          <St.ImgAttachBtn>
+            <IcPhoto />
+            <span>사진 첨부하기</span>
+          </St.ImgAttachBtn>
+        </label>
       </St.ImgAttachContainer>
     </St.CustomImgWrapper>
   );
@@ -71,6 +74,10 @@ const St = {
     align-items: center;
 
     gap: 2rem;
+
+    & > input {
+      display: none;
+    }
   `,
 
   ImgAttachArea: styled.div`
@@ -89,7 +96,7 @@ const St = {
     }
   `,
 
-  ImgAttachBtn: styled.button`
+  ImgAttachBtn: styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
