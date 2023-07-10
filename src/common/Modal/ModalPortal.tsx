@@ -4,7 +4,7 @@ interface ModalPortalProps {
   children: React.ReactNode;
 }
 
-const ModalPortal: React.FC<ModalPortalProps> = ({ children }) => {
+const ModalPortal = ({ children }: ModalPortalProps) => {
   const el: HTMLElement | null = document.getElementById('modal');
   return ReactDOM.createPortal(children, el as Element | DocumentFragment);
 };
