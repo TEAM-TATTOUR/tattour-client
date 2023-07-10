@@ -1,8 +1,8 @@
-import CustomFooter from '../../components/CustomReference/CustomFooter';
+import { IcBackLight, IcCloseLight } from '../../assets/icon/index';
+import CustomFooter from '../../components/Custom/Common/CustomFooter';
+import CustomReference from '../../components/CustomReference/CustomReference';
 import Header from '../../components/Header';
 import PageLayout from '../../components/PageLayout';
-import { IcBackLight, IcCloseLight } from '../../assets/icon/index';
-import CustomReference from '../../components/CustomReference/CustomReference';
 
 const CustomReferencePage = () => {
   const renderCustomReferencePageHeader = () => {
