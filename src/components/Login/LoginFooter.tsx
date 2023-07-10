@@ -1,9 +1,12 @@
 import { styled } from 'styled-components';
 import { IcKakao } from '../../assets/icon';
+import { useNavigate } from 'react-router-dom';
 
 const LoginFooter = () => {
+  const navigate = useNavigate();
+
   return (
-    <St.LoginFooter>
+   <St.LoginFooter onClick={() => navigate('/register')}>
       <IcKakao />
       <St.FooterText>카카오로 계속하기</St.FooterText>
     </St.LoginFooter>
