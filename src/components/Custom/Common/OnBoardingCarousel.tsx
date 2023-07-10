@@ -14,7 +14,7 @@ import {
 } from '../../../assets/data/ONBOARDING_CAROUSEL_CONTNET';
 
 const OnBoardingCarousel = () => {
-  const haveDesign = true;
+  const haveDesign = true; //리코일에서 가져 올 예정
 
   const currData = haveDesign ? HAVE_DESIGN_CUSTOM_CAROUSEL_DATA : NO_DESIGN_CUSTOM_CAROUSEL_DATA;
 
