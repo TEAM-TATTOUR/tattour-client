@@ -10,10 +10,12 @@ interface FilterBottomProps {
     isGenreOpen : boolean;
     setGenreOpen : React.Dispatch<React.SetStateAction<boolean>>,
     isStyleOpen : boolean;
-    setStyleOpen : React.Dispatch<React.SetStateAction<boolean>>
+    setStyleOpen : React.Dispatch<React.SetStateAction<boolean>>,
+    buttonName : string[];
+    setButtonName : React.Dispatch<React.SetStateAction<string[]>>
 }
 
-const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isStyleOpen, setStyleOpen} : FilterBottomProps) => {
+const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isStyleOpen, setStyleOpen, buttonName, setButtonName} : FilterBottomProps) => {
 
     const filterRef = useRef<HTMLElement>(null);
     const [isSelected, setSelected] = useState(false);
@@ -44,13 +46,19 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
 
     ]
 
-    const handleClickTag = (index : number) => {
+    const handleClickTag = ({tag : string, index : number}) => {
         document.querySelectorAll('.select').forEach(el => {
             el.classList.remove('select');
         })
         filterRef.current?.childNodes[index].classList.add('select');
 
         setSelected(true);
+
+        // 여기서 buttonName state도 변경 
+        const newButtonName = [...buttonName];
+        newButtonName[index] = tag;
+        setButtonName(newButtonName); 
+        buttonName[index] = tag;
     }
     
 
@@ -70,7 +78,7 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                             {filter.data.map((el, idx)=>(
                                 <St.TagBox 
                                     key={el}
-                                    onClick={()=>handleClickTag(idx)}
+                                    onClick={()=>handleClickTag(el, idx)}
                                     >
                                     <span></span>
                                     {el}

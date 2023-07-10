@@ -7,6 +7,7 @@ const ListPage = () => {
   const [isSortOpen, setSortOpen] = useState(false);
   const [isGenreOpen, setGenreOpen] = useState(false);
   const [isStyleOpen, setStyleOpen] = useState(false);
+  const [buttonName, setButtonName] = useState(['정렬','장르','스타일']);
 
   return (
     <div>
@@ -16,11 +17,13 @@ const ListPage = () => {
           setSortOpen={setSortOpen}
           setGenreOpen={setGenreOpen}
           setStyleOpen={setStyleOpen}
+          buttonName={buttonName}
         />
         <FilterBottom
           isSortOpen={isSortOpen} setSortOpen={setSortOpen}
           isGenreOpen={isGenreOpen} setGenreOpen={setGenreOpen}
           isStyleOpen={isStyleOpen} setStyleOpen={setStyleOpen}
+          buttonName={buttonName} setButtonName={setButtonName}
         />
     </div>
   )

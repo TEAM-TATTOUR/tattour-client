@@ -5,12 +5,11 @@ import { useState } from "react";
 interface TattooListProps {
   setSortOpen : React.Dispatch<React.SetStateAction<boolean>>,
   setGenreOpen : React.Dispatch<React.SetStateAction<boolean>>,
-  setStyleOpen : React.Dispatch<React.SetStateAction<boolean>>
+  setStyleOpen : React.Dispatch<React.SetStateAction<boolean>>,
+  buttonName : string[]
 }
 
-const TattooList = ({setSortOpen, setGenreOpen, setStyleOpen} : TattooListProps) => {
-  //const BUTTON = ['정렬','장르','스타일'];
-  const [buttonName, setButtonName] = useState(['정렬','장르','스타일']);
+const TattooList = ({setSortOpen, setGenreOpen, setStyleOpen, buttonName} : TattooListProps) => {
 
   const [count,setCount] = useState(17);
   const TATTOO_LIST = [
