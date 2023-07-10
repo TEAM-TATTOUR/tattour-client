@@ -38,6 +38,7 @@ export { ReactComponent as IcPlus } from './ic_plus.svg';
 export { ReactComponent as IcSearchDark } from './ic_search_dark.svg';
 export { ReactComponent as IcSearchLight } from './ic_search_light.svg';
 export { ReactComponent as IcShop } from './ic_shop.svg';
+export { ReactComponent as IcCloseLight } from './ic_close_light.svg';
 
 // brush
 export { ReactComponent as IcBrushBoldSelected } from './ic_brush_bold_selected.svg';
