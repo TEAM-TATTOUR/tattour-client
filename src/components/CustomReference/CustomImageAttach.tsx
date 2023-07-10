@@ -8,11 +8,11 @@ const CustomImageAttach = () => {
         <St.ImageDescription>최대 3장까지 추가할 수 있어요</St.ImageDescription>
       </St.Image>
       <St.ButtonWrapper>
-        <St.ReferenceButton>
+        <St.ReferenceButton type='button'>
           <IcPhoto />
           사진 첨부하기
         </St.ReferenceButton>
-        <St.ReferenceButton>
+        <St.ReferenceButton type='button'>
           <IcDraw />
           대충 그리기
         </St.ReferenceButton>
