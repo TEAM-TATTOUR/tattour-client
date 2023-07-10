@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 const CustomSelectSize = () => {
   const BTN_DATA = [
     { id: 'size 1', title: '5cm 이하', detail: '동전 크기' },
-    { id: 'size 2', title: 'A4 1/8', detail: '신용카드, 담뱃값 크기' },
+    { id: 'size 2', title: 'A4 1/8', detail: '신용카드, 담뱃갑 크기' },
     { id: 'size 3', title: 'A4 1/4', detail: '엽서, 손바닥 크기' },
     { id: 'size 4', title: '5cm 이하', detail: '아래팔 한 쪽 면 크기' },
   ];
