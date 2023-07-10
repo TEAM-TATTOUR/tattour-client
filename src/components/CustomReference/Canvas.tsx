@@ -52,13 +52,13 @@ const Canvas: React.FC = () => {
 
   return (
     <div>
+      <St.CleanButton type='button' value='삭제' onClick={handleDelete}>
+        전체 삭제하기
+      </St.CleanButton>
       <St.Canvas className='canvas'>
         <canvas ref={canvasRef} />
       </St.Canvas>
       <ColorPicker onChange={handleColorChange} />
-      <St.Button type='button' value='삭제' onClick={handleDelete}>
-        전체 삭제
-      </St.Button>
     </div>
   );
 };
@@ -66,14 +66,20 @@ const Canvas: React.FC = () => {
 export default Canvas;
 
 const St = {
-  Button: styled.button`
-    color: white;
-    font-size: 1rem;
-    background-color: hotpink;
+  CleanButton: styled.button`
+    width: 7.6rem;
+    height: 1.8rem;
+    padding: 0;
+
+    margin: 2.4rem 0 2rem 0;
+    color: ${({ theme }) => theme.colors.gray2};
+    font: ${({ theme }) => theme.fonts.body_underline_medium_14};
   `,
   Canvas: styled.div`
     width: 335px;
     height: 458px;
+    margin-bottom: 1.6rem;
+
     background-color: lightgray;
   `,
 };
