@@ -1,7 +1,11 @@
-import React from 'react';
+import CustomImg from '../../../components/Custom/NoDesgin/CustomImg';
 
 const CustomImgPage = () => {
-  return <div>이미지</div>;
+  return (
+    <>
+      <CustomImg />
+    </>
+  );
 };
 
 export default CustomImgPage;
