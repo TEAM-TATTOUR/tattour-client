@@ -16,7 +16,11 @@ export default RefundInfo
 
 const St = {
     Wrapper : styled.section`
-        
+        display: flex;
+        align-items: center;
+        gap: 1.8rem;
+
+        margin: 2.8rem 0rem 4.8rem 2rem;
 
     `,
     Checkbox : styled.input`
