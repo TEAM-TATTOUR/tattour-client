@@ -1,5 +1,4 @@
-import React from 'react';
-import OnBoardingCarousel from '../../components/Custom/OnBoardingCarousel';
+import OnBoardingCarousel from '../../../components/Custom/Common/OnBoardingCarousel';
 
 const OnBoardingPage = () => {
   return (

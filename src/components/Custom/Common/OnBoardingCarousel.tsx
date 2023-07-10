@@ -6,9 +6,9 @@ import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import ImgTestOnBoarding from '../../assets/ImgTestOnBoarding.png'; // 테스트용 목업 이미지
-import IcCarouselLeftArrow from '../../assets/icon/IcCarouselLeftArrow.svg';
-import IcCarouselRightArrow from '../../assets/icon/IcCarouselRightArrow.svg';
+import ImgTestOnBoarding from '../../../assets/ImgTestOnBoarding.png'; // 테스트용 목업 이미지
+import ic_arrow_left_gray from '../../../assets/icon/ic_arrow_left_gray.svg';
+import ic_arrow_right_gray from '../../../assets/icon/ic_arrow_right_gray.svg';
 
 const OnBoardingCarousel = () => {
   return (
@@ -93,12 +93,12 @@ const St = {
 
       /* swiper 버튼 svg 아이콘으로 커스텀 */
       .swiper-button-next {
-        background: url(${IcCarouselLeftArrow}) no-repeat;
+        background: url(${ic_arrow_right_gray}) no-repeat;
         background-position: center;
       }
 
       .swiper-button-prev {
-        background: url(${IcCarouselRightArrow}) no-repeat;
+        background: url(${ic_arrow_left_gray}) no-repeat;
         background-position: center;
       }
 

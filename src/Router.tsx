@@ -3,7 +3,7 @@ import MainPage from './pages/MainPage';
 import LoginPage from './pages/Login/LoginPage';
 import RegisterPage from './pages/Register/RegisterPage';
 import RegisterPhoneNum from './components/Register/RegisterPhoneNum';
-import OnBoardingPage from './pages/Custom/OnBoardingPage';
+import OnBoardingPage from './pages/Custom/Common/OnBoardingPage';
 
 const Router = () => {
   return (
@@ -13,10 +13,10 @@ const Router = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/input-number' element={<RegisterPhoneNum />} />
-         <Route path='/onBoarding' element={<OnBoardingPage />} />
+        <Route path='/onboarding' element={<OnBoardingPage />} />
       </Routes>
     </BrowserRouter>
-  );  
+  );
 };
 
 export default Router;
