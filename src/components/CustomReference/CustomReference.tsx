@@ -17,7 +17,7 @@ const St = {
     flex-direction: column;
     align-items: center;
 
-    padding: 0 2rem 0 2rem;
+    padding: 0 2rem;
   `,
 };
 

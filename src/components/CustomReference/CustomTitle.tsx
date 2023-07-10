@@ -27,7 +27,7 @@ const St = {
     align-items: start;
 
     width: 100%;
-    margin: 5.6rem 0 4rem 0;
+    margin: 5.6rem 0 4rem;
   `,
 
   CustomReferenceTitle: styled.p`
