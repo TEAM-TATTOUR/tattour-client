@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { styled } from 'styled-components';
-import { IcActvieSelect, IcInActvieSelect } from '../../assets/icon';
+import { IcApplyCheckGray, IcApplyCheckPink } from '../../assets/icon';
 
 const SelectCustom = () => {
   const [activeBtn, setActiveBtn] = useState(''); //선택 된 버튼의 상황
@@ -36,7 +36,7 @@ const SelectCustom = () => {
           ref={(element: HTMLButtonElement) => (btnRef.current[0] = element)}
           onClick={handleClickSelBtn}
         >
-          {activeBtn === 'exist' ? <IcActvieSelect /> : <IcInActvieSelect />}
+          {activeBtn === 'exist' ? <IcApplyCheckPink /> : <IcApplyCheckGray />}
           <St.SelectBtnTitle $case='exist'>이미 그려 둔 도안이 있어요</St.SelectBtnTitle>
           <St.SelectBtnDetail $case='exist'>
             이미지 파일을 그대로 제작해 드릴게요
@@ -49,7 +49,7 @@ const SelectCustom = () => {
           ref={(element: HTMLButtonElement) => (btnRef.current[1] = element)}
           onClick={handleClickSelBtn}
         >
-          {activeBtn === 'make' ? <IcActvieSelect /> : <IcInActvieSelect />}
+          {activeBtn === 'make' ? <IcApplyCheckPink /> : <IcApplyCheckGray />}
           <St.SelectBtnTitle $case='make'>커스텀 도안을 제작하고 싶어요</St.SelectBtnTitle>
           <St.SelectBtnDetail $case='make'>
             신청서에 맞게 세심하게 제작해 드릴게요
@@ -66,7 +66,6 @@ const St = {
   SelectWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 
     width: 100%;
@@ -79,7 +78,7 @@ const St = {
     align-items: center;
     gap: 1.2rem;
 
-    margin-bottom: 4rem;
+    margin: 14.8rem 0 4rem;
   `,
 
   InfoMainText: styled.h2`
