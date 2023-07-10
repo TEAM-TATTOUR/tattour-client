@@ -1,14 +1,13 @@
 import { styled } from 'styled-components';
-import IcKakaoLogo from '../../assets/logo_kakao.png';
+import { IcKakao } from '../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 
 const LoginFooter = () => {
   const navigate = useNavigate();
 
   return (
-    // 임의로 연결해둠
-    <St.LoginFooter onClick={() => navigate('/register')}>
-      <img src={IcKakaoLogo} />
+   <St.LoginFooter onClick={() => navigate('/register')}>
+      <IcKakao />
       <St.FooterText>카카오로 계속하기</St.FooterText>
     </St.LoginFooter>
   );
@@ -31,7 +30,8 @@ const St = {
   `,
 
   FooterText: styled.p`
-    // 임의지정 -> 스타일 가이드 나오면 바꾸기!!
+    color: ${({ theme }) => theme.colors.brown};
+
     ${({ theme }) => theme.fonts.title_semibold_18}
   `,
 };
