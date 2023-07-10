@@ -21,8 +21,8 @@ const DeliveryInfo = () => {
                     <St.AddressBox>
                         <input type="text" name="postcode" placeholder="우편번호" disabled/>
                         <St.SearchBtn type="button">우편번호 검색</St.SearchBtn>
-                        <input type="text" name="address" placeholder="주소" disabled/>
-                        <input type="text" name="detail" placeholder="상세주소"/>
+                        <St.InputAddress type="text" name="address" placeholder="주소" disabled/>
+                        <St.InputDetail type="text" name="detail" placeholder="상세주소"/>
                     </St.AddressBox>
                 </St.Info>
             </St.InfoList>
@@ -71,12 +71,14 @@ const St = {
             &::placeholder {
                 color: ${({ theme }) => theme.colors.gray2};
             }
-
-            &:nth-child(3), &:nth-child(4) {
-                grid-column: 1 / 3;
-            }
         }
 
+    `,
+    InputAddress : styled.input`
+        grid-column: 1 / 3;
+    `,
+    InputDetail : styled.input`
+        grid-column: 1 / 3;
     `,
     AddressBox : styled.div`
         display: grid;
