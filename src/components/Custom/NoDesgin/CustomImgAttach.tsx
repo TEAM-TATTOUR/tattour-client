@@ -2,13 +2,17 @@ import { styled } from 'styled-components';
 import { IcCancelDark, IcPhoto } from '../../../assets/icon';
 import React, { useState } from 'react';
 
+// interface customImgState {
+//   previewURL: string;
+//   fileBlob: null;
+// }
+
 const CustomImgAttach = () => {
-  const [thumbnailURL, setThumbnailURL] = useState<string>('');
+  const [previewURL, setPreivewURL] = useState('');
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     // console.log('!!!', thumbnailURL);
     const { files } = e.target;
-    console.log(files);
     if (!files || !files[0]) return;
 
     const fileBlob = files[0];
@@ -16,26 +20,25 @@ const CustomImgAttach = () => {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
     reader.onloadend = () => {
-      const base64ImgURL = reader.result as string;
-      setThumbnailURL(base64ImgURL);
-      // console.log('fileReader 방식: \n', base64data);
+      setPreivewURL(reader.result as string);
+      e.target.value = ''; // 같은 파일을 올리면 change 이벤트 인지 못해서 여기서 초기화
     };
   };
 
   const handleClickImgPreviewDelBtn = () => {
-    setThumbnailURL('');
+    setPreivewURL('');
   };
 
   return (
     <St.ImgAttachContainer>
       <input id='img-input' type='file' accept='image/png' onChange={handleChangeImgAttach} />
-      {thumbnailURL ? (
+      {previewURL ? (
         <St.ImgPreviewConatiner>
           <St.ImgPreviewDelBtn type='button' onClick={handleClickImgPreviewDelBtn}>
             <IcCancelDark />
           </St.ImgPreviewDelBtn>
           <St.ImgPreviewArea>
-            <img src={thumbnailURL} alt='그려둔 도안 이미지 미리보기' />
+            <img src={previewURL} alt='그려둔 도안 이미지 미리보기' />
           </St.ImgPreviewArea>
         </St.ImgPreviewConatiner>
       ) : (
