@@ -1,6 +1,6 @@
-import ImgTestOnBoarding from './ImgTestOnBoarding.png';
+import ImgTestOnBoarding from '../ImgTestOnBoarding.png';
 
-export const EXIST_CUSTOM_CAROUSEL_DATA = [
+export const NO_DESIGN_CUSTOM_CAROUSEL_DATA = [
   {
     id: 'page 1',
     mainText: '크기를 선택해주세요',
@@ -24,7 +24,7 @@ export const EXIST_CUSTOM_CAROUSEL_DATA = [
   },
 ];
 
-export const MAKE_CUSTOM_CAROUSEL_DATA = [
+export const HAVE_DESIGN_CUSTOM_CAROUSEL_DATA = [
   {
     id: 'page 1',
     mainText: '크기를 선택해주세요',
