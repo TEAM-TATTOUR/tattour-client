@@ -10,7 +10,7 @@ interface ProgressBarProps {
 const ProgressBar = ({ curStep, maxStep }: ProgressBarProps) => {
   return (
     <St.ProgressBarWrapper>
-      <progress value={(curStep)} max={maxStep}></progress>
+      <progress value={curStep} max={maxStep}></progress>
     </St.ProgressBarWrapper>
   );
 };
