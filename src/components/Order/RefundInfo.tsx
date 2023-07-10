@@ -5,7 +5,7 @@ const RefundInfo = () => {
     <St.Wrapper>
         <St.Checkbox type="checkbox"/>
         <St.Button>
-            <St.Text></St.Text>
+            <St.Text>타투어 환불 정책에 동의합니다</St.Text>
             <St.Arrow/>
         </St.Button>
     </St.Wrapper>
@@ -40,7 +40,8 @@ const St = {
         gap: 0.3rem;
     `,
     Text : styled.p`
-        
+        ${({ theme }) => theme.fonts.body_medium_16};
+        color: ${({ theme }) => theme.colors.gray4};
     `,
     Arrow : styled.i`
         
