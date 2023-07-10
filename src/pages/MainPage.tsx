@@ -10,9 +10,11 @@ import HotCustom from '../components/MainPage/HotCustom';
 import MainTheme from '../components/MainPage/MainTheme';
 import MainEventBanner from '../components/MainPage/MainEventBanner';
 import MainStyle from '../components/MainPage/MainStyle';
+import SideMenu from '../components/MainPage/SideMenu';
 
 const MainPage = () => {
   const [isHeaderTransparent, setIsHeaderTransparent] = useState(true);
+  const [isSideMenuOpen] = useState(false);
 
   useEffect(() => {
     const debouncedHandleScroll = throttle(handleScroll, 100);
@@ -45,6 +47,7 @@ const MainPage = () => {
       <MainEventBanner />
       <MainTheme />
       <MainStyle />
+      {isSideMenuOpen && <SideMenu />}
     </PageLayout>
   );
 };
