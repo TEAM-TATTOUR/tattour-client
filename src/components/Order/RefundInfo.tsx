@@ -24,13 +24,23 @@ const St = {
 
     `,
     Checkbox : styled.input`
-        
+        width: 2.4rem;
+        height: 2.4rem;
+
+        background-color: ${({ theme }) => theme.colors.gray0};
+        border-radius: 0.4rem;
+
+        &:checked {
+            background-color: ${({ theme }) => theme.colors.gray6};
+            color: ${({ theme }) => theme.colors.white};
+        }
     `,
     Button : styled.article`
-    
+        display: flex;
+        gap: 0.3rem;
     `,
     Text : styled.p`
-    
+        
     `,
     Arrow : styled.i`
         
