@@ -5,9 +5,13 @@ import { useNavigate } from 'react-router-dom';
 interface ModalProps {
   onClose: () => void;
   pageName: string;
+  title: string;
+  subTitle: string;
+  continueBtn: string;
+  stopBtn: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ onClose, pageName }) => {
+const Modal = ({ onClose, pageName, title, subTitle, continueBtn, stopBtn }: ModalProps) => {
   const navigate = useNavigate();
 
   const handleClickStopBtn = () => {
@@ -37,15 +41,13 @@ const Modal: React.FC<ModalProps> = ({ onClose, pageName }) => {
       <St.ModalContent>
         <St.ModalTitleWrapper>
           <IcCancelDark onClick={onClose} />
-          <St.ModalTitle>정말 그만두시나요?</St.ModalTitle>
-          <St.ModalSubTitle>
-            프로필 설정만 마치면, 회원가입 과정이 모두 끝납니다. 중간에 나가시면 정보가 사라져요.
-          </St.ModalSubTitle>
+          <St.ModalTitle>{title}</St.ModalTitle>
+          <St.ModalSubTitle>{subTitle}</St.ModalSubTitle>
         </St.ModalTitleWrapper>
 
         <St.BtnWrapper>
-          <St.ContinueBtn onClick={onClose}>설정 계속하기</St.ContinueBtn>
-          <St.StopBtn onClick={handleClickStopBtn}>그만두기</St.StopBtn>
+          <St.ContinueBtn onClick={onClose}>{continueBtn}</St.ContinueBtn>
+          <St.StopBtn onClick={handleClickStopBtn}>{stopBtn}</St.StopBtn>
         </St.BtnWrapper>
       </St.ModalContent>
     </St.ModalContainer>
