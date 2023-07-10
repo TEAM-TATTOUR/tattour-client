@@ -1,12 +1,18 @@
 import { styled } from 'styled-components';
 import CustomTitle from './CustomTitle';
 import CustomImageAttach from './CustomImageAttach';
+import PaintBottomSheet from './PaintBottomSheet';
+import { useState } from 'react';
 
 const CustomReference = () => {
+  const [isBottomOpen, setBottomOpen] = useState(false);
+
   return (
     <St.PageWrapper>
       <CustomTitle />
-      <CustomImageAttach />
+      <CustomImageAttach isBottomOpen={isBottomOpen} setBottomOpen={setBottomOpen} />
+      if (isBottomOpen)
+      {<PaintBottomSheet isBottomOpen={isBottomOpen} setBottomOpen={setBottomOpen} />}
     </St.PageWrapper>
   );
 };
