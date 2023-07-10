@@ -3,12 +3,27 @@ import { styled } from 'styled-components';
 import { IcApplyCheckGray, IcApplyCheckPink } from '../../assets/icon';
 
 const SelectCustom = () => {
+  const CASE_BTN_DATA = [
+    {
+      id: 'noDesign',
+      title: '이미 그려 둔 도안이 있어요',
+      detail: '이미지 파일을 그대로 제작해 드릴게요',
+    },
+    {
+      id: 'haveDesign',
+      title: '커스텀 도안을 제작하고 싶어요',
+      detail: '신청서에 맞게 세심하게 제작해 드릴게요',
+    },
+  ];
+
   const [activeBtn, setActiveBtn] = useState(''); //선택 된 버튼의 상황
   const btnRef = useRef<HTMLButtonElement[]>([]); //상황 선택 버튼 리스트 ref
+  const [haveDesign, setHaveDesign] = useState<boolean>(); //리코일 저장 후 서버 통신 예정
 
   const handleClickSelBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;
     setActiveBtn(target.id);
+    target.id === 'haveDesign' ? setHaveDesign(true) : setHaveDesign(false);
   };
 
   useEffect(() => {
@@ -30,31 +45,21 @@ const SelectCustom = () => {
       </St.SelectInfoContainer>
 
       <St.SelectBtnContainer>
-        <St.SelectBtnContent
-          type='button'
-          id='exist'
-          ref={(element: HTMLButtonElement) => (btnRef.current[0] = element)}
-          onClick={handleClickSelBtn}
-        >
-          {activeBtn === 'exist' ? <IcApplyCheckPink /> : <IcApplyCheckGray />}
-          <St.SelectBtnTitle $case='exist'>이미 그려 둔 도안이 있어요</St.SelectBtnTitle>
-          <St.SelectBtnDetail $case='exist'>
-            이미지 파일을 그대로 제작해 드릴게요
-          </St.SelectBtnDetail>
-        </St.SelectBtnContent>
-
-        <St.SelectBtnContent
-          type='button'
-          id='make'
-          ref={(element: HTMLButtonElement) => (btnRef.current[1] = element)}
-          onClick={handleClickSelBtn}
-        >
-          {activeBtn === 'make' ? <IcApplyCheckPink /> : <IcApplyCheckGray />}
-          <St.SelectBtnTitle $case='make'>커스텀 도안을 제작하고 싶어요</St.SelectBtnTitle>
-          <St.SelectBtnDetail $case='make'>
-            신청서에 맞게 세심하게 제작해 드릴게요
-          </St.SelectBtnDetail>
-        </St.SelectBtnContent>
+        {CASE_BTN_DATA.map(({ id, title, detail }, idx) => {
+          return (
+            <St.SelectBtnContent
+              type='button'
+              key={id}
+              id={id}
+              ref={(element: HTMLButtonElement) => (btnRef.current[idx] = element)}
+              onClick={handleClickSelBtn}
+            >
+              {activeBtn === id ? <IcApplyCheckPink /> : <IcApplyCheckGray />}
+              <St.SelectBtnTitle $case={id}>{title}</St.SelectBtnTitle>
+              <St.SelectBtnDetail $case={id}>{detail}</St.SelectBtnDetail>
+            </St.SelectBtnContent>
+          );
+        })}
       </St.SelectBtnContainer>
     </St.SelectWrapper>
   );
@@ -116,7 +121,7 @@ const St = {
   `,
 
   SelectBtnTitle: styled.h3<{ $case: string }>`
-    width: ${(props) => (props.$case === 'exist' ? 8.6 : 10)}rem;
+    width: ${({ $case }) => ($case === 'haveDesign' ? 10 : 8.6)}rem;
 
     color: ${({ theme }) => theme.colors.gray7};
     ${({ theme }) => theme.fonts.title_semibold_16};
@@ -129,7 +134,7 @@ const St = {
   `,
 
   SelectBtnDetail: styled.p<{ $case: string }>`
-    width: ${(props) => (props.$case === 'exist' ? 10.6 : 11.6)}rem;
+    width: ${({ $case }) => ($case === 'haveDesign' ? 11.6 : 10.6)}rem;
 
     color: ${({ theme }) => theme.colors.gray3};
     ${({ theme }) => theme.fonts.detail_medium_12};
