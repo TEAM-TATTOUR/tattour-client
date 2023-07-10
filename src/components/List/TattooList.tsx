@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { IcArrowBottomSmallGray } from "../../assets/icon";
 import { useState } from "react";
-import { IcDownArrow } from "../../assets/icon";
 
 interface TattooListProps {
   setSortOpen : React.Dispatch<React.SetStateAction<boolean>>,

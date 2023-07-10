@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import Sheet from 'react-modal-sheet';
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import ic_check_small_light from '../../assets/icon/ic_check_small_light.svg';
+import ic_check_small_pink from '../../assets/icon/ic_check_small_pink.svg';
 
 interface FilterBottomProps {
     isSortOpen : boolean;
@@ -16,6 +18,10 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
     const filterRef = useRef<HTMLElement>(null);
     const [isSelected, setSelected] = useState(false);
 
+    useEffect(() => {
+        setSelected(false);
+    }, [isSortOpen, isGenreOpen, isStyleOpen])
+    
     const FILTER = [
         {
             type : '정렬',
@@ -65,7 +71,11 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                                 <St.TagBox 
                                     key={el}
                                     onClick={()=>handleClickTag(idx)}
-                                    >{el}</St.TagBox>
+                                    >
+                                    <span></span>
+                                    {el}
+                                    <i></i>
+                                </St.TagBox>
                             ))}
                             <St.Footer $sel={isSelected}>
                                 <St.Button type='button'>
@@ -91,19 +101,32 @@ const St = {
         color: ${({ theme }) => theme.colors.gray4};
         ${({ theme }) => theme.fonts.title_medium_18};
 
+        & > span {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0rem 0.3rem;
+            width: 2rem;
+            height: 2rem;
+        }
+
+        & > i {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0rem 0.3rem;
+            width: 2rem;
+            height: 2rem;
+
+            background: url(${ic_check_small_light});
+        }
+
         &.select {
             color: ${({ theme }) => theme.colors.gray8};
             ${({ theme }) => theme.fonts.title_semibold_18};
 
-            &::after {
-                display: inline-block;
-                vertical-align: middle;
-                margin-left: 0.3rem;
-                width: 2rem;
-                height: 2rem;
-                background-image: url('/src/assets/icon/ic_check_small_pink.svg');   //component로 하는 방법을 찾지 못함
-                content: '';
+            & > i {
+                background: url(${ic_check_small_pink});
             }
+
         }
     `,
     Footer: styled.footer<{$sel : boolean}>`
@@ -121,7 +144,7 @@ const St = {
         height: 100%;
 
         color: ${({ theme }) => theme.colors.white};
-        font: ${({ theme }) => theme.fonts.title_semibold_18};
+        ${({ theme }) => theme.fonts.title_semibold_18};
     `,
 }
 
