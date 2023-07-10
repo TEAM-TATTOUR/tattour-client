@@ -2,21 +2,16 @@ import { styled } from 'styled-components';
 import { IcCancelDark, IcPhoto } from '../../../assets/icon';
 import React, { useState } from 'react';
 
-// interface customImgState {
-//   previewURL: string;
-//   fileBlob: null;
-// }
-
 const CustomImgAttach = () => {
   const [previewURL, setPreivewURL] = useState('');
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log('!!!', thumbnailURL);
     const { files } = e.target;
-    if (!files || !files[0]) return;
+    if (!files || !files[0]) return; // early return
 
-    const fileBlob = files[0];
+    const fileBlob = files[0]; // 서버 통신 시 보낼 타입
 
+    // FileReader로 이미지 미리보기 구현
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
     reader.onloadend = () => {
