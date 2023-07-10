@@ -46,7 +46,7 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
 
     ]
 
-    const handleClickTag = ({tag : string, index : number}) => {
+    const handleClickTag = (tag : string, index : number) => {
         document.querySelectorAll('.select').forEach(el => {
             el.classList.remove('select');
         })
@@ -54,11 +54,10 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
 
         setSelected(true);
 
-        // 여기서 buttonName state도 변경 
+        // 여기서 buttonName state 변경 
         const newButtonName = [...buttonName];
         newButtonName[index] = tag;
         setButtonName(newButtonName); 
-        buttonName[index] = tag;
     }
     
 
