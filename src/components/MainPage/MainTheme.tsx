@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import ScrollContainer from 'react-indiana-drag-scroll';
 
 interface MainThemeItemProps {
   id: number;
@@ -33,7 +34,7 @@ const renderMainThemeDummyImage = () => {
     <div
       style={{
         width: '15.3rem',
-        height: '14.5rem',
+        height: '9.6rem',
         backgroundColor: 'gray',
       }}
     ></div>
@@ -47,15 +48,17 @@ const MainTheme = () => {
         <St.MainThemeTitle>THEME</St.MainThemeTitle>
       </St.MainThemeHeader>
       <St.MainThemeWrapper>
-        {dummyThemeList.map((item) => {
-          return (
-            <St.MainThemeItem key={item.id}>
-              {renderMainThemeDummyImage()}
-              <St.MainThemeItemTitle>{item.title}</St.MainThemeItemTitle>
-              <St.MainThemeItemDescription>{item.description}</St.MainThemeItemDescription>
-            </St.MainThemeItem>
-          );
-        })}
+        <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
+          {dummyThemeList.map((item) => {
+            return (
+              <St.MainThemeItem key={item.id}>
+                {renderMainThemeDummyImage()}
+                <St.MainThemeItemTitle>{item.title}</St.MainThemeItemTitle>
+                <St.MainThemeItemDescription>{item.description}</St.MainThemeItemDescription>
+              </St.MainThemeItem>
+            );
+          })}
+        </ScrollContainer>
       </St.MainThemeWrapper>
     </St.MainThemeSection>
   );
@@ -80,17 +83,14 @@ const St = {
   `,
 
   MainThemeWrapper: styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1.2rem;
     margin-top: 1rem;
     margin-right: 1.2rem;
 
-    overflow-x: scroll;
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
+    .scroll-container {
+      display: flex;
+      flex-direction: row;
+      gap: 1.2rem;
+      width: 100%;
     }
   `,
 

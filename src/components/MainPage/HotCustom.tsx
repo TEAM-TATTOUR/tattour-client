@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { IcArrowRightDark } from '../../assets/icon';
+import ScrollContainer from 'react-indiana-drag-scroll';
 
 interface HotCustomItemProps {
   id: number;
@@ -54,26 +55,28 @@ const HotCustom = () => {
         <IcArrowRightDark />
       </St.Header>
       <St.HotCustomWrapper>
-        {dummyItemList.map(({ id, title, discountRate, originalPrice }) => {
-          return (
-            <St.HotCustomItem key={id}>
-              <St.labelWrapper>
-                <St.HotCustomLabel>CUSTOM</St.HotCustomLabel>
-                {renderNullImage()}
-              </St.labelWrapper>
-              <St.HotCustomItemTitle>{title}</St.HotCustomItemTitle>
-              <St.HotCustomItemPriceWrapper>
-                <St.HotCustomItemDiscountRate>{discountRate}%</St.HotCustomItemDiscountRate>
-                <St.HotCustomItemPrice>
-                  {(originalPrice * discountRate * 0.01).toLocaleString()}원
-                </St.HotCustomItemPrice>
-              </St.HotCustomItemPriceWrapper>
-              <St.HotCustomItemOriginPrice>
-                {originalPrice.toLocaleString()}원
-              </St.HotCustomItemOriginPrice>
-            </St.HotCustomItem>
-          );
-        })}
+        <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
+          {dummyItemList.map(({ id, title, discountRate, originalPrice }) => {
+            return (
+              <St.HotCustomItem key={id}>
+                <St.labelWrapper>
+                  <St.HotCustomLabel>CUSTOM</St.HotCustomLabel>
+                  {renderNullImage()}
+                </St.labelWrapper>
+                <St.HotCustomItemTitle>{title}</St.HotCustomItemTitle>
+                <St.HotCustomItemPriceWrapper>
+                  <St.HotCustomItemDiscountRate>{discountRate}%</St.HotCustomItemDiscountRate>
+                  <St.HotCustomItemPrice>
+                    {(originalPrice * discountRate * 0.01).toLocaleString()}원
+                  </St.HotCustomItemPrice>
+                </St.HotCustomItemPriceWrapper>
+                <St.HotCustomItemOriginPrice>
+                  {originalPrice.toLocaleString()}원
+                </St.HotCustomItemOriginPrice>
+              </St.HotCustomItem>
+            );
+          })}
+        </ScrollContainer>
       </St.HotCustomWrapper>
     </St.HotCustomSection>
   );
@@ -106,10 +109,13 @@ const St = {
     justify-content: space-between;
     margin-right: 1.2rem;
 
-    overflow-x: scroll;
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
+    .scroll-container {
+      display: flex;
+      flex-direction: row;
+      gap: 1.2rem;
+
+      height: 28rem;
+      width: 100%;
     }
   `,
 
