@@ -54,22 +54,22 @@ const HotCustom = () => {
         <IcArrowRightDark />
       </St.Header>
       <St.HotCustomWrapper>
-        {dummyItemList.map((item) => {
+        {dummyItemList.map(({ id, title, discountRate, originalPrice }) => {
           return (
-            <St.HotCustomItem key={item.id}>
+            <St.HotCustomItem key={id}>
               <St.labelWrapper>
                 <St.HotCustomLabel>CUSTOM</St.HotCustomLabel>
                 {renderNullImage()}
               </St.labelWrapper>
-              <St.HotCustomItemTitle>{item.title}</St.HotCustomItemTitle>
+              <St.HotCustomItemTitle>{title}</St.HotCustomItemTitle>
               <St.HotCustomItemPriceWrapper>
-                <St.HotCustomItemDiscountRate>{item.discountRate}%</St.HotCustomItemDiscountRate>
+                <St.HotCustomItemDiscountRate>{discountRate}%</St.HotCustomItemDiscountRate>
                 <St.HotCustomItemPrice>
-                  {(item.originalPrice * item.discountRate * 0.01).toLocaleString()}원
+                  {(originalPrice * discountRate * 0.01).toLocaleString()}원
                 </St.HotCustomItemPrice>
               </St.HotCustomItemPriceWrapper>
               <St.HotCustomItemOriginPrice>
-                {item.originalPrice.toLocaleString()}원
+                {originalPrice.toLocaleString()}원
               </St.HotCustomItemOriginPrice>
             </St.HotCustomItem>
           );

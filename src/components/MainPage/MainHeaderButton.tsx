@@ -5,7 +5,7 @@ const MainHeaderButton = ({ light }: { light: boolean }) => {
   return (
     <St.ButtonWrapper>
       <St.SearchButton>{light ? <IcSearchLight /> : <IcSearchDark />}</St.SearchButton>
-      <St.NavButtonWrapper>{light ? <IcMenuLight /> : <IcMenuDark />}</St.NavButtonWrapper>
+      <St.NavButton>{light ? <IcMenuLight /> : <IcMenuDark />}</St.NavButton>
     </St.ButtonWrapper>
   );
 };
@@ -25,7 +25,7 @@ const St = {
     padding: 0;
   `,
 
-  NavButtonWrapper: styled.button`
+  NavButton: styled.button`
     display: flex;
     justify-content: center;
     align-items: center;

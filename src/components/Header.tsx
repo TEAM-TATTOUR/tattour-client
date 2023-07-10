@@ -9,7 +9,7 @@ interface HeaderProps {
 
 const Header = ({ leftSection, title, rightSection, transparent }: HeaderProps) => {
   return (
-    <St.header className={transparent ? 'transparent' : ''}>
+    <St.header $transparent={transparent}>
       {leftSection}
       {title && <St.title>{title}</St.title>}
       {rightSection}
@@ -18,7 +18,7 @@ const Header = ({ leftSection, title, rightSection, transparent }: HeaderProps) 
 };
 
 const St = {
-  header: styled.header`
+  header: styled.header<{ $transparent: boolean }>`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,11 +28,8 @@ const St = {
 
     position: fixed;
 
-    background-color: ${({ theme }) => theme.colors.white};
-
-    &.transparent {
-      background-color: transparent;
-    }
+    background-color: ${({ theme, $transparent }) =>
+      $transparent ? `transparent` : theme.colors.white};
   `,
 
   title: styled.h1`

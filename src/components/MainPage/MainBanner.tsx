@@ -6,7 +6,7 @@ const MainBanner = () => {
   const svgString = encodeURIComponent(renderToStaticMarkup(<ImgHome />));
 
   return (
-    <St.BannerWrapper svgstring={svgString}>
+    <St.BannerWrapper $svgstring={svgString}>
       <St.CopyWright>
         Journey <br />
         of No Regrets,
@@ -21,11 +21,11 @@ const MainBanner = () => {
 };
 
 const St = {
-  BannerWrapper: styled.section<{ svgstring: string }>`
+  BannerWrapper: styled.section<{ $svgstring: string }>`
     width: 100%;
     height: 76.1rem;
     padding: 0 1.7rem;
-    background-image: ${({ svgstring }) => `url("data:image/svg+xml,${svgstring}")`};
+    background-image: ${({ $svgstring }) => `url("data:image/svg+xml,${$svgstring}")`};
   `,
 
   CopyWright: styled.p`
