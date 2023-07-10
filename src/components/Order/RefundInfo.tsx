@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { IcArrowRightDark } from "../../assets/icon"
 
 const RefundInfo = () => {
   return (
@@ -6,7 +7,7 @@ const RefundInfo = () => {
         <St.Checkbox type="checkbox"/>
         <St.Button>
             <St.Text>타투어 환불 정책에 동의합니다</St.Text>
-            <St.Arrow/>
+            <IcArrowRightDark/>
         </St.Button>
     </St.Wrapper>
   )
@@ -43,7 +44,5 @@ const St = {
         ${({ theme }) => theme.fonts.body_medium_16};
         color: ${({ theme }) => theme.colors.gray4};
     `,
-    Arrow : styled.i`
-        
-    `
+
 }
