@@ -27,19 +27,19 @@ const SideMenu = () => {
       <St.SideMenuItemSection>
         <St.SideMenuItemWrapper>
           {NAV_MENU_ITEM.map(({ icon, text }) => (
-            <St.SideMenuItem key={text}>
+            <li key={text}>
               {icon}
               <St.SideMenuItemText>{text}</St.SideMenuItemText>
-            </St.SideMenuItem>
+            </li>
           ))}
         </St.SideMenuItemWrapper>
       </St.SideMenuItemSection>
       <St.SideMenuEtcButtonWrapper>
-        <St.SideMenuCSButton>문의하기</St.SideMenuCSButton>
+        <St.SideMenuCSButton type='button'>문의하기</St.SideMenuCSButton>
         {isLogin && (
           <>
             <St.Delimeter />
-            <St.SideMenuLogOutButton>로그아웃</St.SideMenuLogOutButton>
+            <St.SideMenuLogOutButton type='button'>로그아웃</St.SideMenuLogOutButton>
           </>
         )}
       </St.SideMenuEtcButtonWrapper>
@@ -52,7 +52,7 @@ const St = {
     position: fixed;
     right: 0;
     top: 0;
-    z-index: 2;
+    z-index: 999;
 
     width: 24rem;
     height: 100vh;
@@ -65,19 +65,17 @@ const St = {
     padding-top: 3.4rem;
   `,
 
-  SideMenuItemWrapper: styled.article`
+  SideMenuItemWrapper: styled.ul`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 2.2rem;
   `,
 
-  SideMenuItem: styled.div``,
-
   SideMenuItemText: styled.span`
     margin-left: 0.8rem;
 
-    font: ${({ theme }) => theme.fonts.title_semibold_18};
+    ${({ theme }) => theme.fonts.title_semibold_18};
     color: ${({ theme }) => theme.colors.gray8};
   `,
 
@@ -93,7 +91,7 @@ const St = {
   `,
 
   SideMenuCSButton: styled.button`
-    font: ${({ theme }) => theme.fonts.body_medium_14};
+    ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray3};
   `,
 
@@ -104,7 +102,7 @@ const St = {
   `,
 
   SideMenuLogOutButton: styled.button`
-    font: ${({ theme }) => theme.fonts.body_medium_14};
+    ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray3};
   `,
 };

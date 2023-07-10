@@ -8,13 +8,13 @@ const SideMenuUserInfo = ({ isLogin }: { isLogin: boolean }) => {
     <St.SideMenuUserInfoSection>
       <St.SideMenuUserName>
         김희진
-        <div>님</div>
+        <span>님</span>
       </St.SideMenuUserName>
       <St.SideMenuUserPointWrapper>
         <St.SideMenuUserPointTitle>보유 포인트</St.SideMenuUserPointTitle>
         <St.SideMenuUserPointTextWrapper>
           <St.SideMenuUserPoint>{point.toLocaleString()}</St.SideMenuUserPoint>
-          <div>P</div>
+          <span>P</span>
         </St.SideMenuUserPointTextWrapper>
         <St.SideMenuUserPointChargeButton>충전하기</St.SideMenuUserPointChargeButton>
       </St.SideMenuUserPointWrapper>
@@ -31,9 +31,7 @@ const SideMenuUserInfo = ({ isLogin }: { isLogin: boolean }) => {
 
 const St = {
   SideMenuAnonymousSection: styled.section`
-    padding-top: 2.9rem;
-    padding-bottom: 2.9rem;
-    padding-left: 3rem;
+    padding: 2.9rem 0 2.9rem 3rem;
 
     background-color: ${({ theme }) => theme.colors.gray9};
   `,
@@ -58,16 +56,14 @@ const St = {
   `,
 
   SideMenuUserName: styled.div`
-    padding-top: 2.8rem;
-    padding-bottom: 2.8rem;
-    padding-left: 3rem;
+    padding: 2.8rem 0 2.8rem 3rem;
 
     border-bottom: 0.1rem solid ${({ theme }) => theme.colors.gray7};
 
     font: ${({ theme }) => theme.fonts.title_semibold_20};
     color: ${({ theme }) => theme.colors.white};
 
-    & > div {
+    & > span {
       display: inline-block;
       font: ${({ theme }) => theme.fonts.body_medium_16};
       color: ${({ theme }) => theme.colors.gray2};
@@ -78,9 +74,7 @@ const St = {
     display: flex;
     flex-direction: column;
 
-    margin-top: 2.8rem;
-    margin-left: 3rem;
-    margin-bottom: 3.6rem;
+    margin: 2.8rem 0 3.6rem 3rem;
   `,
 
   SideMenuUserPointTextWrapper: styled.div`
@@ -90,7 +84,7 @@ const St = {
 
     margin-top: 0.5rem;
 
-    & > div {
+    & > span {
       margin-left: 0.4rem;
       font: ${({ theme }) => theme.fonts.title_semibold_20};
       color: ${({ theme }) => theme.colors.gray2};
