@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import Sheet from 'react-modal-sheet';
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import ic_check_small_light from '../../assets/icon/ic_check_small_light.svg';
 import ic_check_small_pink from '../../assets/icon/ic_check_small_pink.svg';
 
@@ -18,6 +18,10 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
     const filterRef = useRef<HTMLElement>(null);
     const [isSelected, setSelected] = useState(false);
 
+    useEffect(() => {
+        setSelected(false);
+    }, [isSortOpen, isGenreOpen, isStyleOpen])
+    
     const FILTER = [
         {
             type : '정렬',
