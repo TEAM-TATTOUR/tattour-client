@@ -1,14 +1,18 @@
 import { styled } from 'styled-components';
 import IcKakaoLogo from '../../assets/logo_kakao.png';
+import { useNavigate } from 'react-router-dom';
 
 const LoginFooter = () => {
+  const navigate = useNavigate();
+
   return (
-    <St.LoginFooter>
+    // 임의로 연결해둠
+    <St.LoginFooter onClick={() => navigate('/register')}>
       <img src={IcKakaoLogo} />
       <St.FooterText>카카오로 계속하기</St.FooterText>
     </St.LoginFooter>
   );
-}
+};
 
 const St = {
   LoginFooter: styled.footer`
