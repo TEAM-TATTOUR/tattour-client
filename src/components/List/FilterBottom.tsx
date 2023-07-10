@@ -3,7 +3,6 @@ import Sheet from 'react-modal-sheet';
 import { useRef, useState } from "react";
 import ic_check_small_light from '../../assets/icon/ic_check_small_light.svg';
 import ic_check_small_pink from '../../assets/icon/ic_check_small_pink.svg';
-import { IcCheckSmallLight } from "../../assets/icon";
 
 interface FilterBottomProps {
     isSortOpen : boolean;
