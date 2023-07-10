@@ -22,7 +22,7 @@ const OnBoardingCarousel = () => {
     <St.SwiperWrapper>
       <Swiper
         modules={[Navigation, Pagination]}
-        spaceBetween={50}
+        spaceBetween={70}
         slidesPerView={1}
         pagination={{ clickable: true }}
         navigation
@@ -61,6 +61,7 @@ const St = {
         display: flex;
         flex-direction: column;
         height: 63.6rem;
+        width: 100%;
       }
 
       /* swiper 버튼 커스텀 스타일링 */
@@ -71,13 +72,23 @@ const St = {
 
       /* swiper 버튼 svg 아이콘으로 커스텀 */
       .swiper-button-next {
+        width: 2rem;
+        height: 2rem;
+        margin-top: 0.3rem;
+
         background: url(${ic_arrow_right_gray}) no-repeat;
         background-position: center;
+        background-size: auto;
       }
 
       .swiper-button-prev {
+        width: 2rem;
+        height: 2rem;
+        margin-top: 0.3rem;
+
         background: url(${ic_arrow_left_gray}) no-repeat;
         background-position: center;
+        background-size: auto;
       }
 
       /* 버튼 커스텀을 위해 원래 라이브러리의 버튼은 안보이게 */
@@ -111,8 +122,8 @@ const St = {
     flex-direction: column;
     gap: 1.2rem;
 
-    width: 100%;
-    padding: 2.2rem 0 5.6rem 2.6rem; /* 캐러셀 구조 다 나오면 여백 수정 필요 */
+    width: fit-content;
+    margin: 2.2rem 0 5rem 2.6rem;
   `,
 
   HeaderMainText: styled.h2`
@@ -130,7 +141,8 @@ const St = {
     justify-content: center;
 
     & > img {
-      padding: 0 0.9rem;
+      width: 30.7rem;
+      height: 53.8rem;
     }
   `,
 };
