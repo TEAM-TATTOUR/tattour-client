@@ -1,12 +1,14 @@
 import { styled } from 'styled-components';
-import { IcPhoto } from '../../../assets/icon';
+import { IcCancelDark, IcPhoto } from '../../../assets/icon';
 import React, { useState } from 'react';
 
 const CustomImgAttach = () => {
   const [thumbnailURL, setThumbnailURL] = useState<string>('');
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log('!!!', thumbnailURL);
     const { files } = e.target;
+    console.log(files);
     if (!files || !files[0]) return;
 
     const fileBlob = files[0];
@@ -20,13 +22,22 @@ const CustomImgAttach = () => {
     };
   };
 
+  const handleClickImgPreviewDelBtn = () => {
+    setThumbnailURL('');
+  };
+
   return (
     <St.ImgAttachContainer>
       <input id='img-input' type='file' accept='image/png' onChange={handleChangeImgAttach} />
       {thumbnailURL ? (
-        <St.ImgPreviewArea>
-          <img src={thumbnailURL} alt='그려둔 도안 이미지 미리보기' />
-        </St.ImgPreviewArea>
+        <St.ImgPreviewConatiner>
+          <St.ImgPreviewDelBtn type='button' onClick={handleClickImgPreviewDelBtn}>
+            <IcCancelDark />
+          </St.ImgPreviewDelBtn>
+          <St.ImgPreviewArea>
+            <img src={thumbnailURL} alt='그려둔 도안 이미지 미리보기' />
+          </St.ImgPreviewArea>
+        </St.ImgPreviewConatiner>
       ) : (
         <St.ImgAttachArea>
           <p>도안 이미지를 첨부해주세요</p>
@@ -71,6 +82,25 @@ const St = {
       color: ${({ theme }) => theme.colors.gray2};
       ${({ theme }) => theme.fonts.body_medium_14};
     }
+  `,
+
+  ImgPreviewConatiner: styled.div`
+    position: relative;
+  `,
+
+  ImgPreviewDelBtn: styled.button`
+    position: absolute;
+    right: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.2rem;
+
+    background-color: ${({ theme }) => theme.colors.gray7};
   `,
 
   ImgPreviewArea: styled.div`
