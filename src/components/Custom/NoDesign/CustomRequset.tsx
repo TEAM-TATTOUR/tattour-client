@@ -1,6 +1,25 @@
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
+import sliceMaxLength from '../../../utils/sliceMaxLength';
 
 const CustomRequset = () => {
+  //count 될 maxCount 수
+  const MAX_NAME_COUNT = 10;
+  const MAX_ETC_COUNT = 50;
+
+  const [nameInputCount, setNameInputCount] = useState(0);
+  const [etcTextAreaCount, setEtcTextAreaCount] = useState(0);
+
+  const handleChangeNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    sliceMaxLength(e, e.target.maxLength);
+    setNameInputCount(e.target.value.length);
+  };
+
+  const handleChangeEtcTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    sliceMaxLength(e, e.target.maxLength);
+    setEtcTextAreaCount(e.target.value.length);
+  };
+
   return (
     <St.CustomRequestWrapper>
       <St.RequestNameContainer>
@@ -8,15 +27,27 @@ const CustomRequset = () => {
         <St.RequestNameDetail>
           추후 아카이브 또는 공개 시에 해당 이름이 노출됩니다
         </St.RequestNameDetail>
-        <St.RequestNameInput placeholder='ex. 우리 가족 타투, 백조 타투, 힙한 하트' autoFocus />
-        <St.RequestInputCount>(0/10)</St.RequestInputCount>
+        <St.RequestNameInput
+          type='text'
+          maxLength={MAX_NAME_COUNT}
+          onChange={handleChangeNameInput}
+          placeholder='ex. 우리 가족 타투, 백조 타투, 힙한 하트'
+          autoFocus
+        />
+        <St.RequestInputCount>
+          ({nameInputCount}/{MAX_NAME_COUNT})
+        </St.RequestInputCount>
       </St.RequestNameContainer>
       <St.RequestEtcContainer>
         <St.RequestEtcTitle>추가 요청 사항</St.RequestEtcTitle>
         <St.RequestEtcTextArea
+          maxLength={MAX_ETC_COUNT}
+          onChange={handleChangeEtcTextArea}
           placeholder='ex. 라인 1mm로 사진보다 얇게 그려주세요 &#13;&#10; &nbsp; &nbsp;  도안을 붉은색 (FF6B6B)으로 바꿔주세요'
         />
-        <St.RequestInputCount>(0/50)</St.RequestInputCount>
+        <St.RequestInputCount>
+          ({etcTextAreaCount}/{MAX_ETC_COUNT})
+        </St.RequestInputCount>
       </St.RequestEtcContainer>
     </St.CustomRequestWrapper>
   );
