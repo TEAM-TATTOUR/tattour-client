@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { IcArrowBottomSmallGray } from "../../assets/icon";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { filterProps } from "framer-motion";
 
 interface TattooListProps {
   setSortOpen : React.Dispatch<React.SetStateAction<boolean>>,
@@ -12,6 +13,7 @@ interface TattooListProps {
 const TattooList = ({setSortOpen, setGenreOpen, setStyleOpen, buttonName} : TattooListProps) => {
 
   const [count,setCount] = useState(17);
+  const [selectedFilter, setSelectedFilter] = useState([false,false,false]);  // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
   const TATTOO_LIST = [
     { 
       name: '고양이 리본 타투',
@@ -27,12 +29,38 @@ const TattooList = ({setSortOpen, setGenreOpen, setStyleOpen, buttonName} : Tatt
     }
   ]
 
+
+  // 변화 -> bg색 to gray7, 글자색 to white, arrow icon to white
+  // 변화 조건 : buttonName 배열의 각 요소가 filter.type인지 check -> 맞으면 default, 다르면 바뀐걸로 
+  // useEffect 사용해서 변화 감지하기 -> 위치는 TattooList에서
+  const filterRef = useRef(null);
+  const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
+
+  useEffect(() => {
+    buttonName.forEach((btn, idx)=> {
+      if (btn!==DEFAULT_BUTTON_NAME[idx]) {
+        // selectedFilter에서 idx위치를 true로 변경 
+        const newSelectedFilter = [...selectedFilter];
+        newSelectedFilter[idx] = true;
+        setSelectedFilter(newSelectedFilter);
+      }
+
+    })
+
+  }, [buttonName])
+  
+
+
+
   return (
     <St.Wrapper>
       <St.Header>ALL</St.Header>
-      <St.BtnContainer>
-        {buttonName.map((el)=>(
-          <St.FilterBtn key={el} onClick={()=>{
+      <St.BtnContainer ref={filterRef}>
+        {buttonName.map((el, idx)=>(
+          <St.FilterBtn 
+            key={el} 
+            $selected={selectedFilter[idx]}
+            onClick={()=>{
             switch (el) {
               case '정렬':
                 setSortOpen(true);
@@ -86,7 +114,7 @@ const St = {
     gap: 1rem;
     margin-left: 2rem;
   `,
-  FilterBtn : styled.button`
+  FilterBtn : styled.button<{$selected : boolean}>`
     display: flex;
     padding: 0.6rem 0.7rem 0.6rem 1.3rem;
     justify-content: center;
@@ -94,9 +122,9 @@ const St = {
     gap: 0.3rem;
 
     border-radius: 0.5rem;
-    background-color: ${({ theme }) => theme.colors.bg};
+    background-color: ${({ theme, $selected }) => $selected? theme.colors.gray7 : theme.colors.bg};
     
-    color: ${({ theme }) => theme.colors.gray3};
+    color: ${({ theme, $selected }) => $selected? theme.colors.white : theme.colors.gray3};
     ${({ theme }) => theme.fonts.body_medium_14};
   `,
   CountText: styled.p`

@@ -64,6 +64,10 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
         const newButtonName = [...buttonName];
         newButtonName[filterIdx] = selectedTag;
         setButtonName(newButtonName);
+
+        // 변화 -> bg색 to gray7, 글자색 to white, arrow icon to white
+        // 변화 조건 : buttonName 배열의 각 요소가 filter.type인지 check -> 맞으면 default, 다르면 바뀐걸로 
+        // useEffect 사용해서 변화 감지하기 -> 위치는 TattooList에서
     }
     
 
