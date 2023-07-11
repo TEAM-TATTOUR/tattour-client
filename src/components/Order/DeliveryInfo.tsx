@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-const DeliveryInfo = () => {
+const DeliveryInfo = (handleModal : () => void) => {
 
     return (
         <St.Wrapper>
@@ -20,7 +20,7 @@ const DeliveryInfo = () => {
                     <label>배송지</label>
                     <St.AddressBox>
                         <input type="text" name="postcode" placeholder="우편번호" disabled/>
-                        <St.SearchBtn type="button">우편번호 검색</St.SearchBtn>
+                        <St.SearchBtn type="button" onClick={()=>handleModal}>우편번호 검색</St.SearchBtn>
                         <St.InputAddress type="text" name="address" placeholder="주소" disabled/>
                         <St.InputDetail type="text" name="detail" placeholder="상세주소"/>
                     </St.AddressBox>
