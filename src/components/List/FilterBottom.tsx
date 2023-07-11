@@ -12,13 +12,18 @@ interface FilterBottomProps {
     isStyleOpen : boolean;
     setStyleOpen : React.Dispatch<React.SetStateAction<boolean>>,
     buttonName : string[];
-    setButtonName : React.Dispatch<React.SetStateAction<string[]>>
+    setButtonName : React.Dispatch<React.SetStateAction<string[]>>,
+    selectedIdx : number,
+    setSelectedIdx : React.Dispatch<React.SetStateAction<number>>,
+    isSelected : boolean,
+    setSelected : React.Dispatch<React.SetStateAction<boolean>>,
+    selectedFilterIdx : number,
+    setSelectedFilterIdx : React.Dispatch<React.SetStateAction<number>>
 }
 
-const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isStyleOpen, setStyleOpen, buttonName, setButtonName} : FilterBottomProps) => {
+const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isStyleOpen, setStyleOpen, buttonName, setButtonName, selectedIdx, setSelectedIdx, isSelected, setSelected, selectedFilterIdx, setSelectedFilterIdx} : FilterBottomProps) => {
 
     const filterRef = useRef<HTMLElement>(null);
-    const [isSelected, setSelected] = useState(false);
     const [selectedTag, setSelectedTag] = useState(''); // 선택한 태그 저장
 
     useEffect(() => {
@@ -47,14 +52,11 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
 
     ]
 
-    const handleClickTag = (tag : string, index : number) => {
-        document.querySelectorAll('.select').forEach(el => {
-            el.classList.remove('select');
-        })
-        filterRef.current?.childNodes[index].classList.add('select');
-
+    const handleClickTag = (tag : string, index : number, filterIndex : number) => {
         setSelected(true);
         setSelectedTag(tag);    // 선택한 태그 저장
+        setSelectedIdx(index);
+        setSelectedFilterIdx(filterIndex);
     }
 
     const handleClickButton = (onClose: () => void, filterIdx: number) => {
@@ -87,7 +89,8 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                             {filter.data.map((el, idx)=>(
                                 <St.TagBox 
                                     key={el}
-                                    onClick={()=>handleClickTag(el, idx)}
+                                    onClick={()=>handleClickTag(el, idx, filterIdx)}
+                                    $isSelected={selectedIdx === idx && selectedFilterIdx === filterIdx}
                                     >
                                     <span></span>
                                     {el}
@@ -112,13 +115,13 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
 export default FilterBottom
 
 const St = {
-    TagBox : styled.p`
+    TagBox : styled.p<{$isSelected: boolean}>`
         display: flex;
         justify-content: center;
         text-align: center;
         padding: 1.7rem 0rem;
-        color: ${({ theme }) => theme.colors.gray4};
-        ${({ theme }) => theme.fonts.title_medium_18};
+        color: ${({ theme, $isSelected }) => $isSelected ? theme.colors.gray8 : theme.colors.gray4};
+        ${({ theme, $isSelected }) => $isSelected ? theme.fonts.title_semibold_18 : theme.fonts.title_medium_18};
 
         & > span {
             display: inline-block;
@@ -133,18 +136,9 @@ const St = {
             width: 2rem;
             height: 2rem;
 
-            background: url(${ic_check_small_light});
+            background: url(${({ $isSelected }) => $isSelected ? ic_check_small_pink : ic_check_small_light});
         }
 
-        &.select {
-            color: ${({ theme }) => theme.colors.gray8};
-            ${({ theme }) => theme.fonts.title_semibold_18};
-
-            & > i {
-                background: url(${ic_check_small_pink});
-            }
-
-        }
     `,
     Footer: styled.footer<{$sel : boolean}>`
         display: flex;

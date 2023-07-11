@@ -8,6 +8,10 @@ const ListPage = () => {
   const [isGenreOpen, setGenreOpen] = useState(false);
   const [isStyleOpen, setStyleOpen] = useState(false);
   const [buttonName, setButtonName] = useState(['정렬','장르','스타일']);
+  const [selectedIdx, setSelectedIdx] = useState(99); // 선택한 태그의 인덱스 저장
+  const [isSelected, setSelected] = useState(false);
+  const [selectedFilterIdx, setSelectedFilterIdx] = useState(4);
+
 
   return (
     <div>
@@ -24,6 +28,9 @@ const ListPage = () => {
           isGenreOpen={isGenreOpen} setGenreOpen={setGenreOpen}
           isStyleOpen={isStyleOpen} setStyleOpen={setStyleOpen}
           buttonName={buttonName} setButtonName={setButtonName}
+          selectedIdx={selectedIdx} setSelectedIdx={setSelectedIdx}
+          isSelected={isSelected} setSelected={setSelected}
+          selectedFilterIdx={selectedFilterIdx} setSelectedFilterIdx={setSelectedFilterIdx}
         />
     </div>
   )
