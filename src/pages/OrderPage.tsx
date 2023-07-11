@@ -29,11 +29,6 @@ const OrderPage = () => {
     postcodeRef.current.value = data.zonecode; // 우편번호
     setIsPostOpen(false);
   }
-
-    return (
-    <St.Wrapper>
-        <ProductInfo/>
-        <St.Line/>
   
   return (
     <PageLayout renderHeader={renderOrderPageHeader} footer={<OrderFooter/>}>
