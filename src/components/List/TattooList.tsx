@@ -4,13 +4,16 @@ import { useState, useEffect, useRef } from "react";
 import { filterProps } from "framer-motion";
 
 interface TattooListProps {
+  isSortOpen : boolean;
   setSortOpen : React.Dispatch<React.SetStateAction<boolean>>,
+  isGenreOpen : boolean;
   setGenreOpen : React.Dispatch<React.SetStateAction<boolean>>,
+  isStyleOpen : boolean;
   setStyleOpen : React.Dispatch<React.SetStateAction<boolean>>,
   buttonName : string[]
 }
 
-const TattooList = ({setSortOpen, setGenreOpen, setStyleOpen, buttonName} : TattooListProps) => {
+const TattooList = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isStyleOpen, setStyleOpen, buttonName} : TattooListProps) => {
 
   const [count,setCount] = useState(17);
   const [selectedFilter, setSelectedFilter] = useState([false,false,false]);  // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
@@ -61,14 +64,17 @@ const TattooList = ({setSortOpen, setGenreOpen, setStyleOpen, buttonName} : Tatt
             key={el} 
             $selected={selectedFilter[idx]}
             onClick={()=>{
-            switch (el) {
-              case '정렬':
+            switch (idx) {
+              case 0:
+                if(isSortOpen) setSortOpen(false);
                 setSortOpen(true);
                 break;
-              case '장르':
+              case 1:
+                if(isGenreOpen) setGenreOpen(false);
                 setGenreOpen(true);
                 break;
-              case '스타일':
+              case 2:
+                if(isStyleOpen) setStyleOpen(false);
                 setStyleOpen(true);
                 break;
             }

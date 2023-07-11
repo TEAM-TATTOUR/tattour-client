@@ -14,9 +14,9 @@ const ListPage = () => {
         ListPage
         <St.Line/>
         <TattooList
-          setSortOpen={setSortOpen}
-          setGenreOpen={setGenreOpen}
-          setStyleOpen={setStyleOpen}
+          isSortOpen={isSortOpen} setSortOpen={setSortOpen}
+          isGenreOpen={isGenreOpen} setGenreOpen={setGenreOpen}
+          isStyleOpen={isStyleOpen} setStyleOpen={setStyleOpen}
           buttonName={buttonName}
         />
         <FilterBottom
