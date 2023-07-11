@@ -54,18 +54,22 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
         filterRef.current?.childNodes[index].classList.add('select');
 
         setSelected(true);
+        setSelectedTag(tag);    // 선택한 태그 저장
     }
 
-    const handleClickButton = (onClose: () => void) => {
-        onClose;    // 모달 내리기
+    const handleClickButton = (onClose: () => void, filterIdx: number) => {
+        onClose();    // 모달 내리기
 
-        
+        // 기존 버튼명 배열을 복사 -> 배열 중 선택한 필터 자리에 선택한 태그명 넣기 -> 완성된 버튼명 배열로 재렌더링
+        const newButtonName = [...buttonName];
+        newButtonName[filterIdx] = selectedTag;
+        setButtonName(newButtonName);
     }
     
 
     return (
         <>
-            {FILTER.map((filter)=>(
+            {FILTER.map((filter, filterIdx)=>(
                 <CustomSheet 
                     key={filter.type}
                     isOpen={filter.isOpen} 
@@ -87,7 +91,7 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                                 </St.TagBox>
                             ))}
                             <St.Footer $sel={isSelected}>
-                                <St.Button type='button' onClick={()=>handleClickButton(filter.onClose)}>
+                                <St.Button type='button' onClick={()=>handleClickButton(filter.onClose, filterIdx)}>
                                     적용하기
                                 </St.Button>
                             </St.Footer>
