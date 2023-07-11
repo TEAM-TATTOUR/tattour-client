@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import ProductInfo from "../../components/Order/ProductInfo";
-import DeliveryInfo from "../../components/Order/DeliveryInfo";
-import PaymentInfo from "../../components/Order/PaymentInfo";
-import RefundInfo from "../../components/Order/RefundInfo";
+import ProductInfo from "../components/Order/ProductInfo";
+import DeliveryInfo from "../components/Order/DeliveryInfo";
+import PaymentInfo from "../components/Order/PaymentInfo";
+import RefundInfo from "../components/Order/RefundInfo";
 
 const OrderPage = () => {
   return (
