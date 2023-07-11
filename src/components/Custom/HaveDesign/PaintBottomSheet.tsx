@@ -10,7 +10,6 @@ interface PaintBottomProps {
 
 const PaintBottomSheet = ({ isBottomOpen, setBottomOpen }: PaintBottomProps) => {
   const closeBottom = () => setBottomOpen(false);
-  const openBottom = isBottomOpen;
 
   return (
     <CustomSheet isOpen={true} onClose={closeBottom} detent='content-height' disableDrag={true}>
@@ -56,7 +55,7 @@ const St = {
     height: 100%;
 
     color: ${({ theme }) => theme.colors.white};
-    font: ${({ theme }) => theme.fonts.title_semibold_18};
+    ${({ theme }) => theme.fonts.title_semibold_18};
   `,
 };
 

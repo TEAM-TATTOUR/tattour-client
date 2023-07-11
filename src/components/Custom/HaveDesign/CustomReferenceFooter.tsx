@@ -35,8 +35,8 @@ const St = {
     width: 100%;
     height: 100%;
 
-    color: #ffffff;
-    font: ${({ theme }) => theme.fonts.title_semibold_18};
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.title_semibold_18};
   `,
 };
 
