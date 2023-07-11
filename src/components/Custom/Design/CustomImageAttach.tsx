@@ -27,20 +27,6 @@ const CustomImageAttach = () => {
       const reader = new FileReader();
       const file = fileBlob[i];
 
-      // 배열로 들어온 파일들 하나하나 읽어서 미리보기로 띄워주기
-      // const files: Blob[] = [];
-      // for (let i = 0; i < Math.min(fileBlob.length, 3); i++) {
-      //   files.push(fileBlob[i]);
-      // }
-      // files.forEach((file) => {
-      //   reader.readAsDataURL(file);
-      // });
-
-      // reader.onloadend = () => {
-      //   setPreviewURL((prevURLs) => [...prevURLs, reader.result as string]);
-      //   e.target.value = '';
-      // };
-
       const dataUrl = await new Promise<string>((resolve, reject) => {
         reader.onloadend = () => resolve(reader.result as string);
         reader.onerror = reject;
