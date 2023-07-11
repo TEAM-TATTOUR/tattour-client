@@ -70,19 +70,19 @@
 <div align="center">
 	<table>
 <th>팀원</th>
-  <th>구건모  <a href="https://github.com/gunom"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white&link=https://github.com/ljh0608"/></a>  </th>
-	<th>서아름 <a href="https://github.com/Arooming"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white&link=https://github.com/hae2ni"/></a>  </th>
-    <th> 유지민 <a href="https://github.com/urjimyu"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white&link=https://github.com/Yeonseo-Jo"/></a>  </th>
-  <th> 조승희 <a href="https://github.com/lydiacho"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white&link=https://github.com/Yeonseo-Jo"/></a>  </th>
-  <th> 조연서 <a href="https://github.com/Yeonseo-Jo"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white&link=https://github.com/Yeonseo-Jo"/></a>  </th>
+  <th>구건모  <a href="https://github.com/gunom"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/></a>  </th>
+	<th>서아름 <a href="https://github.com/Arooming"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/></a>  </th>
+    <th> 유지민 <a href="https://github.com/urjimyu"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/></a>  </th>
+  <th> 조승희 <a href="https://github.com/lydiacho"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/></a>  </th>
+  <th> 조연서 <a href="https://github.com/Yeonseo-Jo"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/></a>  </th>
 	<tr>
 	<td> 팀원 소개 </td>
 		<td> <img width="230" alt="image" src="https://user-images.githubusercontent.com/80264647/252587166-85b4b938-e123-4a83-ad4b-ce3b7e28cd52.jpeg">
  </td>
 		<td> <img width="230" alt="image" src="https://avatars.githubusercontent.com/u/80264647?v=4"></td>  
-		<td><img width="230" height="270" alt="image" src="https://github.com/TEAM-TATTOUR/tattour-client/assets/92876819/11be19b8-442b-4d7b-9a0d-266d92a8ae03"></td>
+		<td><img width="230" alt="image" src="https://github.com/TEAM-TATTOUR/tattour-client/assets/92876819/11be19b8-442b-4d7b-9a0d-266d92a8ae03"></td>
         <td> <img width="230" alt="image" src="https://avatars.githubusercontent.com/u/81505421?v=4"></td>  
-		<td><img width="230" height="270" alt="image" src="https://github.com/SopkathonTeam2/Client/assets/77691829/4828df0b-3fad-44bd-a243-7682687aff66"></td>
+		<td><img width="230" alt="image" src="https://github.com/SopkathonTeam2/Client/assets/77691829/4828df0b-3fad-44bd-a243-7682687aff66"></td>
 	</tr>
 	<tr>
 	<td> 역할 </td>
