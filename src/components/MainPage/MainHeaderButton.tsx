@@ -1,11 +1,24 @@
 import { styled } from 'styled-components';
 import { IcMenuDark, IcMenuLight, IcSearchDark, IcSearchLight } from '../../assets/icon';
+import { SetStateAction } from 'react';
 
-const MainHeaderButton = ({ light }: { light: boolean }) => {
+const MainHeaderButton = ({
+  setIsSideMenuOpen,
+  light,
+}: {
+  setIsSideMenuOpen: React.Dispatch<SetStateAction<boolean>>;
+  light: boolean;
+}) => {
+  const handleClickNavButton = () => {
+    setIsSideMenuOpen(true);
+  };
+
   return (
     <St.ButtonWrapper>
       <St.SearchButton>{light ? <IcSearchLight /> : <IcSearchDark />}</St.SearchButton>
-      <St.NavButton>{light ? <IcMenuLight /> : <IcMenuDark />}</St.NavButton>
+      <St.NavButton onClick={handleClickNavButton}>
+        {light ? <IcMenuLight /> : <IcMenuDark />}
+      </St.NavButton>
     </St.ButtonWrapper>
   );
 };
