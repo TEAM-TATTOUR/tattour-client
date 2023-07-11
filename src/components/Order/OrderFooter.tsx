@@ -37,8 +37,6 @@ const St = {
         height: 100%;
 
         color: ${({ theme }) => theme.colors.pink5};
-        font: ${({ theme }) => theme.fonts.title_semibold_18};
+        ${({ theme }) => theme.fonts.title_semibold_18};
     `,
-    };
-
-    export default MainFooter;
+};

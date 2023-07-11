@@ -5,6 +5,7 @@ import PaymentInfo from "../../components/Order/PaymentInfo";
 import RefundInfo from "../../components/Order/RefundInfo";
 import PageLayout from "../../components/PageLayout";
 import Header from "../../components/Header";
+import OrderFooter from "../../components/Order/OrderFooter";
 
 const OrderPage = () => {
 
@@ -12,7 +13,7 @@ const OrderPage = () => {
     return <Header leftSection={<div>left</div>} title='주문하기' rightSection={<div>left</div>} />;
   }
   return (
-    <PageLayout renderHeader={renderOrderPageHeader}>
+    <PageLayout renderHeader={renderOrderPageHeader} footer={<OrderFooter/>}>
         <ProductInfo/>
         <St.Line/>
         <DeliveryInfo/>
