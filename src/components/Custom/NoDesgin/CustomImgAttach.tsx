@@ -26,7 +26,7 @@ const CustomImgAttach = () => {
 
   return (
     <St.ImgAttachContainer>
-      <input id='img-input' type='file' accept='image/png' onChange={handleChangeImgAttach} />
+      <input id='imgInput' type='file' accept='image/png' onChange={handleChangeImgAttach} />
       {previewURL ? (
         <St.ImgPreviewConatiner>
           <St.ImgPreviewDelBtn type='button' onClick={handleClickImgPreviewDelBtn}>
@@ -41,7 +41,7 @@ const CustomImgAttach = () => {
           <p>도안 이미지를 첨부해주세요</p>
         </St.ImgAttachArea>
       )}
-      <label htmlFor='img-input'>
+      <label htmlFor='imgInput'>
         <St.ImgAttachBtn>
           <IcPhoto />
           <span>사진 첨부하기</span>
