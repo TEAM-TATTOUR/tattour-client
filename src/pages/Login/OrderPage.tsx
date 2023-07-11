@@ -6,6 +6,9 @@ import RefundInfo from "../../components/Order/RefundInfo";
 import Postcode from "react-daum-postcode";
 
 const OrderPage = () => {
+
+  const [isPostOpen, setIsPostOpen] = useState(false); 
+  
   return (
     <div>
         <ProductInfo/>
