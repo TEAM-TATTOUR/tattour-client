@@ -13,6 +13,12 @@ const OrderPage = () => {
   const handleModal = () => {
     setIsPostOpen(true);
   }
+  
+  const handleAddress = (data) => {
+    document.getElementById('input').value = data.address;
+    document.getElementById('post_code').value = data.zonecode; // 우편번호
+    setIsPostOpen(false);
+  }
 
   return (
     <div>
