@@ -75,12 +75,5 @@ const St = {
       & #region_name {
         font-size: 0.5rem;
       }
-
-      & input:disabled, textarea:disabled, input:disabled::placeholder, textarea:disabled::placeholder {
-        color: currentcolor;
-        -webkit-text-fill-color: currentcolor;
-        opacity: 1;
-      
-      }
     `
   }
