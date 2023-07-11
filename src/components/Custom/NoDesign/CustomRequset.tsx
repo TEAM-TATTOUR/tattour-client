@@ -60,6 +60,9 @@ const St = {
     padding: 1.2rem 2rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
+    color: ${({ theme }) => theme.colors.gray5};
+
+    ${({ theme }) => theme.fonts.body_medium_16};
 
     box-sizing: content-box;
     border: none;
@@ -73,7 +76,6 @@ const St = {
     }
 
     &:focus {
-      box-shadow: 0 0 0 0.1rem ${({ theme }) => theme.colors.gray2};
       outline: 0;
     }
   `,
@@ -100,6 +102,9 @@ const St = {
     padding: 1.2rem 2rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
+    color: ${({ theme }) => theme.colors.gray5};
+
+    ${({ theme }) => theme.fonts.body_medium_16};
 
     box-sizing: content-box;
     border: none;
@@ -113,8 +118,7 @@ const St = {
     }
 
     &:focus {
-      outline: 0.1rem solid ${({ theme }) => theme.colors.gray2};
-      border-radius: 0.5rem;
+      outline: 0;
     }
   `,
 
