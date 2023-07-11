@@ -1,9 +1,9 @@
 import React from 'react';
 
 const sliceMaxLength = (
-  e: React.ChangeEvent<HTMLInputElement>,
+  e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>,
   maxLength: number,
-  inputType: string,
+  inputType?: string,
 ) => {
   switch (inputType) {
     case 'onlyNum':
@@ -16,6 +16,7 @@ const sliceMaxLength = (
 
     case 'onlyString':
       e.target.value = e.target.value.replace(/[^ㄱ-힣a-zA-Z]/g, '');
+      break;
   }
 
   if (e.target.value.length > maxLength) {
