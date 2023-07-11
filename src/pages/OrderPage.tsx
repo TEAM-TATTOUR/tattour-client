@@ -5,25 +5,38 @@ import DeliveryInfo from "../components/Order/DeliveryInfo";
 import PaymentInfo from "../components/Order/PaymentInfo";
 import RefundInfo from "../components/Order/RefundInfo";
 import Postcode from "react-daum-postcode";
+import PageLayout from "../components/PageLayout";
+import Header from "../components/Header";
+import OrderFooter from "../components/Order/OrderFooter";
+import { IcBackDark, IcCancelDark } from "../assets/icon";
 
 const OrderPage = () => {
 
   const [isPostOpen, setIsPostOpen] = useState(false); 
   const addressRef = useRef<null | HTMLInputElement>(null);
   const postcodeRef = useRef<null | HTMLInputElement>(null);
-
+        
+  const renderOrderPageHeader = () => {
+    return <Header leftSection={<div><IcBackDark/></div>} title='주문하기' rightSection={<div><IcCancelDark/></div>} />;
+  }
+  
   const handleModal = () => {
     setIsPostOpen(true);
   }
-
+  
   const handleAddress = (data : any) => {
     addressRef.current.value = data.address;
     postcodeRef.current.value = data.zonecode; // 우편번호
     setIsPostOpen(false);
   }
 
-  return (
+    return (
     <St.Wrapper>
+        <ProductInfo/>
+        <St.Line/>
+  
+  return (
+    <PageLayout renderHeader={renderOrderPageHeader} footer={<OrderFooter/>}>
         <ProductInfo/>
         <St.Line/>
         <DeliveryInfo $handleModal={handleModal} $addressRef={addressRef} $postcodeRef={postcodeRef}/>
@@ -36,16 +49,13 @@ const OrderPage = () => {
             <Postcode onComplete={handleAddress}/>
           </St.Card>
         )}
-    </St.Wrapper>
+    </PageLayout>
   )
 }
 
 export default OrderPage
 
 const St = {
-    Wrapper : styled.div`
-      position: relative;
-    `,
     Line : styled.hr`
         height: 1.3rem;
 
