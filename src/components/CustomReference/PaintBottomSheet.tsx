@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import Sheet from 'react-modal-sheet';
 import PaintBottomHeader from './PaintBottomHeader';
+import Canvas from './Canvas';
 
 interface PaintBottomProps {
   isBottomOpen: boolean;
@@ -19,7 +20,7 @@ const PaintBottomSheet = ({ isBottomOpen, setBottomOpen }: PaintBottomProps) => 
             <PaintBottomHeader />
           </Sheet.Header>
           <Sheet.Content>
-            <St.CleanButton>전체 삭제하기</St.CleanButton>
+            <Canvas />
           </Sheet.Content>
         </St.BottomSheetWrapper>
         <St.Footer>
@@ -38,15 +39,7 @@ const St = {
     display: flex;
     flex-direction: column;
     padding: 2.5rem 2rem 2.8rem 2rem;
-  `,
-  CleanButton: styled.button`
-    width: 7.6rem;
-    height: 1.8rem;
-    padding: 0;
-
-    margin: 2.4rem 0 2rem 0;
-    color: ${({ theme }) => theme.colors.gray2};
-    font: ${({ theme }) => theme.fonts.body_underline_medium_14};
+    width: 100%;
   `,
   Footer: styled.footer`
     display: flex;
