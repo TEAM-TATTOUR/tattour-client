@@ -3,10 +3,16 @@ import ProductInfo from "../../components/Order/ProductInfo";
 import DeliveryInfo from "../../components/Order/DeliveryInfo";
 import PaymentInfo from "../../components/Order/PaymentInfo";
 import RefundInfo from "../../components/Order/RefundInfo";
+import PageLayout from "../../components/PageLayout";
+import Header from "../../components/Header";
 
 const OrderPage = () => {
+
+  const renderOrderPageHeader = () => {
+    return <Header leftSection={<div>left</div>} title='주문하기' rightSection={<div>left</div>} />;
+  }
   return (
-    <div>
+    <PageLayout renderHeader={renderOrderPageHeader}>
         <ProductInfo/>
         <St.Line/>
         <DeliveryInfo/>
@@ -14,7 +20,7 @@ const OrderPage = () => {
         <PaymentInfo/>
         <St.Line/>
         <RefundInfo/>
-    </div>
+    </PageLayout>
   )
 }
 
