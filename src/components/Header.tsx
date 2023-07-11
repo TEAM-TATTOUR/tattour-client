@@ -27,6 +27,7 @@ const St = {
     height: 5.6rem;
 
     position: fixed;
+    z-index: 10;
 
     background-color: ${({ theme, $transparent }) =>
       $transparent ? `transparent` : theme.colors.white};
