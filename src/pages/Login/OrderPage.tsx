@@ -6,11 +6,12 @@ import RefundInfo from "../../components/Order/RefundInfo";
 import PageLayout from "../../components/PageLayout";
 import Header from "../../components/Header";
 import OrderFooter from "../../components/Order/OrderFooter";
+import { IcBackDark, IcCancelDark } from "../../assets/icon";
 
 const OrderPage = () => {
 
   const renderOrderPageHeader = () => {
-    return <Header leftSection={<div>left</div>} title='주문하기' rightSection={<div>left</div>} />;
+    return <Header leftSection={<div><IcBackDark/></div>} title='주문하기' rightSection={<div><IcCancelDark/></div>} />;
   }
   return (
     <PageLayout renderHeader={renderOrderPageHeader} footer={<OrderFooter/>}>
