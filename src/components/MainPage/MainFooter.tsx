@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-const MainFooter = () => {
+const MainFooter = ({ isFooterVisible }: { isFooterVisible: boolean }) => {
   const navigate = useNavigate();
 
   const handleClickButton = () => {
@@ -9,7 +9,7 @@ const MainFooter = () => {
   };
 
   return (
-    <St.footer>
+    <St.footer $isFooterVisible={isFooterVisible}>
       <St.button type='button' onClick={handleClickButton}>
         나만의 커스텀 타투 만들기
       </St.button>
@@ -18,8 +18,10 @@ const MainFooter = () => {
 };
 
 const St = {
-  footer: styled.footer`
-    display: flex;
+  footer: styled.footer<{ $isFooterVisible: boolean }>`
+    position: sticky;
+    bottom: 0;
+    display: ${({ $isFooterVisible }) => ($isFooterVisible ? 'flex' : 'none')};
     justify-content: center;
     align-items: center;
     width: 100%;
