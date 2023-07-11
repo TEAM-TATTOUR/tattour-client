@@ -3,6 +3,7 @@ import ProductInfo from "../../components/Order/ProductInfo";
 import DeliveryInfo from "../../components/Order/DeliveryInfo";
 import PaymentInfo from "../../components/Order/PaymentInfo";
 import RefundInfo from "../../components/Order/RefundInfo";
+import Postcode from "react-daum-postcode";
 
 const OrderPage = () => {
   return (
