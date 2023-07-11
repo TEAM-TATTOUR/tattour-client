@@ -53,11 +53,6 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
         filterRef.current?.childNodes[index].classList.add('select');
 
         setSelected(true);
-
-        // 여기서 buttonName state 변경 
-        const newButtonName = [...buttonName];
-        newButtonName[index] = tag;
-        setButtonName(newButtonName); 
     }
     
 
