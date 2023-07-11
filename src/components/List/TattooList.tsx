@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IcArrowBottomSmallGray } from "../../assets/icon";
+import { IcArrowBottomSmallGray, IcArrowBottomSmallLight } from "../../assets/icon";
 import { useState, useEffect, useRef } from "react";
 import { filterProps } from "framer-motion";
 
@@ -74,7 +74,7 @@ const TattooList = ({setSortOpen, setGenreOpen, setStyleOpen, buttonName} : Tatt
             }
           }}>
             {el}
-            <IcArrowBottomSmallGray/>
+            {selectedFilter[idx]? <IcArrowBottomSmallLight/> : <IcArrowBottomSmallGray/>}
           </St.FilterBtn>
         ))}
       </St.BtnContainer>
