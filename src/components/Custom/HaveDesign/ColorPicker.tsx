@@ -8,8 +8,8 @@ import {
   IcColorBlue,
   IcColorRed,
   IcColorYellow,
-} from '../../assets/icon';
-import IcColorRainbow from '../../assets/icon/ic_color_rainbow.png';
+} from '../../../assets/icon';
+import IcColorRainbow from '../../../assets/icon/ic_color_rainbow.png';
 
 interface ColorPickerProps {
   onChange: (color: string) => void;

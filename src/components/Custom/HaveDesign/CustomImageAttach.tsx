@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { IcDraw, IcPhoto } from '../../assets/icon';
+import { IcDraw, IcPhoto } from '../../../assets/icon';
 interface PaintBottomProps {
   isBottomOpen: boolean;
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;

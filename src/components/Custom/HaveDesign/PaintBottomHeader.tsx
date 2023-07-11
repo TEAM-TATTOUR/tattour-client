@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { IcCancelDark } from '../../assets/icon';
+import { IcCancelDark } from '../../../assets/icon';
 
 const PaintBottomHeader = () => {
   return (
