@@ -19,6 +19,7 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
 
     const filterRef = useRef<HTMLElement>(null);
     const [isSelected, setSelected] = useState(false);
+    const [selectedTag, setSelectedTag] = useState(''); // 선택한 태그 저장
 
     useEffect(() => {
         setSelected(false);
@@ -54,6 +55,12 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
 
         setSelected(true);
     }
+
+    const handleClickButton = (onClose: () => void) => {
+        onClose;    // 모달 내리기
+
+        
+    }
     
 
     return (
@@ -80,7 +87,7 @@ const FilterBottom = ({isSortOpen, setSortOpen, isGenreOpen, setGenreOpen, isSty
                                 </St.TagBox>
                             ))}
                             <St.Footer $sel={isSelected}>
-                                <St.Button type='button'>
+                                <St.Button type='button' onClick={()=>handleClickButton(filter.onClose)}>
                                     적용하기
                                 </St.Button>
                             </St.Footer>
