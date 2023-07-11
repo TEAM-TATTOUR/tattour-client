@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import ProductInfo from "../../components/Order/ProductInfo";
 import DeliveryInfo from "../../components/Order/DeliveryInfo";
@@ -8,7 +9,7 @@ import Postcode from "react-daum-postcode";
 const OrderPage = () => {
 
   const [isPostOpen, setIsPostOpen] = useState(false); 
-  
+
   return (
     <div>
         <ProductInfo/>
