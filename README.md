@@ -80,7 +80,7 @@
 		<td> <img width="230" alt="image" src="https://user-images.githubusercontent.com/80264647/252587166-85b4b938-e123-4a83-ad4b-ce3b7e28cd52.jpeg">
  </td>
 		<td> <img width="230" alt="image" src="https://avatars.githubusercontent.com/u/80264647?v=4"></td>  
-		<td><img width="230" height="270" alt="image" src="https://file.notion.so/f/s/d3549d5c-6833-4905-8641-1b8a29083139/IMG_1805.png?id=d950c4f3-2bca-429c-94cb-1a8c08ea4228&table=block&spaceId=5402106c-8d5c-4845-be48-a254fb2bfc8c&expirationTimestamp=1689148800000&signature=ZSc1eQC3vAA3xvZqxPV9pI3fUPIn0YKjB7FUgqnpg_g&downloadName=IMG_1805.png"></td>
+		<td><img width="230" height="270" alt="image" src="https://github.com/TEAM-TATTOUR/tattour-client/assets/92876819/11be19b8-442b-4d7b-9a0d-266d92a8ae03"></td>
         <td> <img width="230" alt="image" src="https://avatars.githubusercontent.com/u/81505421?v=4"></td>  
 		<td><img width="230" height="270" alt="image" src="https://github.com/SopkathonTeam2/Client/assets/77691829/4828df0b-3fad-44bd-a243-7682687aff66"></td>
 	</tr>
