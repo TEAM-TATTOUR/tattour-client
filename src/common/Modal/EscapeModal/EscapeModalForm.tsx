@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { IcCancelDark } from '../../assets/icon';
+import { IcCancelDark } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 
-interface ModalProps {
+interface EscapeModalFormProps {
   onClose: () => void;
   pageName: string;
   title: string;
@@ -11,7 +11,7 @@ interface ModalProps {
   stopBtn: string;
 }
 
-const Modal = ({ onClose, pageName, title, subTitle, continueBtn, stopBtn }: ModalProps) => {
+const EscapeModalForm = ({ onClose, pageName, title, subTitle, continueBtn, stopBtn }: EscapeModalFormProps) => {
   const navigate = useNavigate();
 
   const handleClickStopBtn = () => {
@@ -150,4 +150,4 @@ const St = {
   `,
 };
 
-export default Modal;
+export default EscapeModalForm;
