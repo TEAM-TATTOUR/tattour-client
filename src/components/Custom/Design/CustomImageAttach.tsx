@@ -3,62 +3,86 @@ import { IcCancelDark, IcDraw, IcPhoto } from '../../../assets/icon';
 import { useRef, useState } from 'react';
 
 const CustomImageAttach = () => {
+  const MAX_FILES = 3;
+
   const ref = useRef<HTMLInputElement | null>(null);
-  const [previewURL, setPreviewURL] = useState<string>('');
+  const [previewURL, setPreviewURL] = useState<string[]>([]);
+
+  const onClick = () => {
+    ref.current?.click();
+  };
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (!files || !files[0]) return;
-    const uploadImage = files;
-    encodeFile(uploadImage, e);
+    const uploadImage = Array.from(files);
+
+    //개수 제한 적용해주기
+    const filesToEncode = Array.from(uploadImage).slice(0, MAX_FILES);
+    encodeFile(filesToEncode, e);
   };
 
-  const encodeFile = (fileBlob: FileList | Blob, e: React.ChangeEvent<HTMLInputElement>) => {
-    const reader = new FileReader();
-    if (!fileBlob) return;
+  const encodeFile = async (fileBlob: File[], e: React.ChangeEvent<HTMLInputElement>) => {
+    for (let i = 0; i < fileBlob.length; i++) {
+      const reader = new FileReader();
+      const file = fileBlob[i];
 
-    //배열로 들어온 파일들 하나하나 읽어서 미리보기로 띄워주기
-    const files: Blob[] = [];
-    if (fileBlob instanceof FileList) {
-      for (let i = 0; i < Math.min(fileBlob.length, 3); i++) {
-        files.push(fileBlob.item(i)!);
-      }
-    } else {
-      files.push(fileBlob);
+      // 배열로 들어온 파일들 하나하나 읽어서 미리보기로 띄워주기
+      // const files: Blob[] = [];
+      // for (let i = 0; i < Math.min(fileBlob.length, 3); i++) {
+      //   files.push(fileBlob[i]);
+      // }
+      // files.forEach((file) => {
+      //   reader.readAsDataURL(file);
+      // });
+
+      // reader.onloadend = () => {
+      //   setPreviewURL((prevURLs) => [...prevURLs, reader.result as string]);
+      //   e.target.value = '';
+      // };
+
+      const dataUrl = await new Promise<string>((resolve, reject) => {
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+
+      setPreviewURL((prevURLs) => [...prevURLs, dataUrl]);
     }
 
-    files.forEach((file) => {
-      reader.readAsDataURL(file);
-    });
-
-    reader.onloadend = () => {
-      setPreviewURL(reader.result as string);
-      e.target.value = '';
-    };
+    e.target.value = '';
   };
 
-  const handleClickPreviewDelBtn = () => {
-    setPreviewURL('');
+  const handleClickPreviewDelBtn = (index: number) => {
+    setPreviewURL((prevURLs) => {
+      const updatedURLs = [...prevURLs];
+      updatedURLs.splice(index, 1);
+      return updatedURLs;
+    });
   };
 
   return (
     <St.CustomReferenceWrapper>
-      {previewURL ? (
-        <St.ImgPreviewContainer>
-          <St.ImgPreviewDelBtn type='button' onClick={handleClickPreviewDelBtn}>
-            <IcCancelDark />
-          </St.ImgPreviewDelBtn>
+      <St.PreviewSection>
+        {previewURL.length > 0 ? (
+          previewURL.map((url, index) => (
+            <St.ImgPreviewContainer key={index}>
+              <St.ImgPreviewDelBtn type='button' onClick={() => handleClickPreviewDelBtn(index)}>
+                <IcCancelDark />
+              </St.ImgPreviewDelBtn>
+              <St.Image>
+                <img src={url} alt='첨부-이미지-미리보기' />
+              </St.Image>
+            </St.ImgPreviewContainer>
+          ))
+        ) : (
           <St.Image>
-            <img src={previewURL} alt='첨부-이미지-미리보기' />
+            <St.ImageDescription>최대 3장까지 추가할 수 있어요</St.ImageDescription>
           </St.Image>
-        </St.ImgPreviewContainer>
-      ) : (
-        <St.Image>
-          <St.ImageDescription>최대 3장까지 추가할 수 있어요</St.ImageDescription>
-        </St.Image>
-      )}
+        )}
+      </St.PreviewSection>
       <St.ButtonWrapper>
-        <St.ReferenceButton type='button'>
+        <St.ReferenceButton type='button' onClick={onClick}>
           <IcPhoto />
           사진 첨부하기
           <input
@@ -86,6 +110,25 @@ const St = {
     flex-direction: column;
     width: 100%;
   `,
+  PreviewSection: styled.div`
+    display: flex;
+    gap: 1rem;
+
+    width: 100%;
+    height: 24.6rem;
+    margin-bottom: 2rem;
+
+    overflow-x: auto;
+    white-space: nowrap;
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera*/
+    }
+  `,
+
   ImgPreviewContainer: styled.div`
     position: relative;
   `,
@@ -96,9 +139,13 @@ const St = {
 
     width: 33.5rem;
     height: 24.6rem;
-    margin-bottom: 2rem;
-
     background-color: ${({ theme }) => theme.colors.bg};
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
   `,
 
   ImageDescription: styled.p`
