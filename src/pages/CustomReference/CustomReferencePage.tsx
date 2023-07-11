@@ -1,6 +1,6 @@
 import { IcBackLight, IcCloseLight } from '../../assets/icon/index';
 import CustomFooter from '../../components/Custom/Common/CustomFooter';
-import CustomReference from '../../components/CustomReference/CustomReference';
+import CustomReference from '../../components/Custom/Design/CustomReference';
 import Header from '../../components/Header';
 import PageLayout from '../../components/PageLayout';
 
