@@ -167,6 +167,10 @@ ${reset}
     -webkit-touch-callout: none;
     
 }
+
+input:disabled, textarea:disabled, input:disabled::placeholder, textarea:disabled::placeholder {
+    opacity: 1; 
+}
     
 `;
 
