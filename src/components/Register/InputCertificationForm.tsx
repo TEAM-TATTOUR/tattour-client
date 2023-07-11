@@ -38,7 +38,7 @@ const InputCertificationForm = () => {
       <St.CertificationInput
         id={isError || isTimeout ? 'errorInput' : 'successInput'}
         disabled={isTimeout ? true : false}
-        onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 4)}
+        onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 4, 'onlyNum')}
         placeholder='인증번호를 입력해주세요'
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeCertificationInput(e)}
       ></St.CertificationInput>
