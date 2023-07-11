@@ -20,7 +20,7 @@ const MainPage = () => {
           <CancelBtn
             modalOn={modalOn}
             setModalOn={setModalOn}
-            children={<EscapeModal setModalOn={setModalOn} />}
+            targetModal={<EscapeModal setModalOn={setModalOn} />}
           />
         }
         // 전체 페이지수, 현재 페이지 단계 알아서 넣기
