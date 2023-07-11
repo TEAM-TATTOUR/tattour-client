@@ -90,6 +90,10 @@ const St = {
       color: ${({ theme }) => theme.colors.gray2};
       ${({ theme }) => theme.fonts.body_medium_16};
     }
+
+    &:focus {
+      outline: 0;
+    }
   `,
 
   SendMessageBtn: styled.button<{ $ischanged: boolean; $isvisible: boolean; $length: number }>`

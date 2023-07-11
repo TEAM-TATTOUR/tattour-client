@@ -57,6 +57,10 @@ const St = {
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray2};
     }
+
+    &:focus {
+      outline: 0;
+    }
   `,
 };
 

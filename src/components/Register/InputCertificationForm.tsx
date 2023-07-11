@@ -74,6 +74,10 @@ const St = {
       ${({ theme }) => theme.fonts.body_medium_16};
     }
 
+    &:focus {
+      outline: 0;
+    }
+
     &#errorInput {
       border: 0.1rem solid ${({ theme }) => theme.colors.red};
     }
