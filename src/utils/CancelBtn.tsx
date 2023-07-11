@@ -13,7 +13,8 @@ const CancelBtn = ({ modalOn, setModalOn, targetModal }: CancelBtnProps) => {
 
   return (
     <div>
-      <IcCancelDark onClick={handleClickCancelBtn} />;{modalOn && targetModal}
+      <IcCancelDark onClick={handleClickCancelBtn} />
+      {modalOn && targetModal}
     </div>
   );
 };
