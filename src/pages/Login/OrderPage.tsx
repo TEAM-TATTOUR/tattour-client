@@ -58,12 +58,29 @@ const St = {
       align-items: center;
 
       width: 100%;
+      height: 100%;
+      padding: 2rem;
 
       position: fixed;
       top: 0;
       left: 0;
 
+      background-color: rgba(0,0,0,0.6);
       z-index: 1;
-      border: 1rem solid black;
+
+      & > div {
+        height: 46.8rem !important;
+      }
+
+      & #region_name {
+        font-size: 0.5rem;
+      }
+
+      & input:disabled, textarea:disabled, input:disabled::placeholder, textarea:disabled::placeholder {
+        color: currentcolor;
+        -webkit-text-fill-color: currentcolor;
+        opacity: 1;
+      
+      }
     `
-}
+  }
