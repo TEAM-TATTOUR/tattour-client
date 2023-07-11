@@ -3,7 +3,7 @@ import { IcCancelDark, IcPhoto } from '../../../assets/icon';
 import React, { useState } from 'react';
 
 const CustomImgAttach = () => {
-  const [previewURL, setPreivewURL] = useState('');
+  const [previewURL, setPreviewURL] = useState('');
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -15,27 +15,27 @@ const CustomImgAttach = () => {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
     reader.onloadend = () => {
-      setPreivewURL(reader.result as string);
+      setPreviewURL(reader.result as string);
       e.target.value = ''; // 같은 파일을 올리면 change 이벤트 인지 못해서 여기서 초기화
     };
   };
 
   const handleClickImgPreviewDelBtn = () => {
-    setPreivewURL('');
+    setPreviewURL('');
   };
 
   return (
     <St.ImgAttachContainer>
       <input id='imgInput' type='file' accept='image/png' onChange={handleChangeImgAttach} />
       {previewURL ? (
-        <St.ImgPreviewConatiner>
+        <St.ImgPreviewContainer>
           <St.ImgPreviewDelBtn type='button' onClick={handleClickImgPreviewDelBtn}>
             <IcCancelDark />
           </St.ImgPreviewDelBtn>
           <St.ImgPreviewArea>
-            <img src={previewURL} alt='그려둔 도안 이미지 미리보기' />
+            <img src={previewURL} alt='그려둔-도안-이미지-미리보기' />
           </St.ImgPreviewArea>
-        </St.ImgPreviewConatiner>
+        </St.ImgPreviewContainer>
       ) : (
         <St.ImgAttachArea>
           <p>도안 이미지를 첨부해주세요</p>
@@ -82,7 +82,7 @@ const St = {
     }
   `,
 
-  ImgPreviewConatiner: styled.div`
+  ImgPreviewContainer: styled.div`
     position: relative;
   `,
 
