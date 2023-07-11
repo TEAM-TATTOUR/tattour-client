@@ -1,11 +1,11 @@
 import styled from "styled-components"
 
 interface DeliveryInfoProps {
-    handleModal : () => void,
-    addressRef : React.MutableRefObject<null>,
-    postcodeRef : React.MutableRefObject<null>
+    $handleModal : () => void,
+    $addressRef : React.MutableRefObject<null>,
+    $postcodeRef : React.MutableRefObject<null>
 }
-const DeliveryInfo = ({handleModal, addressRef, postcodeRef} : DeliveryInfoProps) => {
+const DeliveryInfo = ({$handleModal, $addressRef, $postcodeRef} : DeliveryInfoProps) => {
 
     return (
         <St.Wrapper>
@@ -24,9 +24,9 @@ const DeliveryInfo = ({handleModal, addressRef, postcodeRef} : DeliveryInfoProps
                 <St.Info>
                     <label>배송지</label>
                     <St.AddressBox>
-                        <input type="text" name="postcode" placeholder="우편번호" ref={postcodeRef} disabled/>
-                        <St.SearchBtn type="button" onClick={handleModal}>우편번호 검색</St.SearchBtn>
-                        <St.InputAddress type="text" name="address" placeholder="주소" ref={addressRef} disabled/>
+                        <input type="text" name="postcode" placeholder="우편번호" ref={$postcodeRef} disabled/>
+                        <St.SearchBtn type="button" onClick={$handleModal}>우편번호 검색</St.SearchBtn>
+                        <St.InputAddress type="text" name="address" placeholder="주소" ref={$addressRef} disabled/>
                         <St.InputDetail type="text" name="detail" placeholder="상세주소"/>
                     </St.AddressBox>
                 </St.Info>

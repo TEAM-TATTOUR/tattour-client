@@ -23,10 +23,10 @@ const OrderPage = () => {
   }
 
   return (
-    <div>
+    <St.Wrapper>
         <ProductInfo/>
         <St.Line/>
-        <DeliveryInfo handleModal={handleModal} addressRef={addressRef} postcodeRef={postcodeRef}/>
+        <DeliveryInfo $handleModal={handleModal} $addressRef={addressRef} $postcodeRef={postcodeRef}/>
         <St.Line/>
         <PaymentInfo/>
         <St.Line/>
@@ -36,13 +36,16 @@ const OrderPage = () => {
             <Postcode onComplete={handleAddress}/>
           </St.Card>
         )}
-    </div>
+    </St.Wrapper>
   )
 }
 
 export default OrderPage
 
 const St = {
+    Wrapper : styled.div`
+      position: relative;
+    `,
     Line : styled.hr`
         height: 1.3rem;
 
@@ -50,6 +53,17 @@ const St = {
         border-width: 0rem;
     `,
     Card : styled.div`
-      padding: 0rem 10rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 100%;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+
+      z-index: 1;
+      border: 1rem solid black;
     `
 }
