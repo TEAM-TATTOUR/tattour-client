@@ -8,7 +8,8 @@ const CustomImageAttach = () => {
   const ref = useRef<HTMLInputElement | null>(null);
   const [previewURL, setPreviewURL] = useState<string[]>([]);
 
-  const onClick = () => {
+  const handleClickRefBtn = () => {
+    setPreviewURL([]);
     ref.current?.click();
   };
 
@@ -68,7 +69,7 @@ const CustomImageAttach = () => {
         )}
       </St.PreviewSection>
       <St.ButtonWrapper>
-        <St.ReferenceButton type='button' onClick={onClick}>
+        <St.ReferenceButton type='button' onClick={handleClickRefBtn}>
           <IcPhoto />
           사진 첨부하기
           <input
@@ -76,7 +77,7 @@ const CustomImageAttach = () => {
             type='file'
             multiple
             hidden
-            accept='image/png'
+            accept='image/png, image/jpg'
             onChange={handleChangeImgAttach}
             ref={ref}
           />
