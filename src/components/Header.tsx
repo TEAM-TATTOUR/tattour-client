@@ -1,23 +1,24 @@
 import { styled } from 'styled-components';
 
 interface HeaderProps {
-  leftSection: React.ReactNode;
+  backBtn: React.ReactNode;
   title?: string;
-  rightSection: React.ReactNode;
+  cancelBtn: React.ReactNode;
   transparent?: boolean;
+  progressBar?: React.ReactNode;
 }
 
-const Header = ({ leftSection, title, rightSection, transparent }: HeaderProps) => {
+const Header = ({ backBtn, title, cancelBtn, transparent, progressBar }: HeaderProps) => {
   return (
-    <>
+    <div>
       <St.header transparent={transparent}>
-        {leftSection}
+        {backBtn}
         {title && <St.title>{title}</St.title>}
-        {rightSection}
+        {cancelBtn}
       </St.header>
-      {/* 여기에 프로그레스바 추가 (아래처럼 쓰면 됨)*/}
-      {/* <ProgressBar curStep={2} maxStep={5} /> */}
-    </>
+
+      {progressBar}
+    </div>
   );
 };
 
