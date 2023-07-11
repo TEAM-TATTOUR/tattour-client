@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styled from "styled-components";
 import ProductInfo from "../../components/Order/ProductInfo";
 import DeliveryInfo from "../../components/Order/DeliveryInfo";
@@ -9,14 +9,16 @@ import Postcode from "react-daum-postcode";
 const OrderPage = () => {
 
   const [isPostOpen, setIsPostOpen] = useState(false); 
+  const addressRef = useRef<null | HTMLInputElement>(null);
+  const postcodeRef = useRef<null | HTMLInputElement>(null);
 
   const handleModal = () => {
     setIsPostOpen(true);
   }
 
-  const handleAddress = (data) => {
-    document.getElementById('input').value = data.address;
-    document.getElementById('post_code').value = data.zonecode; // 우편번호
+  const handleAddress = (data : any) => {
+    addressRef.current.value = data.address;
+    postcodeRef.current.value = data.zonecode; // 우편번호
     setIsPostOpen(false);
   }
 
@@ -24,15 +26,15 @@ const OrderPage = () => {
     <div>
         <ProductInfo/>
         <St.Line/>
-        <DeliveryInfo handleModal={handleModal}/>
+        <DeliveryInfo handleModal={handleModal} addressRef={addressRef} postcodeRef={postcodeRef}/>
         <St.Line/>
         <PaymentInfo/>
         <St.Line/>
         <RefundInfo/>
         {isPostOpen && (
-          <div className="card">
+          <St.Card>
             <Postcode onComplete={handleAddress}/>
-          </div>
+          </St.Card>
         )}
     </div>
   )
@@ -46,5 +48,8 @@ const St = {
 
         background-color: ${({ theme }) => theme.colors.bg};
         border-width: 0rem;
+    `,
+    Card : styled.div`
+      padding: 0rem 10rem;
     `
 }
