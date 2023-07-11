@@ -1,9 +1,17 @@
 import { styled } from 'styled-components';
 import { IcArrowRightDark, ImgHome } from '../../assets/icon';
 import { renderToStaticMarkup } from 'react-dom/server';
+import { useNavigate } from 'react-router-dom';
 
 const MainBanner = () => {
   const svgString = encodeURIComponent(renderToStaticMarkup(<ImgHome />));
+
+  const navigate = useNavigate();
+
+  const handleClickHomekButton = () => {
+    // 추후 수정
+    navigate('/custom');
+  };
 
   return (
     <St.BannerWrapper $svgstring={svgString}>
@@ -12,7 +20,7 @@ const MainBanner = () => {
         of No Regrets,
       </St.CopyWright>
       <St.SmallCopy>나만의 타투 스티커를 만들어 보세요 </St.SmallCopy>
-      <St.HomeButton type='button'>
+      <St.HomeButton onClick={handleClickHomekButton} type='button'>
         신청하기
         <IcArrowRightDark />
       </St.HomeButton>
