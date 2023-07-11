@@ -14,6 +14,8 @@ const InputCertificationForm = () => {
 
   const isError = !isCorrect && certificationLen === 4;
 
+  const [isTimeout, setIsTimeout] = useState(false);
+
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (parseInt(e.target.value) === CERTIFICATION_NUM) {
       setIsCorrect(true);
@@ -34,14 +36,15 @@ const InputCertificationForm = () => {
   return (
     <St.CertificationInputWrapper>
       <St.CertificationInput
-        id={isError ? 'errorInput' : 'successInput'}
+        id={isError || isTimeout ? 'errorInput' : 'successInput'}
+        disabled={isTimeout ? true : false}
         onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 4)}
         placeholder='인증번호를 입력해주세요'
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeCertificationInput(e)}
       ></St.CertificationInput>
-      <Timer isCorrect={isCorrect} />
+      <Timer isCorrect={isCorrect} isTimeout={isTimeout} setIsTimeout={setIsTimeout} />
 
-      {isError && <ErrorMessage />}
+      {(isError || isTimeout) && <ErrorMessage isTimeout={isTimeout} />}
     </St.CertificationInputWrapper>
   );
 };
