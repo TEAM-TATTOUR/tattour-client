@@ -10,6 +10,10 @@ const OrderPage = () => {
 
   const [isPostOpen, setIsPostOpen] = useState(false); 
 
+  const handleModal = () => {
+    setIsPostOpen(true);
+  }
+
   return (
     <div>
         <ProductInfo/>
