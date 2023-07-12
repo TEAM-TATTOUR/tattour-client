@@ -6,11 +6,11 @@ const Charge = () => {
       <St.ChargeInfoContainer>
         <St.ChargeInfoTitle>충전할 금액을 알려주세요</St.ChargeInfoTitle>
         <St.ChargeInfoDetail>
-          상품 구매, 신청서 작성 등 타투어 내 거래에 필요한 머니에요.
+          상품 구매, 신청서 작성 등 타투어 내 거래에 필요한 머니에요
         </St.ChargeInfoDetail>
       </St.ChargeInfoContainer>
       <St.ChargeInputContainer>
-        <St.ChargeInput type='text' placeholder='1,000원 단위로 입력해주세요' autoFocus />
+        <St.ChargeInput type='tel' placeholder='1,000원 단위로 입력해주세요' autoFocus />
       </St.ChargeInputContainer>
     </St.ChargeWrapper>
   );
@@ -44,6 +44,8 @@ const St = {
   ChargeInfoDetail: styled.p`
     color: ${({ theme }) => theme.colors.gray3};
     ${({ theme }) => theme.fonts.body_medium_14};
+
+    word-wrap: break-word;
   `,
 
   ChargeInputContainer: styled.article``,
@@ -63,5 +65,15 @@ const St = {
     border: 0;
 
     text-align: right;
+
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.gray2};
+      ${({ theme }) => theme.fonts.body_medium_16};
+    }
+
+    /* &:focus {
+      box-shadow: 0 0 0 0.1rem ${({ theme }) => theme.colors.red};
+      outline: 0;
+    } */
   `,
 };
