@@ -5,41 +5,62 @@ import {
   IcBrushLight,
   IcBrushMedium,
   IcColorBlack,
+  IcColorBlackSelected,
   IcColorBlue,
+  IcColorBlueSelected,
   IcColorRed,
+  IcColorRedSelected,
   IcColorYellow,
+  IcColorYellowSelected,
 } from '../../../assets/icon';
 import IcColorRainbow from '../../../assets/icon/ic_color_rainbow.png';
 
 interface ColorPickerProps {
-  onChange: (color: string) => void;
+  onColorChange: (color: string) => void;
+  onBrushChange: (brush: number) => void;
 }
 
 interface ColorPickerWrapperProps {
   selectedColor: string;
 }
 
-const ColorPicker: React.FC<ColorPickerProps> = ({ onChange }) => {
+const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange }) => {
   const [selectedColor, setSelectedColor] = useState('');
+  const [selectedSuggestedColor, setSelectedSuggestedColor] = useState('');
+  const [selectedBrush, setSelectedBrush] = useState<number>(4);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const color = event.target.value;
     setSelectedColor(color);
-    onChange(color);
+    onColorChange(color);
+  };
+
+  const handleChangeBrush: React.MouseEventHandler<SVGSVGElement> = (event) => {
+    const pathElement = event.currentTarget.querySelector('path');
+    const brush = parseInt(pathElement?.getAttribute('stroke-width') || '4', 10);
+    setSelectedBrush(brush);
+    onBrushChange(brush);
+  };
+
+  const handleChangeSuggestedColor: React.MouseEventHandler<SVGSVGElement> = (event) => {
+    const rectElement = event.currentTarget.querySelector('rect');
+    const color = rectElement?.getAttribute('fill') || '#0C0D11';
+    setSelectedSuggestedColor(color);
+    onColorChange(color);
   };
 
   return (
     <St.OptionBox>
       <St.SelectLine>
-        <IcBrushLight />
-        <IcBrushMedium />
-        <IcBrushBold />
+        <IcBrushLight onClick={handleChangeBrush} />
+        <IcBrushMedium onClick={handleChangeBrush} />
+        <IcBrushBold onClick={handleChangeBrush} />
       </St.SelectLine>
       <St.SelectColor>
-        <IcColorBlack />
-        <IcColorRed />
-        <IcColorYellow />
-        <IcColorBlue />
+        <IcColorBlack onClick={handleChangeSuggestedColor} />
+        <IcColorRed onClick={handleChangeSuggestedColor} />
+        <IcColorYellow onClick={handleChangeSuggestedColor} />
+        <IcColorBlue onClick={handleChangeSuggestedColor} />
         <St.ColorPickerWrapper selectedColor={selectedColor}>
           <St.ColorPicker
             src={selectedColor || IcColorRainbow}

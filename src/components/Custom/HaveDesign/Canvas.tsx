@@ -16,8 +16,8 @@ const Canvas: React.FC = () => {
     });
 
     // 그리기 설정
-    canvas.freeDrawingBrush.color = 'black';
-    canvas.freeDrawingBrush.width = 5;
+    canvas.freeDrawingBrush.color = '#0C0D11';
+    canvas.freeDrawingBrush.width = 4;
 
     fabricCanvasRef.current = canvas;
 
@@ -27,10 +27,17 @@ const Canvas: React.FC = () => {
     };
   }, []);
 
-  //색상 변경
+  //ColorPicker 색상 변경
   const handleColorChange = (color: string) => {
     if (fabricCanvasRef.current) {
       fabricCanvasRef.current.freeDrawingBrush.color = color;
+    }
+  };
+
+  //지정 색상으로 변경
+  const handleBrushChange = (brush: number) => {
+    if (fabricCanvasRef.current) {
+      fabricCanvasRef.current.freeDrawingBrush.width = brush;
     }
   };
 
@@ -46,7 +53,7 @@ const Canvas: React.FC = () => {
       <St.Canvas className='canvas'>
         <canvas ref={canvasRef} />
       </St.Canvas>
-      <ColorPicker onChange={handleColorChange} />
+      <ColorPicker onColorChange={handleColorChange} onBrushChange={handleBrushChange} />
     </div>
   );
 };
