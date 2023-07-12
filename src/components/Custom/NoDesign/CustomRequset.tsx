@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
-import sliceMaxLength from '../../../utils/sliceMaxLength';
+
+import GraphemeSplitter from 'grapheme-splitter';
 
 const CustomRequset = () => {
   //count 될 maxCount 수
@@ -10,14 +11,39 @@ const CustomRequset = () => {
   const [nameInputCount, setNameInputCount] = useState(0);
   const [etcTextAreaCount, setEtcTextAreaCount] = useState(0);
 
+  const limitMaxLength = (
+    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>,
+    MAXLength: number,
+  ) => {
+    const splitter = new GraphemeSplitter();
+    const parsedValue = splitter.splitGraphemes(e.target.value);
+
+    if (!parsedValue) return;
+
+    if (parsedValue.length > MAXLength) {
+      e.target.value = parsedValue.splice(0, MAXLength).join('');
+      return;
+    }
+
+    return parsedValue.length;
+  };
+
   const handleChangeNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    sliceMaxLength(e, e.target.maxLength);
-    setNameInputCount(e.target.value.length);
+    if (e.target.value === '') setNameInputCount(0);
+
+    const lengthCount = limitMaxLength(e, MAX_NAME_COUNT);
+
+    if (!lengthCount) return;
+    setNameInputCount(lengthCount);
   };
 
   const handleChangeEtcTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    sliceMaxLength(e, e.target.maxLength);
-    setEtcTextAreaCount(e.target.value.length);
+    if (e.target.value === '') setEtcTextAreaCount(0);
+
+    const lengthCount = limitMaxLength(e, MAX_ETC_COUNT);
+
+    if (!lengthCount) return;
+    setEtcTextAreaCount(lengthCount);
   };
 
   return (
@@ -29,7 +55,6 @@ const CustomRequset = () => {
         </St.RequestNameDetail>
         <St.RequestNameInput
           type='text'
-          maxLength={MAX_NAME_COUNT}
           onChange={handleChangeNameInput}
           placeholder='ex. 우리 가족 타투, 백조 타투, 힙한 하트'
           autoFocus
@@ -41,7 +66,6 @@ const CustomRequset = () => {
       <St.RequestEtcContainer>
         <St.RequestEtcTitle>추가 요청 사항</St.RequestEtcTitle>
         <St.RequestEtcTextArea
-          maxLength={MAX_ETC_COUNT}
           onChange={handleChangeEtcTextArea}
           placeholder='ex. 라인 1mm로 사진보다 얇게 그려주세요 &#13;&#10; &nbsp; &nbsp;  도안을 붉은색 (FF6B6B)으로 바꿔주세요'
         />
