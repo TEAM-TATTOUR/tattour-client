@@ -2,6 +2,7 @@ import FilterBottom from "../components/List/FilterBottom";
 import TattooList from "../components/List/TattooList";
 import styled from "styled-components";
 import { useState } from 'react';
+import HotCustomList from "../components/List/HotCustomList";
 
 const ListPage = () => {
   const [isSortOpen, setSortOpen] = useState(false);
@@ -10,7 +11,7 @@ const ListPage = () => {
 
   return (
     <div>
-        ListPage
+        <HotCustomList/>
         <St.Line/>
         <TattooList
           setSortOpen={setSortOpen}

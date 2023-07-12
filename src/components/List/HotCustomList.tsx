@@ -168,7 +168,7 @@ const St = {
   HotCustomItemTitle: styled.h3`
     margin-top: 1.3rem;
 
-    font: ${({ theme }) => theme.fonts.body_medium_14};
+    ${({ theme }) => theme.fonts.body_medium_14};
   `,
 
   HotCustomItemPriceWrapper: styled.div`
@@ -196,7 +196,7 @@ const St = {
     margin-top: 0.1rem;
     margin-bottom: 4.1rem;
 
-    font: ${({ theme }) => theme.fonts.body_line_medium_14};
+    ${({ theme }) => theme.fonts.body_line_medium_14};
     color: ${({ theme }) => theme.colors.gray1};
   `,
 };
