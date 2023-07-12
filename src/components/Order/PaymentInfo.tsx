@@ -8,6 +8,7 @@ const PaymentInfo = () => {
     const DELIVERY_PRICE = 3000;
     const MY_POINT = 10000;
     const LEFT_POINT = 4500;
+    const LACK_POINT = 4500;
 
     return (
         <div>
@@ -40,13 +41,21 @@ const PaymentInfo = () => {
                         <span>P</span>
                     </St.MainText>
                 </St.PointText>
-                <St.PointText>
+                {/* <St.PointText>
                     <St.MainText>남는 포인트</St.MainText>
                     <St.MainText>
                         <span>{LEFT_POINT.toLocaleString()}</span>
                         <span>P</span>
                     </St.MainText>
+                </St.PointText> */}
+                <St.PointText>
+                    <St.MainText>부족한 포인트</St.MainText>
+                    <St.MainText>
+                        <St.LackText>{LACK_POINT.toLocaleString()}</St.LackText>
+                        <span>P</span>
+                    </St.MainText>
                 </St.PointText>
+                <St.ChargeBtn>충전하기</St.ChargeBtn>
             </St.PointContainer>
         </div>
     )
@@ -90,6 +99,9 @@ const St = {
             ${({ theme }) => theme.fonts.body_medium_16};
         }
     `,
+    LackText: styled.span`
+        color: ${({ theme }) => theme.colors.red};
+    `,
     MainPrice: styled.span`
         margin: 0rem 0.4rem 0.5rem 0rem;
         ${({ theme }) => theme.fonts.title_extrabold_24};
@@ -120,5 +132,16 @@ const St = {
         align-items: center;
 
         width: 100%;    
+    `,
+    ChargeBtn: styled.button`
+        padding: 1.2rem 1.8rem;
+        width: 9.1rem;
+        height: 4.5rem;
+        margin-left: 24.2rem;
+
+        background-color: ${({ theme }) => theme.colors.gray7};
+        border-radius: 0.6rem;
+        ${({ theme }) => theme.fonts.title_semibold_16};
+        color: ${({ theme }) => theme.colors.white};
     `
 }
