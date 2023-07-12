@@ -1,7 +1,11 @@
-import React from 'react';
+import Charge from '../../components/PointCharge/Charge';
 
 const ChargePage = () => {
-  return <div>충전페이지</div>;
+  return (
+    <>
+      <Charge />
+    </>
+  );
 };
 
 export default ChargePage;
