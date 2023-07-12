@@ -27,11 +27,7 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
   ];
 
   // scorll lock
-  if (isSideMenuOpen) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = 'unset';
-  }
+  document.body.style.overflow = isSideMenuOpen ? 'hidden' : 'unset';
 
   const handleClickBackDrop = () => {
     setIsSideMenuOpen(false);
