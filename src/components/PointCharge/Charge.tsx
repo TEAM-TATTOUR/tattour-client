@@ -18,7 +18,8 @@ const Charge = () => {
         </St.ChargeInfoDetailWrapper>
       </St.ChargeInfoContainer>
       <St.ChargeInputContainer>
-        <St.ChargeInput type='tel' placeholder='1,000원 단위로 입력해주세요' autoFocus />
+        <St.ChargeUnit>원</St.ChargeUnit>
+        <St.ChargeInput type='number' autoFocus />
       </St.ChargeInputContainer>
     </St.ChargeWrapper>
   );
@@ -41,7 +42,8 @@ const St = {
     flex-direction: column;
     gap: 1.3rem;
 
-    margin: 5.6rem 10rem 0 2.2rem;
+    /* margin: 5.6rem 10rem 0 2.2rem; */ /*진짜 margin -> 추후 글씨체 문제 해결 되면 이걸로 바꾸기*/
+    margin: 5.6rem 9rem 0 2.2rem;
   `,
 
   ChargeInfoTitle: styled.h2`
@@ -68,12 +70,14 @@ const St = {
     }
   `,
 
-  ChargeInputContainer: styled.article``,
+  ChargeInputContainer: styled.article`
+    position: relative;
+  `,
 
   ChargeInput: styled.input`
     width: 33.5rem;
     height: 4.5rem;
-    padding: 1.2rem 2rem;
+    padding: 1.2rem 4.3rem;
 
     ${({ theme }) => theme.fonts.body_medium_16};
 
@@ -86,6 +90,19 @@ const St = {
 
     text-align: right;
 
+    /* number type input 기본 스타일링 제거 */
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox  */
+    &[type='number'] {
+      -moz-appearance: textfield;
+    }
+
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray2};
       ${({ theme }) => theme.fonts.body_medium_16};
@@ -95,5 +112,16 @@ const St = {
       /* box-shadow: 0 0 0 0.1rem ${({ theme }) => theme.colors.red}; */
       outline: 0;
     }
+  `,
+
+  ChargeUnit: styled.span`
+    position: absolute;
+    top: 50%;
+    right: 1.3rem;
+    transform: translate(-50%, -50%);
+
+    color: ${({ theme }) => theme.colors.gray2};
+    /* color: red; */
+    ${({ theme }) => theme.fonts.body_medium_16};
   `,
 };
