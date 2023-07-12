@@ -7,8 +7,8 @@ const PaymentInfo = () => {
     const ITEM_PRICE = 2500;
     const DELIVERY_PRICE = 3000;
     const MY_POINT = 10000;
-    const LEFT_POINT = 4500;
-    const LACK_POINT = 4500;
+    const RESULT_POINT = 4500;  // 서버에서 주는 '남는/부족한 포인트 값'
+    const IS_LACK = false;  // 서버에서 주는 '포인트 부족 여부'
 
     return (
         <div>
@@ -41,21 +41,16 @@ const PaymentInfo = () => {
                         <span>P</span>
                     </St.MainText>
                 </St.PointText>
-                {/* <St.PointText>
-                    <St.MainText>남는 포인트</St.MainText>
-                    <St.MainText>
-                        <span>{LEFT_POINT.toLocaleString()}</span>
-                        <span>P</span>
-                    </St.MainText>
-                </St.PointText> */}
                 <St.PointText>
-                    <St.MainText>부족한 포인트</St.MainText>
+                    <St.MainText>{IS_LACK? '부족한 포인트' : '남는 포인트'}</St.MainText>
                     <St.MainText>
-                        <St.LackText>{LACK_POINT.toLocaleString()}</St.LackText>
+                        {IS_LACK? 
+                        <St.LackText>{RESULT_POINT.toLocaleString()}</St.LackText> :
+                        <span>{RESULT_POINT.toLocaleString()}</span>}
                         <span>P</span>
                     </St.MainText>
                 </St.PointText>
-                <St.ChargeBtn>충전하기</St.ChargeBtn>
+                {IS_LACK? <St.ChargeBtn>충전하기</St.ChargeBtn> : ``}
             </St.PointContainer>
         </div>
     )
