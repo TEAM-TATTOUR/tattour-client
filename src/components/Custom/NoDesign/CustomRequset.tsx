@@ -145,10 +145,12 @@ const St = {
 
     position: relative;
 
-    margin: 1.9rem 2rem 0 2.2rem;
+    margin: 0 2rem 0 2.2rem;
   `,
 
   RequestEtcTitle: styled.h2`
+    padding-top: 4rem;
+
     color: ${({ theme }) => theme.colors.gray8};
     ${({ theme }) => theme.fonts.title_semibold_20};
   `,
