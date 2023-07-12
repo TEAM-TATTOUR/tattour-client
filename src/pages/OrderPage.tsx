@@ -16,6 +16,7 @@ const OrderPage = () => {
   const [isPostOpen, setIsPostOpen] = useState(false); 
   const addressRef = useRef<null | HTMLInputElement>(null);
   const postcodeRef = useRef<null | HTMLInputElement>(null);
+  const [isSheetOpen, setSheetOpen] = useState(false);
         
   const renderOrderPageHeader = () => {
     return <Header leftSection={<div><IcBackDark/></div>} title='주문하기' rightSection={<div><IcCancelDark/></div>} />;
@@ -39,7 +40,7 @@ const OrderPage = () => {
         <St.Line/>
         <PaymentInfo/>
         <St.Line/>
-        <RefundInfo/>
+        <RefundInfo $setSheetOpen={setSheetOpen}/>
         {isPostOpen && (
           <St.Card>
             <Postcode onComplete={handleAddress}/>
