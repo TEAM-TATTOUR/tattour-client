@@ -46,7 +46,7 @@ const OrderPage = () => {
             <Postcode onComplete={handleAddress}/>
           </St.Card>
         )}
-        <RefundBottom/>
+        <RefundBottom $isSheetOpen={isSheetOpen} $setSheetOpen={setSheetOpen}/>
     </PageLayout>
   )
 }
