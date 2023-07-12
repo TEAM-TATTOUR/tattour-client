@@ -36,7 +36,7 @@ const OrderPage = () => {
     <PageLayout renderHeader={renderOrderPageHeader} footer={<OrderFooter/>}>
         <ProductInfo/>
         <St.Line/>
-        <DeliveryInfo $handleModal={handleModal} $addressRef={addressRef} $postcodeRef={postcodeRef}/>
+        <DeliveryInfo handleModal={handleModal} addressRef={addressRef} postcodeRef={postcodeRef}/>
         <St.Line/>
         <PaymentInfo/>
         <St.Line/>
