@@ -1,10 +1,12 @@
 import { styled } from 'styled-components';
 
 const AccountCopy = () => {
+  const ACCOUNT_INFO = '우리은행 1002259752313 (손*진)';
+
   return (
     <St.TransferAccountContainer>
       <St.AccountBox>
-        <St.AccountBoxNum>신한 110 498 876418 (손애진)</St.AccountBoxNum>
+        <St.AccountBoxNum>{ACCOUNT_INFO}</St.AccountBoxNum>
         <St.AccountBoxCopy>복사하기</St.AccountBoxCopy>
       </St.AccountBox>
     </St.TransferAccountContainer>

@@ -2,6 +2,8 @@ import { styled } from 'styled-components';
 import AccountCopy from './AccountCopy';
 
 const TransferMain = () => {
+  const chargedCost = 3000;
+
   return (
     <>
       <St.TransferMainWrapper>
@@ -9,13 +11,13 @@ const TransferMain = () => {
           <St.InfoMsgHeader>
             <St.InfoMsgTitle>아래 계좌로 금액을 송금해주세요</St.InfoMsgTitle>
             <St.InfoMsgDetail>
-              아래 계좌로 해당 금액을 입금하면 포인트가 충전 됩니다.
+              정확하게 송금하지 않을 시 추후에 주문이 취소될 수 있어요
             </St.InfoMsgDetail>
           </St.InfoMsgHeader>
           <St.InfoPriceMain>
-            <St.InfoPriceLeft>총 충전 금액</St.InfoPriceLeft>
+            <St.InfoPriceLeft>충전 금액</St.InfoPriceLeft>
             <St.InfoPriceRight>
-              <St.RightPrice>3000</St.RightPrice>
+              <St.RightPrice>{chargedCost.toLocaleString()}</St.RightPrice>
               <St.RightUnit>원</St.RightUnit>
             </St.InfoPriceRight>
           </St.InfoPriceMain>
