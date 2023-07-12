@@ -1,20 +1,20 @@
 import { styled } from 'styled-components';
 
 interface HeaderProps {
-  backBtn: React.ReactNode;
+  leftSection: React.ReactNode;
   title?: string;
-  cancelBtn: React.ReactNode;
+  rightSection: React.ReactNode;
   transparent?: boolean;
   progressBar?: React.ReactNode;
 }
 
-const Header = ({ backBtn, title, cancelBtn, transparent, progressBar }: HeaderProps) => {
+const Header = ({ leftSection, title, rightSection, transparent, progressBar }: HeaderProps) => {
   return (
     <div>
       <St.header transparent={transparent}>
-        {backBtn}
+        {leftSection}
         {title && <St.title>{title}</St.title>}
-        {cancelBtn}
+        {rightSection}
       </St.header>
 
       {progressBar}
