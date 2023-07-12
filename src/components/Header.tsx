@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 interface HeaderProps {
   leftSection: React.ReactNode;
   title?: string;
-  rightSection: React.ReactNode;
+  rightSection?: React.ReactNode;
   transparent?: boolean;
   progressBar?: React.ReactNode;
 }
