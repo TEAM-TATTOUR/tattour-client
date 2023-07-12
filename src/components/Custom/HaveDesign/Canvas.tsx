@@ -18,19 +18,6 @@ const Canvas: React.FC = () => {
     canvas.freeDrawingBrush.color = 'black';
     canvas.freeDrawingBrush.width = 5;
 
-    // 그리기 모드에서 스크롤 방지
-    canvas.on('mouse:wheel', (event: fabric.IEvent) => {
-      const delta = (event as any).e.deltaY;
-      const zoom = canvas.getZoom();
-      if (delta > 0) {
-        canvas.setZoom(zoom * 1.1);
-      } else {
-        canvas.setZoom(zoom * 0.9);
-      }
-      event.e.preventDefault();
-      event.e.stopPropagation();
-    });
-
     fabricCanvasRef.current = canvas;
 
     //캔버스 지우기
