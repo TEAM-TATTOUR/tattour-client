@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
-import { useNavigate } from 'react-router-dom';
 
 interface CheckModalFormProps {
   onClose: () => void;
@@ -15,8 +14,6 @@ const CheckModalForm = ({
   subTitle,
   continueBtn,
 }: CheckModalFormProps) => {
-  const navigate = useNavigate();
-
   return (
     <St.ModalContainer>
       <St.ModalContent>
