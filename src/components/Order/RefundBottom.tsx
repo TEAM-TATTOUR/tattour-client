@@ -34,7 +34,8 @@ const St = {
         color: ${({ theme }) => theme.colors.gray7};
     `,
     Text : styled.p`
-    
+        ${({ theme }) => theme.fonts.body_medium_14};
+        color: ${({ theme }) => theme.colors.gray3};
     `
 }
 

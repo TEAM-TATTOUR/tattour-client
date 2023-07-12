@@ -9,6 +9,7 @@ import PageLayout from "../components/PageLayout";
 import Header from "../components/Header";
 import OrderFooter from "../components/Order/OrderFooter";
 import { IcBackDark, IcCancelDark } from "../assets/icon";
+import RefundBottom from "../components/Order/RefundBottom";
 
 const OrderPage = () => {
 
@@ -44,6 +45,7 @@ const OrderPage = () => {
             <Postcode onComplete={handleAddress}/>
           </St.Card>
         )}
+        <RefundBottom/>
     </PageLayout>
   )
 }
