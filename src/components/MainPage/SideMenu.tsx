@@ -3,7 +3,12 @@ import { IcCustom, IcShop, IcMy } from '../../assets/icon';
 import { useState } from 'react';
 import SideMenuUserInfo from './SideMenuUserInfo';
 
-const SideMenu = () => {
+interface SideMenuProps {
+  isSideMenuOpen: boolean;
+  setIsSideMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
   const [isLogin] = useState(false);
 
   const NAV_MENU_ITEM = [
@@ -21,42 +26,69 @@ const SideMenu = () => {
     },
   ];
 
+  // scorll lock
+  if (isSideMenuOpen) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'unset';
+  }
+
+  const handleClickBackDrop = () => {
+    setIsSideMenuOpen(false);
+  };
+
   return (
-    <St.SideMenuWrapper>
-      <SideMenuUserInfo isLogin={isLogin} />
-      <St.SideMenuItemSection>
-        <St.SideMenuItemWrapper>
-          {NAV_MENU_ITEM.map(({ icon, text }) => (
-            <li key={text}>
-              {icon}
-              <St.SideMenuItemText>{text}</St.SideMenuItemText>
-            </li>
-          ))}
-        </St.SideMenuItemWrapper>
-      </St.SideMenuItemSection>
-      <St.SideMenuEtcButtonWrapper>
-        <St.SideMenuCSButton type='button'>문의하기</St.SideMenuCSButton>
-        {isLogin && (
-          <>
-            <St.Delimeter />
-            <St.SideMenuLogOutButton type='button'>로그아웃</St.SideMenuLogOutButton>
-          </>
-        )}
-      </St.SideMenuEtcButtonWrapper>
-    </St.SideMenuWrapper>
+    <>
+      <St.BackDrop onClick={handleClickBackDrop} $isSideMenuOpen={isSideMenuOpen} />
+      <St.SideMenuWrapper $isSideMenuOpen={isSideMenuOpen}>
+        <SideMenuUserInfo isLogin={isLogin} />
+        <St.SideMenuItemSection>
+          <St.SideMenuItemWrapper>
+            {NAV_MENU_ITEM.map(({ icon, text }) => (
+              <li key={text}>
+                {icon}
+                <St.SideMenuItemText>{text}</St.SideMenuItemText>
+              </li>
+            ))}
+          </St.SideMenuItemWrapper>
+        </St.SideMenuItemSection>
+        <St.SideMenuEtcButtonWrapper>
+          <St.SideMenuCSButton type='button'>문의하기</St.SideMenuCSButton>
+          {isLogin && (
+            <>
+              <St.Delimeter />
+              <St.SideMenuLogOutButton type='button'>로그아웃</St.SideMenuLogOutButton>
+            </>
+          )}
+        </St.SideMenuEtcButtonWrapper>
+      </St.SideMenuWrapper>
+    </>
   );
 };
 
 const St = {
-  SideMenuWrapper: styled.div`
+  BackDrop: styled.div<{ $isSideMenuOpen: boolean }>`
+    position: fixed;
+    display: ${({ $isSideMenuOpen }) => ($isSideMenuOpen ? 'block' : 'none')};
+    right: 0;
+    top: 0;
+    z-index: 998;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+  `,
+
+  SideMenuWrapper: styled.div<{ $isSideMenuOpen: boolean }>`
     position: fixed;
     right: 0;
     top: 0;
     z-index: 999;
+    transform: ${({ $isSideMenuOpen }) =>
+      $isSideMenuOpen ? 'translateX(0%)' : 'translateX(100%)'};
+    transition: transform 0.1s ease-in-out;
 
     width: 24rem;
     height: 100vh;
-
     background-color: ${({ theme }) => theme.colors.bg};
   `,
 

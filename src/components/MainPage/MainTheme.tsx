@@ -109,6 +109,7 @@ const St = {
 
   MainThemeItemDescription: styled.p`
     margin-top: 0.2rem;
+    margin-bottom: 0.8rem;
 
     // detail medium 12 필요
     font-size: 1.2rem;

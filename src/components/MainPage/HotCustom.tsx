@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { IcArrowRightDark } from '../../assets/icon';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import { useNavigate } from 'react-router-dom';
 
 interface HotCustomItemProps {
   id: number;
@@ -48,11 +49,20 @@ const HotCustom = () => {
     );
   };
 
+  const navigate = useNavigate();
+
+  const handleClickHotCustom = () => {
+    // 추후 수정
+    navigate('/tattoo');
+  };
+
   return (
     <St.HotCustomSection>
       <St.Header>
-        <St.HotCustomTitle>HOT CUSTOM</St.HotCustomTitle>
-        <IcArrowRightDark />
+        <St.HotCustomButton type='button' onClick={handleClickHotCustom}>
+          <St.HotCustomTitle>HOT CUSTOM</St.HotCustomTitle>
+          <IcArrowRightDark />
+        </St.HotCustomButton>
       </St.Header>
       <St.HotCustomWrapper>
         <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
@@ -94,6 +104,13 @@ const St = {
 
     margin-top: 2.8rem;
     margin-bottom: 2.2rem;
+  `,
+
+  HotCustomButton: styled.button`
+    display: flex;
+
+    background-color: transparent;
+    border: none;
   `,
 
   // title_eng_bold_20 필요

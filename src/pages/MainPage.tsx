@@ -14,7 +14,8 @@ import SideMenu from '../components/MainPage/SideMenu';
 
 const MainPage = () => {
   const [isHeaderTransparent, setIsHeaderTransparent] = useState(true);
-  const [isSideMenuOpen] = useState(false);
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
 
   useEffect(() => {
     const debouncedHandleScroll = throttle(handleScroll, 100);
@@ -29,25 +30,33 @@ const MainPage = () => {
   const handleScroll = () => {
     const scrollY = window.scrollY;
     setIsHeaderTransparent(scrollY === 0);
+    // image 사이즈나오면 변경 예정
+    setIsFooterVisible(scrollY > 500);
   };
+
   const reanderMainPageHeader = () => {
     return (
       <Header
         transparent={isHeaderTransparent}
         leftSection={isHeaderTransparent ? <ImgLogoLight /> : <ImgLogoDark />}
-        rightSection={<MainHeaderButton light={isHeaderTransparent} />}
+        rightSection={
+          <MainHeaderButton setIsSideMenuOpen={setIsSideMenuOpen} light={isHeaderTransparent} />
+        }
       />
     );
   };
 
   return (
-    <PageLayout renderHeader={reanderMainPageHeader} footer={<MainFooter />}>
+    <PageLayout
+      renderHeader={reanderMainPageHeader}
+      footer={<MainFooter isFooterVisible={isFooterVisible} />}
+    >
       <MainBanner />
       <HotCustom />
       <MainEventBanner />
       <MainTheme />
       <MainStyle />
-      {isSideMenuOpen && <SideMenu />}
+      <SideMenu isSideMenuOpen={isSideMenuOpen} setIsSideMenuOpen={setIsSideMenuOpen} />
     </PageLayout>
   );
 };
