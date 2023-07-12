@@ -34,7 +34,7 @@ const EscapeModalForm = ({
         break;
 
       case 'CustomSizePage':
-        navigate('/custom-size');
+        navigate('/custom-onboarding');
         break;
 
       default:
