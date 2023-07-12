@@ -6,7 +6,7 @@ import GraphemeSplitter from 'grapheme-splitter';
 const CustomRequset = () => {
   //count 될 maxCount 수
   const MAX_NAME_COUNT = 10;
-  const MAX_ETC_COUNT = 50;
+  const MAX_ETC_COUNT = 100;
 
   //글자 수 세기 관련 state
   const [nameInputCount, setNameInputCount] = useState(0);
