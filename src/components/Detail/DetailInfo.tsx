@@ -40,7 +40,7 @@ const DetailInfo = () => {
             쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고....어쩌고 저쩌고 어
             쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고...
         </St.DetailText>
-        <St.Button></St.Button>
+        <St.Button>더보기</St.Button>
 
     </St.Wrapper>
   )
@@ -81,8 +81,8 @@ const St = {
     `,
     LightLine : styled.hr`
         height: 0.1rem;
-        background-color: ${({ theme }) => theme.colors.gray0};;
-    
+        background-color: ${({ theme }) => theme.colors.bg};
+        border-width: 0rem;
     `,
     Description : styled.p`
 
@@ -98,18 +98,23 @@ const St = {
     
     `,
     BoldLine : styled.hr`
-    
+        height: 1.3rem;
+        background-color: ${({ theme }) => theme.colors.bg};
+        border-width: 0rem;
     `,
     TagContainer : styled.article`
     
     `,
     Tag : styled.span`
-    
+        ${({ theme }) => theme.fonts.body_medium_14};
+        color: ${({ theme }) => theme.colors.gray4};
     `,
     DetailText : styled.p`
-        
+        ${({ theme }) => theme.fonts.body_medium_14};
+        color: ${({ theme }) => theme.colors.gray4};
     `,
     Button : styled.button`
-    
+        ${({ theme }) => theme.fonts.body_underline_medium_14};
+        color: ${({ theme }) => theme.colors.gray5};
     `
 }
