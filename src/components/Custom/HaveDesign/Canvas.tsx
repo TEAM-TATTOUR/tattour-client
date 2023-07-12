@@ -12,6 +12,7 @@ const Canvas: React.FC = () => {
       isDrawingMode: true,
       width: 335,
       height: 458,
+      allowTouchScrolling: true,
     });
 
     // 그리기 설정
