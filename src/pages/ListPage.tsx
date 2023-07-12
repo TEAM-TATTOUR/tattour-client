@@ -6,16 +6,25 @@ import PageLayout from "../components/PageLayout";
 import { ImgLogoDark } from "../assets/icon";
 import Header from "../components/Header";
 import HotCustom from "../common/HotCustom";
+import MainHeaderButton from "../common/MainHeaderButton";
+import SideMenu from "../common/SideMenu";
 
 const ListPage = () => {
   const [isSortOpen, setSortOpen] = useState(false);
   const [isGenreOpen, setGenreOpen] = useState(false);
   const [isStyleOpen, setStyleOpen] = useState(false);
 
+  const [isSideMenuOpen, setSideMenuOpen] = useState(false);
+
   const renderListPageHeader = () => {
     return (
       <Header
         leftSection={<ImgLogoDark />}
+        rightSection={
+          <MainHeaderButton
+            setIsSideMenuOpen={setSideMenuOpen}
+            light={false}
+          />}
       />
     );}
 
@@ -33,6 +42,10 @@ const ListPage = () => {
           isSortOpen={isSortOpen} setSortOpen={setSortOpen}
           isGenreOpen={isGenreOpen} setGenreOpen={setGenreOpen}
           isStyleOpen={isStyleOpen} setStyleOpen={setStyleOpen}
+        />
+        <SideMenu 
+            isSideMenuOpen={isSideMenuOpen}
+            setIsSideMenuOpen={setSideMenuOpen}
         />
     </PageLayout>
   )
