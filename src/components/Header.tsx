@@ -9,11 +9,15 @@ interface HeaderProps {
 
 const Header = ({ leftSection, title, rightSection, transparent }: HeaderProps) => {
   return (
-    <St.header transparent={transparent}>
-      {leftSection}
-      {title && <St.title>{title}</St.title>}
-      {rightSection}
-    </St.header>
+    <>
+      <St.header transparent={transparent}>
+        {leftSection}
+        {title && <St.title>{title}</St.title>}
+        {rightSection}
+      </St.header>
+      {/* 여기에 프로그레스바 추가 (아래처럼 쓰면 됨)*/}
+      {/* <ProgressBar curStep={2} maxStep={5} /> */}
+    </>
   );
 };
 
