@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import Sheet from 'react-modal-sheet';
-import { useState } from "react";
 import { IcCancelDark } from "../../assets/icon";
 
 interface RefundBottomProps {
