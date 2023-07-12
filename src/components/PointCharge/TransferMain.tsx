@@ -4,7 +4,7 @@ import AccountCopy from './AccountCopy';
 const TransferMain = () => {
   return (
     <>
-      <St.TransferWrapper>
+      <St.TransferMainWrapper>
         <St.TransferInfoContainer>
           <St.InfoMsgHeader>
             <St.InfoMsgTitle>아래 계좌로 금액을 송금해주세요</St.InfoMsgTitle>
@@ -21,7 +21,7 @@ const TransferMain = () => {
           </St.InfoPriceMain>
         </St.TransferInfoContainer>
         <AccountCopy />
-      </St.TransferWrapper>
+      </St.TransferMainWrapper>
 
       <St.TransferSectionDivide />
     </>
@@ -31,7 +31,7 @@ const TransferMain = () => {
 export default TransferMain;
 
 const St = {
-  TransferWrapper: styled.section`
+  TransferMainWrapper: styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
