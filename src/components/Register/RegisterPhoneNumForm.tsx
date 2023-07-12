@@ -101,8 +101,8 @@ const St = {
 
     color: ${({ theme }) => theme.colors.white};
 
-    background-color: ${({ ischanged, isvisible, theme, $length }) =>
-      (ischanged && isvisible) || length === 13
+    background-color: ${({ $ischanged, $isvisible, theme, $length }) =>
+      ($ischanged && $isvisible) || $length === 13
         ? theme.colors.gray7
         : theme.colors.gray3};
 
