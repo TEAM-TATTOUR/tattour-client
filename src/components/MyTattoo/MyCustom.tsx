@@ -65,9 +65,10 @@ const MyCustom = () => {
 
 const St = {
   MyCustomWrapper: styled.section`
-    background-color: ${({ theme }) => theme.colors.white};
-    padding-left: 2rem;
     margin-top: 2.2rem;
+    padding-left: 2rem;
+
+    background-color: ${({ theme }) => theme.colors.white};
   `,
 
   MyCustomHeader: styled.header`
@@ -81,10 +82,10 @@ const St = {
   `,
 
   MyCustomItemWrapper: styled.div`
-    margin-top: 2.2rem;
     display: flex;
     gap: 1.2rem;
     justify-content: space-between;
+    margin-top: 2.2rem;
     margin-right: 1.2rem;
 
     .scroll-container {
