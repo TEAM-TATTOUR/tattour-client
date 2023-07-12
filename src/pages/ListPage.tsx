@@ -5,6 +5,7 @@ import { useState } from 'react';
 import PageLayout from "../components/PageLayout";
 import { ImgLogoDark } from "../assets/icon";
 import Header from "../components/Header";
+import HotCustom from "../common/HotCustom";
 
 const ListPage = () => {
   const [isSortOpen, setSortOpen] = useState(false);
@@ -21,6 +22,7 @@ const ListPage = () => {
   return (
     <PageLayout
       renderHeader={renderListPageHeader}>
+        <HotCustom/>
         <St.Line/>
         <TattooList
           setSortOpen={setSortOpen}
