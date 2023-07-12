@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
-
+// 이모티콘 카운팅 관련 라이브러리
 import GraphemeSplitter from 'grapheme-splitter';
 
 const CustomRequset = () => {
@@ -8,9 +8,11 @@ const CustomRequset = () => {
   const MAX_NAME_COUNT = 10;
   const MAX_ETC_COUNT = 50;
 
+  //글자 수 세기 관련 state
   const [nameInputCount, setNameInputCount] = useState(0);
   const [etcTextAreaCount, setEtcTextAreaCount] = useState(0);
 
+  // 이모티콘을 한 문자로 취급하여 글자 수 제한을 구현하는 함수
   const limitMaxLength = (
     e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>,
     MAXLength: number,
@@ -29,6 +31,7 @@ const CustomRequset = () => {
   };
 
   const handleChangeNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //value가 없을 때 0으로 글자 수 세지도록
     if (e.target.value === '') setNameInputCount(0);
 
     const lengthCount = limitMaxLength(e, MAX_NAME_COUNT);
