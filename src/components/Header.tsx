@@ -35,7 +35,7 @@ const St = {
   `,
 
   title: styled.h1`
-    font: ${({ theme }) => theme.fonts.title_semibold_18};
+    ${({ theme }) => theme.fonts.title_semibold_18};
   `,
 };
 
