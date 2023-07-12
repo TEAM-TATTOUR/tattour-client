@@ -49,7 +49,7 @@ const RegisterPhoneNumForm = ({ isVisible, setIsVisible }: RegisterPhoneNumFormP
       <St.InputContent
         placeholder='전화번호를 입력해주세요'
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
-        onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13)}
+        onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
       ></St.InputContent>
       <St.SendMessageBtn
         type='button'
@@ -90,6 +90,10 @@ const St = {
       color: ${({ theme }) => theme.colors.gray2};
       ${({ theme }) => theme.fonts.body_medium_16};
     }
+
+    &:focus {
+      outline: 0;
+    }
   `,
 
   SendMessageBtn: styled.button<{ $ischanged: boolean; $isvisible: boolean; $length: number }>`
@@ -101,10 +105,8 @@ const St = {
 
     color: ${({ theme }) => theme.colors.white};
 
-    background-color: ${({ ischanged, isvisible, theme, $length }) =>
-      (ischanged && isvisible) || length === 13
-        ? theme.colors.gray7
-        : theme.colors.gray3};
+    background-color: ${({ $ischanged, $isvisible, theme, $length }) =>
+      ($ischanged && $isvisible) || $length === 13 ? theme.colors.gray7 : theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.title_semibold_16};
   `,
