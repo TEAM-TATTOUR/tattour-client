@@ -2,7 +2,6 @@ import FilterBottom from "../components/List/FilterBottom";
 import TattooList from "../components/List/TattooList";
 import styled from "styled-components";
 import { useState } from 'react';
-import HotCustomList from "../components/List/HotCustomList";
 import PageLayout from "../components/PageLayout";
 import { ImgLogoDark } from "../assets/icon";
 import Header from "../components/Header";
@@ -22,7 +21,6 @@ const ListPage = () => {
   return (
     <PageLayout
       renderHeader={renderListPageHeader}>
-        <HotCustomList/>
         <St.Line/>
         <TattooList
           setSortOpen={setSortOpen}
