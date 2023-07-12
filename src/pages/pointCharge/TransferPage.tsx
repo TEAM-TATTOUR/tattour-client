@@ -1,9 +1,11 @@
-import Transfer from '../../components/PointCharge/Transfer';
+import TransferMain from '../../components/PointCharge/TransferMain';
+import TransferPolicy from '../../components/PointCharge/TransferPolicy';
 
 const TransferPage = () => {
   return (
     <>
-      <Transfer />
+      <TransferMain />
+      <TransferPolicy />
     </>
   );
 };
