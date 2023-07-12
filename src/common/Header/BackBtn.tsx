@@ -1,4 +1,4 @@
-import { IcBackDark } from '../assets/icon';
+import { IcBackDark } from '../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 
 const BackBtn = () => {
