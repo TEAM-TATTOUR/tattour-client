@@ -12,9 +12,9 @@ const RefundBottom = ({isSheetOpen, setSheetOpen} : RefundBottomProps) => {
     return (
         <CustomSheet 
             isOpen={isSheetOpen} 
-            onClose={()=>setSheetOpen(false)}
-            detent="full-height"
-            disableDrag={false}
+            onClose={()=>setSheetOpen(false)} 
+            detent="full-height" 
+            disableDrag={false} 
             >
             <Sheet.Container>
                 <Sheet.Header disableDrag={true}/>

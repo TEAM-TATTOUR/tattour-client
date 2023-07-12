@@ -40,13 +40,13 @@ const OrderPage = () => {
         <St.Line/>
         <PaymentInfo/>
         <St.Line/>
-        <RefundInfo $setSheetOpen={setSheetOpen}/>
+        <RefundInfo setSheetOpen={setSheetOpen}/>
         {isPostOpen && (
           <St.Card>
             <Postcode onComplete={handleAddress}/>
           </St.Card>
         )}
-        <RefundBottom $isSheetOpen={isSheetOpen} $setSheetOpen={setSheetOpen}/>
+        <RefundBottom isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen}/>
     </PageLayout>
   )
 }
