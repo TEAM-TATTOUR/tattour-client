@@ -21,11 +21,11 @@ const DetailInfo = () => {
         <St.LightLine/>
         <St.Description>
             <span>구성</span>
-            <span>타투스티커 2EA + 알콜 스왑 2EA</span>
+            <p>타투스티커 2EA + 알콜 스왑 2EA</p>
             <span>크기</span>
-            <span>90*120 (mm)</span>
+            <p>90*120 (mm)</p>
             <span>작가</span>
-            <span>강** 님</span>
+            <p>강** 님</p>
         </St.Description>
         <St.BoldLine/>
         <St.TagContainer>
@@ -80,9 +80,21 @@ const St = {
         color: ${({ theme }) => theme.colors.gray1};
     `,
     LightLine : styled.hr`
+        height: 0.1rem;
+        background-color: ${({ theme }) => theme.colors.gray0};;
     
     `,
     Description : styled.p`
+
+        & > span {
+            ${({ theme }) => theme.fonts.body_medium_14};
+            color: ${({ theme }) => theme.colors.gray3};
+        }
+
+        & > p {
+            ${({ theme }) => theme.fonts.body_medium_14};
+            color: ${({ theme }) => theme.colors.gray4};
+        }
     
     `,
     BoldLine : styled.hr`
