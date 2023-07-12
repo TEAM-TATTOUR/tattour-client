@@ -56,19 +56,28 @@ const St = {
     
     `,
     Name : styled.h1`
-    
+        ${({ theme }) => theme.fonts.title_semibold_18};
+        color: ${({ theme }) => theme.colors.gray6};
     `,
     New : styled.span`
-    
+        ${({ theme }) => theme.fonts.detail_medium_12};
+        color: ${({ theme }) => theme.colors.pink3};
     `,
     Discount : styled.span`
-    
+        ${({ theme }) => theme.fonts.title_extrabold_22};
+        color: ${({ theme }) => theme.colors.pink5};
     `,
     FinalPrice : styled.span`
-    
+        ${({ theme }) => theme.fonts.title_extrabold_22};
+        color: ${({ theme }) => theme.colors.gray7};
+
+        & > span {
+            ${({ theme }) => theme.fonts.body_medium_16};
+        }
     `,
     OriginalPrice : styled.span`
-        
+        ${({ theme }) => theme.fonts.title_line_medium_16};
+        color: ${({ theme }) => theme.colors.gray1};
     `,
     LightLine : styled.hr`
     
