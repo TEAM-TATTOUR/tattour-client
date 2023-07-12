@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import Sheet from 'react-modal-sheet';
 import { useState } from "react";
+import { IcCancelDark } from "../../assets/icon";
 
 interface RefundBottomProps {
     isSheetOpen : boolean;
@@ -17,9 +18,11 @@ const RefundBottom = ({isSheetOpen, setSheetOpen} : RefundBottomProps) => {
             disableDrag={false} 
             >
             <Sheet.Container>
-                <Sheet.Header disableDrag={true}/>
-                <Sheet.Content>
+                <Sheet.Header disableDrag={true}>
                     <St.Title>제목입니다</St.Title>
+                    <IcCancelDark onClick={()=>setSheetOpen(false)}/>
+                </Sheet.Header>
+                <Sheet.Content>
                     <St.Text>포인트 적립 정책:
 회원 가입 시, 새로 가입한 회원에게 3000포인트를 적립해드립니다.
 구매 시, 구매 금액의 1%에 해당하는 포인트를 적립해드립니다.
@@ -63,11 +66,16 @@ const CustomSheet = styled(Sheet)`
         background-color: rgba(0, 0, 0, 0.6) !important;
     }
     .react-modal-sheet-container {
+        padding: 2.5rem 2.4rem 4.2rem 2.4rem;
         border-radius: 1rem !important;
     }
-    .react-modal-sheet-header {
-        height: 1.6rem !important;
+
+    .react-modal-sheet-container > div {
+        display: flex;
+        justify-content: space-between !important;
+        margin-bottom: 2.8rem;
     }
+
     .react-modal-sheet-drag-indicator {
         display: none;
     }
