@@ -1,13 +1,21 @@
 import { styled } from 'styled-components';
+import { IcCheckSmallGray } from '../../assets/icon';
 
 const Charge = () => {
   return (
     <St.ChargeWrapper>
       <St.ChargeInfoContainer>
-        <St.ChargeInfoTitle>충전할 금액을 알려주세요</St.ChargeInfoTitle>
-        <St.ChargeInfoDetail>
-          상품 구매, 신청서 작성 등 타투어 내 거래에 필요한 머니에요
-        </St.ChargeInfoDetail>
+        <St.ChargeInfoTitle>충전할 금액을 입력해주세요</St.ChargeInfoTitle>
+        <St.ChargeInfoDetailWrapper>
+          <St.ChargeInfoDetail>
+            <IcCheckSmallGray />
+            <span>구매, 커스텀 등 타투어 내 거래 시 필요해요</span>
+          </St.ChargeInfoDetail>
+          <St.ChargeInfoDetail>
+            <IcCheckSmallGray />
+            <span>1,000원 단위로만 충전할 수 있어요</span>
+          </St.ChargeInfoDetail>
+        </St.ChargeInfoDetailWrapper>
       </St.ChargeInfoContainer>
       <St.ChargeInputContainer>
         <St.ChargeInput type='tel' placeholder='1,000원 단위로 입력해주세요' autoFocus />
@@ -31,9 +39,9 @@ const St = {
   ChargeInfoContainer: styled.article`
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1.3rem;
 
-    margin: 5.6rem 2.9rem 0 2.2rem;
+    margin: 5.6rem 10rem 0 2.2rem;
   `,
 
   ChargeInfoTitle: styled.h2`
@@ -41,11 +49,23 @@ const St = {
     ${({ theme }) => theme.fonts.title_semibold_20};
   `,
 
-  ChargeInfoDetail: styled.p`
-    color: ${({ theme }) => theme.colors.gray3};
-    ${({ theme }) => theme.fonts.body_medium_14};
+  ChargeInfoDetailWrapper: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  `,
 
-    word-wrap: break-word;
+  ChargeInfoDetail: styled.p`
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+
+    & > span {
+      color: ${({ theme }) => theme.colors.gray3};
+      ${({ theme }) => theme.fonts.body_medium_14};
+
+      word-wrap: break-word;
+    }
   `,
 
   ChargeInputContainer: styled.article``,
