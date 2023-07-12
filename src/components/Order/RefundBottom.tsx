@@ -5,23 +5,15 @@ import Sheet from 'react-modal-sheet';
 const RefundBottom = () => {
   return (
     <CustomSheet 
-        key={filter.type}
         isOpen={filter.isOpen} 
         onClose={filter.onClose}
-        detent="content-height"
+        detent="full-height"
         disableDrag={true}
         >
         <Sheet.Container>
             <Sheet.Header disableDrag={true}/>
             <Sheet.Content>
-                {filter.data.map((el)=>(
-                    <St.TagBox key={el}>{el}</St.TagBox>
-                ))}
-                <St.Footer>
-                    <St.Button type='button'>
-                        적용하기
-                    </St.Button>
-                </St.Footer>
+                내용내용 
             </Sheet.Content>
         </Sheet.Container>
         <Sheet.Backdrop onClick={filter.onClose}/>
