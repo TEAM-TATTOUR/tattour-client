@@ -201,4 +201,4 @@ const St = {
   `,
 };
 
-export default HotCustom;
+export default HotCustomList;
