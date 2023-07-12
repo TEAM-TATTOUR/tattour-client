@@ -1,51 +1,41 @@
 import styled from "styled-components"
 import Sheet from 'react-modal-sheet';
+import { useState } from "react";
 
 
 const RefundBottom = () => {
-  return (
-    <CustomSheet 
-        isOpen={filter.isOpen} 
-        onClose={filter.onClose}
-        detent="full-height"
-        disableDrag={true}
-        >
-        <Sheet.Container>
-            <Sheet.Header disableDrag={true}/>
-            <Sheet.Content>
-                내용내용 
-            </Sheet.Content>
-        </Sheet.Container>
-        <Sheet.Backdrop onClick={filter.onClose}/>
-    </CustomSheet>
-  )
+
+    const [isSheetOpen, setSheetOpen] = useState(true);
+
+    return (
+        <CustomSheet 
+            isOpen={isSheetOpen} 
+            onClose={()=>setSheetOpen(false)}
+            detent="full-height"
+            disableDrag={true}
+            >
+            <Sheet.Container>
+                <Sheet.Header disableDrag={true}/>
+                <Sheet.Content>
+                    <St.Title>제목입니다</St.Title>
+                    <St.Text>세부내용입니다</St.Text>
+                </Sheet.Content>
+            </Sheet.Container>
+            <Sheet.Backdrop onClick={()=>setSheetOpen(false)}/>
+        </CustomSheet>
+    )
 }
 
 export default RefundBottom
 
 const St = {
-    TagBox : styled.p`
-        text-align: center;
-        width:100%;
-        padding: 1.7rem 0rem;
-        color: ${({ theme }) => theme.colors.gray4};
-        ${({ theme }) => theme.fonts.title_medium_18};
+    Title : styled.h2`
+        ${({ theme }) => theme.fonts.title_semibold_20};
+        color: ${({ theme }) => theme.colors.gray7};
     `,
-    Footer: styled.footer`
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 7rem;
-        margin-top: 4rem;
-        background-color: ${({ theme }) => theme.colors.gray3};
-    `,
-    Button: styled.button`
-        width: 100%;
-        height: 100%;
-        color: ${({ theme }) => theme.colors.white};
-        font: ${({ theme }) => theme.fonts.title_semibold_18};
-    `,
+    Text : styled.p`
+    
+    `
 }
 
 const CustomSheet = styled(Sheet)`
