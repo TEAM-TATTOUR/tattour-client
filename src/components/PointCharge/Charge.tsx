@@ -71,9 +71,9 @@ const St = {
       ${({ theme }) => theme.fonts.body_medium_16};
     }
 
-    /* &:focus {
-      box-shadow: 0 0 0 0.1rem ${({ theme }) => theme.colors.red};
+    &:focus {
+      /* box-shadow: 0 0 0 0.1rem ${({ theme }) => theme.colors.red}; */
       outline: 0;
-    } */
+    }
   `,
 };
