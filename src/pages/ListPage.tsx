@@ -3,14 +3,25 @@ import TattooList from "../components/List/TattooList";
 import styled from "styled-components";
 import { useState } from 'react';
 import HotCustomList from "../components/List/HotCustomList";
+import PageLayout from "../components/PageLayout";
+import { ImgLogoDark } from "../assets/icon";
+import Header from "../components/Header";
 
 const ListPage = () => {
   const [isSortOpen, setSortOpen] = useState(false);
   const [isGenreOpen, setGenreOpen] = useState(false);
   const [isStyleOpen, setStyleOpen] = useState(false);
 
+  const renderListPageHeader = () => {
+    return (
+      <Header
+        leftSection={<ImgLogoDark />}
+      />
+    );}
+
   return (
-    <div>
+    <PageLayout
+      renderHeader={renderListPageHeader}>
         <HotCustomList/>
         <St.Line/>
         <TattooList
@@ -23,7 +34,7 @@ const ListPage = () => {
           isGenreOpen={isGenreOpen} setGenreOpen={setGenreOpen}
           isStyleOpen={isStyleOpen} setStyleOpen={setStyleOpen}
         />
-    </div>
+    </PageLayout>
   )
 }
 
