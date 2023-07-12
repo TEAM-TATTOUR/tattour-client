@@ -3,13 +3,12 @@ import { IcCustom, IcShop, IcMy } from '../../assets/icon';
 import { useState } from 'react';
 import SideMenuUserInfo from './SideMenuUserInfo';
 
-const SideMenu = ({
-  isSideMenuOpen,
-  setIsSideMenuOpen,
-}: {
+interface SideMenuProps {
   isSideMenuOpen: boolean;
   setIsSideMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+}
+
+const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
   const [isLogin] = useState(false);
 
   const NAV_MENU_ITEM = [
@@ -34,13 +33,13 @@ const SideMenu = ({
     document.body.style.overflow = 'unset';
   }
 
-  const handleBackDropClick = () => {
+  const handleClickBackDrop = () => {
     setIsSideMenuOpen(false);
   };
 
   return (
     <>
-      <St.BackDrop onClick={handleBackDropClick} $isSideMenuOpen={isSideMenuOpen} />
+      <St.BackDrop onClick={handleClickBackDrop} $isSideMenuOpen={isSideMenuOpen} />
       <St.SideMenuWrapper $isSideMenuOpen={isSideMenuOpen}>
         <SideMenuUserInfo isLogin={isLogin} />
         <St.SideMenuItemSection>
@@ -70,7 +69,7 @@ const SideMenu = ({
 const St = {
   BackDrop: styled.div<{ $isSideMenuOpen: boolean }>`
     position: fixed;
-    ${({ $isSideMenuOpen }) => ($isSideMenuOpen ? 'display: block' : 'display: none')};
+    display: ${({ $isSideMenuOpen }) => ($isSideMenuOpen ? 'block' : 'none')};
     right: 0;
     top: 0;
     z-index: 998;
