@@ -1,5 +1,11 @@
+import Transfer from '../../components/PointCharge/Transfer';
+
 const TransferPage = () => {
-  return <>계좌번호 전송</>;
+  return (
+    <>
+      <Transfer />
+    </>
+  );
 };
 
 export default TransferPage;
