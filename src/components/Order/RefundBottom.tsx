@@ -5,14 +5,12 @@ import { useState } from "react";
 
 const RefundBottom = () => {
 
-    const [isSheetOpen, setSheetOpen] = useState(true);
-
     return (
         <CustomSheet 
             isOpen={isSheetOpen} 
             onClose={()=>setSheetOpen(false)}
             detent="full-height"
-            disableDrag={true}
+            disableDrag={false}
             >
             <Sheet.Container>
                 <Sheet.Header disableDrag={true}/>
