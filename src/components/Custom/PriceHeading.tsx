@@ -1,14 +1,21 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import { IcCheckSmallGray } from '../../assets/icon';
 
 const PriceHeading = () => {
   return (
     <St.HeadingWrapper>
-      <St.Title>원하는 수량이 어떻게 되시나요?</St.Title>
-      <St.SubTitle>
-        수량에 따라 단가가 달라져요. 도안 공개로 단가를 낮춰보세요! 결제는 도안 확정 이후
-        진행됩니다.
-      </St.SubTitle>
+      <St.Title>수량을 선택해주세요</St.Title>
+      <St.SubtitleWrapper>
+        <St.Subtitle>
+          <IcCheckSmallGray />
+          도안 공개로 타투의 가격을 낮출 수 있어요
+        </St.Subtitle>
+        <St.Subtitle>
+          <IcCheckSmallGray />
+          결제는 도안 확정 이후 진행돼요
+        </St.Subtitle>
+      </St.SubtitleWrapper>
     </St.HeadingWrapper>
   );
 };
@@ -27,8 +34,15 @@ const St = {
     ${({ theme }) => theme.fonts.title_semibold_20};
     color: ${({ theme }) => theme.colors.gray8};
   `,
-  SubTitle: styled.p`
-    ${({ theme }) => theme.fonts.body_medium_14};
+  SubtitleWrapper: styled.div`
+    gap: 0.3rem;
+  `,
+
+  Subtitle: styled.p`
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
     color: ${({ theme }) => theme.colors.gray3};
+    ${({ theme }) => theme.fonts.body_medium_14};
   `,
 };
