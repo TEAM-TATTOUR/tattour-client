@@ -6,11 +6,11 @@ import { IcArrowRightDark } from '../../assets/icon';
 
 interface MakePublicProps {
   isPublic: boolean;
-  setIsPublic: boolean;
+  setIsPublic: (value: boolean) => void;
 }
 
-const MakePublic = ({ isPublic, setIsPublic }: MakePublicProps) => {
-  const handleCheckboxChange = (e) => {
+const MakePublic: React.FC<MakePublicProps> = ({ isPublic, setIsPublic }) => {
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsPublic(e.target.checked);
   };
 
