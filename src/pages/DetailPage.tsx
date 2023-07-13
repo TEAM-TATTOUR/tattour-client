@@ -90,6 +90,7 @@ const DetailPage = () => {
         />
       }
     >
+      <DetailCarousel />
       <DetailInfo />
       <CustomScrollContainer title='비슷한 제품도 추천드려요'>
         {DUMMY_DATA.map((el) => (
