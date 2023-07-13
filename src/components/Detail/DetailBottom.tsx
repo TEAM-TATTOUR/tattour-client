@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Sheet from 'react-modal-sheet';
 import { IcCancelDark, IcMinusOneunder, IcPlus } from '../../assets/icon';
 import DetailFooter from './DetailFooter';
+import { useState } from 'react';
 
 interface DetailBottomProps {
   isSheetOpen: boolean;
@@ -12,6 +13,8 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
   const PRICE = 5000;
   const DELIVERY_PRICE = 3000;
   const FINAL_PRICE = 8500;
+
+  const [count, setCount] = useState(1);
 
   return (
     <CustomSheet
@@ -29,9 +32,9 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
           <St.FullBox>
             <St.Wrapper>
               <St.Stepper>
-                <IcMinusOneunder />
-                <span>1</span>
-                <IcPlus />
+                <IcMinusOneunder onClick={() => setCount((prev) => prev - 1)} />
+                <span>{count}</span>
+                <IcPlus onClick={() => setCount((prev) => prev + 1)} />
               </St.Stepper>
               <St.PriceContainer>
                 <St.Price>{PRICE.toLocaleString()}</St.Price>
