@@ -93,8 +93,9 @@ const DetailPage = () => {
       <DetailCarousel />
       <DetailInfo />
       <CustomScrollContainer title='비슷한 제품도 추천드려요'>
-        {DUMMY_DATA.map((el) => (
+        {DUMMY_DATA.map((el, index) => (
           <SmallTattooCard
+            key={index}
             img={el.img}
             title={el.title}
             discountRate={el.discountRate}
@@ -104,6 +105,12 @@ const DetailPage = () => {
           />
         ))}
       </CustomScrollContainer>
+      <DetailBottom
+        isSheetOpen={isSheetOpen}
+        setSheetOpen={setSheetOpen}
+        like={like}
+        setLike={setLike}
+      />
     </PageLayout>
   );
 };

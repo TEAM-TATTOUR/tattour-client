@@ -165,6 +165,7 @@ const St = {
   LackText: styled.p<{ $isLack: boolean }>`
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 2.2rem;
     ${({ theme }) => theme.fonts.detail_medium_12};
     color: ${({ theme, $isLack }) => ($isLack ? theme.colors.red : theme.colors.white)};
   `,
@@ -175,7 +176,7 @@ const CustomSheet = styled(Sheet)`
     background-color: rgba(0, 0, 0, 0.6) !important;
   }
   .react-modal-sheet-container {
-    padding: 2.5rem 0rem 9.2rem 0rem;
+    padding-top: 2.5rem;
     border-radius: 1rem !important;
   }
   // .react-modal-sheet-header

@@ -132,7 +132,7 @@ const St = {
     color: ${({ theme }) => theme.colors.gray3};
   `,
   BoldLine: styled.hr`
-    margin: 3rem -2.2rem 2.8rem -2.2rem;
+    margin: 3rem -2.2rem 0rem -2.2rem;
     height: 1.3rem;
     background-color: ${({ theme }) => theme.colors.bg};
     border-width: 0rem;
@@ -140,7 +140,7 @@ const St = {
   TagContainer: styled.article`
     display: flex;
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin: 2.8rem 0rem 2rem 0rem;
   `,
   Tag: styled.span`
     padding: 0.6rem 1.3rem;
