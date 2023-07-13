@@ -8,9 +8,12 @@ import PriceHeading from '../../components/Custom/PriceHeading';
 import Header from '../../components/Header';
 import PageLayout from '../../components/PageLayout';
 import PriceFooter from './PriceFooter';
+import MakePublic from '../../components/Custom/MakePublic';
 
 const PricePage = () => {
   const [modalOn, setModalOn] = useState(false);
+  const [isPublic, setIsPublic] = useState(false);
+
   const renderPricePageHeader = () => {
     return (
       <Header
@@ -32,8 +35,8 @@ const PricePage = () => {
   return (
     <PageLayout renderHeader={renderPricePageHeader}>
       <PriceHeading />
-      <CountPrice />
-      <MakePublic/>
+      <CountPrice isPublic={isPublic} />
+      <MakePublic isPublic={isPublic} setIsPublic={setIsPublic} />
       <PriceFooter />
     </PageLayout>
   );

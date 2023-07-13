@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
-import { IcBtnStepperMinusLight, IcBtnStepperPlusDark } from '../../assets/icon';
+import {
+  IcBtnStepperMinusDark,
+  IcBtnStepperMinusLight,
+  IcBtnStepperPlusDark,
+} from '../../assets/icon';
 
-const CountPrice = () => {
-  const [quantity, setQuantity] = useState('1');
+interface CountPriceProps {
+  isPublic: boolean;
+}
+
+const CountPrice = ({ isPublic }: CountPriceProps) => {
+  const PRICE = 1000;
+  const DISCOUNT = 200;
+  const [quantity, setQuantity] = useState(1);
 
   return (
     <St.CountPriceWrapper>
@@ -18,18 +28,29 @@ const CountPrice = () => {
         <St.DetailGroup>
           <St.Subject>수량</St.Subject>
           <St.QuantityButton>
-            <IcBtnStepperMinusLight />
+            {quantity === 1 ? (
+              <IcBtnStepperMinusLight />
+            ) : (
+              <IcBtnStepperMinusDark onClick={() => setQuantity((prev) => prev - 1)} />
+            )}
             <St.Quantity>{quantity}</St.Quantity>
-            <IcBtnStepperPlusDark />
+            <IcBtnStepperPlusDark onClick={() => setQuantity((prev) => prev + 1)} />
           </St.QuantityButton>
         </St.DetailGroup>
         <St.Line />
         <St.TotalPriceWrapper>
           <St.TotalPriceText>총 결제 금액</St.TotalPriceText>
-          {/* 조건에 따라 Discount는 보여줬다가 안 보여줬다가 할 예정 */}
           <St.TotalPriceGroup>
-            <St.Discount>1,000</St.Discount>
-            <St.TotalPrice>700</St.TotalPrice>
+            {isPublic ? (
+              <>
+                <St.Discount>{DISCOUNT}</St.Discount>
+                <St.TotalPrice>{(quantity * PRICE - DISCOUNT).toLocaleString()}</St.TotalPrice>
+              </>
+            ) : (
+              <>
+                <St.TotalPrice>{(quantity * PRICE).toLocaleString()}</St.TotalPrice>
+              </>
+            )}
             <St.Unit>원</St.Unit>
           </St.TotalPriceGroup>
         </St.TotalPriceWrapper>
