@@ -15,9 +15,10 @@ const DetailFooter = ({ setSheetOpen, isSecond, text }: DetailFooterProp) => {
   const handleClickButton = () => {
     if (text === '충전하기') {
       // 충전하기 뷰로 navigate
-      console.log('충전하기');
+      console.log('충전하기 이동');
     } else if (isSecond) {
-      navigate('/order');
+      // navigate('/order');
+      console.log('구매하기 이동');
     } else {
       setSheetOpen(true);
     }
