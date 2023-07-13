@@ -15,9 +15,7 @@ const CustomScrollContainer = ({
           <St.CustomScrollTitle>{title}</St.CustomScrollTitle>
         </St.CustomScrollHeader>
         <St.CustomScrollItemWrapper>
-          <ScrollContainer vertical={false} className='scroll-container'>
-            {children}
-          </ScrollContainer>
+          <ScrollContainer className='scroll-container'>{children}</ScrollContainer>
         </St.CustomScrollItemWrapper>
       </St.CustomScrollWrapper>
     </>
