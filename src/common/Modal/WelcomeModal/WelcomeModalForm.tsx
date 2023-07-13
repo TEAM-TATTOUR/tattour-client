@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IcCancelDark, ImgPointCoupon } from '../../../assets/icon';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface WelcomeModalFormProps {
   onClose: () => void;
@@ -9,7 +9,12 @@ interface WelcomeModalFormProps {
 }
 
 const WelcomeModalForm = ({ onClose, title, continueBtn }: WelcomeModalFormProps) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const handleClickContinueBtn = () => {
+    onClose();
+    navigate('/');
+  };
 
   return (
     <St.ModalContainer>
@@ -22,7 +27,7 @@ const WelcomeModalForm = ({ onClose, title, continueBtn }: WelcomeModalFormProps
         <ImgPointCoupon />
 
         <St.BtnWrapper>
-          <St.ContinueBtn onClick={onClose}>{continueBtn}</St.ContinueBtn>
+          <St.ContinueBtn onClick={handleClickContinueBtn}>{continueBtn}</St.ContinueBtn>
         </St.BtnWrapper>
       </St.ModalContent>
     </St.ModalContainer>
