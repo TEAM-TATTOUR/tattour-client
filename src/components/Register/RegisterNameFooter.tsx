@@ -10,7 +10,7 @@ const RegisterNameFooter = ({ userName }: RegisterNameFooterProps) => {
 
   const handleClickFooter = () => {
     if (userName) {
-      navigate('/input-number');
+      navigate('/register-number', {state: userName});
 
       /* 나중에 userName을 useLocation 등으로 넘겨줘도 됨 (굳이 스토리지 사용안해도 ㄱㅊ) */
     }
@@ -30,7 +30,7 @@ const St = {
     justify-content: center;
     width: 100vw;
     height: 7rem;
-    position: absolute;
+    position: fixed;
     bottom: 0;
 
     background-size: auto;
