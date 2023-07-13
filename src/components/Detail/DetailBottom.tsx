@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Sheet from 'react-modal-sheet';
 import { IcCancelDark, IcMinusOneunder, IcPlus } from '../../assets/icon';
+import DetailFooter from './DetailFooter';
 
 interface DetailBottomProps {
   isSheetOpen: boolean;
@@ -43,6 +44,7 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
             <St.FinalPrice>{FINAL_PRICE.toLocaleString()}</St.FinalPrice>
             <St.PriceText>원</St.PriceText>
           </St.FinalPriceContainer>
+          <DetailFooter setSheetOpen={setSheetOpen} />
         </Sheet.Content>
       </Sheet.Container>
       <Sheet.Backdrop onTap={() => setSheetOpen(false)} />
@@ -103,6 +105,7 @@ const St = {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin-bottom: 4.2rem;
 
     & > span:nth-child(1) {
       margin-right: 1.2rem;

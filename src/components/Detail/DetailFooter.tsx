@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
 import { useState } from 'react';
-import DetailBottom from './DetailBottom';
 
-const DetailFooter = () => {
+interface DetailFooterProp {
+  setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const DetailFooter = ({ setSheetOpen }: DetailFooterProp) => {
   const [like, setLike] = useState(false);
-  const [isSheetOpen, setSheetOpen] = useState(false); // bottomsheet를 위한 state
 
   const handleClickButton = () => {
     setSheetOpen(true);
@@ -20,7 +21,6 @@ const DetailFooter = () => {
       <St.Like onClick={() => setLike((prev) => !prev)}>
         {like ? <IcHeartLight /> : <IcHeartDark />}
       </St.Like>
-      <DetailBottom isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} />
     </St.Footer>
   );
 };
