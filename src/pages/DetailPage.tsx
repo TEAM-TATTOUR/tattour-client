@@ -3,6 +3,7 @@ import DetailInfo from '../components/Detail/DetailInfo';
 import PageLayout from '../components/PageLayout';
 import Header from '../components/Header';
 import { IcBackDark, IcCancelDark } from '../assets/icon';
+import DetailFooter from '../components/Detail/DetailFooter';
 
 const DetailPage = () => {
   const renderDetailPageHeader = () => {
@@ -10,7 +11,7 @@ const DetailPage = () => {
   };
 
   return (
-    <PageLayout renderHeader={renderDetailPageHeader}>
+    <PageLayout renderHeader={renderDetailPageHeader} footer={<DetailFooter />}>
       <DetailInfo />
     </PageLayout>
   );
