@@ -10,6 +10,7 @@ interface DetailBottomProps {
 const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
   const PRICE = 5000;
   const DELIVERY_PRICE = 3000;
+  const FINAL_PRICE = 8500;
 
   return (
     <CustomSheet
@@ -38,8 +39,9 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
           <St.DeliveryPrice>+ 배송비 {DELIVERY_PRICE.toLocaleString()}원</St.DeliveryPrice>
           <St.Line />
           <St.FinalPriceContainer>
-            <St.PriceText></St.PriceText>
-            <St.FinalPrice></St.FinalPrice>
+            <St.PriceText>결제 금액</St.PriceText>
+            <St.FinalPrice>{FINAL_PRICE.toLocaleString()}</St.FinalPrice>
+            <St.PriceText>원</St.PriceText>
           </St.FinalPriceContainer>
         </Sheet.Content>
       </Sheet.Container>
@@ -97,9 +99,27 @@ const St = {
     background-color: ${({ theme }) => theme.colors.gray0};
     border-width: 0rem;
   `,
-  FinalPriceContainer: styled.p``,
-  PriceText: styled.span``,
-  FinalPrice: styled.span``,
+  FinalPriceContainer: styled.p`
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    & > span:nth-child(1) {
+      margin-right: 1.2rem;
+    }
+
+    & > span:nth-child(3) {
+      margin-left: 0.4rem;
+    }
+  `,
+  PriceText: styled.span`
+    ${({ theme }) => theme.fonts.body_medium_14};
+    color: ${({ theme }) => theme.colors.gray4};
+  `,
+  FinalPrice: styled.span`
+    ${({ theme }) => theme.fonts.title_extrabold_24};
+    color: ${({ theme }) => theme.colors.gray7};
+  `,
 };
 
 const CustomSheet = styled(Sheet)`
