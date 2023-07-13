@@ -1,4 +1,5 @@
-import BigScrollContainer from '../../common/BigScrollContainer';
+import { styled } from 'styled-components';
+import CustomScrollContainer from '../../common/CustomScrollContainer';
 import MySaveItem from './MySaveItem';
 
 const dummyMySaveData = [
@@ -18,12 +19,26 @@ const dummyMySaveData = [
 
 const MySave = () => {
   return (
-    <BigScrollContainer title={'SAVE'}>
-      {dummyMySaveData.map(({ id, title }) => {
-        return <MySaveItem key={id} title={title} />;
-      })}
-    </BigScrollContainer>
+    <>
+      <CustomScrollContainer title={'SAVE'}>
+        {dummyMySaveData.map(({ id, title }) => {
+          return <MySaveItem key={id} title={title} />;
+        })}
+      </CustomScrollContainer>
+      <St.Divide />
+    </>
   );
+};
+
+const St = {
+  Divide: styled.hr`
+    width: 100%;
+    height: 1.3rem;
+
+    border: none;
+
+    background-color: ${({ theme }) => theme.colors.bg};
+  `,
 };
 
 export default MySave;
