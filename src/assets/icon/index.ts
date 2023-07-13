@@ -69,3 +69,5 @@ export { ReactComponent as ImgLogoDark } from './img_logo_dark.svg';
 export { ReactComponent as ImgLogoLight } from './img_logo_light.svg';
 export { ReactComponent as ImgHome } from './img_home.svg';
 export { ReactComponent as ImgPointCoupon } from './img_point_coupon.svg';
+export { ReactComponent as LabelCustomLarge } from './label_custom_large.svg'
+export { ReactComponent as LabelCustomSmall } from './label_custom_small.svg'
