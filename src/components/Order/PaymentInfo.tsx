@@ -8,7 +8,7 @@ const PaymentInfo = () => {
     const DELIVERY_PRICE = 3000;
     const MY_POINT = 10000;
     const RESULT_POINT = 4500;  // 서버에서 주는 '남는/부족한 포인트 값'
-    const IS_LACK = false;  // 서버에서 주는 '포인트 부족 여부'
+    // const IS_LACK = false;  // 서버에서 주는 '포인트 부족 여부'
 
     return (
         <div>
@@ -42,15 +42,17 @@ const PaymentInfo = () => {
                     </St.MainText>
                 </St.PointText>
                 <St.PointText>
-                    <St.MainText>{IS_LACK? '부족한 포인트' : '남는 포인트'}</St.MainText>
+                    {/* <St.MainText>{IS_LACK? '부족한 포인트' : '남는 포인트'}</St.MainText> */}
+                    <St.MainText>남는 포인트</St.MainText>
                     <St.MainText>
-                        {IS_LACK? 
+                        {/* {IS_LACK? 
                         <St.LackText>{RESULT_POINT.toLocaleString()}</St.LackText> :
-                        <span>{RESULT_POINT.toLocaleString()}</span>}
+                        <span>{RESULT_POINT.toLocaleString()}</span>} */}
+                        <span>{RESULT_POINT.toLocaleString()}</span>
                         <span>P</span>
                     </St.MainText>
                 </St.PointText>
-                {IS_LACK? <St.ChargeBtn>충전하기</St.ChargeBtn> : ``}
+                {/* {IS_LACK? <St.ChargeBtn>충전하기</St.ChargeBtn> : ``} */}
             </St.PointContainer>
         </div>
     )
@@ -94,9 +96,9 @@ const St = {
             ${({ theme }) => theme.fonts.body_medium_16};
         }
     `,
-    LackText: styled.span`
+    /* LackText: styled.span`
         color: ${({ theme }) => theme.colors.red};
-    `,
+    `, */
     MainPrice: styled.span`
         margin: 0rem 0.4rem 0.5rem 0rem;
         ${({ theme }) => theme.fonts.title_extrabold_24};
