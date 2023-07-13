@@ -10,17 +10,29 @@ const CountPrice = () => {
       <St.ShowPrice>
         <St.DetailGroup className='price-group'>
           <St.Subject>가격</St.Subject>
-          <St.Detail>1,000원</St.Detail>
+          <St.PriceDetail>
+            <St.Price>1,000</St.Price>
+            <St.Unit>원</St.Unit>
+          </St.PriceDetail>
         </St.DetailGroup>
         <St.DetailGroup>
           <St.Subject>수량</St.Subject>
           <St.QuantityButton>
             <IcBtnStepperMinusLight />
-            <St.Detail>{quantity}</St.Detail>
+            <St.Quantity>{quantity}</St.Quantity>
             <IcBtnStepperPlusDark />
           </St.QuantityButton>
         </St.DetailGroup>
         <St.Line />
+        <St.TotalPriceWrapper>
+          <St.TotalPriceText>총 결제 금액</St.TotalPriceText>
+          {/* 조건에 따라 Discount는 보여줬다가 안 보여줬다가 할 예정 */}
+          <St.TotalPriceGroup>
+            <St.Discount>1,000</St.Discount>
+            <St.TotalPrice>700</St.TotalPrice>
+            <St.Unit>원</St.Unit>
+          </St.TotalPriceGroup>
+        </St.TotalPriceWrapper>
       </St.ShowPrice>
       <St.Option></St.Option>
     </St.CountPriceWrapper>
@@ -43,28 +55,43 @@ const St = {
     border-radius: 0.5rem;
     ${({ theme }) => theme.fonts.title_semibold_20};
     background-color: ${({ theme }) => theme.colors.bg};
-  `,
-  Subject: styled.p`
-    ${({ theme }) => theme.fonts.title_semibold_16};
-    color: ${({ theme }) => theme.colors.gray3};
-  `,
-  Detail: styled.p`
-    ${({ theme }) => theme.fonts.title_extrabold_18};
-    color: ${({ theme }) => theme.colors.gray5};
-  `,
-  DetailGroup: styled.div`
-    display: flex;
-    justify-content: space-between;
-    ${({ theme }) => theme.fonts.title_semibold_20};
-    color: ${({ theme }) => theme.colors.gray8};
 
     .price-group {
       margin-bottom: 3rem;
     }
   `,
+  Subject: styled.p`
+    ${({ theme }) => theme.fonts.title_semibold_16};
+    color: ${({ theme }) => theme.colors.gray3};
+  `,
+  DetailGroup: styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0 1rem;
+  `,
+  PriceDetail: styled.div`
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  `,
+  Price: styled.p`
+    ${({ theme }) => theme.fonts.title_extrabold_18};
+    color: ${({ theme }) => theme.colors.gray5};
+  `,
+  Unit: styled.p`
+    ${({ theme }) => theme.fonts.body_medium_16};
+    color: ${({ theme }) => theme.colors.gray3};
+  `,
+  Quantity: styled.p`
+    margin: 0 1.6rem;
+    ${({ theme }) => theme.fonts.title_semibold_18};
+    color: ${({ theme }) => theme.colors.gray6};
+  `,
   QuantityButton: styled.article`
     display: flex;
-    ${({ theme }) => theme.fonts.title_semibold_20};
+    ${({ theme }) => theme.fonts.title_semibold_18};
     color: ${({ theme }) => theme.colors.gray8};
   `,
   Line: styled.div`
@@ -77,5 +104,30 @@ const St = {
   Option: styled.article`
     ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray3};
+  `,
+  TotalPriceWrapper: styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 3rem 1rem 0 1rem;
+  `,
+  TotalPriceText: styled.p`
+    ${({ theme }) => theme.fonts.title_semibold_18};
+    color: ${({ theme }) => theme.colors.gray8};
+  `,
+  TotalPriceGroup: styled.div`
+    display: flex;
+    align-items: center;
+  `,
+  Discount: styled.p`
+    margin-right: 0.8rem;
+    ${({ theme }) => theme.fonts.body_line_medium_14};
+    color: ${({ theme }) => theme.colors.gray2};
+  `,
+  TotalPrice: styled.p`
+    margin-right: 0.5rem;
+    ${({ theme }) => theme.fonts.title_extrabold_24};
+    color: ${({ theme }) => theme.colors.pink5};
   `,
 };

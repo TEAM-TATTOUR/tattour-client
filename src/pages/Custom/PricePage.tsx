@@ -33,6 +33,7 @@ const PricePage = () => {
     <PageLayout renderHeader={renderPricePageHeader}>
       <PriceHeading />
       <CountPrice />
+      <MakePublic/>
       <PriceFooter />
     </PageLayout>
   );
