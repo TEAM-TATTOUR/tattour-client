@@ -1,4 +1,4 @@
-import { IcCancelDark } from '../assets/icon';
+import { IcCancelDark } from '../../assets/icon';
 
 interface CancelBtnProps {
   modalOn: boolean;
