@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { IcHeartDark } from '../../assets/icon';
+import { IcHeartDark, IcHeartLight } from '../../assets/icon';
+import { useState } from 'react';
 
 const DetailFooter = () => {
   const navigate = useNavigate();
+  const [like, setLike] = useState(false);
 
   const handleClickButton = () => {
     //추후 ReceiptPage로 이동해야 함
@@ -15,8 +17,8 @@ const DetailFooter = () => {
         구매하기
       </St.Button>
       <St.Line />
-      <St.Like>
-        <IcHeartDark />
+      <St.Like onClick={() => setLike((prev) => !prev)}>
+        {like ? <IcHeartLight /> : <IcHeartDark />}
       </St.Like>
     </St.Footer>
   );
