@@ -1,10 +1,20 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 
 const DetailInfo = () => {
   const DISCOUNT = 5;
   const FINAL_PRICE = 2500;
   const ORIGINAL_PRICE = 4000;
   const TAG = ['심플한', '레터링'];
+
+  const TEXT = `
+  우리집고양이는 츄르를 좋아하는데요. 매우 좋아합니다. 아주 많이 좋아하구요. 우주만큼 땅만큼
+  좋아합니다. 사실은 고양이 가 아닙니다. 어쩌고 저쩌고 어쩌고 저쩌고...어쩌고 저쩌고 어 쩌고
+  저쩌고 어쩌고 저쩌고 어쩌고 저쩌고....어쩌고 저쩌고 어 쩌고 저쩌고 어쩌고 저쩌고 어쩌고
+  저쩌고...
+  `;
+
+  const [isOpen, setOpen] = useState(false);
 
   return (
     <St.Wrapper>
@@ -35,13 +45,19 @@ const DetailInfo = () => {
           <St.Tag key={index}>{el}</St.Tag>
         ))}
       </St.TagContainer>
-      <St.DetailText>
-        우리집고양이는 츄르를 좋아하는데요. 매우 좋아합니다. 아주 많이 좋아하구요. 우주만큼 땅만큼
-        좋아합니다. 사실은 고양이 가 아닙니다. 어쩌고 저쩌고 어쩌고 저쩌고...어쩌고 저쩌고 어 쩌고
-        저쩌고 어쩌고 저쩌고 어쩌고 저쩌고....어쩌고 저쩌고 어 쩌고 저쩌고 어쩌고 저쩌고 어쩌고
-        저쩌고...
-        <St.Button>더보기</St.Button>
-      </St.DetailText>
+      <p>
+        <St.DetailText>{TEXT.substring(0, 65)}</St.DetailText>
+        {isOpen ? (
+          <St.DetailText>{TEXT.substring(65)}</St.DetailText>
+        ) : (
+          TEXT.length > 65 && (
+            <St.DetailText>
+              {'···'}
+              <St.Button onClick={() => setOpen(true)}>더보기</St.Button>
+            </St.DetailText>
+          )
+        )}
+      </p>
       <St.BoldLine />
     </St.Wrapper>
   );
@@ -137,12 +153,8 @@ const St = {
       content: '#';
     }
   `,
-  DetailText: styled.p`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: ${({ theme }) => theme.fonts.body_medium_14};
+  DetailText: styled.span`
+    ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray4};
   `,
   Button: styled.button`
