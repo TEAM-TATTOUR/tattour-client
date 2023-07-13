@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Sheet from 'react-modal-sheet';
-import { IcCancelDark } from '../../assets/icon';
+import { IcCancelDark, IcMinusOneunder, IcPlus } from '../../assets/icon';
 
 interface DetailBottomProps {
   isSheetOpen: boolean;
@@ -21,7 +21,11 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
           <IcCancelDark onClick={() => setSheetOpen(false)} />
         </Sheet.Header>
         <Sheet.Content>
-          <St.Stepper></St.Stepper>
+          <St.Stepper>
+            <IcMinusOneunder />
+            <span>1</span>
+            <IcPlus />
+          </St.Stepper>
           <St.PriceContainer>
             <St.Price></St.Price>
             <St.PriceUnit></St.PriceUnit>
@@ -46,7 +50,16 @@ const St = {
     ${({ theme }) => theme.fonts.title_semibold_20};
     color: ${({ theme }) => theme.colors.gray7};
   `,
-  Stepper: styled.article``,
+  Stepper: styled.article`
+    display: flex;
+    justify-content: space-between;
+    width: 8.9rem;
+
+    & > span {
+      ${({ theme }) => theme.fonts.title_semibold_18};
+      color: ${({ theme }) => theme.colors.gray6};
+    }
+  `,
   PriceContainer: styled.p``,
   Price: styled.span``,
   PriceUnit: styled.span``,
