@@ -11,9 +11,6 @@ const DetailCarousel = () => {
       <Swiper
         modules={[Pagination]}
         pagination={{ clickable: true }}
-        autoplay={{
-          delay: 2000,
-        }}
         speed={1000}
         slidesPerView={1}
         loop={true}
