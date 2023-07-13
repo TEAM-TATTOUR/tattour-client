@@ -6,13 +6,17 @@ import { useNavigate } from 'react-router-dom';
 interface DetailFooterProp {
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isSecond: boolean;
+  text: string;
 }
-const DetailFooter = ({ setSheetOpen, isSecond }: DetailFooterProp) => {
+const DetailFooter = ({ setSheetOpen, isSecond, text }: DetailFooterProp) => {
   const [like, setLike] = useState(false);
   const navigate = useNavigate();
 
   const handleClickButton = () => {
-    if (isSecond) {
+    if (text === '충전하기') {
+      // 충전하기 뷰로 navigate
+      console.log('충전하기');
+    } else if (isSecond) {
       navigate('/order');
     } else {
       setSheetOpen(true);
@@ -22,7 +26,7 @@ const DetailFooter = ({ setSheetOpen, isSecond }: DetailFooterProp) => {
   return (
     <St.Footer>
       <St.Button type='button' onClick={handleClickButton}>
-        구매하기
+        {text}
       </St.Button>
       <St.Line />
       <St.Like onClick={() => setLike((prev) => !prev)}>

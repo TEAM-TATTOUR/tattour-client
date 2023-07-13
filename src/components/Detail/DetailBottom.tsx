@@ -66,7 +66,11 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
             </St.FinalPriceContainer>
             <St.LackText $isLack={isLack}>보유 포인트가 부족합니다</St.LackText>
           </St.FullBox>
-          <DetailFooter setSheetOpen={setSheetOpen} isSecond={true} />
+          <DetailFooter
+            setSheetOpen={setSheetOpen}
+            isSecond={true}
+            text={isLack ? '충전하기' : '구매하기'}
+          />
         </Sheet.Content>
       </Sheet.Container>
       <Sheet.Backdrop onTap={() => setSheetOpen(false)} />
