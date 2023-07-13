@@ -10,9 +10,12 @@ interface DetailBottomProps {
 }
 
 const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
-  const PRICE = 5000;
+  // '구매하기' 누르면서 바텀 시트 올라오자마자 서버한테 받아올 데이터
+  // 사용자가 보유한 포인트, 상품1개 수량, 배송비
+
+  const PRICE = 2500;
   const DELIVERY_PRICE = 3000;
-  const FINAL_PRICE = 8500;
+  const MY_POINT = 7000;
 
   const [count, setCount] = useState(1);
 
@@ -41,7 +44,7 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
                 <IcPlus onClick={() => setCount((prev) => prev + 1)} />
               </St.Stepper>
               <St.PriceContainer>
-                <St.Price>{PRICE.toLocaleString()}</St.Price>
+                <St.Price>{(count * PRICE).toLocaleString()}</St.Price>
                 <St.PriceUnit>원</St.PriceUnit>
               </St.PriceContainer>
             </St.Wrapper>
@@ -49,7 +52,7 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
             <St.Line />
             <St.FinalPriceContainer>
               <St.PriceText>결제 금액</St.PriceText>
-              <St.FinalPrice>{FINAL_PRICE.toLocaleString()}</St.FinalPrice>
+              <St.FinalPrice>{(count * PRICE + DELIVERY_PRICE).toLocaleString()}</St.FinalPrice>
               <St.PriceText>원</St.PriceText>
             </St.FinalPriceContainer>
           </St.FullBox>
