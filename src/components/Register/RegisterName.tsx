@@ -18,7 +18,7 @@ const RegisterName = ({ setUserName }: RegisterNameProps) => {
 
       <St.InputContentsWrapper>
         <St.InputContent
-          placeholder='실명을 입력해주세요'
+          placeholder='ex) 김타투'
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 5, 'onlyString')}
         ></St.InputContent>

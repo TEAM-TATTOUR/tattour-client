@@ -52,7 +52,7 @@ const RegisterPhoneNumForm = ({ isVisible, setIsVisible }: RegisterPhoneNumFormP
   return (
     <St.InputContentsWrapper>
       <St.InputContent
-        placeholder='전화번호를 입력해주세요'
+        placeholder='ex) 010-0000-0000'
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
         onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
       ></St.InputContent>
