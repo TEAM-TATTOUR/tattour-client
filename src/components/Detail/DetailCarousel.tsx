@@ -6,18 +6,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 
 const DetailCarousel = () => {
+  const DATA = ['Slide 1', 'Slide 2', 'Slide 3'];
+
   return (
     <St.Wrapper>
       <Swiper modules={[Pagination]} pagination={{ clickable: true }} slidesPerView={1} loop={true}>
-        <SwiperSlide>
-          <St.Card>Slide 1</St.Card>
-        </SwiperSlide>
-        <SwiperSlide>
-          <St.Card>Slide 2</St.Card>
-        </SwiperSlide>
-        <SwiperSlide>
-          <St.Card>Slide 3</St.Card>
-        </SwiperSlide>
+        {DATA.map((el) => (
+          <SwiperSlide>
+            <St.Card>{el}</St.Card>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </St.Wrapper>
   );
