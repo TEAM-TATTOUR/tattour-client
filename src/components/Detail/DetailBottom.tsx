@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Sheet from 'react-modal-sheet';
-import { IcCancelDark, IcMinusOneunder, IcPlus } from '../../assets/icon';
+import { IcCancelDark, IcMinus, IcMinusOneunder, IcPlus } from '../../assets/icon';
 import DetailFooter from './DetailFooter';
 import { useState } from 'react';
 
@@ -32,7 +32,11 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
           <St.FullBox>
             <St.Wrapper>
               <St.Stepper>
-                <IcMinusOneunder onClick={() => setCount((prev) => prev - 1)} />
+                {count === 1 ? (
+                  <IcMinusOneunder />
+                ) : (
+                  <IcMinus onClick={() => setCount((prev) => prev - 1)} />
+                )}
                 <span>{count}</span>
                 <IcPlus onClick={() => setCount((prev) => prev + 1)} />
               </St.Stepper>
