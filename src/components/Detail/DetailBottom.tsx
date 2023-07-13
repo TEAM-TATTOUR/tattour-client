@@ -7,9 +7,11 @@ import { useEffect, useState } from 'react';
 interface DetailBottomProps {
   isSheetOpen: boolean;
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  like: boolean;
+  setLike: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
+const DetailBottom = ({ isSheetOpen, setSheetOpen, like, setLike }: DetailBottomProps) => {
   // '구매하기' 누르면서 바텀 시트 올라오자마자 서버한테 받아올 데이터
   // 사용자가 보유한 포인트, 상품1개 수량, 배송비
 
@@ -76,6 +78,8 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
             setSheetOpen={setSheetOpen}
             isSecond={true}
             text={isLack ? '충전하기' : '구매하기'}
+            like={like}
+            setLike={setLike}
           />
         </Sheet.Content>
       </Sheet.Container>

@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface DetailFooterProp {
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isSecond: boolean;
   text: string;
+  like: boolean;
+  setLike: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const DetailFooter = ({ setSheetOpen, isSecond, text }: DetailFooterProp) => {
-  const [like, setLike] = useState(false);
+const DetailFooter = ({ setSheetOpen, isSecond, text, like, setLike }: DetailFooterProp) => {
   const navigate = useNavigate();
 
   const handleClickButton = () => {
