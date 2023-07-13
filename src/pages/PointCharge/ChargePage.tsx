@@ -31,7 +31,6 @@ const ChargePage = () => {
       footer={<PointChargeFooter isActiveNext={isActiveNext} />}
     >
       <Charge setIsActiveNext={setIsActiveNext} />
-      <PointChargeFooter isActiveNext={isActiveNext} />
     </PageLayout>
   );
 };
