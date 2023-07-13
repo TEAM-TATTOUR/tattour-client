@@ -26,24 +26,26 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
           <IcCancelDark onClick={() => setSheetOpen(false)} />
         </Sheet.Header>
         <Sheet.Content>
-          <St.Wrapper>
-            <St.Stepper>
-              <IcMinusOneunder />
-              <span>1</span>
-              <IcPlus />
-            </St.Stepper>
-            <St.PriceContainer>
-              <St.Price>{PRICE.toLocaleString()}</St.Price>
-              <St.PriceUnit>원</St.PriceUnit>
-            </St.PriceContainer>
-          </St.Wrapper>
-          <St.DeliveryPrice>+ 배송비 {DELIVERY_PRICE.toLocaleString()}원</St.DeliveryPrice>
-          <St.Line />
-          <St.FinalPriceContainer>
-            <St.PriceText>결제 금액</St.PriceText>
-            <St.FinalPrice>{FINAL_PRICE.toLocaleString()}</St.FinalPrice>
-            <St.PriceText>원</St.PriceText>
-          </St.FinalPriceContainer>
+          <St.FullBox>
+            <St.Wrapper>
+              <St.Stepper>
+                <IcMinusOneunder />
+                <span>1</span>
+                <IcPlus />
+              </St.Stepper>
+              <St.PriceContainer>
+                <St.Price>{PRICE.toLocaleString()}</St.Price>
+                <St.PriceUnit>원</St.PriceUnit>
+              </St.PriceContainer>
+            </St.Wrapper>
+            <St.DeliveryPrice>+ 배송비 {DELIVERY_PRICE.toLocaleString()}원</St.DeliveryPrice>
+            <St.Line />
+            <St.FinalPriceContainer>
+              <St.PriceText>결제 금액</St.PriceText>
+              <St.FinalPrice>{FINAL_PRICE.toLocaleString()}</St.FinalPrice>
+              <St.PriceText>원</St.PriceText>
+            </St.FinalPriceContainer>
+          </St.FullBox>
           <DetailFooter setSheetOpen={setSheetOpen} />
         </Sheet.Content>
       </Sheet.Container>
@@ -58,6 +60,9 @@ const St = {
   Title: styled.h2`
     ${({ theme }) => theme.fonts.title_semibold_20};
     color: ${({ theme }) => theme.colors.gray7};
+  `,
+  FullBox: styled.div`
+    padding: 0rem 2.4rem 0rem 2.4rem;
   `,
   Wrapper: styled.article`
     display: flex;
@@ -105,7 +110,7 @@ const St = {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-bottom: 4.2rem;
+    margin-bottom: 11.2rem;
 
     & > span:nth-child(1) {
       margin-right: 1.2rem;
@@ -130,14 +135,15 @@ const CustomSheet = styled(Sheet)`
     background-color: rgba(0, 0, 0, 0.6) !important;
   }
   .react-modal-sheet-container {
-    padding: 2.5rem 2.4rem 4.2rem 2.4rem;
+    padding: 2.5rem 0rem 0rem 0rem;
     border-radius: 1rem !important;
   }
   // .react-modal-sheet-header
-  .react-modal-sheet-container > div {
+  .react-modal-sheet-container > div:nth-child(1) {
     display: flex;
     justify-content: space-between !important;
     margin-bottom: 2.8rem;
+    padding: 0rem 2.4rem 0rem 2.4rem;
   }
   .react-modal-sheet-drag-indicator {
     display: none;
