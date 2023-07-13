@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import DetailInfo from '../components/Detail/DetailInfo';
+import DetailCarousel from '../components/Detail/DetailCarousel';
 import PageLayout from '../components/PageLayout';
 import Header from '../components/Header';
 import { IcBackDark, IcCancelDark } from '../assets/icon';
@@ -12,6 +13,7 @@ const DetailPage = () => {
 
   return (
     <PageLayout renderHeader={renderDetailPageHeader} footer={<DetailFooter />}>
+      <DetailCarousel />
       <DetailInfo />
     </PageLayout>
   );
