@@ -8,7 +8,7 @@ const DetailFooter = () => {
   const [like, setLike] = useState(false);
 
   const handleClickButton = () => {
-    //추후 ReceiptPage로 이동해야 함
+    navigate('/order');
   };
 
   return (
