@@ -19,7 +19,7 @@ const SmallTattooCard = ({
   return (
     <St.SmallTattooCardItem>
       {isCustom && <LabelCustomSmall />}
-      <St.SmallTattooCardImage src={img} alt='작은 타투 이미지' />
+      <St.SmallTattooCardImage src={img} alt='작은-타투-이미지' />
       <St.SmallTattooCardTitle>{title}</St.SmallTattooCardTitle>
       <St.SmallTattooCardPriceTextWrapper>
         <St.SmallTattooCardDiscountRate>{discountRate}%</St.SmallTattooCardDiscountRate>

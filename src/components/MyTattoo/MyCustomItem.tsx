@@ -24,7 +24,7 @@ const St = {
     width: 15.3rem;
     height: 16.3rem;
 
-    object-fit: cover;
+    object-fit: contain;
     background-color: gray;
   `,
 
