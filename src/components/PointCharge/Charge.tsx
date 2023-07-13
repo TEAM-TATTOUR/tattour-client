@@ -1,8 +1,12 @@
 import { styled } from 'styled-components';
 import { IcCheckSmallGray } from '../../assets/icon';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-const Charge = () => {
+const Charge = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [isWarning, setIsWarning] = useState(false);
   const [parsedPrice, setParsedPrice] = useState('');
 
@@ -20,8 +24,12 @@ const Charge = () => {
     setParsedPrice(removedCommaValue.toLocaleString());
 
     //1000원 단위인지 확인
-    {
-      removedCommaValue % 1000 === 0 ? setIsWarning(false) : setIsWarning(true);
+    if (removedCommaValue % 1000 === 0) {
+      setIsWarning(false);
+      setIsActiveNext(true);
+    } else {
+      setIsWarning(true);
+      setIsActiveNext(false);
     }
   };
 

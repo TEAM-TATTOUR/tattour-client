@@ -1,8 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-const PointChargeFooter = () => {
+const PointChargeFooter = ({ isActiveNext }: { isActiveNext: boolean }) => {
+  const navigate = useNavigate();
+
+  const handleClickFooter = () => {
+    {
+      isActiveNext && navigate('/point-transfer');
+    }
+  };
+
   return (
-    <St.PointChargeFooter>
+    <St.PointChargeFooter $isActiveNext={isActiveNext} onClick={handleClickFooter}>
       <St.FooterText>다음</St.FooterText>
     </St.PointChargeFooter>
   );
@@ -11,7 +20,7 @@ const PointChargeFooter = () => {
 export default PointChargeFooter;
 
 const St = {
-  PointChargeFooter: styled.footer`
+  PointChargeFooter: styled.footer<{ $isActiveNext: boolean }>`
     position: absolute;
     bottom: 0;
 
@@ -22,7 +31,8 @@ const St = {
     width: 100%;
     height: 7rem;
 
-    background-color: ${({ theme }) => theme.colors.gray9};
+    background-color: ${({ $isActiveNext, theme }) =>
+      $isActiveNext ? theme.colors.gray9 : theme.colors.gray3};
   `,
 
   FooterText: styled.p`
