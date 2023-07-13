@@ -1,23 +1,11 @@
 import { styled } from 'styled-components';
 import { LabelCustomSmall } from '../../assets/icon';
 
-const renderDummyImageComponent = () => {
-  return (
-    <div
-      style={{
-        width: '15.3rem',
-        height: '16.3rem',
-        backgroundColor: 'gray',
-      }}
-    ></div>
-  );
-};
-
 const MyCustomItem = ({ title }: { title: string }) => {
   return (
     <St.MyCustomItem>
       <LabelCustomSmall />
-      {renderDummyImageComponent()}
+      <St.MyCustomItemImg />
       <St.MyCustomItemTitle>{title}</St.MyCustomItemTitle>
     </St.MyCustomItem>
   );
@@ -30,6 +18,14 @@ const St = {
     & > svg {
       position: absolute;
     }
+  `,
+
+  MyCustomItemImg: styled.img`
+    width: 15.3rem;
+    height: 16.3rem;
+
+    object-fit: cover;
+    background-color: gray;
   `,
 
   MyCustomItemTitle: styled.h3`

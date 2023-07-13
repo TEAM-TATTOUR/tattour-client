@@ -1,43 +1,48 @@
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { styled } from 'styled-components';
 
-const BigScrollContainer = ({ title, children }: { title: string; children: React.ReactNode }) => {
+const CustomScrollContainer = ({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) => {
   return (
     <>
-      <St.BigScrollWrapper>
-        <St.BigScrollHeader>
-          <St.BigScrollTitle>{title}</St.BigScrollTitle>
-        </St.BigScrollHeader>
-        <St.BigScrollItemWrapper>
+      <St.CustomScrollWrapper>
+        <St.CustomScrollHeader>
+          <St.CustomScrollTitle>{title}</St.CustomScrollTitle>
+        </St.CustomScrollHeader>
+        <St.CustomScrollItemWrapper>
           <ScrollContainer vertical={false} className='scroll-container'>
             {children}
           </ScrollContainer>
-        </St.BigScrollItemWrapper>
-      </St.BigScrollWrapper>
-      <St.Divide />
+        </St.CustomScrollItemWrapper>
+      </St.CustomScrollWrapper>
     </>
   );
 };
 
 const St = {
-  BigScrollWrapper: styled.section`
+  CustomScrollWrapper: styled.section`
     margin-top: 2.2rem;
     padding-left: 2rem;
 
     background-color: ${({ theme }) => theme.colors.white};
   `,
 
-  BigScrollHeader: styled.header`
+  CustomScrollHeader: styled.header`
     display: flex;
   `,
 
-  BigScrollTitle: styled.h2`
+  CustomScrollTitle: styled.h2`
     // title eng bold 18 필요
     font-size: 1.8rem;
     font-weight: bold;
   `,
 
-  BigScrollItemWrapper: styled.div`
+  CustomScrollItemWrapper: styled.div`
     display: flex;
     gap: 1.2rem;
     justify-content: space-between;
@@ -52,15 +57,6 @@ const St = {
       width: 100%;
     }
   `,
-
-  Divide: styled.hr`
-    width: 100%;
-    height: 1.3rem;
-
-    border: none;
-
-    background-color: ${({ theme }) => theme.colors.bg};
-  `,
 };
 
-export default BigScrollContainer;
+export default CustomScrollContainer;
