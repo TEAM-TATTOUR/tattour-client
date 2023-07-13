@@ -33,7 +33,6 @@ const St = {
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 18.6rem;
     height: 5.2rem;
 

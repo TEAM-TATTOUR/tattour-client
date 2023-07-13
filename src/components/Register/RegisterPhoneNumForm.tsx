@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import sliceMaxLength from '../../utils/sliceMaxLength';
 import { useState, useEffect } from 'react';
-import Toast from '../../utils/Toast';
+import Toast from '../../common/ToastMessage/Toast';
 
 interface RegisterPhoneNumFormProps {
   isVisible: boolean;
