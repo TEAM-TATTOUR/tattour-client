@@ -21,7 +21,7 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
           </Sheet.Scroller>
         </Sheet.Content>
       </Sheet.Container>
-      <Sheet.Backdrop onClick={() => setSheetOpen(false)} />
+      <Sheet.Backdrop onTap={() => setSheetOpen(false)} />
     </CustomSheet>
   );
 };
