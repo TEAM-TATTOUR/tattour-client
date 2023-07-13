@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { TITLE, SUB_TITLE } from '../../constants/TitleInfo';
 import RegisterTitleForm from './RegisterTitleForm';
-import RegisterNameFooter from './RegisterNameFooter';
-import { useState } from 'react';
 import sliceMaxLength from '../../utils/sliceMaxLength';
 
-const RegisterName = () => {
-  const [userName, setUserName] = useState('');
+interface RegisterNameProps {
+  setUserName: React.Dispatch<React.SetStateAction<string>>;
+}
 
+const RegisterName = ({ setUserName }: RegisterNameProps) => {
   const handleChangeInputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
   };
@@ -23,8 +23,6 @@ const RegisterName = () => {
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 5, 'onlyString')}
         ></St.InputContent>
       </St.InputContentsWrapper>
-
-      <RegisterNameFooter userName={userName} />
     </St.RegisterNameWrapper>
   );
 };
