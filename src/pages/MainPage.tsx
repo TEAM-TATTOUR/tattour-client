@@ -1,13 +1,6 @@
-// import { useState } from 'react';
 import MainFooter from '../components/MainFooter';
 import Header from '../components/Header';
 import PageLayout from '../components/PageLayout';
-// import ProgressBar from '../common/ProgressBar';
-// import BackBtn from '../common/Header/BackBtn';
-// import CancelBtn from '../common/Header/CancelBtn';
-// import LoginEscapeModal from '../common/Modal/EscapeModal/LoginEscapeModal';
-// import CustomSizeEscapeModal from '../common/Modal/EscapeModal/CustomSizeEscapeModal';
-// import ChargePointEscapeModal from '../common/Modal/EscapeModal/ChargePointEscapeModal';
 
 const MainPage = () => {
   // 모달 사용할 때  활용
