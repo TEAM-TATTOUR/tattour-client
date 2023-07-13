@@ -49,6 +49,9 @@ const Charge = () => {
           $isWarning={isWarning}
           autoFocus
         />
+        <St.ChargeWarningMsg $isWarning={isWarning}>
+          1,000원 단위 충전만 가능해요
+        </St.ChargeWarningMsg>
       </St.ChargeInputContainer>
     </St.ChargeWrapper>
   );
@@ -99,6 +102,10 @@ const St = {
 
   ChargeInputContainer: styled.article`
     position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
   `,
 
   ChargeInput: styled.input<{ $isWarning: boolean }>`
@@ -117,21 +124,6 @@ const St = {
 
     text-align: right;
 
-    /* number type input 기본 스타일링 제거
-    /* Chrome, Safari, Edge, Opera */
-    /* &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      appearance: none;
-      margin: 0;
-    } */
-
-    /* Firefox  */
-    /* &[type='number'] {
-      -moz-appearance: textfield;
-      appearance: textfield;
-    }  */
-
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray2};
       ${({ theme }) => theme.fonts.body_medium_16};
@@ -148,9 +140,14 @@ const St = {
     position: absolute;
     top: 50%;
     right: 1.3rem;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -113%);
 
     color: ${({ theme }) => theme.colors.gray2};
     ${({ theme }) => theme.fonts.body_medium_16};
+  `,
+
+  ChargeWarningMsg: styled.p<{ $isWarning: boolean }>`
+    color: ${({ $isWarning, theme }) => ($isWarning ? theme.colors.red : 'transparent')};
+    ${({ theme }) => theme.fonts.body_medium_14};
   `,
 };
