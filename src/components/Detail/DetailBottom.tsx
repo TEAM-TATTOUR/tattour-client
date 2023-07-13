@@ -82,8 +82,21 @@ const St = {
     ${({ theme }) => theme.fonts.body_medium_16};
     color: ${({ theme }) => theme.colors.gray4};
   `,
-  DeliveryPrice: styled.p``,
-  Line: styled.hr``,
+  DeliveryPrice: styled.p`
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.7rem;
+
+    ${({ theme }) => theme.fonts.body_medium_14};
+    color: ${({ theme }) => theme.colors.gray2};
+  `,
+  Line: styled.hr`
+    height: 0.1rem;
+    margin: 1.7rem -2.4rem 1.6rem -2.4rem;
+
+    background-color: ${({ theme }) => theme.colors.gray0};
+    border-width: 0rem;
+  `,
   FinalPriceContainer: styled.p``,
   PriceText: styled.span``,
   FinalPrice: styled.span``,
