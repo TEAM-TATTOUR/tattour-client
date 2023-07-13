@@ -1,7 +1,30 @@
 import { styled } from 'styled-components';
 import { IcCheckSmallGray } from '../../assets/icon';
+import { useState } from 'react';
 
 const Charge = () => {
+  const [isWarning, setIsWarning] = useState(false);
+  const [parsedPrice, setParsedPrice] = useState('');
+
+  const handleChangeChargeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // 숫자가 아닌 text가 들어왔을 때 방지
+    const re = /[^0-9]/gi;
+    const targetVal = e.target.value.replace(re, '');
+    if (targetVal === '') {
+      setParsedPrice('');
+      return;
+    }
+
+    //, 붙이기
+    const removedCommaValue = Number(targetVal.replace(/,/gi, ''));
+    setParsedPrice(removedCommaValue.toLocaleString());
+
+    //1000원 단위인지 확인
+    {
+      removedCommaValue % 1000 === 0 ? setIsWarning(false) : setIsWarning(true);
+    }
+  };
+
   return (
     <St.ChargeWrapper>
       <St.ChargeInfoContainer>
@@ -19,7 +42,13 @@ const Charge = () => {
       </St.ChargeInfoContainer>
       <St.ChargeInputContainer>
         <St.ChargeUnit>원</St.ChargeUnit>
-        <St.ChargeInput type='number' autoFocus />
+        <St.ChargeInput
+          type='text'
+          value={parsedPrice}
+          onChange={handleChangeChargeInput}
+          $isWarning={isWarning}
+          autoFocus
+        />
       </St.ChargeInputContainer>
     </St.ChargeWrapper>
   );
@@ -65,8 +94,6 @@ const St = {
     & > span {
       color: ${({ theme }) => theme.colors.gray3};
       ${({ theme }) => theme.fonts.body_medium_14};
-
-      word-wrap: break-word;
     }
   `,
 
@@ -74,7 +101,7 @@ const St = {
     position: relative;
   `,
 
-  ChargeInput: styled.input`
+  ChargeInput: styled.input<{ $isWarning: boolean }>`
     width: 33.5rem;
     height: 4.5rem;
     padding: 1.2rem 4.3rem;
@@ -90,18 +117,20 @@ const St = {
 
     text-align: right;
 
-    /* number type input 기본 스타일링 제거 */
+    /* number type input 기본 스타일링 제거
     /* Chrome, Safari, Edge, Opera */
-    &::-webkit-outer-spin-button,
+    /* &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
+      appearance: none;
       margin: 0;
-    }
+    } */
 
     /* Firefox  */
-    &[type='number'] {
+    /* &[type='number'] {
       -moz-appearance: textfield;
-    }
+      appearance: textfield;
+    }  */
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray2};
@@ -109,7 +138,8 @@ const St = {
     }
 
     &:focus {
-      /* box-shadow: 0 0 0 0.1rem ${({ theme }) => theme.colors.red}; */
+      box-shadow: ${({ $isWarning, theme }) =>
+        $isWarning ? `0 0 0 0.1rem ${theme.colors.red}` : 'none'};
       outline: 0;
     }
   `,
@@ -121,7 +151,6 @@ const St = {
     transform: translate(-50%, -50%);
 
     color: ${({ theme }) => theme.colors.gray2};
-    /* color: red; */
     ${({ theme }) => theme.fonts.body_medium_16};
   `,
 };
