@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 interface HeaderProps {
-  leftSection: React.ReactNode;
+  leftSection?: React.ReactNode;
   title?: string;
   rightSection?: React.ReactNode;
   transparent?: boolean;
@@ -11,9 +11,10 @@ interface HeaderProps {
 const Header = ({ leftSection, title, rightSection, transparent, progressBar }: HeaderProps) => {
   return (
     <St.header transparent={transparent}>
-      {leftSection}
+      {leftSection ? leftSection : <St.BlankSection />}
       {title && <St.title>{title}</St.title>}
       {rightSection ? rightSection : <St.BlankSection />}
+      {progressBar && progressBar}
     </St.header>
   );
 };

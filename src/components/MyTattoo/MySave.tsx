@@ -1,4 +1,5 @@
-import BigScrollContainer from '../../common/BigScrollContainer';
+import { styled } from 'styled-components';
+import CustomScrollContainer from '../../common/CustomScrollContainer';
 import MySaveItem from './MySaveItem';
 
 const dummyMySaveData = [
@@ -27,6 +28,17 @@ const MySave = () => {
       })}
     </BigScrollContainer>
   );
+};
+
+const St = {
+  Divide: styled.hr`
+    width: 100%;
+    height: 1.3rem;
+
+    border: none;
+
+    background-color: ${({ theme }) => theme.colors.bg};
+  `,
 };
 
 export default MySave;
