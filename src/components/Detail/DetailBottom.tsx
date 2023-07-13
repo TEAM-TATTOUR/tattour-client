@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Sheet from 'react-modal-sheet';
 import { IcCancelDark, IcMinus, IcMinusOneunder, IcPlus } from '../../assets/icon';
 import DetailFooter from './DetailFooter';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface DetailBottomProps {
   isSheetOpen: boolean;
@@ -15,9 +15,16 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
 
   const PRICE = 2500;
   const DELIVERY_PRICE = 3000;
-  const MY_POINT = 7000;
+  const MY_POINT = 10000;
 
   const [count, setCount] = useState(1);
+  const [isLack, setLack] = useState(false);
+
+  useEffect(() => {
+    if (MY_POINT < count * PRICE + DELIVERY_PRICE) {
+      setLack(true);
+    }
+  }, [count]);
 
   return (
     <CustomSheet
@@ -52,9 +59,12 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
             <St.Line />
             <St.FinalPriceContainer>
               <St.PriceText>결제 금액</St.PriceText>
-              <St.FinalPrice>{(count * PRICE + DELIVERY_PRICE).toLocaleString()}</St.FinalPrice>
+              <St.FinalPrice $isLack={isLack}>
+                {(count * PRICE + DELIVERY_PRICE).toLocaleString()}
+              </St.FinalPrice>
               <St.PriceText>원</St.PriceText>
             </St.FinalPriceContainer>
+            <St.LackText $isLack={isLack}>보유 포인트가 부족합니다</St.LackText>
           </St.FullBox>
           <DetailFooter setSheetOpen={setSheetOpen} isSecond={true} />
         </Sheet.Content>
@@ -120,7 +130,7 @@ const St = {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-bottom: 11.2rem;
+    margin-bottom: 0.4rem;
 
     & > span:nth-child(1) {
       margin-right: 1.2rem;
@@ -134,9 +144,15 @@ const St = {
     ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray4};
   `,
-  FinalPrice: styled.span`
+  FinalPrice: styled.span<{ $isLack: boolean }>`
     ${({ theme }) => theme.fonts.title_extrabold_24};
-    color: ${({ theme }) => theme.colors.gray7};
+    color: ${({ theme, $isLack }) => ($isLack ? theme.colors.red : theme.colors.gray7)};
+  `,
+  LackText: styled.p<{ $isLack: boolean }>`
+    display: flex;
+    justify-content: flex-end;
+    ${({ theme }) => theme.fonts.detail_medium_12};
+    color: ${({ theme, $isLack }) => ($isLack ? theme.colors.red : theme.colors.white)};
   `,
 };
 
@@ -145,7 +161,7 @@ const CustomSheet = styled(Sheet)`
     background-color: rgba(0, 0, 0, 0.6) !important;
   }
   .react-modal-sheet-container {
-    padding: 2.5rem 0rem 0rem 0rem;
+    padding: 2.5rem 0rem 9.2rem 0rem;
     border-radius: 1rem !important;
   }
   // .react-modal-sheet-header
