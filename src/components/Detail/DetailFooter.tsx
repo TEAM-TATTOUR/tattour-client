@@ -2,13 +2,15 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
 import { useState } from 'react';
+import DetailBottom from './DetailBottom';
 
 const DetailFooter = () => {
-  const navigate = useNavigate();
   const [like, setLike] = useState(false);
-  const [isSheetOpen, setSheetOpen] = useState(true); // bottomsheet를 위한 state
+  const [isSheetOpen, setSheetOpen] = useState(false); // bottomsheet를 위한 state
 
-  const handleClickButton = () => {};
+  const handleClickButton = () => {
+    setSheetOpen(true);
+  };
 
   return (
     <St.Footer>
@@ -19,6 +21,7 @@ const DetailFooter = () => {
       <St.Like onClick={() => setLike((prev) => !prev)}>
         {like ? <IcHeartLight /> : <IcHeartDark />}
       </St.Like>
+      <DetailBottom isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} />
     </St.Footer>
   );
 };
