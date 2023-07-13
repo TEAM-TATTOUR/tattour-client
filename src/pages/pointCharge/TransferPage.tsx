@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import BackBtn from '../../common/Header/BackBtn';
 import CancelBtn from '../../common/Header/CancelBtn';
 import ProgressBar from '../../common/ProgressBar';
@@ -8,6 +9,8 @@ import TransferMain from '../../components/PointCharge/TransferMain';
 import TransferPolicy from '../../components/PointCharge/TransferPolicy';
 
 const TransferPage = () => {
+  const [isActiveNext, setIsActiveNext] = useState(false);
+
   const renderTransferPageHeader = () => {
     return (
       <Header
@@ -20,9 +23,12 @@ const TransferPage = () => {
   };
 
   return (
-    <PageLayout renderHeader={renderTransferPageHeader} footer={<PointTransferFooter />}>
+    <PageLayout
+      renderHeader={renderTransferPageHeader}
+      footer={<PointTransferFooter isActiveNext={isActiveNext} />}
+    >
       <TransferMain />
-      <TransferPolicy />
+      <TransferPolicy setIsActiveNext={setIsActiveNext} />
     </PageLayout>
   );
 };

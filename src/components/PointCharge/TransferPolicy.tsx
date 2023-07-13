@@ -6,12 +6,20 @@ import { IcArrowRightDark } from '../../assets/icon';
 import PrePointPolicyBottom from './PrePointPolicyBottom';
 import { useState } from 'react';
 
-const TransferPolicy = () => {
+const TransferPolicy = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [isSheetOpen, setSheetOpen] = useState(false);
+
+  const handleClickAgreeCheckBox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.checked ? setIsActiveNext(true) : setIsActiveNext(false);
+  };
 
   return (
     <St.TransferPolicyWrapper>
-      <St.PolicyAgreeCheckBox type='checkbox' id='pointAgree' />
+      <St.PolicyAgreeCheckBox type='checkbox' id='pointAgree' onChange={handleClickAgreeCheckBox} />
       <label htmlFor='pointAgree'></label>
 
       <St.PolicyAgreeTouchArea onClick={() => setSheetOpen(true)}>
