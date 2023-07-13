@@ -1,20 +1,33 @@
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const DetailFooter = () => {
+interface DetailFooterProp {
+  setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isSecond: boolean;
+  text: string;
+  like: boolean;
+  setLike: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const DetailFooter = ({ setSheetOpen, isSecond, text, like, setLike }: DetailFooterProp) => {
   const navigate = useNavigate();
-  const [like, setLike] = useState(false);
 
   const handleClickButton = () => {
-    navigate('/order');
+    if (text === '충전하기') {
+      // 충전하기 뷰로 navigate
+      console.log('충전하기 이동');
+    } else if (isSecond) {
+      // navigate('/order');
+      console.log('구매하기 이동');
+    } else {
+      setSheetOpen(true);
+    }
   };
 
   return (
     <St.Footer>
       <St.Button type='button' onClick={handleClickButton}>
-        구매하기
+        {text}
       </St.Button>
       <St.Line />
       <St.Like onClick={() => setLike((prev) => !prev)}>
@@ -32,7 +45,7 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    position: fixed;
+    position: sticky;
     bottom: 0;
 
     width: 100%;
