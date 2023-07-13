@@ -1,0 +1,90 @@
+import React, { useState } from 'react';
+import ic_check from '../../assets/icon/ic_check.svg';
+import ic_check_selected from '../../assets/icon/ic_check_selected.svg';
+import { styled } from 'styled-components';
+import { IcArrowRightDark } from '../../assets/icon';
+
+interface MakePublicProps {
+  isPublic: boolean;
+  setIsPublic: boolean;
+}
+
+const MakePublic = ({ isPublic, setIsPublic }: MakePublicProps) => {
+  const handleCheckboxChange = (e) => {
+    setIsPublic(e.target.checked);
+  };
+
+  return (
+    <>
+      <St.MakePublicWrapper>
+        <St.PublicAgreeCheckBox
+          type='checkbox'
+          id='pointAgree'
+          checked={isPublic}
+          onChange={handleCheckboxChange}
+        />
+        <label htmlFor='pointAgree'></label>
+
+        <St.PublicAgreeTouchArea>
+          <St.PublicAgreeText>커스텀 도안 공개하고 단가 낮출래요</St.PublicAgreeText>
+          <IcArrowRightDark />
+        </St.PublicAgreeTouchArea>
+      </St.MakePublicWrapper>
+      <St.PublicAgreeSubtext>
+        해당 도안을 다른 타투어도 구매할 수 있게 공개하면 즉시 할인 받을 수 있어요
+      </St.PublicAgreeSubtext>
+    </>
+  );
+};
+
+export default MakePublic;
+
+const St = {
+  MakePublicWrapper: styled.section`
+    display: flex;
+    align-items: center;
+
+    padding: 0 5.3rem 0 2.4rem;
+  `,
+
+  PublicAgreeCheckBox: styled.input`
+    display: none;
+
+    & + label {
+      display: block;
+
+      width: 2.4rem;
+      height: 2.4rem;
+
+      background: url(${ic_check});
+    }
+
+    &:checked + label {
+      display: block;
+
+      width: 2.4rem;
+      height: 2.4rem;
+
+      background: url(${ic_check_selected});
+    }
+  `,
+
+  PublicAgreeTouchArea: styled.article`
+    display: flex;
+    gap: 0.3rem;
+    margin-left: 1.2rem;
+  `,
+
+  PublicAgreeText: styled.p`
+    color: ${({ theme }) => theme.colors.gray4};
+    ${({ theme }) => theme.fonts.title_semibold_16};
+  `,
+
+  PublicAgreeSubtext: styled.p`
+    margin: 1rem 0 8rem 6rem;
+    width: 22.5rem;
+
+    color: ${({ theme }) => theme.colors.gray2};
+    ${({ theme }) => theme.fonts.body_medium_14};
+  `,
+};
