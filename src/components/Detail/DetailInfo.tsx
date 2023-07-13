@@ -1,10 +1,20 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 
 const DetailInfo = () => {
   const DISCOUNT = 5;
   const FINAL_PRICE = 2500;
   const ORIGINAL_PRICE = 4000;
   const TAG = ['심플한', '레터링'];
+
+  const TEXT = `
+  우리집고양이는 츄르를 좋아하는데요. 매우 좋아합니다. 아주 많이 좋아하구요. 우주만큼 땅만큼
+  좋아합니다. 사실은 고양이 가 아닙니다. 어쩌고 저쩌고 어쩌고 저쩌고...어쩌고 저쩌고 어 쩌고
+  저쩌고 어쩌고 저쩌고 어쩌고 저쩌고....어쩌고 저쩌고 어 쩌고 저쩌고 어쩌고 저쩌고 어쩌고
+  저쩌고...
+  `;
+
+  const [isOpen, setOpen] = useState(false);
 
   return (
     <St.Wrapper>
@@ -22,26 +32,32 @@ const DetailInfo = () => {
       <St.OriginalPrice>{ORIGINAL_PRICE.toLocaleString()}원</St.OriginalPrice>
       <St.LightLine />
       <St.Description>
-        <span>구성</span>
-        <p>타투스티커 2EA + 알콜 스왑 2EA</p>
-        <span>크기</span>
-        <p>90*120 (mm)</p>
-        <span>작가</span>
-        <p>강** 님</p>
+        <St.Category>구성</St.Category>
+        <span>타투스티커 2EA + 알콜 스왑 2EA</span>
+        <St.Category>크기</St.Category>
+        <span>90*120 (mm)</span>
+        <St.Category>작가</St.Category>
+        <span>강** 님</span>
       </St.Description>
       <St.BoldLine />
       <St.TagContainer>
-        {TAG.map((el) => (
-          <St.Tag>{el}</St.Tag>
+        {TAG.map((el, index) => (
+          <St.Tag key={index}>{el}</St.Tag>
         ))}
       </St.TagContainer>
-      <St.DetailText>
-        우리집고양이는 츄르를 좋아하는데요. 매우 좋아합니다. 아주 많이 좋아하구요. 우주만큼 땅만큼
-        좋아합니다. 사실은 고양이 가 아닙니다. 어쩌고 저쩌고 어쩌고 저쩌고...어쩌고 저쩌고 어 쩌고
-        저쩌고 어쩌고 저쩌고 어쩌고 저쩌고....어쩌고 저쩌고 어 쩌고 저쩌고 어쩌고 저쩌고 어쩌고
-        저쩌고...
-        <St.Button>더보기</St.Button>
-      </St.DetailText>
+      <p>
+        <St.DetailText>{TEXT.substring(0, 65)}</St.DetailText>
+        {isOpen ? (
+          <St.DetailText>{TEXT.substring(65)}</St.DetailText>
+        ) : (
+          TEXT.length > 65 && (
+            <St.DetailText>
+              {'···'}
+              <St.Button onClick={() => setOpen(true)}>더보기</St.Button>
+            </St.DetailText>
+          )
+        )}
+      </p>
       <St.BoldLine />
     </St.Wrapper>
   );
@@ -108,16 +124,15 @@ const St = {
 
     & > span {
       ${({ theme }) => theme.fonts.body_medium_14};
-      color: ${({ theme }) => theme.colors.gray3};
-    }
-
-    & > p {
-      ${({ theme }) => theme.fonts.body_medium_14};
       color: ${({ theme }) => theme.colors.gray4};
     }
   `,
+  Category: styled.span`
+    ${({ theme }) => theme.fonts.body_medium_14};
+    color: ${({ theme }) => theme.colors.gray3};
+  `,
   BoldLine: styled.hr`
-    margin: 3rem -2.2rem 0rem -2.2rem;
+    margin: 3rem -2.2rem 2.8rem -2.2rem;
     height: 1.3rem;
     background-color: ${({ theme }) => theme.colors.bg};
     border-width: 0rem;
@@ -125,7 +140,7 @@ const St = {
   TagContainer: styled.article`
     display: flex;
     gap: 1rem;
-    margin: 2.8rem 0rem 2rem 0rem;
+    margin-bottom: 2rem;
   `,
   Tag: styled.span`
     padding: 0.6rem 1.3rem;
@@ -138,12 +153,8 @@ const St = {
       content: '#';
     }
   `,
-  DetailText: styled.p`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: ${({ theme }) => theme.fonts.body_medium_14};
+  DetailText: styled.span`
+    ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray4};
   `,
   Button: styled.button`
