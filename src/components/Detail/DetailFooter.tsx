@@ -1,15 +1,22 @@
 import styled from 'styled-components';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface DetailFooterProp {
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isSecond: boolean;
 }
-const DetailFooter = ({ setSheetOpen }: DetailFooterProp) => {
+const DetailFooter = ({ setSheetOpen, isSecond }: DetailFooterProp) => {
   const [like, setLike] = useState(false);
+  const navigate = useNavigate();
 
   const handleClickButton = () => {
-    setSheetOpen(true);
+    if (isSecond) {
+      navigate('/order');
+    } else {
+      setSheetOpen(true);
+    }
   };
 
   return (

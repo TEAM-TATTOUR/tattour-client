@@ -46,7 +46,7 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
               <St.PriceText>원</St.PriceText>
             </St.FinalPriceContainer>
           </St.FullBox>
-          <DetailFooter setSheetOpen={setSheetOpen} />
+          <DetailFooter setSheetOpen={setSheetOpen} isSecond={true} />
         </Sheet.Content>
       </Sheet.Container>
       <Sheet.Backdrop onTap={() => setSheetOpen(false)} />

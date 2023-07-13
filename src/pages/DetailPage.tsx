@@ -17,7 +17,7 @@ const DetailPage = () => {
   return (
     <PageLayout
       renderHeader={renderDetailPageHeader}
-      footer={<DetailFooter setSheetOpen={setSheetOpen} />}
+      footer={<DetailFooter setSheetOpen={setSheetOpen} isSecond={false} />}
     >
       <DetailInfo />
       <DetailBottom isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} />
