@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 interface HeaderProps {
   leftSection: React.ReactNode;
   title?: string;
-  rightSection: React.ReactNode;
+  rightSection?: React.ReactNode;
   transparent?: boolean;
 }
 
@@ -12,7 +12,7 @@ const Header = ({ leftSection, title, rightSection, transparent }: HeaderProps) 
     <St.header transparent={transparent}>
       {leftSection}
       {title && <St.title>{title}</St.title>}
-      {rightSection}
+      {rightSection ? rightSection : <St.BlankSection />}
     </St.header>
   );
 };
@@ -32,6 +32,11 @@ const St = {
 
   title: styled.h1`
     font: ${({ theme }) => theme.fonts.title_semibold_18};
+  `,
+
+  BlankSection: styled.div`
+    width: 2.4rem;
+    height: 2.4rem;
   `,
 };
 
