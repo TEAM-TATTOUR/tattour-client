@@ -20,7 +20,6 @@ const DetailFooter = () => {
       </St.Like>
     </St.Footer>
   );
-  return <div>DetailFooter</div>;
 };
 
 export default DetailFooter;
