@@ -23,6 +23,30 @@ const TattooList = ({setSortOpen, setGenreOpen, setStyleOpen} : TattooListProps)
       price: 4000,
       discount: 25,
       finalPrice: 2500
+    },
+    { 
+      name: '고양이 리본 타투3',
+      price: 4000,
+      discount: 25,
+      finalPrice: 2500
+    },
+    { 
+      name: '고양이 리본 타투4',
+      price: 4000,
+      discount: 25,
+      finalPrice: 2500
+    },
+    { 
+      name: '고양이 리본 타투5',
+      price: 4000,
+      discount: 25,
+      finalPrice: 2500
+    },
+    { 
+      name: '고양이 리본 타투6',
+      price: 4000,
+      discount: 25,
+      finalPrice: 2500
     }
   ]
 
@@ -110,6 +134,7 @@ const St = {
   Card: styled.article`
     display:flex;
     flex-direction: column;
+    margin-bottom: 2.2rem;
 
     & > h2 {
       margin: 1.5rem 0rem 0rem 2rem;
