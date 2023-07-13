@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-const DetailInfo = ({
-  setSheetOpen,
-}: {
-  setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const DetailInfo = () => {
   const DISCOUNT = 5;
   const FINAL_PRICE = 2500;
   const ORIGINAL_PRICE = 4000;
