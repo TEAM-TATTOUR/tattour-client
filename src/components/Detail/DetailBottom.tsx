@@ -20,7 +20,19 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
           <St.Title>수량</St.Title>
           <IcCancelDark onClick={() => setSheetOpen(false)} />
         </Sheet.Header>
-        <Sheet.Content></Sheet.Content>
+        <Sheet.Content>
+          <St.Stepper></St.Stepper>
+          <St.PriceContainer>
+            <St.Price></St.Price>
+            <St.PriceUnit></St.PriceUnit>
+          </St.PriceContainer>
+          <St.DeliveryPrice></St.DeliveryPrice>
+          <St.Line />
+          <St.FinalPriceContainer>
+            <St.PriceText></St.PriceText>
+            <St.FinalPrice></St.FinalPrice>
+          </St.FinalPriceContainer>
+        </Sheet.Content>
       </Sheet.Container>
       <Sheet.Backdrop onTap={() => setSheetOpen(false)} />
     </CustomSheet>
@@ -34,6 +46,15 @@ const St = {
     ${({ theme }) => theme.fonts.title_semibold_20};
     color: ${({ theme }) => theme.colors.gray7};
   `,
+  Stepper: styled.article``,
+  PriceContainer: styled.p``,
+  Price: styled.span``,
+  PriceUnit: styled.span``,
+  DeliveryPrice: styled.p``,
+  Line: styled.hr``,
+  FinalPriceContainer: styled.p``,
+  PriceText: styled.span``,
+  FinalPrice: styled.span``,
 };
 
 const CustomSheet = styled(Sheet)`
