@@ -5,6 +5,7 @@ const DetailInfo = () => {
   const DISCOUNT = 5;
   const FINAL_PRICE = 2500;
   const ORIGINAL_PRICE = 4000;
+  const DELIVERY_PRICE = 3000;
   const TAG = ['심플한', '레터링'];
 
   const TEXT = `
@@ -36,8 +37,8 @@ const DetailInfo = () => {
         <span>타투스티커 2EA + 알콜 스왑 2EA</span>
         <St.Category>크기</St.Category>
         <span>90*120 (mm)</span>
-        <St.Category>작가</St.Category>
-        <span>강** 님</span>
+        <St.Category>배송비</St.Category>
+        <span>{DELIVERY_PRICE.toLocaleString()}원</span>
       </St.Description>
       <St.BoldLine />
       <St.TagContainer>
