@@ -41,8 +41,9 @@ const DetailInfo = () => {
             가 아닙니다. 어쩌고 저쩌고 어쩌고 저쩌고...어쩌고 저쩌고 어
             쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고....어쩌고 저쩌고 어
             쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고...
+            <St.Button>더보기</St.Button>
         </St.DetailText>
-        <St.Button>더보기</St.Button>
+        <St.BoldLine/>
 
     </St.Wrapper>
   )
@@ -105,6 +106,7 @@ const St = {
         display: grid;
         grid-template-columns: 5.7rem 1fr;
         gap: 0.6rem;
+        margin-bottom: 0.2rem;
 
         & > span {
             ${({ theme }) => theme.fonts.body_medium_14};
@@ -118,7 +120,7 @@ const St = {
     
     `,
     BoldLine : styled.hr`
-        margin: 3.2rem -2.2rem 2.8rem -2.2rem;
+        margin: 3.0rem -2.2rem 2.8rem -2.2rem;
         height: 1.3rem;
         background-color: ${({ theme }) => theme.colors.bg};
         border-width: 0rem;
@@ -141,10 +143,17 @@ const St = {
         }
     `,
     DetailText : styled.p`
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: 
+
         ${({ theme }) => theme.fonts.body_medium_14};
         color: ${({ theme }) => theme.colors.gray4};
     `,
     Button : styled.button`
+        display: inline;
         ${({ theme }) => theme.fonts.body_underline_medium_14};
         color: ${({ theme }) => theme.colors.gray5};
     `
