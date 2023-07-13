@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 
 const PointTransferFooter = ({ isActiveNext }: { isActiveNext: boolean }) => {
-  console.log(typeof isActiveNext);
   return (
     <St.TransferFooter $isActiveNext={isActiveNext}>
       <St.FooterText>송금했어요</St.FooterText>
@@ -12,7 +11,7 @@ const PointTransferFooter = ({ isActiveNext }: { isActiveNext: boolean }) => {
 export default PointTransferFooter;
 
 const St = {
-  TransferFooter: styled.footer`
+  TransferFooter: styled.footer<{ $isActiveNext: boolean }>`
     display: flex;
     justify-content: center;
     align-items: center;
