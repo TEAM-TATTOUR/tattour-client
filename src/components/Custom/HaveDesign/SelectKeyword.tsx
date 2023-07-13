@@ -125,7 +125,7 @@ const St = {
   `,
   RadioInput: styled.input`
     appearance: none;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
   `,
