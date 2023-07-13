@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
+import { useNavigate } from 'react-router-dom';
 
 interface CheckModalFormProps {
   onClose: () => void;
@@ -8,12 +9,15 @@ interface CheckModalFormProps {
   continueBtn: string;
 }
 
-const CheckModalForm = ({
-  onClose,
-  title,
-  subTitle,
-  continueBtn,
-}: CheckModalFormProps) => {
+const CheckModalForm = ({ onClose, title, subTitle, continueBtn }: CheckModalFormProps) => {
+  const navigate = useNavigate();
+
+  const handleClickContinueBtn = () => {
+    onClose();
+    // 라우팅 주소 나중에 수정
+    navigate('/');
+  };
+
   return (
     <St.ModalContainer>
       <St.ModalContent>
@@ -24,7 +28,7 @@ const CheckModalForm = ({
         </St.ModalTitleWrapper>
 
         <St.BtnWrapper>
-          <St.ContinueBtn onClick={onClose}>{continueBtn}</St.ContinueBtn>
+          <St.ContinueBtn onClick={handleClickContinueBtn}>{continueBtn}</St.ContinueBtn>
         </St.BtnWrapper>
       </St.ModalContent>
     </St.ModalContainer>
