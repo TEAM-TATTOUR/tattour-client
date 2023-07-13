@@ -1,8 +1,16 @@
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 const PointTransferFooter = ({ isActiveNext }: { isActiveNext: boolean }) => {
+  const navigate = useNavigate();
+
+  const handleClickFooter = () => {
+    //여기 수정 필요 -> 포인트 충전으로 들어오기 전 url로 보내기
+    isActiveNext && navigate('/');
+  };
+
   return (
-    <St.TransferFooter $isActiveNext={isActiveNext}>
+    <St.TransferFooter $isActiveNext={isActiveNext} onClick={handleClickFooter}>
       <St.FooterText>송금했어요</St.FooterText>
     </St.TransferFooter>
   );
