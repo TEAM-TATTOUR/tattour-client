@@ -8,6 +8,9 @@ interface DetailBottomProps {
 }
 
 const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
+  const PRICE = 5000;
+  const DELIVERY_PRICE = 3000;
+
   return (
     <CustomSheet
       isOpen={isSheetOpen}
@@ -21,16 +24,18 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
           <IcCancelDark onClick={() => setSheetOpen(false)} />
         </Sheet.Header>
         <Sheet.Content>
-          <St.Stepper>
-            <IcMinusOneunder />
-            <span>1</span>
-            <IcPlus />
-          </St.Stepper>
-          <St.PriceContainer>
-            <St.Price></St.Price>
-            <St.PriceUnit></St.PriceUnit>
-          </St.PriceContainer>
-          <St.DeliveryPrice></St.DeliveryPrice>
+          <St.Wrapper>
+            <St.Stepper>
+              <IcMinusOneunder />
+              <span>1</span>
+              <IcPlus />
+            </St.Stepper>
+            <St.PriceContainer>
+              <St.Price>{PRICE.toLocaleString()}</St.Price>
+              <St.PriceUnit>원</St.PriceUnit>
+            </St.PriceContainer>
+          </St.Wrapper>
+          <St.DeliveryPrice>+ 배송비 {DELIVERY_PRICE.toLocaleString()}원</St.DeliveryPrice>
           <St.Line />
           <St.FinalPriceContainer>
             <St.PriceText></St.PriceText>
@@ -50,6 +55,11 @@ const St = {
     ${({ theme }) => theme.fonts.title_semibold_20};
     color: ${({ theme }) => theme.colors.gray7};
   `,
+  Wrapper: styled.article`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  `,
   Stepper: styled.article`
     display: flex;
     justify-content: space-between;
@@ -60,9 +70,18 @@ const St = {
       color: ${({ theme }) => theme.colors.gray6};
     }
   `,
-  PriceContainer: styled.p``,
-  Price: styled.span``,
-  PriceUnit: styled.span``,
+  PriceContainer: styled.p`
+    display: flex;
+    align-items: center;
+  `,
+  Price: styled.span`
+    ${({ theme }) => theme.fonts.title_semibold_18};
+    color: ${({ theme }) => theme.colors.gray4};
+  `,
+  PriceUnit: styled.span`
+    ${({ theme }) => theme.fonts.body_medium_16};
+    color: ${({ theme }) => theme.colors.gray4};
+  `,
   DeliveryPrice: styled.p``,
   Line: styled.hr``,
   FinalPriceContainer: styled.p``,
