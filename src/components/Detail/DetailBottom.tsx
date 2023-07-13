@@ -9,17 +9,18 @@ interface DetailBottomProps {
 
 const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
   return (
-    <CustomSheet isOpen={isSheetOpen} onClose={() => setSheetOpen(false)} disableDrag={true}>
+    <CustomSheet
+      isOpen={isSheetOpen}
+      onClose={() => setSheetOpen(false)}
+      detent='content-height'
+      disableDrag={true}
+    >
       <Sheet.Container>
-        <Sheet.Header disableDrag={false}>
-          <St.Title>제목입니다</St.Title>
+        <Sheet.Header disableDrag={true}>
+          <St.Title>수량</St.Title>
           <IcCancelDark onClick={() => setSheetOpen(false)} />
         </Sheet.Header>
-        <Sheet.Content>
-          <Sheet.Scroller>
-            <St.Text></St.Text>
-          </Sheet.Scroller>
-        </Sheet.Content>
+        <Sheet.Content></Sheet.Content>
       </Sheet.Container>
       <Sheet.Backdrop onTap={() => setSheetOpen(false)} />
     </CustomSheet>
@@ -32,10 +33,6 @@ const St = {
   Title: styled.h2`
     ${({ theme }) => theme.fonts.title_semibold_20};
     color: ${({ theme }) => theme.colors.gray7};
-  `,
-  Text: styled.p`
-    ${({ theme }) => theme.fonts.body_medium_14};
-    color: ${({ theme }) => theme.colors.gray3};
   `,
 };
 
