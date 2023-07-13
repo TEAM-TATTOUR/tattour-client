@@ -5,9 +5,10 @@ interface HeaderProps {
   title?: string;
   rightSection?: React.ReactNode;
   transparent?: boolean;
+  progressBar?: React.ReactNode;
 }
 
-const Header = ({ leftSection, title, rightSection, transparent }: HeaderProps) => {
+const Header = ({ leftSection, title, rightSection, transparent, progressBar }: HeaderProps) => {
   return (
     <St.header transparent={transparent}>
       {leftSection}
