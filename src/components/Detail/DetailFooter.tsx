@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
 import { useState } from 'react';
 import DetailBottom from './DetailBottom';
