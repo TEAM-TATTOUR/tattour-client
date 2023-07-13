@@ -10,21 +10,19 @@ const RegisterNameFooter = ({ userName }: RegisterNameFooterProps) => {
 
   const handleClickFooter = () => {
     if (userName) {
-      navigate('/register-number', {state: userName});
-
-      /* 나중에 userName을 useLocation 등으로 넘겨줘도 됨 (굳이 스토리지 사용안해도 ㄱㅊ) */
+      navigate('/register-number', { state: userName });
     }
   };
 
   return (
-    <St.Footer onClick={handleClickFooter}>
+    <St.Footer onClick={handleClickFooter} $userName={userName}>
       <St.FooterContents>다음</St.FooterContents>
     </St.Footer>
   );
 };
 
 const St = {
-  Footer: styled.footer`
+  Footer: styled.footer<{ $userName: string }>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,7 +32,8 @@ const St = {
     bottom: 0;
 
     background-size: auto;
-    background-color: ${({ theme }) => theme.colors.gray3};
+    background-color: ${({ theme, $userName }) =>
+      $userName ? theme.colors.gray9 : theme.colors.gray3};
   `,
 
   FooterContents: styled.p`
