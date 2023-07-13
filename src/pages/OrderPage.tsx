@@ -9,12 +9,14 @@ import PageLayout from "../components/PageLayout";
 import Header from "../components/Header";
 import OrderFooter from "../components/Order/OrderFooter";
 import { IcBackDark, IcCancelDark } from "../assets/icon";
+import RefundBottom from "../components/Order/RefundBottom";
 
 const OrderPage = () => {
 
   const [isPostOpen, setIsPostOpen] = useState(false); 
   const addressRef = useRef<null | HTMLInputElement>(null);
   const postcodeRef = useRef<null | HTMLInputElement>(null);
+  const [isSheetOpen, setSheetOpen] = useState(false);
         
   const renderOrderPageHeader = () => {
     return <Header leftSection={<div><IcBackDark/></div>} title='주문하기' rightSection={<div><IcCancelDark/></div>} />;
@@ -34,16 +36,17 @@ const OrderPage = () => {
     <PageLayout renderHeader={renderOrderPageHeader} footer={<OrderFooter/>}>
         <ProductInfo/>
         <St.Line/>
-        <DeliveryInfo $handleModal={handleModal} $addressRef={addressRef} $postcodeRef={postcodeRef}/>
+        <DeliveryInfo handleModal={handleModal} addressRef={addressRef} postcodeRef={postcodeRef}/>
         <St.Line/>
         <PaymentInfo/>
         <St.Line/>
-        <RefundInfo/>
+        <RefundInfo setSheetOpen={setSheetOpen}/>
         {isPostOpen && (
           <St.Card>
             <Postcode onComplete={handleAddress}/>
           </St.Card>
         )}
+        <RefundBottom isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen}/>
     </PageLayout>
   )
 }
