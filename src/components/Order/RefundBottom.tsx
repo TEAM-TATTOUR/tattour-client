@@ -123,6 +123,7 @@ const CustomSheet = styled(Sheet)`
         border-radius: 1rem !important;
     }
 
+    // .react-modal-sheet-header 
     .react-modal-sheet-container > div {
         display: flex;
         justify-content: space-between !important;
