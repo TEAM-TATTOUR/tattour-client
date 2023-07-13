@@ -21,6 +21,10 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen }: DetailBottomProps) => {
   const [isLack, setLack] = useState(false);
 
   useEffect(() => {
+    setCount(1);
+  }, [isSheetOpen]);
+
+  useEffect(() => {
     if (MY_POINT < count * PRICE + DELIVERY_PRICE) {
       setLack(true);
     } else {
