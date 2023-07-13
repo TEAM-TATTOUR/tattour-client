@@ -10,15 +10,11 @@ interface HeaderProps {
 
 const Header = ({ leftSection, title, rightSection, transparent, progressBar }: HeaderProps) => {
   return (
-    <div>
-      <St.header transparent={transparent}>
-        {leftSection}
-        {title && <St.title>{title}</St.title>}
-        {rightSection}
-      </St.header>
-
-      {progressBar}
-    </div>
+    <St.header transparent={transparent}>
+      {leftSection}
+      {title && <St.title>{title}</St.title>}
+      {rightSection ? rightSection : <St.BlankSection />}
+    </St.header>
   );
 };
 
@@ -37,6 +33,11 @@ const St = {
 
   title: styled.h1`
     font: ${({ theme }) => theme.fonts.title_semibold_18};
+  `,
+
+  BlankSection: styled.div`
+    width: 2.4rem;
+    height: 2.4rem;
   `,
 };
 
