@@ -31,7 +31,7 @@ const DetailInfo = () => {
       </St.Description>
       <St.BoldLine />
       <St.TagContainer>
-        {TAG.map((e, index) => (
+        {TAG.map((el, index) => (
           <St.Tag key={index}>{el}</St.Tag>
         ))}
       </St.TagContainer>
