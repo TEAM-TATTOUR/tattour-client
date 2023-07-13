@@ -23,7 +23,6 @@ const TransferPage = () => {
     <PageLayout renderHeader={renderTransferPageHeader} footer={<PointTransferFooter />}>
       <TransferMain />
       <TransferPolicy />
-      <PointTransferFooter />
     </PageLayout>
   );
 };

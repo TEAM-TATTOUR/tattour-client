@@ -12,8 +12,6 @@ export default PointTransferFooter;
 
 const St = {
   TransferFooter: styled.footer`
-    position: absolute;
-    bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
