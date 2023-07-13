@@ -3,17 +3,23 @@ import { styled } from 'styled-components';
 import ic_check from '../../assets/icon/ic_check.svg';
 import ic_check_selected from '../../assets/icon/ic_check_selected.svg';
 import { IcArrowRightDark } from '../../assets/icon';
+import PrePointPolicyBottom from './PrePointPolicyBottom';
+import { useState } from 'react';
 
 const TransferPolicy = () => {
+  const [isSheetOpen, setSheetOpen] = useState(false);
+
   return (
     <St.TransferPolicyWrapper>
       <St.PolicyAgreeCheckBox type='checkbox' id='pointAgree' />
       <label htmlFor='pointAgree'></label>
 
-      <St.PolicyAgreeTouchArea>
+      <St.PolicyAgreeTouchArea onClick={() => setSheetOpen(true)}>
         <St.PolicyAgreeText>예비포인트 정책 관련 설명에 동의합니다</St.PolicyAgreeText>
         <IcArrowRightDark />
       </St.PolicyAgreeTouchArea>
+
+      <PrePointPolicyBottom isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} />
     </St.TransferPolicyWrapper>
   );
 };
