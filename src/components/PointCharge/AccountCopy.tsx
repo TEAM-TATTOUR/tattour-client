@@ -1,11 +1,15 @@
 import { styled } from 'styled-components';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { useState } from 'react';
+import Toast from '../../common/ToastMessage/Toast';
 
 const AccountCopy = () => {
   const ACCOUNT_INFO = '우리은행 1002259752313';
 
+  const [toast, setToast] = useState(false);
+
   const handleCopyClipboard = () => {
-    alert('계좌번호가 복사되었습니다.');
+    setToast(true);
   };
 
   return (
@@ -16,6 +20,7 @@ const AccountCopy = () => {
           <St.AccountBoxCopy>복사하기</St.AccountBoxCopy>
         </St.AccountBox>
       </CopyToClipboard>
+      {toast && <Toast setToast={setToast} text='계좌번호가 발송되었습니다.' />}
     </St.TransferAccountContainer>
   );
 };
