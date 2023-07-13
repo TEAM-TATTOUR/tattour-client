@@ -11,8 +11,8 @@ const DetailCarousel = () => {
   return (
     <St.Wrapper>
       <Swiper modules={[Pagination]} pagination={{ clickable: true }} slidesPerView={1} loop={true}>
-        {DATA.map((el) => (
-          <SwiperSlide>
+        {DATA.map((el, index) => (
+          <SwiperSlide key={index}>
             <St.Card>{el}</St.Card>
           </SwiperSlide>
         ))}

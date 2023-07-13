@@ -22,12 +22,12 @@ const DetailInfo = () => {
       <St.OriginalPrice>{ORIGINAL_PRICE.toLocaleString()}원</St.OriginalPrice>
       <St.LightLine />
       <St.Description>
-        <span>구성</span>
-        <p>타투스티커 2EA + 알콜 스왑 2EA</p>
-        <span>크기</span>
-        <p>90*120 (mm)</p>
-        <span>작가</span>
-        <p>강** 님</p>
+        <St.Category>구성</St.Category>
+        <span>타투스티커 2EA + 알콜 스왑 2EA</span>
+        <St.Category>크기</St.Category>
+        <span>90*120 (mm)</span>
+        <St.Category>작가</St.Category>
+        <span>강** 님</span>
       </St.Description>
       <St.BoldLine />
       <St.TagContainer>
@@ -108,13 +108,12 @@ const St = {
 
     & > span {
       ${({ theme }) => theme.fonts.body_medium_14};
-      color: ${({ theme }) => theme.colors.gray3};
-    }
-
-    & > p {
-      ${({ theme }) => theme.fonts.body_medium_14};
       color: ${({ theme }) => theme.colors.gray4};
     }
+  `,
+  Category: styled.span`
+    ${({ theme }) => theme.fonts.body_medium_14};
+    color: ${({ theme }) => theme.colors.gray3};
   `,
   BoldLine: styled.hr`
     margin: 3rem -2.2rem 2.8rem -2.2rem;
