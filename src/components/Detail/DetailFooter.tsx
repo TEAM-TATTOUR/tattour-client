@@ -6,10 +6,9 @@ import { useState } from 'react';
 const DetailFooter = () => {
   const navigate = useNavigate();
   const [like, setLike] = useState(false);
+  const [isSheetOpen, setSheetOpen] = useState(true); // bottomsheet를 위한 state
 
-  const handleClickButton = () => {
-    navigate('/order');
-  };
+  const handleClickButton = () => {};
 
   return (
     <St.Footer>
