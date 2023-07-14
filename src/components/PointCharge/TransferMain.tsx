@@ -106,13 +106,13 @@ const St = {
   `,
 
   TransferPolicyArea: styled.div`
-    width: 100%;
+    width: var(--app-max-width, 37.5rem);
+    position: fixed;
+    bottom: 7rem;
   `,
 
   TransferSectionDivide: styled.hr`
-    /* width: 100%; */
     height: 1.3rem;
-    /* margin-top: 18.8rem; */
 
     border: none;
 
