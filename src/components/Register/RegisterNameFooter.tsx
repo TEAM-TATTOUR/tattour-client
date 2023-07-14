@@ -26,9 +26,10 @@ const St = {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw;
+    width: 100%;
     height: 7rem;
     position: fixed;
+    left: 0;
     bottom: 0;
 
     background-size: auto;
