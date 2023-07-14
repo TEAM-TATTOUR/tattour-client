@@ -17,6 +17,7 @@ const ReceiptDetail = () => {
 
   return (
     <>
+      <St.Divider />
       <St.ReceiptDetailWrapper>
         <St.ReceiptTitle>{SAMPLE[0].name}</St.ReceiptTitle>
         <St.PreviewSection>
@@ -45,7 +46,7 @@ const ReceiptDetail = () => {
       </St.DetailWrapper>
       <St.DetailWrapper>
         <St.DetailSubject>수량</St.DetailSubject>
-        <St.DetailContent>{SAMPLE[0].quantity}</St.DetailContent>
+        <St.DetailContent>{SAMPLE[0].quantity}개</St.DetailContent>
       </St.DetailWrapper>
       <St.DetailWrapper>
         <St.DetailSubject>주제</St.DetailSubject>
@@ -62,51 +63,49 @@ const ReceiptDetail = () => {
 export default ReceiptDetail;
 
 const St = {
+  Divider: styled.div`
+    height: 1.3rem;
+
+    background-color: ${({ theme }) => theme.colors.bg};
+  `,
   ReceiptDetailWrapper: styled.section`
-    display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
 
-    width: 100%;
-    padding: 0 5.3rem 0 2rem;
+    padding: 0 0 0 2rem;
   `,
   ReceiptTitle: styled.p`
-    margin-left: 0.2rem;
+    margin: 2.8rem 0 2.8rem 0.2rem;
     ${({ theme }) => theme.fonts.title_semibold_18};
     color: ${({ theme }) => theme.colors.gray8};
   `,
   PreviewSection: styled.div`
-    overflow-x: hidden;
+    overflow-x: auto;
   `,
   ImgPreviewContainer: styled.div`
     display: flex;
-
     height: 11.9rem;
-    /* width: 100%; */
     gap: 1rem;
 
-    overflow-x: hidden;
-    /* white-space: nowrap; */
+    overflow-x: scroll;
+    white-space: nowrap;
 
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-
+    -ms-overflow-style: none; //IE and Edge
+    scrollbar-width: none;
     &::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera*/
+      display: none; // Chrome, Safari, Opera
     }
   `,
   Image: styled.article`
     display: flex;
     align-items: center;
 
-    width: 16rem;
-    height: 11.9rem;
     background-color: ${({ theme }) => theme.colors.gray0};
 
     & > img {
-      width: 100%;
-      height: 100%;
+      width: 16rem;
+      height: 11.9rem;
       object-fit: contain;
     }
   `,
@@ -125,18 +124,16 @@ const St = {
     align-items: center;
 
     height: 3rem;
-    padding: 0.6rem 1.8rem;
+    padding: 0.6rem 1.3rem;
 
     border-radius: 0.5rem;
-    gap: 1.8rem;
+    gap: 1.6rem;
     ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray4};
     background-color: ${({ theme }) => theme.colors.bg};
   `,
   Line: styled.div`
     height: 0.1rem;
-    width: 100%;
-
     margin: 3.2rem 0 3rem 0;
 
     background-color: ${({ theme }) => theme.colors.gray0};
@@ -144,13 +141,13 @@ const St = {
   DetailWrapper: styled.section`
     display: flex;
 
-    padding-left: 2.2rem;
+    padding: 0 0 0.8rem 2.2rem;
     gap: 3.8rem;
 
     ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray4};
 
-    .request {
+    &.request {
       gap: 1.5rem;
     }
   `,
