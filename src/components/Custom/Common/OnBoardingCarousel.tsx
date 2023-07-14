@@ -32,8 +32,13 @@ const OnBoardingCarousel = () => {
             <SwiperSlide key={id}>
               <St.SwiperContainer>
                 <St.SwiperHeader>
-                  <St.HeaderMainText>{mainText}</St.HeaderMainText>
-                  <St.HeaderSubText>{subText}</St.HeaderSubText>
+                  <St.SwiperHeaderBanner>
+                    <p>내 도안 그대로 만들기</p>
+                  </St.SwiperHeaderBanner>
+                  <St.SwiperHeaderTextBox>
+                    <St.HeaderMainText>{mainText}</St.HeaderMainText>
+                    <St.HeaderSubText>{subText}</St.HeaderSubText>
+                  </St.SwiperHeaderTextBox>
                 </St.SwiperHeader>
                 <St.SwiperImgContainer>
                   <img src={mockUpImg} alt={imgAlt} />
@@ -120,10 +125,36 @@ const St = {
   SwiperHeader: styled.header`
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 2rem;
 
     width: fit-content;
-    margin: 2.2rem 0 5rem 2.6rem;
+    margin: 2rem 0 1.8rem 2.6rem;
+  `,
+
+  SwiperHeaderBanner: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 13.4rem;
+    height: 2.6rem;
+    padding: 0.4rem 0.8rem;
+
+    background-color: ${({ theme }) => theme.colors.pink1};
+
+    border-radius: 0.5rem;
+
+    & > p {
+      color: ${({ theme }) => theme.colors.pink5};
+
+      ${({ theme }) => theme.fonts.body_medium_14};
+    }
+  `,
+
+  SwiperHeaderTextBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   `,
 
   HeaderMainText: styled.h2`
