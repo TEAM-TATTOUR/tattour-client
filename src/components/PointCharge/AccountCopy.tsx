@@ -28,7 +28,9 @@ const AccountCopy = () => {
 export default AccountCopy;
 
 const St = {
-  TransferAccountContainer: styled.article``,
+  TransferAccountContainer: styled.article`
+    width: 100%;
+  `,
 
   AccountBox: styled.div`
     display: flex;
@@ -39,6 +41,7 @@ const St = {
 
     width: 33.5rem;
     height: 12.2rem;
+    margin: 0 2rem 0 2rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
 

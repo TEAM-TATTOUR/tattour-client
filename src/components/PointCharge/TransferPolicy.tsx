@@ -37,10 +37,8 @@ export default TransferPolicy;
 const St = {
   TransferPolicyWrapper: styled.section`
     display: flex;
-    align-items: center;
     gap: 1.1rem;
-
-    padding: 3.1rem 4.9rem 4rem 2rem;
+    padding: 3.1rem 0 4rem 2rem;
   `,
 
   PolicyAgreeCheckBox: styled.input`
