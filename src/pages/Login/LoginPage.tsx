@@ -1,27 +1,19 @@
-import { styled } from 'styled-components';
 import LoginHome from '../../components/Login/LoginHome';
 import LoginFooter from '../../components/Login/LoginFooter';
+import Header from '../../components/Header';
+import BackBtn from '../../common/Header/BackBtn';
+import PageLayout from '../../components/PageLayout';
 
 const LoginPage = () => {
+  const renderLoginPageHeader = () => {
+    return <Header transparent={true} leftSection={<BackBtn />} fixed={true}/>;
+  };
+
   return (
-    <St.LoginWrapper>
+    <PageLayout renderHeader={renderLoginPageHeader} footer={<LoginFooter />}>
       <LoginHome />
-      <LoginFooter />
-    </St.LoginWrapper>
+    </PageLayout>
   );
-}
-
-const St = {
-  LoginWrapper: styled.section`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    height: 100vh;
-
-    background-color: #1e1e1e;
-  `,
 };
 
 export default LoginPage;
