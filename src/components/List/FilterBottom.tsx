@@ -77,16 +77,10 @@ const FilterBottom = ({
   ];
 
   const handleClickTag = (tag: string, index: number, filterIndex: number) => {
-    setSelected((prev) => !prev);
-    setSelectedTag((prev) => {
-      return prev === '' ? tag : '';
-    }); // 선택한 태그 저장
-    setSelectedIdx((prev) => {
-      return prev === 99 ? index : 99;
-    });
-    setSelectedFilterIdx((prev) => {
-      return prev === 4 ? filterIndex : 4;
-    });
+    setSelected(true);
+    setSelectedTag(tag); // 선택한 태그 저장
+    setSelectedIdx(index);
+    setSelectedFilterIdx(filterIndex);
     console.log(tag, index, filterIndex);
   };
 
@@ -137,7 +131,7 @@ const FilterBottom = ({
               </St.Footer>
             </Sheet.Content>
           </Sheet.Container>
-          <Sheet.Backdrop />
+          <Sheet.Backdrop onTap={filter.onClose} />
         </CustomSheet>
       ))}
     </>
@@ -182,10 +176,6 @@ const St = {
     margin-top: 4rem;
 
     background-color: ${({ theme, $sel }) => ($sel ? theme.colors.gray9 : theme.colors.gray3)};
-
-    & > button {
-      pointer-events: ${({ $sel }) => ($sel ? 'fill' : 'none')};
-    }
   `,
   Button: styled.button`
     width: 100%;
