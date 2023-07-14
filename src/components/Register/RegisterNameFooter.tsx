@@ -28,8 +28,7 @@ const St = {
     justify-content: center;
     width: 100%;
     height: 7rem;
-    position: fixed;
-    left: 0;
+    position: absolute;
     bottom: 0;
 
     background-size: auto;
