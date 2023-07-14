@@ -18,23 +18,21 @@ const ReceiptDetail = () => {
   return (
     <>
       <St.ReceiptDetailWrapper>
-        <St.SlideSection>
-          <St.ReceiptTitle>{SAMPLE[0].name}</St.ReceiptTitle>
-          <St.PreviewSection>
-            <St.ImgPreviewContainer>
-              {SAMPLE[0].previewURL.map((url, index) => (
-                <St.Image key={index}>
-                  <img src={url} alt='첨부-이미지-미리보기' />
-                </St.Image>
-              ))}
-            </St.ImgPreviewContainer>
-            <St.HashtagGroup>
-              {SAMPLE[0].hashtag.map((tag, index) => (
-                <St.Hashtag key={index}>{`#${tag}`}</St.Hashtag>
-              ))}
-            </St.HashtagGroup>
-          </St.PreviewSection>
-        </St.SlideSection>
+        <St.ReceiptTitle>{SAMPLE[0].name}</St.ReceiptTitle>
+        <St.PreviewSection>
+          <St.ImgPreviewContainer>
+            {SAMPLE[0].previewURL.map((url, index) => (
+              <St.Image key={index}>
+                <img src={url} alt='첨부-이미지-미리보기' />
+              </St.Image>
+            ))}
+          </St.ImgPreviewContainer>
+          <St.HashtagGroup>
+            {SAMPLE[0].hashtag.map((tag, index) => (
+              <St.Hashtag key={index}>{`#${tag}`}</St.Hashtag>
+            ))}
+          </St.HashtagGroup>
+        </St.PreviewSection>
       </St.ReceiptDetailWrapper>
       <St.Line />
       <St.DetailWrapper>
@@ -67,37 +65,29 @@ const St = {
   ReceiptDetailWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 
-    padding: 0 5.3rem 0 2.4rem;
-  `,
-  SlideSection: styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
     width: 100%;
-    height: 24.6rem;
-    margin-bottom: 2rem;
+    padding: 0 5.3rem 0 2rem;
   `,
   ReceiptTitle: styled.p`
-    margin-left: 2.2rem;
+    margin-left: 0.2rem;
     ${({ theme }) => theme.fonts.title_semibold_18};
     color: ${({ theme }) => theme.colors.gray8};
   `,
   PreviewSection: styled.div`
-    margin-left: 2rem;
+    overflow-x: hidden;
   `,
   ImgPreviewContainer: styled.div`
     display: flex;
 
     height: 11.9rem;
-    width: 100%;
+    /* width: 100%; */
     gap: 1rem;
 
-    overflow-x: auto;
-    white-space: nowrap;
+    overflow-x: hidden;
+    /* white-space: nowrap; */
 
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
@@ -122,25 +112,43 @@ const St = {
   `,
   HashtagGroup: styled.div`
     display: flex;
+    justify-content: start;
 
     height: 3rem;
     margin-top: 2rem;
 
     gap: 1.8rem;
   `,
+  Hashtag: styled.span`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 3rem;
+    padding: 0.6rem 1.8rem;
+
+    border-radius: 0.5rem;
+    gap: 1.8rem;
+    ${({ theme }) => theme.fonts.body_medium_14};
+    color: ${({ theme }) => theme.colors.gray4};
+    background-color: ${({ theme }) => theme.colors.bg};
+  `,
   Line: styled.div`
     height: 0.1rem;
     width: 100%;
-    padding: 0.6rem 1.3rem;
+
+    margin: 3.2rem 0 3rem 0;
 
     background-color: ${({ theme }) => theme.colors.gray0};
   `,
   DetailWrapper: styled.section`
     display: flex;
+
+    padding-left: 2.2rem;
     gap: 3.8rem;
+
     ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray4};
-    background-color: ${({ theme }) => theme.colors.bg};
 
     .request {
       gap: 1.5rem;
