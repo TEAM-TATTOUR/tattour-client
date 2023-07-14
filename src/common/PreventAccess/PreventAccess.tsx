@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 interface PreventAccessProps {
   title: string;
-  btn_contents: string;
+  btnContents: string;
   // 에러 페이지에서 쓰일건지, 만료 페이지에서 쓰일건지 구분
   isError?: boolean;
 }
 
-const PreventAccess = ({ title, btn_contents, isError }: PreventAccessProps) => {
+const PreventAccess = ({ title, btnContents, isError }: PreventAccessProps) => {
   const navigate = useNavigate();
 
   const handleClickButton = () => {
