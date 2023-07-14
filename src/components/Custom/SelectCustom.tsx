@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { styled } from 'styled-components';
 import SelectCustomBtn from './SelectCustomBtn';
 import { IcArrowRightDark } from '../../assets/icon';
+import SelectCustomPolicyBottom from './SelectCustomPolicyBottom';
 
 const SelectCustom = () => {
   const CASE_BTN_DATA = [
@@ -69,7 +70,7 @@ const SelectCustom = () => {
       </St.SelectBtnContainer>
       <St.SelectCustomPolicyContainer>
         <St.PolicyAgreeTouchArea onClick={() => setSheetOpen(true)}>
-          <St.PolicyAgreeMainText>예비포인트 정책 관련 설명에 동의합니다</St.PolicyAgreeMainText>
+          <St.PolicyAgreeMainText>커스텀 도안 환불 정책에 동의합니다</St.PolicyAgreeMainText>
           <IcArrowRightDark />
         </St.PolicyAgreeTouchArea>
         <St.PolicyAgreeSubTextBox>
@@ -78,7 +79,7 @@ const SelectCustom = () => {
           </St.PolicyAgreeSubText>
           <St.PolicyAgreeSubText>도안 정책에 동의하는 것으로 간주합니다</St.PolicyAgreeSubText>
         </St.PolicyAgreeSubTextBox>
-        {/* <PrePointPolicyBottom isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} /> */}
+        <SelectCustomPolicyBottom isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} />
       </St.SelectCustomPolicyContainer>
     </St.SelectWrapper>
   );
@@ -90,7 +91,6 @@ const St = {
   SelectWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     width: 100%;
     /* height: 100vh; */
@@ -108,11 +108,13 @@ const St = {
   InfoMainText: styled.h2`
     color: ${({ theme }) => theme.colors.gray8};
     ${({ theme }) => theme.fonts.title_semibold_20};
+    padding: 0 6rem;
   `,
 
   SelectBtnContainer: styled.article`
     display: flex;
     gap: 1.5rem;
+    padding: 0 2rem;
   `,
 
   SelectCustomPolicyContainer: styled.article`
@@ -121,11 +123,14 @@ const St = {
     gap: 1rem;
 
     margin-top: 11.7rem;
+    padding-left: 2.4rem;
   `,
 
   PolicyAgreeTouchArea: styled.article`
     display: flex;
     gap: 0.3rem;
+
+    cursor: pointer;
   `,
 
   PolicyAgreeMainText: styled.p`
