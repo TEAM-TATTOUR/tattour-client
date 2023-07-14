@@ -20,7 +20,7 @@ const PreventAccess = ({ title, btnContents, isError }: PreventAccessProps) => {
     <St.ContentsWrapper>
       <IcError />
       <St.Title>{title}</St.Title>
-      <St.Button onClick={handleClickButton}>{btn_contents}</St.Button>
+      <St.Button onClick={handleClickButton}>{btnContents}</St.Button>
     </St.ContentsWrapper>
   );
 };
