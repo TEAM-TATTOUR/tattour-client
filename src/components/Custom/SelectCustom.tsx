@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { styled } from 'styled-components';
 import SelectCustomBtn from './SelectCustomBtn';
+import { IcArrowRightDark } from '../../assets/icon';
 
 const SelectCustom = () => {
   const CASE_BTN_DATA = [
@@ -23,6 +24,8 @@ const SelectCustom = () => {
   const [activeBtn, setActiveBtn] = useState(''); //선택 된 버튼의 상황
   const btnRef = useRef<HTMLButtonElement[]>([]); //상황 선택 버튼 리스트 ref
   const [haveDesign, setHaveDesign] = useState<boolean>(); //리코일 저장 후 서버 통신 예정
+
+  const [isSheetOpen, setSheetOpen] = useState(false);
 
   const handleClickSelBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;
@@ -64,6 +67,19 @@ const SelectCustom = () => {
           );
         })}
       </St.SelectBtnContainer>
+      <St.SelectCustomPolicyContainer>
+        <St.PolicyAgreeTouchArea onClick={() => setSheetOpen(true)}>
+          <St.PolicyAgreeMainText>예비포인트 정책 관련 설명에 동의합니다</St.PolicyAgreeMainText>
+          <IcArrowRightDark />
+        </St.PolicyAgreeTouchArea>
+        <St.PolicyAgreeSubTextBox>
+          <St.PolicyAgreeSubText>
+            다음 페이지로 넘어가 신청서 작성을 시작하면 커스텀
+          </St.PolicyAgreeSubText>
+          <St.PolicyAgreeSubText>도안 정책에 동의하는 것으로 간주합니다</St.PolicyAgreeSubText>
+        </St.PolicyAgreeSubTextBox>
+        {/* <PrePointPolicyBottom isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} /> */}
+      </St.SelectCustomPolicyContainer>
     </St.SelectWrapper>
   );
 };
@@ -77,7 +93,7 @@ const St = {
     align-items: center;
 
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
   `,
 
   SelectInfoContainer: styled.article`
@@ -103,5 +119,27 @@ const St = {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
+    margin-top: 11.7rem;
+  `,
+
+  PolicyAgreeTouchArea: styled.article`
+    display: flex;
+    gap: 0.3rem;
+  `,
+
+  PolicyAgreeMainText: styled.p`
+    color: ${({ theme }) => theme.colors.gray4};
+    ${({ theme }) => theme.fonts.body_medium_16};
+  `,
+
+  PolicyAgreeSubTextBox: styled.div`
+    display: flex;
+    flex-direction: column;
+  `,
+
+  PolicyAgreeSubText: styled.p`
+    color: ${({ theme }) => theme.colors.gray2};
+    ${({ theme }) => theme.fonts.body_medium_14};
   `,
 };
