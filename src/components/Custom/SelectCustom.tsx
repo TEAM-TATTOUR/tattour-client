@@ -6,13 +6,17 @@ const SelectCustom = () => {
   const CASE_BTN_DATA = [
     {
       id: 'noDesign',
-      title: '이미 그려 둔 도안이 있어요',
-      detail: '이미지 파일을 그대로 제작해 드릴게요',
+      firstTitle: '내 도안',
+      secondTitle: '그대로 만들기',
+      firstDetail: '이미지 파일',
+      secondDetail: '그대로 제작해드려요',
     },
     {
       id: 'haveDesign',
-      title: '커스텀 도안을 제작하고 싶어요',
-      detail: '신청서에 맞게 세심하게 제작해 드릴게요',
+      firstTitle: '타투어에게',
+      secondTitle: '도안 의뢰하기',
+      firstDetail: '참고 이미지, 간단 스케치를',
+      secondDetail: '통해 제작해드려요',
     },
   ];
 
@@ -40,18 +44,19 @@ const SelectCustom = () => {
   return (
     <St.SelectWrapper>
       <St.SelectInfoContainer>
-        <St.InfoMainText>어떤 상황에 놓여있나요?</St.InfoMainText>
-        <St.InfoSubText>상황에 맞게 제작해 드려요</St.InfoSubText>
+        <St.InfoMainText>원하는 제작 방식을 선택해주세요</St.InfoMainText>
       </St.SelectInfoContainer>
 
       <St.SelectBtnContainer>
-        {CASE_BTN_DATA.map(({ id, title, detail }, idx) => {
+        {CASE_BTN_DATA.map(({ id, firstTitle, secondTitle, firstDetail, secondDetail }, idx) => {
           return (
             <SelectCustomBtn
               key={id}
               id={id}
-              title={title}
-              detail={detail}
+              firstTitle={firstTitle}
+              secondTitle={secondTitle}
+              firstDetail={firstDetail}
+              secondDetail={secondDetail}
               ref={(element: HTMLButtonElement) => (btnRef.current[idx] = element)}
               onClick={handleClickSelBtn}
               isSelected={activeBtn === id}
@@ -89,13 +94,14 @@ const St = {
     ${({ theme }) => theme.fonts.title_semibold_20};
   `,
 
-  InfoSubText: styled.p`
-    color: ${({ theme }) => theme.colors.gray3};
-    ${({ theme }) => theme.fonts.body_medium_14};
-  `,
-
   SelectBtnContainer: styled.article`
     display: flex;
     gap: 1.5rem;
+  `,
+
+  SelectCustomPolicyContainer: styled.article`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   `,
 };
