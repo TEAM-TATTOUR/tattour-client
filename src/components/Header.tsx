@@ -3,22 +3,35 @@ import { styled } from 'styled-components';
 interface HeaderProps {
   leftSection: React.ReactNode;
   title?: string;
-  rightSection: React.ReactNode;
+  rightSection?: React.ReactNode;
   transparent?: boolean;
+  progressBar?: React.ReactNode;
+  fixed?: boolean;
 }
 
-const Header = ({ leftSection, title, rightSection, transparent }: HeaderProps) => {
+const Header = ({
+  leftSection,
+  title,
+  rightSection,
+  transparent,
+  progressBar,
+  fixed,
+}: HeaderProps) => {
   return (
-    <St.header transparent={transparent}>
-      {leftSection}
-      {title && <St.title>{title}</St.title>}
-      {rightSection}
-    </St.header>
+    <div>
+      <St.header transparent={transparent} $fixed={fixed}>
+        {leftSection}
+        {title && <St.title>{title}</St.title>}
+        {rightSection}
+      </St.header>
+
+      {progressBar}
+    </div>
   );
 };
 
 const St = {
-  header: styled.header<{ transparent?: boolean }>`
+  header: styled.header<{ transparent?: boolean; $fixed?: boolean }>`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,12 +39,14 @@ const St = {
     width: 100%;
     height: 5.6rem;
 
+    position: ${({ $fixed }) => ($fixed ? 'fixed' : 'static')};
+    z-index: ${({ $fixed }) => ($fixed ? 10 : 0)};
     ${({ transparent }) =>
-      transparent ? 'background-color: transparent;' : 'background-color: white;'}
+      transparent ? 'background-color: transparent;' : 'background-color: white;'};
   `,
 
   title: styled.h1`
-    font: ${({ theme }) => theme.fonts.title_semibold_18};
+    ${({ theme }) => theme.fonts.title_semibold_18};
   `,
 };
 
