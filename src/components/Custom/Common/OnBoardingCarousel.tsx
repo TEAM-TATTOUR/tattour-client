@@ -8,16 +8,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import ic_arrow_left_gray from '../../../assets/icon/ic_arrow_left_gray.svg';
 import ic_arrow_right_gray from '../../../assets/icon/ic_arrow_right_gray.svg';
-import {
-  HAVE_DESIGN_CUSTOM_CAROUSEL_DATA,
-  NO_DESIGN_CUSTOM_CAROUSEL_DATA,
-} from '../../../assets/data/ONBOARDING_CAROUSEL_CONTNET';
+import { CUSTOM_CAROUSEL_DATA } from '../../../assets/data/ONBOARDING_CAROUSEL_CONTNET';
 
 const OnBoardingCarousel = () => {
-  const haveDesign = true; //리코일에서 가져 올 예정
-
-  const currData = haveDesign ? HAVE_DESIGN_CUSTOM_CAROUSEL_DATA : NO_DESIGN_CUSTOM_CAROUSEL_DATA;
-
   return (
     <St.SwiperWrapper>
       <Swiper
@@ -27,14 +20,18 @@ const OnBoardingCarousel = () => {
         pagination={{ clickable: true }}
         navigation
       >
-        {currData.map(({ id, mainText, subText, mockUpImg, imgAlt }) => {
+        {CUSTOM_CAROUSEL_DATA.map(({ id, bannerText, mainText, subText, mockUpImg, imgAlt }) => {
           return (
             <SwiperSlide key={id}>
               <St.SwiperContainer>
                 <St.SwiperHeader>
-                  <St.SwiperHeaderBanner>
-                    <p>내 도안 그대로 만들기</p>
-                  </St.SwiperHeaderBanner>
+                  {bannerText ? (
+                    <St.SwiperHeaderBanner>
+                      <p>{bannerText}</p>
+                    </St.SwiperHeaderBanner>
+                  ) : (
+                    <></>
+                  )}
                   <St.SwiperHeaderTextBox>
                     <St.HeaderMainText>{mainText}</St.HeaderMainText>
                     <St.HeaderSubText>{subText}</St.HeaderSubText>
@@ -136,7 +133,7 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    width: 13.4rem;
+    width: fit-content;
     height: 2.6rem;
     padding: 0.4rem 0.8rem;
 
@@ -146,7 +143,6 @@ const St = {
 
     & > p {
       color: ${({ theme }) => theme.colors.pink5};
-
       ${({ theme }) => theme.fonts.body_medium_14};
     }
   `,
