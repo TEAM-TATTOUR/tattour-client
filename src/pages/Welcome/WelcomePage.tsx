@@ -9,6 +9,7 @@ const WelcomePage = () => {
   const renderWelcomePageHeader = () => {
     return (
       <Header
+        fixed={true}
         leftSection={<St.BlankSection></St.BlankSection>}
         title='회원가입'
         rightSection={<St.BlankSection></St.BlankSection>}
