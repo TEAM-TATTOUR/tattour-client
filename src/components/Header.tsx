@@ -18,36 +18,46 @@ const Header = ({
   fixed,
 }: HeaderProps) => {
   return (
-    <div>
-      <St.header transparent={transparent} $fixed={fixed}>
+    <St.header $transparent={transparent} $fixed={fixed}>
+      <St.SectionWrapper>
         {leftSection}
         {title && <St.title>{title}</St.title>}
         {rightSection}
-      </St.header>
+      </St.SectionWrapper>
 
       {progressBar}
-    </div>
+    </St.header>
   );
 };
 
 const St = {
-  header: styled.header<{ transparent?: boolean; $fixed?: boolean }>`
+  header: styled.header<{ $transparent?: boolean; $fixed?: boolean }>`
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1.8rem;
+    justify-content: center;
+    flex-direction: column;
     width: 100%;
-    height: 5.6rem;
 
     position: ${({ $fixed }) => ($fixed ? 'fixed' : 'static')};
+    left: 0;
     z-index: ${({ $fixed }) => ($fixed ? 10 : 0)};
-    ${({ transparent }) =>
-      transparent ? 'background-color: transparent;' : 'background-color: white;'};
+    ${({ $transparent }) =>
+      $transparent ? 'background-color: transparent;' : 'background-color: white;'};
   `,
 
   title: styled.h1`
     ${({ theme }) => theme.fonts.title_semibold_18};
   `,
+
+  SectionWrapper: styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 1.8rem;
+    height: 5.6rem;
+  `,
+
+  ProgressBar: styled.div``,
 };
 
 export default Header;
