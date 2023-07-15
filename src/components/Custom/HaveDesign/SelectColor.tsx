@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import SelectColorBtn from './SelectColorBtn';
+import IcCircleRainbow from '../../../assets/icon/ic_circle_rainbow.png';
+import IcCircleBlack from '../../../assets/icon/ic_circle_black.png';
 
 const SelectColor = () => {
   const CASE_BTN_DATA = [
     {
       id: 'black',
       title: '블랙',
-      src: 'IcCircleBlack',
+      src: IcCircleBlack,
       isSelected: false,
     },
     {
       id: 'color',
       title: '컬러',
-      src: 'IcCircleRainbow',
+      src: IcCircleRainbow,
       isSelected: false,
     },
   ];

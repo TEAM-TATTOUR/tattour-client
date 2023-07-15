@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
-import { IcApplyCheckGray, IcApplyCheckPink, IcCircleBlack } from '../../../assets/icon';
-import IcCircleRainbow from '../../../assets/icon/ic_circle_rainbow.png';
+import { IcApplyCheckGray, IcApplyCheckPink } from '../../../assets/icon';
 import React from 'react';
 
 interface SelectColorBtnProps {
@@ -24,7 +23,7 @@ const SelectColorBtn = ({ id, title, src, onClick, activeBtn }: SelectColorBtnPr
       className={`${activeBtn === id ? 'isSelected' : ''}`}
     >
       {id === activeBtn ? <IcApplyCheckPink /> : <IcApplyCheckGray />}
-      {src === 'IcCircleBlack' ? <IcCircleBlack /> : <img src={IcCircleRainbow} />}
+      <img src={src} alt={title} />
       <St.SelectBtnTitle>{title}</St.SelectBtnTitle>
     </St.SelectBtnContent>
   );
@@ -61,16 +60,5 @@ const St = {
     white-space: pre-line;
 
     pointer-events: none;
-  `,
-
-  SelectBtnImg: styled.img`
-    color: ${({ theme }) => theme.colors.gray3};
-    ${({ theme }) => theme.fonts.detail_medium_12};
-
-    text-align: center;
-
-    white-space: pre-line;
-
-    pointer-events: pointer;
   `,
 };
