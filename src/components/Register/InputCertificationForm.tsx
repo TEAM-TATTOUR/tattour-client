@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react';
 import Timer from './Timer';
 import sliceMaxLength from '../../utils/sliceMaxLength';
 import ErrorMessage from './ErrorMessage';
+import { useNavigate } from 'react-router-dom';
 
 const InputCertificationForm = () => {
+  const navigate = useNavigate();
   // 임의의 인증번호
   const CERTIFICATION_NUM = 1234;
   // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
@@ -20,8 +22,7 @@ const InputCertificationForm = () => {
     if (parseInt(e.target.value) === CERTIFICATION_NUM) {
       setIsCorrect(true);
 
-      // alert 대신 회원가입 완료 페이지로 넘어가게 하기
-      setTimeout(() => alert('success!'), 500);
+      setTimeout(() => navigate('/welcome-signup'), 1000);
     } else {
       setIsCorrect(false);
       setCertificationLen(e.target.value.length);
