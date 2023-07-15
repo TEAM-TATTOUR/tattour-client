@@ -4,10 +4,10 @@ import { useState, useRef, useEffect } from 'react';
 
 const CustomSelectSize = () => {
   const BTN_DATA = [
-    { id: 'size 1', title: '5cm 이하', detail: '동전 크기' },
-    { id: 'size 2', title: 'A4 1/8', detail: '신용카드, 담뱃갑 크기' },
-    { id: 'size 3', title: 'A4 1/4', detail: '엽서, 손바닥 크기' },
-    { id: 'size 4', title: '5cm 이하', detail: '아래팔 한 쪽 면 크기' },
+    { id: 'quarter', title: '5cm 이하', detail: '동전 크기' },
+    { id: 'regular', title: 'A4 1/8', detail: '신용카드, 담뱃갑 크기' },
+    { id: 'half', title: 'A4 1/4', detail: '엽서, 손바닥 크기' },
+    { id: 'double', title: '5cm 이하', detail: '아래팔 한 쪽 면 크기' },
   ];
 
   const [selectedBtn, setSelectedBtn] = useState('');
@@ -32,8 +32,11 @@ const CustomSelectSize = () => {
   return (
     <St.SizeWrapper>
       <St.SizeInfoContainer>
-        <St.InfoMainText>원하는 타투 크기를 골라주세요</St.InfoMainText>
-        <St.InfoSubText>고민되는 크기를 선택해주세요!</St.InfoSubText>
+        <St.InfoMainText>크기를 선택해주세요</St.InfoMainText>
+        <St.InfoSubTextBox>
+          <St.InfoSubText>직접 입력 기능은 추후 업데이트 예정이니, 정확한 크기를</St.InfoSubText>
+          <St.InfoSubText>원하시면 [요청사항]에 mm 단위로 크기를 작성해주세요</St.InfoSubText>
+        </St.InfoSubTextBox>
       </St.SizeInfoContainer>
       <St.SizeBntContainer>
         {BTN_DATA.map(({ id, title, detail }, idx) => {
@@ -70,17 +73,22 @@ const St = {
     flex-direction: column;
     gap: 1.2rem;
 
-    margin: 5.6rem 0 4rem 0;
+    margin: 4.6rem 0 3rem 0;
   `,
 
   InfoMainText: styled.h2`
     color: ${({ theme }) => theme.colors.gray8};
-    ${({ theme }) => theme.fonts.title_semibold_18};
+    ${({ theme }) => theme.fonts.title_semibold_20};
   `,
 
   InfoSubText: styled.p`
     color: ${({ theme }) => theme.colors.gray3};
     ${({ theme }) => theme.fonts.body_medium_14};
+  `,
+
+  InfoSubTextBox: styled.div`
+    display: flex;
+    flex-direction: column;
   `,
 
   SizeBntContainer: styled.article`
