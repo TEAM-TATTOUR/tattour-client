@@ -1,27 +1,15 @@
 import styled from 'styled-components';
 import { IcArrowBottomSmallGray, IcArrowBottomSmallLight } from '../../assets/icon';
 import { useState, useEffect, useRef } from 'react';
-import { filterProps } from 'framer-motion';
 
 interface TattooListProps {
-  isSortOpen: boolean;
   setSortOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isGenreOpen: boolean;
   setGenreOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isStyleOpen: boolean;
   setStyleOpen: React.Dispatch<React.SetStateAction<boolean>>;
   buttonName: string[];
 }
 
-const TattooList = ({
-  isSortOpen,
-  setSortOpen,
-  isGenreOpen,
-  setGenreOpen,
-  isStyleOpen,
-  setStyleOpen,
-  buttonName,
-}: TattooListProps) => {
+const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: TattooListProps) => {
   const [count, setCount] = useState(17);
 
   const [selectedFilter, setSelectedFilter] = useState([false, false, false]); // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
@@ -41,9 +29,6 @@ const TattooList = ({
     },
   ];
 
-  // 변화 -> bg색 to gray7, 글자색 to white, arrow icon to white
-  // 변화 조건 : buttonName 배열의 각 요소가 filter.type인지 check -> 맞으면 default, 다르면 바뀐걸로
-  // useEffect 사용해서 변화 감지하기 -> 위치는 TattooList에서
   const filterRef = useRef(null);
   const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
 
@@ -71,15 +56,12 @@ const TattooList = ({
             onClick={() => {
               switch (idx) {
                 case 0:
-                  //if (isSortOpen) setSortOpen(false);
                   setSortOpen(true);
                   break;
                 case 1:
-                  //if (isGenreOpen) setGenreOpen(false);
                   setGenreOpen(true);
                   break;
                 case 2:
-                  //if (isStyleOpen) setStyleOpen(false);
                   setStyleOpen(true);
                   break;
               }
