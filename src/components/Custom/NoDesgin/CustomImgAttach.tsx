@@ -38,7 +38,7 @@ const CustomImgAttach = () => {
         </St.ImgPreviewContainer>
       ) : (
         <St.ImgAttachArea>
-          <p>도안 이미지를 첨부해주세요</p>
+          <p>투명한 배경, 고화질 png 파일 1장을 첨부해주세요</p>
         </St.ImgAttachArea>
       )}
       <label htmlFor='imgInput'>

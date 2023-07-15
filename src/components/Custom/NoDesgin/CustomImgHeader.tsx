@@ -7,11 +7,11 @@ const CustomImgHeader = () => {
       <St.ImgInfoTitle>그려둔 도안 이미지를 첨부해주세요</St.ImgInfoTitle>
       <St.ImgInfoDetail>
         <IcCheckSmallGray />
-        <span>선택 크기보다 0cm 이상 여유 있는 크기로 첨부해주세요</span>
+        <span>선택 크기보다 1cm 이상 여유가 필요해요</span>
       </St.ImgInfoDetail>
       <St.ImgInfoDetail>
         <IcCheckSmallGray />
-        <span>투명한 배경, 고화질 png 파일로 1장 첨부해주세요</span>
+        <span>다른 타투이스트의 도안을 첨부할 경우 저작권 문제로 신청서가 반려될 수 있어요</span>
       </St.ImgInfoDetail>
     </St.ImgInfoContainer>
   );
@@ -23,7 +23,7 @@ const St = {
   ImgInfoContainer: styled.article`
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.4rem;
 
     margin: 5.6rem 0 3.6rem;
   `,
@@ -37,14 +37,21 @@ const St = {
 
   ImgInfoDetail: styled.p`
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.2rem;
 
+    white-space: pre-line;
+
     & > span {
+      max-width: 28.4rem;
       padding-top: 0.2rem;
 
       color: ${({ theme }) => theme.colors.gray3};
       ${({ theme }) => theme.fonts.body_medium_14};
     }
+  `,
+  ImgInfoDetailBox: styled.div`
+    display: flex;
+    flex-direction: column;
   `,
 };
