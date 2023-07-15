@@ -18,7 +18,7 @@ const Header = ({
   fixed,
 }: HeaderProps) => {
   return (
-    <St.header transparent={transparent} $fixed={fixed}>
+    <St.header $transparent={transparent} $fixed={fixed}>
       <St.SectionWrapper>
         {leftSection}
         {title && <St.title>{title}</St.title>}
@@ -31,7 +31,7 @@ const Header = ({
 };
 
 const St = {
-  header: styled.header<{ transparent?: boolean; $fixed?: boolean }>`
+  header: styled.header<{ $transparent?: boolean; $fixed?: boolean }>`
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -40,8 +40,8 @@ const St = {
     position: ${({ $fixed }) => ($fixed ? 'fixed' : 'static')};
     left: 0;
     z-index: ${({ $fixed }) => ($fixed ? 10 : 0)};
-    ${({ transparent }) =>
-      transparent ? 'background-color: transparent;' : 'background-color: white;'};
+    ${({ $transparent }) =>
+      $transparent ? 'background-color: transparent;' : 'background-color: white;'};
   `,
 
   title: styled.h1`
