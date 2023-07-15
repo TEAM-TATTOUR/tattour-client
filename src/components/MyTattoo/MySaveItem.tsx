@@ -1,21 +1,17 @@
 import { styled } from 'styled-components';
+import { ImgStorage } from '../../assets/icon';
 
-const renderDummyImageComponent = () => {
-  return (
-    <div
-      style={{
-        width: '15.3rem',
-        height: '16.3rem',
-        backgroundColor: 'gray',
-      }}
-    ></div>
-  );
-};
-
-const MySaveItem = ({ title }: { title: string }) => {
+const MySaveItem = ({
+  title,
+  haveReferenceImage,
+}: {
+  title: string;
+  haveReferenceImage: boolean;
+}) => {
   return (
     <St.MySaveItem>
-      {renderDummyImageComponent()}
+      {!haveReferenceImage && <ImgStorage />}
+      <St.MySaveItemImg />
       <St.MySaveItemTitle>{title}</St.MySaveItemTitle>
     </St.MySaveItem>
   );
@@ -28,6 +24,13 @@ const St = {
     & > svg {
       position: absolute;
     }
+  `,
+
+  MySaveItemImg: styled.img`
+    width: 15.3rem;
+    height: 16.3rem;
+
+    background-color: ${({ theme }) => theme.colors.gray0};
   `,
 
   MySaveItemTitle: styled.h3`
