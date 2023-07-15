@@ -63,9 +63,11 @@ const St = {
   SizeWrapper: styled.section`
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     width: 100%;
-    height: 100vh;
+    height: fit-content;
+    padding: 4.6rem 0 11.9rem 0;
   `,
 
   SizeInfoContainer: styled.article`
@@ -73,7 +75,7 @@ const St = {
     flex-direction: column;
     gap: 1.2rem;
 
-    margin: 4.6rem 0 3rem 0;
+    margin-bottom: 3rem;
   `,
 
   InfoMainText: styled.h2`

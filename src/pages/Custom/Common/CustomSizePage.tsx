@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 import CustomSelectSize from '../../../components/Custom/Common/CustomSelectSize';
 import Header from '../../../components/Header';
-import { IcCancelDark } from '../../../assets/icon';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import ProgressBar from '../../../common/ProgressBar';
 import PageLayout from '../../../components/PageLayout';
