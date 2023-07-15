@@ -3,9 +3,9 @@ import SelectCustom from '../../components/Custom/SelectCustom';
 import Header from '../../components/Header';
 import { useState } from 'react';
 import PageLayout from '../../components/PageLayout';
-import NextFooter from '../../common/Footer/NextFooter';
 import { IcCancelDark } from '../../assets/icon';
 import { useNavigate } from 'react-router-dom';
+import SelectCustomFooter from '../../components/Custom/SelectCustomFooter';
 
 const SelectPage = () => {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const SelectPage = () => {
   return (
     <PageLayout
       renderHeader={renderSelectCustomPageHeader}
-      footer={<NextFooter isActiveNext={isActiveNext} navigateURL='/custom-size' />}
+      footer={<SelectCustomFooter isActiveNext={isActiveNext} />}
     >
       <SelectCustom setIsActiveNext={setIsActiveNext} />
     </PageLayout>
