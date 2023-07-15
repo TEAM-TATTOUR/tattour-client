@@ -3,8 +3,11 @@ import { useState, useEffect } from 'react';
 import Timer from './Timer';
 import sliceMaxLength from '../../utils/sliceMaxLength';
 import ErrorMessage from './ErrorMessage';
+import { useNavigate } from 'react-router-dom';
 
 const InputCertificationForm = () => {
+  const navigate = useNavigate();
+  
   // 임의의 인증번호
   const CERTIFICATION_NUM = 1234;
   // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
@@ -14,12 +17,14 @@ const InputCertificationForm = () => {
 
   const isError = !isCorrect && certificationLen === 4;
 
+  const [isTimeout, setIsTimeout] = useState(false);
+
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (parseInt(e.target.value) === CERTIFICATION_NUM) {
       setIsCorrect(true);
+      
+      setTimeout(() => navigate('/welcome-signup'), 1000);
 
-      // alert 대신 회원가입 완료 페이지로 넘어가게 하기
-      setTimeout(() => alert('success!'), 500);
     } else {
       setIsCorrect(false);
       setCertificationLen(e.target.value.length);
@@ -34,14 +39,15 @@ const InputCertificationForm = () => {
   return (
     <St.CertificationInputWrapper>
       <St.CertificationInput
-        id={isError ? 'errorInput' : 'successInput'}
-        onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 4)}
+        id={isError || isTimeout ? 'errorInput' : 'successInput'}
+        disabled={isTimeout ? true : false}
+        onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 4, 'onlyNum')}
         placeholder='인증번호를 입력해주세요'
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeCertificationInput(e)}
       ></St.CertificationInput>
-      <Timer isCorrect={isCorrect} />
+      <Timer isCorrect={isCorrect} isTimeout={isTimeout} setIsTimeout={setIsTimeout} />
 
-      {isError && <ErrorMessage />}
+      {(isError || isTimeout) && <ErrorMessage isTimeout={isTimeout} />}
     </St.CertificationInputWrapper>
   );
 };
@@ -69,6 +75,10 @@ const St = {
       color: ${({ theme }) => theme.colors.gray2};
 
       ${({ theme }) => theme.fonts.body_medium_16};
+    }
+
+    &:focus {
+      outline: 0;
     }
 
     &#errorInput {
