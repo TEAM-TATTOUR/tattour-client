@@ -37,6 +37,7 @@ export { ReactComponent as IcPhoto } from './ic_photo.svg';
 export { ReactComponent as IcPlus } from './ic_plus.svg';
 export { ReactComponent as IcSearchDark } from './ic_search_dark.svg';
 export { ReactComponent as IcSearchLight } from './ic_search_light.svg';
+export { ReactComponent as IcSearchGray } from './ic_search_gray.svg';
 export { ReactComponent as IcShop } from './ic_shop.svg';
 export { ReactComponent as IcError } from './ic_error.svg';
 
