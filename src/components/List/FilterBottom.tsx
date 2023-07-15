@@ -102,8 +102,6 @@ const FilterBottom = ({
       if (!el) return;
       if (tagRefs.current.indexOf(el) === index) {
         // 클릭할 때마다 토글 구현
-        console.log('target', index);
-        console.log(tagRefs);
         if (tagRefs.current[index].classList[2] === 'checked') {
           tagRefs.current[index].classList.remove('checked');
         } else {
