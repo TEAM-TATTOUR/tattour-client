@@ -1,4 +1,5 @@
-import BigScrollContainer from '../../common/BigScrollContainer';
+import { styled } from 'styled-components';
+import CustomScrollContainer from '../../common/CustomScrollContainer';
 import MyCustomItem from './MyCustomItem';
 
 const dummyMyCustomData = [
@@ -18,12 +19,26 @@ const dummyMyCustomData = [
 
 const MyCustom = () => {
   return (
-    <BigScrollContainer title={'MY CUSTOM'}>
-      {dummyMyCustomData.map(({ id, title }) => {
-        return <MyCustomItem key={id} title={title} />;
-      })}
-    </BigScrollContainer>
+    <>
+      <CustomScrollContainer title={'MY CUSTOM'}>
+        {dummyMyCustomData.map(({ id, title }) => {
+          return <MyCustomItem key={id} title={title} />;
+        })}
+      </CustomScrollContainer>
+      <St.Divide />
+    </>
   );
+};
+
+const St = {
+  Divide: styled.hr`
+    width: 100%;
+    height: 1.3rem;
+
+    border: none;
+
+    background-color: ${({ theme }) => theme.colors.bg};
+  `,
 };
 
 export default MyCustom;
