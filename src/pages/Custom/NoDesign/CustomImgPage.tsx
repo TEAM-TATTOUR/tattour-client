@@ -10,7 +10,7 @@ import NextFooter from '../../../common/Footer/NextFooter';
 
 const CustomImgPage = () => {
   const [modalOn, setModalOn] = useState(false);
-  const [isActiveBtn, setIsActiveBtn] = useState(false);
+  const [isActiveNext, setIsActiveNext] = useState(false);
 
   const renderCustomImgPageHeader = () => {
     return (
@@ -32,9 +32,9 @@ const CustomImgPage = () => {
   return (
     <PageLayout
       renderHeader={renderCustomImgPageHeader}
-      footer={<NextFooter isActiveBtn={isActiveBtn} navigateURL='/custom-request' />}
+      footer={<NextFooter isActiveNext={isActiveNext} navigateURL='/custom-request' />}
     >
-      <CustomImg setIsActiveBtn={setIsActiveBtn} />
+      <CustomImg setIsActiveNext={setIsActiveNext} />
     </PageLayout>
   );
 };

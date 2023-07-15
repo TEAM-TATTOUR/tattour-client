@@ -1,9 +1,17 @@
 import { styled } from 'styled-components';
 import { IcCancelDark, IcPhoto } from '../../../assets/icon';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const CustomImgAttach = () => {
+const CustomImgAttach = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [previewURL, setPreviewURL] = useState('');
+
+  useEffect(() => {
+    previewURL ? setIsActiveNext(true) : setIsActiveNext(false);
+  }, [previewURL]);
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
