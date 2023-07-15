@@ -42,6 +42,7 @@ const MainPage = () => {
         rightSection={
           <MainHeaderButton setIsSideMenuOpen={setIsSideMenuOpen} light={isHeaderTransparent} />
         }
+        fixed={true}
       />
     );
   };
