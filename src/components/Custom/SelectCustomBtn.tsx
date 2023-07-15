@@ -58,6 +58,8 @@ const St = {
     display: flex;
     flex-direction: column;
     gap: 2.08;
+
+    pointer-events: none;
   `,
 
   SelectBtnTitle: styled.h3`
@@ -78,6 +80,8 @@ const St = {
     display: flex;
     flex-direction: column;
     gap: 1.56;
+
+    pointer-events: none;
   `,
 
   SelectBtnDetail: styled.p<{ $case: string }>`
