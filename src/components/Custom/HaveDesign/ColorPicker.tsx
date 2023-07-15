@@ -4,6 +4,9 @@ import {
   IcBrushBold,
   IcBrushLight,
   IcBrushMedium,
+  IcBrushBoldSelected,
+  IcBrushLightSelected,
+  IcBrushMediumSelected,
   IcColorBlack,
   IcColorBlackSelected,
   IcColorBlue,
@@ -35,32 +38,65 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
     onColorChange(color);
   };
 
-  const handleChangeBrush: React.MouseEventHandler<SVGSVGElement> = (event) => {
-    const pathElement = event.currentTarget.querySelector('path');
-    const brush = parseInt(pathElement?.getAttribute('stroke-width') || '4', 10);
+  const handleChangeBrush = (brush: number) => {
     setSelectedBrush(brush);
     onBrushChange(brush);
   };
 
-  const handleChangeSuggestedColor: React.MouseEventHandler<SVGSVGElement> = (event) => {
-    const rectElement = event.currentTarget.querySelector('rect');
-    const color = rectElement?.getAttribute('fill') || '#0C0D11';
+  const handleChangeSuggestedColor = (color: string) => {
     setSelectedSuggestedColor(color);
     onColorChange(color);
   };
 
+  const colorIcons = [
+    {
+      color: '#0C0D11',
+      Icon: selectedSuggestedColor === '#0C0D11' ? IcColorBlackSelected : IcColorBlack,
+    },
+    {
+      color: '#FF4444',
+      Icon: selectedSuggestedColor === '#FF4444' ? IcColorRedSelected : IcColorRed,
+    },
+    {
+      color: '#FFCA41',
+      Icon: selectedSuggestedColor === '#FFCA41' ? IcColorYellowSelected : IcColorYellow,
+    },
+    {
+      color: '#449AFF',
+      Icon: selectedSuggestedColor === '#449AFF' ? IcColorBlueSelected : IcColorBlue,
+    },
+  ];
+
+  const brushIcons = [
+    {
+      brush: 2,
+      Icon: selectedBrush === 2 ? IcBrushLightSelected : IcBrushLight,
+    },
+    {
+      brush: 3,
+      Icon: selectedBrush === 3 ? IcBrushMediumSelected : IcBrushMedium,
+    },
+    {
+      brush: 4,
+      Icon: selectedBrush === 4 ? IcBrushBoldSelected : IcBrushBold,
+    },
+  ];
+
   return (
     <St.OptionBox>
       <St.SelectLine>
-        <IcBrushLight onClick={handleChangeBrush} />
-        <IcBrushMedium onClick={handleChangeBrush} />
-        <IcBrushBold onClick={handleChangeBrush} />
+        {brushIcons.map(({ brush, Icon }) => (
+          <St.BrushIconWrapper key={brush} isSelected={selectedBrush === brush}>
+            <Icon onClick={() => handleChangeBrush(brush)} />
+          </St.BrushIconWrapper>
+        ))}
       </St.SelectLine>
       <St.SelectColor>
-        <IcColorBlack onClick={handleChangeSuggestedColor} />
-        <IcColorRed onClick={handleChangeSuggestedColor} />
-        <IcColorYellow onClick={handleChangeSuggestedColor} />
-        <IcColorBlue onClick={handleChangeSuggestedColor} />
+        {colorIcons.map(({ color, Icon }) => (
+          <St.ColorIconWrapper key={color} isSelected={selectedSuggestedColor === color}>
+            <Icon onClick={() => handleChangeSuggestedColor(color)} />
+          </St.ColorIconWrapper>
+        ))}
         <St.ColorPickerWrapper selectedColor={selectedColor}>
           <St.ColorPicker
             src={selectedColor || IcColorRainbow}
@@ -138,5 +174,31 @@ const St = {
     background-color: ${({ theme }) => theme.colors.bg};
 
     border-radius: 0.5rem;
+  `,
+  BrushIconWrapper: styled.div<{ isSelected: boolean }>`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  `,
+  ColorIconWrapper: styled.div<{ isSelected: boolean }>`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    cursor: pointer;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
   `,
 };
