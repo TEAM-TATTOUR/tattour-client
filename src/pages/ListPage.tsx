@@ -9,9 +9,7 @@ const ListPage = () => {
   const [isStyleOpen, setStyleOpen] = useState(false);
 
   const [buttonName, setButtonName] = useState(['정렬', '장르', '스타일']);
-  const [selectedIdx, setSelectedIdx] = useState(99); // 선택한 태그의 인덱스 저장
   const [isSelected, setSelected] = useState(false);
-  const [selectedFilterIdx, setSelectedFilterIdx] = useState(4);
 
   return (
     <div>
