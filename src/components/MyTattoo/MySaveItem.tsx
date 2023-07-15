@@ -10,8 +10,8 @@ const MySaveItem = ({
 }) => {
   return (
     <St.MySaveItem>
-      {haveReferenceImage ? '' : <ImgStorage />}
-      <St.MySaveItemImg></St.MySaveItemImg>
+      {!haveReferenceImage && <ImgStorage />}
+      <St.MySaveItemImg />
       <St.MySaveItemTitle>{title}</St.MySaveItemTitle>
     </St.MySaveItem>
   );
