@@ -3,15 +3,28 @@ import { ImgLogoLight } from '../../assets/icon';
 
 const LoginHome = () => {
   return (
-    <St.ContentsWrapper>
-      <ImgLogoLight />
-      <St.Title>후회없는 선택의 여정을 함께,</St.Title>
-      <St.SubTitle>1초만에 가입하고 지금만 받을 수 있는 혜택 받아가세요!</St.SubTitle>
-    </St.ContentsWrapper>
+    <St.LoginWrapper>
+      <St.ContentsWrapper>
+        <ImgLogoLight />
+        <St.Title>후회없는 선택의 여정을 함께,</St.Title>
+        <St.SubTitle>1초만에 가입하고 지금만 받을 수 있는 혜택 받아가세요!</St.SubTitle>
+      </St.ContentsWrapper>
+    </St.LoginWrapper>
   );
-}
+};
 
 const St = {
+  LoginWrapper: styled.section`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+
+    background-color: #1e1e1e;
+  `,
+
   ContentsWrapper: styled.article`
     display: flex;
     flex-direction: column;
