@@ -61,7 +61,7 @@ const St = {
       outline: 0;
     }
 
-    ::placeholder {
+    &::placeholder {
       color: ${({ theme }) => theme.colors.gray2};
     }
   `,
