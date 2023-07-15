@@ -6,8 +6,10 @@ import ProgressBar from '../../../common/ProgressBar';
 import PageLayout from '../../../components/PageLayout';
 import NextFooter from '../../../common/Footer/NextFooter';
 import { useState } from 'react';
+import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 
 const CustomSizePage = () => {
+  const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
   const renderCustomSizePageHeader = () => {
@@ -15,7 +17,13 @@ const CustomSizePage = () => {
       <Header
         leftSection={<St.BlankSection></St.BlankSection>}
         title='커스텀 타투'
-        rightSection={<CancelBtn />}
+        rightSection={
+          <CancelBtn
+            modalOn={modalOn}
+            setModalOn={setModalOn}
+            targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
+          />
+        }
         progressBar={<ProgressBar curStep={1} maxStep={5} />}
       />
     );
