@@ -4,8 +4,10 @@ import { forwardRef } from 'react';
 
 interface SelectCustomBtnProps {
   id: string;
-  title: string;
-  detail: string;
+  firstTitle: string;
+  secondTitle: string;
+  firstDetail: string;
+  secondDetail: string;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   isSelected: boolean;
 }
@@ -13,12 +15,18 @@ interface SelectCustomBtnProps {
 export type Ref = HTMLButtonElement;
 
 const SelectCustomBtn = forwardRef<Ref, SelectCustomBtnProps>(
-  ({ id, title, detail, onClick, isSelected }, ref) => {
+  ({ id, firstTitle, secondTitle, firstDetail, secondDetail, onClick, isSelected }, ref) => {
     return (
       <St.SelectBtnContent type='button' id={id} onClick={onClick} ref={ref}>
         {isSelected ? <IcApplyCheckPink /> : <IcApplyCheckGray />}
-        <St.SelectBtnTitle $case={id}>{title}</St.SelectBtnTitle>
-        <St.SelectBtnDetail $case={id}>{detail}</St.SelectBtnDetail>
+        <St.SelectBtnTitleBox>
+          <St.SelectBtnTitle>{firstTitle}</St.SelectBtnTitle>
+          <St.SelectBtnTitle>{secondTitle}</St.SelectBtnTitle>
+        </St.SelectBtnTitleBox>
+        <St.SelectBtnDetailBox>
+          <St.SelectBtnDetail $case={id}>{firstDetail}</St.SelectBtnDetail>
+          <St.SelectBtnDetail $case={id}>{secondDetail}</St.SelectBtnDetail>
+        </St.SelectBtnDetailBox>
       </St.SelectBtnContent>
     );
   },
@@ -46,21 +54,38 @@ const St = {
     }
   `,
 
-  SelectBtnTitle: styled.h3<{ $case: string }>`
-    width: ${({ $case }) => ($case === 'haveDesign' ? 10 : 8.6)}rem;
+  SelectBtnTitleBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2.08;
 
-    color: ${({ theme }) => theme.colors.gray7};
+    pointer-events: none;
+  `,
+
+  SelectBtnTitle: styled.h3`
+    width: 8.6rem;
+
+    color: ${({ theme }) => theme.colors.gray5};
     ${({ theme }) => theme.fonts.title_semibold_16};
 
     text-align: center;
 
     white-space: pre-line;
+    word-break: keep-all;
+
+    pointer-events: none;
+  `,
+
+  SelectBtnDetailBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1.56;
 
     pointer-events: none;
   `,
 
   SelectBtnDetail: styled.p<{ $case: string }>`
-    width: ${({ $case }) => ($case === 'haveDesign' ? 11.6 : 10.6)}rem;
+    width: ${({ $case }) => ($case === 'haveDesign' ? 12.6 : 9.7)}rem;
 
     color: ${({ theme }) => theme.colors.gray3};
     ${({ theme }) => theme.fonts.detail_medium_12};
@@ -68,6 +93,7 @@ const St = {
     text-align: center;
 
     white-space: pre-line;
+    word-break: keep-all;
 
     pointer-events: none;
   `,
