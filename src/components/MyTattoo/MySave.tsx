@@ -1,4 +1,3 @@
-import { styled } from 'styled-components';
 import CustomScrollContainer from '../../common/CustomScrollContainer';
 import MySaveItem from './MySaveItem';
 
@@ -22,23 +21,12 @@ const dummyMySaveData = [
 
 const MySave = () => {
   return (
-    <BigScrollContainer title={'SAVE'}>
+    <CustomScrollContainer title={'SAVE'}>
       {dummyMySaveData.map(({ id, title, haveReferenceImage }) => {
         return <MySaveItem key={id} title={title} haveReferenceImage={haveReferenceImage} />;
       })}
-    </BigScrollContainer>
+    </CustomScrollContainer>
   );
-};
-
-const St = {
-  Divide: styled.hr`
-    width: 100%;
-    height: 1.3rem;
-
-    border: none;
-
-    background-color: ${({ theme }) => theme.colors.bg};
-  `,
 };
 
 export default MySave;

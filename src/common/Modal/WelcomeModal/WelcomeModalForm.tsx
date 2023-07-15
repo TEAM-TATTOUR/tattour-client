@@ -1,46 +1,19 @@
 import styled from 'styled-components';
-import { IcCancelDark } from '../../../assets/icon';
+import { IcCancelDark, ImgPointCoupon } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 
-interface EscapeModalFormProps {
+interface WelcomeModalFormProps {
   onClose: () => void;
-  pageName: string;
   title: string;
-  subTitle: string;
   continueBtn: string;
-  stopBtn: string;
 }
 
-const EscapeModalForm = ({
-  onClose,
-  pageName,
-  title,
-  subTitle,
-  continueBtn,
-  stopBtn,
-}: EscapeModalFormProps) => {
+const WelcomeModalForm = ({ onClose, title, continueBtn }: WelcomeModalFormProps) => {
   const navigate = useNavigate();
 
-  const handleClickStopBtn = () => {
+  const handleClickContinueBtn = () => {
     onClose();
-    switch (pageName) {
-      // 페이지 이름과 라우팅 주소는 나중에 보고 수정
-      case 'LoginPage':
-        navigate('/login');
-        break;
-
-      case 'ChargePage':
-        navigate('/charge');
-        break;
-
-      case 'CustomSizePage':
-        navigate('/custom-onboarding');
-        break;
-
-      default:
-        navigate('/');
-        break;
-    }
+    navigate('/');
   };
 
   return (
@@ -49,12 +22,12 @@ const EscapeModalForm = ({
         <St.ModalTitleWrapper>
           <IcCancelDark onClick={onClose} />
           <St.ModalTitle>{title}</St.ModalTitle>
-          <St.ModalSubTitle>{subTitle}</St.ModalSubTitle>
         </St.ModalTitleWrapper>
 
+        <ImgPointCoupon />
+
         <St.BtnWrapper>
-          <St.ContinueBtn onClick={onClose}>{continueBtn}</St.ContinueBtn>
-          <St.StopBtn onClick={handleClickStopBtn}>{stopBtn}</St.StopBtn>
+          <St.ContinueBtn onClick={handleClickContinueBtn}>{continueBtn}</St.ContinueBtn>
         </St.BtnWrapper>
       </St.ModalContent>
     </St.ModalContainer>
@@ -83,7 +56,7 @@ const St = {
     align-items: center;
     position: relative;
     width: 33.5rem;
-    height: 24.1rem;
+    height: 41.8rem;
 
     border-radius: 1rem;
 
@@ -95,7 +68,8 @@ const St = {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 4.7rem;
+    margin-top: 2.5rem;
+    margin-bottom: 3.3rem;
 
     & > svg {
       position: absolute;
@@ -111,18 +85,17 @@ const St = {
   `,
 
   ModalSubTitle: styled.p`
-    padding: 1.6rem 6.4rem 4rem 6.4rem;
+    // width 뷰마다 달라지면 props로 받아와서 적용하도록 수정
+    width: 27rem;
+    padding-top: 1.6rem;
+    padding-bottom: 4rem;
 
-    text-align: center;
     color: ${({ theme }) => theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.body_medium_16};
   `,
 
   BtnWrapper: styled.div`
-    -webkit-flex: 1; /* Safari 6.1+ */
-    -ms-flex: 1; /* IE 10 */
-    flex: 1;
     display: flex;
     align-items: flex-end;
     width: 100%;
@@ -133,29 +106,17 @@ const St = {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 16.7rem;
+    margin-top: 4rem;
+    width: 100%;
     height: 7rem;
 
     border-bottom-left-radius: 1rem;
-    background-color: ${({ theme }) => theme.colors.gray8};
-    color: ${({ theme }) => theme.colors.white};
-
-    ${({ theme }) => theme.fonts.title_semibold_18};
-  `,
-
-  StopBtn: styled.button`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 16.8rem;
-    height: 7rem;
-
     border-bottom-right-radius: 1rem;
-    background-color: ${({ theme }) => theme.colors.gray3};
+    background-color: ${({ theme }) => theme.colors.gray8};
     color: ${({ theme }) => theme.colors.white};
 
     ${({ theme }) => theme.fonts.title_semibold_18};
   `,
 };
 
-export default EscapeModalForm;
+export default WelcomeModalForm;
