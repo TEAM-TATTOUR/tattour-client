@@ -8,16 +8,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import ic_arrow_left_gray from '../../../assets/icon/ic_arrow_left_gray.svg';
 import ic_arrow_right_gray from '../../../assets/icon/ic_arrow_right_gray.svg';
-import {
-  HAVE_DESIGN_CUSTOM_CAROUSEL_DATA,
-  NO_DESIGN_CUSTOM_CAROUSEL_DATA,
-} from '../../../assets/data/ONBOARDING_CAROUSEL_CONTNET';
+import { CUSTOM_CAROUSEL_DATA } from '../../../assets/data/ONBOARDING_CAROUSEL_CONTNET';
 
 const OnBoardingCarousel = () => {
-  const haveDesign = true; //리코일에서 가져 올 예정
-
-  const currData = haveDesign ? HAVE_DESIGN_CUSTOM_CAROUSEL_DATA : NO_DESIGN_CUSTOM_CAROUSEL_DATA;
-
   return (
     <St.SwiperWrapper>
       <Swiper
@@ -27,13 +20,22 @@ const OnBoardingCarousel = () => {
         pagination={{ clickable: true }}
         navigation
       >
-        {currData.map(({ id, mainText, subText, mockUpImg, imgAlt }) => {
+        {CUSTOM_CAROUSEL_DATA.map(({ id, bannerText, mainText, subText, mockUpImg, imgAlt }) => {
           return (
             <SwiperSlide key={id}>
               <St.SwiperContainer>
                 <St.SwiperHeader>
-                  <St.HeaderMainText>{mainText}</St.HeaderMainText>
-                  <St.HeaderSubText>{subText}</St.HeaderSubText>
+                  {bannerText ? (
+                    <St.SwiperHeaderBanner>
+                      <p>{bannerText}</p>
+                    </St.SwiperHeaderBanner>
+                  ) : (
+                    <></>
+                  )}
+                  <St.SwiperHeaderTextBox>
+                    <St.HeaderMainText>{mainText}</St.HeaderMainText>
+                    <St.HeaderSubText>{subText}</St.HeaderSubText>
+                  </St.SwiperHeaderTextBox>
                 </St.SwiperHeader>
                 <St.SwiperImgContainer>
                   <img src={mockUpImg} alt={imgAlt} />
@@ -120,10 +122,35 @@ const St = {
   SwiperHeader: styled.header`
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 2rem;
 
     width: fit-content;
-    margin: 2.2rem 0 5rem 2.6rem;
+    margin: 2rem 0 1.8rem 2.6rem;
+  `,
+
+  SwiperHeaderBanner: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: fit-content;
+    height: 2.6rem;
+    padding: 0.4rem 0.8rem;
+
+    background-color: ${({ theme }) => theme.colors.pink1};
+
+    border-radius: 0.5rem;
+
+    & > p {
+      color: ${({ theme }) => theme.colors.pink5};
+      ${({ theme }) => theme.fonts.body_medium_14};
+    }
+  `,
+
+  SwiperHeaderTextBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   `,
 
   HeaderMainText: styled.h2`
