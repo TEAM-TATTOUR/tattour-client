@@ -15,6 +15,7 @@ import {
   IcColorRedSelected,
   IcColorYellow,
   IcColorYellowSelected,
+  IcColorSelectedLine,
 } from '../../../assets/icon';
 import IcColorRainbow from '../../../assets/icon/ic_color_rainbow.png';
 
@@ -103,7 +104,13 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
             alt='색상선택'
             type='color'
             onChange={handleChange}
-          />
+          >
+            {isColorPickerSelected && (
+              <St.SelectedIcon>
+                <IcColorSelectedLine />
+              </St.SelectedIcon>
+            )}
+          </St.ColorPicker>
         </St.ColorPickerWrapper>
       </St.SelectColor>
     </St.OptionBox>
@@ -189,6 +196,19 @@ const St = {
     }
   `,
   ColorIconWrapper: styled.div<{ isSelected: boolean }>`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    cursor: pointer;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  `,
+  SelectedIcon: styled.div<{ isSelected: boolean }>`
     display: flex;
     align-items: center;
     justify-content: center;
