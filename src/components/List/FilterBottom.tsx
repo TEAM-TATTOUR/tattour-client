@@ -65,18 +65,33 @@ const FilterBottom = ({
     },
   ];
 
-  const handleClickTag = (tag: string, index: number, filterIndex: number) => {
-    setSelected(true);
+  const tagRefs = useRef<any>([]);
+
+  const handleClickTag = (tag: string, index: number) => {
     setSelectedTag(tag); // 선택한 태그 저장
-    setSelectedIdx(index);
-    setSelectedFilterIdx(filterIndex);
+
+    // 태그 선택은 하나씩
+    tagRefs.current.forEach((el) => {
+      if (tagRefs.current.indexOf(el) === index) {
+        // 클릭할 때마다 토글 구현
+        if (tagRefs.current[index].classList[2] === 'checked') {
+          tagRefs.current[index].classList.remove('checked');
+        } else {
+          tagRefs.current[index].classList.add('checked');
+        }
+      } else {
+        if (el.classList[2] === 'checked') {
+          el.classList.remove('checked');
+        }
+      }
+    });
   };
 
   const handleClickButton = (onClose: () => void, filterIdx: number) => {
     onClose(); // 모달 내리기
 
     const newButtonName = [...buttonName];
-    newButtonName[filterIdx] = selectedTag;
+    newButtonName[filterIdx] = selectedTag; // 선택한 태그 적용
     setButtonName(newButtonName);
   };
 
@@ -97,7 +112,8 @@ const FilterBottom = ({
                 <St.TagBox
                   key={el}
                   onClick={() => handleClickTag(el, idx, filterIdx)}
-                  $isSelected={selectedIdx === idx && selectedFilterIdx === filterIdx}
+                  //$isSelected={selectedIdx === idx && selectedFilterIdx === filterIdx}
+                  ref={(el) => (tagRefs.current[idx] = el)}
                 >
                   <span></span>
                   {el}
@@ -129,9 +145,8 @@ const St = {
     justify-content: center;
     text-align: center;
     padding: 1.7rem 0rem;
-    color: ${({ theme, $isSelected }) => ($isSelected ? theme.colors.gray8 : theme.colors.gray4)};
-    ${({ theme, $isSelected }) =>
-      $isSelected ? theme.fonts.title_semibold_18 : theme.fonts.title_medium_18};
+    color: ${({ theme }) => theme.colors.gray4};
+    ${({ theme }) => theme.fonts.title_medium_18};
 
     & > span {
       display: inline-block;
@@ -146,8 +161,21 @@ const St = {
       width: 2rem;
       height: 2rem;
 
-      background: url(${({ $isSelected }) =>
-        $isSelected ? ic_check_small_pink : ic_check_small_light});
+      background: url(${ic_check_small_light});
+    }
+
+    &.checked {
+      ${({ theme }) => theme.fonts.title_semibold_18};
+      color: ${({ theme }) => theme.colors.gray8};
+
+      & > i {
+        display: inline-block;
+        margin: 0rem 0.3rem;
+        width: 2rem;
+        height: 2rem;
+
+        background: url(${ic_check_small_pink});
+      }
     }
   `,
   Footer: styled.footer<{ $sel: boolean }>`
