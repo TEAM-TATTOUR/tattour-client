@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { IcCustom, IcShop, IcMy } from '../assets/icon';
 import { useState } from 'react';
 import SideMenuUserInfo from './SideMenuUserInfo';
+import { useNavigate } from 'react-router-dom';
 
 interface SideMenuProps {
   isSideMenuOpen: boolean;
@@ -11,18 +12,35 @@ interface SideMenuProps {
 const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
   const [isLogin] = useState(false);
 
+  const navigate = useNavigate();
+
+  const handelClickShopButton = () => {
+    // navigate('/shop');
+  };
+
+  const handleClickCustomButton = () => {
+    // navigate('/custom');
+  };
+
+  const handleClickMyTattooButton = () => {
+    navigate('/my-tattoo');
+  };
+
   const NAV_MENU_ITEM = [
     {
       icon: <IcShop />,
       text: '타투 스티커',
+      clickHandler: handelClickShopButton,
     },
     {
       icon: <IcCustom />,
       text: '커스텀 타투',
+      clickHandler: handleClickCustomButton,
     },
     {
       icon: <IcMy />,
       text: '내 타투',
+      clickHandler: handleClickMyTattooButton,
     },
   ];
 
@@ -44,10 +62,12 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
         <SideMenuUserInfo isLogin={isLogin} />
         <St.SideMenuItemSection>
           <St.SideMenuItemWrapper>
-            {NAV_MENU_ITEM.map(({ icon, text }) => (
+            {NAV_MENU_ITEM.map(({ icon, text, clickHandler }) => (
               <li key={text}>
-                {icon}
-                <St.SideMenuItemText>{text}</St.SideMenuItemText>
+                <button onClick={clickHandler}>
+                  {icon}
+                  <St.SideMenuItemText>{text}</St.SideMenuItemText>
+                </button>
               </li>
             ))}
           </St.SideMenuItemWrapper>
