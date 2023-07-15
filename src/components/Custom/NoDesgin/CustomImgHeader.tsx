@@ -23,9 +23,10 @@ const St = {
   ImgInfoContainer: styled.article`
     display: flex;
     flex-direction: column;
+
     gap: 0.4rem;
 
-    margin: 5.6rem 0 3.6rem;
+    margin: 5.6rem 0 3.6rem 2.2rem;
   `,
 
   ImgInfoTitle: styled.h2`

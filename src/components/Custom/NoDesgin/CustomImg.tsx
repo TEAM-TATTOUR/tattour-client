@@ -22,6 +22,6 @@ const St = {
   CustomImgWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
   `,
 };
