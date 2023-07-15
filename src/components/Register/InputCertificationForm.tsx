@@ -20,8 +20,7 @@ const InputCertificationForm = () => {
     if (parseInt(e.target.value) === CERTIFICATION_NUM) {
       setIsCorrect(true);
 
-      // alert 대신 회원가입 완료 페이지로 넘어가게 하기
-      setTimeout(() => alert('success!'), 500);
+      setTimeout(() => navigate('/welcome-signup'), 1000);
     } else {
       setIsCorrect(false);
       setCertificationLen(e.target.value.length);
