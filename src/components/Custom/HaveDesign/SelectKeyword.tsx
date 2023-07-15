@@ -1,26 +1,10 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import { IcCheckSmallPink } from '../../../assets/icon';
+import { KEYWORDS_GENRE } from '../../../assets/data/KEYWORDS_GENRE';
+import { KEYWORDS_STYLE } from '../../../assets/data/KEYWORDS_STYLE';
 
 const SelectKeyword = () => {
-  const KEYWORDS_GENRE = [
-    { value: '미니 타투', checked: false },
-    { value: '낙서 타투', checked: false },
-    { value: '라인 타투', checked: false },
-    { value: '레터링', checked: false },
-    { value: '캐릭터', checked: false },
-    { value: '일러스트', checked: false },
-    { value: '수채화', checked: false },
-  ];
-
-  const KEYWORDS_STYLE = [
-    { value: '귀여운', checked: false },
-    { value: '시크한', checked: false },
-    { value: '섬세한', checked: false },
-    { value: '심플한', checked: false },
-    { value: '키치한', checked: false },
-  ];
-
   const [genreKeywords, setGenreKeywords] = useState(KEYWORDS_GENRE);
   const [styleKeywords, setStyleKeywords] = useState(KEYWORDS_STYLE);
 
@@ -52,36 +36,36 @@ const SelectKeyword = () => {
     <St.KeywordWrapper>
       <St.Title>장르</St.Title>
       <St.RadioWrapper>
-        {genreKeywords.map((keyword, index: number) => (
-          <St.RadioLabel key={index} htmlFor={keyword.value} checked={keyword.checked}>
+        {genreKeywords.map(({ value, checked }, index: number) => (
+          <St.RadioLabel key={index} htmlFor={value} checked={checked}>
             <St.RadioInput
               type='checkbox'
-              id={keyword.value}
-              name={keyword.value}
-              checked={keyword.checked}
+              id={value}
+              name={value}
+              checked={checked}
               onChange={() => handleKeywordChange(index, 'genre')}
             />
-            <St.RadioText checked={keyword.checked}>
-              {keyword.checked ? <IcCheckSmallPink /> : null}
-              {keyword.value}
+            <St.RadioText checked={checked}>
+              {checked && <IcCheckSmallPink />}
+              {value}
             </St.RadioText>
           </St.RadioLabel>
         ))}
       </St.RadioWrapper>
       <St.Title>스타일</St.Title>
       <St.RadioWrapper>
-        {styleKeywords.map((keyword, index: number) => (
-          <St.RadioLabel key={index} htmlFor={keyword.value} checked={keyword.checked}>
+        {styleKeywords.map(({ value, checked }, index: number) => (
+          <St.RadioLabel key={index} htmlFor={value} checked={checked}>
             <St.RadioInput
               type='checkbox'
-              id={keyword.value}
-              name={keyword.value}
-              checked={keyword.checked}
+              id={value}
+              name={value}
+              checked={checked}
               onChange={() => handleKeywordChange(index, 'style')}
             />
-            <St.RadioText checked={keyword.checked}>
-              {keyword.checked ? <IcCheckSmallPink /> : null}
-              {keyword.value}
+            <St.RadioText checked={checked}>
+              {checked && <IcCheckSmallPink />}
+              {value}
             </St.RadioText>
           </St.RadioLabel>
         ))}
