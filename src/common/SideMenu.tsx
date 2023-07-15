@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { IcCustom, IcShop, IcMy } from '../assets/icon';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SideMenuUserInfo from './SideMenuUserInfo';
 import { useNavigate } from 'react-router-dom';
 
@@ -44,12 +44,15 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
     },
   ];
 
-  // scorll lock
-  if (isSideMenuOpen) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = 'unset';
-  }
+  useEffect(() => {
+    // scorll lock
+    if (isSideMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isSideMenuOpen]);
 
   const handleClickBackDrop = () => {
     setIsSideMenuOpen(false);
