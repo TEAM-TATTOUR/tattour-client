@@ -4,7 +4,11 @@ import SelectCustomBtn from './SelectCustomBtn';
 import { IcArrowRightDark } from '../../assets/icon';
 import SelectCustomPolicyBottom from './SelectCustomPolicyBottom';
 
-const SelectCustom = () => {
+const SelectCustom = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const CASE_BTN_DATA = [
     {
       id: 'noDesign',
@@ -30,8 +34,10 @@ const SelectCustom = () => {
 
   const handleClickSelBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;
+    if (!target) return;
     setActiveBtn(target.id);
     target.id === 'haveDesign' ? setHaveDesign(true) : setHaveDesign(false);
+    setIsActiveNext(true);
   };
 
   useEffect(() => {

@@ -27,7 +27,7 @@ const SelectPage = () => {
       renderHeader={renderSelectCustomPageHeader}
       footer={<NextFooter isActiveNext={isActiveNext} navigateURL='/custom-size' />}
     >
-      <SelectCustom />
+      <SelectCustom setIsActiveNext={setIsActiveNext} />
     </PageLayout>
   );
 };
