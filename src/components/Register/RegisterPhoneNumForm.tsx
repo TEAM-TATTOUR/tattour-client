@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import sliceMaxLength from '../../utils/sliceMaxLength';
 import { useState, useEffect } from 'react';
+import Toast from '../../common/ToastMessage/Toast';
 
 interface RegisterPhoneNumFormProps {
   isVisible: boolean;
@@ -13,6 +14,9 @@ const RegisterPhoneNumForm = ({ isVisible, setIsVisible }: RegisterPhoneNumFormP
 
   // 입력한 전화번호 자릿수
   const [numLength, setNumLength] = useState(0);
+
+  // toast message
+  const [toast, setToast] = useState(false);
 
   // 전화번호 입력 여부를 체크하는 함수
   const handleChangeInputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,6 +38,7 @@ const RegisterPhoneNumForm = ({ isVisible, setIsVisible }: RegisterPhoneNumFormP
     if (isChanged) {
       // 인증번호 입력 폼 나옴
       setIsVisible(true);
+      setToast(true);
 
       /* 인증 문자가 전송될 부분 */
     }
@@ -49,7 +54,7 @@ const RegisterPhoneNumForm = ({ isVisible, setIsVisible }: RegisterPhoneNumFormP
       <St.InputContent
         placeholder='전화번호를 입력해주세요'
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
-        onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13)}
+        onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
       ></St.InputContent>
       <St.SendMessageBtn
         type='button'
@@ -59,6 +64,7 @@ const RegisterPhoneNumForm = ({ isVisible, setIsVisible }: RegisterPhoneNumFormP
         onClick={handleCertification}
       >
         {isVisible ? '재요청' : '인증하기'}
+        {toast && <Toast setToast={setToast} text='인증번호가 발송되었습니다.' />}
       </St.SendMessageBtn>
     </St.InputContentsWrapper>
   );
@@ -90,6 +96,10 @@ const St = {
       color: ${({ theme }) => theme.colors.gray2};
       ${({ theme }) => theme.fonts.body_medium_16};
     }
+
+    &:focus {
+      outline: 0;
+    }
   `,
 
   SendMessageBtn: styled.button<{ $ischanged: boolean; $isvisible: boolean; $length: number }>`
@@ -101,10 +111,8 @@ const St = {
 
     color: ${({ theme }) => theme.colors.white};
 
-    background-color: ${({ ischanged, isvisible, theme, $length }) =>
-      (ischanged && isvisible) || length === 13
-        ? theme.colors.gray7
-        : theme.colors.gray3};
+    background-color: ${({ $ischanged, $isvisible, theme, $length }) =>
+      ($ischanged && $isvisible) || $length === 13 ? theme.colors.gray7 : theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.title_semibold_16};
   `,
