@@ -39,6 +39,7 @@ const FilterBottom = ({
 }: FilterBottomProps) => {
   const filterRef = useRef<HTMLElement>(null);
   const [selectedTag, setSelectedTag] = useState(''); // 선택한 태그 저장
+  const [tempSelectedTag, setTempSelectedTag] = useState('');
 
   useEffect(() => {
     setSelected(false);
@@ -49,37 +50,80 @@ const FilterBottom = ({
       type: '정렬',
       isOpen: isSortOpen,
       onClose: () => setSortOpen(false),
+      onTap: (filter: boolean[]) => {
+        const newFilterTag = [...filterTag];
+        newFilterTag[0] = filter;
+        setFilterTag(newFilterTag);
+        setSortOpen(false);
+
+        const trueIdx = filterTag[0].indexOf(true);
+
+        setSelectedTag(FILTER[0].data[trueIdx]);
+      },
       data: ['인기 순', '가격 낮은 순', '가격 높은 순'],
     },
     {
       type: '장르',
       isOpen: isGenreOpen,
       onClose: () => setGenreOpen(false),
+      onTap: (filter: boolean[]) => {
+        const newFilterTag = [...filterTag];
+        newFilterTag[1] = filter;
+        setFilterTag(newFilterTag);
+        setGenreOpen(false);
+
+        const trueIdx = filterTag[1].indexOf(true);
+
+        setSelectedTag(FILTER[1].data[trueIdx]);
+      },
       data: ['일러스트', '동양화', '블랙워크', '라인 타투', '레터링', '수채화'],
     },
     {
       type: '스타일',
       isOpen: isStyleOpen,
-      onClose: () => setStyleOpen(false),
+      onClose: () => {
+        setStyleOpen(false);
+      },
+      onTap: (filter: boolean[]) => {
+        const newFilterTag = [...filterTag];
+        newFilterTag[2] = filter;
+        setFilterTag(newFilterTag);
+        setStyleOpen(false);
+
+        const trueIdx = filterTag[2].indexOf(true);
+
+        setSelectedTag(FILTER[2].data[trueIdx]);
+      },
       data: ['추상적인', '심플한', '귀여운', '사실적인', '감성적인', '다크한'],
     },
   ];
 
   const tagRefs = useRef<any>([]);
 
-  const handleClickTag = (tag: string, index: number) => {
-    setSelectedTag(tag); // 선택한 태그 저장
+  const [filterTag, setFilterTag] = useState([
+    [false, false, false],
+    [false, false, false, false, false, false],
+    [false, false, false, false, false, false],
+  ]);
+
+  const handleClickTag = (tag: string, index: number, filterIdx: number) => {
+    selectedTag === tag ? setSelectedTag(FILTER[filterIdx].type) : setSelectedTag(tag); // 선택한 태그 저장
 
     // 태그 선택은 하나씩
     tagRefs.current.forEach((el) => {
       if (tagRefs.current.indexOf(el) === index) {
         // 클릭할 때마다 토글 구현
+        console.log('target', index);
+        console.log(tagRefs);
         if (tagRefs.current[index].classList[2] === 'checked') {
           tagRefs.current[index].classList.remove('checked');
         } else {
           tagRefs.current[index].classList.add('checked');
         }
       } else {
+        if (el === null) {
+          return;
+        }
         if (el.classList[2] === 'checked') {
           el.classList.remove('checked');
         }
@@ -90,9 +134,23 @@ const FilterBottom = ({
   const handleClickButton = (onClose: () => void, filterIdx: number) => {
     onClose(); // 모달 내리기
 
-    const newButtonName = [...buttonName];
-    newButtonName[filterIdx] = selectedTag; // 선택한 태그 적용
-    setButtonName(newButtonName);
+    // 태그 isSelected true
+    const newTag = [...filterTag];
+    if (selectedTag === FILTER[filterIdx].type) {
+      newTag[filterIdx] = FILTER[filterIdx].data.map(() => false);
+    } else {
+      newTag[filterIdx] = FILTER[filterIdx].data.map((item, idx) => {
+        return idx === FILTER[filterIdx].data.indexOf(selectedTag);
+      });
+    }
+    setFilterTag(newTag);
+
+    tagRefs.current.forEach((el: React.ReactNode) => {
+      const newButtonName = [...buttonName];
+      newButtonName[filterIdx] = selectedTag; // 선택한 태그 적용
+      setButtonName(newButtonName);
+      //   }
+    });
   };
 
   return (
@@ -112,8 +170,8 @@ const FilterBottom = ({
                 <St.TagBox
                   key={el}
                   onClick={() => handleClickTag(el, idx, filterIdx)}
-                  //$isSelected={selectedIdx === idx && selectedFilterIdx === filterIdx}
-                  ref={(el) => (tagRefs.current[idx] = el)}
+                  ref={(refEl: React.ReactNode) => (tagRefs.current[idx] = refEl)}
+                  className={filterTag[filterIdx][idx] ? 'checked' : ''}
                 >
                   <span></span>
                   {el}
@@ -130,7 +188,7 @@ const FilterBottom = ({
               </St.Footer>
             </Sheet.Content>
           </Sheet.Container>
-          <Sheet.Backdrop onClick={filter.onClose} />
+          <Sheet.Backdrop onTap={() => filter.onTap(filterTag[filterIdx])} />
         </CustomSheet>
       ))}
     </>
@@ -140,7 +198,7 @@ const FilterBottom = ({
 export default FilterBottom;
 
 const St = {
-  TagBox: styled.p<{ $isSelected: boolean }>`
+  TagBox: styled.p`
     display: flex;
     justify-content: center;
     text-align: center;
@@ -178,7 +236,7 @@ const St = {
       }
     }
   `,
-  Footer: styled.footer<{ $sel: boolean }>`
+  Footer: styled.footer`
     display: flex;
     justify-content: center;
     align-items: center;

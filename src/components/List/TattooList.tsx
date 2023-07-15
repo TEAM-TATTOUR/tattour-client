@@ -48,14 +48,16 @@ const TattooList = ({
   const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
 
   useEffect(() => {
+    const newSelectedFilter = [...selectedFilter];
     buttonName.forEach((btn, idx) => {
       if (btn !== DEFAULT_BUTTON_NAME[idx]) {
         // selectedFilter에서 idx위치를 true로 변경
-        const newSelectedFilter = [...selectedFilter];
         newSelectedFilter[idx] = true;
-        setSelectedFilter(newSelectedFilter);
+      } else if (btn === DEFAULT_BUTTON_NAME[idx]) {
+        newSelectedFilter[idx] = false;
       }
     });
+    setSelectedFilter(newSelectedFilter);
   }, [buttonName]);
 
   return (
