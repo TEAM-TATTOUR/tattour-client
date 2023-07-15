@@ -6,7 +6,7 @@ import CountPrice from '../../components/Custom/CountPrice';
 import PriceHeading from '../../components/Custom/PriceHeading';
 import Header from '../../components/Header';
 import PageLayout from '../../components/PageLayout';
-import PriceFooter from './PriceFooter';
+import PriceFooter from '../../components/Custom/PriceFooter';
 import MakePublic from '../../components/Custom/MakePublic';
 import CustomSizeEscapeModal from '../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 

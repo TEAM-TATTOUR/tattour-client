@@ -22,13 +22,12 @@ const St = {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
     bottom: 0;
 
     width: 100%;
     height: 7rem;
 
-    background-color: #0c0d11;
+    background-color: ${({ theme }) => theme.colors.gray9};
   `,
 
   FooterButton: styled.button`

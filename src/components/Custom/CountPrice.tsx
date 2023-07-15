@@ -117,7 +117,7 @@ const St = {
   `,
   Line: styled.div`
     width: 100%;
-    height: 1px;
+    height: 0.1rem;
     margin-top: 3.6rem;
 
     background-color: ${({ theme }) => theme.colors.gray1};
