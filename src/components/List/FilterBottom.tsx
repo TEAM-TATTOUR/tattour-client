@@ -41,19 +41,8 @@ const FilterBottom = ({
   const [selectedTag, setSelectedTag] = useState(''); // 선택한 태그 저장
 
   useEffect(() => {
-    if (isSortOpen && buttonName[0] === '정렬') setSelected(false);
-    else if (isSortOpen && selectedTag !== '') setSelected(true);
-  }, [isSortOpen]);
-
-  useEffect(() => {
-    if (isGenreOpen && buttonName[1] === '장르') setSelected(false);
-    else if (isGenreOpen && selectedTag !== '') setSelected(true);
-  }, [isGenreOpen]);
-
-  useEffect(() => {
-    if (isStyleOpen && buttonName[2] === '스타일') setSelected(false);
-    else if (isStyleOpen && selectedTag !== '') setSelected(true);
-  }, [isStyleOpen]);
+    setSelected(false);
+  }, [isSortOpen, isGenreOpen, isStyleOpen]);
 
   const FILTER = [
     {
@@ -81,7 +70,6 @@ const FilterBottom = ({
     setSelectedTag(tag); // 선택한 태그 저장
     setSelectedIdx(index);
     setSelectedFilterIdx(filterIndex);
-    console.log(tag, index, filterIndex);
   };
 
   const handleClickButton = (onClose: () => void, filterIdx: number) => {
@@ -131,7 +119,7 @@ const FilterBottom = ({
               </St.Footer>
             </Sheet.Content>
           </Sheet.Container>
-          <Sheet.Backdrop onTap={filter.onClose} />
+          <Sheet.Backdrop onClick={filter.onClose} />
         </CustomSheet>
       ))}
     </>
