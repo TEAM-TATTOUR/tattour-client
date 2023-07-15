@@ -6,11 +6,11 @@ import { useEffect, useState } from 'react';
 import { throttle } from 'lodash';
 import { ImgLogoDark, ImgLogoLight } from '../assets/icon';
 import MainHeaderButton from '../components/MainPage/MainHeaderButton';
-import HotCustom from '../components/MainPage/HotCustom';
 import MainTheme from '../components/MainPage/MainTheme';
 import MainEventBanner from '../components/MainPage/MainEventBanner';
 import MainStyle from '../components/MainPage/MainStyle';
-import SideMenu from '../components/MainPage/SideMenu';
+import SideMenu from '../common/SideMenu';
+import HotCustom from '../common/HotCustom';
 
 const MainPage = () => {
   const [isHeaderTransparent, setIsHeaderTransparent] = useState(true);
