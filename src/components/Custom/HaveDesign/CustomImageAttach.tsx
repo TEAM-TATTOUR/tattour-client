@@ -1,11 +1,13 @@
 import { styled } from 'styled-components';
 import { IcDraw, IcPhoto } from '../../../assets/icon';
+import { Dispatch } from 'react';
 interface PaintBottomProps {
   isBottomOpen: boolean;
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setCanvasData: Dispatch<React.SetStateAction<png>>;
 }
 
-const CustomImageAttach = ({ isBottomOpen, setBottomOpen }: PaintBottomProps) => {
+const CustomImageAttach = ({ isBottomOpen, setBottomOpen, setCanvasData }: PaintBottomProps) => {
   const handleClickButton = () => {
     setBottomOpen(true);
   };

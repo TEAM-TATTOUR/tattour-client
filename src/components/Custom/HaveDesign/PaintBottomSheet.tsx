@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import Sheet from 'react-modal-sheet';
 import PaintBottomHeader from './PaintBottomHeader';
 import Canvas from './Canvas';
+import { useState } from 'react';
 
 interface PaintBottomProps {
   isBottomOpen: boolean;
@@ -10,6 +11,7 @@ interface PaintBottomProps {
 
 const PaintBottomSheet = ({ isBottomOpen, setBottomOpen }: PaintBottomProps) => {
   const closeBottom = () => setBottomOpen(false);
+  const [canvasData, setCanvasData] = useState(null);
 
   return (
     <CustomSheet isOpen={true} onClose={closeBottom} detent='content-height' disableDrag={true}>
