@@ -35,7 +35,7 @@ const RegisterPhoneNumForm = ({ isVisible, setIsVisible }: RegisterPhoneNumFormP
   // 인증번호 폼을 나오게 하는 함수
   const handleCertification = () => {
     // 전화번호 입력이 된 경우
-    if (isChanged) {
+    if (numLength === 13 && isChanged) {
       // 인증번호 입력 폼 나옴
       setIsVisible(true);
       setToast(true);
@@ -52,7 +52,7 @@ const RegisterPhoneNumForm = ({ isVisible, setIsVisible }: RegisterPhoneNumFormP
   return (
     <St.InputContentsWrapper>
       <St.InputContent
-        placeholder='전화번호를 입력해주세요'
+        placeholder='ex) 010-0000-0000'
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
         onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
       ></St.InputContent>
