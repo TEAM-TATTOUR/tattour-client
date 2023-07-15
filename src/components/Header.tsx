@@ -11,7 +11,7 @@ interface HeaderProps {
 const Header = ({ leftSection, title, rightSection, transparent, progressBar }: HeaderProps) => {
   return (
     <div>
-      <St.header transparent={transparent}>
+      <St.header $transparent={transparent}>
         {leftSection}
         {title && <St.title>{title}</St.title>}
         {rightSection}
@@ -23,7 +23,7 @@ const Header = ({ leftSection, title, rightSection, transparent, progressBar }: 
 };
 
 const St = {
-  header: styled.header<{ $transparent: boolean }>`
+  header: styled.header<{ $transparent?: boolean }>`
     display: flex;
     justify-content: space-between;
     align-items: center;
