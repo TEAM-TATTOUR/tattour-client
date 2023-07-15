@@ -7,6 +7,7 @@ import RegisterNamePage from './pages/Register/RegisterNamePage';
 import RegisterPhoneNumPage from './pages/Register/RegisterPhoneNumPage';
 import WelcomePage from './pages/Welcome/WelcomePage';
 import ChargePage from './pages/PointCharge/ChargePage';
+import TransferPage from './pages/pointCharge/TransferPage';
 
 const Router = () => {
   return (
@@ -20,6 +21,7 @@ const Router = () => {
         <Route path='/my-tattoo' element={<MyTattoo />} />
         <Route path='/my-tattoo/detail/:id' element={<MyTattooDetail />} />
         <Route path='/point-charge' element={<ChargePage />} />
+        <Route path='/point-transfer' element={<TransferPage />} />
       </Routes>
     </BrowserRouter>
   );
