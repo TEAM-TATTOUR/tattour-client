@@ -1,8 +1,15 @@
 import { styled } from 'styled-components';
 import { IcArrowRightLight } from '../../assets/icon';
+import { useNavigate } from 'react-router-dom';
 
 const SideMenuUserInfo = ({ isLogin }: { isLogin: boolean }) => {
   const point = 2000;
+
+  const navigate = useNavigate();
+
+  const handleClickLoginButton = () => {
+    navigate('/login');
+  };
 
   return isLogin ? (
     <St.SideMenuUserInfoSection>
@@ -21,7 +28,7 @@ const SideMenuUserInfo = ({ isLogin }: { isLogin: boolean }) => {
     </St.SideMenuUserInfoSection>
   ) : (
     <St.SideMenuAnonymousSection>
-      <St.SideMenuLoginButton>
+      <St.SideMenuLoginButton type='button' onClick={handleClickLoginButton}>
         <St.SideMenuAnoymousTitle>로그인이 필요합니다</St.SideMenuAnoymousTitle>
         <IcArrowRightLight />
       </St.SideMenuLoginButton>
