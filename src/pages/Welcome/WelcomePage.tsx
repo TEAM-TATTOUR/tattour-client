@@ -1,24 +1,34 @@
 import { styled } from 'styled-components';
 import WelcomeHome from '../../components/Welcome/WelcomeHome';
 import WelcomeFooter from '../../components/Welcome/WelcomeFooter';
+import Header from '../../components/Header';
+import PageLayout from '../../components/PageLayout';
+import ProgressBar from '../../common/ProgressBar';
 
 const WelcomePage = () => {
+  const renderWelcomePageHeader = () => {
+    return (
+      <Header
+        fixed={true}
+        leftSection={<St.BlankSection></St.BlankSection>}
+        title='회원가입'
+        rightSection={<St.BlankSection></St.BlankSection>}
+        progressBar={<ProgressBar curStep={3} maxStep={3} />}
+      />
+    );
+  };
+
   return (
-    <St.WelcomeWrapper>
+    <PageLayout renderHeader={renderWelcomePageHeader} footer={<WelcomeFooter />}>
       <WelcomeHome />
-      <WelcomeFooter />
-    </St.WelcomeWrapper>
+    </PageLayout>
   );
 };
 
 const St = {
-  WelcomeWrapper: styled.section`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    height: 100vh;
+  BlankSection: styled.div`
+    width: 2.4rem;
+    height: 2.4rem;
   `,
 };
 

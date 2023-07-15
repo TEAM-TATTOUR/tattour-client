@@ -61,8 +61,11 @@ export { ReactComponent as IcColorYellow } from './ic_color_yellow.svg';
 export { ReactComponent as IcColorYellowSelected } from './ic_color_yellow_selected.svg';
 
 // etc
-export { ReactComponent as IcFinish } from './ic_finish.svg';
-export { ReactComponent as ImgLogoDark } from './img_logo_dark.svg';
-export { ReactComponent as ImgLogoLight } from './img_logo_light.svg';
-export { ReactComponent as ImgHome } from './img_home.svg';
+export { ReactComponent as IcFinish } from './ic_finish.svg'
+export { ReactComponent as ImgLogoDark } from './img_logo_dark.svg'
+export { ReactComponent as ImgLogoLight } from './img_logo_light.svg'
+export { ReactComponent as ImgHome } from './img_home.svg'
+export { ReactComponent as LabelCustomLarge } from './label_custom_large.svg'
+export { ReactComponent as LabelCustomSmall } from './label_custom_small.svg'
+export { ReactComponent as ImgStorage } from './img_storage.svg'
 export { ReactComponent as ImgPointCoupon } from './img_point_coupon.svg';

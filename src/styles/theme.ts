@@ -178,6 +178,17 @@ const fonts = {
     line-height: 130%;
     letter-spacing: -0.012rem;
   `,
+  detail_semibold_12: css`
+    font-family: 'Pretendard Variable', system-ui, 'Helvetica Neue', 'Segoe UI',
+      'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', sans-serif;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%; /* 15.6px */
+    letter-spacing: -0.012rem;
+  `,
+
   title_extrabold_16: css`
     font-family: 'Pretendard Variable', system-ui, 'Helvetica Neue', 'Segoe UI',
       'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
