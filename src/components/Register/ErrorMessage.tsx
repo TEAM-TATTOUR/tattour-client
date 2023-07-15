@@ -7,7 +7,7 @@ interface ErrorMessageProps {
 const ErrorMessage = ({ isTimeout }: ErrorMessageProps) => {
   return (
     <St.NotificationWrapper>
-      <St.Notification>{isTimeout ? '재인증 버튼을 눌러 다시 인증해주세요.' : '인증번호가 잘못되었어요.'}</St.Notification>
+      <St.Notification>{isTimeout ? '재인증 버튼을 눌러 다시 시도해주세요' : '인증번호를 다시 입력해주세요'}</St.Notification>
     </St.NotificationWrapper>
   );
 };
