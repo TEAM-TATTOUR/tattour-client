@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const InputCertificationForm = () => {
   const navigate = useNavigate();
-
+  
   // 임의의 인증번호
   const CERTIFICATION_NUM = 1234;
   // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
@@ -22,7 +22,9 @@ const InputCertificationForm = () => {
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (parseInt(e.target.value) === CERTIFICATION_NUM) {
       setIsCorrect(true);
-      navigate('/welcome-signup');
+      
+      setTimeout(() => navigate('/welcome-signup'), 1000);
+
     } else {
       setIsCorrect(false);
       setCertificationLen(e.target.value.length);
