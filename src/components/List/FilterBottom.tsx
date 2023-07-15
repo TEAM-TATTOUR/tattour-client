@@ -75,14 +75,9 @@ const FilterBottom = ({
   const handleClickButton = (onClose: () => void, filterIdx: number) => {
     onClose(); // 모달 내리기
 
-    // 기존 버튼명 배열을 복사 -> 배열 중 선택한 필터 자리에 선택한 태그명 넣기 -> 완성된 버튼명 배열로 재렌더링
     const newButtonName = [...buttonName];
     newButtonName[filterIdx] = selectedTag;
     setButtonName(newButtonName);
-
-    // 변화 -> bg색 to gray7, 글자색 to white, arrow icon to white
-    // 변화 조건 : buttonName 배열의 각 요소가 filter.type인지 check -> 맞으면 default, 다르면 바뀐걸로
-    // useEffect 사용해서 변화 감지하기 -> 위치는 TattooList에서
   };
 
   return (
@@ -109,7 +104,7 @@ const FilterBottom = ({
                   <i></i>
                 </St.TagBox>
               ))}
-              <St.Footer $sel={isSelected}>
+              <St.Footer>
                 <St.Button
                   type='button'
                   onClick={() => handleClickButton(filter.onClose, filterIdx)}
@@ -163,7 +158,7 @@ const St = {
     height: 7rem;
     margin-top: 4rem;
 
-    background-color: ${({ theme, $sel }) => ($sel ? theme.colors.gray9 : theme.colors.gray3)};
+    background-color: ${({ theme }) => theme.colors.gray9};
   `,
   Button: styled.button`
     width: 100%;

@@ -23,7 +23,9 @@ const TattooList = ({
   buttonName,
 }: TattooListProps) => {
   const [count, setCount] = useState(17);
+
   const [selectedFilter, setSelectedFilter] = useState([false, false, false]); // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
+
   const TATTOO_LIST = [
     {
       name: '고양이 리본 타투',
@@ -67,15 +69,15 @@ const TattooList = ({
             onClick={() => {
               switch (idx) {
                 case 0:
-                  if (isSortOpen) setSortOpen(false);
+                  //if (isSortOpen) setSortOpen(false);
                   setSortOpen(true);
                   break;
                 case 1:
-                  if (isGenreOpen) setGenreOpen(false);
+                  //if (isGenreOpen) setGenreOpen(false);
                   setGenreOpen(true);
                   break;
                 case 2:
-                  if (isStyleOpen) setStyleOpen(false);
+                  //if (isStyleOpen) setStyleOpen(false);
                   setStyleOpen(true);
                   break;
               }
