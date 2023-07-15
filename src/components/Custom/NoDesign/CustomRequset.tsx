@@ -3,7 +3,11 @@ import { styled } from 'styled-components';
 // 이모티콘 카운팅 관련 라이브러리
 import GraphemeSplitter from 'grapheme-splitter';
 
-const CustomRequset = () => {
+const CustomRequset = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   //count 될 maxCount 수
   const MAX_NAME_COUNT = 10;
   const MAX_ETC_COUNT = 100;
@@ -32,7 +36,12 @@ const CustomRequset = () => {
 
   const handleChangeNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     //value가 없을 때 0으로 글자 수 세지도록
-    if (e.target.value === '') setNameInputCount(0);
+    if (e.target.value === '') {
+      setNameInputCount(0);
+      setIsActiveNext(false);
+    } else {
+      setIsActiveNext(true);
+    }
 
     const lengthCount = limitMaxLength(e, MAX_NAME_COUNT);
 
