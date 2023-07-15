@@ -13,12 +13,7 @@ interface FilterBottomProps {
   setStyleOpen: React.Dispatch<React.SetStateAction<boolean>>;
   buttonName: string[];
   setButtonName: React.Dispatch<React.SetStateAction<string[]>>;
-  selectedIdx: number;
-  setSelectedIdx: React.Dispatch<React.SetStateAction<number>>;
-  isSelected: boolean;
   setSelected: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedFilterIdx: number;
-  setSelectedFilterIdx: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const FilterBottom = ({
@@ -30,17 +25,8 @@ const FilterBottom = ({
   setStyleOpen,
   buttonName,
   setButtonName,
-  selectedIdx,
-  setSelectedIdx,
-  isSelected,
   setSelected,
-  selectedFilterIdx,
-  setSelectedFilterIdx,
 }: FilterBottomProps) => {
-  const filterRef = useRef<HTMLElement>(null);
-  const [selectedTag, setSelectedTag] = useState(''); // 선택한 태그 저장
-  const [tempSelectedTag, setTempSelectedTag] = useState('');
-
   useEffect(() => {
     setSelected(false);
   }, [isSortOpen, isGenreOpen, isStyleOpen]);
@@ -99,6 +85,8 @@ const FilterBottom = ({
   ];
 
   const tagRefs = useRef<any>([]);
+  const filterRef = useRef<HTMLElement>(null);
+  const [selectedTag, setSelectedTag] = useState(''); // 선택한 태그 저장
 
   const [filterTag, setFilterTag] = useState([
     [false, false, false],
@@ -110,7 +98,8 @@ const FilterBottom = ({
     selectedTag === tag ? setSelectedTag(FILTER[filterIdx].type) : setSelectedTag(tag); // 선택한 태그 저장
 
     // 태그 선택은 하나씩
-    tagRefs.current.forEach((el) => {
+    tagRefs.current.forEach((el: React.ReactNode) => {
+      if (!el) return;
       if (tagRefs.current.indexOf(el) === index) {
         // 클릭할 때마다 토글 구현
         console.log('target', index);
@@ -121,9 +110,6 @@ const FilterBottom = ({
           tagRefs.current[index].classList.add('checked');
         }
       } else {
-        if (el === null) {
-          return;
-        }
         if (el.classList[2] === 'checked') {
           el.classList.remove('checked');
         }
@@ -145,11 +131,10 @@ const FilterBottom = ({
     }
     setFilterTag(newTag);
 
-    tagRefs.current.forEach((el: React.ReactNode) => {
+    tagRefs.current.forEach(() => {
       const newButtonName = [...buttonName];
-      newButtonName[filterIdx] = selectedTag; // 선택한 태그 적용
+      newButtonName[filterIdx] = selectedTag;
       setButtonName(newButtonName);
-      //   }
     });
   };
 

@@ -32,12 +32,7 @@ const ListPage = () => {
         setStyleOpen={setStyleOpen}
         buttonName={buttonName}
         setButtonName={setButtonName}
-        selectedIdx={selectedIdx}
-        setSelectedIdx={setSelectedIdx}
-        isSelected={isSelected}
         setSelected={setSelected}
-        selectedFilterIdx={selectedFilterIdx}
-        setSelectedFilterIdx={setSelectedFilterIdx}
       />
     </div>
   );
