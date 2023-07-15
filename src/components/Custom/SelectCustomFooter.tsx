@@ -14,7 +14,7 @@ const SelectCustomFooter = ({ isActiveNext }: { isActiveNext: boolean }) => {
       <St.SelectCustomFooter $isActiveNext={isActiveNext} onClick={handleClickFooter}>
         <St.FooterText>다음</St.FooterText>
       </St.SelectCustomFooter>
-      {modalOn && <ChargePointModal setModalOn={setModalOn} />}
+      {modalOn && <ChargePointModal setModalOn={setModalOn} currPoint={10000} />}
     </>
   );
 };
