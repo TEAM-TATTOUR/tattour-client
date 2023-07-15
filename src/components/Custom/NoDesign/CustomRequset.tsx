@@ -52,14 +52,12 @@ const CustomRequset = () => {
   return (
     <St.CustomRequestWrapper>
       <St.RequestNameContainer>
-        <St.RequestNameTitle>이 타투의 이름을 지어주세요!</St.RequestNameTitle>
-        <St.RequestNameDetail>
-          추후 아카이브 또는 공개 시에 해당 이름이 노출됩니다
-        </St.RequestNameDetail>
+        <St.RequestNameTitle>타투의 이름을 지어주세요</St.RequestNameTitle>
+        <St.RequestNameDetail>추후 아카이브 또는 공개 시 해당 이름이 노출돼요</St.RequestNameDetail>
         <St.RequestNameInput
           type='text'
           onChange={handleChangeNameInput}
-          placeholder='ex. 우리 가족 타투, 백조 타투, 힙한 하트'
+          placeholder='ex. 우리 가족 타투, 백조 타투'
           autoFocus
         />
         <St.RequestInputCount>
@@ -67,7 +65,18 @@ const CustomRequset = () => {
         </St.RequestInputCount>
       </St.RequestNameContainer>
       <St.RequestEtcContainer>
-        <St.RequestEtcTitle>추가 요청 사항</St.RequestEtcTitle>
+        <St.RequestEtcTitleBox>
+          <St.RequestEtcTitle>요청 사항</St.RequestEtcTitle>
+          <St.RequestOptionBadge>선택</St.RequestOptionBadge>
+        </St.RequestEtcTitleBox>
+        <div>
+          <St.RequestEtcDetail>
+            추가적인 요청사항이 있다면 자유롭게 작성해주세요
+          </St.RequestEtcDetail>
+          <St.RequestEtcDetail>
+            (컬러 코드, 정확한 사이즈, 라인 굵기, 명암 여부 등)
+          </St.RequestEtcDetail>
+        </div>
         <St.RequestEtcTextArea
           onChange={handleChangeEtcTextArea}
           placeholder='ex. 라인 1mm로 사진보다 얇게 그려주세요 &#13;&#10; &nbsp; &nbsp;  도안을 붉은색 (FF6B6B)으로 바꿔주세요'
@@ -141,24 +150,40 @@ const St = {
   RequestEtcContainer: styled.article`
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.2rem;
 
     position: relative;
 
-    margin: 0 2rem 0 2.2rem;
+    margin: 4rem 2rem 0 2.2rem;
+  `,
+
+  RequestEtcTitleBox: styled.div`
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
   `,
 
   RequestEtcTitle: styled.h2`
-    padding-top: 4rem;
-
     color: ${({ theme }) => theme.colors.gray8};
     ${({ theme }) => theme.fonts.title_semibold_20};
+  `,
+
+  RequestOptionBadge: styled.span`
+    color: ${({ theme }) => theme.colors.pink4};
+    //폰트 추가 필요
+    ${({ theme }) => theme.fonts.detail_semibold_12};
+  `,
+
+  RequestEtcDetail: styled.p`
+    color: ${({ theme }) => theme.colors.gray3};
+    ${({ theme }) => theme.fonts.body_medium_14};
   `,
 
   RequestEtcTextArea: styled.textarea`
     width: 29.5rem;
     height: 14.6rem;
 
+    margin-top: 0.8rem;
     padding: 1.2rem 2rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
