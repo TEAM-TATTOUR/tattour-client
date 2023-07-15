@@ -37,8 +37,7 @@ const St = {
     flex-direction: column;
     width: 100%;
 
-    /* position: ${({ $fixed }) => ($fixed ? 'fixed' : 'static')}; */
-    position: fixed;
+    position: ${({ $fixed }) => ($fixed ? 'fixed' : 'static')};
     top: 0;
     left: 0;
     z-index: ${({ $fixed }) => ($fixed ? 10 : 0)};
