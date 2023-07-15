@@ -39,6 +39,9 @@ export { ReactComponent as IcSearchDark } from './ic_search_dark.svg';
 export { ReactComponent as IcSearchLight } from './ic_search_light.svg';
 export { ReactComponent as IcShop } from './ic_shop.svg';
 export { ReactComponent as IcError } from './ic_error.svg';
+export { ReactComponent as IcBtnStepperPlusDark } from './ic_btn_plus_dark.svg';
+export { ReactComponent as IcBtnStepperMinusLight } from './ic_btn_minus_light.svg';
+export { ReactComponent as IcBtnStepperMinusDark } from './ic_btn_minus_dark.svg';
 
 // brush
 export { ReactComponent as IcBrushBoldSelected } from './ic_brush_bold_selected.svg';
