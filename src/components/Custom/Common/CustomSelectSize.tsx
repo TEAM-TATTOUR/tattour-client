@@ -2,7 +2,11 @@ import { styled } from 'styled-components';
 import CustomSelectSizeBtn from './CustomSelectSizeBtn';
 import { useState, useRef, useEffect } from 'react';
 
-const CustomSelectSize = () => {
+const CustomSelectSize = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const BTN_DATA = [
     { id: 'quarter', title: '5cm 이하', detail: '동전 크기' },
     { id: 'regular', title: 'A4 1/8', detail: '신용카드, 담뱃갑 크기' },
@@ -15,7 +19,9 @@ const CustomSelectSize = () => {
 
   const handleClickSelBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;
+    if (!target) return;
     setSelectedBtn(target.id);
+    setIsActiveNext(true);
   };
 
   useEffect(() => {

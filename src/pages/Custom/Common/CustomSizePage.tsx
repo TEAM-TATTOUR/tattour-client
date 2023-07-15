@@ -5,8 +5,11 @@ import CancelBtn from '../../../common/Header/CancelBtn';
 import ProgressBar from '../../../common/ProgressBar';
 import PageLayout from '../../../components/PageLayout';
 import NextFooter from '../../../common/Footer/NextFooter';
+import { useState } from 'react';
 
 const CustomSizePage = () => {
+  const [isActiveNext, setIsActiveNext] = useState(false);
+
   const renderCustomSizePageHeader = () => {
     return (
       <Header
@@ -20,9 +23,9 @@ const CustomSizePage = () => {
   return (
     <PageLayout
       renderHeader={renderCustomSizePageHeader}
-      footer={<NextFooter navigateURL='/custom-img' />}
+      footer={<NextFooter isActiveNext={isActiveNext} navigateURL='/custom-img' />}
     >
-      <CustomSelectSize />
+      <CustomSelectSize setIsActiveNext={setIsActiveNext} />
     </PageLayout>
   );
 };
