@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { IcArrowBottomSmallGray, IcArrowBottomSmallLight } from '../../assets/icon';
 import { useState, useEffect, useRef } from 'react';
+import test_tattoo from '../../assets/test_tattoo.png';
 
 interface TattooListProps {
   setSortOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,34 +26,34 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
       name: '고양이 리본 타투2',
       price: 4000,
       discount: 25,
-      finalPrice: 2500
+      finalPrice: 2500,
     },
-    { 
+    {
       name: '고양이 리본 타투3',
       price: 4000,
       discount: 25,
-      finalPrice: 2500
+      finalPrice: 2500,
     },
-    { 
+    {
       name: '고양이 리본 타투4',
       price: 4000,
       discount: 25,
-      finalPrice: 2500
+      finalPrice: 2500,
     },
-    { 
+    {
       name: '고양이 리본 타투5',
       price: 4000,
       discount: 25,
-      finalPrice: 2500
+      finalPrice: 2500,
     },
-    { 
+    {
       name: '고양이 리본 타투6',
       price: 4000,
       discount: 25,
-      finalPrice: 2500
-    }
-  ]
-        
+      finalPrice: 2500,
+    },
+  ];
+
   const filterRef = useRef(null);
   const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
 
@@ -100,7 +101,9 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
       <St.CardContainer>
         {TATTOO_LIST.map((el) => (
           <St.Card key={el.name}>
-            <St.CardImg></St.CardImg>
+            <St.CardImg>
+              <img src={test_tattoo} />
+            </St.CardImg>
             <h2>{el.name}</h2>
             <p>{el.price.toLocaleString()}원</p>
             <div>
@@ -175,10 +178,13 @@ const St = {
     }
   `,
   CardImg: styled.i`
-    // 추후 img로 변경
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 18.7rem;
     height: 20.1rem;
-    background-color: ${({ theme }) => theme.colors.gray1};
+    background-color: ${({ theme }) => theme.colors.gray0};
   `,
   CardDiscount: styled.span`
     color: ${({ theme }) => theme.colors.pink5};
