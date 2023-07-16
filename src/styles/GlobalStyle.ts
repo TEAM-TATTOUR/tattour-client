@@ -147,7 +147,7 @@ ${reset}
 
 #root, body, html {
     max-width: 192rem;
-    height: 100vh;
+    /* height: 100vh; */
     margin: 0 auto;
     /* overflow-y: auto; */
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
