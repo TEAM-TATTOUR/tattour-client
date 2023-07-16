@@ -28,7 +28,7 @@ const RegisterPhoneNumForm = () => {
 
   const isError = !isCorrect && certificationLen === 4;
 
-  const MINUTES_IN_MS = 5 * 1000;
+  const MINUTES_IN_MS = 5 * 60 * 1000;
 
   const [isTimeout, setIsTimeout] = useState(false);
 
@@ -53,7 +53,6 @@ const RegisterPhoneNumForm = () => {
       setIsVisible(false);
       setNumLength(0);
     } else {
- 
       setIsChanged(true);
       setNumLength(e.target.value.length);
     }
