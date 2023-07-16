@@ -12,24 +12,12 @@ const Canvas: React.FC = () => {
       isDrawingMode: true,
       width: 335,
       height: 458,
+      allowTouchScrolling: true,
     });
 
     // 그리기 설정
-    canvas.freeDrawingBrush.color = 'black';
-    canvas.freeDrawingBrush.width = 5;
-
-    // 그리기 모드에서 스크롤 방지
-    canvas.on('mouse:wheel', (event: fabric.IEvent) => {
-      const delta = (event as any).e.deltaY;
-      const zoom = canvas.getZoom();
-      if (delta > 0) {
-        canvas.setZoom(zoom * 1.1);
-      } else {
-        canvas.setZoom(zoom * 0.9);
-      }
-      event.e.preventDefault();
-      event.e.stopPropagation();
-    });
+    canvas.freeDrawingBrush.color = '#0C0D11';
+    canvas.freeDrawingBrush.width = 4;
 
     fabricCanvasRef.current = canvas;
 
@@ -39,10 +27,17 @@ const Canvas: React.FC = () => {
     };
   }, []);
 
-  //색상 변경
+  //ColorPicker 색상 변경
   const handleColorChange = (color: string) => {
     if (fabricCanvasRef.current) {
       fabricCanvasRef.current.freeDrawingBrush.color = color;
+    }
+  };
+
+  //지정 색상으로 변경
+  const handleBrushChange = (brush: number) => {
+    if (fabricCanvasRef.current) {
+      fabricCanvasRef.current.freeDrawingBrush.width = brush;
     }
   };
 
@@ -58,7 +53,7 @@ const Canvas: React.FC = () => {
       <St.Canvas className='canvas'>
         <canvas ref={canvasRef} />
       </St.Canvas>
-      <ColorPicker onChange={handleColorChange} />
+      <ColorPicker onColorChange={handleColorChange} onBrushChange={handleBrushChange} />
     </div>
   );
 };
@@ -76,10 +71,10 @@ const St = {
     font: ${({ theme }) => theme.fonts.body_underline_medium_14};
   `,
   Canvas: styled.div`
-    width: 335px;
-    height: 458px;
+    width: 33.5rem;
+    height: 45.8rem;
     margin-bottom: 1.6rem;
 
-    background-color: lightgray;
+    background-color: ${({ theme }) => theme.colors.bg};
   `,
 };

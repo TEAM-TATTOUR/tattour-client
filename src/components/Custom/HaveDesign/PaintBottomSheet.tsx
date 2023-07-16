@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import Sheet from 'react-modal-sheet';
 import PaintBottomHeader from './PaintBottomHeader';
 import Canvas from './Canvas';
+import { useState } from 'react';
 
 interface PaintBottomProps {
   isBottomOpen: boolean;
@@ -10,6 +11,7 @@ interface PaintBottomProps {
 
 const PaintBottomSheet = ({ isBottomOpen, setBottomOpen }: PaintBottomProps) => {
   const closeBottom = () => setBottomOpen(false);
+  // const [canvasData, setCanvasData] = useState(null);
 
   return (
     <CustomSheet isOpen={true} onClose={closeBottom} detent='content-height' disableDrag={true}>
@@ -19,7 +21,9 @@ const PaintBottomSheet = ({ isBottomOpen, setBottomOpen }: PaintBottomProps) => 
             <PaintBottomHeader />
           </Sheet.Header>
           <Sheet.Content>
-            <Canvas />
+            <St.ContentWrapper>
+              <Canvas />
+            </St.ContentWrapper>
           </Sheet.Content>
         </St.BottomSheetWrapper>
         <St.Footer>
@@ -34,11 +38,15 @@ const PaintBottomSheet = ({ isBottomOpen, setBottomOpen }: PaintBottomProps) => 
 };
 
 const St = {
-  BottomSheetWrapper: styled.div`
+  BottomSheetWrapper: styled.section`
     display: flex;
     flex-direction: column;
     padding: 2.5rem 2rem 2.8rem 2rem;
     width: 100%;
+  `,
+  ContentWrapper: styled.div`
+    height: 100%;
+    overflow-y: auto;
   `,
   Footer: styled.footer`
     display: flex;
@@ -46,7 +54,6 @@ const St = {
     align-items: center;
     width: 100%;
     height: 7rem;
-    margin-top: 4rem;
 
     background-color: ${({ theme }) => theme.colors.gray9};
   `,
