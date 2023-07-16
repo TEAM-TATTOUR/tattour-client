@@ -9,6 +9,8 @@ import { useState } from 'react';
 import DetailBottom from '../components/Detail/DetailBottom';
 import CustomScrollContainer from '../common/CustomScrollContainer';
 import SmallTattooCard from '../common/SmallTattooCard';
+import BackBtn from '../common/Header/BackBtn';
+import CancelBtn from '../common/Header/CancelBtn';
 
 const DUMMY_DATA = [
   {
@@ -74,7 +76,7 @@ const DetailPage = () => {
   const [like, setLike] = useState(false); // 찜 여부 state
 
   const renderDetailPageHeader = () => {
-    return <Header leftSection={<IcBackDark />} rightSection={<IcCancelDark />} />;
+    return <Header leftSection={<BackBtn />} />;
   };
 
   return (
