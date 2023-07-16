@@ -11,7 +11,7 @@ interface PaintBottomProps {
 
 const PaintBottomSheet = ({ isBottomOpen, setBottomOpen }: PaintBottomProps) => {
   const closeBottom = () => setBottomOpen(false);
-  const [canvasData, setCanvasData] = useState(null);
+  // const [canvasData, setCanvasData] = useState(null);
 
   return (
     <CustomSheet isOpen={true} onClose={closeBottom} detent='content-height' disableDrag={true}>

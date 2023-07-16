@@ -22,6 +22,7 @@ import IcColorRainbow from '../../../assets/icon/ic_color_rainbow.png';
 interface ColorPickerProps {
   onColorChange: (color: string) => void;
   onBrushChange: (brush: number) => void;
+  isSelected: boolean;
 }
 
 interface ColorPickerWrapperProps {
@@ -32,6 +33,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSuggestedColor, setSelectedSuggestedColor] = useState('');
   const [selectedBrush, setSelectedBrush] = useState<number>(4);
+  const [isColorPickerSelected, setIsColorPickerSelected] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const color = event.target.value;
@@ -45,8 +47,17 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
   };
 
   const handleChangeSuggestedColor = (color: string) => {
+    setIsColorPickerSelected(false);
     setSelectedSuggestedColor(color);
     onColorChange(color);
+  };
+
+  const handleChangeRainbowColor = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // const color = event.target.value;
+    // setSelectedColor(color);
+    // onColorChange(color);
+    setSelectedSuggestedColor('');
+    setIsColorPickerSelected(!isColorPickerSelected);
   };
 
   const colorIcons = [
@@ -104,13 +115,13 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
             alt='색상선택'
             type='color'
             onChange={handleChange}
-          >
-            {isColorPickerSelected && (
-              <St.SelectedIcon>
-                <IcColorSelectedLine />
-              </St.SelectedIcon>
-            )}
-          </St.ColorPicker>
+            onClick={handleChangeRainbowColor}
+          />
+          {isColorPickerSelected && (
+            <St.SelectedIcon isSelected={isColorPickerSelected}>
+              <IcColorSelectedLine />
+            </St.SelectedIcon>
+          )}
         </St.ColorPickerWrapper>
       </St.SelectColor>
     </St.OptionBox>
@@ -202,19 +213,18 @@ const St = {
     width: 2.2rem;
     height: 2.2rem;
     cursor: pointer;
-
+    position: relative;
     svg {
       width: 100%;
       height: 100%;
     }
   `,
   SelectedIcon: styled.div<{ isSelected: boolean }>`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.2rem;
-    height: 2.2rem;
+    /* width: 1.4rem;
+    height: 1.4rem; */
     cursor: pointer;
+
+    position: absolute;
 
     svg {
       width: 100%;

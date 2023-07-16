@@ -4,10 +4,9 @@ import { Dispatch } from 'react';
 interface PaintBottomProps {
   isBottomOpen: boolean;
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setCanvasData: Dispatch<React.SetStateAction<png>>;
 }
 
-const CustomImageAttach = ({ isBottomOpen, setBottomOpen, setCanvasData }: PaintBottomProps) => {
+const CustomImageAttach = ({ isBottomOpen, setBottomOpen }: PaintBottomProps) => {
   const handleClickButton = () => {
     setBottomOpen(true);
   };

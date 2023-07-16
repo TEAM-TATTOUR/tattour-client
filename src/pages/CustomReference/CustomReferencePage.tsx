@@ -6,7 +6,7 @@ import Header from '../../components/Header';
 import PageLayout from '../../components/PageLayout';
 
 const CustomReferencePage = () => {
-  const [canvasData, setCanvasData] = useState(null);
+  // const [canvasData, setCanvasData] = useState(null);
 
   const renderCustomReferencePageHeader = () => {
     return (
@@ -14,13 +14,9 @@ const CustomReferencePage = () => {
     );
   };
 
-  const handleCanvasData = (data) => {
-    setCanvasData(data);
-  };
-
   return (
     <PageLayout renderHeader={renderCustomReferencePageHeader}>
-      <CustomReference canvasData={canvasData} />
+      <CustomReference />
       <CustomReferenceFooter />
     </PageLayout>
   );

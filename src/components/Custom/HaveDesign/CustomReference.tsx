@@ -4,27 +4,15 @@ import CustomImageAttach from './CustomImageAttach';
 import PaintBottomSheet from './PaintBottomSheet';
 import { Dispatch, SetStateAction, useState } from 'react';
 
-interface CustomReferenceProps {
-  setCanvasData: Dispatch<SetStateAction<null>>;
-
-}
-const CustomReference = ({ setCanvasData }: CustomReferenceProps) => {
+const CustomReference = () => {
   const [isBottomOpen, setBottomOpen] = useState(false);
 
   return (
     <St.PageWrapper>
       <CustomTitle />
-      <CustomImageAttach
-        isBottomOpen={isBottomOpen}
-        setBottomOpen={setBottomOpen}
-        setCanvasData={setCanvasData}
-      />
+      <CustomImageAttach isBottomOpen={isBottomOpen} setBottomOpen={setBottomOpen} />
       {isBottomOpen && (
-        <PaintBottomSheet
-          isBottomOpen={isBottomOpen}
-          setBottomOpen={setBottomOpen}
-          setCanvasData={setCanvasData}
-        />
+        <PaintBottomSheet isBottomOpen={isBottomOpen} setBottomOpen={setBottomOpen} />
       )}
     </St.PageWrapper>
   );
