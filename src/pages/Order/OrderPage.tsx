@@ -8,7 +8,6 @@ import Postcode from 'react-daum-postcode';
 import PageLayout from '../../components/PageLayout';
 import Header from '../../components/Header';
 import OrderFooter from '../../components/Order/OrderFooter';
-import { IcBackDark, IcCancelDark } from '../../assets/icon';
 import RefundBottom from '../../components/Order/RefundBottom';
 import BackBtn from '../../common/Header/BackBtn';
 
@@ -19,11 +18,13 @@ const OrderPage = () => {
   const [isSheetOpen, setSheetOpen] = useState(false);
 
   // 추후 서버통신 시 변수 변경 예정
+  const ORIGINAL_PRICE = 4000;
   const FINAL_PRICE = 5500;
   const ITEM_PRICE = 2500;
   const DELIVERY_PRICE = 3000;
   const MY_POINT = 10000;
-  const RESULT_POINT = 4500; // 서버에서 주는 '남는/부족한 포인트 값'
+  const RESULT_POINT = 4500;
+  const COUNT = 1;
 
   const renderOrderPageHeader = () => {
     return <Header leftSection={<BackBtn />} title='주문하기' />;
@@ -33,7 +34,7 @@ const OrderPage = () => {
     setIsPostOpen(true);
   };
 
-  const handleAddress = (data: any) => {
+  const handleAddress = (data) => {
     addressRef.current.value = data.address;
     postcodeRef.current.value = data.zonecode; // 우편번호
     setIsPostOpen(false);
@@ -41,7 +42,7 @@ const OrderPage = () => {
 
   return (
     <PageLayout renderHeader={renderOrderPageHeader} footer={<OrderFooter />}>
-      <ProductInfo />
+      <ProductInfo originialPrice={ORIGINAL_PRICE} itemPrice={ITEM_PRICE} count={COUNT} />
       <St.Line />
       <DeliveryInfo handleModal={handleModal} addressRef={addressRef} postcodeRef={postcodeRef} />
       <St.Line />
