@@ -10,18 +10,18 @@ const PaymentMini = ({ finalPrice, itemPrice, deliveryPrice }: PaymentMiniProps)
   return (
     <>
       <St.TextBox>
-        <St.MainText>총 결제 금액</St.MainText>
+        <St.MainText>결제 금액</St.MainText>
         <St.PriceBox>
           <St.MainPrice>{finalPrice.toLocaleString()}</St.MainPrice>
           <St.MainText>원</St.MainText>
         </St.PriceBox>
       </St.TextBox>
       <St.TextBox>
-        <St.SubText>총 상품 금액</St.SubText>
+        <St.SubText>상품 금액</St.SubText>
         <St.SubText>{itemPrice.toLocaleString()}원</St.SubText>
       </St.TextBox>
       <St.TextBox>
-        <St.SubText>총 배송비</St.SubText>
+        <St.SubText>배송비</St.SubText>
         <St.SubText>{deliveryPrice.toLocaleString()}원</St.SubText>
       </St.TextBox>
     </>
