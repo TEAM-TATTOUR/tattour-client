@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'title_eng_bold_20';
+  src: url('./Surt-Expanded-Bold/student/Surt-Expanded-Bold.woff') format('woff');
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: 0.06rem;
+}
+@font-face {
+  font-family: 'body_eng_bold_10';
+  src: url('./Surt-Expanded-Bold/student/Surt-Expanded-Bold.woff') format('woff');
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: 0.03rem;
+}
+@font-face {
+  font-family: 'body_eng_bold_18';
+  src: url('./Surt-Expanded-Bold/student/Surt-Expanded-Bold.woff') format('woff');
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: 0.054rem;
+}
