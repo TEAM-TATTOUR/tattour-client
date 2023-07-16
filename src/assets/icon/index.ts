@@ -60,6 +60,7 @@ export { ReactComponent as IcColorRed } from './ic_color_red.svg';
 export { ReactComponent as IcColorRedSelected } from './ic_color_red_selected.svg';
 export { ReactComponent as IcColorYellow } from './ic_color_yellow.svg';
 export { ReactComponent as IcColorYellowSelected } from './ic_color_yellow_selected.svg';
+export { ReactComponent as IcColorSelectedLine } from './ic_color_selected_line.svg';
 
 // etc
 export { ReactComponent as IcFinish } from './ic_finish.svg';
