@@ -82,6 +82,8 @@ const St = {
     flex-direction: column;
     justify-content: center;
 
+    padding: 0 2.75rem;
+
     width: 100%;
     height: calc(
       100dvh - 24.8rem
@@ -105,7 +107,6 @@ const St = {
   InfoMainText: styled.h2`
     color: ${({ theme }) => theme.colors.gray8};
     ${({ theme }) => theme.fonts.title_semibold_20};
-    padding: 0 6rem;
   `,
 
   SelectBtnContainer: styled.article`
