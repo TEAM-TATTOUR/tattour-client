@@ -10,7 +10,7 @@ const CustomReference = () => {
   return (
     <St.PageWrapper>
       <CustomTitle />
-      <CustomImageAttach isBottomOpen={isBottomOpen} setBottomOpen={setBottomOpen} />
+      <CustomImageAttach />
       {isBottomOpen && (
         <PaintBottomSheet isBottomOpen={isBottomOpen} setBottomOpen={setBottomOpen} />
       )}
