@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
-import { IcMenuDark, IcMenuLight, IcSearchDark, IcSearchLight } from '../../assets/icon';
 import { SetStateAction } from 'react';
+import { IcMenuDark, IcMenuLight, IcSearchDark, IcSearchLight } from '../assets/icon';
 
 interface MainHeaderButtonProps {
   setIsSideMenuOpen: React.Dispatch<SetStateAction<boolean>>;
