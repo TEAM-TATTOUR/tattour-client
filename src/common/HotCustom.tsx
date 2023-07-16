@@ -142,20 +142,6 @@ const St = {
 
   HotCustomLabel: styled.span`
     position: absolute;
-
-    width: 6.9rem;
-    height: 2.3rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    // body_eng_bold_10 필요
-    font-size: 1rem;
-    font-weight: bold;
-    color: ${({ theme }) => theme.colors.gray8};
-
-    background-color: ${({ theme }) => theme.colors.pink5};
   `,
 
   ImgWrapper: styled.div`
