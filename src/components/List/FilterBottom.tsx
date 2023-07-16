@@ -80,7 +80,7 @@ const FilterBottom = ({
 
         setSelectedTag(FILTER[2].data[trueIdx]);
       },
-      data: ['추상적인', '심플한', '귀여운', '사실적인', '감성적인', '다크한'],
+      data: ['추상적인', '사실적인', '감성적인', '심플한', '귀여운', '다크한'],
     },
   ];
 
