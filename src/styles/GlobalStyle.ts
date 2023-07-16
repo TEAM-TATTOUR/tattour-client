@@ -139,15 +139,26 @@ export const reset = css`
     border: none;
   }
 `;
-
 export const GlobalStyle = createGlobalStyle`
+
 ${reset}
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css");
+@font-face {
+  font-family: 'title_eng_bold_20';
+  src: url('./fonts/Surt-Expanded-Bold/student/Surt-Expanded-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'body_eng_bold_10';
+  src: url('./fonts/Surt-Expanded-Bold/student/Surt-Expanded-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'body_eng_bold_18';
+  src: url('./fonts/Surt-Expanded-Bold/student/Surt-Expanded-Bold.woff') format('woff');
+}
 
 #root, body, html {
-    max-width: 192rem;
-    height: 100vh;
+    max-width: 43rem;
     margin: 0 auto;
     /* overflow-y: auto; */
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
