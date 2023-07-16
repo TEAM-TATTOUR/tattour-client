@@ -18,6 +18,13 @@ const OrderPage = () => {
   const postcodeRef = useRef<null | HTMLInputElement>(null);
   const [isSheetOpen, setSheetOpen] = useState(false);
 
+  // 추후 서버통신 시 변수 변경 예정
+  const FINAL_PRICE = 5500;
+  const ITEM_PRICE = 2500;
+  const DELIVERY_PRICE = 3000;
+  const MY_POINT = 10000;
+  const RESULT_POINT = 4500; // 서버에서 주는 '남는/부족한 포인트 값'
+
   const renderOrderPageHeader = () => {
     return <Header leftSection={<BackBtn />} title='주문하기' />;
   };
@@ -38,7 +45,13 @@ const OrderPage = () => {
       <St.Line />
       <DeliveryInfo handleModal={handleModal} addressRef={addressRef} postcodeRef={postcodeRef} />
       <St.Line />
-      <PaymentInfo />
+      <PaymentInfo
+        finalPrice={FINAL_PRICE}
+        itemPrice={ITEM_PRICE}
+        deliveryPrice={DELIVERY_PRICE}
+        myPoint={MY_POINT}
+        resultPoint={RESULT_POINT}
+      />
       <St.Line />
       <RefundInfo setSheetOpen={setSheetOpen} />
       {isPostOpen && (
