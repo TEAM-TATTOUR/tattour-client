@@ -72,8 +72,8 @@ const St = {
     align-items: center;
 
     width: 100%;
-    height: fit-content;
-    padding: 4.6rem 0 11.9rem 0;
+    min-height: calc(100dvh - 13.6rem);
+    /* padding: 4.6rem 0 11.9rem 0; */
   `,
 
   SizeInfoContainer: styled.article`
@@ -81,7 +81,7 @@ const St = {
     flex-direction: column;
     gap: 1.2rem;
 
-    margin-bottom: 3rem;
+    margin: 4.6rem 0 3rem 0;
   `,
 
   InfoMainText: styled.h2`
@@ -107,5 +107,6 @@ const St = {
 
     width: 33.5rem;
     height: 43.3rem;
+    margin-bottom: 4.9rem;
   `,
 };
