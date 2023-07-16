@@ -155,6 +155,7 @@ const St = {
   CardContainer: styled.section`
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 0.1rem;
   `,
   Card: styled.article`
     display: flex;
@@ -182,7 +183,6 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    width: 18.7rem;
     height: 20.1rem;
     background-color: ${({ theme }) => theme.colors.gray0};
   `,
