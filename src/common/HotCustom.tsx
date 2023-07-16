@@ -100,15 +100,16 @@ const St = {
 
   HotCustomButton: styled.button`
     display: flex;
+    justify-content: center;
+    align-items: center;
 
     background-color: transparent;
     border: none;
   `,
 
-  // title_eng_bold_20 필요
   HotCustomTitle: styled.h2`
-    font-size: 2rem;
-    font-weight: bold;
+    ${({ theme }) => theme.fonts.title_eng_bold_20};
+    color: ${({ theme }) => theme.colors.gray8};
   `,
 
   HotCustomWrapper: styled.div`

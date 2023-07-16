@@ -45,6 +45,9 @@ declare module 'styled-components' {
       title_extrabold_18: SerializedStyles;
       title_extrabold_22: SerializedStyles;
       title_extrabold_24: SerializedStyles;
+      title_eng_bold_20: SerializedStyles;
+      body_eng_bold_10: SerializedStyles;
+      title_eng_bold_18: SerializedStyles;
     };
   }
 }

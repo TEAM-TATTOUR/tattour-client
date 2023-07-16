@@ -242,6 +242,30 @@ const fonts = {
     line-height: 130%;
     letter-spacing: -0.024rem;
   `,
+  title_eng_bold_20: css`
+    font-family: 'title_eng_bold_20';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: 0.06rem;
+  `,
+  body_eng_bold_10: css`
+    font-family: 'body_eng_bold_10';
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: 0.03rem;
+  `,
+  title_eng_bold_18: css`
+    font-family: 'body_eng_bold_18';
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: 0.054rem;
+  `,
 };
 
 const theme: DefaultTheme = {
