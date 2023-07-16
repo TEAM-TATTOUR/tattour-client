@@ -15,21 +15,23 @@ const ReceiptDetail = () => {
     },
   ];
 
+  const { name, hashtag, color, size, quantity, theme, request, previewURL } = SAMPLE[0];
+
   return (
     <>
       <St.Divider />
       <St.ReceiptDetailWrapper>
-        <St.ReceiptTitle>{SAMPLE[0].name}</St.ReceiptTitle>
+        <St.ReceiptTitle>{name}</St.ReceiptTitle>
         <St.PreviewSection>
           <St.ImgPreviewContainer>
-            {SAMPLE[0].previewURL.map((url, index) => (
+            {previewURL.map((url, index) => (
               <St.Image key={index}>
                 <img src={url} alt='첨부-이미지-미리보기' />
               </St.Image>
             ))}
           </St.ImgPreviewContainer>
           <St.HashtagGroup>
-            {SAMPLE[0].hashtag.map((tag, index) => (
+            {hashtag.map((tag, index) => (
               <St.Hashtag key={index}>{`#${tag}`}</St.Hashtag>
             ))}
           </St.HashtagGroup>
@@ -38,23 +40,23 @@ const ReceiptDetail = () => {
       <St.Line />
       <St.DetailWrapper>
         <St.DetailSubject>컬러</St.DetailSubject>
-        <St.DetailContent>{SAMPLE[0].color}</St.DetailContent>
+        <St.DetailContent>{color}</St.DetailContent>
       </St.DetailWrapper>
       <St.DetailWrapper>
         <St.DetailSubject>크기</St.DetailSubject>
-        <St.DetailContent>{SAMPLE[0].size}</St.DetailContent>
+        <St.DetailContent>{size}</St.DetailContent>
       </St.DetailWrapper>
       <St.DetailWrapper>
         <St.DetailSubject>수량</St.DetailSubject>
-        <St.DetailContent>{SAMPLE[0].quantity}개</St.DetailContent>
+        <St.DetailContent>{quantity}개</St.DetailContent>
       </St.DetailWrapper>
       <St.DetailWrapper>
         <St.DetailSubject>주제</St.DetailSubject>
-        <St.DetailContent>{SAMPLE[0].theme}</St.DetailContent>
+        <St.DetailContent>{theme}</St.DetailContent>
       </St.DetailWrapper>
       <St.DetailWrapper className='request'>
         <St.DetailSubject>요청사항</St.DetailSubject>
-        <St.DetailContent>{SAMPLE[0].request}</St.DetailContent>
+        <St.DetailContent>{request}</St.DetailContent>
       </St.DetailWrapper>
     </>
   );
