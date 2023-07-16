@@ -25,6 +25,7 @@ const RegisterPhoneNumForm = () => {
   const isError = !isCorrect && certificationLen === 4;
   const [isTimeout, setIsTimeout] = useState(false);
   const [leftTime, setLeftTime] = useState<number>(MINUTES_IN_MS);
+  const [text, setText] = useState('');
 
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (parseInt(e.target.value) === CERTIFICATION_NUM) {
@@ -34,6 +35,7 @@ const RegisterPhoneNumForm = () => {
     } else {
       setIsCorrect(false);
       setCertificationLen(e.target.value.length);
+      setText(e.target.value);
     }
   };
 
@@ -50,6 +52,8 @@ const RegisterPhoneNumForm = () => {
   const handleClickSendMessageBtn = () => {
     setToast(true);
     setIsRequired(!isRequired);
+    setText(' ');
+    setCertificationLen(0);
 
     // 전화번호 입력이 된 경우
     if (numLength === 13 && !isVisible) {
@@ -93,6 +97,7 @@ const RegisterPhoneNumForm = () => {
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 4, 'onlyNum')}
             placeholder='인증번호를 입력해주세요'
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeCertificationInput(e)}
+            value={text}
           ></St.CertificationInput>
           <Timer
             isTimeout={isTimeout}
@@ -111,6 +116,7 @@ const RegisterPhoneNumForm = () => {
 const St = {
   InputContentsWrapper: styled.article`
     display: flex;
+    justify-content: space-between;
     width: 100%;
     padding: 0rem 2rem;
 
@@ -118,7 +124,7 @@ const St = {
   `,
 
   InputContent: styled.input`
-    width: 23.1rem;
+    width: calc(100% - 9.7rem);
     height: 4.5rem;
     padding-left: 2rem;
 
