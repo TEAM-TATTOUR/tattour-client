@@ -6,6 +6,7 @@ import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeE
 import ReceiptDetail from '../../../components/Custom/HaveDesign/ReceiptDetail';
 import ReceiptFooter from '../../../components/Custom/HaveDesign/ReceiptFooter';
 import PageLayout from '../../../components/PageLayout';
+import Submitted from '../../../components/Custom/HaveDesign/Submitted';
 
 const ReceiptPage = () => {
   const [modalOn, setModalOn] = useState(false);
@@ -29,8 +30,7 @@ const ReceiptPage = () => {
 
   return (
     <PageLayout renderHeader={renderReceiptPageHeader} footer={<ReceiptFooter />}>
-      {/* 쑹이 뽑아준 공통 컴포넌트 활용하기 */}
-      {/* <Submitted/> */}
+      <Submitted />
       <ReceiptDetail />
     </PageLayout>
   );

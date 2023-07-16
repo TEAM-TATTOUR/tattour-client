@@ -22,7 +22,7 @@ const St = {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
+    position: sticky;
     bottom: 0;
 
     width: 100%;
@@ -35,7 +35,7 @@ const St = {
     width: 100%;
     height: 100%;
 
-    color: ${({ theme }) => theme.colors.pink5};
+    color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.title_semibold_18};
   `,
 };
