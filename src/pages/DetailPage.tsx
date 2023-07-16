@@ -1,14 +1,14 @@
-import styled from 'styled-components';
 import DetailInfo from '../components/Detail/DetailInfo';
 import DetailCarousel from '../components/Detail/DetailCarousel';
 import PageLayout from '../components/PageLayout';
 import Header from '../components/Header';
-import { IcBackDark, IcCancelDark } from '../assets/icon';
 import DetailFooter from '../components/Detail/DetailFooter';
 import { useState } from 'react';
 import DetailBottom from '../components/Detail/DetailBottom';
 import CustomScrollContainer from '../common/CustomScrollContainer';
 import SmallTattooCard from '../common/SmallTattooCard';
+import BackBtn from '../common/Header/BackBtn';
+import { useNavigate } from 'react-router-dom';
 
 const DUMMY_DATA = [
   {
@@ -70,11 +70,15 @@ const DUMMY_DATA = [
 ];
 
 const DetailPage = () => {
-  const [isSheetOpen, setSheetOpen] = useState(false); // bottomsheet를 위한 state
-  const [like, setLike] = useState(false); // 찜 여부 state
+  const navigate = useNavigate();
+  const [isSheetOpen, setSheetOpen] = useState(false);
+  const [isCustom, setCustom] = useState(false); // 해당 상품이 custom인지 여부
+
+  // 찜 여부 state -> 추후 서버통신
+  const [like, setLike] = useState(false);
 
   const renderDetailPageHeader = () => {
-    return <Header leftSection={<IcBackDark />} rightSection={<IcCancelDark />} />;
+    return <Header leftSection={<BackBtn />} />;
   };
 
   return (
@@ -90,7 +94,7 @@ const DetailPage = () => {
         />
       }
     >
-      <DetailCarousel />
+      <DetailCarousel isCustom={isCustom} />
       <DetailInfo />
       <CustomScrollContainer title='비슷한 제품도 추천드려요'>
         {DUMMY_DATA.map((el, index) => (

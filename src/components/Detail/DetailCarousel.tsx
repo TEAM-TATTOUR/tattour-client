@@ -4,8 +4,9 @@ import styled from 'styled-components';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
+import { LabelCustomSmall } from '../../assets/icon';
 
-const DetailCarousel = () => {
+const DetailCarousel = ({ isCustom }: { isCustom: boolean }) => {
   const DATA = ['Slide 1', 'Slide 2', 'Slide 3'];
 
   return (
@@ -13,6 +14,11 @@ const DetailCarousel = () => {
       <Swiper modules={[Pagination]} pagination={{ clickable: true }} slidesPerView={1} loop={true}>
         {DATA.map((el, index) => (
           <SwiperSlide key={index}>
+            {isCustom && (
+              <St.CustomLabel>
+                <LabelCustomSmall />
+              </St.CustomLabel>
+            )}
             <St.Card>{el}</St.Card>
           </SwiperSlide>
         ))}
@@ -55,5 +61,8 @@ const St = {
 
     background-color: ${({ theme }) => theme.colors.gray0};
     color: black;
+  `,
+  CustomLabel: styled.div`
+    position: absolute;
   `,
 };
