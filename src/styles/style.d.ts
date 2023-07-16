@@ -5,7 +5,6 @@ declare module 'styled-components' {
     colors: {
       white: string;
       bg: string;
-      gray0: string;
       gray1: string;
       gray2: string;
       gray3: string;
@@ -39,7 +38,9 @@ declare module 'styled-components' {
       body_underline_medium_14: SerializedStyles;
       body_line_medium_12: SerializedStyles;
       detail_medium_12: SerializedStyles;
+      detail_semibold_12: SerializedStyles;
       title_extrabold_16: SerializedStyles;
+      title_extrabold_18: SerializedStyles;
       title_extrabold_22: SerializedStyles;
       title_extrabold_24: SerializedStyles;
     };

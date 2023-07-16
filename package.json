@@ -19,13 +19,17 @@
     ]
   },
   "dependencies": {
+    "@types/lodash": "^4.14.195",
+    "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/styled-components": "^5.1.26",
     "axios": "^1.4.0",
     "fabric": "^5.3.0",
     "framer-motion": "^10.12.18",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
-    "react-indiana-drag-scroll": "^3.0.3-alpha",
+    "react-indiana-drag-scroll": "^2.2.0",
     "react-modal-sheet": "^2.0.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.14.0",
