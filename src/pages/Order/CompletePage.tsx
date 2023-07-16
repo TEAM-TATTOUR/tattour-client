@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import Result from '../common/Result';
-import PageLayout from '../components/PageLayout';
-import Header from '../components/Header';
+import Result from '../../common/Result';
+import PageLayout from '../../components/PageLayout';
+import Header from '../../components/Header';
+import ProductInfo from '../../components/Order/ProductInfo';
 
 const CompletePage = () => {
   const renderCompletePageHeader = () => {
@@ -15,6 +16,7 @@ const CompletePage = () => {
         description={'3일 내에 배송이 시작되며, 문자로 안내드려요'}
       />
       <St.Line />
+      <ProductInfo />
     </PageLayout>
   );
 };

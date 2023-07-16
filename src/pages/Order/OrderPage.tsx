@@ -1,16 +1,16 @@
 import { useState, useRef } from 'react';
 import styled from 'styled-components';
-import ProductInfo from '../components/Order/ProductInfo';
-import DeliveryInfo from '../components/Order/DeliveryInfo';
-import PaymentInfo from '../components/Order/PaymentInfo';
-import RefundInfo from '../components/Order/RefundInfo';
+import ProductInfo from '../../components/Order/ProductInfo';
+import DeliveryInfo from '../../components/Order/DeliveryInfo';
+import PaymentInfo from '../../components/Order/PaymentInfo';
+import RefundInfo from '../../components/Order/RefundInfo';
 import Postcode from 'react-daum-postcode';
-import PageLayout from '../components/PageLayout';
-import Header from '../components/Header';
-import OrderFooter from '../components/Order/OrderFooter';
-import { IcBackDark, IcCancelDark } from '../assets/icon';
-import RefundBottom from '../components/Order/RefundBottom';
-import BackBtn from '../common/Header/BackBtn';
+import PageLayout from '../../components/PageLayout';
+import Header from '../../components/Header';
+import OrderFooter from '../../components/Order/OrderFooter';
+import { IcBackDark, IcCancelDark } from '../../assets/icon';
+import RefundBottom from '../../components/Order/RefundBottom';
+import BackBtn from '../../common/Header/BackBtn';
 
 const OrderPage = () => {
   const [isPostOpen, setIsPostOpen] = useState(false);
