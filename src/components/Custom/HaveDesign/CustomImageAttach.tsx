@@ -1,6 +1,11 @@
 import { styled } from 'styled-components';
-import { IcCancelDark, IcDraw, IcPhoto } from '../../../assets/icon';
+import { IcDraw, IcPhoto, IcCancelDark } from '../../../assets/icon';
+import { Dispatch } from 'react';
 import { useRef, useState } from 'react';
+interface PaintBottomProps {
+  isBottomOpen: boolean;
+  setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const CustomImageAttach = () => {
   const MAX_FILES = 3;
