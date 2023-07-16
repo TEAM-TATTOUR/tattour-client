@@ -112,6 +112,7 @@ const St = {
     align-items: center;
 
     width: 100%;
+    min-height: calc(100dvh - 13.6rem);
   `,
 
   RequestNameContainer: styled.article`
