@@ -65,10 +65,9 @@ const St = {
   ImgAttachContainer: styled.article`
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     gap: 2rem;
-    padding-bottom: 12.3rem;
+    padding: 0 2rem 12.3rem 2rem;
 
     & > input {
       display: none;
