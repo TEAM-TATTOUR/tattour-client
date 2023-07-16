@@ -35,8 +35,7 @@ const St = {
     gap: 1rem;
 
     height: 12.2rem;
-    padding: 0 2.75rem;
-    margin: 2.6rem 0 2.9rem 2.2rem;
+    padding: 2.6rem 0 2.9rem 4.95rem;
   `,
 
   PolicyAgreeTouchArea: styled.article`
