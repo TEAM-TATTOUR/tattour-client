@@ -63,15 +63,18 @@ const CustomRequset = ({
       <St.RequestNameContainer>
         <St.RequestNameTitle>타투의 이름을 지어주세요</St.RequestNameTitle>
         <St.RequestNameDetail>추후 아카이브 또는 공개 시 해당 이름이 노출돼요</St.RequestNameDetail>
-        <St.RequestNameInput
-          type='text'
-          onChange={handleChangeNameInput}
-          placeholder='ex. 우리 가족 타투, 백조 타투'
-          autoFocus
-        />
-        <St.RequestInputCount>
-          ({nameInputCount}/{MAX_NAME_COUNT})
-        </St.RequestInputCount>
+
+        <St.RequestInputBox>
+          <St.RequestNameInput
+            type='text'
+            onChange={handleChangeNameInput}
+            placeholder='ex. 우리 가족 타투, 백조 타투'
+            autoFocus
+          />
+          <St.RequestInputCount>
+            ({nameInputCount}/{MAX_NAME_COUNT})
+          </St.RequestInputCount>
+        </St.RequestInputBox>
       </St.RequestNameContainer>
       <St.RequestEtcContainer>
         <St.RequestEtcTitleBox>
@@ -86,13 +89,15 @@ const CustomRequset = ({
             (컬러 코드, 정확한 사이즈, 라인 굵기, 명암 여부 등)
           </St.RequestEtcDetail>
         </div>
-        <St.RequestEtcTextArea
-          onChange={handleChangeEtcTextArea}
-          placeholder='ex. 라인 1mm로 사진보다 얇게 그려주세요 &#13;&#10; &nbsp; &nbsp;  도안을 붉은색 (FF6B6B)으로 바꿔주세요'
-        />
-        <St.RequestInputCount>
-          ({etcTextAreaCount}/{MAX_ETC_COUNT})
-        </St.RequestInputCount>
+        <St.RequestInputBox>
+          <St.RequestEtcTextArea
+            onChange={handleChangeEtcTextArea}
+            placeholder='ex. 라인 1mm로 사진보다 얇게 그려주세요 &#13;&#10; &nbsp; &nbsp;  도안을 붉은색 (FF6B6B)으로 바꿔주세요'
+          />
+          <St.RequestInputCount>
+            ({etcTextAreaCount}/{MAX_ETC_COUNT})
+          </St.RequestInputCount>
+        </St.RequestInputBox>
       </St.RequestEtcContainer>
     </St.CustomRequestWrapper>
   );
@@ -104,7 +109,9 @@ const St = {
   CustomRequestWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+
+    width: 100%;
   `,
 
   RequestNameContainer: styled.article`
@@ -112,7 +119,7 @@ const St = {
     flex-direction: column;
     gap: 1.2rem;
 
-    position: relative;
+    /* position: relative; */
 
     margin: 5.6rem 2rem 0 2.2rem;
   `,
@@ -132,6 +139,8 @@ const St = {
   RequestNameInput: styled.input`
     width: 29.5rem;
     height: 2.1rem;
+
+    /* position: relative; */
 
     padding: 1.2rem 2rem;
 
@@ -156,14 +165,22 @@ const St = {
     }
   `,
 
+  RequestInputBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    width: fit-content;
+  `,
+
   RequestEtcContainer: styled.article`
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
 
-    position: relative;
+    /* position: relative; */
 
-    margin: 4rem 2rem 0 2.2rem;
+    padding: 4rem 2rem 13rem 2.2rem;
   `,
 
   RequestEtcTitleBox: styled.div`
@@ -216,10 +233,13 @@ const St = {
     }
   `,
 
-  RequestInputCount: styled.p`
-    position: absolute;
-    right: 0;
-    bottom: -2.1rem;
+  RequestInputCount: styled.span`
+    /* position: fixed; */
+    /* right: 0; */
+    /* left: 0; */
+    /* bottom: 0; */
+    /* justify-self: flex-end; */
+    margin-left: auto;
 
     color: ${({ theme }) => theme.colors.gray2};
     ${({ theme }) => theme.fonts.detail_medium_12};
