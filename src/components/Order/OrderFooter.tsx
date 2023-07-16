@@ -31,6 +31,10 @@ const St = {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: sticky;
+    bottom: 0;
+
     width: 100%;
     height: 7rem;
   `,
