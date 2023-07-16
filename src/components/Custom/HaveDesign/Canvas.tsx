@@ -1,9 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { fabric } from 'fabric';
 import ColorPicker from './ColorPicker';
 import styled from 'styled-components';
 
-const Canvas: React.FC = () => {
+interface CanvasProps {
+  submitted: boolean;
+  setSavedCanvas: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+const Canvas: React.FC<CanvasProps> = ({ submitted, setSavedCanvas }: CanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
 
@@ -21,9 +26,12 @@ const Canvas: React.FC = () => {
 
     fabricCanvasRef.current = canvas;
 
-    //캔버스 지우기
+    // 캔버스 지우기
     return () => {
-      canvas.dispose();
+      const drawings = JSON.stringify(canvas);
+      setSavedCanvas(drawings);
+
+      // canvas.dispose();
     };
   }, []);
 

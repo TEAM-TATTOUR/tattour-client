@@ -7,16 +7,26 @@ import { useState } from 'react';
 interface PaintBottomProps {
   isBottomOpen: boolean;
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setDrawingImageURL: React.Dispatch<React.SetStateAction<string>>;
+  setDrawingImageURL: React.Dispatch<React.SetStateAction<string | null>>;
   drawingImageURL: string | null;
 }
 
-const PaintBottomSheet = ({ isBottomOpen, setBottomOpen }: PaintBottomProps) => {
+const PaintBottomSheet = ({ setBottomOpen, setDrawingImageURL }: PaintBottomProps) => {
+  const [submitted, setSubmitted] = useState(false);
+  const [savedCanvas, setSavedCanvas] = useState<string | null>('');
+  const [_canvas, setTempCanvas] = useState<fabric.Canvas>();
+
   const closeBottom = () => setBottomOpen(false);
 
   const onClickSubmitImage = () => {
+    console.log('test');
+    console.log('click', savedCanvas);
+    console.log(JSON.stringify(_canvas));
     // 캔버스 저장 후 전달
-    closeBottom;
+    setDrawingImageURL(savedCanvas);
+    setSubmitted(true);
+    // setBottomOpen(false);
+    // closeBottom;
   };
 
   return (
@@ -28,17 +38,21 @@ const PaintBottomSheet = ({ isBottomOpen, setBottomOpen }: PaintBottomProps) => 
           </Sheet.Header>
           <Sheet.Content>
             <St.ContentWrapper>
-              <Canvas />
+              <Canvas
+                setTempCanvas={setTempCanvas}
+                submitted={submitted}
+                setSavedCanvas={setSavedCanvas}
+              />
             </St.ContentWrapper>
           </Sheet.Content>
         </St.BottomSheetWrapper>
         <St.Footer>
-          <St.Button type='button' onClick={closeBottom}>
+          <St.Button type='button' onClick={onClickSubmitImage}>
             레퍼런스로 제출하기
           </St.Button>
         </St.Footer>
       </Sheet.Container>
-      <Sheet.Backdrop onTab={onClickSubmitImage} />
+      <Sheet.Backdrop onTap={closeBottom} />
     </CustomSheet>
   );
 };

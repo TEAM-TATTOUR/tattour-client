@@ -9,7 +9,7 @@ interface PaintBottomProps {
   drawingImageURL: string | null;
 }
 
-const CustomImageAttach: React.FC<PaintBottomProps> = ({ drawingImageURL }) => {
+const CustomImageAttach: React.FC<PaintBottomProps> = ({ drawingImageURL, setBottomOpen }) => {
   const MAX_FILES = 3;
 
   const ref = useRef<HTMLInputElement | null>(null);
@@ -96,7 +96,12 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({ drawingImageURL }) => {
             ref={ref}
           />
         </St.ReferenceButton>
-        <St.ReferenceButton type='button'>
+        <St.ReferenceButton
+          type='button'
+          onClick={() => {
+            setBottomOpen(true);
+          }}
+        >
           <IcDraw />
           대충 그리기
         </St.ReferenceButton>
