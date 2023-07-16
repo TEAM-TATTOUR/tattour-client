@@ -79,7 +79,7 @@ const RegisterPhoneNumForm = () => {
           $length={numLength}
           onClick={handleClickSendMessageBtn}
         >
-          {isVisible ? '재요청' : '인증하기'}
+          {isVisible ? '재인증' : '인증하기'}
           {toast && <Toast setToast={setToast} text='인증번호가 발송되었습니다.' />}
         </St.SendMessageBtn>
       </St.InputContentsWrapper>
@@ -87,6 +87,7 @@ const RegisterPhoneNumForm = () => {
       {isVisible && (
         <St.CertificationInputWrapper>
           <St.CertificationInput
+            type='number'
             id={isError || isTimeout ? 'errorInput' : 'successInput'}
             disabled={isTimeout ? true : false}
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 4, 'onlyNum')}
@@ -171,6 +172,10 @@ const St = {
     border-radius: 0.5rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
+
+    color: ${({ theme }) => theme.colors.gray5};
+
+    ${({ theme }) => theme.fonts.body_medium_16};
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray2};
