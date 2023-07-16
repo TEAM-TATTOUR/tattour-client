@@ -1,4 +1,4 @@
-export const REFUND_CUSTOM_POLICY = `
+export const REFUND_ORDER_POLICY = `
 제 1조 - 취소 및 환불
 ・ 고객은 구매한 작품이 발송되기 전까지 구매를 취소할 수 있으며, 배송중인 경우에는 취소가 아닌 반품절차에 따라 처리됩니다.
 ・ 고객의 구매 취소 요청은 다음 각호와 같이 처리됩니다.
