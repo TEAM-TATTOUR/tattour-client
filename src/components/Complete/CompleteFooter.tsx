@@ -21,6 +21,8 @@ export default CompleteFooter;
 
 const St = {
   footer: styled.footer`
+    position: sticky;
+    bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
