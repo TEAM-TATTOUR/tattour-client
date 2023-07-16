@@ -139,8 +139,8 @@ export const reset = css`
     border: none;
   }
 `;
-
 export const GlobalStyle = createGlobalStyle`
+
 ${reset}
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css");
@@ -158,8 +158,8 @@ ${reset}
 }
 
 #root, body, html {
-    max-width: 192rem;
-    /* height: 100vh; */
+    max-width: 43rem;
+    height: 100vh;
     margin: 0 auto;
     /* overflow-y: auto; */
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
