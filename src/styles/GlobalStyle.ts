@@ -1,155 +1,166 @@
-import { createGlobalStyle, css } from "styled-components";
+import { createGlobalStyle, css } from 'styled-components';
 
 export const reset = css`
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-menu,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-main,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+  html,
+  body,
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  blockquote,
+  pre,
+  a,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  img,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  small,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  b,
+  u,
+  i,
+  center,
+  dl,
+  dt,
+  dd,
+  menu,
+  ol,
+  ul,
+  li,
+  fieldset,
+  form,
+  label,
+  legend,
+  table,
+  caption,
+  tbody,
+  tfoot,
+  thead,
+  tr,
+  th,
+  td,
+  article,
+  aside,
+  canvas,
+  details,
+  embed,
+  figure,
+  figcaption,
+  footer,
+  header,
+  hgroup,
+  main,
+  menu,
+  nav,
+  output,
+  ruby,
+  section,
+  summary,
+  time,
+  mark,
+  audio,
+  video {
     margin: 0;
     padding: 0;
     border: 0;
     font-size: 62.5%;
     vertical-align: baseline;
-}
+  }
 
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-menu,
-nav,
-section {
+  /* HTML5 display-role reset for older browsers */
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  main,
+  menu,
+  nav,
+  section {
     display: block;
-}
-/* HTML5 hidden-attribute fix for newer browsers */
-*[hidden] {
+  }
+  /* HTML5 hidden-attribute fix for newer browsers */
+  *[hidden] {
     display: none;
-}
-body {
+  }
+  body {
     line-height: 1;
-}
-menu,
-ol,
-ul {
+  }
+  menu,
+  ol,
+  ul {
     list-style: none;
-}
-blockquote,
-q {
+  }
+  blockquote,
+  q {
     quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+  }
+  blockquote:before,
+  blockquote:after,
+  q:before,
+  q:after {
     content: '';
     content: none;
-}
-table {
+  }
+  table {
     border-collapse: collapse;
     border-spacing: 0;
-}
-button {
-cursor: pointer;
+  }
+  button {
+    cursor: pointer;
     background: transparent;
     border: none;
-}
+  }
 `;
-
 export const GlobalStyle = createGlobalStyle`
+
 ${reset}
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css");
+@font-face {
+  font-family: 'title_eng_bold_20';
+  src: url('./fonts/Surt-Expanded-Bold/student/Surt-Expanded-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'body_eng_bold_10';
+  src: url('./fonts/Surt-Expanded-Bold/student/Surt-Expanded-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'body_eng_bold_18';
+  src: url('./fonts/Surt-Expanded-Bold/student/Surt-Expanded-Bold.woff') format('woff');
+}
 
 #root, body, html {
-    max-width: 192rem;
-    height: 100vh;
+    max-width: 43rem;
     margin: 0 auto;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
     scrollbar-width: none; /* 파이어폭스 */
 }
@@ -167,7 +178,16 @@ ${reset}
     -webkit-touch-callout: none;
     
 }
-    
+
+// 사파리 웹 뷰 브라우저 상속 스타일 제거
+input, textarea,button {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+}
 `;
 
 export default GlobalStyle;

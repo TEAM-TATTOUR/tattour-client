@@ -1,6 +1,11 @@
 import { styled } from 'styled-components';
-import { IcCancelDark, IcDraw, IcPhoto } from '../../../assets/icon';
+import { IcDraw, IcPhoto, IcCancelDark } from '../../../assets/icon';
+import { Dispatch } from 'react';
 import { useRef, useState } from 'react';
+interface PaintBottomProps {
+  isBottomOpen: boolean;
+  setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const CustomImageAttach = () => {
   const MAX_FILES = 3;
@@ -64,7 +69,7 @@ const CustomImageAttach = () => {
           ))
         ) : (
           <St.Image>
-            <St.ImageDescription>최대 3장까지 추가할 수 있어요</St.ImageDescription>
+            <St.ImageDescription> 필수 1장 첨부, 최대 3장 첨부 가능합니다.</St.ImageDescription>
           </St.Image>
         )}
       </St.PreviewSection>

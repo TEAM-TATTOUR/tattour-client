@@ -9,6 +9,7 @@ export { ReactComponent as IcArrowBottomMediumDark } from './ic_arrow_bottom_med
 export { ReactComponent as IcArrowBottomMediumGray } from './ic_arrow_bottom_medium_gray.svg';
 export { ReactComponent as IcArrowBottomMediumLight } from './ic_arrow_bottom_medium_light.svg';
 export { ReactComponent as IcArrowBottomSmallLight } from './ic_arrow_bottom_small_light.svg';
+export { ReactComponent as IcArrowBottomSmallGray } from './ic_arrow_bottom_small_gray.svg';
 export { ReactComponent as IcArrowLeftGray } from './ic_arrow_left_gray.svg';
 export { ReactComponent as IcArrowRightDark } from './ic_arrow_right_dark.svg';
 export { ReactComponent as IcArrowRightGray } from './ic_arrow_right_gray.svg';
@@ -39,6 +40,7 @@ export { ReactComponent as IcSearchDark } from './ic_search_dark.svg';
 export { ReactComponent as IcSearchLight } from './ic_search_light.svg';
 export { ReactComponent as IcShop } from './ic_shop.svg';
 export { ReactComponent as IcCloseLight } from './ic_close_light.svg';
+export { ReactComponent as IcError } from './ic_error.svg';
 
 // brush
 export { ReactComponent as IcBrushBoldSelected } from './ic_brush_bold_selected.svg';
@@ -64,3 +66,7 @@ export { ReactComponent as IcFinish } from './ic_finish.svg';
 export { ReactComponent as ImgLogoDark } from './img_logo_dark.svg';
 export { ReactComponent as ImgLogoLight } from './img_logo_light.svg';
 export { ReactComponent as ImgHome } from './img_home.svg';
+export { ReactComponent as LabelCustomLarge } from './label_custom_large.svg';
+export { ReactComponent as LabelCustomSmall } from './label_custom_small.svg';
+export { ReactComponent as ImgStorage } from './img_storage.svg';
+export { ReactComponent as ImgPointCoupon } from './img_point_coupon.svg';
