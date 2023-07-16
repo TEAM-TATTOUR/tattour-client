@@ -11,7 +11,7 @@ const CustomImgAttach = ({
 
   useEffect(() => {
     previewURL ? setIsActiveNext(true) : setIsActiveNext(false);
-  }, [previewURL]);
+  }, [previewURL, setIsActiveNext]);
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
