@@ -1,18 +1,17 @@
 import { memo } from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { styled } from 'styled-components';
 
 interface TimerProps {
   isCorrect: boolean;
   isTimeout: boolean;
   setIsTimeout: React.Dispatch<React.SetStateAction<boolean>>;
+  leftTime: number;
+  setLeftTime: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Timer = memo(({ isCorrect, isTimeout, setIsTimeout }: TimerProps) => {
-  const MINUTES_IN_MS = 5 * 60 * 1000;
+const Timer = memo(({ isCorrect, isTimeout, setIsTimeout, leftTime, setLeftTime }: TimerProps) => {
   const INTERVAL = 1000;
-  const [leftTime, setLeftTime] = useState<number>(MINUTES_IN_MS);
-
   // padStart(2, '0'): 문자열의 길이는 2로 하고, 빈 곳이 있으면 0으로 채워넣어줌.
   const minutes = String(Math.floor((leftTime / (1000 * 60)) % 60)).padStart(2, '0');
   const second = String(Math.floor((leftTime / 1000) % 60)).padStart(2, '0');
