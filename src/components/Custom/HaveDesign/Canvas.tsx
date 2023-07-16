@@ -11,7 +11,7 @@ const Canvas: React.FC = () => {
     const canvas = new fabric.Canvas(canvasRef.current, {
       isDrawingMode: true,
       width: 335,
-      height: 458,
+      height: 313,
       allowTouchScrolling: true,
     });
 
@@ -72,7 +72,7 @@ const St = {
   `,
   Canvas: styled.div`
     width: 33.5rem;
-    height: 45.8rem;
+    height: 31.3rem;
     margin-bottom: 1.6rem;
 
     background-color: ${({ theme }) => theme.colors.bg};

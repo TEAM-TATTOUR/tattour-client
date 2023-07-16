@@ -6,13 +6,23 @@ import { Dispatch, SetStateAction, useState } from 'react';
 
 const CustomReference = () => {
   const [isBottomOpen, setBottomOpen] = useState(true);
+  const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
 
   return (
     <St.PageWrapper>
       <CustomTitle />
-      <CustomImageAttach />
+      <CustomImageAttach
+        isBottomOpen={isBottomOpen}
+        setBottomOpen={setBottomOpen}
+        drawingImageURL={drawingImageUrl}
+      />
       {isBottomOpen && (
-        <PaintBottomSheet isBottomOpen={isBottomOpen} setBottomOpen={setBottomOpen} />
+        <PaintBottomSheet
+          isBottomOpen={isBottomOpen}
+          setBottomOpen={setBottomOpen}
+          drawingImageURL={drawingImageUrl}
+          setDrawingImageURL={setDrawingImageUrl}
+        />
       )}
     </St.PageWrapper>
   );

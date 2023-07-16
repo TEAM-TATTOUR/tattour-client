@@ -7,11 +7,17 @@ import { useState } from 'react';
 interface PaintBottomProps {
   isBottomOpen: boolean;
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setDrawingImageURL: React.Dispatch<React.SetStateAction<string>>;
+  drawingImageURL: string | null;
 }
 
 const PaintBottomSheet = ({ isBottomOpen, setBottomOpen }: PaintBottomProps) => {
   const closeBottom = () => setBottomOpen(false);
-  // const [canvasData, setCanvasData] = useState(null);
+
+  const onClickSubmitImage = () => {
+    // 캔버스 저장 후 전달
+    closeBottom;
+  };
 
   return (
     <CustomSheet isOpen={true} onClose={closeBottom} detent='content-height' disableDrag={true}>
@@ -32,7 +38,7 @@ const PaintBottomSheet = ({ isBottomOpen, setBottomOpen }: PaintBottomProps) => 
           </St.Button>
         </St.Footer>
       </Sheet.Container>
-      <Sheet.Backdrop onClick={closeBottom} />
+      <Sheet.Backdrop onTab={onClickSubmitImage} />
     </CustomSheet>
   );
 };
