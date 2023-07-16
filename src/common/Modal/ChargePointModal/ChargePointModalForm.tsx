@@ -115,6 +115,8 @@ const St = {
     color: ${({ theme }) => theme.colors.gray7};
 
     ${({ theme }) => theme.fonts.title_semibold_20};
+
+    white-space: pre-line;
   `,
 
   ModalSubTitle: styled.p`
@@ -163,7 +165,7 @@ const St = {
   `,
 
   TopContents: styled.p`
-    color: ${({ theme }) => theme.colors.gray8};
+    color: ${({ theme }) => theme.colors.gray5};
 
     ${({ theme }) => theme.fonts.title_semibold_18};
   `,

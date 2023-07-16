@@ -139,15 +139,26 @@ export const reset = css`
     border: none;
   }
 `;
-
 export const GlobalStyle = createGlobalStyle`
+
 ${reset}
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css");
+@font-face {
+  font-family: 'title_eng_bold_20';
+  src: url('./fonts/Surt-Expanded-Bold/student/Surt-Expanded-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'body_eng_bold_10';
+  src: url('./fonts/Surt-Expanded-Bold/student/Surt-Expanded-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'body_eng_bold_18';
+  src: url('./fonts/Surt-Expanded-Bold/student/Surt-Expanded-Bold.woff') format('woff');
+}
 
 #root, body, html {
-    max-width: 192rem;
-    height: 100vh;
+    max-width: 43rem;
     margin: 0 auto;
     /* overflow-y: auto; */
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
@@ -166,6 +177,9 @@ ${reset}
     // 링크 터치 금지
     -webkit-touch-callout: none;
     
+}
+input:disabled, textarea:disabled, input:disabled::placeholder, textarea:disabled::placeholder {
+    opacity: 1; 
 }
 
 // 사파리 웹 뷰 브라우저 상속 스타일 제거
