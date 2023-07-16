@@ -100,15 +100,16 @@ const St = {
 
   HotCustomButton: styled.button`
     display: flex;
+    justify-content: center;
+    align-items: center;
 
     background-color: transparent;
     border: none;
   `,
 
-  // title_eng_bold_20 필요
   HotCustomTitle: styled.h2`
-    font-size: 2rem;
-    font-weight: bold;
+    ${({ theme }) => theme.fonts.title_eng_bold_20};
+    color: ${({ theme }) => theme.colors.gray8};
   `,
 
   HotCustomWrapper: styled.div`
@@ -141,20 +142,6 @@ const St = {
 
   HotCustomLabel: styled.span`
     position: absolute;
-
-    width: 6.9rem;
-    height: 2.3rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    // body_eng_bold_10 필요
-    font-size: 1rem;
-    font-weight: bold;
-    color: ${({ theme }) => theme.colors.gray8};
-
-    background-color: ${({ theme }) => theme.colors.pink5};
   `,
 
   ImgWrapper: styled.div`
@@ -182,16 +169,13 @@ const St = {
   `,
 
   HotCustomItemDiscountRate: styled.span`
-    // font title_extra_bold_16 추가 필요
-    font-size: 1.6rem;
-    font-weight: bold;
     margin-right: 0.5rem;
 
+    ${({ theme }) => theme.fonts.title_extrabold_16};
     color: ${({ theme }) => theme.colors.pink5};
   `,
   HotCustomItemPrice: styled.p`
-    // font title_extra_bold_16 추가 필요
-    font-size: 1.6rem;
+    ${({ theme }) => theme.fonts.title_extrabold_16};
     font-weight: bold;
   `,
   HotCustomItemOriginPrice: styled.span`
