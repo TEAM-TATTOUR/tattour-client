@@ -14,12 +14,10 @@ const DetailCarousel = ({ isCustom }: { isCustom: boolean }) => {
       <Swiper modules={[Pagination]} pagination={{ clickable: true }} slidesPerView={1} loop={true}>
         {DATA.map((el, index) => (
           <SwiperSlide key={index}>
-            {isCustom ? (
+            {isCustom && (
               <St.CustomLabel>
                 <LabelCustomSmall />
               </St.CustomLabel>
-            ) : (
-              ''
             )}
             <St.Card>{el}</St.Card>
           </SwiperSlide>
