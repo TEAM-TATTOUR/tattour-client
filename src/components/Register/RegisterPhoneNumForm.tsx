@@ -7,31 +7,23 @@ import ErrorMessage from './ErrorMessage';
 import { useNavigate } from 'react-router-dom';
 
 const RegisterPhoneNumForm = () => {
-  const navigate = useNavigate();
-  // 전화번호 입력 체크를 위한 상태
-  const [isChanged, setIsChanged] = useState(false);
-
-  // 입력한 전화번호 자릿수
-  const [numLength, setNumLength] = useState(0);
-
-  // toast message
-  const [toast, setToast] = useState(false);
-
-  const [isVisible, setIsVisible] = useState(false);
-  const [isRequired, setIsRequired] = useState(false);
   // 임의의 인증번호
   const CERTIFICATION_NUM = 1234;
+  const MINUTES_IN_MS = 5 * 60 * 1000;
+
+  const navigate = useNavigate();
+  // 입력한 전화번호 자릿수
+  const [numLength, setNumLength] = useState(0);
+  // toast message
+  const [toast, setToast] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isRequired, setIsRequired] = useState(false);
   // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
   const [isCorrect, setIsCorrect] = useState(false);
   // 입력한 인증번호 자릿수
   const [certificationLen, setCertificationLen] = useState(0);
-
   const isError = !isCorrect && certificationLen === 4;
-
-  const MINUTES_IN_MS = 5 * 60 * 1000;
-
   const [isTimeout, setIsTimeout] = useState(false);
-
   const [leftTime, setLeftTime] = useState<number>(MINUTES_IN_MS);
 
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,12 +40,9 @@ const RegisterPhoneNumForm = () => {
   const handleChangeInputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 전화번호 입력이 되지 않았을 경우
     if (e.target.value.length === 0) {
-      // 인증번호 입력 폼은 나오지 않음
-      setIsChanged(false);
       setIsVisible(false);
       setNumLength(0);
     } else {
-      setIsChanged(true);
       setNumLength(e.target.value.length);
     }
   };
@@ -86,7 +75,6 @@ const RegisterPhoneNumForm = () => {
         ></St.InputContent>
         <St.SendMessageBtn
           type='button'
-          $ischanged={isChanged}
           $isvisible={isVisible}
           $length={numLength}
           onClick={handleClickSendMessageBtn}
@@ -151,7 +139,7 @@ const St = {
     }
   `,
 
-  SendMessageBtn: styled.button<{ $ischanged: boolean; $isvisible: boolean; $length: number }>`
+  SendMessageBtn: styled.button<{ $isvisible: boolean; $length: number }>`
     width: 9.2rem;
     height: 4.5rem;
 
@@ -160,8 +148,8 @@ const St = {
 
     color: ${({ theme }) => theme.colors.white};
 
-    background-color: ${({ $ischanged, $isvisible, theme, $length }) =>
-      ($ischanged && $isvisible) || $length === 13 ? theme.colors.gray7 : theme.colors.gray3};
+    background-color: ${({ $isvisible, theme, $length }) =>
+      $isvisible || $length === 13 ? theme.colors.gray7 : theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.title_semibold_16};
   `,
