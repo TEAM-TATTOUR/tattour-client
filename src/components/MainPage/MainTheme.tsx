@@ -12,20 +12,32 @@ const dummyThemeList: MainThemeItemProps[] = [
   {
     id: 1,
     img: '',
-    title: '동양화',
-    description: '고전적이면서 아름다운',
+    title: '라인 타투',
+    description: '깔끔한 라인으로 심플한',
   },
   {
     id: 2,
     img: '',
-    title: '동양화',
-    description: '고전적이면서 아름다운',
+    title: '수채화',
+    description: '물 먹은 투명한 느낌의',
   },
   {
     id: 3,
     img: '',
     title: '동양화',
     description: '고전적이면서 아름다운',
+  },
+  {
+    id: 4,
+    img: '',
+    title: '일러스트',
+    description: '원하는 바를 자유롭게 표현하는',
+  },
+  {
+    id: 5,
+    img: '',
+    title: '블랙 워크',
+    description: '블랙 타투로 강렬한',
   },
 ];
 
@@ -77,9 +89,7 @@ const St = {
   `,
 
   MainThemeTitle: styled.h2`
-    // title_eng_bold_20 필요
-    font-size: 2rem;
-    font-weight: bold;
+    ${({ theme }) => theme.fonts.title_eng_bold_20};
   `,
 
   MainThemeWrapper: styled.div`
@@ -104,7 +114,7 @@ const St = {
   MainThemeItemTitle: styled.h3`
     margin-top: 1rem;
 
-    font: ${({ theme }) => theme.fonts.title_semibold_16};
+    ${({ theme }) => theme.fonts.title_semibold_16};
   `,
 
   MainThemeItemDescription: styled.p`
@@ -112,7 +122,7 @@ const St = {
     margin-bottom: 0.8rem;
 
     // detail medium 12 필요
-    font-size: 1.2rem;
+    ${({ theme }) => theme.fonts.detail_medium_12};
 
     color: ${({ theme }) => theme.colors.gray3};
   `,

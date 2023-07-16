@@ -29,12 +29,12 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
   const NAV_MENU_ITEM = [
     {
       icon: <IcShop />,
-      text: '타투 스티커',
+      text: '타투 샵',
       clickHandler: handelClickShopButton,
     },
     {
       icon: <IcCustom />,
-      text: '커스텀 타투',
+      text: '커스텀 타투 신청',
       clickHandler: handleClickCustomButton,
     },
     {
