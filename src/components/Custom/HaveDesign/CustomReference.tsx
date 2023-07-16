@@ -5,7 +5,7 @@ import PaintBottomSheet from './PaintBottomSheet';
 import { Dispatch, SetStateAction, useState } from 'react';
 
 const CustomReference = () => {
-  const [isBottomOpen, setBottomOpen] = useState(false);
+  const [isBottomOpen, setBottomOpen] = useState(true);
 
   return (
     <St.PageWrapper>
