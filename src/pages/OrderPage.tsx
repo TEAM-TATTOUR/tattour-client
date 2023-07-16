@@ -42,7 +42,7 @@ const OrderPage = () => {
       <St.Line />
       <RefundInfo setSheetOpen={setSheetOpen} />
       {isPostOpen && (
-        <St.Card>
+        <St.Card onClick={() => setIsPostOpen(false)}>
           <Postcode onComplete={handleAddress} />
         </St.Card>
       )}
