@@ -52,6 +52,7 @@ const RegisterPhoneNumForm = ({ isVisible, setIsVisible }: RegisterPhoneNumFormP
   return (
     <St.InputContentsWrapper>
       <St.InputContent
+        type='tel'
         placeholder='ex) 010-0000-0000'
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
         onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
