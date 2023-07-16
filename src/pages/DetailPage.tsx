@@ -1,16 +1,13 @@
-import styled from 'styled-components';
 import DetailInfo from '../components/Detail/DetailInfo';
 import DetailCarousel from '../components/Detail/DetailCarousel';
 import PageLayout from '../components/PageLayout';
 import Header from '../components/Header';
-import { IcBackDark, IcCancelDark } from '../assets/icon';
 import DetailFooter from '../components/Detail/DetailFooter';
 import { useState } from 'react';
 import DetailBottom from '../components/Detail/DetailBottom';
 import CustomScrollContainer from '../common/CustomScrollContainer';
 import SmallTattooCard from '../common/SmallTattooCard';
 import BackBtn from '../common/Header/BackBtn';
-import CancelBtn from '../common/Header/CancelBtn';
 
 const DUMMY_DATA = [
   {
