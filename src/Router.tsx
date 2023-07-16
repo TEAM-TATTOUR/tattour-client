@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ListPage from './pages/ListPage';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/Login/LoginPage';
+import RegisterPhoneNum from './components/Register/RegisterPhoneNum';
+import DetailPage from './pages/DetailPage';
 import MyTattoo from './pages/MyTattoo';
 import MyTattooDetail from './pages/MyTattooDetail';
 import RegisterNamePage from './pages/Register/RegisterNamePage';
@@ -10,7 +12,11 @@ import WelcomePage from './pages/Welcome/WelcomePage';
 import ChargePage from './pages/PointCharge/ChargePage';
 import TransferPage from './pages/PointCharge/TransferPage';
 import SelectPage from './pages/Custom/SelectPage';
+<<<<<<< HEAD
 import CompletePage from './pages/CompletePage';
+=======
+import OrderPage from './pages/OrderPage';
+>>>>>>> 46efb1b589cbaa0a22e3f90cdbc8b51f7c645397
 
 const Router = () => {
   return (
@@ -18,7 +24,10 @@ const Router = () => {
       <Routes>
         <Route path='/list' element={<ListPage />} />
         <Route path='/' element={<MainPage />} />
+        <Route path='/order' element={<OrderPage />} />
         <Route path='/login' element={<LoginPage />} />
+        <Route path='/input-number' element={<RegisterPhoneNum />} />
+        <Route path='/detail' element={<DetailPage />} />
         <Route path='/register' element={<RegisterNamePage />} />
         <Route path='/register-number' element={<RegisterPhoneNumPage />} />
         <Route path='/welcome-signup' element={<WelcomePage />} />
