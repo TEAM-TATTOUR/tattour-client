@@ -3,8 +3,16 @@ import Result from '../../common/Result';
 import PageLayout from '../../components/PageLayout';
 import Header from '../../components/Header';
 import ProductInfo from '../../components/Order/ProductInfo';
+import PaymentMini from '../../components/Order/PaymentMini';
 
 const CompletePage = () => {
+  // 추후 서버통신 시 받아옴
+  const ORIGINAL_PRICE = 4000;
+  const FINAL_PRICE = 5500;
+  const ITEM_PRICE = 2500;
+  const DELIVERY_PRICE = 3000;
+  const COUNT = 1;
+
   const renderCompletePageHeader = () => {
     return <Header title='주문하기' />;
   };
@@ -17,8 +25,15 @@ const CompletePage = () => {
       />
       <St.Line />
       <St.Title>주문 정보</St.Title>
-      <ProductInfo />
+      <ProductInfo originialPrice={ORIGINAL_PRICE} itemPrice={ITEM_PRICE} count={COUNT} />
       <St.LightLine />
+      <St.PriceContainer>
+        <PaymentMini
+          finalPrice={FINAL_PRICE}
+          itemPrice={ITEM_PRICE}
+          deliveryPrice={DELIVERY_PRICE}
+        />
+      </St.PriceContainer>
     </PageLayout>
   );
 };
@@ -42,5 +57,8 @@ const St = {
 
     background-color: ${({ theme }) => theme.colors.bg};
     border-width: 0rem;
+  `,
+  PriceContainer: styled.article`
+    padding: 2.8rem 2.2rem 7.5rem 2.2rem;
   `,
 };
