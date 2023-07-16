@@ -107,7 +107,6 @@ const RegisterPhoneNumForm = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeCertificationInput(e)}
           ></St.CertificationInput>
           <Timer
-            isCorrect={isCorrect}
             isTimeout={isTimeout}
             setIsTimeout={setIsTimeout}
             leftTime={leftTime}
