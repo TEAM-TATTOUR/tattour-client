@@ -29,6 +29,10 @@ const FilterBottom = ({
 }: FilterBottomProps) => {
   useEffect(() => {
     setSelected(false);
+    //QA : 최초에 아무것도 선택 안하고 적용할 경우 발생하는 문제 해결
+    isSortOpen && setSelectedTag(FILTER[0].type);
+    isGenreOpen && setSelectedTag(FILTER[1].type);
+    isStyleOpen && setSelectedTag(FILTER[2].type);
   }, [isSortOpen, isGenreOpen, isStyleOpen]);
 
   const FILTER = [
@@ -118,15 +122,16 @@ const FilterBottom = ({
   const handleClickButton = (onClose: () => void, filterIdx: number) => {
     onClose(); // 모달 내리기
 
-    // 태그 isSelected true
     const newTag = [...filterTag];
     if (selectedTag === FILTER[filterIdx].type) {
       newTag[filterIdx] = FILTER[filterIdx].data.map(() => false);
     } else {
       newTag[filterIdx] = FILTER[filterIdx].data.map((item, idx) => {
+        console.log(idx === FILTER[filterIdx].data.indexOf(selectedTag));
         return idx === FILTER[filterIdx].data.indexOf(selectedTag);
       });
     }
+
     setFilterTag(newTag);
 
     tagRefs.current.forEach(() => {
@@ -137,7 +142,7 @@ const FilterBottom = ({
   };
 
   return (
-    <>
+    <St.Wrapper>
       {FILTER.map((filter, filterIdx) => (
         <CustomSheet
           key={filter.type}
@@ -174,13 +179,16 @@ const FilterBottom = ({
           <Sheet.Backdrop onTap={() => filter.onTap(filterTag[filterIdx])} />
         </CustomSheet>
       ))}
-    </>
+    </St.Wrapper>
   );
 };
 
 export default FilterBottom;
 
 const St = {
+  Wrapper: styled.section`
+    height: 100%;
+  `,
   TagBox: styled.p`
     display: flex;
     justify-content: center;
@@ -220,6 +228,9 @@ const St = {
     }
   `,
   Footer: styled.footer`
+    position: sticky;
+    bottom: 0;
+
     display: flex;
     justify-content: center;
     align-items: center;
