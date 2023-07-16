@@ -134,7 +134,7 @@ const St = {
   `,
   AddressBox: styled.div`
     display: grid;
-    grid-template-columns: 21.5rem 1fr;
+    grid-template-columns: 2fr 1fr;
   `,
   SearchBtn: styled.button`
     padding: 1.3rem 1.6rem;
