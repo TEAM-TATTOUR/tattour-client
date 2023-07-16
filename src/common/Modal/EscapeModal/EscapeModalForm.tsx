@@ -11,7 +11,14 @@ interface EscapeModalFormProps {
   stopBtn: string;
 }
 
-const EscapeModalForm = ({ onClose, pageName, title, subTitle, continueBtn, stopBtn }: EscapeModalFormProps) => {
+const EscapeModalForm = ({
+  onClose,
+  pageName,
+  title,
+  subTitle,
+  continueBtn,
+  stopBtn,
+}: EscapeModalFormProps) => {
   const navigate = useNavigate();
 
   const handleClickStopBtn = () => {
@@ -27,7 +34,7 @@ const EscapeModalForm = ({ onClose, pageName, title, subTitle, continueBtn, stop
         break;
 
       case 'CustomSizePage':
-        navigate('/custom-size');
+        navigate('/custom-onboarding');
         break;
 
       default:
@@ -104,17 +111,18 @@ const St = {
   `,
 
   ModalSubTitle: styled.p`
-    // width 뷰마다 달라지면 props로 받아와서 적용하도록 수정
-    width: 27rem;
-    padding-top: 1.6rem;
-    padding-bottom: 4rem;
+    padding: 1.6rem 6.4rem 4rem 6.4rem;
 
+    text-align: center;
     color: ${({ theme }) => theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.body_medium_16};
   `,
 
   BtnWrapper: styled.div`
+    -webkit-flex: 1; /* Safari 6.1+ */
+    -ms-flex: 1; /* IE 10 */
+    flex: 1;
     display: flex;
     align-items: flex-end;
     width: 100%;
