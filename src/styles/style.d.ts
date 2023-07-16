@@ -31,6 +31,7 @@ declare module 'styled-components' {
       title_semibold_18: SerializedStyles;
       title_medium_18: SerializedStyles;
       title_line_medium_18: SerializedStyles;
+      title_line_medium_16: SerializedStyles;
       title_semibold_16: SerializedStyles;
       body_medium_16: SerializedStyles;
       body_semibold_14: SerializedStyles;
