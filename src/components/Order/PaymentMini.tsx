@@ -31,12 +31,6 @@ const PaymentMini = ({ finalPrice, itemPrice, deliveryPrice }: PaymentMiniProps)
 export default PaymentMini;
 
 const St = {
-  Title: styled.h2`
-    margin: 0rem 0rem 3.2rem 0.2rem;
-
-    ${({ theme }) => theme.fonts.title_semibold_18};
-    color: ${({ theme }) => theme.colors.gray8};
-  `,
   TextBox: styled.article`
     display: flex;
     justify-content: space-between;
