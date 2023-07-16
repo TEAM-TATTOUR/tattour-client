@@ -10,6 +10,7 @@ import WelcomePage from './pages/Welcome/WelcomePage';
 import ChargePage from './pages/PointCharge/ChargePage';
 import TransferPage from './pages/PointCharge/TransferPage';
 import SelectPage from './pages/Custom/SelectPage';
+import CompletePage from './pages/CompletePage';
 
 const Router = () => {
   return (
@@ -26,6 +27,7 @@ const Router = () => {
         <Route path='/point-charge' element={<ChargePage />} />
         <Route path='/point-transfer' element={<TransferPage />} />
         <Route path='/select' element={<SelectPage />} />
+        <Route path='/complete' element={<CompletePage />} />
       </Routes>
     </BrowserRouter>
   );
