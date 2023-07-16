@@ -103,6 +103,8 @@ const St = {
     justify-content: center;
     align-items: center;
 
+    padding: 0rem; // HOT CUSTOM 왼쪽 padding 삭제
+
     background-color: transparent;
     border: none;
   `,
