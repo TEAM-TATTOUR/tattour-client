@@ -97,9 +97,15 @@ const St = {
   SelectWrapper: styled.section`
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
     width: 100%;
-    /* height: 100vh; */
+    height: calc(100svh - 13rem);
+  `,
+
+  SelectTopSectionContainerWrapper: styled.section`
+    display: flex;
+    flex-direction: column;
   `,
 
   SelectInfoContainer: styled.article`
@@ -108,7 +114,7 @@ const St = {
     align-items: center;
     gap: 1.2rem;
 
-    margin: 14.8rem 0 4rem;
+    margin: 5.6rem 0 4rem; //최상단 세로 마진
   `,
 
   InfoMainText: styled.h2`
@@ -120,7 +126,9 @@ const St = {
   SelectBtnContainer: styled.article`
     display: flex;
     gap: 1.5rem;
-    padding: 0 2rem;
+    justify-content: center;
+
+    width: 100%;
   `,
 
   SelectCustomPolicyContainer: styled.article`
@@ -128,7 +136,7 @@ const St = {
     flex-direction: column;
     gap: 1rem;
 
-    margin-top: 11.7rem;
+    margin: 9.6rem 0 3.8rem 0; //정책 동의 영역과 버튼 사이 마진
     padding-left: 2.4rem;
   `,
 
