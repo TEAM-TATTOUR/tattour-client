@@ -30,8 +30,13 @@ interface ColorPickerWrapperProps {
 }
 
 const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange }) => {
+  const COLOR_RED = '#FF4444';
+  const COLOR_BLUE = '#449AFF';
+  const COLOR_YELLOW = '#FFCA41';
+  const COLOR_BLACK = '#0C0D11';
+
   const [selectedColor, setSelectedColor] = useState('');
-  const [selectedSuggestedColor, setSelectedSuggestedColor] = useState('');
+  const [selectedSuggestedColor, setSelectedSuggestedColor] = useState(COLOR_BLACK);
   const [selectedBrush, setSelectedBrush] = useState<number>(4);
   const [isColorPickerSelected, setIsColorPickerSelected] = useState(false);
 
@@ -59,35 +64,35 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
 
   const COLOR_ICONS = [
     {
-      color: '#0C0D11',
-      Icon: selectedSuggestedColor === '#0C0D11' ? IcColorBlackSelected : IcColorBlack,
+      color: COLOR_BLACK,
+      Icon: selectedSuggestedColor === COLOR_BLACK ? IcColorBlackSelected : IcColorBlack,
     },
     {
-      color: '#FF4444',
-      Icon: selectedSuggestedColor === '#FF4444' ? IcColorRedSelected : IcColorRed,
+      color: COLOR_RED,
+      Icon: selectedSuggestedColor === COLOR_RED ? IcColorRedSelected : IcColorRed,
     },
     {
-      color: '#FFCA41',
-      Icon: selectedSuggestedColor === '#FFCA41' ? IcColorYellowSelected : IcColorYellow,
+      color: COLOR_YELLOW,
+      Icon: selectedSuggestedColor === COLOR_YELLOW ? IcColorYellowSelected : IcColorYellow,
     },
     {
-      color: '#449AFF',
-      Icon: selectedSuggestedColor === '#449AFF' ? IcColorBlueSelected : IcColorBlue,
+      color: COLOR_BLUE,
+      Icon: selectedSuggestedColor === COLOR_BLUE ? IcColorBlueSelected : IcColorBlue,
     },
   ];
 
   const BRUSH_ICONS = [
     {
-      brush: 2,
-      Icon: selectedBrush === 2 ? IcBrushLightSelected : IcBrushLight,
+      brush: 4,
+      Icon: selectedBrush === 4 ? IcBrushBoldSelected : IcBrushBold,
     },
     {
       brush: 3,
       Icon: selectedBrush === 3 ? IcBrushMediumSelected : IcBrushMedium,
     },
     {
-      brush: 4,
-      Icon: selectedBrush === 4 ? IcBrushBoldSelected : IcBrushBold,
+      brush: 2,
+      Icon: selectedBrush === 2 ? IcBrushLightSelected : IcBrushLight,
     },
   ];
 
