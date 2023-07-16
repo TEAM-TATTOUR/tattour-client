@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 interface DetailFooterProp {
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,11 +15,11 @@ const DetailFooter = ({ setSheetOpen, isSecond, text, like, setLike }: DetailFoo
 
   const handleClickButton = () => {
     if (text === '충전하기') {
-      // 충전하기 뷰로 navigate
-      console.log('충전하기 이동');
+      // state 하나 넘겨줘야함. 추후 추가 예정
+      navigate('/point-charge');
     } else if (isSecond) {
-      // navigate('/order');
-      console.log('구매하기 이동');
+      // 추후 아이템 인덱스도 함께 전달
+      navigate('/order');
     } else {
       setSheetOpen(true);
     }
