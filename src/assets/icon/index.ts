@@ -70,3 +70,4 @@ export { ReactComponent as LabelCustomLarge } from './label_custom_large.svg';
 export { ReactComponent as LabelCustomSmall } from './label_custom_small.svg';
 export { ReactComponent as ImgStorage } from './img_storage.svg';
 export { ReactComponent as ImgPointCoupon } from './img_point_coupon.svg';
+export { ReactComponent as ImgHomeBanner } from './img_home_banner.svg';
