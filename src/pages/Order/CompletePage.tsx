@@ -4,6 +4,7 @@ import PageLayout from '../../components/PageLayout';
 import Header from '../../components/Header';
 import ProductInfo from '../../components/Order/ProductInfo';
 import PaymentMini from '../../components/Order/PaymentMini';
+import CompleteFooter from '../../components/Complete/CompleteFooter';
 
 const CompletePage = () => {
   // 추후 서버통신 시 받아옴
@@ -18,7 +19,7 @@ const CompletePage = () => {
   };
 
   return (
-    <PageLayout renderHeader={renderCompletePageHeader}>
+    <PageLayout renderHeader={renderCompletePageHeader} footer={<CompleteFooter />}>
       <Result
         mainText={'결제가 완료되었어요'}
         description={'3일 내에 배송이 시작되며, 문자로 안내드려요'}
