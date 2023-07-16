@@ -11,8 +11,6 @@ interface TattooListProps {
 }
 
 const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: TattooListProps) => {
-  const [count] = useState(17);
-
   const [selectedFilter, setSelectedFilter] = useState([false, false, false]); // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
 
   const TATTOO_LIST = [
@@ -96,7 +94,7 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
           </St.FilterBtn>
         ))}
       </St.BtnContainer>
-      <St.CountText>전체 {count}개</St.CountText>
+      <St.CountText>전체 {TATTOO_LIST.length}개</St.CountText>
       <St.CardContainer>
         {TATTOO_LIST.map((el) => (
           <St.Card key={el.name}>
@@ -104,11 +102,11 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
               <img src={test_tattoo} />
             </St.CardImg>
             <h2>{el.name}</h2>
-            <p>{el.price.toLocaleString()}원</p>
             <div>
               <St.CardDiscount>{el.discount}%</St.CardDiscount>
               <St.CardPrice>{el.finalPrice.toLocaleString()}원</St.CardPrice>
             </div>
+            <p>{el.price.toLocaleString()}원</p>
           </St.Card>
         ))}
       </St.CardContainer>
@@ -192,7 +190,7 @@ const St = {
   CardPrice: styled.span`
     margin-left: 0.5rem;
 
-    color: ${({ theme }) => theme.colors.gray3};
+    color: ${({ theme }) => theme.colors.gray7};
     ${({ theme }) => theme.fonts.title_semibold_16};
   `,
 };
