@@ -223,8 +223,8 @@ const St = {
     /* width: 1.4rem;
     height: 1.4rem; */
     cursor: pointer;
-
-    position: absolute;
+/* 
+    position: absolute; */
 
     svg {
       width: 100%;
