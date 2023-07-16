@@ -199,8 +199,7 @@ const St = {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 3rem;
-    height: 3rem;
+
     cursor: pointer;
 
     svg {
@@ -212,10 +211,10 @@ const St = {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.2rem;
-    height: 2.2rem;
+
     cursor: pointer;
     position: relative;
+
     svg {
       width: 100%;
       height: 100%;
