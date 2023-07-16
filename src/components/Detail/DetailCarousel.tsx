@@ -6,6 +6,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import { LabelCustomSmall } from '../../assets/icon';
 
+// 테스트 이미지
+import test_tattoo_big from '../../assets/test_tattoo_big.png';
+
 const DetailCarousel = ({ isCustom }: { isCustom: boolean }) => {
   const DATA = ['Slide 1', 'Slide 2', 'Slide 3'];
 
@@ -19,7 +22,9 @@ const DetailCarousel = ({ isCustom }: { isCustom: boolean }) => {
                 <LabelCustomSmall />
               </St.CustomLabel>
             )}
-            <St.Card>{el}</St.Card>
+            <St.Card>
+              <img src={test_tattoo_big} />
+            </St.Card>
           </SwiperSlide>
         ))}
       </Swiper>
@@ -56,6 +61,10 @@ const St = {
     }
   `,
   Card: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 100%;
     height: 23.5rem;
 
