@@ -71,10 +71,10 @@ const St = {
     font: ${({ theme }) => theme.fonts.body_underline_medium_14};
   `,
   Canvas: styled.div`
-    width: 335px;
-    height: 458px;
+    width: 33.5rem;
+    height: 45.8rem;
     margin-bottom: 1.6rem;
 
-    background-color: lightgray;
+    background-color: ${({ theme }) => theme.colors.bg};
   `,
 };

@@ -52,15 +52,12 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
     onColorChange(color);
   };
 
-  const handleChangeRainbowColor = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // const color = event.target.value;
-    // setSelectedColor(color);
-    // onColorChange(color);
+  const handleChangeRainbowColor = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     setSelectedSuggestedColor('');
     setIsColorPickerSelected(!isColorPickerSelected);
   };
 
-  const colorIcons = [
+  const COLOR_ICONS = [
     {
       color: '#0C0D11',
       Icon: selectedSuggestedColor === '#0C0D11' ? IcColorBlackSelected : IcColorBlack,
@@ -79,7 +76,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
     },
   ];
 
-  const brushIcons = [
+  const BRUSH_ICONS = [
     {
       brush: 2,
       Icon: selectedBrush === 2 ? IcBrushLightSelected : IcBrushLight,
@@ -97,14 +94,14 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
   return (
     <St.OptionBox>
       <St.SelectLine>
-        {brushIcons.map(({ brush, Icon }) => (
+        {BRUSH_ICONS.map(({ brush, Icon }) => (
           <St.BrushIconWrapper key={brush} isSelected={selectedBrush === brush}>
             <Icon onClick={() => handleChangeBrush(brush)} />
           </St.BrushIconWrapper>
         ))}
       </St.SelectLine>
       <St.SelectColor>
-        {colorIcons.map(({ color, Icon }) => (
+        {COLOR_ICONS.map(({ color, Icon }) => (
           <St.ColorIconWrapper key={color} isSelected={selectedSuggestedColor === color}>
             <Icon onClick={() => handleChangeSuggestedColor(color)} />
           </St.ColorIconWrapper>
@@ -220,11 +217,7 @@ const St = {
     }
   `,
   SelectedIcon: styled.div<{ isSelected: boolean }>`
-    /* width: 1.4rem;
-    height: 1.4rem; */
     cursor: pointer;
-/* 
-    position: absolute; */
 
     svg {
       width: 100%;
