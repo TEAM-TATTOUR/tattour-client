@@ -14,18 +14,18 @@ const PaymentInfo = () => {
       <St.PriceContainer>
         <St.Title>결제 정보</St.Title>
         <St.TextBox>
-          <St.MainText>총 결제 금액</St.MainText>
+          <St.MainText>결제 금액</St.MainText>
           <St.PriceBox>
             <St.MainPrice>{FINAL_PRICE.toLocaleString()}</St.MainPrice>
             <St.MainText>원</St.MainText>
           </St.PriceBox>
         </St.TextBox>
         <St.TextBox>
-          <St.SubText>총 상품 금액</St.SubText>
+          <St.SubText>상품 금액</St.SubText>
           <St.SubText>{ITEM_PRICE.toLocaleString()}원</St.SubText>
         </St.TextBox>
         <St.TextBox>
-          <St.SubText>총 배송비</St.SubText>
+          <St.SubText>배송비</St.SubText>
           <St.SubText>{DELIVERY_PRICE.toLocaleString()}원</St.SubText>
         </St.TextBox>
       </St.PriceContainer>
@@ -40,7 +40,7 @@ const PaymentInfo = () => {
         </St.PointText>
         <St.PointText>
           {/* <St.MainText>{IS_LACK? '부족한 포인트' : '남는 포인트'}</St.MainText> */}
-          <St.MainText>남는 포인트</St.MainText>
+          <St.MainText>결제 후 남는 포인트</St.MainText>
           <St.MainText>
             {/* {IS_LACK? 
                         <St.LackText>{RESULT_POINT.toLocaleString()}</St.LackText> :

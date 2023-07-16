@@ -35,7 +35,7 @@ const DeliveryInfo = ({
             type='text'
             id='receiver'
             name='receiver'
-            placeholder='홍길동'
+            placeholder='김타투'
             value={input}
             onChange={(e) => {
               setInput(e.target.value);
@@ -135,10 +135,11 @@ const St = {
   AddressBox: styled.div`
     display: grid;
     grid-template-columns: 2fr 1fr;
+    gap: 1.2rem;
   `,
   SearchBtn: styled.button`
     padding: 1.3rem 1.6rem;
-    margin: 1rem 0rem 0rem 1.2rem;
+    margin-top: 1rem;
 
     background-color: ${({ theme }) => theme.colors.gray7};
     border-radius: 0.6rem;
