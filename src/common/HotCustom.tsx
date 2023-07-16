@@ -169,16 +169,13 @@ const St = {
   `,
 
   HotCustomItemDiscountRate: styled.span`
-    // font title_extra_bold_16 추가 필요
-    font-size: 1.6rem;
-    font-weight: bold;
     margin-right: 0.5rem;
 
+    ${({ theme }) => theme.fonts.title_extrabold_16};
     color: ${({ theme }) => theme.colors.pink5};
   `,
   HotCustomItemPrice: styled.p`
-    // font title_extra_bold_16 추가 필요
-    font-size: 1.6rem;
+    ${({ theme }) => theme.fonts.title_extrabold_16};
     font-weight: bold;
   `,
   HotCustomItemOriginPrice: styled.span`
