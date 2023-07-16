@@ -13,7 +13,7 @@ const RefundBottom = ({ isSheetOpen, setSheetOpen }: RefundBottomProps) => {
     <CustomSheet isOpen={isSheetOpen} onClose={() => setSheetOpen(false)} disableDrag={true}>
       <Sheet.Container>
         <Sheet.Header disableDrag={false}>
-          <St.Title>제목입니다</St.Title>
+          <St.Title>환불 정책</St.Title>
           <IcCancelDark onClick={() => setSheetOpen(false)} />
         </Sheet.Header>
         <Sheet.Content>
@@ -37,6 +37,8 @@ const St = {
   Text: styled.p`
     ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray3};
+
+    white-space: pre-line;
   `,
 };
 
