@@ -14,14 +14,10 @@ const DetailCarousel = ({ isCustom }: { isCustom: boolean }) => {
 
   return (
     <St.Wrapper>
+      {isCustom && <LabelCustomSmall />}
       <Swiper modules={[Pagination]} pagination={{ clickable: true }} slidesPerView={1} loop={true}>
         {DATA.map((el, index) => (
           <SwiperSlide key={index}>
-            {isCustom && (
-              <St.CustomLabel>
-                <LabelCustomSmall />
-              </St.CustomLabel>
-            )}
             <St.Card>
               <img src={test_tattoo_big} />
             </St.Card>
@@ -36,6 +32,13 @@ export default DetailCarousel;
 
 const St = {
   Wrapper: styled.section`
+    position: relative;
+
+    & > svg {
+      position: absolute;
+      z-index: 2;
+    }
+
     & .swiper-slide {
       background-color: ${({ theme }) => theme.colors.gray0};
     }
@@ -72,8 +75,5 @@ const St = {
 
     background-color: ${({ theme }) => theme.colors.gray0};
     color: black;
-  `,
-  CustomLabel: styled.div`
-    position: absolute;
   `,
 };
