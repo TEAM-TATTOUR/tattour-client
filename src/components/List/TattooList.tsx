@@ -11,7 +11,7 @@ interface TattooListProps {
 }
 
 const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: TattooListProps) => {
-  const [count, setCount] = useState(17);
+  const [count] = useState(17);
 
   const [selectedFilter, setSelectedFilter] = useState([false, false, false]); // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
 
@@ -61,7 +61,6 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
     const newSelectedFilter = [...selectedFilter];
     buttonName.forEach((btn, idx) => {
       if (btn !== DEFAULT_BUTTON_NAME[idx]) {
-        // selectedFilter에서 idx위치를 true로 변경
         newSelectedFilter[idx] = true;
       } else if (btn === DEFAULT_BUTTON_NAME[idx]) {
         newSelectedFilter[idx] = false;
@@ -126,7 +125,7 @@ const St = {
   `,
   Header: styled.h1`
     margin: 2.8rem 0rem 2.2rem 2rem;
-    ${({ theme }) => theme.fonts.title_semibold_18}; // 추후 유료 font 변경 예정
+    ${({ theme }) => theme.fonts.title_eng_bold_18};
   `,
   BtnContainer: styled.article`
     display: flex;
