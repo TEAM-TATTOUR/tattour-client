@@ -49,6 +49,9 @@ const CustomSheet = styled(Sheet)`
   }
   .react-modal-sheet-container {
     padding: 2.5rem 2.4rem 0rem 2.4rem;
+    // 모달 높이 낮추기
+    height: calc(90% - env(safe-area-inset-top) - 34px) !important;
+
     border-radius: 1rem 1rem 0rem 0rem !important;
   }
 
