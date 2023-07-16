@@ -14,18 +14,16 @@ interface PaintBottomProps {
 const PaintBottomSheet = ({ setBottomOpen, setDrawingImageURL }: PaintBottomProps) => {
   const [submitted, setSubmitted] = useState(false);
   const [savedCanvas, setSavedCanvas] = useState<string | null>('');
-  const [_canvas, setTempCanvas] = useState<fabric.Canvas>();
+  const [_canvas, setTempCanvas] = useState<HTMLCanvasElement>();
 
   const closeBottom = () => setBottomOpen(false);
 
   const onClickSubmitImage = () => {
-    console.log('test');
-    console.log('click', savedCanvas);
-    console.log(JSON.stringify(_canvas));
     // 캔버스 저장 후 전달
-    setDrawingImageURL(savedCanvas);
+    setDrawingImageURL(_canvas?.toDataURL());
+    // setDrawingImageURL(savedCanvas);
     setSubmitted(true);
-    // setBottomOpen(false);
+    setBottomOpen(false);
     // closeBottom;
   };
 

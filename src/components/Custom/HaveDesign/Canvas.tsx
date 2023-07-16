@@ -6,9 +6,14 @@ import styled from 'styled-components';
 interface CanvasProps {
   submitted: boolean;
   setSavedCanvas: React.Dispatch<React.SetStateAction<string | null>>;
+  setTempCanvas: React.Dispatch<React.SetStateAction<HTMLCanvasElement | null>>;
 }
 
-const Canvas: React.FC<CanvasProps> = ({ submitted, setSavedCanvas }: CanvasProps) => {
+const Canvas: React.FC<CanvasProps> = ({
+  submitted,
+  setSavedCanvas,
+  setTempCanvas,
+}: CanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
 
@@ -26,12 +31,8 @@ const Canvas: React.FC<CanvasProps> = ({ submitted, setSavedCanvas }: CanvasProp
 
     fabricCanvasRef.current = canvas;
 
-    // 캔버스 지우기
     return () => {
-      const drawings = JSON.stringify(canvas);
-      setSavedCanvas(drawings);
-
-      // canvas.dispose();
+      setTempCanvas(canvasRef.current);
     };
   }, []);
 
