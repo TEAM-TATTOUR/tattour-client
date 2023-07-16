@@ -68,6 +68,7 @@ const St = {
     align-items: center;
 
     gap: 2rem;
+    padding-bottom: 12.3rem;
 
     & > input {
       display: none;
