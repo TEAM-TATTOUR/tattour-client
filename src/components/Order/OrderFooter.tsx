@@ -10,11 +10,14 @@ const OrderFooter = ({ isComplete }: { isComplete: boolean }) => {
     navigate('/complete');
   };
 
-  console.log(isComplete);
-
   return (
     <St.footer>
-      <St.button $isComplete={isComplete} type='button' onClick={handleClickButton}>
+      <St.button
+        $isComplete={isComplete}
+        type='button'
+        onClick={handleClickButton}
+        disabled={isComplete ? false : true}
+      >
         {TOTAL_PRICE.toLocaleString()}원 결제하기
       </St.button>
     </St.footer>
