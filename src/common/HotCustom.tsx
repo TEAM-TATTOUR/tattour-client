@@ -1,7 +1,8 @@
 import { styled } from 'styled-components';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { useNavigate } from 'react-router-dom';
-import { IcArrowRightDark } from '../assets/icon';
+import { IcArrowRightDark, LabelCustomSmall } from '../assets/icon';
+import test_tattoo from '../assets/test_tattoo.png';
 
 interface HotCustomItemProps {
   id: number;
@@ -36,19 +37,6 @@ const dummyItemList: HotCustomItemProps[] = [
 ];
 
 const HotCustom = () => {
-  // img 대체
-  const renderNullImage = () => {
-    return (
-      <div
-        style={{
-          width: '15.3rem',
-          height: '16.3rem',
-          backgroundColor: 'gray',
-        }}
-      ></div>
-    );
-  };
-
   const navigate = useNavigate();
 
   const handleClickHotCustom = () => {
@@ -70,8 +58,12 @@ const HotCustom = () => {
             return (
               <St.HotCustomItem key={id}>
                 <St.labelWrapper>
-                  <St.HotCustomLabel>CUSTOM</St.HotCustomLabel>
-                  {renderNullImage()}
+                  <St.HotCustomLabel>
+                    <LabelCustomSmall />
+                  </St.HotCustomLabel>
+                  <St.ImgWrapper>
+                    <img src={test_tattoo} />
+                  </St.ImgWrapper>
                 </St.labelWrapper>
                 <St.HotCustomItemTitle>{title}</St.HotCustomItemTitle>
                 <St.HotCustomItemPriceWrapper>
@@ -165,6 +157,16 @@ const St = {
     background-color: ${({ theme }) => theme.colors.pink5};
   `,
 
+  ImgWrapper: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 15.3rem;
+    height: 16.3rem;
+
+    background-color: ${({ theme }) => theme.colors.gray0};
+  `,
   HotCustomItemTitle: styled.h3`
     margin-top: 1.3rem;
 
