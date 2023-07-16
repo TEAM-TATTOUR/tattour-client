@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import ProductInfo from '../components/Order/ProductInfo';
 import DeliveryInfo from '../components/Order/DeliveryInfo';
@@ -17,6 +17,21 @@ const OrderPage = () => {
   const postcodeRef = useRef<null | HTMLInputElement>(null);
   const [isSheetOpen, setSheetOpen] = useState(false);
 
+  const [isComplete, setComplete] = useState(false);
+  const [input, setInput] = useState<string>('');
+  const [phone, setPhone] = useState<string>('');
+  const [address, setAddress] = useState<string>('');
+  const [detailAddress, setDetailAddress] = useState<string>('');
+  const [agree, setAgree] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (input === '' || phone === '' || address === '' || detailAddress === '' || agree === false) {
+      setComplete(false);
+    } else {
+      setComplete(true);
+    }
+  }, [input, phone, address, detailAddress, agree]);
+
   const renderOrderPageHeader = () => {
     return <Header leftSection={<BackBtn />} title='주문하기' />;
   };
@@ -28,18 +43,33 @@ const OrderPage = () => {
   const handleAddress = (data: any) => {
     addressRef.current.value = data.address;
     postcodeRef.current.value = data.zonecode; // 우편번호
+    setAddress(data.zonecode);
     setIsPostOpen(false);
   };
 
   return (
-    <PageLayout renderHeader={renderOrderPageHeader} footer={<OrderFooter />}>
+    <PageLayout
+      renderHeader={renderOrderPageHeader}
+      footer={<OrderFooter isComplete={isComplete} />}
+    >
       <ProductInfo />
       <St.Line />
-      <DeliveryInfo handleModal={handleModal} addressRef={addressRef} postcodeRef={postcodeRef} />
+      <DeliveryInfo
+        handleModal={handleModal}
+        addressRef={addressRef}
+        postcodeRef={postcodeRef}
+        setComplete={setComplete}
+        input={input}
+        setInput={setInput}
+        phone={phone}
+        setPhone={setPhone}
+        detailAddress={detailAddress}
+        setDetailAddress={setDetailAddress}
+      />
       <St.Line />
       <PaymentInfo />
       <St.Line />
-      <RefundInfo setSheetOpen={setSheetOpen} />
+      <RefundInfo setSheetOpen={setSheetOpen} setAgree={setAgree} />
       {isPostOpen && (
         <St.Card onClick={() => setIsPostOpen(false)}>
           <Postcode onComplete={handleAddress} />
