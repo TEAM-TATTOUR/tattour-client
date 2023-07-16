@@ -7,7 +7,7 @@ const OrderFooter = () => {
   const navigate = useNavigate();
 
   const handleClickButton = () => {
-    navigate('/receipt');
+    navigate('/complete');
   };
 
   return (
