@@ -41,7 +41,9 @@ const St = {
     }
 
     & .swiper-pagination {
-      margin-bottom: 2rem;
+      margin-bottom: 1.4rem;
+      position: absolute;
+      bottom: 0;
     }
 
     & .swiper-pagination-bullet {
