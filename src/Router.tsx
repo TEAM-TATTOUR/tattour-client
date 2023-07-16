@@ -8,7 +8,7 @@ import RegisterNamePage from './pages/Register/RegisterNamePage';
 import RegisterPhoneNumPage from './pages/Register/RegisterPhoneNumPage';
 import WelcomePage from './pages/Welcome/WelcomePage';
 import ChargePage from './pages/PointCharge/ChargePage';
-import TransferPage from './pages/pointCharge/TransferPage';
+import TransferPage from './pages/PointCharge/TransferPage';
 import SelectPage from './pages/Custom/SelectPage';
 import OrderPage from './pages/OrderPage';
 
