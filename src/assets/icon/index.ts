@@ -9,6 +9,7 @@ export { ReactComponent as IcArrowBottomMediumDark } from './ic_arrow_bottom_med
 export { ReactComponent as IcArrowBottomMediumGray } from './ic_arrow_bottom_medium_gray.svg';
 export { ReactComponent as IcArrowBottomMediumLight } from './ic_arrow_bottom_medium_light.svg';
 export { ReactComponent as IcArrowBottomSmallLight } from './ic_arrow_bottom_small_light.svg';
+export { ReactComponent as IcArrowBottomSmallGray } from './ic_arrow_bottom_small_gray.svg';
 export { ReactComponent as IcArrowLeftGray } from './ic_arrow_left_gray.svg';
 export { ReactComponent as IcArrowRightDark } from './ic_arrow_right_dark.svg';
 export { ReactComponent as IcArrowRightGray } from './ic_arrow_right_gray.svg';
@@ -54,6 +55,8 @@ export { ReactComponent as IcColorBlack } from './ic_color_black.svg';
 export { ReactComponent as IcColorBlackSelected } from './ic_color_black_selected.svg';
 export { ReactComponent as IcColorBlue } from './ic_color_blue.svg';
 export { ReactComponent as IcColorBlueSelected } from './ic_color_blue_selected.svg';
+export { ReactComponent as IcColorRainbow } from './ic_color_rainbow.svg';
+export { ReactComponent as IcColorRainbowSelected } from './ic_color_rainbow_selected.svg';
 export { ReactComponent as IcColorRed } from './ic_color_red.svg';
 export { ReactComponent as IcColorRedSelected } from './ic_color_red_selected.svg';
 export { ReactComponent as IcColorYellow } from './ic_color_yellow.svg';

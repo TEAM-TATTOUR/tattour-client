@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ListPage from './pages/ListPage';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/Login/LoginPage';
 import MyTattoo from './pages/MyTattoo';
@@ -14,6 +15,7 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='/list' element={<ListPage />} />
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterNamePage />} />
