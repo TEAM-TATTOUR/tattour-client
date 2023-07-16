@@ -12,7 +12,7 @@ const CustomTitle = () => {
         </St.CustomReferenceSubtitle>
         <St.CustomReferenceSubtitle>
           <IcCheckSmallGray />
-          그림, 사진, 모양 모두 가능합니다
+          새로운 스케치를 희망하시면 기존 그림을 삭제해주세요{' '}
         </St.CustomReferenceSubtitle>
       </St.SubtitleWrapper>
     </St.TitleWrapper>

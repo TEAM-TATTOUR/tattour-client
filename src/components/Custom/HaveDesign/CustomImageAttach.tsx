@@ -9,8 +9,9 @@ const CustomImageAttach = () => {
   const [previewURL, setPreviewURL] = useState<string[]>([]);
 
   const handleClickRefBtn = () => {
-    setPreviewURL([]);
-    ref.current?.click();
+    if (previewURL.length < MAX_FILES) {
+      ref.current?.click();
+    }
   };
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +20,7 @@ const CustomImageAttach = () => {
     const uploadImage = Array.from(files);
 
     //개수 제한 적용해주기
-    const filesToEncode = Array.from(uploadImage).slice(0, MAX_FILES);
+    const filesToEncode = Array.from(uploadImage).slice(0, MAX_FILES - previewURL.length);
     encodeFile(filesToEncode, e);
   };
 
@@ -64,7 +65,7 @@ const CustomImageAttach = () => {
           ))
         ) : (
           <St.Image>
-            <St.ImageDescription>최대 3장까지 추가할 수 있어요</St.ImageDescription>
+            <St.ImageDescription> 필수 1장 첨부, 최대 3장 첨부 가능합니다.</St.ImageDescription>
           </St.Image>
         )}
       </St.PreviewSection>
