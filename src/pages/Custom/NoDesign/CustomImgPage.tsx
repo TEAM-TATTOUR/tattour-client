@@ -24,7 +24,7 @@ const CustomImgPage = () => {
             targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
           />
         }
-        progressBar={<ProgressBar curStep={2} maxStep={5} />}
+        progressBar={<ProgressBar curStep={2} maxStep={4} />}
       />
     );
   };
