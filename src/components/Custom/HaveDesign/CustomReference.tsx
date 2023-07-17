@@ -5,7 +5,7 @@ import PaintBottomSheet from './PaintBottomSheet';
 import { useState } from 'react';
 
 const CustomReference = () => {
-  const [isBottomOpen, setBottomOpen] = useState(true);
+  const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
 
   return (
