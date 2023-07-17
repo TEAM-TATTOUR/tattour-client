@@ -32,7 +32,7 @@ const PaintBottomSheet = ({ setBottomOpen, setDrawingImageURL }: PaintBottomProp
       <Sheet.Container>
         <St.BottomSheetWrapper>
           <Sheet.Header disableDrag={true}>
-            <PaintBottomHeader />
+            <PaintBottomHeader onClose={closeBottom} />
           </Sheet.Header>
           <Sheet.Content>
             <St.ContentWrapper>
