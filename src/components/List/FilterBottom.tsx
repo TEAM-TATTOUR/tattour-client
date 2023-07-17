@@ -29,6 +29,10 @@ const FilterBottom = ({
 }: FilterBottomProps) => {
   useEffect(() => {
     setSelected(false);
+    //QA : 최초에 아무것도 선택 안하고 적용할 경우 발생하는 문제 해결
+    isSortOpen && setSelectedTag(FILTER[0].type);
+    isGenreOpen && setSelectedTag(FILTER[1].type);
+    isStyleOpen && setSelectedTag(FILTER[2].type);
   }, [isSortOpen, isGenreOpen, isStyleOpen]);
 
   const FILTER = [
@@ -84,7 +88,7 @@ const FilterBottom = ({
     },
   ];
 
-  const tagRefs = useRef<any>([]);
+  const tagRefs = useRef<HTMLElement[]>([]);
   const filterRef = useRef<HTMLElement>(null);
   const [selectedTag, setSelectedTag] = useState(''); // 선택한 태그 저장
 
@@ -98,7 +102,7 @@ const FilterBottom = ({
     selectedTag === tag ? setSelectedTag(FILTER[filterIdx].type) : setSelectedTag(tag); // 선택한 태그 저장
 
     // 태그 선택은 하나씩
-    tagRefs.current.forEach((el: React.ReactNode) => {
+    tagRefs.current.forEach((el: HTMLElement) => {
       if (!el) return;
       if (tagRefs.current.indexOf(el) === index) {
         // 클릭할 때마다 토글 구현
@@ -118,7 +122,6 @@ const FilterBottom = ({
   const handleClickButton = (onClose: () => void, filterIdx: number) => {
     onClose(); // 모달 내리기
 
-    // 태그 isSelected true
     const newTag = [...filterTag];
     if (selectedTag === FILTER[filterIdx].type) {
       newTag[filterIdx] = FILTER[filterIdx].data.map(() => false);
@@ -127,6 +130,7 @@ const FilterBottom = ({
         return idx === FILTER[filterIdx].data.indexOf(selectedTag);
       });
     }
+
     setFilterTag(newTag);
 
     tagRefs.current.forEach(() => {
@@ -137,7 +141,7 @@ const FilterBottom = ({
   };
 
   return (
-    <>
+    <St.Wrapper>
       {FILTER.map((filter, filterIdx) => (
         <CustomSheet
           key={filter.type}
@@ -153,7 +157,7 @@ const FilterBottom = ({
                 <St.TagBox
                   key={el}
                   onClick={() => handleClickTag(el, idx, filterIdx)}
-                  ref={(refEl: React.ReactNode) => (tagRefs.current[idx] = refEl)}
+                  ref={(refEl: HTMLElement) => (tagRefs.current[idx] = refEl)}
                   className={filterTag[filterIdx][idx] ? 'checked' : ''}
                 >
                   <span></span>
@@ -174,13 +178,16 @@ const FilterBottom = ({
           <Sheet.Backdrop onTap={() => filter.onTap(filterTag[filterIdx])} />
         </CustomSheet>
       ))}
-    </>
+    </St.Wrapper>
   );
 };
 
 export default FilterBottom;
 
 const St = {
+  Wrapper: styled.section`
+    height: 100%;
+  `,
   TagBox: styled.p`
     display: flex;
     justify-content: center;
@@ -220,6 +227,9 @@ const St = {
     }
   `,
   Footer: styled.footer`
+    position: sticky;
+    bottom: 0;
+
     display: flex;
     justify-content: center;
     align-items: center;

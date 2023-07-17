@@ -20,8 +20,7 @@ const St = {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    left: 0;
+    position: absolute;
     bottom: 0;
 
     width: 100%;
