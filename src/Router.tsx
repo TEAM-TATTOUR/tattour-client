@@ -20,6 +20,7 @@ import CustomSizePage from './pages/Custom/Common/CustomSizePage';
 import CustomImgPage from './pages/Custom/NoDesign/CustomImgPage';
 import CustomRequestPage from './pages/Custom/NoDesign/CustomRequestPage';
 import CustomThemePage from './pages/Custom/HaveDesign/CustomThemePage';
+import AdditionalRequestPage from './pages/Custom/HaveDesign/AdditionalRequestPage';
 
 const Router = () => {
   return (
@@ -46,6 +47,7 @@ const Router = () => {
         <Route path='/custom-img' element={<CustomImgPage />} />
         <Route path='/custom-request' element={<CustomRequestPage />} />
         <Route path='/custom-theme' element={<CustomThemePage />} />
+        <Route path='/additional-request' element={<AdditionalRequestPage />} />
       </Routes>
     </BrowserRouter>
   );
