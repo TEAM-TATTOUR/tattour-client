@@ -4,7 +4,11 @@ import SelectColorBtn from './SelectColorBtn';
 import IcCircleRainbow from '../../../assets/icon/ic_circle_rainbow.png';
 import IcCircleBlack from '../../../assets/icon/ic_circle_black.png';
 
-const SelectColor = () => {
+const SelectColor = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const CASE_BTN_DATA = [
     {
       id: 'black',
@@ -20,10 +24,11 @@ const SelectColor = () => {
     },
   ];
 
-  const [activeBtn, setActiveBtn] = useState(''); //선택 된 버튼의 상황
+  const [activeBtn, setActiveBtn] = useState('');
 
   const handleClickSelBtn = (id: string) => {
     setActiveBtn(id);
+    setIsActiveNext(true);
   };
 
   useEffect(() => {
