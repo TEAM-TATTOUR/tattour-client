@@ -18,6 +18,7 @@ import OnBoardingPage from './pages/Custom/Common/OnBoardingPage';
 import CustomSizePage from './pages/Custom/Common/CustomSizePage';
 import CustomImgPage from './pages/Custom/NoDesign/CustomImgPage';
 import CustomRequestPage from './pages/Custom/NoDesign/CustomRequestPage';
+import CustomThemePage from './pages/Custom/HaveDesign/CustomThemePage';
 
 const Router = () => {
   return (
@@ -42,6 +43,7 @@ const Router = () => {
         <Route path='/custom-size' element={<CustomSizePage />} />
         <Route path='/custom-img' element={<CustomImgPage />} />
         <Route path='/custom-request' element={<CustomRequestPage />} />
+        <Route path='/custom-theme' element={<CustomThemePage />} />
       </Routes>
     </BrowserRouter>
   );
