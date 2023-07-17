@@ -14,6 +14,7 @@ import TransferPage from './pages/PointCharge/TransferPage';
 import SelectPage from './pages/Custom/SelectPage';
 import OrderPage from './pages/OrderPage';
 import StylingColorPage from './pages/Custom/StylingColorPage';
+import SelectKeywordPage from './pages/Custom/HaveDesign/SelectKeywordPage';
 
 const Router = () => {
   return (
@@ -34,6 +35,7 @@ const Router = () => {
         <Route path='/point-transfer' element={<TransferPage />} />
         <Route path='/select' element={<SelectPage />} />
         <Route path='/styling-color' element={<StylingColorPage />} />
+        <Route path='/select-keyword' element={<SelectKeywordPage />} />
       </Routes>
     </BrowserRouter>
   );
