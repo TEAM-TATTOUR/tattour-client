@@ -12,7 +12,8 @@ import WelcomePage from './pages/Welcome/WelcomePage';
 import ChargePage from './pages/PointCharge/ChargePage';
 import TransferPage from './pages/PointCharge/TransferPage';
 import SelectPage from './pages/Custom/SelectPage';
-import OrderPage from './pages/OrderPage';
+import CompletePage from './pages/Order/CompletePage';
+import OrderPage from './pages/Order/OrderPage';
 import StylingColorPage from './pages/Custom/StylingColorPage';
 import SelectKeywordPage from './pages/Custom/HaveDesign/SelectKeywordPage';
 import OnBoardingPage from './pages/Custom/Common/OnBoardingPage';
@@ -52,6 +53,7 @@ const Router = () => {
         <Route path='/additional-request' element={<AdditionalRequestPage />} />
         <Route path='/price' element={<PricePage />} />
         <Route path='/receipt' element={<ReceiptPage />} />
+        <Route path='/complete' element={<CompletePage />} />
       </Routes>
     </BrowserRouter>
   );
