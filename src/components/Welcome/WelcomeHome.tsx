@@ -3,15 +3,26 @@ import { ImgLogoDark } from '../../assets/icon';
 
 const WelcomeHome = () => {
   return (
-    <St.ContentsWrapper>
-      <ImgLogoDark />
-      <St.Title>타투어가 되신 것을 환영해요!</St.Title>
-      <St.SubTitle>후회없는 타투 선택의 여정을 함께 할게요</St.SubTitle>
-    </St.ContentsWrapper>
+    <St.WelcomeWrapper>
+      <St.ContentsWrapper>
+        <ImgLogoDark />
+        <St.Title>타투어가 되신 것을 환영해요!</St.Title>
+        <St.SubTitle>후회없는 타투 선택의 여정을 함께 할게요</St.SubTitle>
+      </St.ContentsWrapper>
+    </St.WelcomeWrapper>
   );
 };
 
 const St = {
+  WelcomeWrapper: styled.section`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 100dvh;
+  `,
+
   ContentsWrapper: styled.article`
     display: flex;
     flex-direction: column;

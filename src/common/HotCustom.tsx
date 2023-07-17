@@ -1,7 +1,8 @@
 import { styled } from 'styled-components';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { useNavigate } from 'react-router-dom';
-import { IcArrowRightDark } from '../assets/icon';
+import { IcArrowRightDark, LabelCustomSmall } from '../assets/icon';
+import test_tattoo from '../assets/test_tattoo.png';
 
 interface HotCustomItemProps {
   id: number;
@@ -36,19 +37,6 @@ const dummyItemList: HotCustomItemProps[] = [
 ];
 
 const HotCustom = () => {
-  // img 대체
-  const renderNullImage = () => {
-    return (
-      <div
-        style={{
-          width: '15.3rem',
-          height: '16.3rem',
-          backgroundColor: 'gray',
-        }}
-      ></div>
-    );
-  };
-
   const navigate = useNavigate();
 
   const handleClickHotCustom = () => {
@@ -70,10 +58,17 @@ const HotCustom = () => {
             return (
               <St.HotCustomItem key={id}>
                 <St.labelWrapper>
-                  <St.HotCustomLabel>CUSTOM</St.HotCustomLabel>
-                  {renderNullImage()}
+                  <St.HotCustomLabel>
+                    <LabelCustomSmall />
+                  </St.HotCustomLabel>
+                  <St.ImgWrapper>
+                    <img src={test_tattoo} />
+                  </St.ImgWrapper>
                 </St.labelWrapper>
-                <St.HotCustomItemTitle>{title}</St.HotCustomItemTitle>
+                <St.HotCustomItemTitle>
+                  <p>{title}</p>
+                  <span>NEW!</span>
+                </St.HotCustomItemTitle>
                 <St.HotCustomItemPriceWrapper>
                   <St.HotCustomItemDiscountRate>{discountRate}%</St.HotCustomItemDiscountRate>
                   <St.HotCustomItemPrice>
@@ -108,15 +103,18 @@ const St = {
 
   HotCustomButton: styled.button`
     display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0rem; // HOT CUSTOM 왼쪽 padding 삭제
 
     background-color: transparent;
     border: none;
   `,
 
-  // title_eng_bold_20 필요
   HotCustomTitle: styled.h2`
-    font-size: 2rem;
-    font-weight: bold;
+    ${({ theme }) => theme.fonts.title_eng_bold_20};
+    color: ${({ theme }) => theme.colors.gray8};
   `,
 
   HotCustomWrapper: styled.div`
@@ -149,26 +147,33 @@ const St = {
 
   HotCustomLabel: styled.span`
     position: absolute;
+  `,
 
-    width: 6.9rem;
-    height: 2.3rem;
-
+  ImgWrapper: styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
 
-    // body_eng_bold_10 필요
-    font-size: 1rem;
-    font-weight: bold;
-    color: ${({ theme }) => theme.colors.gray8};
+    width: 15.3rem;
+    height: 16.3rem;
 
-    background-color: ${({ theme }) => theme.colors.pink5};
+    background-color: ${({ theme }) => theme.colors.gray0};
   `,
-
   HotCustomItemTitle: styled.h3`
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+
     margin-top: 1.3rem;
 
-    font: ${({ theme }) => theme.fonts.body_medium_14};
+    & > p {
+      ${({ theme }) => theme.fonts.body_medium_14};
+    }
+
+    & > span {
+      ${({ theme }) => theme.fonts.detail_medium_12};
+      color: ${({ theme }) => theme.colors.pink3};
+    }
   `,
 
   HotCustomItemPriceWrapper: styled.div`
@@ -180,23 +185,19 @@ const St = {
   `,
 
   HotCustomItemDiscountRate: styled.span`
-    // font title_extra_bold_16 추가 필요
-    font-size: 1.6rem;
-    font-weight: bold;
     margin-right: 0.5rem;
 
+    ${({ theme }) => theme.fonts.title_extrabold_16};
     color: ${({ theme }) => theme.colors.pink5};
   `,
   HotCustomItemPrice: styled.p`
-    // font title_extra_bold_16 추가 필요
-    font-size: 1.6rem;
-    font-weight: bold;
+    ${({ theme }) => theme.fonts.title_extrabold_16};
   `,
   HotCustomItemOriginPrice: styled.span`
     margin-top: 0.1rem;
     margin-bottom: 4.1rem;
 
-    font: ${({ theme }) => theme.fonts.body_line_medium_14};
+    ${({ theme }) => theme.fonts.body_line_medium_14};
     color: ${({ theme }) => theme.colors.gray1};
   `,
 };
