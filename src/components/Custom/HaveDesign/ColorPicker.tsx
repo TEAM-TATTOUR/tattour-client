@@ -22,7 +22,6 @@ import IcColorRainbow from '../../../assets/icon/ic_color_rainbow.png';
 interface ColorPickerProps {
   onColorChange: (color: string) => void;
   onBrushChange: (brush: number) => void;
-  isSelected: boolean;
 }
 
 interface ColorPickerWrapperProps {

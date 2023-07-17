@@ -1,23 +1,31 @@
 import { styled } from 'styled-components';
 import { IcDraw, IcPhoto, IcCancelDark } from '../../../assets/icon';
 import { Dispatch } from 'react';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+
 interface PaintBottomProps {
   isBottomOpen: boolean;
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  drawingImageURL: string | null;
 }
 
-const CustomImageAttach = () => {
+const CustomImageAttach: React.FC<PaintBottomProps> = ({ drawingImageURL, setBottomOpen }) => {
   const MAX_FILES = 3;
 
   const ref = useRef<HTMLInputElement | null>(null);
-  const [previewURL, setPreviewURL] = useState<string[]>([]);
+  const [previewURL, setPreviewURL] = useState<string[]>(drawingImageURL ? [drawingImageURL] : []);
 
   const handleClickRefBtn = () => {
     if (previewURL.length < MAX_FILES) {
       ref.current?.click();
     }
   };
+
+  useEffect(() => {
+    if (drawingImageURL) {
+      setPreviewURL((prevURLs) => [...prevURLs, drawingImageURL]);
+    }
+  }, [drawingImageURL]);
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -88,7 +96,12 @@ const CustomImageAttach = () => {
             ref={ref}
           />
         </St.ReferenceButton>
-        <St.ReferenceButton type='button'>
+        <St.ReferenceButton
+          type='button'
+          onClick={() => {
+            setBottomOpen(true);
+          }}
+        >
           <IcDraw />
           대충 그리기
         </St.ReferenceButton>

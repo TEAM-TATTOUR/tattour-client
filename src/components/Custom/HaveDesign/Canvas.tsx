@@ -1,9 +1,19 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { fabric } from 'fabric';
 import ColorPicker from './ColorPicker';
 import styled from 'styled-components';
 
-const Canvas: React.FC = () => {
+interface CanvasProps {
+  submitted: boolean;
+  setSavedCanvas: React.Dispatch<React.SetStateAction<string | null>>;
+  setTempCanvas: React.Dispatch<React.SetStateAction<HTMLCanvasElement | null>>;
+}
+
+const Canvas: React.FC<CanvasProps> = ({
+  submitted,
+  setSavedCanvas,
+  setTempCanvas,
+}: CanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
 
@@ -11,7 +21,7 @@ const Canvas: React.FC = () => {
     const canvas = new fabric.Canvas(canvasRef.current, {
       isDrawingMode: true,
       width: 335,
-      height: 458,
+      height: 313,
       allowTouchScrolling: true,
     });
 
@@ -21,8 +31,8 @@ const Canvas: React.FC = () => {
 
     fabricCanvasRef.current = canvas;
 
-    //캔버스 지우기
     return () => {
+      setTempCanvas(canvasRef.current);
       canvas.dispose();
     };
   }, []);
@@ -72,7 +82,7 @@ const St = {
   `,
   Canvas: styled.div`
     width: 33.5rem;
-    height: 45.8rem;
+    height: 31.3rem;
     margin-bottom: 1.6rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
