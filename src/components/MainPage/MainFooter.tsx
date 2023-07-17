@@ -11,7 +11,7 @@ const MainFooter = ({ isFooterVisible }: { isFooterVisible: boolean }) => {
   return (
     <St.footer $isFooterVisible={isFooterVisible}>
       <St.button type='button' onClick={handleClickButton}>
-        나만의 커스텀 타투 만들기
+        커스텀 타투 스티커 신청하기
       </St.button>
     </St.footer>
   );
