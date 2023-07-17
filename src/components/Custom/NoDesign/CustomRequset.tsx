@@ -3,7 +3,11 @@ import { styled } from 'styled-components';
 // 이모티콘 카운팅 관련 라이브러리
 import GraphemeSplitter from 'grapheme-splitter';
 
-const CustomRequset = () => {
+const CustomRequset = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   //count 될 maxCount 수
   const MAX_NAME_COUNT = 10;
   const MAX_ETC_COUNT = 100;
@@ -32,7 +36,12 @@ const CustomRequset = () => {
 
   const handleChangeNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     //value가 없을 때 0으로 글자 수 세지도록
-    if (e.target.value === '') setNameInputCount(0);
+    if (e.target.value === '') {
+      setNameInputCount(0);
+      setIsActiveNext(false);
+    } else {
+      setIsActiveNext(true);
+    }
 
     const lengthCount = limitMaxLength(e, MAX_NAME_COUNT);
 
@@ -52,29 +61,43 @@ const CustomRequset = () => {
   return (
     <St.CustomRequestWrapper>
       <St.RequestNameContainer>
-        <St.RequestNameTitle>이 타투의 이름을 지어주세요!</St.RequestNameTitle>
-        <St.RequestNameDetail>
-          추후 아카이브 또는 공개 시에 해당 이름이 노출됩니다
-        </St.RequestNameDetail>
-        <St.RequestNameInput
-          type='text'
-          onChange={handleChangeNameInput}
-          placeholder='ex. 우리 가족 타투, 백조 타투, 힙한 하트'
-          autoFocus
-        />
-        <St.RequestInputCount>
-          ({nameInputCount}/{MAX_NAME_COUNT})
-        </St.RequestInputCount>
+        <St.RequestNameTitle>타투의 이름을 지어주세요</St.RequestNameTitle>
+        <St.RequestNameDetail>추후 아카이브 또는 공개 시 해당 이름이 노출돼요</St.RequestNameDetail>
+
+        <St.RequestInputBox>
+          <St.RequestNameInput
+            type='text'
+            onChange={handleChangeNameInput}
+            placeholder='ex. 우리 가족 타투, 백조 타투'
+            autoFocus
+          />
+          <St.RequestInputCount>
+            ({nameInputCount}/{MAX_NAME_COUNT})
+          </St.RequestInputCount>
+        </St.RequestInputBox>
       </St.RequestNameContainer>
       <St.RequestEtcContainer>
-        <St.RequestEtcTitle>추가 요청 사항</St.RequestEtcTitle>
-        <St.RequestEtcTextArea
-          onChange={handleChangeEtcTextArea}
-          placeholder='ex. 라인 1mm로 사진보다 얇게 그려주세요 &#13;&#10; &nbsp; &nbsp;  도안을 붉은색 (FF6B6B)으로 바꿔주세요'
-        />
-        <St.RequestInputCount>
-          ({etcTextAreaCount}/{MAX_ETC_COUNT})
-        </St.RequestInputCount>
+        <St.RequestEtcTitleBox>
+          <St.RequestEtcTitle>요청 사항</St.RequestEtcTitle>
+          <St.RequestOptionBadge>선택</St.RequestOptionBadge>
+        </St.RequestEtcTitleBox>
+        <div>
+          <St.RequestEtcDetail>
+            추가적인 요청사항이 있다면 자유롭게 작성해주세요
+          </St.RequestEtcDetail>
+          <St.RequestEtcDetail>
+            (컬러 코드, 정확한 사이즈, 라인 굵기, 명암 여부 등)
+          </St.RequestEtcDetail>
+        </div>
+        <St.RequestInputBox>
+          <St.RequestEtcTextArea
+            onChange={handleChangeEtcTextArea}
+            placeholder='ex. 라인 1mm로 사진보다 얇게 그려주세요 &#13;&#10; &nbsp; &nbsp;  도안을 붉은색 (FF6B6B)으로 바꿔주세요'
+          />
+          <St.RequestInputCount>
+            ({etcTextAreaCount}/{MAX_ETC_COUNT})
+          </St.RequestInputCount>
+        </St.RequestInputBox>
       </St.RequestEtcContainer>
     </St.CustomRequestWrapper>
   );
@@ -86,7 +109,10 @@ const St = {
   CustomRequestWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    min-height: calc(100dvh - 13.6rem);
   `,
 
   RequestNameContainer: styled.article`
@@ -94,7 +120,7 @@ const St = {
     flex-direction: column;
     gap: 1.2rem;
 
-    position: relative;
+    /* position: relative; */
 
     margin: 5.6rem 2rem 0 2.2rem;
   `,
@@ -114,6 +140,8 @@ const St = {
   RequestNameInput: styled.input`
     width: 29.5rem;
     height: 2.1rem;
+
+    /* position: relative; */
 
     padding: 1.2rem 2rem;
 
@@ -138,27 +166,51 @@ const St = {
     }
   `,
 
+  RequestInputBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    width: fit-content;
+  `,
+
   RequestEtcContainer: styled.article`
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.2rem;
 
-    position: relative;
+    /* position: relative; */
 
-    margin: 0 2rem 0 2.2rem;
+    padding: 4rem 2rem 13rem 2.2rem;
+  `,
+
+  RequestEtcTitleBox: styled.div`
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
   `,
 
   RequestEtcTitle: styled.h2`
-    padding-top: 4rem;
-
     color: ${({ theme }) => theme.colors.gray8};
     ${({ theme }) => theme.fonts.title_semibold_20};
+  `,
+
+  RequestOptionBadge: styled.span`
+    color: ${({ theme }) => theme.colors.pink4};
+    //폰트 추가 필요
+    ${({ theme }) => theme.fonts.detail_semibold_12};
+  `,
+
+  RequestEtcDetail: styled.p`
+    color: ${({ theme }) => theme.colors.gray3};
+    ${({ theme }) => theme.fonts.body_medium_14};
   `,
 
   RequestEtcTextArea: styled.textarea`
     width: 29.5rem;
     height: 14.6rem;
 
+    margin-top: 0.8rem;
     padding: 1.2rem 2rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
@@ -182,10 +234,13 @@ const St = {
     }
   `,
 
-  RequestInputCount: styled.p`
-    position: absolute;
-    right: 0;
-    bottom: -2.1rem;
+  RequestInputCount: styled.span`
+    /* position: fixed; */
+    /* right: 0; */
+    /* left: 0; */
+    /* bottom: 0; */
+    /* justify-self: flex-end; */
+    margin-left: auto;
 
     color: ${({ theme }) => theme.colors.gray2};
     ${({ theme }) => theme.fonts.detail_medium_12};
