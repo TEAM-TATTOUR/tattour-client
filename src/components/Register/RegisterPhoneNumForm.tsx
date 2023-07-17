@@ -28,14 +28,13 @@ const RegisterPhoneNumForm = () => {
   const [text, setText] = useState('');
 
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
     if (parseInt(e.target.value) === CERTIFICATION_NUM) {
       setIsCorrect(true);
-
       setTimeout(() => navigate('/welcome-signup'), 1000);
     } else {
       setIsCorrect(false);
       setCertificationLen(e.target.value.length);
-      setText(e.target.value);
     }
   };
 
