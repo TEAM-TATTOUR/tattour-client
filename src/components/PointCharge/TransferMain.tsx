@@ -2,11 +2,7 @@ import { styled } from 'styled-components';
 import AccountCopy from './AccountCopy';
 import TransferPolicy from './TransferPolicy';
 
-const TransferMain = ({
-  setIsActiveNext,
-}: {
-  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const TransferMain = () => {
   const chargedCost = 3000;
 
   return (
@@ -27,10 +23,6 @@ const TransferMain = ({
         </St.InfoPriceMain>
         <AccountCopy />
       </St.TransferInfoContainer>
-      <St.TransferPolicyArea>
-        <St.TransferSectionDivide />
-        <TransferPolicy setIsActiveNext={setIsActiveNext} />
-      </St.TransferPolicyArea>
     </St.TransferMainWrapper>
   );
 };
@@ -41,10 +33,10 @@ const St = {
   TransferMainWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
 
-    min-height: calc(var(--vh, 1vh) * 100);
-    padding: 6rem 0 7rem 0;
+    height: calc(100dvh - 21.6rem);
   `,
 
   TransferInfoContainer: styled.article`
@@ -103,19 +95,5 @@ const St = {
   RightUnit: styled.span`
     color: ${({ theme }) => theme.colors.gray4};
     ${({ theme }) => theme.fonts.body_medium_16};
-  `,
-
-  TransferPolicyArea: styled.div`
-    width: var(--app-max-width, 37.5rem);
-    position: fixed;
-    bottom: 7rem;
-  `,
-
-  TransferSectionDivide: styled.hr`
-    height: 1.3rem;
-
-    border: none;
-
-    background-color: ${({ theme }) => theme.colors.bg};
   `,
 };
