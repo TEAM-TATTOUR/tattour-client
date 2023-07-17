@@ -24,6 +24,7 @@ import CustomThemePage from './pages/Custom/HaveDesign/CustomThemePage';
 import AdditionalRequestPage from './pages/Custom/HaveDesign/AdditionalRequestPage';
 import PricePage from './pages/Custom/PricePage';
 import ReceiptPage from './pages/Custom/HaveDesign/ReceiptPage';
+import CustomReferencePage from './pages/CustomReference/CustomReferencePage';
 
 const Router = () => {
   return (
@@ -54,6 +55,7 @@ const Router = () => {
         <Route path='/price' element={<PricePage />} />
         <Route path='/receipt' element={<ReceiptPage />} />
         <Route path='/complete' element={<CompletePage />} />
+        <Route path='/custom-reference' element={<CustomReferencePage />} />
       </Routes>
     </BrowserRouter>
   );

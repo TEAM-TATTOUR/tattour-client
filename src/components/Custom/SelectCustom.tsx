@@ -26,7 +26,7 @@ const SelectCustom = ({
 
   const [activeBtn, setActiveBtn] = useState(''); //선택 된 버튼의 상황
   const btnRef = useRef<HTMLButtonElement[]>([]); //상황 선택 버튼 리스트 ref
-  const [haveDesign, setHaveDesign] = useState<boolean>(); //리코일 저장 후 서버 통신 예정
+  const [, setHaveDesign] = useState<boolean>(); //리코일 저장 후 서버 통신 예정
 
   const handleClickSelBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;

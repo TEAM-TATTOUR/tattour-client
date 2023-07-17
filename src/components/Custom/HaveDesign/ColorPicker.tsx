@@ -56,7 +56,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
     onColorChange(color);
   };
 
-  const handleChangeRainbowColor = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+  const handleChangeRainbowColor = () => {
     setSelectedSuggestedColor('');
     setIsColorPickerSelected(!isColorPickerSelected);
   };

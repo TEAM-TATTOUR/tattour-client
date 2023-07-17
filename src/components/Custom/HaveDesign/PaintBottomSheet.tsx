@@ -13,13 +13,14 @@ interface PaintBottomProps {
 
 const PaintBottomSheet = ({ setBottomOpen, setDrawingImageURL }: PaintBottomProps) => {
   const [submitted, setSubmitted] = useState(false);
-  const [savedCanvas, setSavedCanvas] = useState<string | null>('');
-  const [_canvas, setTempCanvas] = useState<HTMLCanvasElement>();
+  const [, setSavedCanvas] = useState<string | null>('');
+  const [_canvas, setTempCanvas] = useState<HTMLCanvasElement | null>(null); //수정함
 
   const closeBottom = () => setBottomOpen(false);
 
   const onClickSubmitImage = () => {
     // 캔버스 저장 후 전달
+    if (!_canvas) return; //추가)undfined 방지
     setDrawingImageURL(_canvas?.toDataURL());
     // setDrawingImageURL(savedCanvas);
     setSubmitted(true);

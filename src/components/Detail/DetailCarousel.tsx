@@ -16,8 +16,8 @@ const DetailCarousel = ({ isCustom }: { isCustom: boolean }) => {
     <St.Wrapper>
       {isCustom && <LabelCustomSmall />}
       <Swiper modules={[Pagination]} pagination={{ clickable: true }} slidesPerView={1} loop={true}>
-        {DATA.map((el, index) => (
-          <SwiperSlide key={index}>
+        {DATA.map((el) => (
+          <SwiperSlide key={el}>
             <St.Card>
               <img src={test_tattoo_big} />
             </St.Card>

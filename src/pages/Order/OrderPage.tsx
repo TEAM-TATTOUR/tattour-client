@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import ProductInfo from '../../components/Order/ProductInfo';
 import DeliveryInfo from '../../components/Order/DeliveryInfo';
@@ -11,10 +11,15 @@ import OrderFooter from '../../components/Order/OrderFooter';
 import RefundBottom from '../../components/Order/RefundBottom';
 import BackBtn from '../../common/Header/BackBtn';
 
+interface dataProps {
+  address: string;
+  zonecode: string;
+}
+
 const OrderPage = () => {
   const [isPostOpen, setIsPostOpen] = useState(false);
-  const addressRef = useRef<null | HTMLInputElement>(null);
-  const postcodeRef = useRef<null | HTMLInputElement>(null);
+  const addressRef = useRef<HTMLInputElement | null>(null);
+  const postcodeRef = useRef<HTMLInputElement | null>(null);
   const [isSheetOpen, setSheetOpen] = useState(false);
 
   // 추후 서버통신 시 변수 변경 예정
@@ -26,6 +31,21 @@ const OrderPage = () => {
   const RESULT_POINT = 4500;
   const COUNT = 1;
 
+  const [isComplete, setComplete] = useState(false);
+  const [input, setInput] = useState<string>('');
+  const [phone, setPhone] = useState<string>('');
+  const [address, setAddress] = useState<string>('');
+  const [detailAddress, setDetailAddress] = useState<string>('');
+  const [agree, setAgree] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (input === '' || phone === '' || address === '' || detailAddress === '' || agree === false) {
+      setComplete(false);
+    } else {
+      setComplete(true);
+    }
+  }, [input, phone, address, detailAddress, agree]);
+
   const renderOrderPageHeader = () => {
     return <Header leftSection={<BackBtn />} title='주문하기' />;
   };
@@ -34,17 +54,33 @@ const OrderPage = () => {
     setIsPostOpen(true);
   };
 
-  const handleAddress = (data) => {
+  const handleAddress = (data: dataProps) => {
+    if (!addressRef.current || !postcodeRef.current) return;
     addressRef.current.value = data.address;
     postcodeRef.current.value = data.zonecode; // 우편번호
+    setAddress(data.zonecode);
     setIsPostOpen(false);
   };
 
   return (
-    <PageLayout renderHeader={renderOrderPageHeader} footer={<OrderFooter />}>
+    <PageLayout
+      renderHeader={renderOrderPageHeader}
+      footer={<OrderFooter isComplete={isComplete} />}
+    >
       <ProductInfo originialPrice={ORIGINAL_PRICE} itemPrice={ITEM_PRICE} count={COUNT} />
       <St.Line />
-      <DeliveryInfo handleModal={handleModal} addressRef={addressRef} postcodeRef={postcodeRef} />
+      <DeliveryInfo
+        handleModal={handleModal}
+        addressRef={addressRef}
+        postcodeRef={postcodeRef}
+        setComplete={setComplete}
+        input={input}
+        setInput={setInput}
+        phone={phone}
+        setPhone={setPhone}
+        detailAddress={detailAddress}
+        setDetailAddress={setDetailAddress}
+      />
       <St.Line />
       <PaymentInfo
         finalPrice={FINAL_PRICE}
@@ -54,7 +90,7 @@ const OrderPage = () => {
         resultPoint={RESULT_POINT}
       />
       <St.Line />
-      <RefundInfo setSheetOpen={setSheetOpen} />
+      <RefundInfo setSheetOpen={setSheetOpen} setAgree={setAgree} />
       {isPostOpen && (
         <St.Card onClick={() => setIsPostOpen(false)}>
           <Postcode onComplete={handleAddress} />
