@@ -38,7 +38,7 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    height: calc(100dvh - 13.6rem);
     padding: 0 2rem;
   `,
 };

@@ -124,10 +124,12 @@ const St = {
   CustomReferenceWrapper: styled.section`
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
   `,
   PreviewSection: styled.div`
     display: flex;
+    justify-content: center;
     gap: 1rem;
 
     width: 100%;
