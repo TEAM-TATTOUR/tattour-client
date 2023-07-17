@@ -12,11 +12,8 @@ import WelcomePage from './pages/Welcome/WelcomePage';
 import ChargePage from './pages/PointCharge/ChargePage';
 import TransferPage from './pages/PointCharge/TransferPage';
 import SelectPage from './pages/Custom/SelectPage';
-<<<<<<< HEAD
-import CompletePage from './pages/CompletePage';
-=======
-import OrderPage from './pages/OrderPage';
->>>>>>> 46efb1b589cbaa0a22e3f90cdbc8b51f7c645397
+import CompletePage from './pages/Order/CompletePage';
+import OrderPage from './pages/Order/OrderPage';
 
 const Router = () => {
   return (
