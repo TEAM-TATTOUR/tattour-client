@@ -1,10 +1,21 @@
+import { useState } from 'react';
 import { styled } from 'styled-components';
+import TempSaveModal from '../../../common/Modal/TempSaveModal/TempSaveModal';
 
 const OnBoardingFooter = () => {
+  const [modalOn, setModalOn] = useState(false);
+
+  const handleClickFooter = () => {
+    setModalOn(true);
+  };
+
   return (
-    <St.OnBoardingFooter>
-      <St.FooterText>990P 내고 신청서 작성하기</St.FooterText>
-    </St.OnBoardingFooter>
+    <>
+      <St.OnBoardingFooter onClick={handleClickFooter}>
+        <St.FooterText>990P 내고 신청서 작성하기</St.FooterText>
+      </St.OnBoardingFooter>
+      {modalOn && <TempSaveModal setModalOn={setModalOn} />}
+    </>
   );
 };
 
