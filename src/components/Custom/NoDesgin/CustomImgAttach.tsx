@@ -1,9 +1,17 @@
 import { styled } from 'styled-components';
 import { IcCancelDark, IcPhoto } from '../../../assets/icon';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const CustomImgAttach = () => {
+const CustomImgAttach = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [previewURL, setPreviewURL] = useState('');
+
+  useEffect(() => {
+    previewURL ? setIsActiveNext(true) : setIsActiveNext(false);
+  }, [previewURL, setIsActiveNext]);
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -38,7 +46,7 @@ const CustomImgAttach = () => {
         </St.ImgPreviewContainer>
       ) : (
         <St.ImgAttachArea>
-          <p>도안 이미지를 첨부해주세요</p>
+          <p>투명한 배경, 고화질 png 파일 1장을 첨부해주세요</p>
         </St.ImgAttachArea>
       )}
       <label htmlFor='imgInput'>
@@ -59,7 +67,9 @@ const St = {
     flex-direction: column;
     align-items: center;
 
+    width: 100%;
     gap: 2rem;
+    padding: 0 2rem 12.3rem 2rem;
 
     & > input {
       display: none;

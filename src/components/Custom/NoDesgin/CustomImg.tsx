@@ -3,11 +3,15 @@ import { styled } from 'styled-components';
 import CustomImgHeader from './CustomImgHeader';
 import CustomImgAttach from './CustomImgAttach';
 
-const CustomImg = () => {
+const CustomImg = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <St.CustomImgWrapper>
       <CustomImgHeader />
-      <CustomImgAttach />
+      <CustomImgAttach setIsActiveNext={setIsActiveNext} />
     </St.CustomImgWrapper>
   );
 };
@@ -19,5 +23,8 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    width: 100%;
+    min-height: calc(100dvh - 13.6rem);
   `,
 };
