@@ -32,6 +32,7 @@ const Router = () => {
         <Route path='/point-charge' element={<ChargePage />} />
         <Route path='/point-transfer' element={<TransferPage />} />
         <Route path='/select' element={<SelectPage />} />
+        <Route path='/reference' element={<CustomReferencePage />} />
       </Routes>
     </BrowserRouter>
   );
