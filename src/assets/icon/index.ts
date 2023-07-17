@@ -13,6 +13,7 @@ export { ReactComponent as IcArrowBottomSmallGray } from './ic_arrow_bottom_smal
 export { ReactComponent as IcArrowLeftGray } from './ic_arrow_left_gray.svg';
 export { ReactComponent as IcArrowRightDark } from './ic_arrow_right_dark.svg';
 export { ReactComponent as IcArrowRightGray } from './ic_arrow_right_gray.svg';
+export { ReactComponent as IcArrowRightGray4 } from './ic_arrow_right_gray4.svg';
 export { ReactComponent as IcArrowRightLight } from './ic_arrow_right_light.svg';
 export { ReactComponent as IcBackDark } from './ic_back_dark.svg';
 export { ReactComponent as IcBackLight } from './ic_back_light.svg';
