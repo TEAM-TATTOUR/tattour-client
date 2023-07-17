@@ -25,6 +25,14 @@ const DeliveryInfo = ({
   detailAddress,
   setDetailAddress,
 }: DeliveryInfoProps) => {
+  const sliceMaxLength = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // 자동 하이픈
+    e.target.value = e.target.value
+      .replace(/[^0-9]/g, '')
+      .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
+      .replace(/(-{1,2})$/g, '');
+  };
+
   return (
     <St.Wrapper>
       <St.Title>배송 정보</St.Title>
@@ -51,6 +59,7 @@ const DeliveryInfo = ({
             placeholder='010-0000-0000'
             maxLength='13'
             value={phone}
+            onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e)} // 자동 하이픈
             onChange={(e) => {
               setPhone(e.target.value);
             }}
