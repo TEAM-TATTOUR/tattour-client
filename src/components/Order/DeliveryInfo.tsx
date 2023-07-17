@@ -25,8 +25,8 @@ const DeliveryInfo = ({
   detailAddress,
   setDetailAddress,
 }: DeliveryInfoProps) => {
+  // 자동 하이픈
   const sliceMaxLength = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // 자동 하이픈
     e.target.value = e.target.value
       .replace(/[^0-9]/g, '')
       .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
@@ -132,6 +132,10 @@ const St = {
 
       &::placeholder {
         color: ${({ theme }) => theme.colors.gray2};
+      }
+
+      &:focus {
+        outline: 0;
       }
     }
   `,
