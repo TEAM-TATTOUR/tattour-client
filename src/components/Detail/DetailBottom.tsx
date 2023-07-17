@@ -172,6 +172,8 @@ const St = {
 };
 
 const CustomSheet = styled(Sheet)`
+  height: 100%;
+
   .react-modal-sheet-backdrop {
     background-color: rgba(0, 0, 0, 0.6) !important;
   }
