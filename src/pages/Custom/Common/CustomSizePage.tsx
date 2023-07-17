@@ -24,7 +24,7 @@ const CustomSizePage = () => {
             targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
           />
         }
-        progressBar={<ProgressBar curStep={1} maxStep={5} />}
+        progressBar={<ProgressBar curStep={1} maxStep={4} />}
       />
     );
   };
