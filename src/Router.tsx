@@ -13,6 +13,7 @@ import ChargePage from './pages/PointCharge/ChargePage';
 import TransferPage from './pages/PointCharge/TransferPage';
 import SelectPage from './pages/Custom/SelectPage';
 import OrderPage from './pages/OrderPage';
+import CustomReferencePage from './pages/CustomReference/CustomReferencePage';
 
 const Router = () => {
   return (
