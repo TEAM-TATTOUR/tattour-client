@@ -7,9 +7,14 @@ interface PaintBottomProps {
   isBottomOpen: boolean;
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
   drawingImageURL: string | null;
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CustomImageAttach: React.FC<PaintBottomProps> = ({ drawingImageURL, setBottomOpen }) => {
+const CustomImageAttach: React.FC<PaintBottomProps> = ({
+  drawingImageURL,
+  setBottomOpen,
+  setIsActiveNext,
+}) => {
   const MAX_FILES = 3;
 
   const ref = useRef<HTMLInputElement | null>(null);
@@ -20,6 +25,11 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({ drawingImageURL, setBot
       ref.current?.click();
     }
   };
+
+  // 이미지 없으면 다음 비활성화
+  useEffect(() => {
+    previewURL.length !== 0 ? setIsActiveNext(true) : setIsActiveNext(false);
+  }, [previewURL, setIsActiveNext]);
 
   useEffect(() => {
     if (drawingImageURL) {
