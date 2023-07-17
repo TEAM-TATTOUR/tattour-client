@@ -57,8 +57,16 @@ const St = {
     justify-content: center;
     align-items: center;
 
+    min-height: calc(100dvh - 12.6rem);
+
     /* swiper 영역 스타일링 */
     .swiper {
+      height: 100%;
+
+      .swiper-wrapper {
+        height: 100%;
+      }
+
       .swiper-slide {
         display: flex;
         flex-direction: column;
@@ -117,6 +125,7 @@ const St = {
   SwiperContainer: styled.article`
     display: flex;
     flex-direction: column;
+    height: 100%;
   `,
 
   SwiperHeader: styled.header`
@@ -166,6 +175,7 @@ const St = {
   SwiperImgContainer: styled.div`
     display: flex;
     justify-content: center;
+    height: 100%;
 
     & > img {
       width: 30.7rem;
