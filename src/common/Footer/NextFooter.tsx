@@ -26,7 +26,7 @@ export default NextFooter;
 
 const St = {
   NextFooter: styled.footer<{ $isActiveNext: boolean }>`
-    position: absolute;
+    position: sticky;
     bottom: 0;
 
     display: flex;
