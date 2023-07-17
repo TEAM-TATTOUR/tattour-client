@@ -15,6 +15,7 @@ import SelectPage from './pages/Custom/SelectPage';
 import OrderPage from './pages/OrderPage';
 import StylingColorPage from './pages/Custom/StylingColorPage';
 import OnBoardingPage from './pages/Custom/Common/OnBoardingPage';
+import CustomSizePage from './pages/Custom/Common/CustomSizePage';
 
 const Router = () => {
   return (
@@ -36,6 +37,7 @@ const Router = () => {
         <Route path='/select' element={<SelectPage />} />
         <Route path='/styling-color' element={<StylingColorPage />} />
         <Route path='/onboarding' element={<OnBoardingPage />} />
+        <Route path='/custom-size' element={<CustomSizePage />} />
       </Routes>
     </BrowserRouter>
   );
