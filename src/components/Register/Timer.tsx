@@ -1,16 +1,16 @@
 import { memo } from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { styled } from 'styled-components';
 
 interface TimerProps {
-  isCorrect: boolean;
+  isTimeout: boolean;
+  setIsTimeout: React.Dispatch<React.SetStateAction<boolean>>;
+  leftTime: number;
+  setLeftTime: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Timer = memo(({ isCorrect }: TimerProps) => {
-  const MINUTES_IN_MS = 5 * 60 * 1000;
+const Timer = memo(({ isTimeout, setIsTimeout, leftTime, setLeftTime }: TimerProps) => {
   const INTERVAL = 1000;
-  const [leftTime, setLeftTime] = useState<number>(MINUTES_IN_MS);
-
   // padStart(2, '0'): 문자열의 길이는 2로 하고, 빈 곳이 있으면 0으로 채워넣어줌.
   const minutes = String(Math.floor((leftTime / (1000 * 60)) % 60)).padStart(2, '0');
   const second = String(Math.floor((leftTime / 1000) % 60)).padStart(2, '0');
@@ -25,32 +25,28 @@ const Timer = memo(({ isCorrect }: TimerProps) => {
     if (leftTime <= 0) {
       // timer 반복 중단
       clearInterval(timer);
-      alert('제한 시간이 끝났습니다.');
-    }
-
-    if (isCorrect) {
-      clearInterval(timer);
+      setIsTimeout(true);
     }
 
     return () => {
       clearInterval(timer);
     };
-  }, [leftTime, isCorrect]);
+  }, [leftTime, setIsTimeout]);
 
   return (
-    <St.AuthTimer>
-      {minutes} : {second}
+    <St.AuthTimer $isTimeout={isTimeout}>
+      {isTimeout ? '시간 만료' : `${minutes} : ${second}`}
     </St.AuthTimer>
   );
 });
 
 const St = {
-  AuthTimer: styled.span`
+  AuthTimer: styled.span<{ $isTimeout: boolean }>`
     padding-top: 1.2rem;
     position: absolute;
     right: 4rem;
 
-    color: ${({ theme }) => theme.colors.gray7};
+    color: ${({ theme, $isTimeout }) => ($isTimeout ? theme.colors.red : theme.colors.gray7)};
 
     ${({ theme }) => theme.fonts.body_medium_16};
   `,
