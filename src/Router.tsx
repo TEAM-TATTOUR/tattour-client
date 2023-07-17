@@ -13,6 +13,11 @@ import ChargePage from './pages/PointCharge/ChargePage';
 import TransferPage from './pages/PointCharge/TransferPage';
 import SelectPage from './pages/Custom/SelectPage';
 import OrderPage from './pages/OrderPage';
+import StylingColorPage from './pages/Custom/StylingColorPage';
+import OnBoardingPage from './pages/Custom/Common/OnBoardingPage';
+import CustomSizePage from './pages/Custom/Common/CustomSizePage';
+import CustomImgPage from './pages/Custom/NoDesign/CustomImgPage';
+import CustomRequestPage from './pages/Custom/NoDesign/CustomRequestPage';
 
 const Router = () => {
   return (
@@ -32,6 +37,11 @@ const Router = () => {
         <Route path='/point-charge' element={<ChargePage />} />
         <Route path='/point-transfer' element={<TransferPage />} />
         <Route path='/select' element={<SelectPage />} />
+        <Route path='/styling-color' element={<StylingColorPage />} />
+        <Route path='/onboarding' element={<OnBoardingPage />} />
+        <Route path='/custom-size' element={<CustomSizePage />} />
+        <Route path='/custom-img' element={<CustomImgPage />} />
+        <Route path='/custom-request' element={<CustomRequestPage />} />
       </Routes>
     </BrowserRouter>
   );

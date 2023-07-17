@@ -19,8 +19,8 @@ const St = {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    height: 100vh;
+    position: relative;
+    min-height: 100dvh;
 
     background-color: #1e1e1e;
   `,
