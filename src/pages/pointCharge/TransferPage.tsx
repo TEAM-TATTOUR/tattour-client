@@ -7,6 +7,7 @@ import PageLayout from '../../components/PageLayout';
 import PointTransferFooter from '../../components/PointCharge/PointTransferFooter';
 import TransferMain from '../../components/PointCharge/TransferMain';
 import ChargePointEscapeModal from '../../common/Modal/EscapeModal/ChargePointEscapeModal';
+import TransferPolicy from '../../components/PointCharge/TransferPolicy';
 // import TransferPolicy from '../../components/PointCharge/TransferPolicy';
 
 const TransferPage = () => {
@@ -16,7 +17,6 @@ const TransferPage = () => {
   const renderTransferPageHeader = () => {
     return (
       <Header
-        fixed={true}
         leftSection={<BackBtn />}
         title='포인트 충전'
         rightSection={
@@ -26,7 +26,7 @@ const TransferPage = () => {
             targetModal={<ChargePointEscapeModal setModalOn={setModalOn} />}
           />
         }
-        progressBar={<ProgressBar curStep={2} maxStep={5} />}
+        progressBar={<ProgressBar curStep={2} maxStep={2} />}
       />
     );
   };
@@ -36,7 +36,8 @@ const TransferPage = () => {
       renderHeader={renderTransferPageHeader}
       footer={<PointTransferFooter isActiveNext={isActiveNext} />}
     >
-      <TransferMain setIsActiveNext={setIsActiveNext} />
+      <TransferMain />
+      <TransferPolicy setIsActiveNext={setIsActiveNext} />
     </PageLayout>
   );
 };
