@@ -26,7 +26,8 @@ const St = {
 
     gap: 0.4rem;
 
-    padding: 5.6rem 0 3.6rem 2.2rem;
+    width: 33.5rem;
+    padding: 5.6rem 0 3.6rem 0.2rem;
   `,
 
   ImgInfoTitle: styled.h2`

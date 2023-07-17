@@ -65,7 +65,9 @@ const St = {
   ImgAttachContainer: styled.article`
     display: flex;
     flex-direction: column;
+    align-items: center;
 
+    width: 100%;
     gap: 2rem;
     padding: 0 2rem 12.3rem 2rem;
 

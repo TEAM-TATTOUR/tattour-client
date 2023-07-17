@@ -22,7 +22,7 @@ const St = {
   CustomImgWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    padding: 0 2.75rem;
+    align-items: center;
 
     width: 100%;
     min-height: calc(100dvh - 13.6rem);
