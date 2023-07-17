@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 
 import ic_check from '../../assets/icon/ic_check.svg';
 import ic_check_selected from '../../assets/icon/ic_check_selected.svg';
-import { IcArrowRightDark } from '../../assets/icon';
+import { IcArrowRightGray4 } from '../../assets/icon';
 import PrePointPolicyBottom from './PrePointPolicyBottom';
 import { useState } from 'react';
 
@@ -24,7 +24,7 @@ const TransferPolicy = ({
 
       <St.PolicyAgreeTouchArea onClick={() => setSheetOpen(true)}>
         <St.PolicyAgreeText>예비포인트 정책 관련 설명에 동의합니다</St.PolicyAgreeText>
-        <IcArrowRightDark />
+        <IcArrowRightGray4 />
       </St.PolicyAgreeTouchArea>
 
       <PrePointPolicyBottom isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} />
