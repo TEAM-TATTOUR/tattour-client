@@ -33,6 +33,7 @@ const Canvas: React.FC<CanvasProps> = ({
 
     return () => {
       setTempCanvas(canvasRef.current);
+      canvas.dispose();
     };
   }, []);
 
