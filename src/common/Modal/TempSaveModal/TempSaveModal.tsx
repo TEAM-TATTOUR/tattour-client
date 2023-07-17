@@ -27,7 +27,7 @@ const TempSaveModal = ({
         <St.BtnWrapper>
           <St.ContinueBtn
             onClick={() => {
-              navigate('/my-tatto');
+              navigate('/my-tattoo');
             }}
           >
             불러오기
@@ -57,7 +57,7 @@ const St = {
     left: 0;
     top: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
 
     background: rgba(0, 0, 0, 0.6);
 
@@ -83,7 +83,7 @@ const St = {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 4.7rem;
+    margin-top: 4.9rem;
 
     & > svg {
       position: absolute;
@@ -99,7 +99,7 @@ const St = {
   `,
 
   ModalSubTitle: styled.p`
-    padding: 1.6rem 6.4rem 4rem 6.4rem;
+    padding: 1.4rem 6.4rem 4rem 6.4rem;
 
     text-align: center;
     color: ${({ theme }) => theme.colors.gray3};
