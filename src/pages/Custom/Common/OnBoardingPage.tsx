@@ -3,6 +3,7 @@ import { IcCancelDark } from '../../../assets/icon';
 import OnBoardingCarousel from '../../../components/Custom/Common/OnBoardingCarousel';
 import Header from '../../../components/Header';
 import PageLayout from '../../../components/PageLayout';
+import OnBoardingFooter from '../../../components/Custom/Common/OnBoardingFooter';
 
 const OnBoardingPage = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const OnBoardingPage = () => {
   };
 
   return (
-    <PageLayout renderHeader={renderOnBoardingPageHeader}>
+    <PageLayout renderHeader={renderOnBoardingPageHeader} footer={<OnBoardingFooter />}>
       <OnBoardingCarousel />
     </PageLayout>
   );
