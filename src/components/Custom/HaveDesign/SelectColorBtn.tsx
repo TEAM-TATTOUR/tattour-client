@@ -52,7 +52,7 @@ const St = {
   `,
 
   SelectBtnTitle: styled.h3`
-    color: ${({ theme }) => theme.colors.gray7};
+    color: ${({ theme }) => theme.colors.gray5};
     ${({ theme }) => theme.fonts.title_semibold_16};
 
     text-align: center;

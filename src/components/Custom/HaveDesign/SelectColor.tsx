@@ -45,24 +45,24 @@ const SelectColor = ({
   return (
     <St.SelectWrapper>
       <St.SelectInfoContainer>
-        <St.InfoMainText>어떤 색상을 원하시나요?</St.InfoMainText>
-        <St.InfoSubText>두 개 중 하나를 선택해주세요</St.InfoSubText>
+        <St.InfoMainText>색상을 선택해주세요</St.InfoMainText>
       </St.SelectInfoContainer>
-
-      <St.SelectBtnContainer>
-        {CASE_BTN_DATA.map(({ id, title, src }) => {
-          return (
-            <SelectColorBtn
-              key={id}
-              id={id}
-              title={title}
-              src={src}
-              onClick={() => handleClickSelBtn(id)}
-              activeBtn={activeBtn}
-            />
-          );
-        })}
-      </St.SelectBtnContainer>
+      <St.BtnContainerWrapper>
+        <St.SelectBtnContainer>
+          {CASE_BTN_DATA.map(({ id, title, src }) => {
+            return (
+              <SelectColorBtn
+                key={id}
+                id={id}
+                title={title}
+                src={src}
+                onClick={() => handleClickSelBtn(id)}
+                activeBtn={activeBtn}
+              />
+            );
+          })}
+        </St.SelectBtnContainer>
+      </St.BtnContainerWrapper>
     </St.SelectWrapper>
   );
 };
@@ -75,7 +75,7 @@ const St = {
     flex-direction: column;
 
     width: 100%;
-    height: 100vh;
+    min-height: calc(100dvh - 13.6rem);
   `,
 
   SelectInfoContainer: styled.article`
@@ -84,7 +84,7 @@ const St = {
     align-items: start;
     gap: 1.2rem;
 
-    margin: 5.6rem 0 11rem 2.2rem;
+    margin: 5.6rem 0 0 2.2rem;
   `,
 
   InfoMainText: styled.h2`
@@ -92,15 +92,20 @@ const St = {
     ${({ theme }) => theme.fonts.title_semibold_20};
   `,
 
-  InfoSubText: styled.p`
-    color: ${({ theme }) => theme.colors.gray3};
-    ${({ theme }) => theme.fonts.body_medium_14};
+  BtnContainerWrapper: styled.article`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    min-height: calc(100dvh - 20.6rem);
   `,
 
-  SelectBtnContainer: styled.article`
+  SelectBtnContainer: styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
     gap: 1.5rem;
   `,
 };

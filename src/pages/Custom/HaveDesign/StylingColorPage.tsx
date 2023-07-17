@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { IcBackDark, IcCancelDark } from '../../../assets/icon';
 import NextFooter from '../../../common/Footer/NextFooter';
 import BackBtn from '../../../common/Header/BackBtn';
 import CancelBtn from '../../../common/Header/CancelBtn';
