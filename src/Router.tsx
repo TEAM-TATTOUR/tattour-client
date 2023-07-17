@@ -13,6 +13,7 @@ import ChargePage from './pages/PointCharge/ChargePage';
 import TransferPage from './pages/PointCharge/TransferPage';
 import SelectPage from './pages/Custom/SelectPage';
 import OrderPage from './pages/OrderPage';
+import StylingColorPage from './pages/Custom/StylingColorPage';
 
 const Router = () => {
   return (
@@ -32,6 +33,7 @@ const Router = () => {
         <Route path='/point-charge' element={<ChargePage />} />
         <Route path='/point-transfer' element={<TransferPage />} />
         <Route path='/select' element={<SelectPage />} />
+        <Route path='/styling-color' element={<StylingColorPage />} />
       </Routes>
     </BrowserRouter>
   );
