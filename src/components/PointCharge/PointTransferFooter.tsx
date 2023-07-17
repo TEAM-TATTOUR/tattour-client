@@ -24,9 +24,8 @@ export default PointTransferFooter;
 
 const St = {
   TransferFooter: styled.footer<{ $isActiveNext: boolean }>`
-    position: absolute;
+    position: sticky;
     bottom: 0;
-    left: 0;
 
     display: flex;
     justify-content: center;
