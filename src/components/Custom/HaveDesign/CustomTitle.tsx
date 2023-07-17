@@ -28,6 +28,7 @@ const St = {
 
     width: 100%;
     margin: 5.6rem 0 4rem;
+    padding: 0 2rem;
   `,
 
   CustomReferenceTitle: styled.p`

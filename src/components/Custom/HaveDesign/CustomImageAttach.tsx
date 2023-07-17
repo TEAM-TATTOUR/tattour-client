@@ -125,14 +125,16 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     width: 100%;
+
+    padding-bottom: 8.3rem;
   `,
   PreviewSection: styled.div`
     display: flex;
-    justify-content: center;
     gap: 1rem;
 
-    width: 100%;
+    width: 33.5rem;
     height: 24.6rem;
     margin-bottom: 2rem;
 
@@ -193,7 +195,7 @@ const St = {
 
     height: fit-content;
     width: fit-content;
-    margin-bottom: 8.3rem;
+    /* padding-bottom: 8.3rem; */
     gap: 1rem;
   `,
 
