@@ -6,6 +6,7 @@ import PageLayout from '../../components/PageLayout';
 import { IcCancelDark } from '../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 import SelectCustomFooter from '../../components/Custom/SelectCustomFooter';
+import SelectCustomPolicy from '../../components/Custom/SelectCustomPolicy';
 
 const SelectPage = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const SelectPage = () => {
       footer={<SelectCustomFooter isActiveNext={isActiveNext} />}
     >
       <SelectCustom setIsActiveNext={setIsActiveNext} />
+      <SelectCustomPolicy />
     </PageLayout>
   );
 };
