@@ -3,10 +3,10 @@ import SelectKeywordHeading from '../../../components/Custom/HaveDesign/SelectKe
 import PageLayout from '../../../components/PageLayout';
 import BackBtn from '../../../common/Header/BackBtn';
 import CancelBtn from '../../../common/Header/CancelBtn';
-import EscapeModal from '../../../common/Modal/EscapeModal/EscapeModal';
 import Header from '../../../components/Header';
 import ProgressBar from '../../../common/ProgressBar';
 import SelectKeyword from '../../../components/Custom/HaveDesign/SelectKeyword';
+import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 
 const SelectKeywordPage = () => {
   const [modalOn, setModalOn] = useState(false);
@@ -19,7 +19,7 @@ const SelectKeywordPage = () => {
           <CancelBtn
             modalOn={modalOn}
             setModalOn={setModalOn}
-            targetModal={<EscapeModal setModalOn={setModalOn} />}
+            targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
           />
         }
         transparent={true}
