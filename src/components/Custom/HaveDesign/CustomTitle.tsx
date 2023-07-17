@@ -4,7 +4,7 @@ import { IcCheckSmallGray } from '../../../assets/icon';
 const CustomTitle = () => {
   return (
     <St.TitleWrapper>
-      <St.CustomReferenceTitle>레퍼런스 이미지를 첨부해주세요</St.CustomReferenceTitle>
+      <St.CustomReferenceTitle>참고 이미지를 첨부해 주세요</St.CustomReferenceTitle>
       <St.SubtitleWrapper>
         <St.CustomReferenceSubtitle>
           <IcCheckSmallGray />
@@ -12,7 +12,7 @@ const CustomTitle = () => {
         </St.CustomReferenceSubtitle>
         <St.CustomReferenceSubtitle>
           <IcCheckSmallGray />
-          새로운 스케치를 희망하시면 기존 그림을 삭제해주세요{' '}
+          새로운 스케치를 희망하시면 기존 그림을 삭제해주세요
         </St.CustomReferenceSubtitle>
       </St.SubtitleWrapper>
     </St.TitleWrapper>
