@@ -9,9 +9,14 @@ interface PaintBottomProps {
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setDrawingImageURL: React.Dispatch<React.SetStateAction<string | null>>;
   drawingImageURL: string | null;
+  setFreeDrawing: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const PaintBottomSheet = ({ setBottomOpen, setDrawingImageURL }: PaintBottomProps) => {
+const PaintBottomSheet = ({
+  setBottomOpen,
+  setDrawingImageURL,
+  setFreeDrawing,
+}: PaintBottomProps) => {
   const [submitted, setSubmitted] = useState(false);
   const [savedCanvas, setSavedCanvas] = useState<string | null>('');
   const [_canvas, setTempCanvas] = useState<HTMLCanvasElement>();
@@ -21,10 +26,9 @@ const PaintBottomSheet = ({ setBottomOpen, setDrawingImageURL }: PaintBottomProp
   const onClickSubmitImage = () => {
     // 캔버스 저장 후 전달
     setDrawingImageURL(_canvas?.toDataURL());
-    // setDrawingImageURL(savedCanvas);
+    setFreeDrawing(true);
     setSubmitted(true);
     setBottomOpen(false);
-    // closeBottom;
   };
 
   return (
