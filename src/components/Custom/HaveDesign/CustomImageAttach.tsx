@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { IcDraw, IcPhoto, IcCancelDark } from '../../../assets/icon';
-import { Dispatch } from 'react';
 import { useRef, useState, useEffect } from 'react';
+import Toast from '../../../common/ToastMessage/Toast';
 
 interface PaintBottomProps {
   isBottomOpen: boolean;
@@ -19,10 +19,13 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
 
   const ref = useRef<HTMLInputElement | null>(null);
   const [previewURL, setPreviewURL] = useState<string[]>(drawingImageURL ? [drawingImageURL] : []);
+  const [toast, setToast] = useState<boolean>(false);
 
   const handleClickRefBtn = () => {
     if (previewURL.length < MAX_FILES) {
       ref.current?.click();
+    } else {
+      setToast(true);
     }
   };
 
@@ -40,6 +43,9 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (!files || !files[0]) return;
+    if (files[3]) {
+      setToast(true);
+    }
     const uploadImage = Array.from(files);
 
     //개수 제한 적용해주기
@@ -116,6 +122,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
           대충 그리기
         </St.ReferenceButton>
       </St.ButtonWrapper>
+      {toast && <Toast setToast={setToast} text='이미지를 3장 이상 첨부할 수 없습니다' />}
     </St.CustomReferenceWrapper>
   );
 };

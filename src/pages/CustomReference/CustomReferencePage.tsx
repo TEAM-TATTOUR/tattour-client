@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { IcBackDark, IcBackLight, IcCloseLight } from '../../assets/icon/index';
 import BackBtn from '../../common/Header/BackBtn';
 import CancelBtn from '../../common/Header/CancelBtn';
 import CustomReference from '../../components/Custom/HaveDesign/CustomReference';
-import CustomReferenceFooter from '../../components/Custom/HaveDesign/CustomReferenceFooter';
 import Header from '../../components/Header';
 import PageLayout from '../../components/PageLayout';
 import ProgressBar from '../../common/ProgressBar';
