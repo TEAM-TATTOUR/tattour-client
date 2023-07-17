@@ -30,6 +30,8 @@ export default AccountCopy;
 const St = {
   TransferAccountContainer: styled.article`
     width: 100%;
+    display: flex;
+    justify-content: center;
   `,
 
   AccountBox: styled.div`
