@@ -11,8 +11,6 @@ interface TattooListProps {
 }
 
 const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: TattooListProps) => {
-  const [count, setCount] = useState(17);
-
   const [selectedFilter, setSelectedFilter] = useState([false, false, false]); // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
 
   const TATTOO_LIST = [
@@ -61,7 +59,6 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
     const newSelectedFilter = [...selectedFilter];
     buttonName.forEach((btn, idx) => {
       if (btn !== DEFAULT_BUTTON_NAME[idx]) {
-        // selectedFilter에서 idx위치를 true로 변경
         newSelectedFilter[idx] = true;
       } else if (btn === DEFAULT_BUTTON_NAME[idx]) {
         newSelectedFilter[idx] = false;
@@ -97,7 +94,7 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
           </St.FilterBtn>
         ))}
       </St.BtnContainer>
-      <St.CountText>전체 {count}개</St.CountText>
+      <St.CountText>전체 {TATTOO_LIST.length}개</St.CountText>
       <St.CardContainer>
         {TATTOO_LIST.map((el) => (
           <St.Card key={el.name}>
@@ -105,11 +102,11 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
               <img src={test_tattoo} />
             </St.CardImg>
             <h2>{el.name}</h2>
-            <p>{el.price.toLocaleString()}원</p>
             <div>
               <St.CardDiscount>{el.discount}%</St.CardDiscount>
               <St.CardPrice>{el.finalPrice.toLocaleString()}원</St.CardPrice>
             </div>
+            <p>{el.price.toLocaleString()}원</p>
           </St.Card>
         ))}
       </St.CardContainer>
@@ -126,7 +123,7 @@ const St = {
   `,
   Header: styled.h1`
     margin: 2.8rem 0rem 2.2rem 2rem;
-    ${({ theme }) => theme.fonts.title_semibold_18}; // 추후 유료 font 변경 예정
+    ${({ theme }) => theme.fonts.title_eng_bold_18};
   `,
   BtnContainer: styled.article`
     display: flex;
@@ -155,6 +152,7 @@ const St = {
   CardContainer: styled.section`
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 0.1rem;
   `,
   Card: styled.article`
     display: flex;
@@ -182,7 +180,6 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    width: 18.7rem;
     height: 20.1rem;
     background-color: ${({ theme }) => theme.colors.gray0};
   `,
@@ -193,7 +190,7 @@ const St = {
   CardPrice: styled.span`
     margin-left: 0.5rem;
 
-    color: ${({ theme }) => theme.colors.gray3};
+    color: ${({ theme }) => theme.colors.gray7};
     ${({ theme }) => theme.fonts.title_semibold_16};
   `,
 };

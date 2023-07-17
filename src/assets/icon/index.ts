@@ -40,7 +40,11 @@ export { ReactComponent as IcPlus } from './ic_plus.svg';
 export { ReactComponent as IcSearchDark } from './ic_search_dark.svg';
 export { ReactComponent as IcSearchLight } from './ic_search_light.svg';
 export { ReactComponent as IcShop } from './ic_shop.svg';
+export { ReactComponent as IcCloseLight } from './ic_close_light.svg';
 export { ReactComponent as IcError } from './ic_error.svg';
+export { ReactComponent as IcBtnStepperPlusDark } from './ic_btn_plus_dark.svg';
+export { ReactComponent as IcBtnStepperMinusLight } from './ic_btn_minus_light.svg';
+export { ReactComponent as IcBtnStepperMinusDark } from './ic_btn_minus_dark.svg';
 
 // brush
 export { ReactComponent as IcBrushBoldSelected } from './ic_brush_bold_selected.svg';
@@ -55,12 +59,11 @@ export { ReactComponent as IcColorBlack } from './ic_color_black.svg';
 export { ReactComponent as IcColorBlackSelected } from './ic_color_black_selected.svg';
 export { ReactComponent as IcColorBlue } from './ic_color_blue.svg';
 export { ReactComponent as IcColorBlueSelected } from './ic_color_blue_selected.svg';
-export { ReactComponent as IcColorRainbow } from './ic_color_rainbow.svg';
-export { ReactComponent as IcColorRainbowSelected } from './ic_color_rainbow_selected.svg';
 export { ReactComponent as IcColorRed } from './ic_color_red.svg';
 export { ReactComponent as IcColorRedSelected } from './ic_color_red_selected.svg';
 export { ReactComponent as IcColorYellow } from './ic_color_yellow.svg';
 export { ReactComponent as IcColorYellowSelected } from './ic_color_yellow_selected.svg';
+export { ReactComponent as IcColorSelectedLine } from './ic_color_selected_line.svg';
 
 // etc
 export { ReactComponent as IcFinish } from './ic_finish.svg';
