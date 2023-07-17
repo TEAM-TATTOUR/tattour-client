@@ -1,39 +1,21 @@
 import styled from 'styled-components';
-import { IcCancelDark } from '../../assets/icon';
+import { IcCancelDark } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 
-interface ModalProps {
+interface CheckModalFormProps {
   onClose: () => void;
-  pageName: string;
   title: string;
   subTitle: string;
   continueBtn: string;
-  stopBtn: string;
 }
 
-const Modal = ({ onClose, pageName, title, subTitle, continueBtn, stopBtn }: ModalProps) => {
+const CheckModalForm = ({ onClose, title, subTitle, continueBtn }: CheckModalFormProps) => {
   const navigate = useNavigate();
 
-  const handleClickStopBtn = () => {
+  const handleClickContinueBtn = () => {
     onClose();
-    switch (pageName) {
-      // 페이지 이름과 라우팅 주소는 나중에 보고 수정
-      case 'LoginPage':
-        navigate('/login');
-        break;
-
-      case 'ChargePage':
-        navigate('/charge');
-        break;
-
-      case 'CustomSizePage':
-        navigate('/custom-size');
-        break;
-
-      default:
-        navigate('/');
-        break;
-    }
+    // 라우팅 주소 나중에 수정
+    navigate('/');
   };
 
   return (
@@ -46,8 +28,7 @@ const Modal = ({ onClose, pageName, title, subTitle, continueBtn, stopBtn }: Mod
         </St.ModalTitleWrapper>
 
         <St.BtnWrapper>
-          <St.ContinueBtn onClick={onClose}>{continueBtn}</St.ContinueBtn>
-          <St.StopBtn onClick={handleClickStopBtn}>{stopBtn}</St.StopBtn>
+          <St.ContinueBtn onClick={handleClickContinueBtn}>{continueBtn}</St.ContinueBtn>
         </St.BtnWrapper>
       </St.ModalContent>
     </St.ModalContainer>
@@ -104,11 +85,9 @@ const St = {
   `,
 
   ModalSubTitle: styled.p`
-    // width 뷰마다 달라지면 props로 받아와서 적용하도록 수정
-    width: 27rem;
-    padding-top: 1.6rem;
-    padding-bottom: 4rem;
+    padding: 1.6rem 7.25rem 4rem 7.25rem;
 
+    text-align: center;
     color: ${({ theme }) => theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.body_medium_16};
@@ -125,29 +104,16 @@ const St = {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 16.7rem;
+    width: 100%;
     height: 7rem;
 
     border-bottom-left-radius: 1rem;
-    background-color: ${({ theme }) => theme.colors.gray8};
-    color: ${({ theme }) => theme.colors.white};
-
-    ${({ theme }) => theme.fonts.title_semibold_18};
-  `,
-
-  StopBtn: styled.button`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 16.8rem;
-    height: 7rem;
-
     border-bottom-right-radius: 1rem;
-    background-color: ${({ theme }) => theme.colors.gray3};
+    background-color: ${({ theme }) => theme.colors.gray8};
     color: ${({ theme }) => theme.colors.white};
 
     ${({ theme }) => theme.fonts.title_semibold_18};
   `,
 };
 
-export default Modal;
+export default CheckModalForm;

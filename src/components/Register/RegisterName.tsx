@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { TITLE, SUB_TITLE } from '../../constants/TitleInfo';
 import RegisterTitleForm from './RegisterTitleForm';
-import RegisterNameFooter from './RegisterNameFooter';
-import { useState } from 'react';
 import sliceMaxLength from '../../utils/sliceMaxLength';
 
-const RegisterName = () => {
-  const [userName, setUserName] = useState('');
+interface RegisterNameProps {
+  setUserName: React.Dispatch<React.SetStateAction<string>>;
+}
 
+const RegisterName = ({ setUserName }: RegisterNameProps) => {
   const handleChangeInputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
   };
@@ -18,13 +18,11 @@ const RegisterName = () => {
 
       <St.InputContentsWrapper>
         <St.InputContent
-          placeholder='실명을 입력해주세요'
+          placeholder='ex) 김타투'
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
-          onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 5)}
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 5, 'onlyString')}
         ></St.InputContent>
       </St.InputContentsWrapper>
-
-      <RegisterNameFooter userName={userName} />
     </St.RegisterNameWrapper>
   );
 };
@@ -34,6 +32,8 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    height: calc(100dvh - 7rem);
   `,
 
   InputContentsWrapper: styled.article`
@@ -56,6 +56,10 @@ const St = {
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray2};
+    }
+
+    &:focus {
+      outline: 0;
     }
   `,
 };
