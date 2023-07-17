@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
 import AccountCopy from './AccountCopy';
-import TransferPolicy from './TransferPolicy';
 
 const TransferMain = () => {
   const chargedCost = 3000;
@@ -33,7 +32,6 @@ const St = {
   TransferMainWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
 
     height: calc(100dvh - 21.6rem);
