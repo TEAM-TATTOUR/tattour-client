@@ -124,7 +124,6 @@ const St = {
   `,
 
   RequestEtcTextArea: styled.textarea`
-    width: 33.5rem;
     height: 14.6rem;
 
     padding: 1.2rem 2rem;
