@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { IcMenuDark, IcMenuLight, IcSearchDark, IcSearchLight } from '../../assets/icon';
 import { SetStateAction } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface MainHeaderButtonProps {
   setIsSideMenuOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -8,13 +9,19 @@ interface MainHeaderButtonProps {
 }
 
 const MainHeaderButton = ({ setIsSideMenuOpen, light }: MainHeaderButtonProps) => {
+  const navigate = useNavigate();
+
   const handleClickNavButton = () => {
     setIsSideMenuOpen(true);
   };
 
+  const handleClickSearchButton = () => {
+    navigate('/search');
+  };
+
   return (
     <St.ButtonWrapper>
-      <St.SearchButton type='button'>
+      <St.SearchButton type='button' onClick={handleClickSearchButton}>
         {light ? <IcSearchLight /> : <IcSearchDark />}
       </St.SearchButton>
       <St.NavButton type='button' onClick={handleClickNavButton}>
