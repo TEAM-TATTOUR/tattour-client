@@ -1,12 +1,20 @@
 import { styled } from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
 
-const PaintBottomHeader = () => {
+interface PaintBottomHeaderProps {
+  onClose: () => void;
+}
+
+const PaintBottomHeader = ({ onClose }: PaintBottomHeaderProps) => {
+  const handleClose = () => {
+    onClose();
+  };
+
   return (
     <St.HeaderWrapper>
       <St.PaintTitle>대충 그려보기</St.PaintTitle>
       <St.SheetClose>
-        <IcCancelDark />
+        <IcCancelDark onClick={handleClose} />
       </St.SheetClose>
     </St.HeaderWrapper>
   );
