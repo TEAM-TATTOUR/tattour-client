@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import SelectColorBtn from './SelectColorBtn';
 import IcCircleRainbow from '../../../assets/icon/ic_circle_rainbow.png';

@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
 import { IcDraw, IcPhoto, IcCancelDark } from '../../../assets/icon';
-import { Dispatch } from 'react';
 import { useRef, useState, useEffect } from 'react';
 
 interface PaintBottomProps {

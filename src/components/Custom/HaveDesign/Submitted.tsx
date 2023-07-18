@@ -1,5 +1,3 @@
-import React from 'react';
-import { styled } from 'styled-components';
 import Result from '../../../common/Result';
 
 const Submitted = () => {

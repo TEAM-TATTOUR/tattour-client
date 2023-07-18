@@ -8,7 +8,7 @@ import DetailBottom from '../components/Detail/DetailBottom';
 import CustomScrollContainer from '../common/CustomScrollContainer';
 import SmallTattooCard from '../common/SmallTattooCard';
 import BackBtn from '../common/Header/BackBtn';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const DUMMY_DATA = [
   {
@@ -70,9 +70,10 @@ const DUMMY_DATA = [
 ];
 
 const DetailPage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [isSheetOpen, setSheetOpen] = useState(false);
-  const [isCustom, setCustom] = useState(true); // 해당 상품이 custom인지 여부
+  // const [isCustom, setCustom] = useState(true); // 해당 상품이 custom인지 여부
+  const isCustom = true;
 
   // 찜 여부 state -> 추후 서버통신
   const [like, setLike] = useState(false);

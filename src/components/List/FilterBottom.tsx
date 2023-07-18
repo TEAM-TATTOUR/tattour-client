@@ -88,7 +88,7 @@ const FilterBottom = ({
     },
   ];
 
-  const tagRefs = useRef<HTMLElement[]>([]);
+  const tagRefs = useRef<HTMLParagraphElement[]>([]);
   const filterRef = useRef<HTMLElement>(null);
   const [selectedTag, setSelectedTag] = useState(''); // 선택한 태그 저장
 
@@ -102,7 +102,7 @@ const FilterBottom = ({
     selectedTag === tag ? setSelectedTag(FILTER[filterIdx].type) : setSelectedTag(tag); // 선택한 태그 저장
 
     // 태그 선택은 하나씩
-    tagRefs.current.forEach((el: HTMLElement) => {
+    tagRefs.current.forEach((el: HTMLParagraphElement) => {
       if (!el) return;
       if (tagRefs.current.indexOf(el) === index) {
         // 클릭할 때마다 토글 구현
@@ -127,6 +127,7 @@ const FilterBottom = ({
       newTag[filterIdx] = FILTER[filterIdx].data.map(() => false);
     } else {
       newTag[filterIdx] = FILTER[filterIdx].data.map((item, idx) => {
+        console.log(item);
         return idx === FILTER[filterIdx].data.indexOf(selectedTag);
       });
     }
@@ -157,7 +158,7 @@ const FilterBottom = ({
                 <St.TagBox
                   key={el}
                   onClick={() => handleClickTag(el, idx, filterIdx)}
-                  ref={(refEl: HTMLElement) => (tagRefs.current[idx] = refEl)}
+                  ref={(refEl: HTMLParagraphElement) => (tagRefs.current[idx] = refEl)}
                   className={filterTag[filterIdx][idx] ? 'checked' : ''}
                 >
                   <span></span>

@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import ic_check from '../../assets/icon/ic_check.svg';
 import ic_check_selected from '../../assets/icon/ic_check_selected.svg';
 import { styled } from 'styled-components';

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { fabric } from 'fabric';
 import ColorPicker from './ColorPicker';
 import styled from 'styled-components';
@@ -9,11 +9,7 @@ interface CanvasProps {
   setTempCanvas: React.Dispatch<React.SetStateAction<HTMLCanvasElement | null>>;
 }
 
-const Canvas: React.FC<CanvasProps> = ({
-  submitted,
-  setSavedCanvas,
-  setTempCanvas,
-}: CanvasProps) => {
+const Canvas: React.FC<CanvasProps> = ({ setTempCanvas }: CanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
 
@@ -31,11 +27,13 @@ const Canvas: React.FC<CanvasProps> = ({
 
     fabricCanvasRef.current = canvas;
 
+    if (!canvasRef || canvasRef.current === null) return;
+
     return () => {
       setTempCanvas(canvasRef.current);
       canvas.dispose();
     };
-  }, []);
+  }, [setTempCanvas]);
 
   //ColorPicker 색상 변경
   const handleColorChange = (color: string) => {
