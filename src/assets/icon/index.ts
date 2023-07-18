@@ -13,6 +13,7 @@ export { ReactComponent as IcArrowBottomSmallGray } from './ic_arrow_bottom_smal
 export { ReactComponent as IcArrowLeftGray } from './ic_arrow_left_gray.svg';
 export { ReactComponent as IcArrowRightDark } from './ic_arrow_right_dark.svg';
 export { ReactComponent as IcArrowRightGray } from './ic_arrow_right_gray.svg';
+export { ReactComponent as IcArrowRightGray4 } from './ic_arrow_right_gray4.svg';
 export { ReactComponent as IcArrowRightLight } from './ic_arrow_right_light.svg';
 export { ReactComponent as IcBackDark } from './ic_back_dark.svg';
 export { ReactComponent as IcBackLight } from './ic_back_light.svg';
@@ -38,9 +39,13 @@ export { ReactComponent as IcPhoto } from './ic_photo.svg';
 export { ReactComponent as IcPlus } from './ic_plus.svg';
 export { ReactComponent as IcSearchDark } from './ic_search_dark.svg';
 export { ReactComponent as IcSearchLight } from './ic_search_light.svg';
+export { ReactComponent as IcSearchGray } from './ic_search_gray.svg';
 export { ReactComponent as IcShop } from './ic_shop.svg';
 export { ReactComponent as IcCloseLight } from './ic_close_light.svg';
 export { ReactComponent as IcError } from './ic_error.svg';
+export { ReactComponent as IcBtnStepperPlusDark } from './ic_btn_plus_dark.svg';
+export { ReactComponent as IcBtnStepperMinusLight } from './ic_btn_minus_light.svg';
+export { ReactComponent as IcBtnStepperMinusDark } from './ic_btn_minus_dark.svg';
 
 // brush
 export { ReactComponent as IcBrushBoldSelected } from './ic_brush_bold_selected.svg';
@@ -70,3 +75,5 @@ export { ReactComponent as LabelCustomLarge } from './label_custom_large.svg';
 export { ReactComponent as LabelCustomSmall } from './label_custom_small.svg';
 export { ReactComponent as ImgStorage } from './img_storage.svg';
 export { ReactComponent as ImgPointCoupon } from './img_point_coupon.svg';
+export { ReactComponent as ImgHomeBanner } from './img_home_banner.svg';
+export { ReactComponent as IcInformation } from './ic_information.svg';

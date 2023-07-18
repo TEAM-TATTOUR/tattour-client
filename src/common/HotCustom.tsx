@@ -40,8 +40,7 @@ const HotCustom = () => {
   const navigate = useNavigate();
 
   const handleClickHotCustom = () => {
-    // 추후 수정
-    navigate('/tattoo');
+    navigate('/list');
   };
 
   return (
@@ -65,7 +64,10 @@ const HotCustom = () => {
                     <img src={test_tattoo} />
                   </St.ImgWrapper>
                 </St.labelWrapper>
-                <St.HotCustomItemTitle>{title}</St.HotCustomItemTitle>
+                <St.HotCustomItemTitle>
+                  <p>{title}</p>
+                  <span>NEW!</span>
+                </St.HotCustomItemTitle>
                 <St.HotCustomItemPriceWrapper>
                   <St.HotCustomItemDiscountRate>{discountRate}%</St.HotCustomItemDiscountRate>
                   <St.HotCustomItemPrice>
@@ -102,6 +104,8 @@ const St = {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    padding: 0rem; // HOT CUSTOM 왼쪽 padding 삭제
 
     background-color: transparent;
     border: none;
@@ -155,9 +159,20 @@ const St = {
     background-color: ${({ theme }) => theme.colors.gray0};
   `,
   HotCustomItemTitle: styled.h3`
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+
     margin-top: 1.3rem;
 
-    font: ${({ theme }) => theme.fonts.body_medium_14};
+    & > p {
+      ${({ theme }) => theme.fonts.body_medium_14};
+    }
+
+    & > span {
+      ${({ theme }) => theme.fonts.detail_medium_12};
+      color: ${({ theme }) => theme.colors.pink3};
+    }
   `,
 
   HotCustomItemPriceWrapper: styled.div`
@@ -176,13 +191,12 @@ const St = {
   `,
   HotCustomItemPrice: styled.p`
     ${({ theme }) => theme.fonts.title_extrabold_16};
-    font-weight: bold;
   `,
   HotCustomItemOriginPrice: styled.span`
     margin-top: 0.1rem;
     margin-bottom: 4.1rem;
 
-    font: ${({ theme }) => theme.fonts.body_line_medium_14};
+    ${({ theme }) => theme.fonts.body_line_medium_14};
     color: ${({ theme }) => theme.colors.gray1};
   `,
 };
