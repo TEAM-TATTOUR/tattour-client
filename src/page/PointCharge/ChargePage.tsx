@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import Charge from '../../components/PointCharge/Charge';
@@ -12,6 +12,10 @@ import { IcCancelDark } from '../../assets/icon';
 
 const ChargePage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const { redirectURL } = location.state;
+
   const [isActiveNext, setIsActiveNext] = useState(false);
 
   const renderChargePageHeader = () => {
@@ -28,7 +32,7 @@ const ChargePage = () => {
   return (
     <PageLayout
       renderHeader={renderChargePageHeader}
-      footer={<PointChargeFooter isActiveNext={isActiveNext} />}
+      footer={<PointChargeFooter isActiveNext={isActiveNext} redirectURL={redirectURL} />}
     >
       <Charge setIsActiveNext={setIsActiveNext} />
     </PageLayout>
