@@ -109,12 +109,12 @@ const St = {
 
       .swiper-pagination {
         position: sticky;
-        bottom: 12rem;
+        bottom: 7rem;
 
         display: flex;
         justify-content: center;
         gap: 0.9rem;
-        /* padding-bottom: 5rem; */
+        padding-bottom: 4rem;
       }
       /* swiper 페이지네이션 bullet 커스텀 스타일링 */
       .swiper-pagination-bullet {
