@@ -10,7 +10,7 @@ const MainBanner = () => {
 
   const handleClickHomekButton = () => {
     // 추후 수정
-    navigate('/custom');
+    navigate('/onboarding');
   };
 
   return (

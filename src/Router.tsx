@@ -25,8 +25,8 @@ import AdditionalRequestPage from './page/Custom/HaveDesign/AdditionalRequestPag
 import PricePage from './page/Custom/PricePage';
 import ReceiptPage from './page/Custom/HaveDesign/ReceiptPage';
 import CustomReferencePage from './page/CustomReference/CustomReferencePage';
-import SearchPage from './pages/Search/SearchPage';
-import SearchResultPage from './pages/Search/SearchResultPage';
+import SearchPage from './page/Search/SearchPage';
+import SearchResultPage from './page/Search/SearchResultPage';
 
 const Router = () => {
   return (
