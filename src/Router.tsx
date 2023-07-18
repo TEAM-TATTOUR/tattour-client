@@ -51,6 +51,7 @@ const Router = () => {
         <Route path='/point-charge' element={<ChargePage />} />
         <Route path='/point-transfer' element={<TransferPage />} />
         <Route path='/select' element={<SelectPage />} />
+        <Route path='/reference' element={<CustomReferencePage />} />
         <Route path='/styling-color' element={<StylingColorPage />} />
         <Route path='/select-keyword' element={<SelectKeywordPage />} />
         <Route path='/onboarding' element={<OnBoardingPage />} />
