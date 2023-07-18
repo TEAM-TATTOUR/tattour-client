@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 
-const DetailInfo = () => {
+const DetailInfo = ({ id }: { id: number }) => {
+  // id로 서버통신 get
+
   const DISCOUNT = 5;
   const FINAL_PRICE = 2500;
   const ORIGINAL_PRICE = 4000;

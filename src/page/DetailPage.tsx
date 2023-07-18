@@ -8,7 +8,7 @@ import DetailBottom from '../components/Detail/DetailBottom';
 import CustomScrollContainer from '../common/CustomScrollContainer';
 import SmallTattooCard from '../common/SmallTattooCard';
 import BackBtn from '../common/Header/BackBtn';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const DUMMY_DATA = [
   {
@@ -70,6 +70,10 @@ const DUMMY_DATA = [
 ];
 
 const DetailPage = () => {
+  //let { param } = useParams();
+  // param.id로 서버에서 상품 데이터 get 해오기
+  const param = { id: 1 }; // 나중에 주석처리 하기
+
   // const navigate = useNavigate();
   const [isSheetOpen, setSheetOpen] = useState(false);
   // const [isCustom, setCustom] = useState(true); // 해당 상품이 custom인지 여부
@@ -96,7 +100,7 @@ const DetailPage = () => {
       }
     >
       <DetailCarousel isCustom={isCustom} />
-      <DetailInfo />
+      <DetailInfo id={param.id} />
       <CustomScrollContainer title='비슷한 제품도 추천드려요'>
         {DUMMY_DATA.map((el, index) => (
           <SmallTattooCard

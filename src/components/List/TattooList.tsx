@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { IcArrowBottomSmallGray, IcArrowBottomSmallLight } from '../../assets/icon';
 import { useState, useEffect, useRef } from 'react';
 import test_tattoo from '../../assets/test_tattoo.png';
+import { useNavigate } from 'react-router-dom';
 
 interface TattooListProps {
   setSortOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -58,6 +59,7 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
     },
   ];
 
+  const navigate = useNavigate();
   const filterRef = useRef(null);
   const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
 
@@ -72,6 +74,10 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
     });
     setSelectedFilter(newSelectedFilter);
   }, [buttonName]);
+
+  const handleClickCard = (id: number) => {
+    navigate(`/detail/${id}`);
+  };
 
   return (
     <St.Wrapper>
@@ -103,7 +109,7 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
       <St.CountText>전체 {TATTOO_LIST.length}개</St.CountText>
       <St.CardContainer>
         {TATTOO_LIST.map((el) => (
-          <St.Card key={el.name}>
+          <St.Card key={el.name} onClick={() => handleClickCard(el.id)}>
             <St.CardImg>
               <img src={test_tattoo} />
             </St.CardImg>
