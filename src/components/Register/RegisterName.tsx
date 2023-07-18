@@ -4,41 +4,33 @@ import RegisterTitleForm from './RegisterTitleForm';
 import sliceMaxLength from '../../utils/sliceMaxLength';
 import axios from 'axios';
 import { useEffect } from 'react';
-import { CLIENT_ID, REDIRECT_URI } from '../../constants/OAuth';
 
 interface RegisterNameProps {
   setUserName: React.Dispatch<React.SetStateAction<string>>;
 }
 
-interface KakaoResInfo {
-  data: {
-    kakao_account: {
-      profile: object;
-    };
-    access_token: string;
-  };
-}
-
 const RegisterName = ({ setUserName }: RegisterNameProps) => {
   // code: 카카오로부터 받은 인가코드
   const code = new URL(window.location.href).searchParams.get('code');
-  const grantType = 'authorization_code';
 
   useEffect(() => {
     if (code) {
-      // 토큰을 받기 위한 코드 (access_token(6시간), refresh_token(2달) 받아올 수 있음)
       axios
         .post(
-          `https://kauth.kakao.com/oauth/token?grant_type=${grantType}&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&code=${code}`,
-          {},
+          `http://43.201.90.237:9000/api/v1/user/signup`,
+          // post body
+          {
+            socialPlatform: 'KAKAO',
+          },
+          // request headers
           {
             headers: {
-              'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+              code: `${code}`,
             },
           },
         )
-        .then((res: KakaoResInfo) => {
-          console.log(res);
+        .then(() => {
+          console.log('success');
         })
         .catch((Error: object) => {
           console.log(Error);
