@@ -49,7 +49,10 @@ const CustomTheme = ({
   return (
     <St.CustomRequestWrapper>
       <St.RequestNameContainer>
-        <St.RequestNameTitle>요청 사항</St.RequestNameTitle>
+        <St.RequestNameTitleWrapper>
+          <St.RequestNameTitle>요청 사항</St.RequestNameTitle>
+          <St.RequestOption>선택</St.RequestOption>
+        </St.RequestNameTitleWrapper>
         <St.RequestNameDetail>
           추가적인 요청사항이 있다면 자유롭게 작성해주세요
           <br />
@@ -88,10 +91,18 @@ const St = {
 
     margin: 5.6rem 2rem 0 2.2rem;
   `,
-
+  RequestNameTitleWrapper: styled.div`
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+  `,
   RequestNameTitle: styled.h2`
     color: ${({ theme }) => theme.colors.gray8};
     ${({ theme }) => theme.fonts.title_semibold_20};
+  `,
+  RequestOption: styled.p`
+    color: ${({ theme }) => theme.colors.pink4};
+    ${({ theme }) => theme.fonts.detail_semibold_12};
   `,
 
   RequestNameDetail: styled.p`
