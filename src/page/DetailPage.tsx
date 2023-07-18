@@ -97,6 +97,7 @@ const DetailPage = () => {
       renderHeader={renderDetailPageHeader}
       footer={
         <DetailFooter
+          id={Number(id)}
           setSheetOpen={setSheetOpen}
           isSecond={false}
           text='구매하기'

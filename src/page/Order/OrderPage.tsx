@@ -22,6 +22,7 @@ const OrderPage = () => {
   const state = location.state as { id: number };
   const id = state.id;
   // id로 서버에서 데이터 받아오기
+  console.log(id);
   // 사용자 포인트 정보는 토큰으로 받아온다고 함
 
   const [isPostOpen, setIsPostOpen] = useState(false);
