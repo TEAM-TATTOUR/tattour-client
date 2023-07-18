@@ -7,15 +7,22 @@ interface CheckModalFormProps {
   title: string;
   subTitle: string;
   continueBtn: string;
+  redirectURL: string;
 }
 
-const CheckModalForm = ({ onClose, title, subTitle, continueBtn }: CheckModalFormProps) => {
+const CheckModalForm = ({
+  onClose,
+  title,
+  subTitle,
+  continueBtn,
+  redirectURL,
+}: CheckModalFormProps) => {
   const navigate = useNavigate();
 
   const handleClickContinueBtn = () => {
     onClose();
     // 라우팅 주소 나중에 수정
-    navigate('/');
+    navigate(redirectURL);
   };
 
   return (
@@ -94,6 +101,9 @@ const St = {
   `,
 
   BtnWrapper: styled.div`
+    -webkit-flex: 1; /* Safari 6.1+ */
+    -ms-flex: 1; /* IE 10 */
+    flex: 1;
     display: flex;
     align-items: flex-end;
     width: 100%;

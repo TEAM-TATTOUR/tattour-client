@@ -1,12 +1,22 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-const PointChargeFooter = ({ isActiveNext }: { isActiveNext: boolean }) => {
+interface PointChargeFooterProps {
+  isActiveNext: boolean;
+  redirectURL: string;
+}
+
+const PointChargeFooter = ({ isActiveNext, redirectURL }: PointChargeFooterProps) => {
   const navigate = useNavigate();
 
   const handleClickFooter = () => {
     {
-      isActiveNext && navigate('/point-transfer');
+      isActiveNext &&
+        navigate('/point-transfer', {
+          state: {
+            redirectURL: redirectURL,
+          },
+        });
     }
   };
 

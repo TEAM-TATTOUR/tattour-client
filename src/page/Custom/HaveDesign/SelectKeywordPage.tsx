@@ -7,9 +7,12 @@ import Header from '../../../components/Header';
 import ProgressBar from '../../../common/ProgressBar';
 import SelectKeyword from '../../../components/Custom/HaveDesign/SelectKeyword';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import NextFooter from '../../../common/Footer/NextFooter';
 
 const SelectKeywordPage = () => {
   const [modalOn, setModalOn] = useState(false);
+  const [isActiveNext, setIsActiveNext] = useState(false);
+
   const renderSelectKeywordPageHeader = () => {
     return (
       <Header
@@ -29,10 +32,12 @@ const SelectKeywordPage = () => {
   };
 
   return (
-    <PageLayout renderHeader={renderSelectKeywordPageHeader}>
+    <PageLayout
+      renderHeader={renderSelectKeywordPageHeader}
+      footer={<NextFooter isActiveNext={isActiveNext} navigateURL={'/custom-theme'} />}
+    >
       <SelectKeywordHeading />
-      <SelectKeyword />
-      {/* 나중에 공통에서 가져온 푸터 넣을 예정 */}
+      <SelectKeyword setIsActiveNext={setIsActiveNext} />
     </PageLayout>
   );
 };
