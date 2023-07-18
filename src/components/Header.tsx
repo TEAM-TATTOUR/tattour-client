@@ -36,9 +36,10 @@ const St = {
     justify-content: center;
     flex-direction: column;
     width: 100%;
+    max-width: 43rem;
 
     position: ${({ $fixed }) => ($fixed ? 'fixed' : 'static')};
-    left: 0;
+    /* left: 0; */
     z-index: ${({ $fixed }) => ($fixed ? 10 : 0)};
     ${({ $transparent }) =>
       $transparent ? 'background-color: transparent;' : 'background-color: white;'};
