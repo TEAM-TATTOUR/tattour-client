@@ -27,7 +27,7 @@ const St = {
     flex-direction: column;
     align-items: start;
     gap: 1.2rem;
-    margin: 5.6rem 0 4rem 2.2rem;
+    margin: 6.3rem 0 3.7rem 2.2rem;
   `,
   Title: styled.h2`
     ${({ theme }) => theme.fonts.title_semibold_20};
