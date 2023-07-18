@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface DetailFooterProp {
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,11 +11,17 @@ interface DetailFooterProp {
 }
 const DetailFooter = ({ setSheetOpen, isSecond, text, like, setLike }: DetailFooterProp) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const currURL = location.pathname;
 
   const handleClickButton = () => {
     if (text === '충전하기') {
       // state 하나 넘겨줘야함. 추후 추가 예정
-      navigate('/point-charge');
+      navigate('/point-charge', {
+        state: {
+          redirectURL: currURL,
+        },
+      });
     } else if (isSecond) {
       // 추후 아이템 인덱스도 함께 전달
       navigate('/order');
