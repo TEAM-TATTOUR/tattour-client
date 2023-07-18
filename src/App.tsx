@@ -5,6 +5,7 @@ import theme from './styles/theme';
 import GlobalStyle from './styles/GlobalStyle';
 import { useEffect } from 'react';
 import Router from './Router';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const Wrapper = styled.div`
   background-color: white;
@@ -15,6 +16,8 @@ const Wrapper = styled.div`
   margin-right: auto;
   position: relative;
 `;
+
+const queryClient = new QueryClient();
 
 function App() {
   const setScreenSize = () => {
@@ -40,12 +43,14 @@ function App() {
 
   return (
     <Wrapper>
-      <RecoilRoot>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Router />
-        </ThemeProvider>
-      </RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <RecoilRoot>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <Router />
+          </ThemeProvider>
+        </RecoilRoot>
+      </QueryClientProvider>
     </Wrapper>
   );
 }
