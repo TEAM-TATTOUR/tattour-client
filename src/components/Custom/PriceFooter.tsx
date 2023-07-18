@@ -5,7 +5,7 @@ const PriceFooter = () => {
   const navigate = useNavigate();
 
   const handleClickButton = () => {
-    navigate('/');
+    navigate('/receipt');
   };
 
   return (
@@ -19,7 +19,7 @@ const PriceFooter = () => {
 
 const St = {
   CustomFooter: styled.footer`
-    display: flex;
+    display: sticky;
     justify-content: center;
     align-items: center;
     bottom: 0;

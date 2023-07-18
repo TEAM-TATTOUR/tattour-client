@@ -27,7 +27,7 @@ const PricePage = () => {
           />
         }
         transparent={true}
-        progressBar={<ProgressBar curStep={5} maxStep={7} />}
+        progressBar={<ProgressBar curStep={7} maxStep={7} />}
       />
     );
   };

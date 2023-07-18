@@ -55,7 +55,6 @@ const CountPrice = ({ isPublic }: CountPriceProps) => {
           </St.TotalPriceGroup>
         </St.TotalPriceWrapper>
       </St.ShowPrice>
-      <St.Option></St.Option>
     </St.CountPriceWrapper>
   );
 };
@@ -68,15 +67,17 @@ const St = {
     flex-direction: column;
     align-items: center;
     gap: 8.1rem;
+
+    padding: 0 2rem;
+    min-height: calc(100dvh - 41.8rem);
   `,
   ShowPrice: styled.article`
-    width: 100%;
-
     padding: 3rem 1.8rem 3rem 1.8rem;
     border-radius: 0.5rem;
     ${({ theme }) => theme.fonts.title_semibold_20};
     background-color: ${({ theme }) => theme.colors.bg};
 
+    width: 100%;
     .price-group {
       margin-bottom: 3rem;
     }
