@@ -14,7 +14,6 @@ import TransferPage from './page/PointCharge/TransferPage';
 import SelectPage from './page/Custom/SelectPage';
 import CompletePage from './page/Order/CompletePage';
 import OrderPage from './page/Order/OrderPage';
-import StylingColorPage from './page/Custom/StylingColorPage';
 import SelectKeywordPage from './page/Custom/HaveDesign/SelectKeywordPage';
 import OnBoardingPage from './page/Custom/Common/OnBoardingPage';
 import CustomSizePage from './page/Custom/Common/CustomSizePage';
@@ -24,13 +23,13 @@ import CustomThemePage from './page/Custom/HaveDesign/CustomThemePage';
 import AdditionalRequestPage from './page/Custom/HaveDesign/AdditionalRequestPage';
 import PricePage from './page/Custom/PricePage';
 import ReceiptPage from './page/Custom/HaveDesign/ReceiptPage';
+import StylingColorPage from './page/Custom/HaveDesign/StylingColorPage';
 import CustomReferencePage from './page/CustomReference/CustomReferencePage';
-import SearchPage from './page/Search/SearchPage';
-import SearchResultPage from './page/Search/SearchResultPage';
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path='/list' element={<ListPage />} />
         <Route path='/' element={<MainPage />} />
@@ -43,12 +42,13 @@ const Router = () => {
         <Route path='/welcome-signup' element={<WelcomePage />} />
         <Route path='/my-tattoo' element={<MyTattoo />} />
         <Route path='/my-tattoo/detail/:id' element={<MyTattooDetail />} />
-        <Route path='/search' element={<SearchPage />}>
+        <Route path='/search' element={<Search />}>
           <Route path=':keyword' element={<SearchResultPage />} />
         </Route>
         <Route path='/point-charge' element={<ChargePage />} />
         <Route path='/point-transfer' element={<TransferPage />} />
         <Route path='/select' element={<SelectPage />} />
+        <Route path='/reference' element={<CustomReferencePage />} />
         <Route path='/styling-color' element={<StylingColorPage />} />
         <Route path='/select-keyword' element={<SelectKeywordPage />} />
         <Route path='/onboarding' element={<OnBoardingPage />} />
