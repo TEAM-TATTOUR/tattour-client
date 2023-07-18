@@ -77,11 +77,10 @@ const DUMMY_DATA = [
 ];
 
 const DetailPage = () => {
-  //let { param } = useParams();
+  const { id } = useParams();
   // param.id로 서버에서 상품 데이터 get 해오기
-  const param = { id: 1 }; // 나중에 주석처리 하기
 
-  // const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [isSheetOpen, setSheetOpen] = useState(false);
   // const [isCustom, setCustom] = useState(true); // 해당 상품이 custom인지 여부
   const isCustom = true;
@@ -107,11 +106,12 @@ const DetailPage = () => {
       }
     >
       <DetailCarousel isCustom={isCustom} />
-      <DetailInfo id={param.id} />
+      <DetailInfo id={Number(id)} />
       <CustomScrollContainer title='비슷한 제품도 추천드려요'>
         {DUMMY_DATA.map((el) => (
           <SmallTattooCard
             key={el.id}
+            id={el.id}
             img={el.img}
             title={el.title}
             discountRate={el.discountRate}
