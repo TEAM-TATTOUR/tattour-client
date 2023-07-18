@@ -25,7 +25,7 @@ const AdditionalRequestPage = () => {
           />
         }
         transparent={true}
-        progressBar={<ProgressBar curStep={7} maxStep={7} />}
+        progressBar={<ProgressBar curStep={6} maxStep={7} />}
       />
     );
   };
