@@ -27,10 +27,12 @@ import ReceiptPage from './page/Custom/HaveDesign/ReceiptPage';
 import CustomReferencePage from './page/CustomReference/CustomReferencePage';
 import SearchPage from './page/Search/SearchPage';
 import SearchResultPage from './page/Search/SearchResultPage';
+import ScrollToTop from './libs/hooks/ScrollTop';
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path='/list' element={<ListPage />} />
         <Route path='/' element={<MainPage />} />
