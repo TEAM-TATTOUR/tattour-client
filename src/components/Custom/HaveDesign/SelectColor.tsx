@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { styled } from 'styled-components';
 import SelectColorBtn from './SelectColorBtn';
 import IcCircleRainbow from '../../../assets/icon/ic_circle_rainbow.png';
@@ -9,20 +9,23 @@ const SelectColor = ({
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const CASE_BTN_DATA = [
-    {
-      id: 'black',
-      title: '블랙',
-      src: IcCircleBlack,
-      isSelected: false,
-    },
-    {
-      id: 'color',
-      title: '컬러',
-      src: IcCircleRainbow,
-      isSelected: false,
-    },
-  ];
+  const CASE_BTN_DATA = useMemo(
+    () => [
+      {
+        id: 'black',
+        title: '블랙',
+        src: IcCircleBlack,
+        isSelected: false,
+      },
+      {
+        id: 'color',
+        title: '컬러',
+        src: IcCircleRainbow,
+        isSelected: false,
+      },
+    ],
+    [],
+  );
 
   const [activeBtn, setActiveBtn] = useState('');
 
@@ -40,7 +43,7 @@ const SelectColor = ({
         btn.isSelected = false;
       }
     });
-  }, [activeBtn]);
+  }, [activeBtn, CASE_BTN_DATA]);
 
   return (
     <St.SelectWrapper>
