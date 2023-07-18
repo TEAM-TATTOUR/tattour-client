@@ -122,6 +122,7 @@ const DetailPage = () => {
         ))}
       </CustomScrollContainer>
       <DetailBottom
+        id={id}
         isSheetOpen={isSheetOpen}
         setSheetOpen={setSheetOpen}
         like={like}
