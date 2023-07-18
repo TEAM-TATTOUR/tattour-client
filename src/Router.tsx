@@ -14,7 +14,6 @@ import TransferPage from './pages/PointCharge/TransferPage';
 import SelectPage from './pages/Custom/SelectPage';
 import CompletePage from './pages/Order/CompletePage';
 import OrderPage from './pages/Order/OrderPage';
-import StylingColorPage from './pages/Custom/StylingColorPage';
 import SelectKeywordPage from './pages/Custom/HaveDesign/SelectKeywordPage';
 import OnBoardingPage from './pages/Custom/Common/OnBoardingPage';
 import CustomSizePage from './pages/Custom/Common/CustomSizePage';
@@ -24,6 +23,7 @@ import CustomThemePage from './pages/Custom/HaveDesign/CustomThemePage';
 import AdditionalRequestPage from './pages/Custom/HaveDesign/AdditionalRequestPage';
 import PricePage from './pages/Custom/PricePage';
 import ReceiptPage from './pages/Custom/HaveDesign/ReceiptPage';
+import StylingColorPage from './pages/Custom/HaveDesign/StylingColorPage';
 
 const Router = () => {
   return (
