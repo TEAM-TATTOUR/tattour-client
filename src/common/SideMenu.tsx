@@ -16,11 +16,11 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
   const navigate = useNavigate();
 
   const handelClickShopButton = () => {
-    // navigate('/shop');
+    navigate('/list');
   };
 
   const handleClickCustomButton = () => {
-    // navigate('/custom');
+    navigate('/onboarding');
   };
 
   const handleClickMyTattooButton = () => {
