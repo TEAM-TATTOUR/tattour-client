@@ -11,8 +11,7 @@ const CustomReference = ({
 }) => {
   const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
-  const [freeDrawing, setFreeDrawing] = useState<boolean>(false);
-  
+
   return (
     <St.PageWrapper>
       <CustomTitle />
@@ -20,6 +19,7 @@ const CustomReference = ({
         isBottomOpen={isBottomOpen}
         setBottomOpen={setBottomOpen}
         drawingImageURL={drawingImageUrl}
+        setDrawingImageURL={setDrawingImageUrl}
         setIsActiveNext={setIsActiveNext}
       />
       {isBottomOpen && (
@@ -28,7 +28,6 @@ const CustomReference = ({
           setBottomOpen={setBottomOpen}
           drawingImageURL={drawingImageUrl}
           setDrawingImageURL={setDrawingImageUrl}
-          setFreeDrawing={setFreeDrawing}
         />
       )}
     </St.PageWrapper>
