@@ -12,6 +12,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const DUMMY_DATA = [
   {
+    id: 0,
     img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
     title: '고양이 리본 타투',
     discountRate: 5,
@@ -20,6 +21,7 @@ const DUMMY_DATA = [
     isCustom: true,
   },
   {
+    id: 1,
     img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
     title: '고양이 리본 타투',
     discountRate: 5,
@@ -28,6 +30,7 @@ const DUMMY_DATA = [
     isCustom: false,
   },
   {
+    id: 2,
     img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
     title: '고양이 리본 타투',
     discountRate: 5,
@@ -36,6 +39,7 @@ const DUMMY_DATA = [
     isCustom: true,
   },
   {
+    id: 3,
     img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
     title: '고양이 리본 타투',
     discountRate: 5,
@@ -44,6 +48,7 @@ const DUMMY_DATA = [
     isCustom: false,
   },
   {
+    id: 4,
     img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
     title: '고양이 리본 타투',
     discountRate: 5,
@@ -52,6 +57,7 @@ const DUMMY_DATA = [
     isCustom: true,
   },
   {
+    id: 5,
     img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
     title: '고양이 리본 타투',
     discountRate: 5,
@@ -60,6 +66,7 @@ const DUMMY_DATA = [
     isCustom: false,
   },
   {
+    id: 6,
     img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
     title: '고양이 리본 타투',
     discountRate: 5,
@@ -102,9 +109,9 @@ const DetailPage = () => {
       <DetailCarousel isCustom={isCustom} />
       <DetailInfo id={param.id} />
       <CustomScrollContainer title='비슷한 제품도 추천드려요'>
-        {DUMMY_DATA.map((el, index) => (
+        {DUMMY_DATA.map((el) => (
           <SmallTattooCard
-            key={index}
+            key={el.id}
             img={el.img}
             title={el.title}
             discountRate={el.discountRate}
