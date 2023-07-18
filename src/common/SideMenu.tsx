@@ -3,6 +3,7 @@ import { IcCustom, IcShop, IcMy } from '../assets/icon';
 import { useState, useEffect } from 'react';
 import SideMenuUserInfo from './SideMenuUserInfo';
 import { useNavigate } from 'react-router-dom';
+import { IcInformation } from '../assets/icon';
 
 interface SideMenuProps {
   isSideMenuOpen: boolean;
@@ -10,7 +11,7 @@ interface SideMenuProps {
 }
 
 const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
-  const [isLogin] = useState(false);
+  const [isLogin] = useState(true);
 
   const navigate = useNavigate();
 
@@ -29,12 +30,12 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
   const NAV_MENU_ITEM = [
     {
       icon: <IcShop />,
-      text: '타투 스티커',
+      text: '타투 샵',
       clickHandler: handelClickShopButton,
     },
     {
       icon: <IcCustom />,
-      text: '커스텀 타투',
+      text: '커스텀 타투 신청',
       clickHandler: handleClickCustomButton,
     },
     {
@@ -76,13 +77,23 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
           </St.SideMenuItemWrapper>
         </St.SideMenuItemSection>
         <St.SideMenuEtcButtonWrapper>
-          <St.SideMenuCSButton type='button'>문의하기</St.SideMenuCSButton>
-          {isLogin && (
-            <>
-              <St.Delimeter />
-              <St.SideMenuLogOutButton type='button'>로그아웃</St.SideMenuLogOutButton>
-            </>
-          )}
+          <a
+            // 약관 동의 페이지
+            href='https://www.notion.so/About-Us-3b0b0b0b0b9e4b6e9b9b9b9b9b9b9b9b'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <IcInformation />
+          </a>
+          <St.SideMenuCSButtonWrapper>
+            <St.SideMenuCSButton type='button'>문의하기</St.SideMenuCSButton>
+            {isLogin && (
+              <>
+                <St.Delimeter />
+                <St.SideMenuLogOutButton type='button'>로그아웃</St.SideMenuLogOutButton>
+              </>
+            )}
+          </St.SideMenuCSButtonWrapper>
         </St.SideMenuEtcButtonWrapper>
       </St.SideMenuWrapper>
     </>
@@ -137,12 +148,20 @@ const St = {
   SideMenuEtcButtonWrapper: styled.div`
     position: fixed;
     bottom: 3.6rem;
-    right: 2.4rem;
 
-    text-align: center;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 3rem;
+    padding-right: 2.4rem;
+
+    text-align: center;
+  `,
+
+  SideMenuCSButtonWrapper: styled.div`
+    display: flex;
+    align-items: center;
   `,
 
   SideMenuCSButton: styled.button`

@@ -70,6 +70,8 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    height: calc(100dvh - 7rem);
   `,
 
   InputContentsWrapper: styled.article`
