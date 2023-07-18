@@ -40,8 +40,7 @@ const HotCustom = () => {
   const navigate = useNavigate();
 
   const handleClickHotCustom = () => {
-    // 추후 수정
-    navigate('/tattoo');
+    navigate('/list');
   };
 
   return (

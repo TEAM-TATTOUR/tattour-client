@@ -5,13 +5,13 @@ const MainFooter = ({ isFooterVisible }: { isFooterVisible: boolean }) => {
   const navigate = useNavigate();
 
   const handleClickButton = () => {
-    navigate('/custom');
+    navigate('/onboarding');
   };
 
   return (
     <St.footer $isFooterVisible={isFooterVisible}>
       <St.button type='button' onClick={handleClickButton}>
-        나만의 커스텀 타투 만들기
+        커스텀 타투 스티커 신청하기
       </St.button>
     </St.footer>
   );

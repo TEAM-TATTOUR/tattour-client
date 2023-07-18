@@ -7,7 +7,6 @@ import ProgressBar from '../../../common/ProgressBar';
 import SelectColor from '../../../components/Custom/HaveDesign/SelectColor';
 import Header from '../../../components/Header';
 import PageLayout from '../../../components/PageLayout';
-import React from 'react';
 
 const StylingColorPage = () => {
   const [modalOn, setModalOn] = useState(false);

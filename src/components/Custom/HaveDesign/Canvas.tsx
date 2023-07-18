@@ -4,8 +4,6 @@ import ColorPicker from './ColorPicker';
 import styled from 'styled-components';
 
 interface CanvasProps {
-  submitted: boolean;
-  setSavedCanvas: React.Dispatch<React.SetStateAction<string | null>>;
   setTempCanvas: React.Dispatch<React.SetStateAction<HTMLCanvasElement | null>>;
 }
 
