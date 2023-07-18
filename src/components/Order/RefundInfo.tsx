@@ -5,7 +5,7 @@ import ic_check_selected from '../../assets/icon/ic_check_selected.svg';
 
 interface RefundInfoProps {
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setAgree: () => void;
+  setAgree: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const RefundInfo = ({ setSheetOpen, setAgree }: RefundInfoProps) => {
   return (

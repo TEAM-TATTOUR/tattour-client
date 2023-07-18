@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import SelectKeywordHeading from '../../../components/Custom/HaveDesign/SelectKeywordHeading';
 import PageLayout from '../../../components/PageLayout';
 import BackBtn from '../../../common/Header/BackBtn';

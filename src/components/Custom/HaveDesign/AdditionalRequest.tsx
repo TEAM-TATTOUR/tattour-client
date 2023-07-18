@@ -5,7 +5,6 @@ import GraphemeSplitter from 'grapheme-splitter';
 
 const CustomTheme = () => {
   //count 될 maxCount 수
-  const MAX_NAME_COUNT = 10;
   const MAX_ETC_COUNT = 100;
 
   //글자 수 세기 관련 state
@@ -27,16 +26,6 @@ const CustomTheme = () => {
     }
 
     return parsedValue.length;
-  };
-
-  const handleChangeNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //value가 없을 때 0으로 글자 수 세지도록
-    if (e.target.value === '') setNameInputCount(0);
-
-    const lengthCount = limitMaxLength(e, MAX_NAME_COUNT);
-
-    if (!lengthCount) return;
-    setNameInputCount(lengthCount);
   };
 
   const handleChangeEtcTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

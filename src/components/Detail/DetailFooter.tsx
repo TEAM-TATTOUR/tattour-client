@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 interface DetailFooterProp {
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
