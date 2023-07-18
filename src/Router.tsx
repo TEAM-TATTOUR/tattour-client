@@ -25,6 +25,8 @@ import AdditionalRequestPage from './page/Custom/HaveDesign/AdditionalRequestPag
 import PricePage from './page/Custom/PricePage';
 import ReceiptPage from './page/Custom/HaveDesign/ReceiptPage';
 import CustomReferencePage from './page/CustomReference/CustomReferencePage';
+import SearchPage from './pages/Search/SearchPage';
+import SearchResultPage from './pages/Search/SearchResultPage';
 
 const Router = () => {
   return (
@@ -41,6 +43,9 @@ const Router = () => {
         <Route path='/welcome-signup' element={<WelcomePage />} />
         <Route path='/my-tattoo' element={<MyTattoo />} />
         <Route path='/my-tattoo/detail/:id' element={<MyTattooDetail />} />
+        <Route path='/search' element={<SearchPage />}>
+          <Route path=':keyword' element={<SearchResultPage />} />
+        </Route>
         <Route path='/point-charge' element={<ChargePage />} />
         <Route path='/point-transfer' element={<TransferPage />} />
         <Route path='/select' element={<SelectPage />} />
