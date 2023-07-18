@@ -7,15 +7,22 @@ interface CheckModalFormProps {
   title: string;
   subTitle: string;
   continueBtn: string;
+  redirectURL: string;
 }
 
-const CheckModalForm = ({ onClose, title, subTitle, continueBtn }: CheckModalFormProps) => {
+const CheckModalForm = ({
+  onClose,
+  title,
+  subTitle,
+  continueBtn,
+  redirectURL,
+}: CheckModalFormProps) => {
   const navigate = useNavigate();
 
   const handleClickContinueBtn = () => {
     onClose();
     // 라우팅 주소 나중에 수정
-    navigate('/');
+    navigate(redirectURL);
   };
 
   return (
