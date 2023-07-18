@@ -19,11 +19,13 @@ const MainBanner = () => {
         Journey <br />
         of No Regrets,
       </St.CopyWright>
-      <St.SmallCopy>나만의 타투 스티커를 만들어 보세요 </St.SmallCopy>
-      <St.HomeButton onClick={handleClickHomekButton} type='button'>
-        신청하기
-        <IcArrowRightDark />
-      </St.HomeButton>
+      <St.SubWrapper>
+        <St.SmallCopy>커스텀 타투로 후회 없는 선택의 여정을</St.SmallCopy>
+        <St.HomeButton onClick={handleClickHomekButton} type='button'>
+          신청하기
+          <IcArrowRightDark />
+        </St.HomeButton>
+      </St.SubWrapper>
     </St.BannerWrapper>
   );
 };
@@ -43,9 +45,14 @@ const St = {
     color: ${({ theme }) => theme.colors.white};
   `,
 
+  SubWrapper: styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  `,
+
   SmallCopy: styled.p`
     padding-top: 6.6rem;
-
     ${({ theme }) => theme.fonts.body_medium_16};
     color: ${({ theme }) => theme.colors.white};
   `,
