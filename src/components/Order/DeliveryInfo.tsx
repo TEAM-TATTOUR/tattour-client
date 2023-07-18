@@ -1,23 +1,21 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
 
 interface DeliveryInfoProps {
   handleModal: () => void;
-  addressRef: React.MutableRefObject<null>;
-  postcodeRef: React.MutableRefObject<null>;
+  addressRef: React.MutableRefObject<HTMLInputElement | null>;
+  postcodeRef: React.MutableRefObject<HTMLInputElement | null>;
   setComplete: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
-  setInput: string;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
   phone: string;
-  setPhone: string;
+  setPhone: React.Dispatch<React.SetStateAction<string>>;
   detailAddress: string;
-  setDetailAddress: string;
+  setDetailAddress: React.Dispatch<React.SetStateAction<string>>;
 }
 const DeliveryInfo = ({
   handleModal,
   addressRef,
   postcodeRef,
-  setComplete,
   input,
   setInput,
   phone,
@@ -57,7 +55,7 @@ const DeliveryInfo = ({
             id='phone'
             name='phone'
             placeholder='010-0000-0000'
-            maxLength='13'
+            maxLength={13}
             value={phone}
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e)} // 자동 하이픈
             onChange={(e) => {
@@ -84,7 +82,7 @@ const DeliveryInfo = ({
               name='detail'
               placeholder='상세주소'
               value={detailAddress}
-              onChange={(e) => {
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setDetailAddress(e.target.value);
               }}
             />

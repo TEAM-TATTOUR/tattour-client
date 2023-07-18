@@ -1,27 +1,29 @@
+import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { styled } from 'styled-components';
 
-const MainFooter = ({ isFooterVisible }: { isFooterVisible: boolean }) => {
+const CompleteFooter = () => {
   const navigate = useNavigate();
 
   const handleClickButton = () => {
-    navigate('/custom');
+    navigate('/');
   };
 
   return (
-    <St.footer $isFooterVisible={isFooterVisible}>
+    <St.footer>
       <St.button type='button' onClick={handleClickButton}>
-        커스텀 타투 스티커 신청하기
+        홈으로 이동하기
       </St.button>
     </St.footer>
   );
 };
 
+export default CompleteFooter;
+
 const St = {
-  footer: styled.footer<{ $isFooterVisible: boolean }>`
+  footer: styled.footer`
     position: sticky;
     bottom: 0;
-    display: ${({ $isFooterVisible }) => ($isFooterVisible ? 'flex' : 'none')};
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -34,9 +36,7 @@ const St = {
     width: 100%;
     height: 100%;
 
-    color: ${({ theme }) => theme.colors.pink5};
-    font: ${({ theme }) => theme.fonts.title_semibold_18};
+    color: ${({ theme }) => theme.colors.white};
+    ${({ theme }) => theme.fonts.title_semibold_18};
   `,
 };
-
-export default MainFooter;

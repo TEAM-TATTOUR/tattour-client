@@ -1,60 +1,36 @@
 import styled from 'styled-components';
-import PaymentMini from './PaymentMini';
 
-interface PaymentInfoProps {
+interface PaymentMiniProps {
   finalPrice: number;
   itemPrice: number;
   deliveryPrice: number;
-  myPoint: number;
-  resultPoint: number;
 }
 
-const PaymentInfo = ({
-  finalPrice,
-  itemPrice,
-  deliveryPrice,
-  myPoint,
-  resultPoint,
-}: PaymentInfoProps) => {
+const PaymentMini = ({ finalPrice, itemPrice, deliveryPrice }: PaymentMiniProps) => {
   return (
-    <div>
-      <St.PriceContainer>
-        <St.Title>결제 정보</St.Title>
-        <PaymentMini finalPrice={finalPrice} itemPrice={itemPrice} deliveryPrice={deliveryPrice} />
-      </St.PriceContainer>
-      <St.LightLine />
-      <St.PointContainer>
-        <St.PointText>
-          <St.MainText>보유 포인트</St.MainText>
-          <St.MainText>
-            <span>{myPoint.toLocaleString()}</span>
-            <span>P</span>
-          </St.MainText>
-        </St.PointText>
-        <St.PointText>
-          <St.MainText>남는 포인트</St.MainText>
-          <St.MainText>
-            <span>{resultPoint.toLocaleString()}</span>
-            <span>P</span>
-          </St.MainText>
-        </St.PointText>
-      </St.PointContainer>
-    </div>
+    <>
+      <St.TextBox>
+        <St.MainText>결제 금액</St.MainText>
+        <St.PriceBox>
+          <St.MainPrice>{finalPrice.toLocaleString()}</St.MainPrice>
+          <St.MainText>원</St.MainText>
+        </St.PriceBox>
+      </St.TextBox>
+      <St.TextBox>
+        <St.SubText>상품 금액</St.SubText>
+        <St.SubText>{itemPrice.toLocaleString()}원</St.SubText>
+      </St.TextBox>
+      <St.TextBox>
+        <St.SubText>배송비</St.SubText>
+        <St.SubText>{deliveryPrice.toLocaleString()}원</St.SubText>
+      </St.TextBox>
+    </>
   );
 };
 
-export default PaymentInfo;
+export default PaymentMini;
 
 const St = {
-  PriceContainer: styled.article`
-    padding: 2.8rem 2.2rem 3.4rem 2.2rem;
-  `,
-  Title: styled.h2`
-    margin-bottom: 3.2rem;
-
-    ${({ theme }) => theme.fonts.title_semibold_18};
-    color: ${({ theme }) => theme.colors.gray8};
-  `,
   TextBox: styled.article`
     display: flex;
     justify-content: space-between;

@@ -22,7 +22,7 @@ const RefundBottom = ({ isSheetOpen, setSheetOpen }: RefundBottomProps) => {
           </Sheet.Scroller>
         </Sheet.Content>
       </Sheet.Container>
-      <Sheet.Backdrop onClick={() => setSheetOpen(false)} />
+      <Sheet.Backdrop onTap={() => setSheetOpen(false)} />
     </CustomSheet>
   );
 };
