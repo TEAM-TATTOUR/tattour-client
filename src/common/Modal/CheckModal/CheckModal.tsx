@@ -1,4 +1,3 @@
-import { redirect } from 'react-router-dom';
 import ModalPortal from '../ModalPortal';
 import CheckModalForm from './CheckModalForm';
 
