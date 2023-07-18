@@ -1,7 +1,5 @@
 import { styled } from 'styled-components';
-import { IcCancelDark, IcCloseLight } from '../../../assets/icon';
-import CancelBtn from '../../../common/Header/CancelBtn';
-import { SetStateAction } from 'react';
+import { IcCancelDark } from '../../../assets/icon';
 
 interface PaintBottomHeaderProps {
   onClose: () => void;
