@@ -69,7 +69,6 @@ const St = {
     gap: 8.1rem;
 
     padding: 0 2rem;
-    min-height: calc(100dvh - 41.8rem);
   `,
   ShowPrice: styled.article`
     padding: 3rem 1.8rem 3rem 1.8rem;
@@ -78,6 +77,7 @@ const St = {
     background-color: ${({ theme }) => theme.colors.bg};
 
     width: 100%;
+    height: 23.4rem;
     .price-group {
       margin-bottom: 3rem;
     }

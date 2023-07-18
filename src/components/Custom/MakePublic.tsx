@@ -51,7 +51,11 @@ const St = {
     flex-direction: column;
     justify-content: center;
 
-    min-height: calc(100dvh - 63.8rem);
+    position: sticky;
+    bottom: 2.9rem;
+    height: 12.2rem;
+
+    background-color: ${({ theme }) => theme.colors.white};
   `,
   MakePublicWrapper: styled.section`
     display: flex;

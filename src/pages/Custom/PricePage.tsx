@@ -9,6 +9,7 @@ import PageLayout from '../../components/PageLayout';
 import PriceFooter from '../../components/Custom/PriceFooter';
 import MakePublic from '../../components/Custom/MakePublic';
 import CustomSizeEscapeModal from '../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import { styled } from 'styled-components';
 
 const PricePage = () => {
   const [modalOn, setModalOn] = useState(false);
@@ -34,8 +35,10 @@ const PricePage = () => {
 
   return (
     <PageLayout renderHeader={renderPricePageHeader}>
-      <PriceHeading />
-      <CountPrice isPublic={isPublic} />
+      <St.TopWrapper>
+        <PriceHeading />
+        <CountPrice isPublic={isPublic} />
+      </St.TopWrapper>
       <MakePublic isPublic={isPublic} setIsPublic={setIsPublic} />
       <PriceFooter />
     </PageLayout>
@@ -43,3 +46,12 @@ const PricePage = () => {
 };
 
 export default PricePage;
+
+const St = {
+  TopWrapper: styled.section`
+    display: flex;
+    flex-direction: column;
+
+    min-height: calc(100dvh - 35.1rem);
+  `,
+};

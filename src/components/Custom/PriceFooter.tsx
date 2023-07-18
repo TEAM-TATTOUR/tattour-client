@@ -19,10 +19,12 @@ const PriceFooter = () => {
 
 const St = {
   CustomFooter: styled.footer`
-    display: sticky;
+    position: sticky;
+    bottom: 0;
+
+    display: flex;
     justify-content: center;
     align-items: center;
-    bottom: 0;
 
     width: 100%;
     height: 7rem;
@@ -31,9 +33,6 @@ const St = {
   `,
 
   FooterButton: styled.button`
-    width: 100%;
-    height: 100%;
-
     color: ${({ theme }) => theme.colors.pink5};
     ${({ theme }) => theme.fonts.title_semibold_18};
   `,
