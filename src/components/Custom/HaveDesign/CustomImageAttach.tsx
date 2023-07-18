@@ -7,18 +7,22 @@ interface PaintBottomProps {
   isBottomOpen: boolean;
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
   drawingImageURL: string | null;
+  setDrawingImageURL: React.Dispatch<React.SetStateAction<string | null>>;
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const CustomImageAttach: React.FC<PaintBottomProps> = ({
-  drawingImageURL,
+  isBottomOpen,
   setBottomOpen,
+  drawingImageURL,
+  setDrawingImageURL,
   setIsActiveNext,
 }) => {
   const MAX_FILES = 3;
 
   const ref = useRef<HTMLInputElement | null>(null);
-  const [previewURL, setPreviewURL] = useState<string[]>(drawingImageURL ? [drawingImageURL] : []);
+  const [previewURL, setPreviewURL] = useState<string[]>([]);
+  const [freeDraw, setFreeDraw] = useState<boolean>(drawingImageURL ? true : false);
   const [toast, setToast] = useState<boolean>(false);
 
   const handleClickRefBtn = () => {
@@ -36,8 +40,8 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
 
   useEffect(() => {
     if (drawingImageURL) {
-      setPreviewURL((prevURLs) => [...prevURLs, drawingImageURL]);
-    }
+      setFreeDraw(true);
+    } else setFreeDraw(false);
   }, [drawingImageURL]);
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,6 +82,19 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     });
   };
 
+  const handleClickFreeDrawDelBtn = () => {
+    setFreeDraw(false);
+    setDrawingImageURL(null);
+  };
+
+  const handleReferenceBtn = () => {
+    if (freeDraw) {
+      return;
+    } else {
+      setBottomOpen(true);
+    }
+  };
+
   return (
     <St.CustomReferenceWrapper>
       <St.PreviewSection>
@@ -92,10 +109,24 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
               </St.Image>
             </St.ImgPreviewContainer>
           ))
-        ) : (
+        ) : freeDraw !== true ? (
           <St.Image>
             <St.ImageDescription> 필수 1장 첨부, 최대 3장 첨부 가능합니다.</St.ImageDescription>
           </St.Image>
+        ) : (
+          ''
+        )}
+        {freeDraw ? (
+          <St.ImgPreviewContainer>
+            <St.ImgPreviewDelBtn type='button' onClick={() => handleClickFreeDrawDelBtn()}>
+              <IcCancelDark />
+            </St.ImgPreviewDelBtn>
+            <St.Image>
+              <img src={drawingImageURL} alt='첨부-이미지-미리보기' />
+            </St.Image>
+          </St.ImgPreviewContainer>
+        ) : (
+          ''
         )}
       </St.PreviewSection>
       <St.ButtonWrapper>
@@ -114,9 +145,8 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
         </St.ReferenceButton>
         <St.ReferenceButton
           type='button'
-          onClick={() => {
-            setBottomOpen(true);
-          }}
+          onClick={handleReferenceBtn}
+          className={freeDraw ? 'disabled' : ''}
         >
           <IcDraw />
           대충 그리기
@@ -221,6 +251,10 @@ const St = {
 
     border-radius: 0.5rem;
     border: 1px solid ${({ theme }) => theme.colors.gray2};
+
+    &.disabled {
+      background-color: ${({ theme }) => theme.colors.gray0};
+    }
   `,
 };
 
