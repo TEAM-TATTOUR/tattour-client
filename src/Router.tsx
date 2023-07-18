@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ListPage from './page/ListPage';
 import MainPage from './page/MainPage';
 import LoginPage from './page/Login/LoginPage';
-import RegisterPhoneNum from './components/Register/RegisterPhoneNum';
 import DetailPage from './page/DetailPage';
 import MyTattoo from './page/MyTattoo';
 import MyTattooDetail from './page/MyTattooDetail';
@@ -38,9 +37,8 @@ const Router = () => {
         <Route path='/' element={<MainPage />} />
         <Route path='/order' element={<OrderPage />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path='/input-number' element={<RegisterPhoneNum />} />
         <Route path='/detail' element={<DetailPage />} />
-        <Route path='/register' element={<RegisterNamePage />} />
+        <Route path='/login/oauth2/callback' element={<RegisterNamePage />} />
         <Route path='/register-number' element={<RegisterPhoneNumPage />} />
         <Route path='/welcome-signup' element={<WelcomePage />} />
         <Route path='/my-tattoo' element={<MyTattoo />} />
