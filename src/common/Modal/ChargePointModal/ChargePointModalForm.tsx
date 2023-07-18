@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface ChargePointModalFormProps {
   onClose: () => void;
@@ -28,9 +28,18 @@ const ChargePointModalForm = ({
   isEnoughPoint,
 }: ChargePointModalFormProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const currURL = location.pathname;
 
   const handleClickNavigationBtn = () => {
-    isEnoughPoint ? navigate('/custom-size') : navigate('/point-charge');
+    isEnoughPoint
+      ? navigate('/custom-size')
+      : navigate('/point-charge', {
+          state: {
+            redirectURL: currURL,
+          },
+        });
   };
 
   return (

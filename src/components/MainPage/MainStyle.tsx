@@ -12,20 +12,38 @@ const dummyStyleList: MainStyleItemProps[] = [
   {
     id: 1,
     img: '',
-    title: '동양화',
-    description: '고전적이면서 아름다운',
+    title: '추상적인',
+    description: '무형의 깊은 의미를 담은',
   },
   {
     id: 2,
     img: '',
-    title: '동양화',
-    description: '고전적이면서 아름다운',
+    title: '심플한',
+    description: '간단하고 부담스럽지 않은',
   },
   {
     id: 3,
     img: '',
-    title: '동양화',
-    description: '고전적이면서 아름다운',
+    title: '사실적인',
+    description: '세심하게 개체를 표현하는',
+  },
+  {
+    id: 4,
+    img: '',
+    title: '귀여운',
+    description: '몽글몽글 사랑스러운',
+  },
+  {
+    id: 5,
+    img: '',
+    title: '감성적인',
+    description: '부드럽고 분위기 있는',
+  },
+  {
+    id: 6,
+    img: '',
+    title: '다크한',
+    description: '강렬하고 짙은',
   },
 ];
 
@@ -77,9 +95,7 @@ const St = {
   `,
 
   MainStyleTitle: styled.h2`
-    // title_eng_bold_20 필요
-    font-size: 2rem;
-    font-weight: bold;
+    ${({ theme }) => theme.fonts.title_eng_bold_20};
   `,
 
   MainStyleWrapper: styled.div`
@@ -104,7 +120,7 @@ const St = {
   MainThemeItemTitle: styled.span`
     margin-top: 1rem;
 
-    font: ${({ theme }) => theme.fonts.title_semibold_16};
+    ${({ theme }) => theme.fonts.title_semibold_16};
   `,
 
   MainThemeItemDescription: styled.span`
@@ -112,7 +128,7 @@ const St = {
     margin-bottom: 5rem;
 
     // detail medium 12 필요
-    font-size: 1.2rem;
+    ${({ theme }) => theme.fonts.detail_medium_12};
 
     color: ${({ theme }) => theme.colors.gray3};
   `,

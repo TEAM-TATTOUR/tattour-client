@@ -1,34 +1,55 @@
 import { styled } from 'styled-components';
 import { IcDraw, IcPhoto, IcCancelDark } from '../../../assets/icon';
 import { useRef, useState, useEffect } from 'react';
+import Toast from '../../../common/ToastMessage/Toast';
 
 interface PaintBottomProps {
   isBottomOpen: boolean;
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
   drawingImageURL: string | null;
+  setDrawingImageURL: React.Dispatch<React.SetStateAction<string | null>>;
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CustomImageAttach: React.FC<PaintBottomProps> = ({ drawingImageURL, setBottomOpen }) => {
+const CustomImageAttach: React.FC<PaintBottomProps> = ({
+  isBottomOpen,
+  setBottomOpen,
+  drawingImageURL,
+  setDrawingImageURL,
+  setIsActiveNext,
+}) => {
   const MAX_FILES = 3;
 
   const ref = useRef<HTMLInputElement | null>(null);
-  const [previewURL, setPreviewURL] = useState<string[]>(drawingImageURL ? [drawingImageURL] : []);
+  const [previewURL, setPreviewURL] = useState<string[]>([]);
+  const [freeDraw, setFreeDraw] = useState<boolean>(drawingImageURL ? true : false);
+  const [toast, setToast] = useState<boolean>(false);
 
   const handleClickRefBtn = () => {
     if (previewURL.length < MAX_FILES) {
       ref.current?.click();
+    } else {
+      setToast(true);
     }
   };
 
+  // 이미지 없으면 다음 비활성화
+  useEffect(() => {
+    previewURL.length !== 0 ? setIsActiveNext(true) : setIsActiveNext(false);
+  }, [previewURL, setIsActiveNext]);
+
   useEffect(() => {
     if (drawingImageURL) {
-      setPreviewURL((prevURLs) => [...prevURLs, drawingImageURL]);
-    }
+      setFreeDraw(true);
+    } else setFreeDraw(false);
   }, [drawingImageURL]);
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (!files || !files[0]) return;
+    if (files[3]) {
+      setToast(true);
+    }
     const uploadImage = Array.from(files);
 
     //개수 제한 적용해주기
@@ -61,6 +82,19 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({ drawingImageURL, setBot
     });
   };
 
+  const handleClickFreeDrawDelBtn = () => {
+    setFreeDraw(false);
+    setDrawingImageURL(null);
+  };
+
+  const handleReferenceBtn = () => {
+    if (freeDraw) {
+      return;
+    } else {
+      setBottomOpen(true);
+    }
+  };
+
   return (
     <St.CustomReferenceWrapper>
       <St.PreviewSection>
@@ -75,10 +109,24 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({ drawingImageURL, setBot
               </St.Image>
             </St.ImgPreviewContainer>
           ))
-        ) : (
+        ) : freeDraw !== true ? (
           <St.Image>
             <St.ImageDescription> 필수 1장 첨부, 최대 3장 첨부 가능합니다.</St.ImageDescription>
           </St.Image>
+        ) : (
+          ''
+        )}
+        {freeDraw ? (
+          <St.ImgPreviewContainer>
+            <St.ImgPreviewDelBtn type='button' onClick={() => handleClickFreeDrawDelBtn()}>
+              <IcCancelDark />
+            </St.ImgPreviewDelBtn>
+            <St.Image>
+              <img src={drawingImageURL} alt='첨부-이미지-미리보기' />
+            </St.Image>
+          </St.ImgPreviewContainer>
+        ) : (
+          ''
         )}
       </St.PreviewSection>
       <St.ButtonWrapper>
@@ -97,14 +145,14 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({ drawingImageURL, setBot
         </St.ReferenceButton>
         <St.ReferenceButton
           type='button'
-          onClick={() => {
-            setBottomOpen(true);
-          }}
+          onClick={handleReferenceBtn}
+          className={freeDraw ? 'disabled' : ''}
         >
           <IcDraw />
           대충 그리기
         </St.ReferenceButton>
       </St.ButtonWrapper>
+      {toast && <Toast setToast={setToast} text='이미지를 3장 이상 첨부할 수 없습니다' />}
     </St.CustomReferenceWrapper>
   );
 };
@@ -113,13 +161,17 @@ const St = {
   CustomReferenceWrapper: styled.section`
     display: flex;
     flex-direction: column;
+    align-items: center;
+
     width: 100%;
+
+    padding-bottom: 8.3rem;
   `,
   PreviewSection: styled.div`
     display: flex;
     gap: 1rem;
 
-    width: 100%;
+    width: 33.5rem;
     height: 24.6rem;
     margin-bottom: 2rem;
 
@@ -180,7 +232,7 @@ const St = {
 
     height: fit-content;
     width: fit-content;
-    margin-bottom: 8.3rem;
+    /* padding-bottom: 8.3rem; */
     gap: 1rem;
   `,
 
@@ -199,6 +251,10 @@ const St = {
 
     border-radius: 0.5rem;
     border: 1px solid ${({ theme }) => theme.colors.gray2};
+
+    &.disabled {
+      background-color: ${({ theme }) => theme.colors.gray0};
+    }
   `,
 };
 
