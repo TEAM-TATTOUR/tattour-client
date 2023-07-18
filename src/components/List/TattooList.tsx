@@ -15,36 +15,42 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
 
   const TATTOO_LIST = [
     {
+      id: 0,
       name: '고양이 리본 타투',
       price: 4000,
       discount: 25,
       finalPrice: 2500,
     },
     {
+      id: 1,
       name: '고양이 리본 타투2',
       price: 4000,
       discount: 25,
       finalPrice: 2500,
     },
     {
+      id: 2,
       name: '고양이 리본 타투3',
       price: 4000,
       discount: 25,
       finalPrice: 2500,
     },
     {
+      id: 3,
       name: '고양이 리본 타투4',
       price: 4000,
       discount: 25,
       finalPrice: 2500,
     },
     {
+      id: 4,
       name: '고양이 리본 타투5',
       price: 4000,
       discount: 25,
       finalPrice: 2500,
     },
     {
+      id: 5,
       name: '고양이 리본 타투6',
       price: 4000,
       discount: 25,
