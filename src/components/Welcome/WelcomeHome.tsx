@@ -19,7 +19,8 @@ const St = {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(var(--vh, 1vh) * 100);
+    position: relative;
+    min-height: 100dvh;
   `,
 
   ContentsWrapper: styled.article`

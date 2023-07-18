@@ -84,6 +84,17 @@ const fonts = {
     line-height: 130%;
     letter-spacing: -0.018rem;
   `,
+  title_line_medium_16: css`
+    font-family: 'Pretendard Variable', system-ui, 'Helvetica Neue', 'Segoe UI',
+      'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', sans-serif;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 130%;
+    letter-spacing: -0.016rem;
+    text-decoration-line: line-through;
+  `,
   title_line_medium_18: css`
     font-family: 'Pretendard Variable', system-ui, 'Helvetica Neue', 'Segoe UI',
       'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
@@ -230,6 +241,30 @@ const fonts = {
     font-weight: 800;
     line-height: 130%;
     letter-spacing: -0.024rem;
+  `,
+  title_eng_bold_20: css`
+    font-family: 'title_eng_bold_20';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: 0.06rem;
+  `,
+  body_eng_bold_10: css`
+    font-family: 'body_eng_bold_10';
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: 0.03rem;
+  `,
+  title_eng_bold_18: css`
+    font-family: 'body_eng_bold_18';
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: 0.054rem;
   `,
 };
 

@@ -5,6 +5,7 @@ declare module 'styled-components' {
     colors: {
       white: string;
       bg: string;
+      gray0: string;
       gray1: string;
       gray2: string;
       gray3: string;
@@ -30,6 +31,7 @@ declare module 'styled-components' {
       title_semibold_18: SerializedStyles;
       title_medium_18: SerializedStyles;
       title_line_medium_18: SerializedStyles;
+      title_line_medium_16: SerializedStyles;
       title_semibold_16: SerializedStyles;
       body_medium_16: SerializedStyles;
       body_semibold_14: SerializedStyles;
@@ -43,6 +45,9 @@ declare module 'styled-components' {
       title_extrabold_18: SerializedStyles;
       title_extrabold_22: SerializedStyles;
       title_extrabold_24: SerializedStyles;
+      title_eng_bold_20: SerializedStyles;
+      body_eng_bold_10: SerializedStyles;
+      title_eng_bold_18: SerializedStyles;
     };
   }
 }
