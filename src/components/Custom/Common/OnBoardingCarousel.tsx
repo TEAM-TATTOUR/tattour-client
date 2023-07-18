@@ -107,17 +107,29 @@ const St = {
         display: none;
       }
 
+      .swiper-pagination {
+        position: sticky;
+        bottom: 12rem;
+
+        display: flex;
+        justify-content: center;
+        gap: 0.9rem;
+        /* padding-bottom: 5rem; */
+      }
       /* swiper 페이지네이션 bullet 커스텀 스타일링 */
       .swiper-pagination-bullet {
         height: 0.6rem;
         width: 0.6rem;
+        margin: 0;
         background-color: ${({ theme }) => theme.colors.gray1};
+        opacity: 100;
       }
 
       .swiper-pagination-bullet-active {
         height: 0.6rem;
         width: 0.6rem;
         background-color: ${({ theme }) => theme.colors.gray9};
+        opacity: 100;
       }
     }
   `,
