@@ -38,8 +38,7 @@ const Router = () => {
         <Route path='/' element={<MainPage />} />
         <Route path='/order' element={<OrderPage />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path='/detail' element={<DetailPage />} />
-        <Route path='/login/oauth2/callback' element={<LoginCallback />} />
+        <Route path='/detail/:id' element={<DetailPage />} />
         <Route path='/register' element={<RegisterNamePage />} />
         <Route path='/register-number' element={<RegisterPhoneNumPage />} />
         <Route path='/welcome-signup' element={<WelcomePage />} />
