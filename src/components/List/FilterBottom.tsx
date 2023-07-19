@@ -127,7 +127,6 @@ const FilterBottom = ({
       newTag[filterIdx] = FILTER[filterIdx].data.map(() => false);
     } else {
       newTag[filterIdx] = FILTER[filterIdx].data.map((item, idx) => {
-        console.log(item);
         return idx === FILTER[filterIdx].data.indexOf(selectedTag);
       });
     }
