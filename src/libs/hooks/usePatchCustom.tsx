@@ -60,7 +60,7 @@ const usePatchCustom = (body: RequestCustom) => {
     }
 
     await api
-      .patch('/custom/update')
+      .patch('/custom/update', formData)
       .then((res) => {
         const data: CustomResponse = res.data;
         setResponse(data.data);
