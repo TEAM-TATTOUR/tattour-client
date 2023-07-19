@@ -2,35 +2,55 @@ import { useEffect, useState } from 'react';
 import api from '../../api';
 import { AxiosError } from 'axios';
 
-export interface RelatedItemProps {
-  id: number;
-  name: string;
-  imageUrl: string;
-  price: number;
-  discountRate: number;
-  discountPrice: number;
-  isCustom: boolean;
+export interface OrderSheetRequest {
+  stickerId: number;
+  count: number;
+  shippingFee: number;
 }
 
-interface RelatedResponse {
-  data: {
-    stickers: RelatedItemProps[];
-  };
+interface getOrderSheetStickerInfoProps {
+  mainImageUrl: string;
+  name: string;
+  price: number;
+  discountedPrice: number;
+  count: number;
+}
+
+interface getOrderAmountResProps {
+  totalAmount: number;
+  productAmount: number;
+  shippingFee: number;
+}
+
+interface getUserOrderPointResProps {
+  userPoint: number;
+  resultPoint: number;
+  lacked: boolean;
+}
+
+export interface OrderSheetProps {
+  getOrderSheetStickerInfo: getOrderSheetStickerInfoProps;
+  getOrderAmountRes: getOrderAmountResProps;
+  getUserOrderPointRes: getUserOrderPointResProps;
+}
+
+interface OrderSheetResponse {
+  data: OrderSheetProps;
   code: number;
   message: string;
 }
 
-const useGetRelated = (id: number) => {
-  const [response, setResponse] = useState<RelatedItemProps[]>([]);
+const useGetRelated = () => {
+  const [response, setResponse] = useState<OrderSheetProps>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     await api
-      .get(`/stickers/${id}/related`)
+      .get(`/order/ordersheet`)
       .then((res) => {
-        const data: RelatedResponse = res.data;
-        setResponse(data.data.stickers);
+        const data: OrderSheetResponse = res.data;
+        setResponse(data.data);
       })
       .catch((err) => {
         setError(err);
