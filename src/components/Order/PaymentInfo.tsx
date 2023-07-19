@@ -12,18 +12,13 @@ const PaymentInfo = ({
   getOrderAmountRes: getOrderAmountResProps;
   getUserOrderPointRes: getUserOrderPointResProps;
 }) => {
-  const { totalAmount, productAmount, shippingFee } = getOrderAmountRes;
   const { userPoint, resultPoint } = getUserOrderPointRes;
 
   return (
     <div>
       <St.PriceContainer>
         <St.Title>결제 정보</St.Title>
-        <PaymentMini
-          finalPrice={totalAmount}
-          itemPrice={productAmount}
-          deliveryPrice={shippingFee}
-        />
+        <PaymentMini getOrderAmountRes={getOrderAmountRes} />
       </St.PriceContainer>
       <St.LightLine />
       <St.PointContainer>

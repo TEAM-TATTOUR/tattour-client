@@ -21,6 +21,7 @@ interface dataProps {
 const OrderPage = () => {
   const location = useLocation();
   const state = location.state as { stickerId: number; count: number; shippingFee: number };
+  console.log(state);
   const { response, error, loading } = useGetOrdersheet(state);
 
   const [isPostOpen, setIsPostOpen] = useState(false);
@@ -31,9 +32,22 @@ const OrderPage = () => {
   const [isComplete, setComplete] = useState(false);
   const [input, setInput] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
-  const [detailAddress, setDetailAddress] = useState<string>('');
+  const [address, setAddress] = useState<string>(''); // 우편번호
+  const [firstAddress, setFirstAddress] = useState<string>(''); // 첫주소
+  const [detailAddress, setDetailAddress] = useState<string>(''); // 세부주소
   const [agree, setAgree] = useState<boolean>(false);
+
+  const postData = {
+    stickerId: state.stickerId,
+    productCount: state.count,
+    shippingFee: state.shippingFee,
+    totalAmount: response?.getOrderAmountRes.totalAmount,
+    recipientName: input,
+    contact: phone,
+    mailingAddress: address,
+    baseAddress: firstAddress,
+    detailAddress: detailAddress,
+  };
 
   useEffect(() => {
     if (input === '' || phone === '' || address === '' || detailAddress === '' || agree === false) {
@@ -53,9 +67,10 @@ const OrderPage = () => {
 
   const handleAddress = (data: dataProps) => {
     if (!addressRef.current || !postcodeRef.current) return;
-    addressRef.current.value = data.address;
+    addressRef.current.value = data.address; // 첫번쨰 주소
     postcodeRef.current.value = data.zonecode; // 우편번호
     setAddress(data.zonecode);
+    setFirstAddress(data.address);
     setIsPostOpen(false);
   };
 
@@ -63,10 +78,16 @@ const OrderPage = () => {
     <PageLayout
       renderHeader={renderOrderPageHeader}
       footer={
-        <OrderFooter
-          isComplete={isComplete}
-          price={response && response.getOrderAmountRes.totalAmount}
-        />
+        !error &&
+        !loading &&
+        response && (
+          <OrderFooter
+            isComplete={isComplete}
+            price={response && response.getOrderAmountRes.totalAmount}
+            postData={postData}
+            response={response}
+          />
+        )
       }
     >
       {!error && !loading && response && (

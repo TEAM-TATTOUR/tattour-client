@@ -1,11 +1,64 @@
 import styled from 'styled-components';
+import { useState } from 'react';
+import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from '../../libs/api';
+import { OrderSheetProps } from '../../libs/hooks/order/useGetOrdersheet';
 
-const OrderFooter = ({ isComplete, price }: { isComplete: boolean; price: number | undefined }) => {
+interface OrderRequest {
+  stickerId: number;
+  productCount: number;
+  shippingFee: number;
+  totalAmount: number;
+  recipientName: string;
+  contact: string;
+  mailingAddress: string;
+  baseAddress: string;
+  detailAddress: string;
+}
+
+const OrderFooter = ({
+  isComplete,
+  price,
+  postData,
+  response,
+}: {
+  isComplete: boolean;
+  price: number | undefined;
+  postData: OrderRequest;
+  response: OrderSheetProps;
+}) => {
   const navigate = useNavigate();
+  const [error, setError] = useState<AxiosError>();
+  const [loading, setLoading] = useState(true);
+  console.log('response', response);
+  console.log('postdata', postData);
+
+  const fetchData = async () => {
+    await api
+      .post(`/order`, {
+        ...postData,
+        contact: postData.contact.replaceAll('-', ''),
+      })
+      .then((res) => {
+        console.log(response);
+        navigate('/complete', {
+          state: response,
+        });
+      })
+      .catch((err) => {
+        console.log('here', error);
+        setError(err);
+      })
+      .finally(() => {
+        console.log(loading);
+        setLoading(false);
+      });
+  };
 
   const handleClickButton = () => {
-    navigate('/complete');
+    // post 통신
+    fetchData();
   };
 
   return (

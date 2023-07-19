@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../../api';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface OrderRequest {
   stickerId: number;
@@ -14,27 +15,24 @@ export interface OrderRequest {
   detailAddress: string;
 }
 
-const usePostOrder = () => {
+const usePostOrder = ({ postData }: { postData: OrderRequest }) => {
   const [response, setResponse] = useState({});
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
 
+  console.log(response);
+
+  const navigate = useNavigate();
+
   const fetchData = async () => {
     await api
       .post(`/order`, {
-        stickerId: 0,
-        productCount: 0,
-        shippingFee: 0,
-        totalAmount: 0,
-        recipientName: '',
-        contact: '',
-        mailingAddress: '',
-        baseAddress: '',
-        detailAddress: '',
+        postData,
       })
       .then((res) => {
         setResponse(res.data.data);
         //navigate to complete
+        navigate('/complete');
       })
       .catch((err) => {
         setError(err);
@@ -44,9 +42,11 @@ const usePostOrder = () => {
       });
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
+  fetchData();
 
   return { response, error, loading };
 };
