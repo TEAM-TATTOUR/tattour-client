@@ -110,7 +110,7 @@ const DetailPage = () => {
       {!error && !loading && response && (
         <>
           <DetailCarousel isCustom={response.isCustom} images={response.images} />
-          <DetailInfo id={response.id} />
+          <DetailInfo response={response} />
         </>
       )}
       <CustomScrollContainer title='비슷한 제품도 추천드려요'>
