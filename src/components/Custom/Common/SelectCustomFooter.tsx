@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import ChargePointModal from '../../common/Modal/ChargePointModal/ChargePointModal';
+import ChargePointModal from '../../../common/Modal/ChargePointModal/ChargePointModal';
 import { useState } from 'react';
 
 const SelectCustomFooter = ({ isActiveNext }: { isActiveNext: boolean }) => {
