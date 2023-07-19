@@ -16,6 +16,11 @@ interface resProps {
   };
 }
 
+interface usePatchProfileProps {
+  state: string;
+  phoneNum: string;
+}
+
 const RegisterPhoneNumForm = () => {
   const MINUTES_IN_MS = 5 * 60 * 1000;
 
@@ -36,6 +41,26 @@ const RegisterPhoneNumForm = () => {
   const [phoneNum, setPhoneNum] = useState('');
 
   const { state } = useLocation();
+
+  const patchProfile = ({ state, phoneNum }: usePatchProfileProps) => {
+    api
+      .patch(
+        `/user/profile`,
+        // post body
+        {
+          name: `${state}`,
+          phoneNumber: `${phoneNum}`,
+        },
+        // request headers
+        {},
+      )
+      .then(() => {
+        navigate('/welcome-signup');
+      })
+      .catch((Error: object) => {
+        console.log(Error);
+      });
+  };
 
   const handleChangeInputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 전화번호 입력이 되지 않았을 경우
@@ -102,23 +127,7 @@ const RegisterPhoneNumForm = () => {
 
           if (isVerified) {
             setIsError(false);
-            api
-              .patch(
-                `/user/profile`,
-                // post body
-                {
-                  name: `${state}`,
-                  phoneNumber: `${phoneNum}`,
-                },
-                // request headers
-                {},
-              )
-              .then(() => {
-                navigate('/welcome-signup');
-              })
-              .catch((Error: object) => {
-                console.log(Error);
-              });
+            patchProfile({ state, phoneNum });
           } else {
             setIsError(true);
           }
