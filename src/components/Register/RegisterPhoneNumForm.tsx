@@ -51,7 +51,7 @@ const RegisterPhoneNumForm = () => {
   const handleClickSendMessageBtn = () => {
     setToast(true);
     setIsRequired(!isRequired);
-    setText(' ');
+
     setCertificationLen(0);
 
     // 전화번호 입력이 된 경우
@@ -64,6 +64,7 @@ const RegisterPhoneNumForm = () => {
     else if (isVisible) {
       setIsTimeout(false);
       setLeftTime(MINUTES_IN_MS);
+      setText('');
     }
   };
 
