@@ -5,15 +5,33 @@ import { customInfo } from '../../types/customInfo';
 interface NextFooterProps {
   isActiveNext?: boolean;
   navigateURL: string;
-  stateList: customRequest;
+  haveDesign?: boolean;
+  customInfo?: customInfo;
+  customMainImage?: File;
+  customImages?: FileList;
 }
 
-const NextFooter = ({ isActiveNext = true, navigateURL, stateList }: NextFooterProps) => {
+const NextFooter = ({
+  isActiveNext = true,
+  navigateURL,
+  haveDesign,
+  customInfo,
+  customMainImage,
+  customImages,
+}: NextFooterProps) => {
   const navigate = useNavigate();
 
   const handleClickFooter = () => {
     {
-      isActiveNext && navigate(navigateURL, { state: { stateList } });
+      isActiveNext &&
+        navigate(navigateURL, {
+          state: {
+            haveDesign: haveDesign,
+            customInfo: customInfo,
+            customMainImage: customMainImage,
+            customImages: customImages,
+          },
+        });
     }
   };
 
