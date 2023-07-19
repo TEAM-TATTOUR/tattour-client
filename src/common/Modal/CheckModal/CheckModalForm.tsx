@@ -8,6 +8,7 @@ interface CheckModalFormProps {
   subTitle: string;
   continueBtn: string;
   redirectURL: string;
+  chargeAmount: number;
 }
 
 const CheckModalForm = ({
@@ -16,10 +17,12 @@ const CheckModalForm = ({
   subTitle,
   continueBtn,
   redirectURL,
+  chargeAmount,
 }: CheckModalFormProps) => {
   const navigate = useNavigate();
 
   const handleClickContinueBtn = () => {
+    console.log('??', chargeAmount);
     onClose();
     // 라우팅 주소 나중에 수정
     navigate(redirectURL);
