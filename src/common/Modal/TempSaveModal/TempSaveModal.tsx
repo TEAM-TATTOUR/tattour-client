@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
-import useGetCustomIncomplete from '../../../libs/hooks/useGetCustomIncomplete';
 
 const TempSaveModal = ({
   setModalOn,
