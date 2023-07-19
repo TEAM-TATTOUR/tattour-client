@@ -9,6 +9,7 @@ import CustomScrollContainer from '../common/CustomScrollContainer';
 import SmallTattooCard from '../common/SmallTattooCard';
 import BackBtn from '../common/Header/BackBtn';
 import { useNavigate, useParams } from 'react-router-dom';
+import useGetSticker from '../libs/hooks/detail/useGetSticker';
 
 const DUMMY_DATA = [
   {
@@ -82,8 +83,6 @@ const DetailPage = () => {
 
   //const navigate = useNavigate();
   const [isSheetOpen, setSheetOpen] = useState(false);
-  // const [isCustom, setCustom] = useState(true); // 해당 상품이 custom인지 여부
-  const isCustom = true;
 
   // 찜 여부 state -> 추후 서버통신
   const [like, setLike] = useState(false);
@@ -91,6 +90,8 @@ const DetailPage = () => {
   const renderDetailPageHeader = () => {
     return <Header leftSection={<BackBtn />} />;
   };
+
+  const { response, error, loading } = useGetSticker(Number(id));
 
   return (
     <PageLayout
@@ -106,8 +107,12 @@ const DetailPage = () => {
         />
       }
     >
-      <DetailCarousel isCustom={isCustom} />
-      <DetailInfo id={Number(id)} />
+      {!error && !loading && response && (
+        <>
+          <DetailCarousel isCustom={response.isCustom} images={response.images} />
+          <DetailInfo id={response.id} />
+        </>
+      )}
       <CustomScrollContainer title='비슷한 제품도 추천드려요'>
         {DUMMY_DATA.map((el) => (
           <SmallTattooCard
