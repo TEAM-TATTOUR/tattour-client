@@ -13,6 +13,7 @@ interface ChargePointModalFormProps {
   navigationBtn: string;
   unit: string;
   isEnoughPoint: boolean;
+  haveDesign: boolean;
 }
 
 const ChargePointModalForm = ({
@@ -26,11 +27,13 @@ const ChargePointModalForm = ({
   bottomContents,
   unit,
   isEnoughPoint,
+  haveDesign,
 }: ChargePointModalFormProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const currURL = location.pathname;
+  // console.log(haveDesign);
 
   const handleClickNavigationBtn = () => {
     isEnoughPoint
