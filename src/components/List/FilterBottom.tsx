@@ -3,6 +3,8 @@ import Sheet from 'react-modal-sheet';
 import { useRef, useState, useEffect } from 'react';
 import ic_check_small_light from '../../assets/icon/ic_check_small_light.svg';
 import ic_check_small_pink from '../../assets/icon/ic_check_small_pink.svg';
+import useGetGenre, { GenreItemProps } from '../../libs/hooks/list/useGetGenre';
+import useGetStyle, { StyleItemProps } from '../../libs/hooks/list/useGetStyle';
 
 interface FilterBottomProps {
   isSortOpen: boolean;
@@ -140,6 +142,9 @@ const FilterBottom = ({
     });
   };
 
+  const { genreResponse, genreError, genreLoading }: GenreItemProps = useGetGenre();
+  const { styleResponse, styleError, styleLoading }: StyleItemProps = useGetStyle();
+
   return (
     <St.Wrapper>
       {FILTER.map((filter, filterIdx) => (
@@ -153,18 +158,49 @@ const FilterBottom = ({
           <Sheet.Container>
             <Sheet.Header disableDrag={true} />
             <Sheet.Content ref={filterRef}>
-              {filter.data.map((el, idx) => (
-                <St.TagBox
-                  key={el}
-                  onClick={() => handleClickTag(el, idx, filterIdx)}
-                  ref={(refEl: HTMLParagraphElement) => (tagRefs.current[idx] = refEl)}
-                  className={filterTag[filterIdx][idx] ? 'checked' : ''}
-                >
-                  <span></span>
-                  {el}
-                  <i></i>
-                </St.TagBox>
-              ))}
+              {filterIdx === 0 &&
+                filter.data.map((el, idx) => (
+                  <St.TagBox
+                    key={idx}
+                    onClick={() => handleClickTag(el, idx, filterIdx)}
+                    ref={(refEl: HTMLParagraphElement) => (tagRefs.current[idx] = refEl)}
+                    className={filterTag[filterIdx][idx] ? 'checked' : ''}
+                  >
+                    <span></span>
+                    {el}
+                    <i></i>
+                  </St.TagBox>
+                ))}
+              {filterIdx === 1 &&
+                !genreError &&
+                !genreLoading &&
+                genreResponse.map(({ id, name }: GenreItemProps) => (
+                  <St.TagBox
+                    key={id}
+                    onClick={() => handleClickTag(name, id, filterIdx)}
+                    ref={(refEl: HTMLParagraphElement) => (tagRefs.current[id] = refEl)}
+                    className={filterTag[filterIdx][id] ? 'checked' : ''}
+                  >
+                    <span></span>
+                    {name}
+                    <i></i>
+                  </St.TagBox>
+                ))}
+              {filterIdx === 2 &&
+                !styleError &&
+                !styleLoading &&
+                styleResponse.map(({ id, name }: StyleItemProps) => (
+                  <St.TagBox
+                    key={id}
+                    onClick={() => handleClickTag(name, id, filterIdx)}
+                    ref={(refEl: HTMLParagraphElement) => (tagRefs.current[id] = refEl)}
+                    className={filterTag[filterIdx][id] ? 'checked' : ''}
+                  >
+                    <span></span>
+                    {name}
+                    <i></i>
+                  </St.TagBox>
+                ))}
               <St.Footer>
                 <St.Button
                   type='button'
