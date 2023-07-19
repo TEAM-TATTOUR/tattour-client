@@ -7,11 +7,15 @@ import PageLayout from '../../components/PageLayout';
 import ProgressBar from '../../common/ProgressBar';
 import CustomSizeEscapeModal from '../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import NextFooter from '../../common/Footer/NextFooter';
+import { useLocation } from 'react-router-dom';
 
 const CustomReferencePage = () => {
   // 모달 사용할 때  활용
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
+
+  const location = useLocation();
+  const states = location.state;
 
   const renderCustomReferencePageHeader = () => {
     return (
@@ -34,9 +38,11 @@ const CustomReferencePage = () => {
   return (
     <PageLayout
       renderHeader={renderCustomReferencePageHeader}
-      footer={<NextFooter isActiveNext={isActiveNext} navigateURL={'/styling-color'} stateList={}/>}
+      footer={
+        <NextFooter isActiveNext={isActiveNext} navigateURL={'/styling-color'} stateList={} />
+      }
     >
-      <CustomReference setIsActiveNext={setIsActiveNext} />
+      <CustomReference setIsActiveNext={setIsActiveNext} states={states}/>
     </PageLayout>
   );
 };

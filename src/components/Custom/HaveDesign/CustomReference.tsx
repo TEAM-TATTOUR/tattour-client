@@ -6,8 +6,10 @@ import { useState } from 'react';
 
 const CustomReference = ({
   setIsActiveNext,
+  states,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  states: 
 }) => {
   const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
