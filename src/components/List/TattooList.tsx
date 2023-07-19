@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { IcArrowBottomSmallGray, IcArrowBottomSmallLight } from '../../assets/icon';
 import { useState, useEffect, useRef } from 'react';
-import test_tattoo from '../../assets/test_tattoo.png';
 import useGetAllList from '../../libs/hooks/useGetAllList';
 
 interface TattooListProps {
@@ -13,45 +12,6 @@ interface TattooListProps {
 
 const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: TattooListProps) => {
   const [selectedFilter, setSelectedFilter] = useState([false, false, false]); // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
-
-  const TATTOO_LIST = [
-    {
-      name: '고양이 리본 타투',
-      price: 4000,
-      discount: 25,
-      finalPrice: 2500,
-    },
-    {
-      name: '고양이 리본 타투2',
-      price: 4000,
-      discount: 25,
-      finalPrice: 2500,
-    },
-    {
-      name: '고양이 리본 타투3',
-      price: 4000,
-      discount: 25,
-      finalPrice: 2500,
-    },
-    {
-      name: '고양이 리본 타투4',
-      price: 4000,
-      discount: 25,
-      finalPrice: 2500,
-    },
-    {
-      name: '고양이 리본 타투5',
-      price: 4000,
-      discount: 25,
-      finalPrice: 2500,
-    },
-    {
-      name: '고양이 리본 타투6',
-      price: 4000,
-      discount: 25,
-      finalPrice: 2500,
-    },
-  ];
 
   const filterRef = useRef(null);
   const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
@@ -68,7 +28,7 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
     setSelectedFilter(newSelectedFilter);
   }, [buttonName]);
 
-  const { response, error, loading } = useGetAllList();
+  const { response, error, loading } = useGetAllList(buttonName);
 
   return (
     <St.Wrapper>
@@ -97,7 +57,7 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
           </St.FilterBtn>
         ))}
       </St.BtnContainer>
-      <St.CountText>전체 {TATTOO_LIST.length}개</St.CountText>
+      <St.CountText>전체 {response.length}개</St.CountText>
       <St.CardContainer>
         {!loading &&
           !error &&
@@ -110,7 +70,7 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
                 <h2>{name}</h2>
                 <div>
                   <St.CardDiscount>{discountRate}%</St.CardDiscount>
-                  <St.CardPrice>{discountPrice.toLocaleString()}원</St.CardPrice>
+                  <St.CardPrice>{discountPrice && discountPrice.toLocaleString()}원</St.CardPrice>
                 </div>
                 <p>{price.toLocaleString()}원</p>
               </St.Card>
@@ -189,6 +149,11 @@ const St = {
 
     height: 20.1rem;
     background-color: ${({ theme }) => theme.colors.gray0};
+
+    & > img {
+      weight: 18.3rem;
+      height: 18.3rem;
+    }
   `,
   CardDiscount: styled.span`
     color: ${({ theme }) => theme.colors.pink5};
