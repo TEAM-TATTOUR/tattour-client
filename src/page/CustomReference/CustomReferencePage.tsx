@@ -34,7 +34,7 @@ const CustomReferencePage = () => {
   return (
     <PageLayout
       renderHeader={renderCustomReferencePageHeader}
-      footer={<NextFooter isActiveNext={isActiveNext} navigateURL={'/styling-color'} />}
+      footer={<NextFooter isActiveNext={isActiveNext} navigateURL={'/styling-color'} stateList={}/>}
     >
       <CustomReference setIsActiveNext={setIsActiveNext} />
     </PageLayout>

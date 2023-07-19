@@ -4,14 +4,15 @@ import { styled } from 'styled-components';
 interface NextFooterProps {
   isActiveNext?: boolean;
   navigateURL: string;
+  stateList: object;
 }
 
-const NextFooter = ({ isActiveNext = true, navigateURL }: NextFooterProps) => {
+const NextFooter = ({ isActiveNext = true, navigateURL, stateList }: NextFooterProps) => {
   const navigate = useNavigate();
 
   const handleClickFooter = () => {
     {
-      isActiveNext && navigate(navigateURL);
+      isActiveNext && navigate(navigateURL, { state: { stateList } });
     }
   };
 
