@@ -3,7 +3,11 @@ import { styled } from 'styled-components';
 // 이모티콘 카운팅 관련 라이브러리
 import GraphemeSplitter from 'grapheme-splitter';
 
-const CustomTheme = () => {
+const CustomTheme = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   //count 될 maxCount 수
   const MAX_ETC_COUNT = 100;
 
@@ -29,7 +33,12 @@ const CustomTheme = () => {
   };
 
   const handleChangeEtcTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.target.value === '') setEtcTextAreaCount(0);
+    if (e.target.value === '') {
+      setEtcTextAreaCount(0);
+      setIsActiveNext(false);
+    } else {
+      setIsActiveNext(true);
+    }
 
     const lengthCount = limitMaxLength(e, MAX_ETC_COUNT);
 
@@ -40,11 +49,14 @@ const CustomTheme = () => {
   return (
     <St.CustomRequestWrapper>
       <St.RequestNameContainer>
-        <St.RequestNameTitle>추가 요청 사항</St.RequestNameTitle>
+        <St.RequestNameTitleWrapper>
+          <St.RequestNameTitle>요청 사항</St.RequestNameTitle>
+          <St.RequestOption>선택</St.RequestOption>
+        </St.RequestNameTitleWrapper>
         <St.RequestNameDetail>
-          여러분이 상상하는 타투가 되기 위해,
+          추가적인 요청사항이 있다면 자유롭게 작성해주세요
           <br />
-          추가적인 요청 사항이 있다면 자유롭게 작성해주세요.
+          (컬러 코드, 정확한 사이즈, 라인 굵기, 명암 여부 등)
         </St.RequestNameDetail>
       </St.RequestNameContainer>
       <St.RequestEtcContainer>
@@ -66,7 +78,8 @@ const St = {
   CustomRequestWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+
+    min-height: calc(100dvh - 13.6rem);
   `,
 
   RequestNameContainer: styled.article`
@@ -78,10 +91,18 @@ const St = {
 
     margin: 5.6rem 2rem 0 2.2rem;
   `,
-
+  RequestNameTitleWrapper: styled.div`
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+  `,
   RequestNameTitle: styled.h2`
     color: ${({ theme }) => theme.colors.gray8};
     ${({ theme }) => theme.fonts.title_semibold_20};
+  `,
+  RequestOption: styled.p`
+    color: ${({ theme }) => theme.colors.pink4};
+    ${({ theme }) => theme.fonts.detail_semibold_12};
   `,
 
   RequestNameDetail: styled.p`
@@ -91,36 +112,10 @@ const St = {
     ${({ theme }) => theme.fonts.body_medium_14};
   `,
 
-  RequestNameInput: styled.input`
-    width: 29.5rem;
-    height: 2.1rem;
-
-    padding: 1.2rem 2rem;
-
-    background-color: ${({ theme }) => theme.colors.bg};
-    color: ${({ theme }) => theme.colors.gray5};
-
-    ${({ theme }) => theme.fonts.body_medium_16};
-
-    box-sizing: content-box;
-    border: none;
-    border-radius: 0.5rem;
-
-    &::placeholder {
-      height: fit-content;
-
-      color: ${({ theme }) => theme.colors.gray2};
-      ${({ theme }) => theme.fonts.body_medium_16};
-    }
-
-    &:focus {
-      outline: 0;
-    }
-  `,
-
   RequestEtcContainer: styled.article`
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 2rem;
 
     position: relative;
@@ -128,15 +123,7 @@ const St = {
     margin: 0 2rem 0 2.2rem;
   `,
 
-  RequestEtcTitle: styled.h2`
-    padding-top: 4rem;
-
-    color: ${({ theme }) => theme.colors.gray8};
-    ${({ theme }) => theme.fonts.title_semibold_20};
-  `,
-
   RequestEtcTextArea: styled.textarea`
-    width: 29.5rem;
     height: 14.6rem;
 
     padding: 1.2rem 2rem;

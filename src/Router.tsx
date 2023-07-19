@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ListPage from './page/ListPage';
 import MainPage from './page/MainPage';
 import LoginPage from './page/Login/LoginPage';
-import RegisterPhoneNum from './components/Register/RegisterPhoneNum';
 import DetailPage from './page/DetailPage';
 import MyTattoo from './page/MyTattoo';
 import MyTattooDetail from './page/MyTattooDetail';
@@ -14,7 +13,6 @@ import TransferPage from './page/PointCharge/TransferPage';
 import SelectPage from './page/Custom/SelectPage';
 import CompletePage from './page/Order/CompletePage';
 import OrderPage from './page/Order/OrderPage';
-import StylingColorPage from './page/Custom/StylingColorPage';
 import SelectKeywordPage from './page/Custom/HaveDesign/SelectKeywordPage';
 import OnBoardingPage from './page/Custom/Common/OnBoardingPage';
 import CustomSizePage from './page/Custom/Common/CustomSizePage';
@@ -24,6 +22,7 @@ import CustomThemePage from './page/Custom/HaveDesign/CustomThemePage';
 import AdditionalRequestPage from './page/Custom/HaveDesign/AdditionalRequestPage';
 import PricePage from './page/Custom/PricePage';
 import ReceiptPage from './page/Custom/HaveDesign/ReceiptPage';
+import StylingColorPage from './page/Custom/HaveDesign/StylingColorPage';
 import CustomReferencePage from './page/CustomReference/CustomReferencePage';
 import SearchPage from './page/Search/SearchPage';
 import SearchResultPage from './page/Search/SearchResultPage';
@@ -38,9 +37,8 @@ const Router = () => {
         <Route path='/' element={<MainPage />} />
         <Route path='/order' element={<OrderPage />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path='/input-number' element={<RegisterPhoneNum />} />
         <Route path='/detail' element={<DetailPage />} />
-        <Route path='/register' element={<RegisterNamePage />} />
+        <Route path='/login/oauth2/callback' element={<RegisterNamePage />} />
         <Route path='/register-number' element={<RegisterPhoneNumPage />} />
         <Route path='/welcome-signup' element={<WelcomePage />} />
         <Route path='/my-tattoo' element={<MyTattoo />} />
@@ -51,6 +49,7 @@ const Router = () => {
         <Route path='/point-charge' element={<ChargePage />} />
         <Route path='/point-transfer' element={<TransferPage />} />
         <Route path='/select' element={<SelectPage />} />
+        <Route path='/reference' element={<CustomReferencePage />} />
         <Route path='/styling-color' element={<StylingColorPage />} />
         <Route path='/select-keyword' element={<SelectKeywordPage />} />
         <Route path='/onboarding' element={<OnBoardingPage />} />

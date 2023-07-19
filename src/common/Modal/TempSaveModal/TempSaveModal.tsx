@@ -25,20 +25,20 @@ const TempSaveModal = ({
         </St.ModalTitleWrapper>
 
         <St.BtnWrapper>
-          <St.ContinueBtn
+          <St.LoadBtn
             onClick={() => {
               navigate('/my-tattoo');
             }}
           >
             불러오기
-          </St.ContinueBtn>
-          <St.StopBtn
+          </St.LoadBtn>
+          <St.NewBtn
             onClick={() => {
               navigate('/select');
             }}
           >
             새로 작성하기
-          </St.StopBtn>
+          </St.NewBtn>
         </St.BtnWrapper>
       </St.ModalContent>
     </St.ModalContainer>
@@ -117,7 +117,7 @@ const St = {
     padding: 0;
   `,
 
-  ContinueBtn: styled.button`
+  LoadBtn: styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,7 +131,7 @@ const St = {
     ${({ theme }) => theme.fonts.title_semibold_18};
   `,
 
-  StopBtn: styled.button`
+  NewBtn: styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,7 +139,8 @@ const St = {
     height: 7rem;
 
     border-bottom-right-radius: 1rem;
-    background-color: ${({ theme }) => theme.colors.gray3};
+    border-left: 0.1rem solid ${({ theme }) => theme.colors.gray5};
+    background-color: ${({ theme }) => theme.colors.gray8};
     color: ${({ theme }) => theme.colors.white};
 
     ${({ theme }) => theme.fonts.title_semibold_18};
