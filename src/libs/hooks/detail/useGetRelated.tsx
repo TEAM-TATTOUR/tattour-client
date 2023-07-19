@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import api from '../../api';
 import { AxiosError } from 'axios';
 
-export interface StickerItemProps {
+export interface RelatedItemProps {
   id: number;
   name: string;
   imageUrl: string;
@@ -12,24 +12,24 @@ export interface StickerItemProps {
   isCustom: boolean;
 }
 
-interface StickerResponse {
+interface RelatedResponse {
   data: {
-    stickers: StickerItemProps[];
+    stickers: RelatedItemProps[];
   };
   code: number;
   message: string;
 }
 
-const useGetAllList = () => {
-  const [response, setResponse] = useState<StickerItemProps[]>([]);
+const useGetRelated = (id: number) => {
+  const [response, setResponse] = useState<RelatedItemProps[]>([]);
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     await api
-      .get(`/stickers`)
+      .get(`/stickers/${id}/related`)
       .then((res) => {
-        const data: StickerResponse = res.data;
+        const data: RelatedResponse = res.data;
         setResponse(data.data.stickers);
       })
       .catch((err) => {
@@ -47,4 +47,4 @@ const useGetAllList = () => {
   return { response, error, loading };
 };
 
-export default useGetAllList;
+export default useGetRelated;
