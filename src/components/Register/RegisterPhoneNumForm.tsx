@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Toast from '../../common/ToastMessage/Toast';
 import Timer from './Timer';
 import ErrorMessage from './ErrorMessage';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const RegisterPhoneNumForm = () => {
   // 임의의 인증번호
@@ -26,17 +26,6 @@ const RegisterPhoneNumForm = () => {
   const [isTimeout, setIsTimeout] = useState(false);
   const [leftTime, setLeftTime] = useState<number>(MINUTES_IN_MS);
   const [text, setText] = useState('');
-
-  const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-    if (parseInt(e.target.value) === CERTIFICATION_NUM) {
-      setIsCorrect(true);
-      setTimeout(() => navigate('/welcome-signup'), 1000);
-    } else {
-      setIsCorrect(false);
-      setCertificationLen(e.target.value.length);
-    }
-  };
 
   const handleChangeInputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 전화번호 입력이 되지 않았을 경우
@@ -65,6 +54,17 @@ const RegisterPhoneNumForm = () => {
       setIsTimeout(false);
       setLeftTime(MINUTES_IN_MS);
       setText('');
+    }
+  };
+
+  const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
+    if (parseInt(e.target.value) === CERTIFICATION_NUM) {
+      setIsCorrect(true);
+      setTimeout(() => navigate('/welcome-signup'), 1000);
+    } else {
+      setIsCorrect(false);
+      setCertificationLen(e.target.value.length);
     }
   };
 
