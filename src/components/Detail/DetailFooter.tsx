@@ -35,7 +35,7 @@ const DetailFooter = ({
         },
       });
     } else if (isSecond) {
-      // state를 전해주게 된다면?
+      // state로 OrderPage에서 필요한 정보 넘겨주기
       navigate(`/order`, {
         state: {
           id: id,

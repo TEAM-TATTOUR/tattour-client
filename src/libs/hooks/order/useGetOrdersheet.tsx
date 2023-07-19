@@ -40,7 +40,7 @@ interface OrderSheetResponse {
   message: string;
 }
 
-const useGetRelated = () => {
+const useGetOrdersheet = () => {
   const [response, setResponse] = useState<OrderSheetProps>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
@@ -67,4 +67,4 @@ const useGetRelated = () => {
   return { response, error, loading };
 };
 
-export default useGetRelated;
+export default useGetOrdersheet;

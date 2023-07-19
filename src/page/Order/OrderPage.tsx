@@ -11,6 +11,7 @@ import OrderFooter from '../../components/Order/OrderFooter';
 import RefundBottom from '../../components/Order/RefundBottom';
 import BackBtn from '../../common/Header/BackBtn';
 import { useLocation } from 'react-router-dom';
+import useGetOrdersheet from '../../libs/hooks/order/useGetOrdersheet';
 
 interface dataProps {
   address: string;
@@ -19,11 +20,11 @@ interface dataProps {
 
 const OrderPage = () => {
   const location = useLocation();
-  const state = location.state as { id: number };
-  const id = state.id;
+  const state = location.state as { id: number; count: number; shippingFee: number };
+  const { id, count, shippingFee } = state; // 구조분해 할당
   // id로 서버에서 데이터 받아오기
-  console.log(id);
-  // 사용자 포인트 정보는 토큰으로 받아온다고 함
+
+  const { response, error, loading } = useGetOrdersheet();
 
   const [isPostOpen, setIsPostOpen] = useState(false);
   const addressRef = useRef<HTMLInputElement | null>(null);
