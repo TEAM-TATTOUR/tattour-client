@@ -5,11 +5,12 @@ import Header from '../../../components/Header';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import ProgressBar from '../../../common/ProgressBar';
-import AdditionalRequestFooter from '../../../components/Custom/HaveDesign/AdditionalRequestFooter';
 import AdditionalRequest from '../../../components/Custom/HaveDesign/AdditionalRequest';
+import NextFooter from '../../../common/Footer/NextFooter';
 
 const AdditionalRequestPage = () => {
   const [modalOn, setModalOn] = useState(false);
+  const [isActiveNext, setIsActiveNext] = useState(false);
 
   const renderAdditionalRequestPageHeader = () => {
     return (
@@ -24,16 +25,16 @@ const AdditionalRequestPage = () => {
           />
         }
         transparent={true}
-        progressBar={<ProgressBar curStep={7} maxStep={7} />}
+        progressBar={<ProgressBar curStep={6} maxStep={7} />}
       />
     );
   };
   return (
     <PageLayout
       renderHeader={renderAdditionalRequestPageHeader}
-      footer={<AdditionalRequestFooter />}
+      footer={<NextFooter isActiveNext={isActiveNext} navigateURL={'/price'} />}
     >
-      <AdditionalRequest />
+      <AdditionalRequest setIsActiveNext={setIsActiveNext} />
     </PageLayout>
   );
 };

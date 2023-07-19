@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ListPage from './page/ListPage';
 import MainPage from './page/MainPage';
 import LoginPage from './page/Login/LoginPage';
-import RegisterPhoneNum from './components/Register/RegisterPhoneNum';
 import DetailPage from './page/DetailPage';
 import MyTattoo from './page/MyTattoo';
 import MyTattooDetail from './page/MyTattooDetail';
@@ -25,6 +24,9 @@ import PricePage from './page/Custom/PricePage';
 import ReceiptPage from './page/Custom/HaveDesign/ReceiptPage';
 import StylingColorPage from './page/Custom/HaveDesign/StylingColorPage';
 import CustomReferencePage from './page/CustomReference/CustomReferencePage';
+import SearchPage from './page/Search/SearchPage';
+import SearchResultPage from './page/Search/SearchResultPage';
+import ScrollToTop from './libs/hooks/ScrollTop';
 
 const Router = () => {
   return (
@@ -35,14 +37,13 @@ const Router = () => {
         <Route path='/' element={<MainPage />} />
         <Route path='/order' element={<OrderPage />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path='/input-number' element={<RegisterPhoneNum />} />
         <Route path='/detail' element={<DetailPage />} />
-        <Route path='/register' element={<RegisterNamePage />} />
+        <Route path='/login/oauth2/callback' element={<RegisterNamePage />} />
         <Route path='/register-number' element={<RegisterPhoneNumPage />} />
         <Route path='/welcome-signup' element={<WelcomePage />} />
         <Route path='/my-tattoo' element={<MyTattoo />} />
         <Route path='/my-tattoo/detail/:id' element={<MyTattooDetail />} />
-        <Route path='/search' element={<Search />}>
+        <Route path='/search' element={<SearchPage />}>
           <Route path=':keyword' element={<SearchResultPage />} />
         </Route>
         <Route path='/point-charge' element={<ChargePage />} />
