@@ -10,10 +10,12 @@ import PriceFooter from '../../components/Custom/PriceFooter';
 import MakePublic from '../../components/Custom/MakePublic';
 import CustomSizeEscapeModal from '../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import { styled } from 'styled-components';
+import usePatchCustom from '../../libs/hooks/usePatchCustom';
 
 const PricePage = () => {
   const [modalOn, setModalOn] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
+  const { response, error, loading } = usePatchCustom();
 
   const renderPricePageHeader = () => {
     return (
@@ -35,12 +37,16 @@ const PricePage = () => {
 
   return (
     <PageLayout renderHeader={renderPricePageHeader}>
-      <St.TopWrapper>
-        <PriceHeading />
-        <CountPrice isPublic={isPublic} />
-      </St.TopWrapper>
-      <MakePublic isPublic={isPublic} setIsPublic={setIsPublic} />
-      <PriceFooter />
+      {!loading && !error && (
+        <>
+          <St.TopWrapper>
+            <PriceHeading />
+            <CountPrice isPublic={isPublic} />
+          </St.TopWrapper>
+          <MakePublic isPublic={isPublic} setIsPublic={setIsPublic} />
+          <PriceFooter />
+        </>
+      )}
     </PageLayout>
   );
 };
