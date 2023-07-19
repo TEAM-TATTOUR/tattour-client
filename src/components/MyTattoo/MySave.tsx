@@ -1,4 +1,5 @@
 import CustomScrollContainer from '../../common/CustomScrollContainer';
+import useGetCustomSaveList from '../../libs/hooks/useGetCustomSaveList';
 import MySaveItem from './MySaveItem';
 
 const dummyMySaveData = [
@@ -20,11 +21,15 @@ const dummyMySaveData = [
 ];
 
 const MySave = () => {
+  const { response, error, loading } = useGetCustomSaveList();
+
   return (
     <CustomScrollContainer title={'SAVE'}>
-      {dummyMySaveData.map(({ id, title, haveReferenceImage }) => {
-        return <MySaveItem key={id} title={title} haveReferenceImage={haveReferenceImage} />;
-      })}
+      {!error &&
+        !loading &&
+        response.map(({ id, name, imageUrl }) => {
+          return <MySaveItem key={id} id={id} name={name} imageUrl={imageUrl} />;
+        })}
     </CustomScrollContainer>
   );
 };
