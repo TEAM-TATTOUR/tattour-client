@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-const OrderFooter = ({ isComplete }: { isComplete: boolean }) => {
-  const TOTAL_PRICE = 5500;
-
+const OrderFooter = ({ isComplete, price }: { isComplete: boolean; price: number | undefined }) => {
   const navigate = useNavigate();
 
   const handleClickButton = () => {
@@ -18,7 +16,7 @@ const OrderFooter = ({ isComplete }: { isComplete: boolean }) => {
         onClick={handleClickButton}
         disabled={isComplete ? false : true}
       >
-        {TOTAL_PRICE.toLocaleString()}원 결제하기
+        {price && price.toLocaleString()}원 결제하기
       </St.button>
     </St.footer>
   );

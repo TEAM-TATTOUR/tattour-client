@@ -62,7 +62,12 @@ const OrderPage = () => {
   return (
     <PageLayout
       renderHeader={renderOrderPageHeader}
-      footer={<OrderFooter isComplete={isComplete} />}
+      footer={
+        <OrderFooter
+          isComplete={isComplete}
+          price={response && response.getOrderAmountRes.totalAmount}
+        />
+      }
     >
       {!error && !loading && response && (
         <>
