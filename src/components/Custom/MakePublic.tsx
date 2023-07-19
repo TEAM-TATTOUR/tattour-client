@@ -2,6 +2,8 @@ import ic_check from '../../assets/icon/ic_check.svg';
 import ic_check_selected from '../../assets/icon/ic_check_selected.svg';
 import { styled } from 'styled-components';
 import { IcArrowRightDark } from '../../assets/icon';
+import { useState } from 'react';
+import PublicBottomSheet from './PublicBottomSheet';
 
 interface MakePublicProps {
   isPublic: boolean;
@@ -9,12 +11,14 @@ interface MakePublicProps {
 }
 
 const MakePublic: React.FC<MakePublicProps> = ({ isPublic, setIsPublic }) => {
+  const [isBottomOpen, setBottomOpen] = useState(false);
+
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsPublic(e.target.checked);
   };
 
   return (
-    <>
+    <St.Wrapper>
       <St.MakePublicWrapper>
         <St.PublicAgreeCheckBox
           type='checkbox'
@@ -26,19 +30,33 @@ const MakePublic: React.FC<MakePublicProps> = ({ isPublic, setIsPublic }) => {
 
         <St.PublicAgreeTouchArea>
           <St.PublicAgreeText>커스텀 도안 공개하고 단가 낮출래요</St.PublicAgreeText>
-          <IcArrowRightDark />
+          <IcArrowRightDark onClick={() => setBottomOpen(true)} />
         </St.PublicAgreeTouchArea>
       </St.MakePublicWrapper>
       <St.PublicAgreeSubtext>
         해당 도안을 다른 타투어도 구매할 수 있게 공개하면 즉시 할인 받을 수 있어요
       </St.PublicAgreeSubtext>
-    </>
+      {isBottomOpen && (
+        <PublicBottomSheet isSheetOpen={isBottomOpen} setSheetOpen={setBottomOpen} />
+      )}
+    </St.Wrapper>
   );
 };
 
 export default MakePublic;
 
 const St = {
+  Wrapper: styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    position: sticky;
+    bottom: 2.9rem;
+    height: 12.2rem;
+
+    background-color: ${({ theme }) => theme.colors.white};
+  `,
   MakePublicWrapper: styled.section`
     display: flex;
     align-items: center;
