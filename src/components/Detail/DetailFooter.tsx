@@ -3,13 +3,14 @@ import { IcHeartDark, IcHeartLight } from '../../assets/icon';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 interface DetailFooterProp {
+  id: number;
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isSecond: boolean;
   text: string;
   like: boolean;
   setLike: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const DetailFooter = ({ setSheetOpen, isSecond, text, like, setLike }: DetailFooterProp) => {
+const DetailFooter = ({ id, setSheetOpen, isSecond, text, like, setLike }: DetailFooterProp) => {
   const navigate = useNavigate();
   const location = useLocation();
   const currURL = location.pathname;
@@ -23,8 +24,12 @@ const DetailFooter = ({ setSheetOpen, isSecond, text, like, setLike }: DetailFoo
         },
       });
     } else if (isSecond) {
-      // 추후 아이템 인덱스도 함께 전달
-      navigate('/order');
+      // state를 전해주게 된다면?
+      navigate('/order', {
+        state: {
+          id: id,
+        },
+      });
     } else {
       setSheetOpen(true);
     }
