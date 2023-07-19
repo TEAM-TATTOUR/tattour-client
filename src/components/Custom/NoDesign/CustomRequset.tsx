@@ -3,11 +3,13 @@ import { styled } from 'styled-components';
 // 이모티콘 카운팅 관련 라이브러리
 import GraphemeSplitter from 'grapheme-splitter';
 
-const CustomRequset = ({
-  setIsActiveNext,
-}: {
+interface CustomRequestProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  setDemand: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const CustomRequset = ({ setIsActiveNext, setName, setDemand }: CustomRequestProps) => {
   //count 될 maxCount 수
   const MAX_NAME_COUNT = 10;
   const MAX_ETC_COUNT = 100;
@@ -47,6 +49,7 @@ const CustomRequset = ({
 
     if (!lengthCount) return;
     setNameInputCount(lengthCount);
+    setName(e.target.value);
   };
 
   const handleChangeEtcTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -56,6 +59,7 @@ const CustomRequset = ({
 
     if (!lengthCount) return;
     setEtcTextAreaCount(lengthCount);
+    setDemand(e.target.value);
   };
 
   return (

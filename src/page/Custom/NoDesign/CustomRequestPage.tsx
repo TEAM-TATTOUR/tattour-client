@@ -10,17 +10,38 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { IcBackDark } from '../../../assets/icon';
 
 const CustomRequestPage = () => {
+  const CUSTOM_VIEW_COUNT = 3;
+
   const navigate = useNavigate();
   const location = useLocation();
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
+  const [name, setName] = useState('');
+  const [demand, setDemand] = useState('');
+
+  const { haveDesign, customInfo: prevCustomInfo, customMainImage } = location.state;
+
+  const customInfo = {
+    ...prevCustomInfo,
+    viewCount: CUSTOM_VIEW_COUNT,
+    name: name,
+    demand: demand,
+  };
 
   console.log(location.state);
 
   const renderCustomRequestPageHeader = () => {
     return (
       <Header
-        leftSection={<IcBackDark onClick={() => navigate('/custom-img')} />}
+        leftSection={
+          <IcBackDark
+            onClick={() =>
+              navigate('/custom-img', {
+                state: location.state,
+              })
+            }
+          />
+        }
         title='커스텀 타투'
         rightSection={
           <CancelBtn
@@ -36,9 +57,17 @@ const CustomRequestPage = () => {
   return (
     <PageLayout
       renderHeader={renderCustomRequestPageHeader}
-      footer={<NextFooter isActiveNext={isActiveNext} navigateURL='/custom-quantity' />}
+      footer={
+        <NextFooter
+          isActiveNext={isActiveNext}
+          navigateURL='/price'
+          haveDesign={haveDesign}
+          customInfo={customInfo}
+          customMainImage={customMainImage}
+        />
+      }
     >
-      <CustomRequset setIsActiveNext={setIsActiveNext} />
+      <CustomRequset setIsActiveNext={setIsActiveNext} setName={setName} setDemand={setDemand} />
     </PageLayout>
   );
 };
