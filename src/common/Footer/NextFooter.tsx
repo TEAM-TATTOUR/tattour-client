@@ -2,11 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { customInfo } from '../../types/customInfo';
 
-interface customRequest extends customInfo {
-  customMainImage?: File;
-  customImages?: FileList;
-}
-
 interface NextFooterProps {
   isActiveNext?: boolean;
   navigateURL: string;
