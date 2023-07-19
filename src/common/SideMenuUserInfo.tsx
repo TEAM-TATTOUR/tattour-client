@@ -1,8 +1,21 @@
 import { styled } from 'styled-components';
 import { IcArrowRightLight } from '../assets/icon';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SideMenuUserInfo = ({ isLogin }: { isLogin: boolean }) => {
   const point = 2000;
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const currURL = location.pathname;
+
+  const handleClickChargeBtn = () => {
+    navigate('/point-charge', {
+      state: {
+        redirectURL: currURL,
+      },
+    });
+  };
 
   return isLogin ? (
     <St.SideMenuUserInfoSection>
@@ -16,7 +29,9 @@ const SideMenuUserInfo = ({ isLogin }: { isLogin: boolean }) => {
           <St.SideMenuUserPoint>{point.toLocaleString()}</St.SideMenuUserPoint>
           <span>P</span>
         </St.SideMenuUserPointTextWrapper>
-        <St.SideMenuUserPointChargeButton>충전하기</St.SideMenuUserPointChargeButton>
+        <St.SideMenuUserPointChargeButton onClick={handleClickChargeBtn}>
+          충전하기
+        </St.SideMenuUserPointChargeButton>
       </St.SideMenuUserPointWrapper>
     </St.SideMenuUserInfoSection>
   ) : (

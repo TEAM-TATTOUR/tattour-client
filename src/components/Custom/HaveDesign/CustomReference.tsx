@@ -4,7 +4,11 @@ import CustomImageAttach from './CustomImageAttach';
 import PaintBottomSheet from './PaintBottomSheet';
 import { useState } from 'react';
 
-const CustomReference = () => {
+const CustomReference = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
 
@@ -15,6 +19,8 @@ const CustomReference = () => {
         isBottomOpen={isBottomOpen}
         setBottomOpen={setBottomOpen}
         drawingImageURL={drawingImageUrl}
+        setDrawingImageURL={setDrawingImageUrl}
+        setIsActiveNext={setIsActiveNext}
       />
       {isBottomOpen && (
         <PaintBottomSheet
@@ -33,8 +39,7 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    padding: 0 2rem;
+    min-height: calc(100dvh - 13.6rem);
   `,
 };
 

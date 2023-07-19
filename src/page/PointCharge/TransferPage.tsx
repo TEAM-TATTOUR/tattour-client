@@ -8,11 +8,15 @@ import PointTransferFooter from '../../components/PointCharge/PointTransferFoote
 import TransferMain from '../../components/PointCharge/TransferMain';
 import ChargePointEscapeModal from '../../common/Modal/EscapeModal/ChargePointEscapeModal';
 import TransferPolicy from '../../components/PointCharge/TransferPolicy';
+import { useLocation } from 'react-router-dom';
 // import TransferPolicy from '../../components/PointCharge/TransferPolicy';
 
 const TransferPage = () => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
+
+  const location = useLocation();
+  const { redirectURL } = location.state;
 
   const renderTransferPageHeader = () => {
     return (
@@ -34,7 +38,7 @@ const TransferPage = () => {
   return (
     <PageLayout
       renderHeader={renderTransferPageHeader}
-      footer={<PointTransferFooter isActiveNext={isActiveNext} />}
+      footer={<PointTransferFooter isActiveNext={isActiveNext} redirectURL={redirectURL} />}
     >
       <TransferMain />
       <TransferPolicy setIsActiveNext={setIsActiveNext} />

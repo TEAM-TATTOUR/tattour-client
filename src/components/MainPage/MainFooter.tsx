@@ -5,7 +5,7 @@ const MainFooter = ({ isFooterVisible }: { isFooterVisible: boolean }) => {
   const navigate = useNavigate();
 
   const handleClickButton = () => {
-    navigate('/custom');
+    navigate('/onboarding');
   };
 
   return (
