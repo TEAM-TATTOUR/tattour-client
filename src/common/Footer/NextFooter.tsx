@@ -5,7 +5,7 @@ import { customInfo } from '../../types/customInfo';
 interface NextFooterProps {
   isActiveNext?: boolean;
   navigateURL: string;
-  stateList: customRequest;
+  stateList: customInfo;
 }
 
 const NextFooter = ({ isActiveNext = true, navigateURL, stateList }: NextFooterProps) => {
@@ -13,7 +13,7 @@ const NextFooter = ({ isActiveNext = true, navigateURL, stateList }: NextFooterP
 
   const handleClickFooter = () => {
     {
-      isActiveNext && navigate(navigateURL, { state: { stateList } });
+      isActiveNext && navigate(navigateURL, { state: stateList });
     }
   };
 
