@@ -92,7 +92,6 @@ const DetailPage = () => {
   };
 
   const { response, error, loading } = useGetSticker(Number(id));
-
   return (
     <PageLayout
       renderHeader={renderDetailPageHeader}

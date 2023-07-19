@@ -72,5 +72,10 @@ const St = {
 
     background-color: ${({ theme }) => theme.colors.gray0};
     color: black;
+
+    & > img {
+      width: 19.5rem;
+      height: 19.5rem;
+    }
   `,
 };

@@ -2,19 +2,21 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { StickerItemProps } from '../../libs/hooks/detail/useGetSticker';
 
-const DetailInfo = ({
-  name,
-  discountRate,
-  discountPrice,
-  price,
-  composition,
-  size,
-  shippingCost,
-  stickerThemes,
-  stickerStyles,
-  description,
-}: StickerItemProps) => {
+const DetailInfo = ({ response }: StickerItemProps) => {
   const [isOpen, setOpen] = useState(false);
+
+  const {
+    name,
+    discountRate,
+    discountPrice,
+    price,
+    composition,
+    size,
+    shippingCost,
+    stickerThemes,
+    stickerStyles,
+    description,
+  } = response;
 
   return (
     <St.Wrapper>
@@ -25,11 +27,11 @@ const DetailInfo = ({
       <St.PriceContainer>
         <St.Discount>{discountRate}%</St.Discount>
         <St.FinalPrice>
-          {discountPrice.toLocaleString()}
+          {discountPrice && discountPrice.toLocaleString()}
           <span>원</span>
         </St.FinalPrice>
       </St.PriceContainer>
-      <St.OriginalPrice>{price.toLocaleString()}원</St.OriginalPrice>
+      <St.OriginalPrice>{price && price.toLocaleString()}원</St.OriginalPrice>
       <St.LightLine />
       <St.Description>
         <St.Category>구성</St.Category>
@@ -37,30 +39,28 @@ const DetailInfo = ({
         <St.Category>크기</St.Category>
         <span>{size}</span>
         <St.Category>배송비</St.Category>
-        <span>{shippingCost.toLocaleString()}원</span>
+        <span>{shippingCost && shippingCost.toLocaleString()}원</span>
       </St.Description>
       <St.BoldLine />
       <St.TagContainer>
-        {stickerThemes.map((el, index) => (
-          <St.Tag key={index}>{el}</St.Tag>
-        ))}
-        {stickerStyles.map((el, index) => (
-          <St.Tag key={index}>{el}</St.Tag>
-        ))}
+        {stickerThemes && stickerThemes.map((el, index) => <St.Tag key={index}>{el}</St.Tag>)}
+        {stickerStyles && stickerStyles.map((el, index) => <St.Tag key={index}>{el}</St.Tag>)}
       </St.TagContainer>
-      <p>
-        <St.DetailText>{description.substring(0, 65)}</St.DetailText>
-        {isOpen ? (
-          <St.DetailText>{description.substring(65)}</St.DetailText>
-        ) : (
-          description.length > 65 && (
-            <St.DetailText>
-              {'···'}
-              <St.Button onClick={() => setOpen(true)}>더보기</St.Button>
-            </St.DetailText>
-          )
-        )}
-      </p>
+      {description && (
+        <p>
+          <St.DetailText>{description.substring(0, 65)}</St.DetailText>
+          {isOpen ? (
+            <St.DetailText>{description.substring(65)}</St.DetailText>
+          ) : (
+            description.length > 65 && (
+              <St.DetailText>
+                {'···'}
+                <St.Button onClick={() => setOpen(true)}>더보기</St.Button>
+              </St.DetailText>
+            )
+          )}
+        </p>
+      )}
       <St.BoldLine />
     </St.Wrapper>
   );
