@@ -9,8 +9,19 @@ interface DetailFooterProp {
   text: string;
   like: boolean;
   setLike: React.Dispatch<React.SetStateAction<boolean>>;
+  count: number;
+  shippingFee: number;
 }
-const DetailFooter = ({ id, setSheetOpen, isSecond, text, like, setLike }: DetailFooterProp) => {
+const DetailFooter = ({
+  id,
+  setSheetOpen,
+  isSecond,
+  text,
+  like,
+  setLike,
+  count,
+  shippingFee,
+}: DetailFooterProp) => {
   const navigate = useNavigate();
   const location = useLocation();
   const currURL = location.pathname;
@@ -25,9 +36,11 @@ const DetailFooter = ({ id, setSheetOpen, isSecond, text, like, setLike }: Detai
       });
     } else if (isSecond) {
       // state를 전해주게 된다면?
-      navigate('/order', {
+      navigate(`/order`, {
         state: {
           id: id,
+          count: count,
+          shippingFee: shippingFee,
         },
       });
     } else {
