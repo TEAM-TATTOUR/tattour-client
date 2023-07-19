@@ -14,8 +14,6 @@ const TempSaveModal = ({
     setModalOn(false);
   };
 
-  // const { response, error, loading } = useGetCustomIncomplete();
-
   return (
     <St.ModalContainer>
       <St.ModalContent>
