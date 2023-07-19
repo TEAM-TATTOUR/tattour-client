@@ -1,7 +1,9 @@
 import { styled } from 'styled-components';
 import { LabelCustomSmall } from '../assets/icon';
+import { useNavigate } from 'react-router-dom';
 
 const SmallTattooCard = ({
+  id,
   img,
   title,
   discountRate,
@@ -9,6 +11,7 @@ const SmallTattooCard = ({
   originalPrice,
   isCustom,
 }: {
+  id: number;
   img: string;
   title: string;
   discountRate: number;
@@ -16,8 +19,14 @@ const SmallTattooCard = ({
   originalPrice: number;
   isCustom: boolean;
 }) => {
+  const navigate = useNavigate();
+
+  const handleClickItem = (id: number) => {
+    navigate(`/detail/${id}`);
+  };
+
   return (
-    <St.SmallTattooCardItem>
+    <St.SmallTattooCardItem onClick={() => handleClickItem(id)}>
       {isCustom && <LabelCustomSmall />}
       <St.SmallTattooCardImage src={img} alt='작은 타투 이미지' />
       <St.SmallTattooCardTitle>{title}</St.SmallTattooCardTitle>
