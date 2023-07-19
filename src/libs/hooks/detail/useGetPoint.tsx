@@ -13,7 +13,7 @@ interface PointResponse {
   message: string;
 }
 
-const useGetAllList = () => {
+const useGetPoint = () => {
   const [response, setResponse] = useState<PointItemProp>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
@@ -40,4 +40,4 @@ const useGetAllList = () => {
   return { response, error, loading };
 };
 
-export default useGetAllList;
+export default useGetPoint;

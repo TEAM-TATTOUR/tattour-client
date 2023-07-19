@@ -3,6 +3,7 @@ import Sheet from 'react-modal-sheet';
 import { IcCancelDark, IcMinus, IcMinusOneunder, IcPlus } from '../../assets/icon';
 import DetailFooter from './DetailFooter';
 import { useEffect, useState } from 'react';
+import useGetPoint from '../../libs/hooks/detail/useGetPoint';
 
 interface DetailBottomProps {
   id: number;
@@ -18,21 +19,20 @@ const DetailBottom = ({ id, isSheetOpen, setSheetOpen, like, setLike }: DetailBo
 
   const PRICE = 2500;
   const DELIVERY_PRICE = 3000;
-  const MY_POINT = 10000;
 
   const [count, setCount] = useState(1);
   const [isLack, setLack] = useState(false);
+
+  const { response, error, loading } = useGetPoint();
 
   useEffect(() => {
     setCount(1);
   }, [isSheetOpen]);
 
   useEffect(() => {
-    if (MY_POINT < count * PRICE + DELIVERY_PRICE) {
-      setLack(true);
-    } else {
-      setLack(false);
-    }
+    !error && !loading && response && response.point < count * PRICE + DELIVERY_PRICE
+      ? setLack(true)
+      : setLack(false);
   }, [count]);
 
   return (
