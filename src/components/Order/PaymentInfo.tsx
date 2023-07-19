@@ -1,40 +1,43 @@
 import styled from 'styled-components';
 import PaymentMini from './PaymentMini';
-
-interface PaymentInfoProps {
-  finalPrice: number;
-  itemPrice: number;
-  deliveryPrice: number;
-  myPoint: number;
-  resultPoint: number;
-}
+import {
+  getOrderAmountResProps,
+  getUserOrderPointResProps,
+} from '../../libs/hooks/order/useGetOrdersheet';
 
 const PaymentInfo = ({
-  finalPrice,
-  itemPrice,
-  deliveryPrice,
-  myPoint,
-  resultPoint,
-}: PaymentInfoProps) => {
+  getOrderAmountRes,
+  getUserOrderPointRes,
+}: {
+  getOrderAmountRes: getOrderAmountResProps;
+  getUserOrderPointRes: getUserOrderPointResProps;
+}) => {
+  const { totalAmount, productAmount, shippingFee } = getOrderAmountRes;
+  const { userPoint, resultPoint } = getUserOrderPointRes;
+
   return (
     <div>
       <St.PriceContainer>
         <St.Title>결제 정보</St.Title>
-        <PaymentMini finalPrice={finalPrice} itemPrice={itemPrice} deliveryPrice={deliveryPrice} />
+        <PaymentMini
+          finalPrice={totalAmount}
+          itemPrice={productAmount}
+          deliveryPrice={shippingFee}
+        />
       </St.PriceContainer>
       <St.LightLine />
       <St.PointContainer>
         <St.PointText>
           <St.MainText>보유 포인트</St.MainText>
           <St.MainText>
-            <span>{myPoint.toLocaleString()}</span>
+            <span>{userPoint && userPoint.toLocaleString()}</span>
             <span>P</span>
           </St.MainText>
         </St.PointText>
         <St.PointText>
           <St.MainText>남는 포인트</St.MainText>
           <St.MainText>
-            <span>{resultPoint.toLocaleString()}</span>
+            <span>{resultPoint && resultPoint.toLocaleString()}</span>
             <span>P</span>
           </St.MainText>
         </St.PointText>

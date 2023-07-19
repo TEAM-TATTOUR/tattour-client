@@ -23,7 +23,6 @@ const OrderPage = () => {
   const state = location.state as { stickerId: number; count: number; shippingFee: number };
   // id로 서버에서 데이터 받아오기
   const { response, error, loading } = useGetOrdersheet(state);
-  console.log(response);
 
   const [isPostOpen, setIsPostOpen] = useState(false);
   const addressRef = useRef<HTMLInputElement | null>(null);
@@ -75,38 +74,37 @@ const OrderPage = () => {
       renderHeader={renderOrderPageHeader}
       footer={<OrderFooter isComplete={isComplete} />}
     >
-      {!error && !loading && (
-        <ProductInfo getOrderSheetStickerInfo={response.getOrderSheetStickerInfo} />
+      {!error && !loading && response && (
+        <>
+          <ProductInfo getOrderSheetStickerInfo={response.getOrderSheetStickerInfo} />
+          <St.Line />
+          <DeliveryInfo
+            handleModal={handleModal}
+            addressRef={addressRef}
+            postcodeRef={postcodeRef}
+            setComplete={setComplete}
+            input={input}
+            setInput={setInput}
+            phone={phone}
+            setPhone={setPhone}
+            detailAddress={detailAddress}
+            setDetailAddress={setDetailAddress}
+          />
+          <St.Line />
+          <PaymentInfo
+            getOrderAmountRes={response.getOrderAmountRes}
+            getUserOrderPointRes={response.getUserOrderPointRes}
+          />
+          <St.Line />
+          <RefundInfo setSheetOpen={setSheetOpen} setAgree={setAgree} />
+          {isPostOpen && (
+            <St.Card onClick={() => setIsPostOpen(false)}>
+              <Postcode onComplete={handleAddress} />
+            </St.Card>
+          )}
+          <RefundBottom isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} />
+        </>
       )}
-      <St.Line />
-      <DeliveryInfo
-        handleModal={handleModal}
-        addressRef={addressRef}
-        postcodeRef={postcodeRef}
-        setComplete={setComplete}
-        input={input}
-        setInput={setInput}
-        phone={phone}
-        setPhone={setPhone}
-        detailAddress={detailAddress}
-        setDetailAddress={setDetailAddress}
-      />
-      <St.Line />
-      <PaymentInfo
-        finalPrice={FINAL_PRICE}
-        itemPrice={ITEM_PRICE}
-        deliveryPrice={DELIVERY_PRICE}
-        myPoint={MY_POINT}
-        resultPoint={RESULT_POINT}
-      />
-      <St.Line />
-      <RefundInfo setSheetOpen={setSheetOpen} setAgree={setAgree} />
-      {isPostOpen && (
-        <St.Card onClick={() => setIsPostOpen(false)}>
-          <Postcode onComplete={handleAddress} />
-        </St.Card>
-      )}
-      <RefundBottom isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} />
     </PageLayout>
   );
 };
