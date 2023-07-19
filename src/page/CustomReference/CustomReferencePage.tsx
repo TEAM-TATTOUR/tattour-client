@@ -44,7 +44,7 @@ const CustomReferencePage = () => {
         <NextFooter
           isActiveNext={isActiveNext}
           navigateURL={'/styling-color'}
-          stateList={stateList}
+          customInfo={stateList}
         />
       }
     >
