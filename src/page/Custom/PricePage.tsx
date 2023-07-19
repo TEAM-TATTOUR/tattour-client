@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import BackBtn from '../../common/Header/BackBtn';
 import CancelBtn from '../../common/Header/CancelBtn';
 import ProgressBar from '../../common/ProgressBar';
 import CountPrice from '../../components/Custom/CountPrice';
@@ -10,15 +9,19 @@ import PriceFooter from '../../components/Custom/PriceFooter';
 import MakePublic from '../../components/Custom/MakePublic';
 import CustomSizeEscapeModal from '../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import { styled } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { IcBackDark } from '../../assets/icon';
 
 const PricePage = () => {
   const [modalOn, setModalOn] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
 
+  const navigate = useNavigate();
+
   const renderPricePageHeader = () => {
     return (
       <Header
-        leftSection={<BackBtn />}
+        leftSection={<IcBackDark onClick={() => navigate('/additional-request')} />}
         title='커스텀 타투'
         rightSection={
           <CancelBtn
