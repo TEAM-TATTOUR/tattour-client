@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import CustomScrollContainer from '../../common/CustomScrollContainer';
 import MyCustomItem from './MyCustomItem';
+import useGetCustomIncomplete from '../../libs/hooks/useGetCustomIncomplete';
 
 const dummyMyCustomData = [
   {
@@ -18,6 +19,8 @@ const dummyMyCustomData = [
 ];
 
 const MyCustom = () => {
+  // const { response, error, loading } = useGetCustomIncomplete();
+
   return (
     <>
       <CustomScrollContainer title={'MY CUSTOM'}>
