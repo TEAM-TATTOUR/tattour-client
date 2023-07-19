@@ -5,6 +5,7 @@ import Toast from '../../common/ToastMessage/Toast';
 import Timer from './Timer';
 import ErrorMessage from './ErrorMessage';
 import { useLocation, useNavigate } from 'react-router-dom';
+import usePostPhoneNum from '../../libs/hooks/usePostPhoneNum';
 
 const RegisterPhoneNumForm = () => {
   // 임의의 인증번호
@@ -60,6 +61,8 @@ const RegisterPhoneNumForm = () => {
       setText('');
     }
   };
+
+  usePostPhoneNum({ phoneNum, isRequired });
 
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
