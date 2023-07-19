@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BackBtn from '../../common/Header/BackBtn';
 import CancelBtn from '../../common/Header/CancelBtn';
 import CustomReference from '../../components/Custom/HaveDesign/CustomReference';
@@ -13,9 +13,18 @@ const CustomReferencePage = () => {
   // 모달 사용할 때  활용
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
+  const [customMainImg, setCustomMainImg] = useState(null);
+  const [customImg, setCustomImg] = useState([]);
 
   const location = useLocation();
   const states = location.state;
+
+  useEffect(() => {
+    return () => {
+      states.customMainImage = customMainImg;
+      states.customImages = customImg;
+    };
+  }, [customMainImg, customImg, states]);
 
   const renderCustomReferencePageHeader = () => {
     return (
@@ -42,7 +51,11 @@ const CustomReferencePage = () => {
         <NextFooter isActiveNext={isActiveNext} navigateURL={'/styling-color'} stateList={} />
       }
     >
-      <CustomReference setIsActiveNext={setIsActiveNext} states={states}/>
+      <CustomReference
+        setIsActiveNext={setIsActiveNext}
+        setCustomMainImg={setCustomMainImg}
+        setCustomImg={setCustomImg}
+      />
     </PageLayout>
   );
 };
