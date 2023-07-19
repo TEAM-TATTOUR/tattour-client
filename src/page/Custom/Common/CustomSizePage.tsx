@@ -7,10 +7,24 @@ import PageLayout from '../../../components/PageLayout';
 import NextFooter from '../../../common/Footer/NextFooter';
 import { useState } from 'react';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import { useLocation } from 'react-router-dom';
+import { customInfo } from '../../../types/customInfo';
 
 const CustomSizePage = () => {
+  const CUSTOM_VIEW_COUNT = 1;
+
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
+  const [size, setSize] = useState('');
+
+  const location = useLocation();
+  const { haveDesign, customId } = location.state;
+
+  const customInfo: customInfo = {
+    viewCount: CUSTOM_VIEW_COUNT,
+    customId: customId,
+    size: size,
+  };
 
   const renderCustomSizePageHeader = () => {
     return (
@@ -31,9 +45,16 @@ const CustomSizePage = () => {
   return (
     <PageLayout
       renderHeader={renderCustomSizePageHeader}
-      footer={<NextFooter isActiveNext={isActiveNext} navigateURL='/custom-img' />}
+      footer={
+        <NextFooter
+          isActiveNext={isActiveNext}
+          navigateURL='/custom-img'
+          haveDesign={haveDesign}
+          customInfo={customInfo}
+        />
+      }
     >
-      <CustomSelectSize setIsActiveNext={setIsActiveNext} />
+      <CustomSelectSize setIsActiveNext={setIsActiveNext} setSize={setSize} />
     </PageLayout>
   );
 };

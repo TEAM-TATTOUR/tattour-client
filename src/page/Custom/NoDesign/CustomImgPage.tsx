@@ -14,7 +14,8 @@ const CustomImgPage = () => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
   const location = useLocation();
-  const stateList = location.state;
+
+  console.log(location.state, '!!!');
 
   const renderCustomImgPageHeader = () => {
     return (
@@ -36,13 +37,7 @@ const CustomImgPage = () => {
   return (
     <PageLayout
       renderHeader={renderCustomImgPageHeader}
-      footer={
-        <NextFooter
-          isActiveNext={isActiveNext}
-          navigateURL='/custom-request'
-          stateList={stateList}
-        />
-      }
+      footer={<NextFooter isActiveNext={isActiveNext} navigateURL='/custom-request' />}
     >
       <CustomImg setIsActiveNext={setIsActiveNext} />
     </PageLayout>
