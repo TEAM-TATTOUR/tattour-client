@@ -7,7 +7,7 @@ interface resProps {
   data: {
     data: {
       accessToken: string;
-      userExist: boolean;
+      isUserExist: boolean;
     };
   };
 }
@@ -21,7 +21,7 @@ const KakaoLoginHook = () => {
     if (code) {
       axios
         .post(
-          `http://43.201.90.237:9000/api/v1/user/signup`,
+          `https://api.tattour.shop/api/v1/user/signup`,
           // post body
           {
             socialPlatform: 'KAKAO',
@@ -36,11 +36,11 @@ const KakaoLoginHook = () => {
         .then((res: resProps) => {
           // accessToken 값 저장
           const accessToken = res.data.data.accessToken;
-          const userExist = res.data.data.userExist;
+          const isUserExist = res.data.data.isUserExist;
 
           setAccessToken(accessToken);
 
-          userExist ? navigate('/') : navigate('/register');
+          isUserExist ? navigate('/') : navigate('/register');
         })
         .catch((Error: object) => {
           console.log(Error);
