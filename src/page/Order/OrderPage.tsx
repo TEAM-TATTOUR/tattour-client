@@ -21,22 +21,12 @@ interface dataProps {
 const OrderPage = () => {
   const location = useLocation();
   const state = location.state as { stickerId: number; count: number; shippingFee: number };
-  // id로 서버에서 데이터 받아오기
   const { response, error, loading } = useGetOrdersheet(state);
 
   const [isPostOpen, setIsPostOpen] = useState(false);
   const addressRef = useRef<HTMLInputElement | null>(null);
   const postcodeRef = useRef<HTMLInputElement | null>(null);
   const [isSheetOpen, setSheetOpen] = useState(false);
-
-  // 추후 서버통신 시 변수 변경 예정
-  const ORIGINAL_PRICE = 4000;
-  const FINAL_PRICE = 5500;
-  const ITEM_PRICE = 2500;
-  const DELIVERY_PRICE = 3000;
-  const MY_POINT = 10000;
-  const RESULT_POINT = 4500;
-  const COUNT = 1;
 
   const [isComplete, setComplete] = useState(false);
   const [input, setInput] = useState<string>('');
