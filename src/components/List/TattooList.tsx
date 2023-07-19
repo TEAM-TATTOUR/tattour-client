@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { IcArrowBottomSmallGray, IcArrowBottomSmallLight } from '../../assets/icon';
+import {
+  IcArrowBottomSmallGray,
+  IcArrowBottomSmallLight,
+  LabelCustomSmall,
+} from '../../assets/icon';
 import { useState, useEffect, useRef } from 'react';
 import useGetAllList from '../../libs/hooks/list/useGetAllList';
 
@@ -65,6 +69,7 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
             return (
               <St.Card key={id}>
                 <St.CardImg>
+                  {isCustom && <LabelCustomSmall />}
                   <img src={imageUrl} />
                 </St.CardImg>
                 <h2>{name}</h2>
@@ -147,12 +152,20 @@ const St = {
     justify-content: center;
     align-items: center;
 
+    position: relative;
+
     height: 20.1rem;
     background-color: ${({ theme }) => theme.colors.gray0};
 
     & > img {
       weight: 18.3rem;
       height: 18.3rem;
+    }
+
+    & > svg {
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   `,
   CardDiscount: styled.span`
