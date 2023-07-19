@@ -16,7 +16,8 @@ const TransferPage = () => {
   const [isActiveNext, setIsActiveNext] = useState(false);
 
   const location = useLocation();
-  const { redirectURL } = location.state;
+  const { redirectURL, chargeAmount } = location.state;
+  console.log(chargeAmount, '!!!');
 
   const renderTransferPageHeader = () => {
     return (
