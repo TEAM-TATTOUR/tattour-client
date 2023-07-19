@@ -19,8 +19,6 @@ const dummyMyCustomData = [
 ];
 
 const MyCustom = () => {
-  // const { response, error, loading } = useGetCustomIncomplete();
-
   return (
     <>
       <CustomScrollContainer title={'MY CUSTOM'}>
