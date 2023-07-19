@@ -5,7 +5,8 @@ interface CustomSizeEscapeModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CustomSizeEscapeModal = ({setModalOn} : CustomSizeEscapeModalProps) => {
+const CustomSizeEscapeModal = ({ setModalOn }: CustomSizeEscapeModalProps) => {
+  // const { response, error, loading } = usePatchCustom();
   return (
     <ModalPortal>
       <EscapeModalForm
