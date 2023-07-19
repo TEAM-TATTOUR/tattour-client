@@ -2,11 +2,12 @@ import { styled } from 'styled-components';
 import { IcCheckSmallGray } from '../../assets/icon';
 import React, { useState } from 'react';
 
-const Charge = ({
-  setIsActiveNext,
-}: {
+interface ChargeProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+  setChargeAmount: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
   const [isWarning, setIsWarning] = useState(false);
   const [parsedPrice, setParsedPrice] = useState('');
 
@@ -21,6 +22,7 @@ const Charge = ({
 
     //, 붙이기
     const removedCommaValue = Number(targetVal.replace(/,/gi, ''));
+    setChargeAmount(removedCommaValue);
     setParsedPrice(removedCommaValue.toLocaleString());
 
     //1000원 단위인지 확인
