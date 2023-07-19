@@ -2,15 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { customInfo } from '../../types/customInfo';
 
-interface customRequest extends customInfo {
-  customMainImage?: File;
-  customImages?: FileList;
-}
-
 interface NextFooterProps {
   isActiveNext?: boolean;
   navigateURL: string;
-  stateList: customRequest;
+  stateList: customInfo;
 }
 
 const NextFooter = ({ isActiveNext = true, navigateURL, stateList }: NextFooterProps) => {
@@ -18,7 +13,7 @@ const NextFooter = ({ isActiveNext = true, navigateURL, stateList }: NextFooterP
 
   const handleClickFooter = () => {
     {
-      isActiveNext && navigate(navigateURL, { state: { stateList } });
+      isActiveNext && navigate(navigateURL, { state: stateList });
     }
   };
 
