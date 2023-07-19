@@ -19,24 +19,22 @@ export interface StickerItemProps {
 }
 
 interface StickerResponse {
-  data: {
-    stickers: StickerItemProps[];
-  };
+  data: StickerItemProps;
   code: number;
   message: string;
 }
 
-const useGetAllList = () => {
-  const [response, setResponse] = useState<StickerItemProps[]>([]);
+const useGetSticker = (id: number) => {
+  const [response, setResponse] = useState<StickerItemProps>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     await api
-      .get(`/stickers`)
+      .get(`/stickers/${id}`)
       .then((res) => {
         const data: StickerResponse = res.data;
-        setResponse(data.data.stickers);
+        setResponse(data.data);
       })
       .catch((err) => {
         setError(err);
@@ -53,4 +51,4 @@ const useGetAllList = () => {
   return { response, error, loading };
 };
 
-export default useGetAllList;
+export default useGetSticker;
