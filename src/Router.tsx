@@ -27,6 +27,7 @@ import CustomReferencePage from './page/CustomReference/CustomReferencePage';
 import SearchPage from './page/Search/SearchPage';
 import SearchResultPage from './page/Search/SearchResultPage';
 import ScrollToTop from './libs/hooks/ScrollTop';
+import LoginCallback from './components/Login/LoginCallback';
 
 const Router = () => {
   return (
@@ -38,7 +39,8 @@ const Router = () => {
         <Route path='/order' element={<OrderPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/detail' element={<DetailPage />} />
-        <Route path='/login/oauth2/callback' element={<RegisterNamePage />} />
+        <Route path='/login/oauth2/callback' element={<LoginCallback />} />
+        <Route path='/register' element={<RegisterNamePage />} />
         <Route path='/register-number' element={<RegisterPhoneNumPage />} />
         <Route path='/welcome-signup' element={<WelcomePage />} />
         <Route path='/my-tattoo' element={<MyTattoo />} />
