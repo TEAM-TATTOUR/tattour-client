@@ -2,11 +2,12 @@ import { styled } from 'styled-components';
 import { IcCancelDark, IcPhoto } from '../../../assets/icon';
 import React, { useEffect, useState } from 'react';
 
-const CustomImgAttach = ({
-  setIsActiveNext,
-}: {
+interface CustomImgAttachProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+  setCustomMainImage: React.Dispatch<React.SetStateAction<File | undefined>>;
+}
+
+const CustomImgAttach = ({ setIsActiveNext, setCustomMainImage }: CustomImgAttachProps) => {
   const [previewURL, setPreviewURL] = useState('');
 
   useEffect(() => {
@@ -18,6 +19,9 @@ const CustomImgAttach = ({
     if (!files || !files[0]) return; // early return
 
     const fileBlob = files[0]; // 서버 통신 시 보낼 타입
+    setCustomMainImage(fileBlob);
+
+    console.log(fileBlob);
 
     // FileReader로 이미지 미리보기 구현
     const reader = new FileReader();

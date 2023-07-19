@@ -3,15 +3,16 @@ import { styled } from 'styled-components';
 import CustomImgHeader from './CustomImgHeader';
 import CustomImgAttach from './CustomImgAttach';
 
-const CustomImg = ({
-  setIsActiveNext,
-}: {
+interface CustomImgProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+  setCustomMainImage: React.Dispatch<React.SetStateAction<File | undefined>>;
+}
+
+const CustomImg = ({ setIsActiveNext, setCustomMainImage }: CustomImgProps) => {
   return (
     <St.CustomImgWrapper>
       <CustomImgHeader />
-      <CustomImgAttach setIsActiveNext={setIsActiveNext} />
+      <CustomImgAttach setIsActiveNext={setIsActiveNext} setCustomMainImage={setCustomMainImage} />
     </St.CustomImgWrapper>
   );
 };

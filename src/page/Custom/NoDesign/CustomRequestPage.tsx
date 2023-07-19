@@ -15,7 +15,7 @@ const CustomRequestPage = () => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
-  const stateList = location.state;
+  console.log(location.state);
 
   const renderCustomRequestPageHeader = () => {
     return (
@@ -36,13 +36,7 @@ const CustomRequestPage = () => {
   return (
     <PageLayout
       renderHeader={renderCustomRequestPageHeader}
-      footer={
-        <NextFooter
-          isActiveNext={isActiveNext}
-          navigateURL='/custom-quantity'
-          stateList={stateList}
-        />
-      }
+      footer={<NextFooter isActiveNext={isActiveNext} navigateURL='/custom-quantity' />}
     >
       <CustomRequset setIsActiveNext={setIsActiveNext} />
     </PageLayout>

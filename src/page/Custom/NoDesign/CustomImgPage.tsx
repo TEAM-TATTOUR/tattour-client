@@ -10,17 +10,35 @@ import { IcBackDark } from '../../../assets/icon';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const CustomImgPage = () => {
+  const CUSTOM_VIEW_COUNT = 2;
+
   const navigate = useNavigate();
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
+  const [customMainImage, setCustomMainImage] = useState<File>();
   const location = useLocation();
+
+  const { haveDesign, customInfo: prevCustomInfo } = location.state;
+
+  const customInfo = {
+    ...prevCustomInfo,
+    viewCount: CUSTOM_VIEW_COUNT,
+  };
 
   console.log(location.state, '!!!');
 
   const renderCustomImgPageHeader = () => {
     return (
       <Header
-        leftSection={<IcBackDark onClick={() => navigate('/custom-size')} />}
+        leftSection={
+          <IcBackDark
+            onClick={() =>
+              navigate('/custom-size', {
+                state: location.state,
+              })
+            }
+          />
+        }
         title='커스텀 타투'
         rightSection={
           <CancelBtn
@@ -37,9 +55,17 @@ const CustomImgPage = () => {
   return (
     <PageLayout
       renderHeader={renderCustomImgPageHeader}
-      footer={<NextFooter isActiveNext={isActiveNext} navigateURL='/custom-request' />}
+      footer={
+        <NextFooter
+          isActiveNext={isActiveNext}
+          navigateURL='/custom-request'
+          haveDesign={haveDesign}
+          customInfo={customInfo}
+          customMainImage={customMainImage}
+        />
+      }
     >
-      <CustomImg setIsActiveNext={setIsActiveNext} />
+      <CustomImg setIsActiveNext={setIsActiveNext} setCustomMainImage={setCustomMainImage} />
     </PageLayout>
   );
 };
