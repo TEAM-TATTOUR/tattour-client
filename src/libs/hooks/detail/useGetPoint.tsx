@@ -2,26 +2,19 @@ import { useEffect, useState } from 'react';
 import api from '../../api';
 import { AxiosError } from 'axios';
 
-export interface StickerItemProps {
-  id: number;
+export interface PointItemProp {
   name: string;
-  imageUrl: string;
-  price: number;
-  discountRate: number;
-  discountPrice: number;
-  isCustom: boolean;
+  point: number;
 }
 
-interface StickerResponse {
-  data: {
-    stickers: StickerItemProps[];
-  };
+interface PointResponse {
+  data: PointItemProp;
   code: number;
   message: string;
 }
 
 const useGetAllList = () => {
-  const [response, setResponse] = useState<StickerItemProps[]>([]);
+  const [response, setResponse] = useState<PointItemProp>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
 
@@ -29,8 +22,8 @@ const useGetAllList = () => {
     await api
       .get(`/stickers`)
       .then((res) => {
-        const data: StickerResponse = res.data;
-        setResponse(data.data.stickers);
+        const data: PointResponse = res.data;
+        setResponse(data.data);
       })
       .catch((err) => {
         setError(err);
