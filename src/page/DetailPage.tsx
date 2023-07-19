@@ -10,72 +10,7 @@ import SmallTattooCard from '../common/SmallTattooCard';
 import BackBtn from '../common/Header/BackBtn';
 import { useNavigate, useParams } from 'react-router-dom';
 import useGetSticker from '../libs/hooks/detail/useGetSticker';
-
-const DUMMY_DATA = [
-  {
-    id: 0,
-    img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
-    title: '고양이 리본 타투',
-    discountRate: 5,
-    price: 2500,
-    originalPrice: 4000,
-    isCustom: true,
-  },
-  {
-    id: 1,
-    img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
-    title: '고양이 리본 타투',
-    discountRate: 5,
-    price: 2500,
-    originalPrice: 4000,
-    isCustom: false,
-  },
-  {
-    id: 2,
-    img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
-    title: '고양이 리본 타투',
-    discountRate: 5,
-    price: 2500,
-    originalPrice: 4000,
-    isCustom: true,
-  },
-  {
-    id: 3,
-    img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
-    title: '고양이 리본 타투',
-    discountRate: 5,
-    price: 2500,
-    originalPrice: 4000,
-    isCustom: false,
-  },
-  {
-    id: 4,
-    img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
-    title: '고양이 리본 타투',
-    discountRate: 5,
-    price: 2500,
-    originalPrice: 4000,
-    isCustom: true,
-  },
-  {
-    id: 5,
-    img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
-    title: '고양이 리본 타투',
-    discountRate: 5,
-    price: 2500,
-    originalPrice: 4000,
-    isCustom: false,
-  },
-  {
-    id: 6,
-    img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
-    title: '고양이 리본 타투',
-    discountRate: 5,
-    price: 2500,
-    originalPrice: 4000,
-    isCustom: true,
-  },
-];
+import useGetRelated from '../libs/hooks/detail/useGetRelated';
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -92,6 +27,11 @@ const DetailPage = () => {
   };
 
   const { response, error, loading } = useGetSticker(Number(id));
+  const {
+    response: relatedResponse,
+    error: relatedError,
+    loading: relatedLoading,
+  } = useGetRelated(Number(id));
   return (
     <PageLayout
       renderHeader={renderDetailPageHeader}
@@ -113,18 +53,20 @@ const DetailPage = () => {
         </>
       )}
       <CustomScrollContainer title='비슷한 제품도 추천드려요'>
-        {DUMMY_DATA.map((el) => (
-          <SmallTattooCard
-            key={el.id}
-            id={el.id}
-            img={el.img}
-            title={el.title}
-            discountRate={el.discountRate}
-            price={el.price}
-            originalPrice={el.originalPrice}
-            isCustom={el.isCustom}
-          />
-        ))}
+        {!relatedError &&
+          !relatedLoading &&
+          relatedResponse.map((el) => (
+            <SmallTattooCard
+              key={el.id}
+              id={el.id}
+              img={el.imageUrl}
+              title={el.name}
+              discountRate={el.discountRate}
+              price={el.price}
+              originalPrice={el.price}
+              isCustom={el.isCustom}
+            />
+          ))}
       </CustomScrollContainer>
       <DetailBottom
         id={Number(id)}
