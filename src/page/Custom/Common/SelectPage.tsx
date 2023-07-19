@@ -1,12 +1,12 @@
 import { styled } from 'styled-components';
-import SelectCustom from '../../components/Custom/SelectCustom';
-import Header from '../../components/Header';
+import SelectCustom from '../../../components/Custom/SelectCustom';
+import Header from '../../../components/Header';
 import { useState } from 'react';
-import PageLayout from '../../components/PageLayout';
-import { IcCancelDark } from '../../assets/icon';
+import PageLayout from '../../../components/PageLayout';
+import { IcCancelDark } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
-import SelectCustomFooter from '../../components/Custom/SelectCustomFooter';
-import SelectCustomPolicy from '../../components/Custom/SelectCustomPolicy';
+import SelectCustomFooter from '../../../components/Custom/SelectCustomFooter';
+import SelectCustomPolicy from '../../../components/Custom/SelectCustomPolicy';
 
 const SelectPage = () => {
   const navigate = useNavigate();
