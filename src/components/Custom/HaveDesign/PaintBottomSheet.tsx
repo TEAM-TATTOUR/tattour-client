@@ -12,7 +12,7 @@ interface PaintBottomProps {
 }
 
 const PaintBottomSheet = ({ setBottomOpen, setDrawingImageURL }: PaintBottomProps) => {
-  const [submitted, setSubmitted] = useState(false);
+  const [, setSubmitted] = useState(false);
   const [_canvas, setTempCanvas] = useState<HTMLCanvasElement | null>(null); //수정함
 
   const closeBottom = () => setBottomOpen(false);
