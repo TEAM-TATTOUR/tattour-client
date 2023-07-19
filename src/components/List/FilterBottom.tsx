@@ -32,13 +32,13 @@ const FilterBottom = ({
   useEffect(() => {
     setSelected(false);
     //QA : 최초에 아무것도 선택 안하고 적용할 경우 발생하는 문제 해결
-    isSortOpen && setSelectedTag(FILTER[0].type);
-    isGenreOpen && setSelectedTag(FILTER[1].type);
-    isStyleOpen && setSelectedTag(FILTER[2].type);
+    // isSortOpen && setSelectedTag(FILTER[0].type);
+    // isGenreOpen && setSelectedTag(FILTER[1].type);
+    // isStyleOpen && setSelectedTag(FILTER[2].type);
   }, []);
 
-  const { genreResponse, genreError, genreLoading } = useGetGenre();
-  const { styleResponse, styleError, styleLoading } = useGetStyle();
+  const { genreResponse } = useGetGenre();
+  const { styleResponse } = useGetStyle();
 
   const genreData = genreResponse.map((genre: GenreItemProps) => genre.name);
   const styleData = styleResponse.map((style: StyleItemProps) => style.name);
@@ -56,7 +56,9 @@ const FilterBottom = ({
 
         const trueIdx = filterTag[0].indexOf(true);
 
-        setSelectedTag(FILTER[0].data[trueIdx]);
+        const newSelectedTag = [...selectedTag];
+        newSelectedTag[0] = FILTER[0].data[trueIdx];
+        setSelectedTag(newSelectedTag);
       },
       data: ['인기 순', '가격 낮은 순', '가격 높은 순'],
     },
@@ -72,7 +74,9 @@ const FilterBottom = ({
 
         const trueIdx = filterTag[1].indexOf(true);
 
-        setSelectedTag(FILTER[1].data[trueIdx]);
+        const newSelectedTag = [...selectedTag];
+        newSelectedTag[1] = FILTER[1].data[trueIdx];
+        setSelectedTag(newSelectedTag);
       },
       data: genreData,
     },
@@ -90,7 +94,9 @@ const FilterBottom = ({
 
         const trueIdx = filterTag[2].indexOf(true);
 
-        setSelectedTag(FILTER[2].data[trueIdx]);
+        const newSelectedTag = [...selectedTag];
+        newSelectedTag[2] = FILTER[2].data[trueIdx];
+        setSelectedTag(newSelectedTag);
       },
       data: styleData,
     },
@@ -98,7 +104,7 @@ const FilterBottom = ({
 
   const tagRefs = useRef<HTMLParagraphElement[]>([]);
   const filterRef = useRef<HTMLElement>(null);
-  const [selectedTag, setSelectedTag] = useState(''); // 선택한 태그 저장
+  const [selectedTag, setSelectedTag] = useState(['정렬', '장르', '스타일']); // 선택한 태그 저장
 
   const [filterTag, setFilterTag] = useState([
     [false, false, false],
@@ -107,8 +113,13 @@ const FilterBottom = ({
   ]);
 
   const handleClickTag = (tag: string, index: number, filterIdx: number) => {
-    console.log('tag', tag + 'selectedTag', selectedTag);
-    selectedTag === tag ? setSelectedTag(FILTER[filterIdx].type) : setSelectedTag(tag); // 선택한 태그 저장
+    const newSelectedTag = [...selectedTag];
+    if (selectedTag[filterIdx] === tag) {
+      newSelectedTag[filterIdx] = FILTER[filterIdx].type;
+    } else {
+      newSelectedTag[filterIdx] = tag;
+    }
+    setSelectedTag(newSelectedTag);
 
     // 태그 선택은 하나씩
     tagRefs.current.forEach((el: HTMLParagraphElement) => {
@@ -132,13 +143,11 @@ const FilterBottom = ({
     onClose(); // 모달 내리기
 
     const newTag = [...filterTag];
-    if (selectedTag === FILTER[filterIdx].type) {
+    if (selectedTag[filterIdx] === FILTER[filterIdx].type) {
       newTag[filterIdx] = FILTER[filterIdx].data.map(() => false);
     } else {
-      console.log(selectedTag);
-      console.log(FILTER[filterIdx].type);
       newTag[filterIdx] = FILTER[filterIdx].data.map((item, idx) => {
-        return idx === FILTER[filterIdx].data.indexOf(selectedTag);
+        return idx === FILTER[filterIdx].data.indexOf(selectedTag[filterIdx]);
       });
     }
 
@@ -146,7 +155,7 @@ const FilterBottom = ({
 
     tagRefs.current.forEach(() => {
       const newButtonName = [...buttonName];
-      newButtonName[filterIdx] = selectedTag;
+      newButtonName[filterIdx] = selectedTag[filterIdx];
       setButtonName(newButtonName);
     });
   };

@@ -56,6 +56,7 @@ const MyLike = () => {
         return (
           <SmallTattooCard
             key={id}
+            id={id}
             img={img}
             title={title}
             price={price}
