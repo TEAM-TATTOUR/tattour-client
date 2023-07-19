@@ -4,9 +4,18 @@ import RegisterTitleForm from './RegisterTitleForm';
 import sliceMaxLength from '../../utils/sliceMaxLength';
 import axios from 'axios';
 import { useEffect } from 'react';
+import { setAccessToken } from '../../libs/api';
 
 interface RegisterNameProps {
   setUserName: React.Dispatch<React.SetStateAction<string>>;
+}
+
+interface resProps {
+  data: {
+    data: {
+      accessToken: string;
+    };
+  };
 }
 
 const RegisterName = ({ setUserName }: RegisterNameProps) => {
@@ -29,8 +38,10 @@ const RegisterName = ({ setUserName }: RegisterNameProps) => {
             },
           },
         )
-        .then(() => {
-          console.log('success');
+        .then((res: resProps) => {
+          // accessToken 값 저장
+          const accessToken = res.data.data.accessToken;
+          setAccessToken(accessToken);
         })
         .catch((Error: object) => {
           console.log(Error);
