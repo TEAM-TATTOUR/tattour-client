@@ -20,11 +20,10 @@ interface dataProps {
 
 const OrderPage = () => {
   const location = useLocation();
-  const state = location.state as { id: number; count: number; shippingFee: number };
-  const { id, count, shippingFee } = state; // 구조분해 할당
+  const state = location.state as { stickerId: number; count: number; shippingFee: number };
   // id로 서버에서 데이터 받아오기
-
-  const { response, error, loading } = useGetOrdersheet();
+  const { response, error, loading } = useGetOrdersheet(state);
+  console.log(response);
 
   const [isPostOpen, setIsPostOpen] = useState(false);
   const addressRef = useRef<HTMLInputElement | null>(null);

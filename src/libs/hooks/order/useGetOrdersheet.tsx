@@ -40,17 +40,18 @@ interface OrderSheetResponse {
   message: string;
 }
 
-const useGetOrdersheet = () => {
+const useGetOrdersheet = ({ stickerId, count, shippingFee }: OrderSheetRequest) => {
   const [response, setResponse] = useState<OrderSheetProps>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     await api
-      .get(`/order/ordersheet`)
+      .get(`/order/ordersheet?stickerId=${stickerId}&count=${count}&shippingFee=${shippingFee}`)
       .then((res) => {
         const data: OrderSheetResponse = res.data;
         setResponse(data.data);
+        console.log(data.data);
       })
       .catch((err) => {
         setError(err);

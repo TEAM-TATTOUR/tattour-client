@@ -38,7 +38,7 @@ const DetailFooter = ({
       // state로 OrderPage에서 필요한 정보 넘겨주기
       navigate(`/order`, {
         state: {
-          id: id,
+          stickerId: id,
           count: count,
           shippingFee: shippingFee,
         },
