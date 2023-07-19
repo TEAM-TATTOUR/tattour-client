@@ -158,7 +158,7 @@ const St = {
     background-color: ${({ theme }) => theme.colors.gray0};
 
     & > img {
-      weight: 18.3rem;
+      width: 18.3rem;
       height: 18.3rem;
     }
 
