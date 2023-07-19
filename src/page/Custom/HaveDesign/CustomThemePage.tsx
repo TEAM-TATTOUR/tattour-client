@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import CustomTheme from '../../../components/Custom/HaveDesign/CustomTheme';
 import PageLayout from '../../../components/PageLayout';
-import BackBtn from '../../../common/Header/BackBtn';
 import Header from '../../../components/Header';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
