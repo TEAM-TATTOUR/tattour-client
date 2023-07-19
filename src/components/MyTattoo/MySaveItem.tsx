@@ -105,6 +105,7 @@ const St = {
 
   MySaveItemTitle: styled.h3`
     margin-top: 1.3rem;
+    padding-left: 0.5rem;
     ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray7};
   `,

@@ -24,7 +24,7 @@ const MySave = () => {
   const { response, error, loading } = useGetCustomSaveList();
 
   return (
-    <CustomScrollContainer title={'SAVE'}>
+    <CustomScrollContainer title={'SAVED'}>
       {!error &&
         !loading &&
         response.map(({ id, name, imageUrl }) => {
