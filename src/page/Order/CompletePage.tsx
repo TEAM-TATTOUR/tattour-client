@@ -15,8 +15,6 @@ const CompletePage = () => {
   const location = useLocation();
   const { getOrderSheetStickerInfo, getOrderAmountRes } = location.state;
 
-  console.log(location);
-
   return (
     <PageLayout renderHeader={renderCompletePageHeader} footer={<CompleteFooter />}>
       <Result

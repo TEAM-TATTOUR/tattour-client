@@ -31,8 +31,6 @@ const OrderFooter = ({
   const navigate = useNavigate();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
-  console.log('response', response);
-  console.log('postdata', postData);
 
   const fetchData = async () => {
     await api
@@ -41,17 +39,14 @@ const OrderFooter = ({
         contact: postData.contact.replaceAll('-', ''),
       })
       .then((res) => {
-        console.log(response);
         navigate('/complete', {
           state: response,
         });
       })
       .catch((err) => {
-        console.log('here', error);
         setError(err);
       })
       .finally(() => {
-        console.log(loading);
         setLoading(false);
       });
   };
