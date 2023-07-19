@@ -26,12 +26,39 @@ interface CustomResponse {
   message: string;
 }
 
-const usePatchCustom = () => {
+interface RequestCustom {
+  customInfo: {
+    customId: number;
+    size: string;
+    isColored: boolean;
+    themes: number[];
+    styles: number[];
+    name: string;
+    description: string;
+    demand: string;
+    count: number;
+    isPublic: boolean;
+    isCompleted: boolean;
+    price: number;
+    viewCount: number;
+  };
+  customMainImage: File;
+  customImages: FileList;
+}
+
+const usePatchCustom = (body: RequestCustom) => {
   const [response, setResponse] = useState<CustomResponse['data'] | null>(null);
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
+    const formData = new FormData();
+    formData.append('customInfo', JSON.stringify(body.customInfo));
+    formData.append('customMainImage', body.customMainImage);
+    for (let i = 0; i < body.customImages.length; i++) {
+      formData.append('customImages', body.customImages[i]);
+    }
+
     await api
       .patch('/custom/update')
       .then((res) => {
