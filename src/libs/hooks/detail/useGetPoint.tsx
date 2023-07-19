@@ -20,7 +20,7 @@ const useGetPoint = () => {
 
   const fetchData = async () => {
     await api
-      .get(`/stickers`)
+      .get(`/user/profile`)
       .then((res) => {
         const data: PointResponse = res.data;
         setResponse(data.data);
