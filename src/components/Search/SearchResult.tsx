@@ -1,82 +1,24 @@
 import { styled } from 'styled-components';
 import SearchResultItem from './SearchResultItem';
-
-const DUMMY_DATA = {
-  data: [
-    {
-      id: 1,
-      title: '테스트',
-      img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/51692363/5fd1d215-c2a2-4624-b82f-549fd7896b31',
-      price: 1000,
-      discountRate: 5,
-      originalPrice: 950,
-    },
-    {
-      id: 2,
-      title: '테스트',
-      img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/51692363/5fd1d215-c2a2-4624-b82f-549fd7896b31',
-      price: 1000,
-      discountRate: 5,
-      originalPrice: 950,
-    },
-    {
-      id: 3,
-      title: '테스트',
-      img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/51692363/5fd1d215-c2a2-4624-b82f-549fd7896b31',
-      price: 1000,
-      discountRate: 5,
-      originalPrice: 950,
-    },
-    {
-      id: 4,
-      title: '테스트',
-      img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/51692363/5fd1d215-c2a2-4624-b82f-549fd7896b31',
-      price: 1000,
-      discountRate: 5,
-      originalPrice: 950,
-    },
-    {
-      id: 5,
-      title: '테스트',
-      img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/51692363/5fd1d215-c2a2-4624-b82f-549fd7896b31',
-      price: 1000,
-      discountRate: 5,
-      originalPrice: 950,
-    },
-    {
-      id: 6,
-      title: '테스트',
-      img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/51692363/5fd1d215-c2a2-4624-b82f-549fd7896b31',
-      price: 1000,
-      discountRate: 5,
-      originalPrice: 950,
-    },
-    {
-      id: 7,
-      title: '테스트',
-      img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/51692363/5fd1d215-c2a2-4624-b82f-549fd7896b31',
-      price: 1000,
-      discountRate: 5,
-      originalPrice: 950,
-    },
-  ],
-
-  length: 7,
-};
-
+import { useParams } from 'react-router-dom';
+import useGetSearchSticker from '../../libs/hooks/useGetSearchSticker';
 const SearchResult = () => {
+  const { keyword } = useParams<{ keyword: string }>();
+
+  const { response, error, loading } = useGetSearchSticker(keyword);
+
   return (
     <St.SearchResultPageWrapper>
-      <St.SearchResultText>전체 {DUMMY_DATA.length}개</St.SearchResultText>
+      <St.SearchResultText>전체 {response.length}개</St.SearchResultText>
       <St.SearchResultList>
-        {DUMMY_DATA.data.map(({ id, img, title, discountRate, price, originalPrice }) => (
+        {response.map(({ id, imageUrl, name, discountRate, discountPrice, price }) => (
           <SearchResultItem
             key={id}
-            img={img}
-            title={title}
+            img={imageUrl}
+            title={name}
             discountRate={discountRate}
-            price={price}
-            originalPrice={originalPrice}
+            price={discountPrice}
+            originalPrice={price}
           />
         ))}
       </St.SearchResultList>
