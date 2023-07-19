@@ -1,7 +1,7 @@
-import KakaoLoginHook from '../../libs/hooks/KakaoLoginHook';
+import useKakaoLogin from '../../libs/hooks/useKakaoLogin';
 
 const LoginCallback = () => {
-  KakaoLoginHook();
+  useKakaoLogin();
   return <div></div>;
 };
 
