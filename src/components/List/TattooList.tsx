@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IcArrowBottomSmallGray, IcArrowBottomSmallLight } from '../../assets/icon';
 import { useState, useEffect, useRef } from 'react';
-import useGetAllList from '../../libs/hooks/useGetAllList';
+import useGetAllList from '../../libs/hooks/list/useGetAllList';
 
 interface TattooListProps {
   setSortOpen: React.Dispatch<React.SetStateAction<boolean>>;
