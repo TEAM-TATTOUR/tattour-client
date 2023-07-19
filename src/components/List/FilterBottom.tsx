@@ -35,7 +35,13 @@ const FilterBottom = ({
     isSortOpen && setSelectedTag(FILTER[0].type);
     isGenreOpen && setSelectedTag(FILTER[1].type);
     isStyleOpen && setSelectedTag(FILTER[2].type);
-  }, [isSortOpen, isGenreOpen, isStyleOpen]);
+  }, []);
+
+  const { genreResponse, genreError, genreLoading } = useGetGenre();
+  const { styleResponse, styleError, styleLoading } = useGetStyle();
+
+  const genreData = genreResponse.map((genre: GenreItemProps) => genre.name);
+  const styleData = styleResponse.map((style: StyleItemProps) => style.name);
 
   const FILTER = [
     {
@@ -68,7 +74,7 @@ const FilterBottom = ({
 
         setSelectedTag(FILTER[1].data[trueIdx]);
       },
-      data: ['일러스트', '동양화', '블랙워크', '라인 타투', '레터링', '수채화'],
+      data: genreData,
     },
     {
       type: '스타일',
@@ -86,7 +92,7 @@ const FilterBottom = ({
 
         setSelectedTag(FILTER[2].data[trueIdx]);
       },
-      data: ['추상적인', '사실적인', '감성적인', '심플한', '귀여운', '다크한'],
+      data: styleData,
     },
   ];
 
@@ -101,6 +107,7 @@ const FilterBottom = ({
   ]);
 
   const handleClickTag = (tag: string, index: number, filterIdx: number) => {
+    console.log('tag', tag + 'selectedTag', selectedTag);
     selectedTag === tag ? setSelectedTag(FILTER[filterIdx].type) : setSelectedTag(tag); // 선택한 태그 저장
 
     // 태그 선택은 하나씩
@@ -128,6 +135,8 @@ const FilterBottom = ({
     if (selectedTag === FILTER[filterIdx].type) {
       newTag[filterIdx] = FILTER[filterIdx].data.map(() => false);
     } else {
+      console.log(selectedTag);
+      console.log(FILTER[filterIdx].type);
       newTag[filterIdx] = FILTER[filterIdx].data.map((item, idx) => {
         return idx === FILTER[filterIdx].data.indexOf(selectedTag);
       });
@@ -142,9 +151,6 @@ const FilterBottom = ({
     });
   };
 
-  const { genreResponse, genreError, genreLoading }: GenreItemProps = useGetGenre();
-  const { styleResponse, styleError, styleLoading }: StyleItemProps = useGetStyle();
-
   return (
     <St.Wrapper>
       {FILTER.map((filter, filterIdx) => (
@@ -158,49 +164,19 @@ const FilterBottom = ({
           <Sheet.Container>
             <Sheet.Header disableDrag={true} />
             <Sheet.Content ref={filterRef}>
-              {filterIdx === 0 &&
-                filter.data.map((el, idx) => (
-                  <St.TagBox
-                    key={idx}
-                    onClick={() => handleClickTag(el, idx, filterIdx)}
-                    ref={(refEl: HTMLParagraphElement) => (tagRefs.current[idx] = refEl)}
-                    className={filterTag[filterIdx][idx] ? 'checked' : ''}
-                  >
-                    <span></span>
-                    {el}
-                    <i></i>
-                  </St.TagBox>
-                ))}
-              {filterIdx === 1 &&
-                !genreError &&
-                !genreLoading &&
-                genreResponse.map(({ id, name }: GenreItemProps) => (
-                  <St.TagBox
-                    key={id}
-                    onClick={() => handleClickTag(name, id, filterIdx)}
-                    ref={(refEl: HTMLParagraphElement) => (tagRefs.current[id] = refEl)}
-                    className={filterTag[filterIdx][id] ? 'checked' : ''}
-                  >
-                    <span></span>
-                    {name}
-                    <i></i>
-                  </St.TagBox>
-                ))}
-              {filterIdx === 2 &&
-                !styleError &&
-                !styleLoading &&
-                styleResponse.map(({ id, name }: StyleItemProps) => (
-                  <St.TagBox
-                    key={id}
-                    onClick={() => handleClickTag(name, id, filterIdx)}
-                    ref={(refEl: HTMLParagraphElement) => (tagRefs.current[id] = refEl)}
-                    className={filterTag[filterIdx][id] ? 'checked' : ''}
-                  >
-                    <span></span>
-                    {name}
-                    <i></i>
-                  </St.TagBox>
-                ))}
+              {filter.data.map((el, idx) => (
+                <St.TagBox
+                  key={idx}
+                  onClick={() => handleClickTag(el, idx, filterIdx)}
+                  ref={(refEl: HTMLParagraphElement) => (tagRefs.current[idx] = refEl)}
+                  className={filterTag[filterIdx][idx] ? 'checked' : ''}
+                >
+                  <span></span>
+                  {el}
+                  <i></i>
+                </St.TagBox>
+              ))}
+
               <St.Footer>
                 <St.Button
                   type='button'
