@@ -15,7 +15,7 @@ import usePatchCustom from '../../libs/hooks/usePatchCustom';
 const PricePage = () => {
   const [modalOn, setModalOn] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
-  const { response, error, loading } = usePatchCustom();
+  // const { response, error, loading } = usePatchCustom();
 
   const renderPricePageHeader = () => {
     return (
@@ -37,16 +37,16 @@ const PricePage = () => {
 
   return (
     <PageLayout renderHeader={renderPricePageHeader}>
-      {!loading && !error && (
-        <>
-          <St.TopWrapper>
-            <PriceHeading />
-            <CountPrice isPublic={isPublic} />
-          </St.TopWrapper>
-          <MakePublic isPublic={isPublic} setIsPublic={setIsPublic} />
-          <PriceFooter />
-        </>
-      )}
+      {/* {!loading && !error && ( */}
+      <>
+        <St.TopWrapper>
+          <PriceHeading />
+          <CountPrice isPublic={isPublic} />
+        </St.TopWrapper>
+        <MakePublic isPublic={isPublic} setIsPublic={setIsPublic} />
+        <PriceFooter />
+      </>
+      {/* )} */}
     </PageLayout>
   );
 };
