@@ -26,6 +26,9 @@ const RegisterPhoneNumForm = () => {
   const [isTimeout, setIsTimeout] = useState(false);
   const [leftTime, setLeftTime] = useState<number>(MINUTES_IN_MS);
   const [text, setText] = useState('');
+  const [phoneNum, setPhoneNum] = useState('');
+
+  const { state } = useLocation();
 
   const handleChangeInputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 전화번호 입력이 되지 않았을 경우
@@ -34,6 +37,7 @@ const RegisterPhoneNumForm = () => {
       setNumLength(0);
     } else {
       setNumLength(e.target.value.length);
+      setPhoneNum(e.target.value.replace(/-/g, ''));
     }
   };
 
