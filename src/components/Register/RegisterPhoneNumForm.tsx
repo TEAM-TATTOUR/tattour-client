@@ -126,7 +126,6 @@ const RegisterPhoneNumForm = () => {
           const isVerified = res.data.data.verified;
 
           if (isVerified) {
-            setIsError(false);
             patchProfile({ state, phoneNum });
           } else {
             setIsError(true);
@@ -135,6 +134,8 @@ const RegisterPhoneNumForm = () => {
         .catch((Error: object) => {
           console.log(Error);
         });
+    } else {
+      setIsError(false);
     }
   };
 
