@@ -1,17 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { customInfo } from '../../types/customInfo';
 
 interface NextFooterProps {
   isActiveNext?: boolean;
   navigateURL: string;
+  stateList: customInfo;
 }
 
-const NextFooter = ({ isActiveNext = true, navigateURL }: NextFooterProps) => {
+const NextFooter = ({ isActiveNext = true, navigateURL, stateList }: NextFooterProps) => {
   const navigate = useNavigate();
 
   const handleClickFooter = () => {
     {
-      isActiveNext && navigate(navigateURL);
+      isActiveNext && navigate(navigateURL, { state: stateList });
     }
   };
 

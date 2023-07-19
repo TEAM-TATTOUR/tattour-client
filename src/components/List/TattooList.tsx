@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { IcArrowBottomSmallGray, IcArrowBottomSmallLight } from '../../assets/icon';
 import { useState, useEffect, useRef } from 'react';
 import test_tattoo from '../../assets/test_tattoo.png';
+import { useNavigate } from 'react-router-dom';
 
 interface TattooListProps {
   setSortOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,36 +16,42 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
 
   const TATTOO_LIST = [
     {
+      id: 0,
       name: '고양이 리본 타투',
       price: 4000,
       discount: 25,
       finalPrice: 2500,
     },
     {
+      id: 1,
       name: '고양이 리본 타투2',
       price: 4000,
       discount: 25,
       finalPrice: 2500,
     },
     {
+      id: 2,
       name: '고양이 리본 타투3',
       price: 4000,
       discount: 25,
       finalPrice: 2500,
     },
     {
+      id: 3,
       name: '고양이 리본 타투4',
       price: 4000,
       discount: 25,
       finalPrice: 2500,
     },
     {
+      id: 4,
       name: '고양이 리본 타투5',
       price: 4000,
       discount: 25,
       finalPrice: 2500,
     },
     {
+      id: 5,
       name: '고양이 리본 타투6',
       price: 4000,
       discount: 25,
@@ -52,6 +59,7 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
     },
   ];
 
+  const navigate = useNavigate();
   const filterRef = useRef(null);
   const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
 
@@ -66,6 +74,10 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
     });
     setSelectedFilter(newSelectedFilter);
   }, [buttonName]);
+
+  const handleClickCard = (id: number) => {
+    navigate(`/detail/${id}`);
+  };
 
   return (
     <St.Wrapper>
@@ -97,7 +109,7 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
       <St.CountText>전체 {TATTOO_LIST.length}개</St.CountText>
       <St.CardContainer>
         {TATTOO_LIST.map((el) => (
-          <St.Card key={el.name}>
+          <St.Card key={el.name} onClick={() => handleClickCard(el.id)}>
             <St.CardImg>
               <img src={test_tattoo} />
             </St.CardImg>
