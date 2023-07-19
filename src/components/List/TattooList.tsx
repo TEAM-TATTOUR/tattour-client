@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { IcArrowBottomSmallGray, IcArrowBottomSmallLight } from '../../assets/icon';
 import { useState, useEffect, useRef } from 'react';
 import test_tattoo from '../../assets/test_tattoo.png';
+import useGetAllList from '../../libs/hooks/useGetAllList';
 
 interface TattooListProps {
   setSortOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -67,6 +68,8 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
     setSelectedFilter(newSelectedFilter);
   }, [buttonName]);
 
+  const { response, error, loading } = useGetAllList();
+
   return (
     <St.Wrapper>
       <St.Header>ALL</St.Header>
@@ -96,19 +99,23 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
       </St.BtnContainer>
       <St.CountText>전체 {TATTOO_LIST.length}개</St.CountText>
       <St.CardContainer>
-        {TATTOO_LIST.map((el) => (
-          <St.Card key={el.name}>
-            <St.CardImg>
-              <img src={test_tattoo} />
-            </St.CardImg>
-            <h2>{el.name}</h2>
-            <div>
-              <St.CardDiscount>{el.discount}%</St.CardDiscount>
-              <St.CardPrice>{el.finalPrice.toLocaleString()}원</St.CardPrice>
-            </div>
-            <p>{el.price.toLocaleString()}원</p>
-          </St.Card>
-        ))}
+        {!loading &&
+          !error &&
+          response.map(({ id, name, imageUrl, price, discountRate, discountPrice, isCustom }) => {
+            return (
+              <St.Card key={id}>
+                <St.CardImg>
+                  <img src={imageUrl} />
+                </St.CardImg>
+                <h2>{name}</h2>
+                <div>
+                  <St.CardDiscount>{discountRate}%</St.CardDiscount>
+                  <St.CardPrice>{discountPrice.toLocaleString()}원</St.CardPrice>
+                </div>
+                <p>{price.toLocaleString()}원</p>
+              </St.Card>
+            );
+          })}
       </St.CardContainer>
     </St.Wrapper>
   );

@@ -2,34 +2,37 @@ import { useEffect, useState } from 'react';
 import api from '../api';
 import { AxiosError } from 'axios';
 
-export interface HotCustomItemProps {
+export interface AllListItemProps {
   id: number;
-  imageUrl: string;
   name: string;
+  imageUrl: string;
   price: number;
-  discountPrice: number;
   discountRate: number;
+  discountPrice: number;
   isCustom: boolean;
 }
 
-interface HotCustomResponse {
+interface AllListResponse {
   data: {
-    stickers: HotCustomItemProps[];
+    stickers: AllListItemProps[];
   };
   code: number;
   message: string;
 }
 
-const useGetHotCustom = () => {
-  const [response, setResponse] = useState<HotCustomItemProps[]>([]);
+const useGetAllList = (buttonName: string[]) => {
+  const sort = buttonName[0];
+  const genre = buttonName[1];
+  const style = buttonName[2];
+  const [response, setResponse] = useState<AllListItemProps[]>([]);
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     await api
-      .get('/stickers/custom/hot')
+      .get(`/stickers?sort=${sort}&theme=${genre}&style=${style}`)
       .then((res) => {
-        const data: HotCustomResponse = res.data;
+        const data: AllListResponse = res.data;
         setResponse(data.data.stickers);
       })
       .catch((err) => {
@@ -42,9 +45,9 @@ const useGetHotCustom = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [sort, genre, style]);
 
   return { response, error, loading };
 };
 
-export default useGetHotCustom;
+export default useGetAllList;
