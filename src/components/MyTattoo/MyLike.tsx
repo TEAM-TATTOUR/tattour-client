@@ -1,5 +1,6 @@
 import CustomScrollContainer from '../../common/CustomScrollContainer';
 import SmallTattooCard from '../../common/SmallTattooCard';
+import useGetLikeSticker from '../../libs/hooks/useGetLikeSticker';
 
 const dummyMyLikeData = [
   {
@@ -50,21 +51,26 @@ const dummyMyLikeData = [
 ];
 
 const MyLike = () => {
+  const { response, error, loading } = useGetLikeSticker();
+
   return (
     <CustomScrollContainer title={'LIKE'}>
-      {dummyMyLikeData.map(({ id, img, title, price, originalPrice, discountRate, isCustom }) => {
-        return (
-          <SmallTattooCard
-            key={id}
-            img={img}
-            title={title}
-            price={price}
-            originalPrice={originalPrice}
-            discountRate={discountRate}
-            isCustom={isCustom}
-          />
-        );
-      })}
+      {!error &&
+        !loading &&
+        response.map(({ id, mainImageUrl, name, price, discountPrice, discountRate }) => {
+          return (
+            <SmallTattooCard
+              key={id}
+              id={id}
+              img={mainImageUrl}
+              title={name}
+              price={discountPrice}
+              originalPrice={price}
+              discountRate={discountRate}
+              isCustom={false}
+            />
+          );
+        })}
     </CustomScrollContainer>
   );
 };
