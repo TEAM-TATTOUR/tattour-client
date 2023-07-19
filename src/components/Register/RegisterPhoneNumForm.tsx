@@ -5,12 +5,12 @@ import Toast from '../../common/ToastMessage/Toast';
 import Timer from './Timer';
 import ErrorMessage from './ErrorMessage';
 import { useLocation, useNavigate } from 'react-router-dom';
-import usePostPhoneNum from '../../libs/hooks/usePostPhoneNum';
+import axios from 'axios';
 
 const RegisterPhoneNumForm = () => {
   // 임의의 인증번호
   const CERTIFICATION_NUM = 1234;
-  const MINUTES_IN_MS = 5 * 60 * 1000;
+  const MINUTES_IN_MS = 30 * 60 * 1000;
 
   const navigate = useNavigate();
   // 입력한 전화번호 자릿수
@@ -43,26 +43,42 @@ const RegisterPhoneNumForm = () => {
   };
 
   const handleClickSendMessageBtn = () => {
+    const ACCESS_TOKEN_KEY = 'accessToken';
+    const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
+
+    axios
+      .post(
+        `https://api.tattour.shop/sms/send/verification-code`,
+        // post body
+        {
+          phoneNumber: `${phoneNum}`,
+        },
+        // request headers
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      )
+      .then(() => {
+        // 인증번호 입력 폼 나옴
+        setIsVisible(true);
+
+        // 인증번호 입력 폼이 나온 경우
+        if (isVisible) {
+          setIsTimeout(false);
+          setLeftTime(MINUTES_IN_MS);
+          setText('');
+        }
+      })
+      .catch((Error: object) => {
+        console.log(Error);
+      });
+
     setToast(true);
     setIsRequired(!isRequired);
-
     setCertificationLen(0);
-
-    // 전화번호 입력이 된 경우
-    if (numLength === 13 && !isVisible) {
-      // 인증번호 입력 폼 나옴
-      setIsVisible(true);
-    }
-
-    // 인증번호 입력 폼이 나온 경우
-    else if (isVisible) {
-      setIsTimeout(false);
-      setLeftTime(MINUTES_IN_MS);
-      setText('');
-    }
   };
-
-  usePostPhoneNum({ phoneNum, isRequired });
 
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
