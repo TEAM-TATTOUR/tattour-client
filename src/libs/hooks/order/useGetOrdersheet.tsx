@@ -8,7 +8,7 @@ export interface OrderSheetRequest {
   shippingFee: number;
 }
 
-interface getOrderSheetStickerInfoProps {
+export interface getOrderSheetStickerInfoProps {
   mainImageUrl: string;
   name: string;
   price: number;
@@ -16,13 +16,13 @@ interface getOrderSheetStickerInfoProps {
   count: number;
 }
 
-interface getOrderAmountResProps {
+export interface getOrderAmountResProps {
   totalAmount: number;
   productAmount: number;
   shippingFee: number;
 }
 
-interface getUserOrderPointResProps {
+export interface getUserOrderPointResProps {
   userPoint: number;
   resultPoint: number;
   lacked: boolean;
@@ -51,7 +51,6 @@ const useGetOrdersheet = ({ stickerId, count, shippingFee }: OrderSheetRequest) 
       .then((res) => {
         const data: OrderSheetResponse = res.data;
         setResponse(data.data);
-        console.log(data.data);
       })
       .catch((err) => {
         setError(err);

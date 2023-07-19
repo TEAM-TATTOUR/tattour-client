@@ -75,7 +75,9 @@ const OrderPage = () => {
       renderHeader={renderOrderPageHeader}
       footer={<OrderFooter isComplete={isComplete} />}
     >
-      <ProductInfo originialPrice={ORIGINAL_PRICE} itemPrice={ITEM_PRICE} count={COUNT} />
+      {!error && !loading && (
+        <ProductInfo getOrderSheetStickerInfo={response.getOrderSheetStickerInfo} />
+      )}
       <St.Line />
       <DeliveryInfo
         handleModal={handleModal}

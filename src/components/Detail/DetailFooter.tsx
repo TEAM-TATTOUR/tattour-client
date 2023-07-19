@@ -9,19 +9,8 @@ interface DetailFooterProp {
   text: string;
   like: boolean;
   setLike: React.Dispatch<React.SetStateAction<boolean>>;
-  count: number;
-  shippingFee: number;
 }
-const DetailFooter = ({
-  id,
-  setSheetOpen,
-  isSecond,
-  text,
-  like,
-  setLike,
-  count,
-  shippingFee,
-}: DetailFooterProp) => {
+const DetailFooter = ({ id, setSheetOpen, isSecond, text, like, setLike }: DetailFooterProp) => {
   const navigate = useNavigate();
   const location = useLocation();
   const currURL = location.pathname;
