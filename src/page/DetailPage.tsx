@@ -3,7 +3,7 @@ import DetailCarousel from '../components/Detail/DetailCarousel';
 import PageLayout from '../components/PageLayout';
 import Header from '../components/Header';
 import DetailFooter from '../components/Detail/DetailFooter';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DetailBottom from '../components/Detail/DetailBottom';
 import CustomScrollContainer from '../common/CustomScrollContainer';
 import SmallTattooCard from '../common/SmallTattooCard';
@@ -24,7 +24,7 @@ const DetailPage = () => {
   const [isSheetOpen, setSheetOpen] = useState(false);
 
   // 찜 여부 state -> 추후 서버통신
-  const [like, setLike] = useState(false);
+  const [like, setLike] = useState<boolean | null>(false);
 
   const renderDetailPageHeader = () => {
     return <Header leftSection={<BackBtn />} />;
@@ -39,6 +39,11 @@ const DetailPage = () => {
     error: relatedError,
     loading: relatedLoading,
   } = useGetRelated(Number(id));
+
+  useEffect(() => {
+    response && setLike(response.productLiked);
+  }, [response]);
+
   return (
     <PageLayout
       renderHeader={renderDetailPageHeader}

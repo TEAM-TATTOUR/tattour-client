@@ -10,8 +10,8 @@ interface DetailFooterProp {
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isSecond: boolean;
   text: string;
-  like: boolean;
-  setLike: React.Dispatch<React.SetStateAction<boolean>>;
+  like: boolean | null;
+  setLike: React.Dispatch<React.SetStateAction<boolean | null>>;
   count: number;
   shippingFee: number;
 }

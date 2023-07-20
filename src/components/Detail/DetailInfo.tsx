@@ -16,6 +16,7 @@ const DetailInfo = ({ response }: StickerItemProps) => {
     stickerThemes,
     stickerStyles,
     description,
+    productLiked,
   } = response;
 
   return (

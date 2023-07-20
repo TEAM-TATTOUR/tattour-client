@@ -9,8 +9,8 @@ interface DetailBottomProps {
   id: number;
   isSheetOpen: boolean;
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  like: boolean;
-  setLike: React.Dispatch<React.SetStateAction<boolean>>;
+  like: boolean | null;
+  setLike: React.Dispatch<React.SetStateAction<boolean | null>>;
   discountPrice: number;
   shippingCost: number;
 }

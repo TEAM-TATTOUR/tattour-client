@@ -16,6 +16,7 @@ export interface StickerItemProps {
   stickerThemes: string[];
   stickerStyles: string[];
   images: string[];
+  productLiked: boolean | null;
 }
 
 interface StickerResponse {
