@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
 import { useLocation, useNavigate } from 'react-router-dom';
+import api from '../../libs/api';
 
 interface DetailFooterProp {
   id: number;
@@ -46,6 +47,21 @@ const DetailFooter = ({
     } else {
       setSheetOpen(true);
     }
+  };
+
+  // 좋아요 추가 통신
+  const postLiked = async () => {
+    await api
+      .post(`/user/product-liked/save`, {
+        stickerId: id,
+      })
+      .then((res) => {
+        // setResponse(res.data.data);
+        // 좋아요 추가
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
