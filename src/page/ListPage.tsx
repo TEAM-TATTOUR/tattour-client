@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import HotCustom from '../common/HotCustom';
 import MainHeaderButton from '../common/MainHeaderButton';
 import SideMenu from '../common/SideMenu';
+import { useNavigate } from 'react-router-dom';
 
 const ListPage = () => {
   const [isSortOpen, setSortOpen] = useState(false);
@@ -18,9 +19,14 @@ const ListPage = () => {
   const [isSideMenuOpen, setSideMenuOpen] = useState(false);
 
   const renderListPageHeader = () => {
+    const navigate = useNavigate();
+
+    const handleClickLogo = () => {
+      navigate('/');
+    };
     return (
       <Header
-        leftSection={<ImgLogoDark />}
+        leftSection={<ImgLogoDark onClick={handleClickLogo} />}
         rightSection={<MainHeaderButton setIsSideMenuOpen={setSideMenuOpen} light={false} />}
       />
     );
