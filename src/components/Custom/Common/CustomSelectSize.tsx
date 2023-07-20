@@ -20,11 +20,8 @@ const CustomSelectSize = ({ setIsActiveNext, setSize }: CustomSelectSizeProps) =
   const [selectedBtn, setSelectedBtn] = useState('');
   const sizeBtnRef = useRef<HTMLButtonElement[]>([]);
 
-  // console.log(location.state.customInfo.size, '##');
-  const size =
-    location.state && location.state.customInfo.size ? location.state.customInfo.size : null;
-
-  // console.log(size, '???');
+  //state에 있는 size 값 가져오기 (처음 넘어올 때는 customInfo 자체가 없으므로 에러 방지)
+  const size = location.state.customInfo ? location.state.customInfo.size : null;
 
   const handleClickSelBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;
@@ -47,16 +44,17 @@ const CustomSelectSize = ({ setIsActiveNext, setSize }: CustomSelectSizeProps) =
 
   useEffect(() => {
     if (!size) return;
+    //임시저장 + back btn 클릭 시 state에 있는 값 읽어와 반영
     sizeBtnRef.current.forEach((ref) => {
       if (ref.id === size) {
-        console.log('맞');
         ref.classList.add('isSelected');
         setIsActiveNext(true);
+        setSize(ref.id);
       } else {
         ref.classList.remove('isSelected');
       }
     });
-  }, [size, setIsActiveNext]);
+  }, [size, setIsActiveNext, setSize]);
 
   return (
     <St.SizeWrapper>

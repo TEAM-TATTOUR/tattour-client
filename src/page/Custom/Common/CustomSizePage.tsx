@@ -28,8 +28,6 @@ const CustomSizePage = () => {
     if (!location.state) navigate('/onboarding');
   }, [location.state, navigate]);
 
-  console.log('size', location.state);
-
   const customInfo = {
     viewCount: CUSTOM_VIEW_COUNT,
     customId: customId,
