@@ -56,10 +56,10 @@ const DetailFooter = ({
   const postLiked = async () => {
     console.log('좋아요 추가 통신', id);
     await api
-      .post(`/user/product-liked/save`, {
+      .post(`/user/productliked/save`, {
         stickerId: id,
       })
-      .then((res) => {
+      .then(() => {
         // setResponse(res.data.data);
         // 좋아요
         console.log('좋아요');
@@ -74,8 +74,8 @@ const DetailFooter = ({
     console.log('좋아요 삭제 통신', id);
 
     await api
-      .post(`/user/product-liked/${id}/delete`)
-      .then((res) => {
+      .delete(`/user/productliked/sticker/${id}/delete`)
+      .then(() => {
         // setResponse(res.data.data);
         // 좋아요 삭제
         console.log('좋아요 삭제');
@@ -87,17 +87,17 @@ const DetailFooter = ({
 
   const handleClickLike = () => {
     // 로그인 상태가 아닌 경우
-    setToast(true);
+    // setToast(true);
     // setLike(X)
 
     // 로그인 상태인 경우
-    setLike((prev) => !prev);
     // 만약 원래 좋아요가 눌린 상태면
-    // if (like) {
-    //   postLiked();
-    // } else {
-    //   postDisliked();
-    // }
+    if (like) {
+      postDisliked();
+    } else {
+      postLiked();
+    }
+    setLike((prev) => !prev);
   };
 
   return (
