@@ -26,6 +26,8 @@ const CustomSizePage = () => {
   const customImages = location.state ? location.state.customImages : null;
   const navigateURL = haveDesign ? '/custom-reference' : '/custom-img';
 
+  const sizeState = location.state.customInfo ? location.state.customInfo.size : null;
+
   useEffect(() => {
     if (!location.state) navigate('/onboarding');
   }, [location.state, navigate]);
@@ -66,7 +68,7 @@ const CustomSizePage = () => {
         />
       }
     >
-      <CustomSelectSize setIsActiveNext={setIsActiveNext} setSize={setSize} />
+      <CustomSelectSize setIsActiveNext={setIsActiveNext} setSize={setSize} size={sizeState} />
     </PageLayout>
   );
 };

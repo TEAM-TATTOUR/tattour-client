@@ -1,14 +1,14 @@
 import { styled } from 'styled-components';
 import CustomSelectSizeBtn from './CustomSelectSizeBtn';
 import { useState, useRef, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
 interface CustomSelectSizeProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setSize: React.Dispatch<React.SetStateAction<string>>;
+  size: string | null;
 }
 
-const CustomSelectSize = ({ setIsActiveNext, setSize }: CustomSelectSizeProps) => {
+const CustomSelectSize = ({ setIsActiveNext, setSize, size }: CustomSelectSizeProps) => {
   const BTN_DATA = [
     { id: 'quarter', title: '5cm 이하', detail: '동전 크기' },
     { id: 'regular', title: 'A4 1/8', detail: '신용카드, 담뱃갑 크기' },
@@ -16,12 +16,8 @@ const CustomSelectSize = ({ setIsActiveNext, setSize }: CustomSelectSizeProps) =
     { id: 'double', title: '5cm 이하', detail: '아래팔 한 쪽 면 크기' },
   ];
 
-  const location = useLocation();
-  const [selectedBtn, setSelectedBtn] = useState('');
+  const [selectedBtn, setSelectedBtn] = useState(size ? size : '');
   const sizeBtnRef = useRef<HTMLButtonElement[]>([]);
-
-  //state에 있는 size 값 가져오기 (처음 넘어올 때는 customInfo 자체가 없으므로 에러 방지)
-  const size = location.state.customInfo ? location.state.customInfo.size : null;
 
   const handleClickSelBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;

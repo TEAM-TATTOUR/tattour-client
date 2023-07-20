@@ -35,11 +35,11 @@ const CustomImgPage = () => {
       <Header
         leftSection={
           <IcBackDark
-            onClick={() =>
+            onClick={() => {
               navigate('/custom-size', {
                 state: location.state ? location.state : null,
-              })
-            }
+              });
+            }}
           />
         }
         title='커스텀 타투'
