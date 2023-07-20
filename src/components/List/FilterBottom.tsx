@@ -31,10 +31,6 @@ const FilterBottom = ({
 }: FilterBottomProps) => {
   useEffect(() => {
     setSelected(false);
-    //QA : 최초에 아무것도 선택 안하고 적용할 경우 발생하는 문제 해결
-    // isSortOpen && setSelectedTag(FILTER[0].type);
-    // isGenreOpen && setSelectedTag(FILTER[1].type);
-    // isStyleOpen && setSelectedTag(FILTER[2].type);
   }, []);
 
   const { genreResponse } = useGetGenre();
@@ -104,13 +100,21 @@ const FilterBottom = ({
 
   const tagRefs = useRef<HTMLParagraphElement[]>([]);
   const filterRef = useRef<HTMLElement>(null);
-  const [selectedTag, setSelectedTag] = useState(['정렬', '장르', '스타일']); // 선택한 태그 저장
+  const [selectedTag, setSelectedTag] = useState(buttonName); // 선택한 태그 저장
 
   const [filterTag, setFilterTag] = useState([
     [false, false, false],
     [false, false, false, false, false, false],
     [false, false, false, false, false, false],
   ]);
+
+  useEffect(() => {
+    const newFilterTag = [...filterTag];
+    newFilterTag[0] = [false, false, false];
+    newFilterTag[1] = genreResponse.map((item) => buttonName[1] === item.name);
+    newFilterTag[2] = styleResponse.map((item) => buttonName[2] === item.name);
+    setFilterTag(newFilterTag);
+  }, [genreResponse, styleResponse]);
 
   const handleClickTag = (tag: string, index: number, filterIdx: number) => {
     const newSelectedTag = [...selectedTag];
