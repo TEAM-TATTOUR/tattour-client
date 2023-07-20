@@ -1,4 +1,4 @@
-export interface customInfo {
+export interface customInfoType {
   customId?: number;
   size?: string;
   isColored?: boolean;
