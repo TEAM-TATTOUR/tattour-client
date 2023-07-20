@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { useState } from 'react';
-import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import api from '../../libs/api';
 import { OrderSheetProps } from '../../libs/hooks/order/useGetOrdersheet';
@@ -9,7 +7,7 @@ interface OrderRequest {
   stickerId: number;
   productCount: number;
   shippingFee: number;
-  totalAmount: number;
+  totalAmount: number | undefined;
   recipientName: string;
   contact: string;
   mailingAddress: string;
@@ -26,11 +24,9 @@ const OrderFooter = ({
   isComplete: boolean;
   price: number | undefined;
   postData: OrderRequest;
-  response: OrderSheetProps;
+  response: OrderSheetProps | undefined;
 }) => {
   const navigate = useNavigate();
-  const [, setError] = useState<AxiosError>();
-  const [, setLoading] = useState(true);
 
   const fetchData = async () => {
     await api
@@ -38,21 +34,17 @@ const OrderFooter = ({
         ...postData,
         contact: postData.contact.replaceAll('-', ''),
       })
-      .then((res) => {
+      .then(() => {
         navigate('/complete', {
           state: response,
         });
       })
       .catch((err) => {
-        setError(err);
-      })
-      .finally(() => {
-        setLoading(false);
+        console.log(err);
       });
   };
 
   const handleClickButton = () => {
-    // post 통신
     fetchData();
   };
 

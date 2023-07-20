@@ -77,16 +77,12 @@ const OrderPage = () => {
     <PageLayout
       renderHeader={renderOrderPageHeader}
       footer={
-        !error &&
-        !loading &&
-        response && (
-          <OrderFooter
-            isComplete={isComplete}
-            price={response && response.getOrderAmountRes.totalAmount}
-            postData={postData}
-            response={response}
-          />
-        )
+        <OrderFooter
+          isComplete={isComplete}
+          price={response && response.getOrderAmountRes.totalAmount}
+          postData={postData}
+          response={response}
+        />
       }
     >
       {!error && !loading && response && (
