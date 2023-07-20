@@ -22,6 +22,8 @@ const CustomSizePage = () => {
 
   const haveDesign = location.state ? location.state.haveDesign : null;
   const customId = location.state ? location.state.customId : null;
+  const customMainImage = location.state ? location.state.customMainImage : null;
+  const customImages = location.state ? location.state.customImages : null;
   const navigateURL = haveDesign ? '/custom-reference' : '/custom-img';
 
   useEffect(() => {
@@ -59,6 +61,8 @@ const CustomSizePage = () => {
           navigateURL={navigateURL}
           haveDesign={haveDesign}
           customInfo={customInfo}
+          customMainImage={customMainImage}
+          customImages={customImages}
         />
       }
     >
