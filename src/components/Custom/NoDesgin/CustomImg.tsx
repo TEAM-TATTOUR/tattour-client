@@ -6,13 +6,18 @@ import CustomImgAttach from './CustomImgAttach';
 interface CustomImgProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomMainImage: React.Dispatch<React.SetStateAction<File | undefined>>;
+  attachedImg: File | null;
 }
 
-const CustomImg = ({ setIsActiveNext, setCustomMainImage }: CustomImgProps) => {
+const CustomImg = ({ setIsActiveNext, setCustomMainImage, attachedImg }: CustomImgProps) => {
   return (
     <St.CustomImgWrapper>
       <CustomImgHeader />
-      <CustomImgAttach setIsActiveNext={setIsActiveNext} setCustomMainImage={setCustomMainImage} />
+      <CustomImgAttach
+        setIsActiveNext={setIsActiveNext}
+        setCustomMainImage={setCustomMainImage}
+        attachedImg={attachedImg}
+      />
     </St.CustomImgWrapper>
   );
 };

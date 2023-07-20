@@ -26,7 +26,8 @@ const CustomSizePage = () => {
   const customImages = location.state ? location.state.customImages : null;
   const navigateURL = haveDesign ? '/custom-reference' : '/custom-img';
 
-  const sizeState = location.state.customInfo ? location.state.customInfo.size : null;
+  const sizeState =
+    location.state && location.state.customInfo ? location.state.customInfo.size : null;
 
   useEffect(() => {
     if (!location.state) navigate('/onboarding');

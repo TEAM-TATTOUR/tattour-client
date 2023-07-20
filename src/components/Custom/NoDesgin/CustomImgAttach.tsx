@@ -1,19 +1,19 @@
 import { styled } from 'styled-components';
 import { IcCancelDark, IcPhoto } from '../../../assets/icon';
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
 interface CustomImgAttachProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomMainImage: React.Dispatch<React.SetStateAction<File | undefined>>;
+  attachedImg: File | null;
 }
 
-const CustomImgAttach = ({ setIsActiveNext, setCustomMainImage }: CustomImgAttachProps) => {
-  const location = useLocation();
+const CustomImgAttach = ({
+  setIsActiveNext,
+  setCustomMainImage,
+  attachedImg,
+}: CustomImgAttachProps) => {
   const [previewURL, setPreviewURL] = useState('');
-
-  //state에 있는 img 파일 값 가져오기 (처음 넘어올 때는 customMainImage 값이 없으므로 에러 방지 필요)
-  const attachedImg = location.state.customMainImage ? location.state.customMainImage : null;
 
   useEffect(() => {
     previewURL ? setIsActiveNext(true) : setIsActiveNext(false);

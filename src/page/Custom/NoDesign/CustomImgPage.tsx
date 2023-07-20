@@ -21,6 +21,10 @@ const CustomImgPage = () => {
   const haveDesign = location.state ? location.state.haveDesgin : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
 
+  //state에 있는 img 파일 값 가져오기 (처음 넘어올 때는 customMainImage 값이 없으므로 에러 방지 필요)
+  const attachedImg =
+    location.state && location.state.customMainImage ? location.state.customMainImage : null;
+
   useEffect(() => {
     if (!location.state) navigate('/onboarding');
   }, [location.state, navigate]);
@@ -68,7 +72,11 @@ const CustomImgPage = () => {
         />
       }
     >
-      <CustomImg setIsActiveNext={setIsActiveNext} setCustomMainImage={setCustomMainImage} />
+      <CustomImg
+        setIsActiveNext={setIsActiveNext}
+        setCustomMainImage={setCustomMainImage}
+        attachedImg={attachedImg}
+      />
     </PageLayout>
   );
 };
