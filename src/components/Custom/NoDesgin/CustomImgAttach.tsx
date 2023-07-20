@@ -12,7 +12,7 @@ const CustomImgAttach = ({ setIsActiveNext, setCustomMainImage }: CustomImgAttac
   const location = useLocation();
   const [previewURL, setPreviewURL] = useState('');
 
-  //state에 있는 size 값 가져오기 (처음 넘어올 때는 customInfo 자체가 없으므로 에러 방지)
+  //state에 있는 img 파일 값 가져오기 (처음 넘어올 때는 customMainImage 값이 없으므로 에러 방지 필요)
   const attachedImg = location.state.customMainImage ? location.state.customMainImage : null;
 
   useEffect(() => {
