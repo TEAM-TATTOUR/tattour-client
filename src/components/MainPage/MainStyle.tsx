@@ -1,45 +1,7 @@
 import { styled } from 'styled-components';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import useGetStyleCard, { MainStyleItemProps } from '../../libs/hooks/useGetStyleCard';
-
-const dummyStyleList: MainStyleItemProps[] = [
-  {
-    id: 1,
-    imageUrl: '',
-    name: '추상적인',
-    description: '무형의 깊은 의미를 담은',
-  },
-  {
-    id: 2,
-    imageUrl: '',
-    name: '심플한',
-    description: '간단하고 부담스럽지 않은',
-  },
-  {
-    id: 3,
-    imageUrl: '',
-    name: '사실적인',
-    description: '세심하게 개체를 표현하는',
-  },
-  {
-    id: 4,
-    imageUrl: '',
-    name: '귀여운',
-    description: '몽글몽글 사랑스러운',
-  },
-  {
-    id: 5,
-    imageUrl: '',
-    name: '감성적인',
-    description: '부드럽고 분위기 있는',
-  },
-  {
-    id: 6,
-    imageUrl: '',
-    name: '다크한',
-    description: '강렬하고 짙은',
-  },
-];
+import { useNavigate } from 'react-router-dom';
 
 const renderMainStyleDummyImage = () => {
   return (
@@ -56,6 +18,17 @@ const renderMainStyleDummyImage = () => {
 const MainStyle = () => {
   const { response, error, loading } = useGetStyleCard();
 
+  const navigate = useNavigate();
+
+  const handleClickCard = (name: string) => () => {
+    navigate(`/list`, {
+      state: {
+        type: '스타일',
+        name: name,
+      },
+    });
+  };
+
   return (
     <St.MainStyleSection>
       <St.MainStyleHeader>
@@ -67,7 +40,7 @@ const MainStyle = () => {
             !error &&
             response.map((item) => {
               return (
-                <St.MainStyleItem key={item.id}>
+                <St.MainStyleItem key={item.id} onClick={handleClickCard(item.name)}>
                   {renderMainStyleDummyImage()}
                   <St.MainThemeItemTitle>{item.name}</St.MainThemeItemTitle>
                   <St.MainThemeItemDescription>{item.description}</St.MainThemeItemDescription>
