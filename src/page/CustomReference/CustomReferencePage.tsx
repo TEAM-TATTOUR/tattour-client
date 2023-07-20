@@ -10,23 +10,32 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { IcBackDark } from '../../assets/icon';
 
 const CustomReferencePage = () => {
+  const CUSTOM_VIEW_COUNT = 2;
+
   // 모달 사용할 때  활용
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
-  const [customMainImg, setCustomMainImg] = useState(null);
-  const [customImg, setCustomImg] = useState([]);
-
-  useEffect(() => {
-    return () => {
-      states.customMainImage = customMainImg;
-      states.customImages = customImg;
-    };
-  }, [customMainImg, customImg, states]);
+  const [customMainImage, setCustomMainImage] = useState<File | null>(null);
+  const [customImages, setCustomImages] = useState<FileList | null>(null);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const stateList = location.state;
+  const { haveDesign, customId } = location.state;
+
+  const customInfo: customInfo = {
+    viewCount: CUSTOM_VIEW_COUNT,
+    customId: customId,
+    customMainImage: customMainImage,
+    customImages: customImages,
+  };
+
+  // useEffect(() => {
+  //   return () => {
+  //     custominfo.customMainImage = customMainImage;
+  //     custominfo.customImages = customImages;
+  //   };
+  // }, [customMainImage, customImages, custominfo]);
 
   const renderCustomReferencePageHeader = () => {
     return (
@@ -53,14 +62,14 @@ const CustomReferencePage = () => {
         <NextFooter
           isActiveNext={isActiveNext}
           navigateURL={'/styling-color'}
-          customInfo={stateList}
+          customInfo={customInfo}
         />
       }
     >
       <CustomReference
         setIsActiveNext={setIsActiveNext}
-        setCustomMainImg={setCustomMainImg}
-        setCustomImg={setCustomImg}
+        setCustomMainImage={setCustomMainImage}
+        setCustomImages={setCustomImages}
       />
     </PageLayout>
   );

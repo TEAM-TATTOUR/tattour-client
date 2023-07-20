@@ -7,19 +7,17 @@ import { customInfo } from '../../../types/customInfo';
 
 const CustomReference = ({
   setIsActiveNext,
-  setCustomMainImg,
-  setCustomImg,
+  setCustomMainImage,
+  setCustomImages,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-        setCustomMainImg : React.Dispatch<React.SetStateAction<File>>;
-        setCustomImg : React.Dispatch<React.SetStateAction<FileList>>;
+  setCustomMainImage: React.Dispatch<React.SetStateAction<File | null>>;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
 }) => {
   const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
 
-  useEffect(() => {
-    {drawingImageUrl? setCustomImg()}
-  }, [drawingImageUrl]);
+  useEffect(() => {}, [drawingImageUrl]);
   return (
     <St.PageWrapper>
       <CustomTitle />
