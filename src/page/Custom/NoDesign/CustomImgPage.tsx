@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CustomImg from '../../../components/Custom/NoDesgin/CustomImg';
 import Header from '../../../components/Header';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
@@ -20,6 +20,10 @@ const CustomImgPage = () => {
 
   const haveDesign = location.state ? location.state.haveDesgin : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
+
+  useEffect(() => {
+    if (!location.state) navigate('/onboarding');
+  }, [location.state, navigate]);
 
   const customInfo = {
     ...prevCustomInfo,
