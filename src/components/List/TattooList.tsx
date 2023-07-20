@@ -72,6 +72,7 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
         {!loading &&
           !error &&
           response.map(({ id, name, imageUrl, price, discountRate, discountPrice, isCustom }) => {
+            console.log(response);
             return (
               <St.Card key={id} onClick={() => handleClickCard(id)}>
                 <St.CardImg>
