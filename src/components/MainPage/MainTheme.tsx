@@ -1,42 +1,36 @@
 import { styled } from 'styled-components';
 import ScrollContainer from 'react-indiana-drag-scroll';
-
-interface MainThemeItemProps {
-  id: number;
-  img: string;
-  title: string;
-  description: string;
-}
+import useGetThemeCard, { MainThemeItemProps } from '../../libs/hooks/useGetThemeCard';
 
 const dummyThemeList: MainThemeItemProps[] = [
   {
     id: 1,
-    img: '',
-    title: '라인 타투',
+    imageUrl: '',
+    name: '라인 타투',
     description: '깔끔한 라인으로 심플한',
   },
   {
     id: 2,
-    img: '',
-    title: '수채화',
+    imageUrl: '',
+    name: '수채화',
     description: '물 먹은 투명한 느낌의',
   },
   {
     id: 3,
-    img: '',
-    title: '동양화',
+    imageUrl: '',
+    name: '동양화',
     description: '고전적이면서 아름다운',
   },
   {
     id: 4,
-    img: '',
-    title: '일러스트',
+    imageUrl: '',
+    name: '일러스트',
     description: '원하는 바를 자유롭게 표현하는',
   },
   {
     id: 5,
-    img: '',
-    title: '블랙 워크',
+    imageUrl: '',
+    name: '블랙 워크',
     description: '블랙 타투로 강렬한',
   },
 ];
@@ -54,6 +48,8 @@ const renderMainThemeDummyImage = () => {
 };
 
 const MainTheme = () => {
+  const { response, error, loading } = useGetThemeCard();
+
   return (
     <St.MainThemeSection>
       <St.MainThemeHeader>
@@ -61,15 +57,17 @@ const MainTheme = () => {
       </St.MainThemeHeader>
       <St.MainThemeWrapper>
         <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
-          {dummyThemeList.map((item) => {
-            return (
-              <St.MainThemeItem key={item.id}>
-                {renderMainThemeDummyImage()}
-                <St.MainThemeItemTitle>{item.title}</St.MainThemeItemTitle>
-                <St.MainThemeItemDescription>{item.description}</St.MainThemeItemDescription>
-              </St.MainThemeItem>
-            );
-          })}
+          {!loading &&
+            !error &&
+            response.map((item) => {
+              return (
+                <St.MainThemeItem key={item.id}>
+                  {renderMainThemeDummyImage()}
+                  <St.MainThemeItemTitle>{item.name}</St.MainThemeItemTitle>
+                  <St.MainThemeItemDescription>{item.description}</St.MainThemeItemDescription>
+                </St.MainThemeItem>
+              );
+            })}
         </ScrollContainer>
       </St.MainThemeWrapper>
     </St.MainThemeSection>
@@ -122,7 +120,7 @@ const St = {
     margin-bottom: 0.8rem;
 
     // detail medium 12 필요
-    ${({ theme }) => theme.fonts.detail_medium_12};
+    ${({ theme }) => theme.fonts.detail_medium_12}
 
     color: ${({ theme }) => theme.colors.gray3};
   `,
