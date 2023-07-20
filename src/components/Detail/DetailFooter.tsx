@@ -53,11 +53,28 @@ const DetailFooter = ({
   const postLiked = async () => {
     await api
       .post(`/user/product-liked/save`, {
-        stickerId: id,
+        state: {
+          stickerId: id,
+        },
       })
       .then((res) => {
         // setResponse(res.data.data);
-        // 좋아요 추가
+        // 좋아요
+        console.log('좋아요');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // 좋아요 삭제 통신
+  const postDisliked = async () => {
+    await api
+      .post(`/user/product-liked/${id}/delete`)
+      .then((res) => {
+        // setResponse(res.data.data);
+        // 좋아요 삭제
+        console.log('좋아요 삭제');
       })
       .catch((err) => {
         console.log(err);
