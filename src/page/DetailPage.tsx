@@ -30,7 +30,11 @@ const DetailPage = () => {
     return <Header leftSection={<BackBtn />} />;
   };
 
+  // 상세페이지 정보 서버 통신
   const { response, error, loading } = useGetSticker(Number(id));
+  console.log(response);
+
+  // 비슷한 목록 서버 통신
   const {
     response: relatedResponse,
     error: relatedError,
@@ -74,13 +78,17 @@ const DetailPage = () => {
             />
           ))}
       </CustomScrollContainer>
-      <DetailBottom
-        id={Number(id)}
-        isSheetOpen={isSheetOpen}
-        setSheetOpen={setSheetOpen}
-        like={like}
-        setLike={setLike}
-      />
+      {!error && !loading && response && (
+        <DetailBottom
+          id={Number(id)}
+          isSheetOpen={isSheetOpen}
+          setSheetOpen={setSheetOpen}
+          like={like}
+          setLike={setLike}
+          discountPrice={response.discountPrice}
+          shippingCost={response.shippingCost}
+        />
+      )}
     </PageLayout>
   );
 };

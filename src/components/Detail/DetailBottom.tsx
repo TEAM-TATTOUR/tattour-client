@@ -11,28 +11,35 @@ interface DetailBottomProps {
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   like: boolean;
   setLike: React.Dispatch<React.SetStateAction<boolean>>;
+  discountPrice: number;
+  shippingCost: number;
 }
 
-const DetailBottom = ({ id, isSheetOpen, setSheetOpen, like, setLike }: DetailBottomProps) => {
+const DetailBottom = ({
+  id,
+  isSheetOpen,
+  setSheetOpen,
+  like,
+  setLike,
+  discountPrice,
+  shippingCost,
+}: DetailBottomProps) => {
   // '구매하기' 누르면서 바텀 시트 올라오자마자 서버한테 받아올 데이터
   // 사용자가 보유한 포인트, 상품1개 수량, 배송비
-
-  const PRICE = 2500;
-  const DELIVERY_PRICE = 3000;
 
   const [count, setCount] = useState(1);
   const [isLack, setLack] = useState(false);
 
   // 사용자 포인트 가져오는 서버 통신
   const { response, error, loading } = useGetPoint();
-  console.log(response?.name);
+  console.log(response);
 
   useEffect(() => {
     setCount(1);
   }, [isSheetOpen]);
 
   useEffect(() => {
-    !error && !loading && response && response.point < count * PRICE + DELIVERY_PRICE
+    !error && !loading && response && response.point < count * discountPrice + shippingCost
       ? setLack(true)
       : setLack(false);
   }, [count]);
@@ -62,16 +69,16 @@ const DetailBottom = ({ id, isSheetOpen, setSheetOpen, like, setLike }: DetailBo
                 <IcPlus onClick={() => setCount((prev) => prev + 1)} />
               </St.Stepper>
               <St.PriceContainer>
-                <St.Price>{(count * PRICE).toLocaleString()}</St.Price>
+                <St.Price>{(count * discountPrice).toLocaleString()}</St.Price>
                 <St.PriceUnit>원</St.PriceUnit>
               </St.PriceContainer>
             </St.Wrapper>
-            <St.DeliveryPrice>+ 배송비 {DELIVERY_PRICE.toLocaleString()}원</St.DeliveryPrice>
+            <St.DeliveryPrice>+ 배송비 {shippingCost.toLocaleString()}원</St.DeliveryPrice>
             <St.Line />
             <St.FinalPriceContainer>
               <St.PriceText>결제 금액</St.PriceText>
               <St.FinalPrice $isLack={isLack}>
-                {(count * PRICE + DELIVERY_PRICE).toLocaleString()}
+                {(count * discountPrice + shippingCost).toLocaleString()}
               </St.FinalPrice>
               <St.PriceText>원</St.PriceText>
             </St.FinalPriceContainer>
