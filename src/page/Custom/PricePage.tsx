@@ -9,7 +9,7 @@ import PriceFooter from '../../components/Custom/PriceFooter';
 import MakePublic from '../../components/Custom/MakePublic';
 import CustomSizeEscapeModal from '../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import { styled } from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { IcBackDark } from '../../assets/icon';
 
 const PricePage = () => {
@@ -17,11 +17,30 @@ const PricePage = () => {
   const [isPublic, setIsPublic] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const { haveDesign, customInfo: prevCustomInfo, customMainImage, customImages } = location.state;
+
+  const CUSTOM_VIEW_COUNT = haveDesign ? 7 : 4;
+  const backNavigateURL = haveDesign ? '/additional-request' : '/custom-request';
+
+  const customInfo = {
+    ...prevCustomInfo,
+    viewCount: CUSTOM_VIEW_COUNT,
+  };
 
   const renderPricePageHeader = () => {
     return (
       <Header
-        leftSection={<IcBackDark onClick={() => navigate('/additional-request')} />}
+        leftSection={
+          <IcBackDark
+            onClick={() =>
+              navigate(backNavigateURL, {
+                state: location.state,
+              })
+            }
+          />
+        }
         title='커스텀 타투'
         rightSection={
           <CancelBtn
@@ -31,7 +50,7 @@ const PricePage = () => {
           />
         }
         transparent={true}
-        progressBar={<ProgressBar curStep={7} maxStep={7} />}
+        progressBar={<ProgressBar curStep={CUSTOM_VIEW_COUNT} maxStep={CUSTOM_VIEW_COUNT} />}
       />
     );
   };
