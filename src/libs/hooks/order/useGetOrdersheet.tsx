@@ -8,7 +8,7 @@ export interface OrderSheetRequest {
   shippingFee: number;
 }
 
-interface getOrderSheetStickerInfoProps {
+export interface getOrderSheetStickerInfoProps {
   mainImageUrl: string;
   name: string;
   price: number;
@@ -16,13 +16,13 @@ interface getOrderSheetStickerInfoProps {
   count: number;
 }
 
-interface getOrderAmountResProps {
+export interface getOrderAmountResProps {
   totalAmount: number;
   productAmount: number;
   shippingFee: number;
 }
 
-interface getUserOrderPointResProps {
+export interface getUserOrderPointResProps {
   userPoint: number;
   resultPoint: number;
   lacked: boolean;
@@ -40,14 +40,14 @@ interface OrderSheetResponse {
   message: string;
 }
 
-const useGetRelated = () => {
+const useGetOrdersheet = ({ stickerId, count, shippingFee }: OrderSheetRequest) => {
   const [response, setResponse] = useState<OrderSheetProps>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     await api
-      .get(`/order/ordersheet`)
+      .get(`/order/ordersheet?stickerId=${stickerId}&count=${count}&shippingFee=${shippingFee}`)
       .then((res) => {
         const data: OrderSheetResponse = res.data;
         setResponse(data.data);
@@ -67,4 +67,4 @@ const useGetRelated = () => {
   return { response, error, loading };
 };
 
-export default useGetRelated;
+export default useGetOrdersheet;
