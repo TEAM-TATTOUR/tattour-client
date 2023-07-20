@@ -17,7 +17,7 @@ const RegisterNamePage = () => {
       <Header
         leftSection={<St.BlankSection></St.BlankSection>}
         title='회원가입'
-        rightSection={<IcCancelDark onClick={() => navigate(-1)} />}
+        rightSection={<IcCancelDark onClick={() => navigate('/login')} />}
         progressBar={<ProgressBar curStep={1} maxStep={3} />}
       />
     );
@@ -25,8 +25,8 @@ const RegisterNamePage = () => {
 
   return (
     <PageLayout renderHeader={renderRegisterNamePageHeader}>
-      <RegisterName setUserName={setUserName}/>
-      <RegisterNameFooter userName={userName}/>
+      <RegisterName setUserName={setUserName} />
+      <RegisterNameFooter userName={userName} />
     </PageLayout>
   );
 };
