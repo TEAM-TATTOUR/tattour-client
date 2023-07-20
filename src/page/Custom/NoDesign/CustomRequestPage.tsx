@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import ProgressBar from '../../../common/ProgressBar';
@@ -22,6 +22,10 @@ const CustomRequestPage = () => {
   const haveDesign = location.state ? location.state.haveDesign : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
   const customMainImage = location.state ? location.state.customMainImage : null;
+
+  useEffect(() => {
+    if (!location.state) navigate('/onboarding');
+  }, [location.state, navigate]);
 
   const customInfo = {
     ...prevCustomInfo,
