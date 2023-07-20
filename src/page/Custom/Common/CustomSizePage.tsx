@@ -5,9 +5,9 @@ import CancelBtn from '../../../common/Header/CancelBtn';
 import ProgressBar from '../../../common/ProgressBar';
 import PageLayout from '../../../components/PageLayout';
 import NextFooter from '../../../common/Footer/NextFooter';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const CustomSizePage = () => {
   const CUSTOM_VIEW_COUNT = 1;
@@ -17,11 +17,16 @@ const CustomSizePage = () => {
 
   const [size, setSize] = useState('');
 
+  const navigate = useNavigate();
   const location = useLocation();
 
   const haveDesign = location.state ? location.state.haveDesign : null;
   const customId = location.state ? location.state.customId : null;
   const navigateURL = haveDesign ? '/custom-reference' : '/custom-img';
+
+  useEffect(() => {
+    if (!location.state) navigate('/onboarding');
+  }, [location.state, navigate]);
 
   console.log('size', location.state);
 
