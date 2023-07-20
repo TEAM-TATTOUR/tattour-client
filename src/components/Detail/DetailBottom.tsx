@@ -5,13 +5,14 @@ import DetailFooter from './DetailFooter';
 import { useEffect, useState } from 'react';
 
 interface DetailBottomProps {
+  id: number;
   isSheetOpen: boolean;
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   like: boolean;
   setLike: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DetailBottom = ({ isSheetOpen, setSheetOpen, like, setLike }: DetailBottomProps) => {
+const DetailBottom = ({ id, isSheetOpen, setSheetOpen, like, setLike }: DetailBottomProps) => {
   // '구매하기' 누르면서 바텀 시트 올라오자마자 서버한테 받아올 데이터
   // 사용자가 보유한 포인트, 상품1개 수량, 배송비
 
@@ -75,11 +76,14 @@ const DetailBottom = ({ isSheetOpen, setSheetOpen, like, setLike }: DetailBottom
             <St.LackText $isLack={isLack}>보유 포인트가 부족합니다</St.LackText>
           </St.FullBox>
           <DetailFooter
+            id={id}
             setSheetOpen={setSheetOpen}
             isSecond={true}
             text={isLack ? '충전하기' : '구매하기'}
             like={like}
             setLike={setLike}
+            count={count} // API연결 시 필요해서 전달
+            shippingFee={3000} // 배송비도 여기에 추가하기
           />
         </Sheet.Content>
       </Sheet.Container>

@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { IcArrowRightDark, ImgHome } from '../../assets/icon';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { useNavigate } from 'react-router-dom';
+import bannerVideo from '../../assets/video/tattour_home_banner.mp4';
 
 const MainBanner = () => {
   const svgString = encodeURIComponent(renderToStaticMarkup(<ImgHome />));
@@ -14,11 +15,12 @@ const MainBanner = () => {
   };
 
   return (
-    <St.BannerWrapper $svgstring={svgString}>
-      <St.CopyWright>
-        Journey <br />
-        of No Regrets,
-      </St.CopyWright>
+    <>
+      <St.MainWrapper>
+        <St.Video autoPlay muted loop>
+          <source src={bannerVideo} type='video/mp4'></source>
+        </St.Video>
+      </St.MainWrapper>
       <St.SubWrapper>
         <St.SmallCopy>커스텀 타투로 후회 없는 선택의 여정을</St.SmallCopy>
         <St.HomeButton onClick={handleClickHomekButton} type='button'>
@@ -26,11 +28,19 @@ const MainBanner = () => {
           <IcArrowRightDark />
         </St.HomeButton>
       </St.SubWrapper>
-    </St.BannerWrapper>
+    </>
   );
 };
 
 const St = {
+  MainWrapper: styled.section`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: ${({ theme }) => theme.colors.gray9};
+  `,
+
   BannerWrapper: styled.section<{ $svgstring: string }>`
     width: 100%;
     height: 76.1rem;
@@ -38,21 +48,24 @@ const St = {
     background-image: ${({ $svgstring }) => `url("data:image/svg+xml,${$svgstring}")`};
   `,
 
-  CopyWright: styled.p`
-    padding-top: 8.1rem;
-
-    font-size: 7.8rem;
-    color: ${({ theme }) => theme.colors.white};
+  Video: styled.video`
+    position: relative;
+    width: 37.5rem;
+    height: 34rem;
+    margin-top: 7rem;
   `,
 
   SubWrapper: styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    padding-right: 2.2rem;
+
+    background-color: ${({ theme }) => theme.colors.gray9};
   `,
 
   SmallCopy: styled.p`
-    padding-top: 6.6rem;
+    padding-top: 1.2rem;
     ${({ theme }) => theme.fonts.body_medium_16};
     color: ${({ theme }) => theme.colors.white};
   `,
@@ -61,8 +74,8 @@ const St = {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1.4rem;
-
+    margin-top: 1rem;
+    margin-bottom: 5.3rem;
     width: 11.1rem;
     height: 4.2rem;
 

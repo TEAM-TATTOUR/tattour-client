@@ -8,10 +8,11 @@ import DetailBottom from '../components/Detail/DetailBottom';
 import CustomScrollContainer from '../common/CustomScrollContainer';
 import SmallTattooCard from '../common/SmallTattooCard';
 import BackBtn from '../common/Header/BackBtn';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const DUMMY_DATA = [
   {
+    id: 0,
     img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
     title: '고양이 리본 타투',
     discountRate: 5,
@@ -20,6 +21,7 @@ const DUMMY_DATA = [
     isCustom: true,
   },
   {
+    id: 1,
     img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
     title: '고양이 리본 타투',
     discountRate: 5,
@@ -28,6 +30,7 @@ const DUMMY_DATA = [
     isCustom: false,
   },
   {
+    id: 2,
     img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
     title: '고양이 리본 타투',
     discountRate: 5,
@@ -36,6 +39,7 @@ const DUMMY_DATA = [
     isCustom: true,
   },
   {
+    id: 3,
     img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
     title: '고양이 리본 타투',
     discountRate: 5,
@@ -44,6 +48,7 @@ const DUMMY_DATA = [
     isCustom: false,
   },
   {
+    id: 4,
     img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
     title: '고양이 리본 타투',
     discountRate: 5,
@@ -52,6 +57,7 @@ const DUMMY_DATA = [
     isCustom: true,
   },
   {
+    id: 5,
     img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
     title: '고양이 리본 타투',
     discountRate: 5,
@@ -60,6 +66,7 @@ const DUMMY_DATA = [
     isCustom: false,
   },
   {
+    id: 6,
     img: 'https://github.com/TEAM-TATTOUR/tattour-client/assets/81505421/2abceb46-6f33-4def-a8ce-32eeae662286',
     title: '고양이 리본 타투',
     discountRate: 5,
@@ -70,7 +77,10 @@ const DUMMY_DATA = [
 ];
 
 const DetailPage = () => {
-  // const navigate = useNavigate();
+  const { id } = useParams();
+  // param.id로 서버에서 상품 데이터 get 해오기
+
+  //const navigate = useNavigate();
   const [isSheetOpen, setSheetOpen] = useState(false);
   // const [isCustom, setCustom] = useState(true); // 해당 상품이 custom인지 여부
   const isCustom = true;
@@ -87,20 +97,24 @@ const DetailPage = () => {
       renderHeader={renderDetailPageHeader}
       footer={
         <DetailFooter
+          id={Number(id)}
           setSheetOpen={setSheetOpen}
           isSecond={false}
           text='구매하기'
           like={like}
           setLike={setLike}
+          count={1}
+          shippingFee={3000}
         />
       }
     >
       <DetailCarousel isCustom={isCustom} />
-      <DetailInfo />
+      <DetailInfo id={Number(id)} />
       <CustomScrollContainer title='비슷한 제품도 추천드려요'>
-        {DUMMY_DATA.map((el, index) => (
+        {DUMMY_DATA.map((el) => (
           <SmallTattooCard
-            key={index}
+            key={el.id}
+            id={el.id}
             img={el.img}
             title={el.title}
             discountRate={el.discountRate}
@@ -111,6 +125,7 @@ const DetailPage = () => {
         ))}
       </CustomScrollContainer>
       <DetailBottom
+        id={Number(id)}
         isSheetOpen={isSheetOpen}
         setSheetOpen={setSheetOpen}
         like={like}
