@@ -48,11 +48,11 @@ const DetailInfo = ({ response }: StickerItemProps) => {
       </St.TagContainer>
       {description && (
         <p>
-          <St.DetailText>{description.substring(0, 65)}</St.DetailText>
+          <St.DetailText>{description.substring(0, 60)}</St.DetailText>
           {isOpen ? (
-            <St.DetailText>{description.substring(65)}</St.DetailText>
+            <St.DetailText>{description.substring(61)}</St.DetailText>
           ) : (
-            description.length > 65 && (
+            description.length > 61 && (
               <St.DetailText>
                 {'···'}
                 <St.Button onClick={() => setOpen(true)}>더보기</St.Button>
