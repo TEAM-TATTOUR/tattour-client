@@ -8,6 +8,7 @@ import CustomSizeEscapeModal from '../../common/Modal/EscapeModal/CustomSizeEsca
 import NextFooter from '../../common/Footer/NextFooter';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { IcBackDark } from '../../assets/icon';
+import { customInfoType } from '../../types/customInfoType';
 
 const CustomReferencePage = () => {
   const CUSTOM_VIEW_COUNT = 2;
@@ -21,21 +22,13 @@ const CustomReferencePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { haveDesign, customId } = location.state;
+  const haveDesign = location.state ? location.state.haveDesign : null;
+  const customId = location.state ? location.state.customId : null;
 
-  const customInfo: customInfo = {
+  const customInfo: customInfoType = {
     viewCount: CUSTOM_VIEW_COUNT,
     customId: customId,
-    customMainImage: customMainImage,
-    customImages: customImages,
   };
-
-  // useEffect(() => {
-  //   return () => {
-  //     custominfo.customMainImage = customMainImage;
-  //     custominfo.customImages = customImages;
-  //   };
-  // }, [customMainImage, customImages, custominfo]);
 
   const renderCustomReferencePageHeader = () => {
     return (
@@ -63,6 +56,8 @@ const CustomReferencePage = () => {
           isActiveNext={isActiveNext}
           navigateURL={'/styling-color'}
           customInfo={customInfo}
+          customMainImage={customMainImage}
+          customImages={customImages}
         />
       }
     >
