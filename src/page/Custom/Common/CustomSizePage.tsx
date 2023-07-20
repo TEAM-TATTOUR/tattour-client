@@ -15,10 +15,13 @@ const CustomSizePage = () => {
 
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
+
   const [size, setSize] = useState('');
 
   const location = useLocation();
-  const { haveDesign, customId } = location.state;
+
+  const haveDesign = location.state ? location.state.haveDesign : null;
+  const customId = location.state ? location.state.customId : null;
 
   const customInfo: customInfo = {
     viewCount: CUSTOM_VIEW_COUNT,
