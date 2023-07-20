@@ -10,7 +10,7 @@ import RegisterPhoneNumPage from './page/Register/RegisterPhoneNumPage';
 import WelcomePage from './page/Welcome/WelcomePage';
 import ChargePage from './page/PointCharge/ChargePage';
 import TransferPage from './page/PointCharge/TransferPage';
-import SelectPage from './page/Custom/SelectPage';
+import SelectPage from './page/Custom/Common/SelectPage';
 import CompletePage from './page/Order/CompletePage';
 import OrderPage from './page/Order/OrderPage';
 import SelectKeywordPage from './page/Custom/HaveDesign/SelectKeywordPage';
@@ -27,6 +27,7 @@ import CustomReferencePage from './page/CustomReference/CustomReferencePage';
 import SearchPage from './page/Search/SearchPage';
 import SearchResultPage from './page/Search/SearchResultPage';
 import ScrollToTop from './libs/hooks/ScrollTop';
+import LoginCallback from './components/Login/LoginCallback';
 import SavePage from './page/SavePage';
 
 const Router = () => {
@@ -38,8 +39,8 @@ const Router = () => {
         <Route path='/' element={<MainPage />} />
         <Route path='/order' element={<OrderPage />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path='/detail' element={<DetailPage />} />
-        <Route path='/login/oauth2/callback' element={<RegisterNamePage />} />
+        <Route path='/detail/:id' element={<DetailPage />} />
+        <Route path='/register' element={<RegisterNamePage />} />
         <Route path='/register-number' element={<RegisterPhoneNumPage />} />
         <Route path='/welcome-signup' element={<WelcomePage />} />
         <Route path='/my-tattoo' element={<MyTattoo />} />

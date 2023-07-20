@@ -1,28 +1,24 @@
 import styled from 'styled-components';
+import { getOrderAmountResProps } from '../../libs/hooks/order/useGetOrdersheet';
 
-interface PaymentMiniProps {
-  finalPrice: number;
-  itemPrice: number;
-  deliveryPrice: number;
-}
-
-const PaymentMini = ({ finalPrice, itemPrice, deliveryPrice }: PaymentMiniProps) => {
+const PaymentMini = ({ getOrderAmountRes }: { getOrderAmountRes: getOrderAmountResProps }) => {
+  const { totalAmount, productAmount, shippingFee } = getOrderAmountRes;
   return (
     <>
       <St.TextBox>
         <St.MainText>결제 금액</St.MainText>
         <St.PriceBox>
-          <St.MainPrice>{finalPrice.toLocaleString()}</St.MainPrice>
+          <St.MainPrice>{totalAmount && totalAmount.toLocaleString()}</St.MainPrice>
           <St.MainText>원</St.MainText>
         </St.PriceBox>
       </St.TextBox>
       <St.TextBox>
         <St.SubText>상품 금액</St.SubText>
-        <St.SubText>{itemPrice.toLocaleString()}원</St.SubText>
+        <St.SubText>{productAmount && productAmount.toLocaleString()}원</St.SubText>
       </St.TextBox>
       <St.TextBox>
         <St.SubText>배송비</St.SubText>
-        <St.SubText>{deliveryPrice.toLocaleString()}원</St.SubText>
+        <St.SubText>{shippingFee && shippingFee.toLocaleString()}원</St.SubText>
       </St.TextBox>
     </>
   );
