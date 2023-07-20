@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
 import { useLocation, useNavigate } from 'react-router-dom';
 import api from '../../libs/api';
+import { useState } from 'react';
+import Toast from '../../common/ToastMessage/Toast';
 
 interface DetailFooterProp {
   id: number;
@@ -26,6 +28,7 @@ const DetailFooter = ({
   const navigate = useNavigate();
   const location = useLocation();
   const currURL = location.pathname;
+  const [toast, setToast] = useState(false);
 
   const handleClickButton = () => {
     if (text === '충전하기') {
@@ -51,11 +54,10 @@ const DetailFooter = ({
 
   // 좋아요 추가 통신
   const postLiked = async () => {
+    console.log('좋아요 추가 통신', id);
     await api
       .post(`/user/product-liked/save`, {
-        state: {
-          stickerId: id,
-        },
+        stickerId: id,
       })
       .then((res) => {
         // setResponse(res.data.data);
@@ -69,6 +71,8 @@ const DetailFooter = ({
 
   // 좋아요 삭제 통신
   const postDisliked = async () => {
+    console.log('좋아요 삭제 통신', id);
+
     await api
       .post(`/user/product-liked/${id}/delete`)
       .then((res) => {
@@ -81,15 +85,29 @@ const DetailFooter = ({
       });
   };
 
+  const handleClickLike = () => {
+    // 로그인 상태가 아닌 경우
+    setToast(true);
+    // setLike(X)
+
+    // 로그인 상태인 경우
+    setLike((prev) => !prev);
+    // 만약 원래 좋아요가 눌린 상태면
+    // if (like) {
+    //   postLiked();
+    // } else {
+    //   postDisliked();
+    // }
+  };
+
   return (
     <St.Footer>
       <St.Button type='button' onClick={handleClickButton}>
         {text}
       </St.Button>
       <St.Line />
-      <St.Like onClick={() => setLike((prev) => !prev)}>
-        {like ? <IcHeartLight /> : <IcHeartDark />}
-      </St.Like>
+      <St.Like onClick={handleClickLike}>{like ? <IcHeartLight /> : <IcHeartDark />}</St.Like>
+      {toast && <Toast setToast={setToast} text='로그인이 필요합니다.' />}
     </St.Footer>
   );
 };
