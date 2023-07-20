@@ -1,9 +1,10 @@
 import { styled } from 'styled-components';
 import { IcCustom, IcShop, IcMy } from '../assets/icon';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import SideMenuUserInfo from './SideMenuUserInfo';
 import { useNavigate } from 'react-router-dom';
 import { IcInformation } from '../assets/icon';
+import { getAccessToken, removeAccessToken } from '../libs/api';
 
 interface SideMenuProps {
   isSideMenuOpen: boolean;
@@ -11,7 +12,7 @@ interface SideMenuProps {
 }
 
 const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
-  const [isLogin] = useState(true);
+  const isLogin = getAccessToken() !== null;
 
   const navigate = useNavigate();
 
@@ -59,6 +60,14 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
     setIsSideMenuOpen(false);
   };
 
+  const handleClickLogOutButton = () => {
+    // remove access token
+    removeAccessToken();
+    // redirect to home
+    navigate('/');
+    setIsSideMenuOpen(false);
+  };
+
   return (
     <>
       <St.BackDrop onClick={handleClickBackDrop} $isSideMenuOpen={isSideMenuOpen} />
@@ -90,7 +99,9 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
             {isLogin && (
               <>
                 <St.Delimeter />
-                <St.SideMenuLogOutButton type='button'>로그아웃</St.SideMenuLogOutButton>
+                <St.SideMenuLogOutButton type='button' onClick={handleClickLogOutButton}>
+                  로그아웃
+                </St.SideMenuLogOutButton>
               </>
             )}
           </St.SideMenuCSButtonWrapper>
