@@ -82,6 +82,8 @@ const DetailBottom = ({ id, isSheetOpen, setSheetOpen, like, setLike }: DetailBo
             text={isLack ? '충전하기' : '구매하기'}
             like={like}
             setLike={setLike}
+            count={count} // API연결 시 필요해서 전달
+            shippingFee={3000} // 배송비도 여기에 추가하기
           />
         </Sheet.Content>
       </Sheet.Container>
