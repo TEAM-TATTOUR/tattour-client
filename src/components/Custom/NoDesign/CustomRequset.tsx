@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 // 이모티콘 카운팅 관련 라이브러리
 import GraphemeSplitter from 'grapheme-splitter';
+import { useLocation } from 'react-router-dom';
 
 interface CustomRequestProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,11 +13,34 @@ interface CustomRequestProps {
 const CustomRequset = ({ setIsActiveNext, setName, setDemand }: CustomRequestProps) => {
   //count 될 maxCount 수
   const MAX_NAME_COUNT = 10;
-  const MAX_ETC_COUNT = 100;
+  const MAX_DEMAND_COUNT = 100;
+
+  const location = useLocation();
 
   //글자 수 세기 관련 state
   const [nameInputCount, setNameInputCount] = useState(0);
-  const [etcTextAreaCount, setEtcTextAreaCount] = useState(0);
+  const [demandTextAreaCount, setDemandTextAreaCount] = useState(0);
+
+  const nameInputRef = useRef<HTMLInputElement>(null);
+  const demandTextAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  const writtenName = location.state.customInfo.name ? location.state.customInfo.name : null;
+  const writtenDemand = location.state.customInfo.demand ? location.state.customInfo.demand : null;
+
+  console.log(writtenName, writtenDemand);
+
+  useEffect(() => {
+    if (!writtenName || !nameInputRef.current) return;
+    nameInputRef.current.value = writtenName;
+    setNameInputCount(writtenName.length);
+    setName(writtenName);
+    setIsActiveNext(true);
+
+    if (!writtenDemand || !demandTextAreaRef.current) return;
+    demandTextAreaRef.current.value = writtenDemand;
+    setDemandTextAreaCount(writtenDemand.length);
+    setDemand(writtenDemand);
+  }, [writtenName, writtenDemand]);
 
   // 이모티콘을 한 문자로 취급하여 글자 수 제한을 구현하는 함수
   const limitMaxLength = (
@@ -52,13 +76,13 @@ const CustomRequset = ({ setIsActiveNext, setName, setDemand }: CustomRequestPro
     setName(e.target.value);
   };
 
-  const handleChangeEtcTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.target.value === '') setEtcTextAreaCount(0);
+  const handleChangeDemandTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (e.target.value === '') setDemandTextAreaCount(0);
 
-    const lengthCount = limitMaxLength(e, MAX_ETC_COUNT);
+    const lengthCount = limitMaxLength(e, MAX_DEMAND_COUNT);
 
     if (!lengthCount) return;
-    setEtcTextAreaCount(lengthCount);
+    setDemandTextAreaCount(lengthCount);
     setDemand(e.target.value);
   };
 
@@ -73,6 +97,7 @@ const CustomRequset = ({ setIsActiveNext, setName, setDemand }: CustomRequestPro
             type='text'
             onChange={handleChangeNameInput}
             placeholder='ex. 우리 가족 타투, 백조 타투'
+            ref={nameInputRef}
             autoFocus
           />
           <St.RequestInputCount>
@@ -80,29 +105,30 @@ const CustomRequset = ({ setIsActiveNext, setName, setDemand }: CustomRequestPro
           </St.RequestInputCount>
         </St.RequestInputBox>
       </St.RequestNameContainer>
-      <St.RequestEtcContainer>
-        <St.RequestEtcTitleBox>
-          <St.RequestEtcTitle>요청 사항</St.RequestEtcTitle>
+      <St.RequestDemandContainer>
+        <St.RequestDemandTitleBox>
+          <St.RequestDemandTitle>요청 사항</St.RequestDemandTitle>
           <St.RequestOptionBadge>선택</St.RequestOptionBadge>
-        </St.RequestEtcTitleBox>
+        </St.RequestDemandTitleBox>
         <div>
-          <St.RequestEtcDetail>
+          <St.RequestDemandDetail>
             추가적인 요청사항이 있다면 자유롭게 작성해주세요
-          </St.RequestEtcDetail>
-          <St.RequestEtcDetail>
+          </St.RequestDemandDetail>
+          <St.RequestDemandDetail>
             (컬러 코드, 정확한 사이즈, 라인 굵기, 명암 여부 등)
-          </St.RequestEtcDetail>
+          </St.RequestDemandDetail>
         </div>
         <St.RequestInputBox>
-          <St.RequestEtcTextArea
-            onChange={handleChangeEtcTextArea}
+          <St.RequestDemandTextArea
+            onChange={handleChangeDemandTextArea}
             placeholder='ex. 라인 1mm로 사진보다 얇게 그려주세요 &#13;&#10; &nbsp; &nbsp;  도안을 붉은색 (FF6B6B)으로 바꿔주세요'
+            ref={demandTextAreaRef}
           />
           <St.RequestInputCount>
-            ({etcTextAreaCount}/{MAX_ETC_COUNT})
+            ({demandTextAreaCount}/{MAX_DEMAND_COUNT})
           </St.RequestInputCount>
         </St.RequestInputBox>
-      </St.RequestEtcContainer>
+      </St.RequestDemandContainer>
     </St.CustomRequestWrapper>
   );
 };
@@ -178,7 +204,7 @@ const St = {
     width: fit-content;
   `,
 
-  RequestEtcContainer: styled.article`
+  RequestDemandContainer: styled.article`
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
@@ -188,29 +214,28 @@ const St = {
     padding: 4rem 2rem 13rem 2.2rem;
   `,
 
-  RequestEtcTitleBox: styled.div`
+  RequestDemandTitleBox: styled.div`
     display: flex;
     align-items: center;
     gap: 0.6rem;
   `,
 
-  RequestEtcTitle: styled.h2`
+  RequestDemandTitle: styled.h2`
     color: ${({ theme }) => theme.colors.gray8};
     ${({ theme }) => theme.fonts.title_semibold_20};
   `,
 
   RequestOptionBadge: styled.span`
     color: ${({ theme }) => theme.colors.pink4};
-    //폰트 추가 필요
     ${({ theme }) => theme.fonts.detail_semibold_12};
   `,
 
-  RequestEtcDetail: styled.p`
+  RequestDemandDetail: styled.p`
     color: ${({ theme }) => theme.colors.gray3};
     ${({ theme }) => theme.fonts.body_medium_14};
   `,
 
-  RequestEtcTextArea: styled.textarea`
+  RequestDemandTextArea: styled.textarea`
     width: 29.5rem;
     height: 14.6rem;
 

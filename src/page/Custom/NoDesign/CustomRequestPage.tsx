@@ -27,6 +27,8 @@ const CustomRequestPage = () => {
     if (!location.state) navigate('/onboarding');
   }, [location.state, navigate]);
 
+  console.log(location.state);
+
   const customInfo = {
     ...prevCustomInfo,
     viewCount: CUSTOM_VIEW_COUNT,

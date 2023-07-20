@@ -30,8 +30,6 @@ const CustomImgPage = () => {
     viewCount: CUSTOM_VIEW_COUNT,
   };
 
-  console.log('img', location.state);
-
   const renderCustomImgPageHeader = () => {
     return (
       <Header
