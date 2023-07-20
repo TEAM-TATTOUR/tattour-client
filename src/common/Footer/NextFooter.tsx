@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { customInfo } from '../../types/customInfo';
+import { customInfo } from '../../types/customInfoType';
 
 interface NextFooterProps {
   isActiveNext?: boolean;
