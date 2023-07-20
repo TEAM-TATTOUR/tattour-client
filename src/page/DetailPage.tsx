@@ -103,6 +103,8 @@ const DetailPage = () => {
           text='구매하기'
           like={like}
           setLike={setLike}
+          count={1}
+          shippingFee={3000}
         />
       }
     >
