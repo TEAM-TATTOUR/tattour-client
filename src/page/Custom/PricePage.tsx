@@ -42,7 +42,7 @@ const PricePage = () => {
           <IcBackDark
             onClick={() =>
               navigate(backNavigateURL, {
-                state: location.state,
+                state: location.state ? location.state : null,
               })
             }
           />
