@@ -51,10 +51,9 @@ const MySaveItem = ({ id, name, imageUrl }: { id: number; name: string; imageUrl
       case 1:
         navigate('/custom-size', {
           state: {
-            haveDesign: response.haveDesign,
-            customId: response.id,
-            customMainImage: response.mainImageUrl,
-            customImages: response.images,
+            customInfo: {
+              size: response.size,
+            },
           },
         });
         break;
@@ -63,8 +62,10 @@ const MySaveItem = ({ id, name, imageUrl }: { id: number; name: string; imageUrl
           ? navigate(`/custom-reference`)
           : navigate(`/custom-img`, {
               state: {
-                haveDesign: response.haveDesign,
-                customMainImage: response.mainImageUrl,
+                customInfo: {
+                  size: response.size,
+                  customMainImage: response.mainImageUrl,
+                },
               },
             });
         break;
@@ -73,19 +74,17 @@ const MySaveItem = ({ id, name, imageUrl }: { id: number; name: string; imageUrl
           ? navigate(`/styling-color`)
           : navigate(`/custom-request`, {
               state: {
-                haveDesign: response.haveDesign,
-                customMainImage: response.mainImageUrl,
+                customInfo: {
+                  size: response.size,
+                  customMainImage: response.mainImageUrl,
+                  name: response.name,
+                  demand: response.demand,
+                },
               },
             });
         break;
       case 4:
-        haveDesign
-          ? navigate(`/select-keyword`)
-          : navigate(`/price`, {
-              state: {
-                haveDesign: response.haveDesign,
-              },
-            });
+        haveDesign ? navigate(`/select-keyword`) : navigate(`/price`);
         break;
       case 5:
         navigate('/custom-theme');
