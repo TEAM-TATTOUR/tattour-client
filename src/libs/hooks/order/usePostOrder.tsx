@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import api from '../../api';
-import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export interface OrderRequest {
@@ -17,10 +16,6 @@ export interface OrderRequest {
 
 const usePostOrder = ({ postData }: { postData: OrderRequest }) => {
   const [response, setResponse] = useState({});
-  const [error, setError] = useState<AxiosError>();
-  const [loading, setLoading] = useState(true);
-
-  console.log(response);
 
   const navigate = useNavigate();
 
@@ -31,24 +26,16 @@ const usePostOrder = ({ postData }: { postData: OrderRequest }) => {
       })
       .then((res) => {
         setResponse(res.data.data);
-        //navigate to complete
         navigate('/complete');
       })
       .catch((err) => {
-        setError(err);
-      })
-      .finally(() => {
-        setLoading(false);
+        console.log(err);
       });
   };
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-
   fetchData();
 
-  return { response, error, loading };
+  return { response };
 };
 
 export default usePostOrder;

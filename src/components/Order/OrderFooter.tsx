@@ -29,8 +29,8 @@ const OrderFooter = ({
   response: OrderSheetProps;
 }) => {
   const navigate = useNavigate();
-  const [error, setError] = useState<AxiosError>();
-  const [loading, setLoading] = useState(true);
+  const [, setError] = useState<AxiosError>();
+  const [, setLoading] = useState(true);
 
   const fetchData = async () => {
     await api
