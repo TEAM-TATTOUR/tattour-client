@@ -22,17 +22,16 @@ export interface CustomDetailItemProps {
     isCompleted: boolean;
     process?: string;
     viewCount: number;
+    count: number;
 }
 
 interface CustomDetailResponse {
-    data: {
-        custom: CustomDetailItemProps
-    }
+    data: CustomDetailItemProps
     code: number;
     message: string;
 }
 
-const useGetCustomDetail = (id: number) => {
+const useGetCustomDetail = (id: string) => {
     const [response, setResponse] = useState<CustomDetailItemProps>();
     const [error, setError] = useState<AxiosError>();
     const [loading, setLoading] = useState(true);
@@ -40,11 +39,12 @@ const useGetCustomDetail = (id: number) => {
     const fetchData = async () => {
         await api.get(`/user/custom/${id}`)
             .then(res => {
-                console.log(res);
                 const data: CustomDetailResponse = res.data;
-                setResponse(data.data.custom);
+                console.log('data', data);
+                setResponse(data.data);
             })
             .catch(err => {
+                console.log(err);
                 setError(err);
             })
             .finally(() => {
