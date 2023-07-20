@@ -1,16 +1,41 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { customInfoType } from '../../types/customInfoType';
 
-const PriceFooter = () => {
+interface PriceFooterProps {
+  isActiveNext?: boolean;
+  haveDesign?: boolean;
+  customInfo?: customInfoType;
+  customMainImage?: File;
+  customImages?: FileList;
+}
+
+const PriceFooter = ({
+  isActiveNext = true,
+  haveDesign,
+  customInfo,
+  customMainImage,
+  customImages,
+}: PriceFooterProps) => {
   const navigate = useNavigate();
 
-  const handleClickButton = () => {
-    navigate('/receipt');
+  const handleClickFooter = () => {
+    {
+      isActiveNext &&
+        navigate('/receipt', {
+          state: {
+            haveDesign: haveDesign,
+            customInfo: customInfo,
+            customMainImage: customMainImage,
+            customImages: customImages,
+          },
+        });
+    }
   };
 
   return (
     <St.CustomFooter>
-      <St.FooterButton type='button' onClick={handleClickButton}>
+      <St.FooterButton type='button' onClick={handleClickFooter}>
         접수 완료하기
       </St.FooterButton>
     </St.CustomFooter>

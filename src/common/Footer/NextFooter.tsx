@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-// import { customInfoType } from '../../types/customInfoType';
+import { customInfoType } from '../../types/customInfoType';
 
 interface NextFooterProps {
   isActiveNext?: boolean;
   navigateURL: string;
   haveDesign?: boolean;
-  customInfo?: customInfo;
+  customInfo?: customInfoType;
   customMainImage?: File;
   customImages?: FileList;
 }
