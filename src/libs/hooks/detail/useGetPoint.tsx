@@ -24,8 +24,10 @@ const useGetPoint = () => {
       .then((res) => {
         const data: PointResponse = res.data;
         setResponse(data.data);
+        console.log('success', data.data);
       })
       .catch((err) => {
+        console.log(err);
         setError(err);
       })
       .finally(() => {

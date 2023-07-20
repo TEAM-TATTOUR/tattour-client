@@ -43,8 +43,8 @@ const DetailInfo = ({ response }: StickerItemProps) => {
       </St.Description>
       <St.BoldLine />
       <St.TagContainer>
-        {stickerThemes && stickerThemes.map((el, index) => <St.Tag key={index}>{el}</St.Tag>)}
-        {stickerStyles && stickerStyles.map((el, index) => <St.Tag key={index}>{el}</St.Tag>)}
+        {stickerThemes && stickerThemes.map((el: string) => <St.Tag key={el}>{el}</St.Tag>)}
+        {stickerStyles && stickerStyles.map((el: string) => <St.Tag key={el}>{el}</St.Tag>)}
       </St.TagContainer>
       {description && (
         <p>

@@ -23,7 +23,9 @@ const DetailBottom = ({ id, isSheetOpen, setSheetOpen, like, setLike }: DetailBo
   const [count, setCount] = useState(1);
   const [isLack, setLack] = useState(false);
 
+  // 사용자 포인트 가져오는 서버 통신
   const { response, error, loading } = useGetPoint();
+  console.log(response?.name);
 
   useEffect(() => {
     setCount(1);
