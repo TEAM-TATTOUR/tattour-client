@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { IcCancelDark, IcPhoto } from '../../../assets/icon';
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 interface CustomImgAttachProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
@@ -8,11 +9,27 @@ interface CustomImgAttachProps {
 }
 
 const CustomImgAttach = ({ setIsActiveNext, setCustomMainImage }: CustomImgAttachProps) => {
+  const location = useLocation();
   const [previewURL, setPreviewURL] = useState('');
+
+  //state에 있는 size 값 가져오기 (처음 넘어올 때는 customInfo 자체가 없으므로 에러 방지)
+  const attachedImg = location.state.customMainImage ? location.state.customMainImage : null;
 
   useEffect(() => {
     previewURL ? setIsActiveNext(true) : setIsActiveNext(false);
   }, [previewURL, setIsActiveNext]);
+
+  useEffect(() => {
+    //state에 있는 attachedImg 값 가져와서 미리보기 구현하기
+    if (!attachedImg) return;
+    setCustomMainImage(attachedImg);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(attachedImg);
+    reader.onloadend = () => {
+      setPreviewURL(reader.result as string);
+    }; // FileReader로 이미지 미리보기 구현
+  }, [attachedImg, setCustomMainImage]);
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -23,13 +40,12 @@ const CustomImgAttach = ({ setIsActiveNext, setCustomMainImage }: CustomImgAttac
 
     console.log(fileBlob);
 
-    // FileReader로 이미지 미리보기 구현
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
     reader.onloadend = () => {
       setPreviewURL(reader.result as string);
       e.target.value = ''; // 같은 파일을 올리면 change 이벤트 인지 못해서 여기서 초기화
-    };
+    }; // FileReader로 이미지 미리보기 구현
   };
 
   const handleClickImgPreviewDelBtn = () => {
