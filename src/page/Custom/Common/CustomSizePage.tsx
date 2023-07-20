@@ -5,12 +5,39 @@ import CancelBtn from '../../../common/Header/CancelBtn';
 import ProgressBar from '../../../common/ProgressBar';
 import PageLayout from '../../../components/PageLayout';
 import NextFooter from '../../../common/Footer/NextFooter';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const CustomSizePage = () => {
+  const CUSTOM_VIEW_COUNT = 1;
+
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
+
+  const [size, setSize] = useState('');
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const haveDesign = location.state ? location.state.haveDesign : null;
+  const customId = location.state ? location.state.customId : null;
+  const customMainImage = location.state ? location.state.customMainImage : null;
+  const customImages = location.state ? location.state.customImages : null;
+  const navigateURL = haveDesign ? '/custom-reference' : '/custom-img';
+
+  const sizeState =
+    location.state && location.state.customInfo ? location.state.customInfo.size : null;
+
+  useEffect(() => {
+    if (!location.state) navigate('/onboarding');
+  }, [location.state, navigate]);
+
+  const customInfo = {
+    viewCount: CUSTOM_VIEW_COUNT,
+    customId: customId,
+    size: size,
+  };
 
   const renderCustomSizePageHeader = () => {
     return (
@@ -31,9 +58,18 @@ const CustomSizePage = () => {
   return (
     <PageLayout
       renderHeader={renderCustomSizePageHeader}
-      footer={<NextFooter isActiveNext={isActiveNext} navigateURL='/custom-img' />}
+      footer={
+        <NextFooter
+          isActiveNext={isActiveNext}
+          navigateURL={navigateURL}
+          haveDesign={haveDesign}
+          customInfo={customInfo}
+          customMainImage={customMainImage}
+          customImages={customImages}
+        />
+      }
     >
-      <CustomSelectSize setIsActiveNext={setIsActiveNext} />
+      <CustomSelectSize setIsActiveNext={setIsActiveNext} setSize={setSize} size={sizeState} />
     </PageLayout>
   );
 };
