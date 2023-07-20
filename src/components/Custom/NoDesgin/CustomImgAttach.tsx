@@ -38,8 +38,6 @@ const CustomImgAttach = ({
     const fileBlob = files[0]; // 서버 통신 시 보낼 타입
     setCustomMainImage(fileBlob);
 
-    console.log(fileBlob);
-
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
     reader.onloadend = () => {

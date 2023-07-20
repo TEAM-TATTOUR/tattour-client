@@ -29,8 +29,6 @@ const CustomRequset = ({
   const nameInputRef = useRef<HTMLInputElement>(null);
   const demandTextAreaRef = useRef<HTMLTextAreaElement>(null);
 
-  console.log(writtenName, writtenDemand);
-
   useEffect(() => {
     if (!writtenName || !nameInputRef.current) return;
     nameInputRef.current.value = writtenName;
