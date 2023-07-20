@@ -69,7 +69,7 @@ const HotCustom = () => {
         <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
           {!loading &&
             !error &&
-            response.map(({ id, name, discountRate, discountPrice, price }) => {
+            response.map(({ id, name, imageUrl, discountRate, discountPrice, price }) => {
               return (
                 <St.HotCustomItem key={id} onClick={handleClickSticker(id)}>
                   <St.labelWrapper>
@@ -77,7 +77,7 @@ const HotCustom = () => {
                       <LabelCustomSmall />
                     </St.HotCustomLabel>
                     <St.ImgWrapper>
-                      <img src={test_tattoo} />
+                      <St.HotCustomImage src={imageUrl} />
                     </St.ImgWrapper>
                   </St.labelWrapper>
                   <St.HotCustomItemTitle>
@@ -132,6 +132,11 @@ const St = {
   HotCustomTitle: styled.h2`
     ${({ theme }) => theme.fonts.title_eng_bold_20};
     color: ${({ theme }) => theme.colors.gray8};
+  `,
+
+  HotCustomImage: styled.img`
+    width: 15.3rem;
+    height: 16.3rem;
   `,
 
   HotCustomWrapper: styled.div`
