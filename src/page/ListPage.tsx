@@ -29,12 +29,13 @@ const ListPage = () => {
   const [isSideMenuOpen, setSideMenuOpen] = useState(false);
 
   const renderListPageHeader = () => {
+
     const handleClickLogo = () => {
       navigate('/');
     };
     return (
       <Header
-        leftSection={<ImgLogoDark />}
+        leftSection={<ImgLogoDark onClick={handleClickLogo} />}
         rightSection={<MainHeaderButton setIsSideMenuOpen={setSideMenuOpen} light={false} />}
       />
     );
