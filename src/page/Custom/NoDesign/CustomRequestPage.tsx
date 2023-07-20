@@ -19,7 +19,9 @@ const CustomRequestPage = () => {
   const [name, setName] = useState('');
   const [demand, setDemand] = useState('');
 
-  const { haveDesign, customInfo: prevCustomInfo, customMainImage } = location.state;
+  const haveDesign = location.state ? location.state.haveDesign : null;
+  const prevCustomInfo = location.state ? location.state.customInfo : null;
+  const customMainImage = location.state ? location.state.customMainImage : null;
 
   const customInfo = {
     ...prevCustomInfo,
@@ -28,8 +30,6 @@ const CustomRequestPage = () => {
     demand: demand,
   };
 
-  console.log(location.state);
-
   const renderCustomRequestPageHeader = () => {
     return (
       <Header
@@ -37,7 +37,7 @@ const CustomRequestPage = () => {
           <IcBackDark
             onClick={() =>
               navigate('/custom-img', {
-                state: location.state,
+                state: location.state ? location.state : null,
               })
             }
           />
