@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import useGetThemeCard, { MainThemeItemProps } from '../../libs/hooks/useGetThemeCard';
+import { useNavigate } from 'react-router-dom';
 
 const dummyThemeList: MainThemeItemProps[] = [
   {
@@ -50,6 +51,17 @@ const renderMainThemeDummyImage = () => {
 const MainTheme = () => {
   const { response, error, loading } = useGetThemeCard();
 
+  const navigate = useNavigate();
+
+  const handleClickCard = (name: string) => () => {
+    navigate(`/list`, {
+      state: {
+        type: '장르',
+        name: name,
+      },
+    });
+  };
+
   return (
     <St.MainThemeSection>
       <St.MainThemeHeader>
@@ -61,7 +73,7 @@ const MainTheme = () => {
             !error &&
             response.map((item) => {
               return (
-                <St.MainThemeItem key={item.id}>
+                <St.MainThemeItem key={item.id} onClick={handleClickCard(item.name)}>
                   {renderMainThemeDummyImage()}
                   <St.MainThemeItemTitle>{item.name}</St.MainThemeItemTitle>
                   <St.MainThemeItemDescription>{item.description}</St.MainThemeItemDescription>
