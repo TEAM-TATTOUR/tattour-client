@@ -32,7 +32,6 @@ const DetailPage = () => {
 
   // 상세페이지 정보 서버 통신
   const { response, error, loading } = useGetSticker(Number(id));
-  console.log(response);
 
   // 비슷한 목록 서버 통신
   const {

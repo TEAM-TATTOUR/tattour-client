@@ -32,7 +32,6 @@ const DetailBottom = ({
 
   // 사용자 포인트 가져오는 서버 통신
   const { response, error, loading } = useGetPoint();
-  console.log(response);
 
   useEffect(() => {
     setCount(1);
