@@ -2,20 +2,25 @@ import React, { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 // 이모티콘 카운팅 관련 라이브러리
 import GraphemeSplitter from 'grapheme-splitter';
-import { useLocation } from 'react-router-dom';
 
 interface CustomRequestProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setName: React.Dispatch<React.SetStateAction<string>>;
   setDemand: React.Dispatch<React.SetStateAction<string>>;
+  writtenName: string | null;
+  writtenDemand: string | null;
 }
 
-const CustomRequset = ({ setIsActiveNext, setName, setDemand }: CustomRequestProps) => {
+const CustomRequset = ({
+  setIsActiveNext,
+  setName,
+  setDemand,
+  writtenName,
+  writtenDemand,
+}: CustomRequestProps) => {
   //count 될 maxCount 수
   const MAX_NAME_COUNT = 10;
   const MAX_DEMAND_COUNT = 100;
-
-  const location = useLocation();
 
   //글자 수 세기 관련 state
   const [nameInputCount, setNameInputCount] = useState(0);
@@ -23,9 +28,6 @@ const CustomRequset = ({ setIsActiveNext, setName, setDemand }: CustomRequestPro
 
   const nameInputRef = useRef<HTMLInputElement>(null);
   const demandTextAreaRef = useRef<HTMLTextAreaElement>(null);
-
-  const writtenName = location.state.customInfo.name ? location.state.customInfo.name : null;
-  const writtenDemand = location.state.customInfo.demand ? location.state.customInfo.demand : null;
 
   console.log(writtenName, writtenDemand);
 

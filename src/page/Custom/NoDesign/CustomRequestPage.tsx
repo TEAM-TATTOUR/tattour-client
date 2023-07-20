@@ -23,6 +23,12 @@ const CustomRequestPage = () => {
   const prevCustomInfo = location.state ? location.state.customInfo : null;
   const customMainImage = location.state ? location.state.customMainImage : null;
 
+  //state에 있는 name, demand 값 가져오기 (처음 넘어올 때는 customMainImage 값이 없으므로 에러 방지 필요)
+  const writtenName =
+    location.state && location.state.customInfo.name ? location.state.customInfo.name : null;
+  const writtenDemand =
+    location.state && location.state.customInfo.demand ? location.state.customInfo.demand : null;
+
   useEffect(() => {
     if (!location.state) navigate('/onboarding');
   }, [location.state, navigate]);
@@ -73,7 +79,13 @@ const CustomRequestPage = () => {
         />
       }
     >
-      <CustomRequset setIsActiveNext={setIsActiveNext} setName={setName} setDemand={setDemand} />
+      <CustomRequset
+        setIsActiveNext={setIsActiveNext}
+        setName={setName}
+        setDemand={setDemand}
+        writtenName={writtenName}
+        writtenDemand={writtenDemand}
+      />
     </PageLayout>
   );
 };
