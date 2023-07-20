@@ -11,9 +11,9 @@ interface CustomSelectSizeProps {
 const CustomSelectSize = ({ setIsActiveNext, setSize, size }: CustomSelectSizeProps) => {
   const BTN_DATA = [
     { id: 'quarter', title: '5cm 이하', detail: '동전 크기' },
-    { id: 'regular', title: 'A4 1/8', detail: '신용카드, 담뱃갑 크기' },
-    { id: 'half', title: 'A4 1/4', detail: '엽서, 손바닥 크기' },
-    { id: 'double', title: '5cm 이하', detail: '아래팔 한 쪽 면 크기' },
+    { id: 'half', title: 'A4 1/8', detail: '신용카드, 담뱃갑 크기' },
+    { id: 'regular', title: 'A4 1/4', detail: '엽서, 손바닥 크기' },
+    { id: 'double', title: 'A4 1/2', detail: '아래팔 한 쪽 면 크기' },
   ];
 
   const [selectedBtn, setSelectedBtn] = useState(size ? size : '');
