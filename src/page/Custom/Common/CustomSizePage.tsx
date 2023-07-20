@@ -8,7 +8,6 @@ import NextFooter from '../../../common/Footer/NextFooter';
 import { useState } from 'react';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import { useLocation } from 'react-router-dom';
-import { customInfo } from '../../../types/customInfo';
 
 const CustomSizePage = () => {
   const CUSTOM_VIEW_COUNT = 1;
@@ -22,10 +21,11 @@ const CustomSizePage = () => {
 
   const haveDesign = location.state ? location.state.haveDesign : null;
   const customId = location.state ? location.state.customId : null;
+  const navigateURL = haveDesign ? '/custom-reference' : '/custom-img';
 
   console.log('size', location.state);
 
-  const customInfo: customInfo = {
+  const customInfo = {
     viewCount: CUSTOM_VIEW_COUNT,
     customId: customId,
     size: size,
@@ -53,7 +53,7 @@ const CustomSizePage = () => {
       footer={
         <NextFooter
           isActiveNext={isActiveNext}
-          navigateURL='/custom-img'
+          navigateURL={navigateURL}
           haveDesign={haveDesign}
           customInfo={customInfo}
         />
