@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import CustomSelectSizeBtn from './CustomSelectSizeBtn';
 import { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 interface CustomSelectSizeProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,8 +16,15 @@ const CustomSelectSize = ({ setIsActiveNext, setSize }: CustomSelectSizeProps) =
     { id: 'double', title: '5cm 이하', detail: '아래팔 한 쪽 면 크기' },
   ];
 
+  const location = useLocation();
   const [selectedBtn, setSelectedBtn] = useState('');
   const sizeBtnRef = useRef<HTMLButtonElement[]>([]);
+
+  // console.log(location.state.customInfo.size, '##');
+  const size =
+    location.state && location.state.customInfo.size ? location.state.customInfo.size : null;
+
+  // console.log(size, '???');
 
   const handleClickSelBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;
@@ -36,6 +44,19 @@ const CustomSelectSize = ({ setIsActiveNext, setSize }: CustomSelectSizeProps) =
       }
     });
   }, [selectedBtn]);
+
+  useEffect(() => {
+    if (!size) return;
+    sizeBtnRef.current.forEach((ref) => {
+      if (ref.id === size) {
+        console.log('맞');
+        ref.classList.add('isSelected');
+        setIsActiveNext(true);
+      } else {
+        ref.classList.remove('isSelected');
+      }
+    });
+  }, [size, setIsActiveNext]);
 
   return (
     <St.SizeWrapper>
