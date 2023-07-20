@@ -52,7 +52,7 @@ const HotCustom = () => {
   };
 
   const handleClickSticker = (id: number) => () => {
-    navigate(`/stickers/${id}`);
+    navigate(`/detail/${id}`);
   };
 
   const { response, error, loading } = useGetHotCustom();
