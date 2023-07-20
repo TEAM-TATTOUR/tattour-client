@@ -10,6 +10,8 @@ import Header from '../../components/Header';
 import OrderFooter from '../../components/Order/OrderFooter';
 import RefundBottom from '../../components/Order/RefundBottom';
 import BackBtn from '../../common/Header/BackBtn';
+import { useLocation } from 'react-router-dom';
+import useGetOrdersheet from '../../libs/hooks/order/useGetOrdersheet';
 
 interface dataProps {
   address: string;
@@ -17,26 +19,34 @@ interface dataProps {
 }
 
 const OrderPage = () => {
+  const location = useLocation();
+  const state = location.state as { stickerId: number; count: number; shippingFee: number };
+  const { response, error, loading } = useGetOrdersheet(state);
+
   const [isPostOpen, setIsPostOpen] = useState(false);
   const addressRef = useRef<HTMLInputElement | null>(null);
   const postcodeRef = useRef<HTMLInputElement | null>(null);
   const [isSheetOpen, setSheetOpen] = useState(false);
 
-  // 추후 서버통신 시 변수 변경 예정
-  const ORIGINAL_PRICE = 4000;
-  const FINAL_PRICE = 5500;
-  const ITEM_PRICE = 2500;
-  const DELIVERY_PRICE = 3000;
-  const MY_POINT = 10000;
-  const RESULT_POINT = 4500;
-  const COUNT = 1;
-
   const [isComplete, setComplete] = useState(false);
   const [input, setInput] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
-  const [detailAddress, setDetailAddress] = useState<string>('');
+  const [address, setAddress] = useState<string>(''); // 우편번호
+  const [firstAddress, setFirstAddress] = useState<string>(''); // 첫주소
+  const [detailAddress, setDetailAddress] = useState<string>(''); // 세부주소
   const [agree, setAgree] = useState<boolean>(false);
+
+  const postData = {
+    stickerId: state.stickerId,
+    productCount: state.count,
+    shippingFee: state.shippingFee,
+    totalAmount: response?.getOrderAmountRes.totalAmount,
+    recipientName: input,
+    contact: phone,
+    mailingAddress: address,
+    baseAddress: firstAddress,
+    detailAddress: detailAddress,
+  };
 
   useEffect(() => {
     if (input === '' || phone === '' || address === '' || detailAddress === '' || agree === false) {
@@ -56,47 +66,56 @@ const OrderPage = () => {
 
   const handleAddress = (data: dataProps) => {
     if (!addressRef.current || !postcodeRef.current) return;
-    addressRef.current.value = data.address;
+    addressRef.current.value = data.address; // 첫번쨰 주소
     postcodeRef.current.value = data.zonecode; // 우편번호
     setAddress(data.zonecode);
+    setFirstAddress(data.address);
     setIsPostOpen(false);
   };
 
   return (
     <PageLayout
       renderHeader={renderOrderPageHeader}
-      footer={<OrderFooter isComplete={isComplete} />}
+      footer={
+        <OrderFooter
+          isComplete={isComplete}
+          price={response && response.getOrderAmountRes.totalAmount}
+          postData={postData}
+          response={response}
+        />
+      }
     >
-      <ProductInfo originialPrice={ORIGINAL_PRICE} itemPrice={ITEM_PRICE} count={COUNT} />
-      <St.Line />
-      <DeliveryInfo
-        handleModal={handleModal}
-        addressRef={addressRef}
-        postcodeRef={postcodeRef}
-        setComplete={setComplete}
-        input={input}
-        setInput={setInput}
-        phone={phone}
-        setPhone={setPhone}
-        detailAddress={detailAddress}
-        setDetailAddress={setDetailAddress}
-      />
-      <St.Line />
-      <PaymentInfo
-        finalPrice={FINAL_PRICE}
-        itemPrice={ITEM_PRICE}
-        deliveryPrice={DELIVERY_PRICE}
-        myPoint={MY_POINT}
-        resultPoint={RESULT_POINT}
-      />
-      <St.Line />
-      <RefundInfo setSheetOpen={setSheetOpen} setAgree={setAgree} />
-      {isPostOpen && (
-        <St.Card onClick={() => setIsPostOpen(false)}>
-          <Postcode onComplete={handleAddress} />
-        </St.Card>
+      {!error && !loading && response && (
+        <>
+          <ProductInfo getOrderSheetStickerInfo={response.getOrderSheetStickerInfo} />
+          <St.Line />
+          <DeliveryInfo
+            handleModal={handleModal}
+            addressRef={addressRef}
+            postcodeRef={postcodeRef}
+            setComplete={setComplete}
+            input={input}
+            setInput={setInput}
+            phone={phone}
+            setPhone={setPhone}
+            detailAddress={detailAddress}
+            setDetailAddress={setDetailAddress}
+          />
+          <St.Line />
+          <PaymentInfo
+            getOrderAmountRes={response.getOrderAmountRes}
+            getUserOrderPointRes={response.getUserOrderPointRes}
+          />
+          <St.Line />
+          <RefundInfo setSheetOpen={setSheetOpen} setAgree={setAgree} />
+          {isPostOpen && (
+            <St.Card onClick={() => setIsPostOpen(false)}>
+              <Postcode onComplete={handleAddress} />
+            </St.Card>
+          )}
+          <RefundBottom isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} />
+        </>
       )}
-      <RefundBottom isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} />
     </PageLayout>
   );
 };

@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import CustomScrollContainer from '../../common/CustomScrollContainer';
 import MyCustomItem from './MyCustomItem';
+import useGetMyCustom from '../../libs/hooks/useGetMyCustom';
 
 const dummyMyCustomData = [
   {
@@ -18,12 +19,16 @@ const dummyMyCustomData = [
 ];
 
 const MyCustom = () => {
+  const { response, error, loading } = useGetMyCustom();
+
   return (
     <>
       <CustomScrollContainer title={'MY CUSTOM'}>
-        {dummyMyCustomData.map(({ id, title }) => {
-          return <MyCustomItem key={id} title={title} />;
-        })}
+        {!error &&
+          !loading &&
+          response.map(({ id, name, imageUrl }) => {
+            return <MyCustomItem key={id} name={name} imageUrl={imageUrl} />;
+          })}
       </CustomScrollContainer>
       <St.Divide />
     </>

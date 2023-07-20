@@ -5,9 +5,10 @@ import ChargePointModalForm from './ChargePointModalForm';
 interface ChargePointModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
   currPoint: number;
+  haveDesign: boolean;
 }
 
-const ChargePointModal = ({ setModalOn, currPoint }: ChargePointModalProps) => {
+const ChargePointModal = ({ setModalOn, currPoint, haveDesign }: ChargePointModalProps) => {
   const REGISTER_FEE = 990;
 
   const [calculatedPoint, setCalculatedPoint] = useState(0);
@@ -44,6 +45,7 @@ const ChargePointModal = ({ setModalOn, currPoint }: ChargePointModalProps) => {
         navigationBtn={navigationBtn}
         // 포인트가 충분한지 여부
         isEnoughPoint={isEnoughPoint}
+        haveDesign={haveDesign}
       />
     </ModalPortal>
   );
