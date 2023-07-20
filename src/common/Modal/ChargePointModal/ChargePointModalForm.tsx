@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
 import { useLocation, useNavigate } from 'react-router-dom';
+import api from '../../../libs/api';
 
 interface ChargePointModalFormProps {
   onClose: () => void;
@@ -13,6 +14,7 @@ interface ChargePointModalFormProps {
   navigationBtn: string;
   unit: string;
   isEnoughPoint: boolean;
+  haveDesign: boolean;
 }
 
 const ChargePointModalForm = ({
@@ -26,20 +28,35 @@ const ChargePointModalForm = ({
   bottomContents,
   unit,
   isEnoughPoint,
+  haveDesign,
 }: ChargePointModalFormProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const currURL = location.pathname;
 
-  const handleClickNavigationBtn = () => {
-    isEnoughPoint
-      ? navigate('/custom-size')
-      : navigate('/point-charge', {
+  const handleClickNavigationBtn = async () => {
+    if (isEnoughPoint) {
+      try {
+        const { data } = await api.post('/custom/apply', {
+          haveDesign: haveDesign,
+        });
+        navigate('/custom-size', {
           state: {
-            redirectURL: currURL,
+            haveDesign: haveDesign,
+            customId: data.data.customId,
           },
         });
+      } catch (err) {
+        // navigate("/error") //에러 처리 추가 예정
+      }
+    } else {
+      navigate('/point-charge', {
+        state: {
+          redirectURL: currURL,
+        },
+      });
+    }
   };
 
   return (
