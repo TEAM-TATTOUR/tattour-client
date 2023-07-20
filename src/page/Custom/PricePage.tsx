@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CancelBtn from '../../common/Header/CancelBtn';
 import ProgressBar from '../../common/ProgressBar';
 import CountPrice from '../../components/Custom/CountPrice';
@@ -27,6 +27,10 @@ const PricePage = () => {
 
   const CUSTOM_VIEW_COUNT = haveDesign ? 7 : 4;
   const backNavigateURL = haveDesign ? '/additional-request' : '/custom-request';
+
+  useEffect(() => {
+    if (!location.state) navigate('/onboarding');
+  }, [location.state, navigate]);
 
   const customInfo = {
     ...prevCustomInfo,
