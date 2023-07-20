@@ -32,10 +32,16 @@ const FilterBottom = ({
   useEffect(() => {
     setSelected(false);
     //QA : 최초에 아무것도 선택 안하고 적용할 경우 발생하는 문제 해결
-    isSortOpen && setSelectedTag(FILTER[0].type);
-    isGenreOpen && setSelectedTag(FILTER[1].type);
-    isStyleOpen && setSelectedTag(FILTER[2].type);
-  }, [isSortOpen, isGenreOpen, isStyleOpen]);
+    // isSortOpen && setSelectedTag(FILTER[0].type);
+    // isGenreOpen && setSelectedTag(FILTER[1].type);
+    // isStyleOpen && setSelectedTag(FILTER[2].type);
+  }, []);
+
+  const { genreResponse } = useGetGenre();
+  const { styleResponse } = useGetStyle();
+
+  const genreData = genreResponse.map((genre: GenreItemProps) => genre.name);
+  const styleData = styleResponse.map((style: StyleItemProps) => style.name);
 
   const FILTER = [
     {
@@ -50,7 +56,9 @@ const FilterBottom = ({
 
         const trueIdx = filterTag[0].indexOf(true);
 
-        setSelectedTag(FILTER[0].data[trueIdx]);
+        const newSelectedTag = [...selectedTag];
+        newSelectedTag[0] = FILTER[0].data[trueIdx];
+        setSelectedTag(newSelectedTag);
       },
       data: ['인기 순', '가격 낮은 순', '가격 높은 순'],
     },
@@ -66,9 +74,11 @@ const FilterBottom = ({
 
         const trueIdx = filterTag[1].indexOf(true);
 
-        setSelectedTag(FILTER[1].data[trueIdx]);
+        const newSelectedTag = [...selectedTag];
+        newSelectedTag[1] = FILTER[1].data[trueIdx];
+        setSelectedTag(newSelectedTag);
       },
-      data: ['일러스트', '동양화', '블랙워크', '라인 타투', '레터링', '수채화'],
+      data: genreData,
     },
     {
       type: '스타일',
@@ -84,15 +94,17 @@ const FilterBottom = ({
 
         const trueIdx = filterTag[2].indexOf(true);
 
-        setSelectedTag(FILTER[2].data[trueIdx]);
+        const newSelectedTag = [...selectedTag];
+        newSelectedTag[2] = FILTER[2].data[trueIdx];
+        setSelectedTag(newSelectedTag);
       },
-      data: ['추상적인', '사실적인', '감성적인', '심플한', '귀여운', '다크한'],
+      data: styleData,
     },
   ];
 
   const tagRefs = useRef<HTMLParagraphElement[]>([]);
   const filterRef = useRef<HTMLElement>(null);
-  const [selectedTag, setSelectedTag] = useState(''); // 선택한 태그 저장
+  const [selectedTag, setSelectedTag] = useState(['정렬', '장르', '스타일']); // 선택한 태그 저장
 
   const [filterTag, setFilterTag] = useState([
     [false, false, false],
@@ -101,7 +113,13 @@ const FilterBottom = ({
   ]);
 
   const handleClickTag = (tag: string, index: number, filterIdx: number) => {
-    selectedTag === tag ? setSelectedTag(FILTER[filterIdx].type) : setSelectedTag(tag); // 선택한 태그 저장
+    const newSelectedTag = [...selectedTag];
+    if (selectedTag[filterIdx] === tag) {
+      newSelectedTag[filterIdx] = FILTER[filterIdx].type;
+    } else {
+      newSelectedTag[filterIdx] = tag;
+    }
+    setSelectedTag(newSelectedTag);
 
     // 태그 선택은 하나씩
     tagRefs.current.forEach((el: HTMLParagraphElement) => {
@@ -125,11 +143,11 @@ const FilterBottom = ({
     onClose(); // 모달 내리기
 
     const newTag = [...filterTag];
-    if (selectedTag === FILTER[filterIdx].type) {
+    if (selectedTag[filterIdx] === FILTER[filterIdx].type) {
       newTag[filterIdx] = FILTER[filterIdx].data.map(() => false);
     } else {
       newTag[filterIdx] = FILTER[filterIdx].data.map((item, idx) => {
-        return idx === FILTER[filterIdx].data.indexOf(selectedTag);
+        return idx === FILTER[filterIdx].data.indexOf(selectedTag[filterIdx]);
       });
     }
 
@@ -137,13 +155,10 @@ const FilterBottom = ({
 
     tagRefs.current.forEach(() => {
       const newButtonName = [...buttonName];
-      newButtonName[filterIdx] = selectedTag;
+      newButtonName[filterIdx] = selectedTag[filterIdx];
       setButtonName(newButtonName);
     });
   };
-
-  const { genreResponse, genreError, genreLoading }: GenreItemProps = useGetGenre();
-  const { styleResponse, styleError, styleLoading }: StyleItemProps = useGetStyle();
 
   return (
     <St.Wrapper>
@@ -158,49 +173,19 @@ const FilterBottom = ({
           <Sheet.Container>
             <Sheet.Header disableDrag={true} />
             <Sheet.Content ref={filterRef}>
-              {filterIdx === 0 &&
-                filter.data.map((el, idx) => (
-                  <St.TagBox
-                    key={idx}
-                    onClick={() => handleClickTag(el, idx, filterIdx)}
-                    ref={(refEl: HTMLParagraphElement) => (tagRefs.current[idx] = refEl)}
-                    className={filterTag[filterIdx][idx] ? 'checked' : ''}
-                  >
-                    <span></span>
-                    {el}
-                    <i></i>
-                  </St.TagBox>
-                ))}
-              {filterIdx === 1 &&
-                !genreError &&
-                !genreLoading &&
-                genreResponse.map(({ id, name }: GenreItemProps) => (
-                  <St.TagBox
-                    key={id}
-                    onClick={() => handleClickTag(name, id, filterIdx)}
-                    ref={(refEl: HTMLParagraphElement) => (tagRefs.current[id] = refEl)}
-                    className={filterTag[filterIdx][id] ? 'checked' : ''}
-                  >
-                    <span></span>
-                    {name}
-                    <i></i>
-                  </St.TagBox>
-                ))}
-              {filterIdx === 2 &&
-                !styleError &&
-                !styleLoading &&
-                styleResponse.map(({ id, name }: StyleItemProps) => (
-                  <St.TagBox
-                    key={id}
-                    onClick={() => handleClickTag(name, id, filterIdx)}
-                    ref={(refEl: HTMLParagraphElement) => (tagRefs.current[id] = refEl)}
-                    className={filterTag[filterIdx][id] ? 'checked' : ''}
-                  >
-                    <span></span>
-                    {name}
-                    <i></i>
-                  </St.TagBox>
-                ))}
+              {filter.data.map((el, idx) => (
+                <St.TagBox
+                  key={idx}
+                  onClick={() => handleClickTag(el, idx, filterIdx)}
+                  ref={(refEl: HTMLParagraphElement) => (tagRefs.current[idx] = refEl)}
+                  className={filterTag[filterIdx][idx] ? 'checked' : ''}
+                >
+                  <span></span>
+                  {el}
+                  <i></i>
+                </St.TagBox>
+              ))}
+
               <St.Footer>
                 <St.Button
                   type='button'
