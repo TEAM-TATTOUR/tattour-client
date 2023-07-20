@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import {
   IcBtnStepperMinusDark,
@@ -8,12 +8,85 @@ import {
 
 interface CountPriceProps {
   isPublic: boolean;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const CountPrice = ({ isPublic }: CountPriceProps) => {
+interface CustomResponse {
+  data: {
+    id: number;
+    userId: number;
+    stickerId: number;
+    themes: string[];
+    styles: string[];
+    mainImageUrl: string;
+    images: string[];
+    haveDesign: boolean;
+    size: string;
+    description: string;
+    demand: string;
+    count: number;
+    isColored: boolean;
+    isPublic: boolean;
+    isCompleted: boolean;
+    process: string;
+    viewCount: number;
+  };
+  code: number;
+  message: string;
+}
+
+interface RequestCustom {
+  customInfo: {
+    customId: number;
+    size: string;
+    isColored: boolean;
+    themes: number[];
+    styles: number[];
+    name: string;
+    description: string;
+    demand: string;
+    count: number;
+    isPublic: boolean;
+    isCompleted: boolean;
+    price: number;
+    viewCount: number;
+  };
+  customMainImage: File;
+  customImages: FileList;
+}
+
+const CountPrice = ({ isPublic, setCount }: CountPriceProps) => {
   const PRICE = 1000;
   const DISCOUNT = 200;
   const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    setCount(quantity);
+  }, [quantity, setCount]);
+
+  // const handleClick()=>{
+
+  // }
+  // const usePatchCustom = (body: RequestCustom) => {
+  //   const fetchData = async () => {
+  //     const formData = new FormData();
+  //     formData.append('customInfo', JSON.stringify(body.customInfo));
+  //     formData.append('customMainImage', body.customMainImage);
+  //     for (let i = 0; i < body.customImages.length; i++) {
+  //       formData.append('customImages', body.customImages[i]);
+  //     }
+
+  //     await api
+  //       .patch('/custom/update', formData)
+  //       .then((res) => {
+  //         const data: CustomResponse = res.data;
+  //         setResponse(data.data);
+  //       })
+  //       .catch((err) => {
+  //         setError(err);
+  //       })
+  //   };
+  // };
 
   return (
     <St.CountPriceWrapper>
