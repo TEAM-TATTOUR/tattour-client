@@ -23,6 +23,8 @@ const CustomSizePage = () => {
   const haveDesign = location.state ? location.state.haveDesign : null;
   const customId = location.state ? location.state.customId : null;
 
+  console.log('size', location.state);
+
   const customInfo: customInfo = {
     viewCount: CUSTOM_VIEW_COUNT,
     customId: customId,

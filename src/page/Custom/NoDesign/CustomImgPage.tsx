@@ -18,14 +18,15 @@ const CustomImgPage = () => {
   const [customMainImage, setCustomMainImage] = useState<File>();
   const location = useLocation();
 
-  const { haveDesign, customInfo: prevCustomInfo } = location.state;
+  const haveDesign = location.state ? location.state.haveDesgin : null;
+  const prevCustomInfo = location.state ? location.state.customInfo : null;
 
   const customInfo = {
     ...prevCustomInfo,
     viewCount: CUSTOM_VIEW_COUNT,
   };
 
-  console.log(location.state, '!!!');
+  console.log('img', location.state);
 
   const renderCustomImgPageHeader = () => {
     return (
@@ -34,7 +35,7 @@ const CustomImgPage = () => {
           <IcBackDark
             onClick={() =>
               navigate('/custom-size', {
-                state: location.state,
+                state: location.state ? location.state : null,
               })
             }
           />
