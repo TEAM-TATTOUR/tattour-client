@@ -1,13 +1,51 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import api from '../../libs/api';
+import { OrderSheetProps } from '../../libs/hooks/order/useGetOrdersheet';
 
-const OrderFooter = ({ isComplete }: { isComplete: boolean }) => {
-  const TOTAL_PRICE = 5500;
+interface OrderRequest {
+  stickerId: number;
+  productCount: number;
+  shippingFee: number;
+  totalAmount: number | undefined;
+  recipientName: string;
+  contact: string;
+  mailingAddress: string;
+  baseAddress: string;
+  detailAddress: string;
+}
 
+const OrderFooter = ({
+  isComplete,
+  price,
+  postData,
+  response,
+}: {
+  isComplete: boolean;
+  price: number | undefined;
+  postData: OrderRequest;
+  response: OrderSheetProps | undefined;
+}) => {
   const navigate = useNavigate();
 
+  const fetchData = async () => {
+    await api
+      .post(`/order`, {
+        ...postData,
+        contact: postData.contact.replaceAll('-', ''),
+      })
+      .then(() => {
+        navigate('/complete', {
+          state: response,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleClickButton = () => {
-    navigate('/complete');
+    fetchData();
   };
 
   return (
@@ -18,7 +56,7 @@ const OrderFooter = ({ isComplete }: { isComplete: boolean }) => {
         onClick={handleClickButton}
         disabled={isComplete ? false : true}
       >
-        {TOTAL_PRICE.toLocaleString()}원 결제하기
+        {price && price.toLocaleString()}원 결제하기
       </St.button>
     </St.footer>
   );
