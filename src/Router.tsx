@@ -28,6 +28,7 @@ import SearchPage from './page/Search/SearchPage';
 import SearchResultPage from './page/Search/SearchResultPage';
 import ScrollToTop from './libs/hooks/ScrollTop';
 import LoginCallback from './components/Login/LoginCallback';
+import SavePage from './page/SavePage';
 
 const Router = () => {
   return (
@@ -64,6 +65,7 @@ const Router = () => {
         <Route path='/receipt' element={<ReceiptPage />} />
         <Route path='/complete' element={<CompletePage />} />
         <Route path='/custom-reference' element={<CustomReferencePage />} />
+        <Route path='/save' element={<SavePage />} />
       </Routes>
     </BrowserRouter>
   );
