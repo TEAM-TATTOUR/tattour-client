@@ -75,7 +75,12 @@ const PricePage = () => {
         <CountPrice isPublic={isPublic} setCount={setCount} />
       </St.TopWrapper>
       <MakePublic isPublic={isPublic} setIsPublic={setIsPublic} />
-      <PriceFooter />
+      <PriceFooter
+        haveDesign={haveDesign}
+        customInfo={customInfo}
+        customMainImage={customMainImage}
+        customImages={customImages}
+      />
     </PageLayout>
   );
 };

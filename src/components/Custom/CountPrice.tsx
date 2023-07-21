@@ -64,30 +64,6 @@ const CountPrice = ({ isPublic, setCount }: CountPriceProps) => {
     setCount(quantity);
   }, [quantity, setCount]);
 
-  // const handleClick()=>{
-
-  // }
-  // const usePatchCustom = (body: RequestCustom) => {
-  //   const fetchData = async () => {
-  //     const formData = new FormData();
-  //     formData.append('customInfo', JSON.stringify(body.customInfo));
-  //     formData.append('customMainImage', body.customMainImage);
-  //     for (let i = 0; i < body.customImages.length; i++) {
-  //       formData.append('customImages', body.customImages[i]);
-  //     }
-
-  //     await api
-  //       .patch('/custom/update', formData)
-  //       .then((res) => {
-  //         const data: CustomResponse = res.data;
-  //         setResponse(data.data);
-  //       })
-  //       .catch((err) => {
-  //         setError(err);
-  //       })
-  //   };
-  // };
-
   return (
     <St.CountPriceWrapper>
       <St.ShowPrice>
