@@ -5,8 +5,10 @@ import GraphemeSplitter from 'grapheme-splitter';
 
 const CustomTheme = ({
   setIsActiveNext,
+  setDemand,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  setDemand: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   //count 될 maxCount 수
   const MAX_ETC_COUNT = 100;
@@ -44,6 +46,8 @@ const CustomTheme = ({
 
     if (!lengthCount) return;
     setEtcTextAreaCount(lengthCount);
+
+    setDemand(e.target.value);
   };
 
   return (
