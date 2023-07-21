@@ -1,21 +1,39 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import TempSaveModal from '../../../common/Modal/TempSaveModal/TempSaveModal';
+import useGetCustomSaveList from '../../../libs/hooks/useGetCustomSaveList';
+import { useNavigate } from 'react-router-dom';
 
 const OnBoardingFooter = () => {
+  const navgiate = useNavigate();
+
   const [modalOn, setModalOn] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { response, error, loading } = useGetCustomSaveList();
+
+  useEffect(() => {
+    if (response.length === 0) {
+      setIsModalOpen(false);
+    } else {
+      setIsModalOpen(true);
+    }
+  }, [response]);
 
   const handleClickFooter = () => {
-    setModalOn(true);
+    isModalOpen ? setModalOn(true) : navgiate('/select');
   };
 
   return (
-    <>
-      <St.OnBoardingFooter onClick={handleClickFooter}>
-        <St.FooterText>990P 내고 신청서 작성하기</St.FooterText>
-      </St.OnBoardingFooter>
-      {modalOn && <TempSaveModal setModalOn={setModalOn} />}
-    </>
+    !error &&
+    !loading && (
+      <>
+        <St.OnBoardingFooter onClick={handleClickFooter}>
+          <St.FooterText>990P 내고 신청서 작성하기</St.FooterText>
+        </St.OnBoardingFooter>
+        {isModalOpen && modalOn && <TempSaveModal setModalOn={setModalOn} />}
+      </>
+    )
   );
 };
 

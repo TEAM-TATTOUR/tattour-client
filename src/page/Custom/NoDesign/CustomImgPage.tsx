@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CustomImg from '../../../components/Custom/NoDesgin/CustomImg';
 import Header from '../../../components/Header';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
@@ -10,16 +10,42 @@ import { IcBackDark } from '../../../assets/icon';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const CustomImgPage = () => {
+  const CUSTOM_VIEW_COUNT = 2;
+
   const navigate = useNavigate();
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
+  const [customMainImage, setCustomMainImage] = useState<File>();
   const location = useLocation();
-  const stateList = location.state;
+
+  const haveDesign = location.state ? location.state.haveDesgin : null;
+  const prevCustomInfo = location.state ? location.state.customInfo : null;
+
+  //state에 있는 img 파일 값 가져오기 (처음 넘어올 때는 customMainImage 값이 없으므로 에러 방지 필요)
+  const attachedImg =
+    location.state && location.state.customMainImage ? location.state.customMainImage : null;
+
+  useEffect(() => {
+    if (!location.state) navigate('/onboarding');
+  }, [location.state, navigate]);
+
+  const customInfo = {
+    ...prevCustomInfo,
+    viewCount: CUSTOM_VIEW_COUNT,
+  };
 
   const renderCustomImgPageHeader = () => {
     return (
       <Header
-        leftSection={<IcBackDark onClick={() => navigate('/custom-size')} />}
+        leftSection={
+          <IcBackDark
+            onClick={() => {
+              navigate('/custom-size', {
+                state: location.state ? location.state : null,
+              });
+            }}
+          />
+        }
         title='커스텀 타투'
         rightSection={
           <CancelBtn
@@ -40,11 +66,17 @@ const CustomImgPage = () => {
         <NextFooter
           isActiveNext={isActiveNext}
           navigateURL='/custom-request'
-          stateList={stateList}
+          haveDesign={haveDesign}
+          customInfo={customInfo}
+          customMainImage={customMainImage}
         />
       }
     >
-      <CustomImg setIsActiveNext={setIsActiveNext} />
+      <CustomImg
+        setIsActiveNext={setIsActiveNext}
+        setCustomMainImage={setCustomMainImage}
+        attachedImg={attachedImg}
+      />
     </PageLayout>
   );
 };
