@@ -12,15 +12,15 @@ import { IcBackDark } from '../../assets/icon';
 const CustomReferencePage = () => {
   const CUSTOM_VIEW_COUNT = 2;
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   // 모달 사용할 때  활용
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
   const [customMainImage, setCustomMainImage] = useState<File | null>(null);
   const [customImages, setCustomImages] = useState<FileList | null>(null);
-  const [freeDraw, setFreeDraw] = useState<boolean>(false);
-
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [freeDraw, setFreeDraw] = useState<boolean>(location.state.freeDraw ? true : false);
 
   const haveDesign = location.state ? location.state.haveDesign : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;

@@ -13,6 +13,8 @@ interface PaintBottomProps {
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
   attachedMainImg: File | null;
   attachedImages: FileList | null;
+  setFreeDraw: React.Dispatch<React.SetStateAction<boolean>>;
+  freeDraw: boolean;
 }
 
 const CustomImageAttach: React.FC<PaintBottomProps> = ({
@@ -24,13 +26,15 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   setCustomImages,
   attachedMainImg,
   attachedImages,
+  freeDraw,
+  setFreeDraw,
 }) => {
   const MAX_FILES = 3;
 
   const ref = useRef<HTMLInputElement | null>(null);
   const [previewURL, setPreviewURL] = useState<string[]>([]);
-  const [freeDraw, setFreeDraw] = useState<boolean>(drawingImageURL ? true : false);
   const [toast, setToast] = useState<boolean>(false);
+  // const [freeDraw, setFreeDraw] = useState<boolean>(drawingImageURL ? true : false);
 
   const handleClickRefBtn = () => {
     if (previewURL.length < MAX_FILES) {
@@ -46,10 +50,46 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   }, [previewURL, setIsActiveNext]);
 
   useEffect(() => {
+    if (!attachedMainImg) return;
+    const reader = new FileReader();
+    reader.readAsDataURL(attachedMainImg);
+    reader.onloadend = () => {
+      const result = reader.result;
+      if (typeof result === 'string') {
+        setPreviewURL([result]);
+      }
+      console.log('메인이미지', attachedMainImg);
+    };
+  }, [attachedMainImg, setPreviewURL]);
+
+  useEffect(() => {
+    if (!attachedImages) return;
+
+    const fileList = Array.from(attachedImages);
+
+    for (const file of fileList) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setPreviewURL((prevURLs) => [...prevURLs, reader.result as string]);
+        console.log('이미지들들들', previewURL);
+        console.log('손그림있나요?', freeDraw);
+      };
+    }
+
+    if (freeDraw === true) {
+      setDrawingImageURL(previewURL[previewURL.length - 1]);
+      setPreviewURL((prevURLs) => prevURLs.slice(0, -1));
+      console.log('손그림 있을 때', attachedMainImg);
+      console.log('손그림 있을 때 이미지들들들', attachedImages);
+    }
+  }, [attachedImages, freeDraw, attachedMainImg]);
+
+  useEffect(() => {
     if (drawingImageURL) {
       setFreeDraw(true);
     } else setFreeDraw(false);
-  }, [drawingImageURL]);
+  }, [drawingImageURL, setFreeDraw]);
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -115,19 +155,6 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
       setBottomOpen(true);
     }
   };
-
-  useEffect(() => {
-    //state에 있는 attachedImg 값 가져와서 미리보기 구현하기
-    if (!attachedMainImg) return;
-    else if(attachedMainImg && )
-    setPreviewURL(attachedMainImg);
-
-    const reader = new FileReader();
-    reader.readAsDataURL(attachedImages);
-    reader.onloadend = () => {
-      setPreviewURL(reader.result as string);
-    }; // FileReader로 이미지 미리보기 구현
-  }, [attachedImages, setCustomMainImage]);
 
   return (
     <St.CustomReferenceWrapper>
