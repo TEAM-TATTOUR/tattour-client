@@ -14,8 +14,9 @@ const SearchResult = () => {
         {response.map(({ id, imageUrl, name, discountRate, discountPrice, price }) => (
           <SearchResultItem
             key={id}
-            img={imageUrl}
-            title={name}
+            id={id}
+            img={img}
+            title={title}
             discountRate={discountRate}
             price={discountPrice}
             originalPrice={price}

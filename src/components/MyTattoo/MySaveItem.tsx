@@ -11,7 +11,6 @@ export interface CustomDetailItemProps {
   stickerId?: number;
   themes: string[];
   styles: string[];
-  // default 값 존재
   mainImageUrl: string;
   images: string[];
   haveDesign: boolean;
@@ -59,13 +58,15 @@ const MySaveItem = ({ id, name, imageUrl }: { id: number; name: string; imageUrl
         break;
       case 2:
         haveDesign
-          ? navigate(`/custom-reference`)
+          ? navigate(`/custom-reference`, {
+              state: {},
+            })
           : navigate(`/custom-img`, {
               state: {
                 customInfo: {
                   size: response.size,
-                  customMainImage: response.mainImageUrl,
                 },
+                customMainImage: response.mainImageUrl,
               },
             });
         break;
@@ -76,10 +77,10 @@ const MySaveItem = ({ id, name, imageUrl }: { id: number; name: string; imageUrl
               state: {
                 customInfo: {
                   size: response.size,
-                  customMainImage: response.mainImageUrl,
                   name: response.name,
                   demand: response.demand,
                 },
+                customMainImage: response.mainImageUrl,
               },
             });
         break;
