@@ -1,29 +1,30 @@
 import { styled } from 'styled-components';
 
 import { IcApplyCheckLight, IcApplyCheckPink } from '../../../assets/icon';
-import img_home from '../../../assets/icon/img_home.svg';
 import { forwardRef } from 'react';
 
 interface CustomSelectSizeBtnProps {
   id: string;
+  idx: number;
   title: string;
   detail: string;
   isSelected: boolean;
+  imgURL: string;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export type Ref = HTMLButtonElement;
 
 const CustomSelectSizeBtn = forwardRef<Ref, CustomSelectSizeBtnProps>(
-  ({ id, title, detail, onClick, isSelected }, ref) => {
+  ({ id, title, detail, onClick, isSelected, imgURL }, ref) => {
     return (
       <St.SizeBtnWrapper type='button' id={id} onClick={onClick} ref={ref}>
         {isSelected ? (
-          <St.SelectedSizeBtnImgBox>
+          <St.SelectedSizeBtnImgBox $imgURL={imgURL}>
             <IcApplyCheckPink />
           </St.SelectedSizeBtnImgBox>
         ) : (
-          <St.SizeBtnImgBox>
+          <St.SizeBtnImgBox $imgURL={imgURL}>
             <IcApplyCheckLight />
           </St.SizeBtnImgBox>
         )}
@@ -39,11 +40,12 @@ const CustomSelectSizeBtn = forwardRef<Ref, CustomSelectSizeBtnProps>(
 export default CustomSelectSizeBtn;
 
 // 버튼 스타일 확장을 위한 styled component 템플릿
-const SizeBtnImgBoxTemplate = styled.div`
+const SizeBtnImgBoxTemplate = styled.div<{ $imgURL: string }>`
   height: 16rem;
   width: 100%;
 
-  background: url(${img_home});
+  background: ${({ $imgURL }) => `url(${$imgURL})`} no-repeat center;
+  background-size: cover;
 
   & > svg {
     padding-top: 0.8rem;
@@ -67,8 +69,10 @@ const St = {
     }
   `,
 
-  SizeBtnImgBox: styled(SizeBtnImgBoxTemplate)`
+  SizeBtnImgBox: styled(SizeBtnImgBoxTemplate)<{ $imgURL: string }>`
     border-radius: 0.5rem 0.5rem 0 0;
+
+    /* background: ${({ $imgURL }) => `url(${$imgURL})`}; */
   `,
 
   SelectedSizeBtnImgBox: styled(SizeBtnImgBoxTemplate)`
