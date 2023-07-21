@@ -24,14 +24,13 @@ const CustomReferencePage = () => {
   const haveDesign = location.state ? location.state.haveDesign : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
 
-  // useEffect(() => {
-  //   if (!location.state) navigate('/onboarding');
-  // }, [location.state, navigate]);
+  useEffect(() => {
+    if (!location.state) navigate('/onboarding');
+  }, [location.state, navigate]);
 
   const customInfo = {
+    ...prevCustomInfo,
     viewCount: CUSTOM_VIEW_COUNT,
-    customMainImage: customMainImage,
-    customImages: customImages,
   };
 
   const renderCustomReferencePageHeader = () => {
@@ -59,6 +58,7 @@ const CustomReferencePage = () => {
         <NextFooter
           isActiveNext={isActiveNext}
           navigateURL={'/styling-color'}
+          haveDesign={haveDesign}
           customInfo={customInfo}
           customMainImage={customMainImage}
           customImages={customImages}

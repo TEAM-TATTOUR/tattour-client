@@ -19,7 +19,7 @@ const AdditionalRequestPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const haveDesign = location.state ? location.state.haveDesgin : null;
+  const haveDesign = location.state ? location.state.haveDesign : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
   const customMainImage = location.state ? location.state.customMainImage : null;
   const customImages = location.state ? location.state.customImages : null;

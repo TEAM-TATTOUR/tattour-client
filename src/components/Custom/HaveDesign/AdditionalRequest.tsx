@@ -12,6 +12,7 @@ const CustomTheme = ({
 }) => {
   //count 될 maxCount 수
   const MAX_ETC_COUNT = 100;
+  setIsActiveNext(true);
 
   //글자 수 세기 관련 state
   const [etcTextAreaCount, setEtcTextAreaCount] = useState(0);
