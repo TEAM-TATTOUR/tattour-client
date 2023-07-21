@@ -26,6 +26,8 @@ const St = {
     width: 100%;
     height: 1.3rem;
 
+    margin: 0rem 0rem 2.8rem 0rem;
+
     border: none;
 
     background-color: ${({ theme }) => theme.colors.bg};
