@@ -131,7 +131,7 @@ const St = {
   `,
 
   Button: styled.button`
-    width: 30.5rem;
+    width: calc(100% - 7rem);
     height: 100%;
     color: ${({ theme }) => theme.colors.pink5};
     ${({ theme }) => theme.fonts.title_semibold_18};
