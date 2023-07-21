@@ -24,6 +24,8 @@ const PricePage = () => {
   const prevCustomInfo = location.state ? location.state.customInfo : null;
   const handDrawingImage = location.state ? location.state.handDrawingImage : null;
   const customImages = location.state ? location.state.customImages : null;
+  const size = location.state ? location.state.customInfo.size : null;
+  const price = location.state ? location.state.customInfo.price : null;
 
   const CUSTOM_VIEW_COUNT = haveDesign ? 7 : 4;
   const backNavigateURL = haveDesign ? '/additional-request' : '/custom-request';
@@ -39,6 +41,7 @@ const PricePage = () => {
     handDrawingImage: handDrawingImage,
     customImages: customImages,
     count: count,
+    price: price,
   };
 
   // console.log(customInfo, customMainImage); //오류 발생 방지 용 console 나중에 footer로 넘겨주고 지워주세요!
@@ -83,7 +86,7 @@ const PricePage = () => {
     >
       <St.TopWrapper>
         <PriceHeading />
-        <CountPrice isPublic={isPublic} setCount={setCount} />
+        <CountPrice isPublic={isPublic} setCount={setCount} size={size} />
       </St.TopWrapper>
       <MakePublic isPublic={isPublic} setIsPublic={setIsPublic} />
     </PageLayout>

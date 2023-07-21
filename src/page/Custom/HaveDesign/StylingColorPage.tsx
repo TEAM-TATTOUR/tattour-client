@@ -24,6 +24,11 @@ const StylingColorPage = () => {
   const customMainImage = location.state ? location.state.customMainImage : null;
   const customImages = location.state ? location.state.customImages : null;
 
+  const isColoredState =
+    location.state && location.state.isColored ? location.state.isColored : null;
+
+  console.log('state image', customImages ? customImages[-1] : null);
+
   useEffect(() => {
     if (!location.state) navigate('/onboarding');
   }, [location.state, navigate]);
@@ -74,7 +79,11 @@ const StylingColorPage = () => {
         />
       }
     >
-      <SelectColor setIsActiveNext={setIsActiveNext} setIsColored={setIsColored} />
+      <SelectColor
+        setIsActiveNext={setIsActiveNext}
+        setIsColored={setIsColored}
+        isColoredState={isColoredState}
+      />
     </PageLayout>
   );
 };

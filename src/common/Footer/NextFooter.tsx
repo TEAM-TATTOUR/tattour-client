@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { customInfoType } from '../../types/customInfoType';
 
@@ -9,6 +9,7 @@ interface NextFooterProps {
   customInfo?: customInfoType;
   handDrawingImage?: File | null;
   customImages?: FileList | null;
+  setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
 }
 
 const NextFooter = ({
@@ -20,6 +21,9 @@ const NextFooter = ({
   customImages,
 }: NextFooterProps) => {
   const navigate = useNavigate();
+
+  const location = useLocation();
+  console.log(location.state);
 
   const handleClickFooter = () => {
     {
