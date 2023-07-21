@@ -61,7 +61,7 @@ const MainPage = () => {
       renderHeader={reanderMainPageHeader}
       footer={<MainFooter isFooterVisible={isFooterVisible} />}
     >
-      <WelcomeModal setModalOn={setIsWelcomeModalOpen} />
+      {isWelcomeModalOpen && <WelcomeModal setModalOn={setIsWelcomeModalOpen} />}
       <MainBanner />
       <HotCustom />
       <MainEventBanner />
