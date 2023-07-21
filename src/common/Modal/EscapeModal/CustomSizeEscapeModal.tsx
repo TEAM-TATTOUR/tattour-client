@@ -1,13 +1,55 @@
 import { styled } from 'styled-components';
 import ModalPortal from '../ModalPortal';
 import { IcCancelDark } from '../../../assets/icon';
+import api from '../../../libs/api';
+import { useNavigate } from 'react-router-dom';
+import { customInfoType } from '../../../types/customInfoType';
 
 interface CustomSizeEscapeModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
+  haveDesign?: boolean;
+  customInfo?: customInfoType;
+  handDrawingImage: File;
+  customImages?: FileList | null;
 }
 
-const CustomSizeEscapeModal = ({ setModalOn }: CustomSizeEscapeModalProps) => {
-  const handleClickStopBtn = () => {
+const CustomSizeEscapeModal = ({
+  setModalOn,
+  customInfo,
+  handDrawingImage,
+  customImages,
+}: CustomSizeEscapeModalProps) => {
+  const navigate = useNavigate();
+
+  const handleClickStopBtn = async () => {
+    const formData = new FormData();
+    try {
+      formData.append('handDrawingImage', handDrawingImage);
+      const json = JSON.stringify(customInfo);
+      const blob = new Blob([json], { type: 'application/json' });
+
+      formData.append('customInfo', blob);
+
+      if (customImages) {
+        for (let i = 0; i < customImages.length; i++) {
+          formData.append('customImages', customImages.item(i) as File);
+        }
+      }
+      const { data } = await api.patch('/custom/update', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      navigate('/receipt', {
+        state: {
+          data: data,
+        },
+      });
+    } catch (err) {
+      console.log(formData);
+      console.log(err);
+    }
+
     setModalOn(false);
   };
 
