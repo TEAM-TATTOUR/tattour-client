@@ -32,7 +32,7 @@ const OrderFooter = ({
     await api
       .post(`/order`, {
         ...postData,
-        contact: postData.contact.replaceAll('-', ''),
+        contact: postData.contact.replace(/-/g, ''),
       })
       .then(() => {
         navigate('/complete', {

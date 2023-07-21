@@ -36,9 +36,9 @@ const St = {
     width: 18.6rem;
     height: 5.2rem;
 
-    position: absolute;
+    position: fixed;
     left: 50%;
-    bottom: 7.3rem;
+    bottom: 10rem;
     transform: translate(-50%, 0%);
 
     border-radius: 0.4rem;
