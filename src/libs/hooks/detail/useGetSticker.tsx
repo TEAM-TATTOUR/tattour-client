@@ -47,7 +47,7 @@ const useGetSticker = (id: number) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   return { response, error, loading };
 };
