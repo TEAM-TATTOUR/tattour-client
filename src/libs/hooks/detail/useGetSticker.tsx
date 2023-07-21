@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import api from '../../api';
+import api, { getAccessToken } from '../../api';
 import { AxiosError } from 'axios';
 
 export interface StickerItemProps {
