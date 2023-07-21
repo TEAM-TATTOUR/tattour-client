@@ -117,7 +117,7 @@ const RegisterPhoneNumForm = () => {
 
     if (e.target.value.length === 6) {
       api
-        .get(`/user/phone-number/verification`, {
+        .get(`/user/phonenumber/verification`, {
           params: {
             verificationCode: `${e.target.value}`,
           },

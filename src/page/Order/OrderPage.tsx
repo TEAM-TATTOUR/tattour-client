@@ -146,7 +146,8 @@ const St = {
     z-index: 1;
 
     & > div {
-      height: 46.8rem !important;
+      width: initial !important;
+      //height: 46.8rem !important;
     }
 
     & #region_name {

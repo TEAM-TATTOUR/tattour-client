@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
 import { useLocation, useNavigate } from 'react-router-dom';
+import api from '../../libs/api';
+import { useState } from 'react';
+import Toast from '../../common/ToastMessage/Toast';
 
 interface DetailFooterProp {
   id: number;
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isSecond: boolean;
   text: string;
-  like: boolean;
-  setLike: React.Dispatch<React.SetStateAction<boolean>>;
+  like: boolean | null;
+  setLike: React.Dispatch<React.SetStateAction<boolean | null>>;
   count: number;
   shippingFee: number;
 }
@@ -25,6 +28,7 @@ const DetailFooter = ({
   const navigate = useNavigate();
   const location = useLocation();
   const currURL = location.pathname;
+  const [toast, setToast] = useState(false);
 
   const handleClickButton = () => {
     if (text === '충전하기') {
@@ -48,15 +52,62 @@ const DetailFooter = ({
     }
   };
 
+  // 좋아요 추가 통신
+  const postLiked = async () => {
+    console.log('좋아요 추가 통신', id);
+    await api
+      .post(`/user/productliked/save`, {
+        stickerId: id,
+      })
+      .then(() => {
+        // setResponse(res.data.data);
+        // 좋아요
+        console.log('좋아요');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // 좋아요 삭제 통신
+  const postDisliked = async () => {
+    console.log('좋아요 삭제 통신', id);
+
+    await api
+      .delete(`/user/productliked/sticker/${id}/delete`)
+      .then(() => {
+        // setResponse(res.data.data);
+        // 좋아요 삭제
+        console.log('좋아요 삭제');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleClickLike = () => {
+    if (like === null) {
+      // 로그인 상태가 아닌 경우
+      setToast(true);
+      // setLike(X)
+    } else if (like) {
+      // 로그인 상태인 경우
+      // 만약 원래 좋아요가 눌린 상태면
+      postDisliked();
+    } else {
+      postLiked();
+    }
+    setLike((prev) => !prev);
+  };
+
   return (
     <St.Footer>
       <St.Button type='button' onClick={handleClickButton}>
         {text}
       </St.Button>
       <St.Line />
-      <St.Like onClick={() => setLike((prev) => !prev)}>
-        {like ? <IcHeartLight /> : <IcHeartDark />}
-      </St.Like>
+      <St.Like onClick={handleClickLike}>{like ? <IcHeartLight /> : <IcHeartDark />}</St.Like>
+      {toast && <Toast setToast={setToast} text='로그인이 필요합니다.' />}
     </St.Footer>
   );
 };

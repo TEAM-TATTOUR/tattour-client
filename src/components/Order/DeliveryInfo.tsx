@@ -145,7 +145,7 @@ const St = {
   `,
   AddressBox: styled.div`
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: auto 10.8rem;
     gap: 1.2rem;
   `,
   SearchBtn: styled.button`
