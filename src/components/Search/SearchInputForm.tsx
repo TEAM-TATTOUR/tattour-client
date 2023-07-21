@@ -11,15 +11,19 @@ const SearchInputForm = () => {
     navigate('/');
   };
 
-  const handleSubmitSearchForm = () => {
+  const handleSubmitSearchForm = (event) => {
+    event.preventDefault();
     navigate(`/search/${inputRef.current?.value}`);
   };
 
   return (
     <St.SearchFormWrapper>
       <IcArrowLeftGray onClick={handleClickBackButton} />
-      <St.SearchForm>
-        <St.SearchInput ref={inputRef} placeholder={'검색어를 입력해주세요.'} />
+      <St.SearchForm onSubmit={handleSubmitSearchForm}>
+        <St.SearchInput
+          ref={inputRef}
+          placeholder={inputRef.current?.value ? inputRef.current?.value : '검색어를 입력해주세요.'}
+        />
         <IcSearchGray onClick={handleSubmitSearchForm} />
       </St.SearchForm>
     </St.SearchFormWrapper>

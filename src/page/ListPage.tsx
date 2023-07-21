@@ -43,7 +43,7 @@ const ListPage = () => {
 
   return (
     <PageLayout renderHeader={renderListPageHeader}>
-      <HotCustom />
+      <HotCustom arrow={false} />
       <St.Line />
       <TattooList
         setSortOpen={setSortOpen}

@@ -95,7 +95,9 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
             <IcInformation />
           </a>
           <St.SideMenuCSButtonWrapper>
-            <St.SideMenuCSButton type='button'>문의하기</St.SideMenuCSButton>
+            <a href='http://pf.kakao.com/_lxmxlIG' target='cs' rel='noreferrer'>
+              <St.SideMenuCSButton type='button'>문의하기</St.SideMenuCSButton>
+            </a>
             {isLogin && (
               <>
                 <St.Delimeter />
