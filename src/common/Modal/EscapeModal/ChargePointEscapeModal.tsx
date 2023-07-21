@@ -3,12 +3,14 @@ import EscapeModalForm from '../EscapeModal/EscapeModalForm';
 
 interface ChargePointEscapeModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
+  redirectURL: string;
 }
 
-const ChargePointEscapeModal = ({ setModalOn }: ChargePointEscapeModalProps) => {
+const ChargePointEscapeModal = ({ setModalOn, redirectURL }: ChargePointEscapeModalProps) => {
   return (
     <ModalPortal>
       <EscapeModalForm
+        redirectURL={redirectURL}
         onClose={() => setModalOn(false)}
         pageName={'ChargePage'}
         title={'정말 그만두시나요?'}
