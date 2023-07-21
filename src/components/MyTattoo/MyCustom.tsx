@@ -2,7 +2,6 @@ import { styled } from 'styled-components';
 import CustomScrollContainer from '../../common/CustomScrollContainer';
 import MyCustomItem from './MyCustomItem';
 import useGetMyCustom from '../../libs/hooks/useGetMyCustom';
-import { useNavigate } from 'react-router-dom';
 
 const MyCustom = () => {
   const { response, error, loading } = useGetMyCustom();
