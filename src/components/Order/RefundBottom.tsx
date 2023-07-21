@@ -39,7 +39,7 @@ const St = {
     ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray3};
 
-    white-space: pre-line;
+    white-space: pre-wrap;
   `,
 };
 
