@@ -29,7 +29,6 @@ const ListPage = () => {
   const [isSideMenuOpen, setSideMenuOpen] = useState(false);
 
   const renderListPageHeader = () => {
-
     const handleClickLogo = () => {
       navigate('/');
     };
@@ -43,7 +42,7 @@ const ListPage = () => {
 
   return (
     <PageLayout renderHeader={renderListPageHeader}>
-      <HotCustom arrow={false} />
+      <HotCustom />
       <St.Line />
       <TattooList
         setSortOpen={setSortOpen}

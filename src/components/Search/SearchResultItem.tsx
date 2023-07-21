@@ -9,7 +9,7 @@ const SearchResultItem = ({
   discountRate,
   originalPrice,
 }: {
-  id: string;
+  id: number;
   title: string;
   img: string;
   price: number;
