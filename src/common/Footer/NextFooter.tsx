@@ -1,6 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { customInfoType } from '../../types/customInfoType';
+import { useState } from 'react';
 
 interface NextFooterProps {
   isActiveNext?: boolean;
@@ -22,6 +23,9 @@ const NextFooter = ({
   freeDraw,
 }: NextFooterProps) => {
   const navigate = useNavigate();
+
+  const location = useLocation();
+  console.log(location.state);
 
   const handleClickFooter = () => {
     {

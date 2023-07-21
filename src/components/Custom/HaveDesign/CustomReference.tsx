@@ -8,6 +8,7 @@ const CustomReference = ({
   setIsActiveNext,
   setCustomMainImage,
   setCustomImages,
+  customImages,
   attachedMainImg,
   attachedImages,
   freeDraw,
@@ -16,6 +17,7 @@ const CustomReference = ({
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomMainImage: React.Dispatch<React.SetStateAction<File | null>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
+  customImages: FileList | null;
   attachedMainImg: File | null;
   attachedImages: FileList | null;
   freeDraw: boolean;
@@ -35,6 +37,7 @@ const CustomReference = ({
         setIsActiveNext={setIsActiveNext}
         setCustomMainImage={setCustomMainImage}
         setCustomImages={setCustomImages}
+        customImages={customImages}
         attachedMainImg={attachedMainImg}
         attachedImages={attachedImages}
         setFreeDraw={setFreeDraw}

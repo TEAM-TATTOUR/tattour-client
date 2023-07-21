@@ -11,6 +11,7 @@ interface PaintBottomProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomMainImage: React.Dispatch<React.SetStateAction<File | null>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
+  customImages: FileList | null;
   attachedMainImg: File | null;
   attachedImages: FileList | null;
   setFreeDraw: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,6 +25,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   setIsActiveNext,
   setCustomMainImage,
   setCustomImages,
+  customImages,
   attachedMainImg,
   attachedImages,
   freeDraw,
@@ -32,7 +34,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   const MAX_FILES = 3;
 
   const ref = useRef<HTMLInputElement | null>(null);
-  const [previewURL, setPreviewURL] = useState<string[]>([]);
+  const [previewURL, setPreviewURL] = useState<string[]>([]); //페이지로 뺴주기
   const [toast, setToast] = useState<boolean>(false);
   // const [freeDraw, setFreeDraw] = useState<boolean>(drawingImageURL ? true : false);
 
@@ -88,6 +90,11 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   useEffect(() => {
     if (drawingImageURL) {
       setFreeDraw(true);
+      const file = new File([drawingImageURL], 'image.png', { type: 'image/png' });
+      const newCustomImg = customImages ? new FileList(customImages, file) : new FileList(file);
+      // newCustomImg.push(file);
+      // set paint
+      setCustomImages(newCustomImg);
     } else setFreeDraw(false);
   }, [drawingImageURL, setFreeDraw]);
 
@@ -101,6 +108,8 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
 
     setCustomMainImage(files[0]);
 
+    console.log('change image');
+
     const imageFiles = Array.from(files).slice(1);
 
     const dataTransfer = new DataTransfer();
@@ -109,6 +118,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     });
 
     const fileList = dataTransfer.files;
+    console.log('fileList', fileList);
     setCustomImages(fileList);
 
     const uploadImage = Array.from(files);

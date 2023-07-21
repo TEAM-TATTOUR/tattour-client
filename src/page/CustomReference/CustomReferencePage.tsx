@@ -22,6 +22,8 @@ const CustomReferencePage = () => {
   const [customImages, setCustomImages] = useState<FileList | null>(null);
   const [freeDraw, setFreeDraw] = useState<boolean>(location.state.freeDraw ? true : false);
 
+  console.log('back', location.state.freeDraw);
+
   const haveDesign = location.state ? location.state.haveDesign : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
 
@@ -30,6 +32,8 @@ const CustomReferencePage = () => {
 
   const attachedImages =
     location.state && location.state.customImages ? location.state.customImages : null;
+
+  console.log('back paint ', attachedImages ? attachedImages[-1] : null);
 
   useEffect(() => {
     if (!location.state) navigate('/onboarding');
@@ -77,6 +81,7 @@ const CustomReferencePage = () => {
         setIsActiveNext={setIsActiveNext}
         setCustomMainImage={setCustomMainImage}
         setCustomImages={setCustomImages}
+        customImages={customImages}
         attachedMainImg={attachedMainImg}
         attachedImages={attachedImages}
         freeDraw={freeDraw}
