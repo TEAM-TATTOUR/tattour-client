@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import {
   IcBtnStepperMinusDark,
@@ -8,12 +8,17 @@ import {
 
 interface CountPriceProps {
   isPublic: boolean;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const CountPrice = ({ isPublic }: CountPriceProps) => {
+const CountPrice = ({ isPublic, setCount }: CountPriceProps) => {
   const PRICE = 1000;
   const DISCOUNT = 200;
   const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    setCount(quantity);
+  }, [quantity, setCount]);
 
   return (
     <St.CountPriceWrapper>
