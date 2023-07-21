@@ -1,12 +1,13 @@
 import { styled } from 'styled-components';
-import { ImgLogoDark } from '../../assets/icon';
+import { ImgWelcomeLogo } from '../../assets/icon';
+
 
 const WelcomeHome = () => {
   return (
     <St.WelcomeWrapper>
       <St.ContentsWrapper>
-        <ImgLogoDark />
-        <St.Title>타투어가 되신 것을 환영해요!</St.Title>
+        <ImgWelcomeLogo />
+        <St.Title>타투어가 되신 것을 환영해요</St.Title>
         <St.SubTitle>후회없는 타투 선택의 여정을 함께 할게요</St.SubTitle>
       </St.ContentsWrapper>
     </St.WelcomeWrapper>
@@ -30,7 +31,7 @@ const St = {
   `,
 
   Title: styled.p`
-    margin-top: 3.2rem;
+    margin-top: 2.4rem;
 
     color: ${({ theme }) => theme.colors.gray8};
 
