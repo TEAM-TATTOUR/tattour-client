@@ -49,12 +49,22 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
-    if (!files || !files[0]) return;
+    console.log(files);
+    if (!files) return;
     if (files[3]) {
       setToast(true);
     }
 
-    const fileList = createFileList(Array.from(files).slice(1));
+    setCustomMainImage(files[0]);
+
+    const imageFiles = Array.from(files).slice(1);
+
+    const dataTransfer = new DataTransfer();
+    imageFiles.forEach((file) => {
+      dataTransfer.items.add(file);
+    });
+
+    const fileList = dataTransfer.files;
     setCustomImages(fileList);
 
     const uploadImage = Array.from(files);
@@ -62,14 +72,6 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     //개수 제한 적용해주기
     const filesToEncode = Array.from(uploadImage).slice(0, MAX_FILES - previewURL.length);
     encodeFile(filesToEncode, e);
-  };
-
-  const createFileList = (files: File[]): FileList => {
-    const dataTransfer = new DataTransfer();
-    files.forEach((file) => {
-      dataTransfer.items.add(file);
-    });
-    return dataTransfer.files;
   };
 
   const encodeFile = async (fileBlob: File[], e: React.ChangeEvent<HTMLInputElement>) => {

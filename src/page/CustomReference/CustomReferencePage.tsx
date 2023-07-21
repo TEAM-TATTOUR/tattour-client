@@ -24,9 +24,9 @@ const CustomReferencePage = () => {
   const haveDesign = location.state ? location.state.haveDesign : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
 
-  useEffect(() => {
-    if (!location.state) navigate('/onboarding');
-  }, [location.state, navigate]);
+  // useEffect(() => {
+  //   if (!location.state) navigate('/onboarding');
+  // }, [location.state, navigate]);
 
   const customInfo = {
     viewCount: CUSTOM_VIEW_COUNT,
