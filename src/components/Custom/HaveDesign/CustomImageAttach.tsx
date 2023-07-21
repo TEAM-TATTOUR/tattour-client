@@ -11,6 +11,8 @@ interface PaintBottomProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomMainImage: React.Dispatch<React.SetStateAction<File | null>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
+  attachedMainImg: File | null;
+  attachedImages: FileList | null;
 }
 
 const CustomImageAttach: React.FC<PaintBottomProps> = ({
@@ -20,6 +22,8 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   setIsActiveNext,
   setCustomMainImage,
   setCustomImages,
+  attachedMainImg,
+  attachedImages,
 }) => {
   const MAX_FILES = 3;
 
@@ -111,6 +115,19 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
       setBottomOpen(true);
     }
   };
+
+  useEffect(() => {
+    //state에 있는 attachedImg 값 가져와서 미리보기 구현하기
+    if (!attachedMainImg) return;
+    else if(attachedMainImg && )
+    setPreviewURL(attachedMainImg);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(attachedImages);
+    reader.onloadend = () => {
+      setPreviewURL(reader.result as string);
+    }; // FileReader로 이미지 미리보기 구현
+  }, [attachedImages, setCustomMainImage]);
 
   return (
     <St.CustomReferenceWrapper>

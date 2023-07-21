@@ -7,9 +7,11 @@ import IcCircleBlack from '../../../assets/icon/ic_circle_black.png';
 const SelectColor = ({
   setIsActiveNext,
   setIsColored,
+  isColoredState,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setIsColored: React.Dispatch<React.SetStateAction<boolean>>;
+  isColoredState: boolean;
 }) => {
   const CASE_BTN_DATA = useMemo(
     () => [
@@ -37,6 +39,9 @@ const SelectColor = ({
   };
 
   useEffect(() => {
+    if (isColoredState) {
+      setActiveBtn(isColoredState ? 'color' : 'black');
+    }
     //버튼 하나씩만 누를 수 있도록
     CASE_BTN_DATA.forEach((btn) => {
       if (btn.id === activeBtn) {
@@ -51,7 +56,7 @@ const SelectColor = ({
     } else {
       setIsColored(true);
     }
-  }, [activeBtn, CASE_BTN_DATA, setIsColored]);
+  }, [isColoredState, activeBtn, CASE_BTN_DATA, setIsColored]);
 
   return (
     <St.SelectWrapper>
