@@ -69,18 +69,22 @@ const PricePage = () => {
   };
 
   return (
-    <PageLayout renderHeader={renderPricePageHeader}>
+    <PageLayout
+      renderHeader={renderPricePageHeader}
+      footer={
+        <PriceFooter
+          haveDesign={haveDesign}
+          customInfo={customInfo}
+          customMainImage={customMainImage}
+          customImages={customImages}
+        />
+      }
+    >
       <St.TopWrapper>
         <PriceHeading />
         <CountPrice isPublic={isPublic} setCount={setCount} />
       </St.TopWrapper>
       <MakePublic isPublic={isPublic} setIsPublic={setIsPublic} />
-      <PriceFooter
-        haveDesign={haveDesign}
-        customInfo={customInfo}
-        customMainImage={customMainImage}
-        customImages={customImages}
-      />
     </PageLayout>
   );
 };

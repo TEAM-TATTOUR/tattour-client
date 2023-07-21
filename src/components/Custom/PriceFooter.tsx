@@ -20,40 +20,57 @@ const PriceFooter = ({
 }: PriceFooterProps) => {
   const navigate = useNavigate();
 
-  const handlePatchCustom = () => {
-    const [response, setResponse] = useState<CustomResponse['data'] | null>(null);
-    const [error, setError] = useState<AxiosError>();
+  // const fetchData = async () => {
+  //   const formData = new FormData();
 
-    const fetchData = async () => {
-      const formData = new FormData();
-      formData.append('customInfo', JSON.stringify(customInfo));
-      formData.append('customMainImage', customMainImage);
-      if (customImages) {
-        for (let i = 0; i < customImages.length; i++) {
-          formData.append('customImages', customImages[i]);
-        }
+  //   formData.append('customInfo', JSON.stringify(customInfo)
+
+  // }
+
+  const createFormData = () => {
+    const formData = new FormData();
+    formData.append('customInfo', JSON.stringify(customInfo));
+    formData.append('customMainImage', customMainImage);
+    if (customImages) {
+      for (let i = 0; i < customImages.length; i++) {
+        formData.append('customImages', customImages[i]);
       }
+    }
+
+    return formData;
+  };
+
+  const [response, setResponse] = useState<CustomResponse['data'] | null>(null);
+
+  const handleClickFooterBtn = async () => {
+    // const fetchData = async () => {
+    //   const formData = new FormData();
+    //   formData.append('customInfo', JSON.stringify(customInfo));
+    //   formData.append('customMainImage', customMainImage);
+    //   if (customImages) {
+    //     for (let i = 0; i < customImages.length; i++) {
+    //       formData.append('customImages', customImages[i]);
+    //     }
+    //   }
+    const formData = createFormData();
 
       try {
-        await api.patch('/custom/update', formData);
+        const { data } = await api.patch('/custom/update', formData);
 
         navigate('/receipt', {
           state: {
-            haveDesign: haveDesign,
-            customInfo: customInfo,
-            customMainImage: customMainImage,
-            customImages: customImages,
+data:data,
           },
         });
       } catch (err) {
-        setError(err);
+        // console.log(err);
       }
     };
-    return { response, error };
   };
+
   return (
     <St.CustomFooter>
-      <St.FooterButton type='button' onClick={handlePatchCustom}>
+      <St.FooterButton type='button' onClick={handleClickFooterBtn}>
         접수 완료하기
       </St.FooterButton>
     </St.CustomFooter>
