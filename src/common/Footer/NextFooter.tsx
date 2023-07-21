@@ -7,7 +7,7 @@ interface NextFooterProps {
   navigateURL: string;
   haveDesign?: boolean;
   customInfo?: customInfoType;
-  customMainImage?: File | null;
+  handDrawingImage?: File | null;
   customImages?: FileList | null;
 }
 
@@ -16,7 +16,7 @@ const NextFooter = ({
   navigateURL,
   haveDesign,
   customInfo,
-  customMainImage,
+  handDrawingImage,
   customImages,
 }: NextFooterProps) => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const NextFooter = ({
           state: {
             haveDesign: haveDesign,
             customInfo: customInfo,
-            customMainImage: customMainImage,
+            handDrawingImage: handDrawingImage,
             customImages: customImages,
           },
         });
