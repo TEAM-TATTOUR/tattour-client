@@ -11,12 +11,20 @@ import MainEventBanner from '../components/MainPage/MainEventBanner';
 import MainStyle from '../components/MainPage/MainStyle';
 import SideMenu from '../common/SideMenu';
 import HotCustom from '../common/HotCustom';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router';
+import WelcomeFooter from '../components/Welcome/WelcomeFooter';
+import WelcomeModal from '../common/Modal/WelcomeModal/WelcomeModal';
 
 const MainPage = () => {
   const [isHeaderTransparent, setIsHeaderTransparent] = useState(true);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(false);
+
+  const location = useLocation();
+
+  const [isWelcomeModalOpen, setIsWelcomeModalOpen] = useState(
+    location.state?.isWellcomeModalOpen || false,
+  );
 
   useEffect(() => {
     const debouncedHandleScroll = throttle(handleScroll, 100);
@@ -53,6 +61,7 @@ const MainPage = () => {
       renderHeader={reanderMainPageHeader}
       footer={<MainFooter isFooterVisible={isFooterVisible} />}
     >
+      <WelcomeModal setModalOn={setIsWelcomeModalOpen} />
       <MainBanner />
       <HotCustom />
       <MainEventBanner />

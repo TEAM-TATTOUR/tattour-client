@@ -5,7 +5,11 @@ const WelcomeFooter = () => {
   const navigate = useNavigate();
 
   const handleClickWelcomeFooter = () => {
-    navigate('/');
+    navigate('/', {
+      state: {
+        isWellcomeModalOpen: true,
+      },
+    });
   };
 
   return (
