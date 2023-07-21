@@ -2,8 +2,7 @@ import { styled } from 'styled-components';
 import CustomTitle from './CustomTitle';
 import CustomImageAttach from './CustomImageAttach';
 import PaintBottomSheet from './PaintBottomSheet';
-import { useEffect, useState } from 'react';
-import { customInfo } from '../../../types/customInfo';
+import { useState } from 'react';
 
 const CustomReference = ({
   setIsActiveNext,
@@ -17,7 +16,6 @@ const CustomReference = ({
   const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
 
-  useEffect(() => {}, [drawingImageUrl]);
   return (
     <St.PageWrapper>
       <CustomTitle />
@@ -27,6 +25,8 @@ const CustomReference = ({
         drawingImageURL={drawingImageUrl}
         setDrawingImageURL={setDrawingImageUrl}
         setIsActiveNext={setIsActiveNext}
+        setCustomMainImage={setCustomMainImage}
+        setCustomImages={setCustomImages}
       />
       {isBottomOpen && (
         <PaintBottomSheet

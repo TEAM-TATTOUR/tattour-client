@@ -8,7 +8,6 @@ import CustomSizeEscapeModal from '../../common/Modal/EscapeModal/CustomSizeEsca
 import NextFooter from '../../common/Footer/NextFooter';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { IcBackDark } from '../../assets/icon';
-import { customInfoType } from '../../types/customInfoType';
 
 const CustomReferencePage = () => {
   const CUSTOM_VIEW_COUNT = 2;
@@ -23,11 +22,16 @@ const CustomReferencePage = () => {
   const location = useLocation();
 
   const haveDesign = location.state ? location.state.haveDesign : null;
-  const customId = location.state ? location.state.customId : null;
+  const prevCustomInfo = location.state ? location.state.customInfo : null;
 
-  const customInfo: customInfoType = {
+  // useEffect(() => {
+  //   if (!location.state) navigate('/onboarding');
+  // }, [location.state, navigate]);
+
+  const customInfo = {
     viewCount: CUSTOM_VIEW_COUNT,
-    customId: customId,
+    customMainImage: customMainImage,
+    customImages: customImages,
   };
 
   const renderCustomReferencePageHeader = () => {

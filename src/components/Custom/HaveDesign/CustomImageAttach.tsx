@@ -9,6 +9,8 @@ interface PaintBottomProps {
   drawingImageURL: string | null;
   setDrawingImageURL: React.Dispatch<React.SetStateAction<string | null>>;
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  setCustomMainImage: React.Dispatch<React.SetStateAction<File | null>>;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
 }
 
 const CustomImageAttach: React.FC<PaintBottomProps> = ({
@@ -16,6 +18,8 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   drawingImageURL,
   setDrawingImageURL,
   setIsActiveNext,
+  setCustomMainImage,
+  setCustomImages,
 }) => {
   const MAX_FILES = 3;
 
@@ -45,10 +49,24 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
-    if (!files || !files[0]) return;
+    console.log(files);
+    if (!files) return;
     if (files[3]) {
       setToast(true);
     }
+
+    setCustomMainImage(files[0]);
+
+    const imageFiles = Array.from(files).slice(1);
+
+    const dataTransfer = new DataTransfer();
+    imageFiles.forEach((file) => {
+      dataTransfer.items.add(file);
+    });
+
+    const fileList = dataTransfer.files;
+    setCustomImages(fileList);
+
     const uploadImage = Array.from(files);
 
     //개수 제한 적용해주기
