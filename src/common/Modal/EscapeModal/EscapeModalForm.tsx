@@ -36,7 +36,7 @@ const EscapeModalForm = ({
         break;
 
       case 'CustomSizePage':
-        navigate('/custom-onboarding');
+        navigate('/onboarding');
         break;
 
       default:
@@ -113,12 +113,14 @@ const St = {
   `,
 
   ModalSubTitle: styled.p`
-    padding: 1.6rem 6.4rem 4rem 6.4rem;
+    padding: 1.6rem 2.6rem 4rem 2.6rem;
 
     text-align: center;
     color: ${({ theme }) => theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.body_medium_16};
+
+    white-space: pre-line;
   `,
 
   BtnWrapper: styled.div`
