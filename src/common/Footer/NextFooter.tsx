@@ -7,8 +7,8 @@ interface NextFooterProps {
   navigateURL: string;
   haveDesign?: boolean;
   customInfo?: customInfoType;
-  customMainImage?: File | null;
-  customImages?: FileList | null;
+  customMainImage?: File;
+  customImages?: FileList;
 }
 
 const NextFooter = ({
