@@ -16,7 +16,8 @@ const TransferPage = () => {
   const [isActiveNext, setIsActiveNext] = useState(false);
 
   const location = useLocation();
-  const { redirectURL, chargeAmount } = location.state;
+  const redirectURL = location.state ? location.state.redirectURL : '';
+  const chargeAmount = location.state ? location.state.chargeAmount : 0;
 
   const renderTransferPageHeader = () => {
     return (
@@ -27,7 +28,9 @@ const TransferPage = () => {
           <CancelBtn
             modalOn={modalOn}
             setModalOn={setModalOn}
-            targetModal={<ChargePointEscapeModal setModalOn={setModalOn} />}
+            targetModal={
+              <ChargePointEscapeModal redirectURL={redirectURL} setModalOn={setModalOn} />
+            }
           />
         }
         progressBar={<ProgressBar curStep={2} maxStep={2} />}
