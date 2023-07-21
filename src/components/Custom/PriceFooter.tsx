@@ -1,8 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { customInfoType } from '../../types/customInfoType';
-import api, { setAccessToken } from '../../libs/api';
-import { useEffect } from 'react';
+import api from '../../libs/api';
 
 interface PriceFooterProps {
   haveDesign?: boolean;
@@ -23,9 +22,13 @@ const PriceFooter = ({ customInfo, customMainImage, customImages }: PriceFooterP
       const json = JSON.stringify(customInfo);
       const blob = new Blob([json], { type: 'application/json' });
 
+      console.log(typeof customImages);
       formData.append('customInfo', blob);
+
       if (customImages) {
-        formData.append('customImages', customImages);
+        for (let i = 0; i < customImages.length; i++) {
+          formData.append('customImages', customImages.item(i) as File);
+        }
       }
       const { data } = await api.patch('/custom/update', formData, {
         headers: {
