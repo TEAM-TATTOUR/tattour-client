@@ -9,12 +9,10 @@ interface SelectCustomFooterProps {
 
 const SelectCustomFooter = ({ isActiveNext, haveDesign }: SelectCustomFooterProps) => {
   const [modalOn, setModalOn] = useState(false);
-  const [currPoint, setCurrPoint] = useState(0); //추후 서버 통신으로 현재 유저의 포인트 값 가져올 예정
 
   const handleClickFooter = () => {
     if (!isActiveNext) return;
     setModalOn(true);
-    setCurrPoint(13000);
   };
 
   return (
@@ -22,9 +20,7 @@ const SelectCustomFooter = ({ isActiveNext, haveDesign }: SelectCustomFooterProp
       <St.SelectCustomFooter $isActiveNext={isActiveNext} onClick={handleClickFooter}>
         <St.FooterText>다음</St.FooterText>
       </St.SelectCustomFooter>
-      {modalOn && (
-        <ChargePointModal setModalOn={setModalOn} currPoint={currPoint} haveDesign={haveDesign} />
-      )}
+      {modalOn && <ChargePointModal setModalOn={setModalOn} haveDesign={haveDesign} />}
     </>
   );
 };
