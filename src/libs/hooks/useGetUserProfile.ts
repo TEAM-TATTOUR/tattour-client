@@ -14,7 +14,7 @@ interface UserProfileResponse {
 }
 
 const useGetUserProfile = () => {
-    const [response, setResponse] = useState<UserProfileProps>(null);
+    const [response, setResponse] = useState<UserProfileProps>();
     const [error, setError] = useState<AxiosError>();
     const [loading, setLoading] = useState(true);
 

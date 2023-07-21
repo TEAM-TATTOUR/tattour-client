@@ -11,14 +11,15 @@ import MainEventBanner from '../components/MainPage/MainEventBanner';
 import MainStyle from '../components/MainPage/MainStyle';
 import SideMenu from '../common/SideMenu';
 import HotCustom from '../common/HotCustom';
+import Toast from '../common/ToastMessage/Toast';
 import { useLocation } from 'react-router';
-import WelcomeFooter from '../components/Welcome/WelcomeFooter';
 import WelcomeModal from '../common/Modal/WelcomeModal/WelcomeModal';
 
 const MainPage = () => {
   const [isHeaderTransparent, setIsHeaderTransparent] = useState(true);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(false);
+  const [toast, setToast] = useState<boolean>(false);
 
   const location = useLocation();
 
@@ -39,8 +40,7 @@ const MainPage = () => {
   const handleScroll = () => {
     const scrollY = window.scrollY;
     setIsHeaderTransparent(scrollY === 0);
-    // image 사이즈나오면 변경 예정
-    setIsFooterVisible(scrollY > 500);
+    setIsFooterVisible(scrollY > 440);
   };
 
   const reanderMainPageHeader = () => {
@@ -64,9 +64,10 @@ const MainPage = () => {
       {isWelcomeModalOpen && <WelcomeModal setModalOn={setIsWelcomeModalOpen} />}
       <MainBanner />
       <HotCustom />
-      <MainEventBanner />
+      <MainEventBanner setToast={setToast} />
       <MainTheme />
       <MainStyle />
+      {toast && <Toast setToast={setToast} text='이미 참여한 이벤트예요' />}
       <SideMenu isSideMenuOpen={isSideMenuOpen} setIsSideMenuOpen={setIsSideMenuOpen} />
     </PageLayout>
   );

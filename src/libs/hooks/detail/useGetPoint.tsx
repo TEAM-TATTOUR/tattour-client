@@ -17,7 +17,7 @@ const useGetPoint = () => {
   const [response, setResponse] = useState<PointItemProp>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
-  const [isLogin, setLogin] = useState(getAccessToken);
+  const [isLogin] = useState(getAccessToken);
 
   const fetchData = async () => {
     await api
