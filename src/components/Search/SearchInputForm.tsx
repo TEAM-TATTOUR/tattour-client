@@ -11,14 +11,16 @@ const SearchInputForm = () => {
     navigate('/');
   };
 
-  const handleSubmitSearchForm = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitSearchForm = (
+    event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLElement>,
+  ) => {
     event.preventDefault();
     navigate(`/search/${inputRef.current?.value}`);
   };
 
   return (
     <St.SearchFormWrapper>
-      <IcBackDark onClick={handleClickBackButton}/>
+      <IcBackDark onClick={handleClickBackButton} />
       <St.SearchForm onSubmit={handleSubmitSearchForm}>
         <St.SearchInput
           ref={inputRef}
