@@ -12,7 +12,6 @@ interface PaintBottomProps {
 }
 
 const CustomImageAttach: React.FC<PaintBottomProps> = ({
-  isBottomOpen,
   setBottomOpen,
   drawingImageURL,
   setDrawingImageURL,
@@ -122,7 +121,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
               <IcCancelDark />
             </St.ImgPreviewDelBtn>
             <St.Image>
-              <img src={drawingImageURL} alt='첨부-이미지-미리보기' />
+              {drawingImageURL && <img src={drawingImageURL} alt='첨부-이미지-미리보기' />}
             </St.Image>
           </St.ImgPreviewContainer>
         ) : (

@@ -101,6 +101,9 @@ const St = {
   `,
 
   BtnWrapper: styled.div`
+    -webkit-flex: 1; /* Safari 6.1+ */
+    -ms-flex: 1; /* IE 10 */
+    flex: 1;
     display: flex;
     align-items: flex-end;
     width: 100%;

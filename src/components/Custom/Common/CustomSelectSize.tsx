@@ -2,25 +2,48 @@ import { styled } from 'styled-components';
 import CustomSelectSizeBtn from './CustomSelectSizeBtn';
 import { useState, useRef, useEffect } from 'react';
 
-const CustomSelectSize = ({
-  setIsActiveNext,
-}: {
+interface CustomSelectSizeProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+  setSize: React.Dispatch<React.SetStateAction<string>>;
+  size: string | null;
+}
+
+const CustomSelectSize = ({ setIsActiveNext, setSize, size }: CustomSelectSizeProps) => {
   const BTN_DATA = [
-    { id: 'quarter', title: '5cm 이하', detail: '동전 크기' },
-    { id: 'regular', title: 'A4 1/8', detail: '신용카드, 담뱃갑 크기' },
-    { id: 'half', title: 'A4 1/4', detail: '엽서, 손바닥 크기' },
-    { id: 'double', title: '5cm 이하', detail: '아래팔 한 쪽 면 크기' },
+    {
+      id: 'quarter',
+      title: '5cm 이하',
+      detail: '동전 크기',
+      imgURL: '/image/img_size1.png',
+    },
+    {
+      id: 'half',
+      title: 'A4 1/8',
+      detail: '신용카드, 담뱃갑 크기',
+      imgURL: '/image/img_size2.png',
+    },
+    {
+      id: 'regular',
+      title: 'A4 1/4',
+      detail: '엽서, 손바닥 크기',
+      imgURL: '/image/img_size3.png',
+    },
+    {
+      id: 'double',
+      title: 'A4 1/2',
+      detail: '아래팔 한 쪽 면 크기',
+      imgURL: '/image/img_size4.png',
+    },
   ];
 
-  const [selectedBtn, setSelectedBtn] = useState('');
+  const [selectedBtn, setSelectedBtn] = useState(size ? size : '');
   const sizeBtnRef = useRef<HTMLButtonElement[]>([]);
 
   const handleClickSelBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLElement;
     if (!target) return;
     setSelectedBtn(target.id);
+    setSize(target.id);
     setIsActiveNext(true);
   };
 
@@ -35,6 +58,20 @@ const CustomSelectSize = ({
     });
   }, [selectedBtn]);
 
+  useEffect(() => {
+    if (!size) return;
+    //임시저장 + back btn 클릭 시 state에 있는 값 읽어와 반영
+    sizeBtnRef.current.forEach((ref) => {
+      if (ref.id === size) {
+        ref.classList.add('isSelected');
+        setIsActiveNext(true);
+        setSize(ref.id);
+      } else {
+        ref.classList.remove('isSelected');
+      }
+    });
+  }, [size, setIsActiveNext, setSize]);
+
   return (
     <St.SizeWrapper>
       <St.SizeInfoContainer>
@@ -45,13 +82,15 @@ const CustomSelectSize = ({
         </St.InfoSubTextBox>
       </St.SizeInfoContainer>
       <St.SizeBntContainer>
-        {BTN_DATA.map(({ id, title, detail }, idx) => {
+        {BTN_DATA.map(({ id, title, detail, imgURL }, idx) => {
           return (
             <CustomSelectSizeBtn
               key={id}
               id={id}
+              idx={idx}
               title={title}
               detail={detail}
+              imgURL={imgURL}
               ref={(element: HTMLButtonElement) => (sizeBtnRef.current[idx] = element)}
               onClick={handleClickSelBtn}
               isSelected={selectedBtn === id}

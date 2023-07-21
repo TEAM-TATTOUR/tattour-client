@@ -1,19 +1,23 @@
 import styled from 'styled-components';
+import { getOrderSheetStickerInfoProps } from '../../libs/hooks/order/useGetOrdersheet';
 
-interface ProductInfoProps {
-  originialPrice: number;
-  itemPrice: number;
-  count: number;
-}
-const ProductInfo = ({ originialPrice, itemPrice, count }: ProductInfoProps) => {
+const ProductInfo = ({
+  getOrderSheetStickerInfo,
+}: {
+  getOrderSheetStickerInfo: getOrderSheetStickerInfoProps;
+}) => {
+  const { mainImageUrl, name, price, discountedPrice, count } = getOrderSheetStickerInfo;
+
   return (
     <St.Wrapper>
-      <St.Image />
+      <St.Image>
+        <img src={mainImageUrl} />
+      </St.Image>
       <St.InfoContainer>
-        <St.Name>우리집고양이츄르</St.Name>
+        <St.Name>{name}</St.Name>
         <St.Description>
-          <St.ItemPrice>{itemPrice.toLocaleString()}원</St.ItemPrice>
-          <St.OriginalPrice>{originialPrice.toLocaleString()}원</St.OriginalPrice>
+          <St.ItemPrice>{discountedPrice && discountedPrice.toLocaleString()}원</St.ItemPrice>
+          <St.OriginalPrice>{price && price.toLocaleString()}원</St.OriginalPrice>
           <St.Line></St.Line>
           <St.Count>{count}개</St.Count>
         </St.Description>
@@ -31,11 +35,20 @@ const St = {
     padding: 1.4rem 0rem 2.4rem 2rem;
   `,
   Image: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 8.4rem;
     height: 8.4rem;
 
     background-color: ${({ theme }) => theme.colors.gray0};
     border-width: 0rem;
+
+    & > img {
+      width: 7.2rem;
+      height: 7.2rem;
+    }
   `,
   InfoContainer: styled.article`
     margin: 0.2rem 0rem 0rem 2rem;

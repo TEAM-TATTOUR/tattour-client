@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ListPage from './page/ListPage';
 import MainPage from './page/MainPage';
 import LoginPage from './page/Login/LoginPage';
-import RegisterPhoneNum from './components/Register/RegisterPhoneNum';
 import DetailPage from './page/DetailPage';
 import MyTattoo from './page/MyTattoo';
 import MyTattooDetail from './page/MyTattooDetail';
@@ -11,10 +10,9 @@ import RegisterPhoneNumPage from './page/Register/RegisterPhoneNumPage';
 import WelcomePage from './page/Welcome/WelcomePage';
 import ChargePage from './page/PointCharge/ChargePage';
 import TransferPage from './page/PointCharge/TransferPage';
-import SelectPage from './page/Custom/SelectPage';
+import SelectPage from './page/Custom/Common/SelectPage';
 import CompletePage from './page/Order/CompletePage';
 import OrderPage from './page/Order/OrderPage';
-import StylingColorPage from './page/Custom/StylingColorPage';
 import SelectKeywordPage from './page/Custom/HaveDesign/SelectKeywordPage';
 import OnBoardingPage from './page/Custom/Common/OnBoardingPage';
 import CustomSizePage from './page/Custom/Common/CustomSizePage';
@@ -24,10 +22,12 @@ import CustomThemePage from './page/Custom/HaveDesign/CustomThemePage';
 import AdditionalRequestPage from './page/Custom/HaveDesign/AdditionalRequestPage';
 import PricePage from './page/Custom/PricePage';
 import ReceiptPage from './page/Custom/HaveDesign/ReceiptPage';
+import StylingColorPage from './page/Custom/HaveDesign/StylingColorPage';
 import CustomReferencePage from './page/CustomReference/CustomReferencePage';
 import SearchPage from './page/Search/SearchPage';
 import SearchResultPage from './page/Search/SearchResultPage';
 import ScrollToTop from './libs/hooks/ScrollTop';
+import LoginCallback from './components/Login/LoginCallback';
 
 const Router = () => {
   return (
@@ -38,8 +38,8 @@ const Router = () => {
         <Route path='/' element={<MainPage />} />
         <Route path='/order' element={<OrderPage />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path='/input-number' element={<RegisterPhoneNum />} />
-        <Route path='/detail' element={<DetailPage />} />
+        <Route path='/detail/:id' element={<DetailPage />} />
+        <Route path='/login/oauth2/callback' element={<LoginCallback />} />
         <Route path='/register' element={<RegisterNamePage />} />
         <Route path='/register-number' element={<RegisterPhoneNumPage />} />
         <Route path='/welcome-signup' element={<WelcomePage />} />

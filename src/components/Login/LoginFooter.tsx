@@ -1,12 +1,15 @@
 import { styled } from 'styled-components';
 import { IcKakao } from '../../assets/icon';
-import { useNavigate } from 'react-router-dom';
+import { KAKAO_AUTH_URL } from '../../constants/OAuth';
 
 const LoginFooter = () => {
-  const navigate = useNavigate();
+
+  const handleClickLoginFooter = () => {
+    window.location.href = `${KAKAO_AUTH_URL}`;
+  };
 
   return (
-   <St.LoginFooter onClick={() => navigate('/register')}>
+    <St.LoginFooter onClick={() => handleClickLoginFooter()}>
       <IcKakao />
       <St.FooterText>카카오로 계속하기</St.FooterText>
     </St.LoginFooter>

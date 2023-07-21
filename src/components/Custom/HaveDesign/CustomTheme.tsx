@@ -3,7 +3,11 @@ import { styled } from 'styled-components';
 // 이모티콘 카운팅 관련 라이브러리
 import GraphemeSplitter from 'grapheme-splitter';
 
-const CustomTheme = () => {
+const CustomTheme = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   //count 될 maxCount 수
   const MAX_NAME_COUNT = 10;
   const MAX_ETC_COUNT = 100;
@@ -32,7 +36,12 @@ const CustomTheme = () => {
 
   const handleChangeNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     //value가 없을 때 0으로 글자 수 세지도록
-    if (e.target.value === '') setNameInputCount(0);
+    if (e.target.value === '') {
+      setNameInputCount(0);
+      setIsActiveNext(false);
+    } else if (nameInputCount && etcTextAreaCount) {
+      setIsActiveNext(true);
+    }
 
     const lengthCount = limitMaxLength(e, MAX_NAME_COUNT);
 
@@ -41,7 +50,12 @@ const CustomTheme = () => {
   };
 
   const handleChangeEtcTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.target.value === '') setEtcTextAreaCount(0);
+    if (e.target.value === '') {
+      setEtcTextAreaCount(0);
+      setIsActiveNext(false);
+    } else if (nameInputCount && etcTextAreaCount) {
+      setIsActiveNext(true);
+    }
 
     const lengthCount = limitMaxLength(e, MAX_ETC_COUNT);
 
@@ -52,14 +66,12 @@ const CustomTheme = () => {
   return (
     <St.CustomRequestWrapper>
       <St.RequestNameContainer>
-        <St.RequestNameTitle>이 타투의 이름을 지어주세요!</St.RequestNameTitle>
-        <St.RequestNameDetail>
-          추후 아카이브 또는 공개 시에 해당 이름이 노출됩니다
-        </St.RequestNameDetail>
+        <St.RequestNameTitle>타투의 이름을 지어주세요</St.RequestNameTitle>
+        <St.RequestNameDetail>추후 아카이브 또는 공개 시 해당 이름이 노출돼요</St.RequestNameDetail>
         <St.RequestNameInput
           type='text'
           onChange={handleChangeNameInput}
-          placeholder='ex. 우리 가족 타투, 백조 타투, 힙한 하트'
+          placeholder='ex. 우리 가족 타투, 백조 타투'
           autoFocus
         />
         <St.RequestInputCount>
@@ -86,7 +98,9 @@ const St = {
   CustomRequestWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+
+    min-height: calc(100dvh - 13.6rem);
   `,
 
   RequestNameContainer: styled.article`

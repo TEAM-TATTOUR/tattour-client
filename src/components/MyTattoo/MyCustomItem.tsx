@@ -1,12 +1,12 @@
 import { styled } from 'styled-components';
 import { LabelCustomSmall } from '../../assets/icon';
 
-const MyCustomItem = ({ title }: { title: string }) => {
+const MyCustomItem = ({ name, imageUrl }: { name: string; imageUrl: string }) => {
   return (
     <St.MyCustomItem>
       <LabelCustomSmall />
-      <St.MyCustomItemImg />
-      <St.MyCustomItemTitle>{title}</St.MyCustomItemTitle>
+      <St.MyCustomItemImg src={imageUrl} />
+      <St.MyCustomItemTitle>{name}</St.MyCustomItemTitle>
     </St.MyCustomItem>
   );
 };

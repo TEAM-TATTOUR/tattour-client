@@ -20,26 +20,11 @@ const OnBoardingCarousel = () => {
         pagination={{ clickable: true }}
         navigation
       >
-        {CUSTOM_CAROUSEL_DATA.map(({ id, bannerText, mainText, subText, mockUpImg, imgAlt }) => {
+        {CUSTOM_CAROUSEL_DATA.map(({ id, content, imgAlt }) => {
           return (
             <SwiperSlide key={id}>
               <St.SwiperContainer>
-                <St.SwiperHeader>
-                  {bannerText ? (
-                    <St.SwiperHeaderBanner>
-                      <p>{bannerText}</p>
-                    </St.SwiperHeaderBanner>
-                  ) : (
-                    <></>
-                  )}
-                  <St.SwiperHeaderTextBox>
-                    <St.HeaderMainText>{mainText}</St.HeaderMainText>
-                    <St.HeaderSubText>{subText}</St.HeaderSubText>
-                  </St.SwiperHeaderTextBox>
-                </St.SwiperHeader>
-                <St.SwiperImgContainer>
-                  <img src={mockUpImg} alt={imgAlt} />
-                </St.SwiperImgContainer>
+                <img src={content} alt={imgAlt} />
               </St.SwiperContainer>
             </SwiperSlide>
           );
@@ -84,7 +69,8 @@ const St = {
       .swiper-button-next {
         width: 2rem;
         height: 2rem;
-        margin-top: 0.3rem;
+        margin-right: 2.8rem;
+        margin-top: -3rem;
 
         background: url(${ic_arrow_right_gray}) no-repeat;
         background-position: center;
@@ -94,7 +80,8 @@ const St = {
       .swiper-button-prev {
         width: 2rem;
         height: 2rem;
-        margin-top: 0.3rem;
+        margin-left: 2.8rem;
+        margin-top: -3rem;
 
         background: url(${ic_arrow_left_gray}) no-repeat;
         background-position: center;
@@ -107,17 +94,29 @@ const St = {
         display: none;
       }
 
+      .swiper-pagination {
+        position: sticky;
+        bottom: 7rem;
+
+        display: flex;
+        justify-content: center;
+        gap: 0.9rem;
+        padding-bottom: 4rem;
+      }
       /* swiper 페이지네이션 bullet 커스텀 스타일링 */
       .swiper-pagination-bullet {
         height: 0.6rem;
         width: 0.6rem;
+        margin: 0;
         background-color: ${({ theme }) => theme.colors.gray1};
+        opacity: 100;
       }
 
       .swiper-pagination-bullet-active {
         height: 0.6rem;
         width: 0.6rem;
         background-color: ${({ theme }) => theme.colors.gray9};
+        opacity: 100;
       }
     }
   `,
@@ -125,61 +124,12 @@ const St = {
   SwiperContainer: styled.article`
     display: flex;
     flex-direction: column;
-    height: 100%;
-  `,
-
-  SwiperHeader: styled.header`
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-    width: fit-content;
-    margin: 2rem 0 1.8rem 2.6rem;
-  `,
-
-  SwiperHeaderBanner: styled.div`
-    display: flex;
-    justify-content: center;
     align-items: center;
-
-    width: fit-content;
-    height: 2.6rem;
-    padding: 0.4rem 0.8rem;
-
-    background-color: ${({ theme }) => theme.colors.pink1};
-
-    border-radius: 0.5rem;
-
-    & > p {
-      color: ${({ theme }) => theme.colors.pink5};
-      ${({ theme }) => theme.fonts.body_medium_14};
-    }
-  `,
-
-  SwiperHeaderTextBox: styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  `,
-
-  HeaderMainText: styled.h2`
-    color: ${({ theme }) => theme.colors.gray8};
-    ${({ theme }) => theme.fonts.title_semibold_20};
-  `,
-
-  HeaderSubText: styled.p`
-    color: ${({ theme }) => theme.colors.gray3};
-    ${({ theme }) => theme.fonts.body_medium_14};
-  `,
-
-  SwiperImgContainer: styled.div`
-    display: flex;
-    justify-content: center;
-    height: 100%;
+    height: fit-content;
 
     & > img {
       width: 30.7rem;
-      height: 53.8rem;
+      height: 62.6rem;
     }
   `,
 };

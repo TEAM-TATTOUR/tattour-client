@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { IcCheckSmallPink } from '../../../assets/icon';
 import { KEYWORDS_GENRE } from '../../../assets/data/KEYWORDS_GENRE';
 import { KEYWORDS_STYLE } from '../../../assets/data/KEYWORDS_STYLE';
 
-const SelectKeyword = () => {
+const SelectKeyword = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [genreKeywords, setGenreKeywords] = useState(KEYWORDS_GENRE);
   const [styleKeywords, setStyleKeywords] = useState(KEYWORDS_STYLE);
 
@@ -12,11 +16,12 @@ const SelectKeyword = () => {
     const checkedStyle = styleKeywords.filter((keyword) => keyword.checked).length;
     const checkedGenre = genreKeywords.filter((keyword) => keyword.checked).length;
     const checkedKeywords = checkedStyle + checkedGenre;
+
     if (type === 'genre') {
       const updatedKeywords = [...genreKeywords];
       //전체 개수 제한
       if (checkedKeywords >= 3 && updatedKeywords[index].checked === false) {
-        alert('스타일 최소 1개, 전체 최대 3개 선택 가능합니다.');
+        return;
       } else {
         updatedKeywords[index].checked = !updatedKeywords[index].checked;
         setGenreKeywords(updatedKeywords);
@@ -25,13 +30,22 @@ const SelectKeyword = () => {
       const updatedKeywords = [...styleKeywords];
       //개수 제한
       if (checkedKeywords >= 3 && updatedKeywords[index].checked === false) {
-        alert('스타일 최소 1개, 전체 최대 3개 선택 가능합니다.');
+        return;
       } else {
         updatedKeywords[index].checked = !updatedKeywords[index].checked;
         setStyleKeywords(updatedKeywords);
       }
     }
   };
+
+  useEffect(() => {
+    const checkedStyle = styleKeywords.filter((keyword) => keyword.checked).length;
+    const checkedGenre = genreKeywords.filter((keyword) => keyword.checked).length;
+    const checkedKeywords = checkedStyle + checkedGenre;
+
+    setIsActiveNext(checkedKeywords >= 1);
+  }, [genreKeywords, styleKeywords, setIsActiveNext]);
+
   return (
     <St.KeywordWrapper>
       <St.Title>장르</St.Title>
@@ -53,7 +67,7 @@ const SelectKeyword = () => {
         ))}
       </St.RadioWrapper>
       <St.Title>스타일</St.Title>
-      <St.RadioWrapper>
+      <St.RadioWrapper className='style-keywords'>
         {styleKeywords.map(({ value, checked }, index: number) => (
           <St.RadioLabel key={index} htmlFor={value} checked={checked}>
             <St.RadioInput
@@ -85,6 +99,15 @@ const St = {
 
     width: 100%;
     padding-left: 2rem;
+    min-height: calc(100dvh - 28.8rem);
+
+    .style-keywords {
+      width: 26rem;
+      gap: 1.2rem;
+
+      display: flex;
+      flex-wrap: wrap;
+    }
   `,
   Title: styled.h3`
     ${({ theme }) => theme.fonts.body_semibold_14};
@@ -95,7 +118,7 @@ const St = {
     flex-wrap: wrap;
     gap: 1rem;
 
-    width: 100%;
+    width: 33.9rem;
   `,
   RadioLabel: styled.label<{ checked: boolean }>`
     display: flex;
