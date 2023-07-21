@@ -14,7 +14,7 @@ const ChargePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { redirectURL } = location.state;
+  const redirectURL = location.state ? location.state.redirectURL : '/';
 
   const [isActiveNext, setIsActiveNext] = useState(false);
   const [chargeAmount, setChargeAmount] = useState(0);
