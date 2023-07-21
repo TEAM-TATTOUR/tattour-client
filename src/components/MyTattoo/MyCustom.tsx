@@ -2,7 +2,6 @@ import { styled } from 'styled-components';
 import CustomScrollContainer from '../../common/CustomScrollContainer';
 import MyCustomItem from './MyCustomItem';
 import useGetMyCustom from '../../libs/hooks/useGetMyCustom';
-import { useNavigate } from 'react-router-dom';
 
 const MyCustom = () => {
   const { response, error, loading } = useGetMyCustom();
@@ -25,6 +24,8 @@ const St = {
   Divide: styled.hr`
     width: 100%;
     height: 1.3rem;
+
+    margin: 0rem 0rem 2.8rem 0rem;
 
     border: none;
 

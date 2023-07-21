@@ -34,9 +34,7 @@ const St = {
   `,
 
   CustomScrollTitle: styled.h2`
-    // title eng bold 18 필요
-    font-size: 1.8rem;
-    font-weight: bold;
+    ${({ theme }) => theme.fonts.title_eng_bold_18};
   `,
 
   CustomScrollItemWrapper: styled.div`
