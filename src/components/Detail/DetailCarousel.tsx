@@ -7,19 +7,16 @@ import { Pagination } from 'swiper/modules';
 import { LabelCustomSmall } from '../../assets/icon';
 
 // 테스트 이미지
-import test_tattoo_big from '../../assets/test_tattoo_big.png';
 
-const DetailCarousel = ({ isCustom }: { isCustom: boolean }) => {
-  const DATA = ['Slide 1', 'Slide 2', 'Slide 3'];
-
+const DetailCarousel = ({ isCustom, images }: { isCustom: boolean; images: string[] }) => {
   return (
     <St.Wrapper>
       {isCustom && <LabelCustomSmall />}
       <Swiper modules={[Pagination]} pagination={{ clickable: true }} slidesPerView={1} loop={true}>
-        {DATA.map((el) => (
-          <SwiperSlide key={el}>
+        {images.map((src, idx) => (
+          <SwiperSlide key={idx}>
             <St.Card>
-              <img src={test_tattoo_big} />
+              <img src={src} />
             </St.Card>
           </SwiperSlide>
         ))}
@@ -75,5 +72,10 @@ const St = {
 
     background-color: ${({ theme }) => theme.colors.gray0};
     color: black;
+
+    & > img {
+      width: 19.5rem;
+      height: 19.5rem;
+    }
   `,
 };

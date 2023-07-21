@@ -1,66 +1,67 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { StickerItemProps } from '../../libs/hooks/detail/useGetSticker';
 
-const DetailInfo = () => {
-  // id로 서버통신 get
-
-  const DISCOUNT = 5;
-  const FINAL_PRICE = 2500;
-  const ORIGINAL_PRICE = 4000;
-  const DELIVERY_PRICE = 3000;
-  const TAG = ['심플한', '레터링'];
-
-  const TEXT = `
-  우리집고양이는 츄르를 좋아하는데요. 매우 좋아합니다. 아주 많이 좋아하구요. 우주만큼 땅만큼
-  좋아합니다. 사실은 고양이 가 아닙니다. 어쩌고 저쩌고 어쩌고 저쩌고...어쩌고 저쩌고 어 쩌고
-  저쩌고 어쩌고 저쩌고 어쩌고 저쩌고....어쩌고 저쩌고 어 쩌고 저쩌고 어쩌고 저쩌고 어쩌고
-  저쩌고...
-  `;
-
+const DetailInfo = ({ response }: StickerItemProps) => {
   const [isOpen, setOpen] = useState(false);
+
+  const {
+    name,
+    discountRate,
+    discountPrice,
+    price,
+    composition,
+    size,
+    shippingCost,
+    stickerThemes,
+    stickerStyles,
+    description,
+    productLiked,
+  } = response;
 
   return (
     <St.Wrapper>
       <St.Header>
-        <St.Name>우리집고양이츄르</St.Name>
+        <St.Name>{name}</St.Name>
         <St.New>NEW!</St.New>
       </St.Header>
       <St.PriceContainer>
-        <St.Discount>{DISCOUNT}%</St.Discount>
+        <St.Discount>{discountRate}%</St.Discount>
         <St.FinalPrice>
-          {FINAL_PRICE.toLocaleString()}
+          {discountPrice && discountPrice.toLocaleString()}
           <span>원</span>
         </St.FinalPrice>
       </St.PriceContainer>
-      <St.OriginalPrice>{ORIGINAL_PRICE.toLocaleString()}원</St.OriginalPrice>
+      <St.OriginalPrice>{price && price.toLocaleString()}원</St.OriginalPrice>
       <St.LightLine />
       <St.Description>
         <St.Category>구성</St.Category>
-        <span>타투스티커 2EA + 알콜 스왑 2EA</span>
+        <span>{composition}</span>
         <St.Category>크기</St.Category>
-        <span>90*120 (mm)</span>
+        <span>{size}</span>
         <St.Category>배송비</St.Category>
-        <span>{DELIVERY_PRICE.toLocaleString()}원</span>
+        <span>{shippingCost && shippingCost.toLocaleString()}원</span>
       </St.Description>
       <St.BoldLine />
       <St.TagContainer>
-        {TAG.map((el, index) => (
-          <St.Tag key={index}>{el}</St.Tag>
-        ))}
+        {stickerThemes && stickerThemes.map((el: string) => <St.Tag key={el}>{el}</St.Tag>)}
+        {stickerStyles && stickerStyles.map((el: string) => <St.Tag key={el}>{el}</St.Tag>)}
       </St.TagContainer>
-      <p>
-        <St.DetailText>{TEXT.substring(0, 65)}</St.DetailText>
-        {isOpen ? (
-          <St.DetailText>{TEXT.substring(65)}</St.DetailText>
-        ) : (
-          TEXT.length > 65 && (
-            <St.DetailText>
-              {'···'}
-              <St.Button onClick={() => setOpen(true)}>더보기</St.Button>
-            </St.DetailText>
-          )
-        )}
-      </p>
+      {description && (
+        <p>
+          <St.DetailText>{description.substring(0, 60)}</St.DetailText>
+          {isOpen ? (
+            <St.DetailText>{description.substring(61)}</St.DetailText>
+          ) : (
+            description.length > 61 && (
+              <St.DetailText>
+                {'···'}
+                <St.Button onClick={() => setOpen(true)}>더보기</St.Button>
+              </St.DetailText>
+            )
+          )}
+        </p>
+      )}
       <St.BoldLine />
     </St.Wrapper>
   );
