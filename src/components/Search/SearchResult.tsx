@@ -5,7 +5,7 @@ import useGetSearchSticker from '../../libs/hooks/useGetSearchSticker';
 const SearchResult = () => {
   const { keyword } = useParams<{ keyword: string }>();
 
-  const { response, error, loading } = useGetSearchSticker(keyword);
+  const { response } = useGetSearchSticker(keyword as string);
 
   return (
     <St.SearchResultPageWrapper>
@@ -15,8 +15,8 @@ const SearchResult = () => {
           <SearchResultItem
             key={id}
             id={id}
-            img={img}
-            title={title}
+            img={imageUrl}
+            title={name}
             discountRate={discountRate}
             price={discountPrice}
             originalPrice={price}

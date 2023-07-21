@@ -4,10 +4,10 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 interface CustomTattooDetailProps {
   title: string;
   image: string[];
-  size: string;
-  quantity: number;
-  requests: string;
-  color?: string;
+  size?: string;
+  quantity?: number;
+  requests?: string;
+  color?: boolean;
   topic?: string;
   haveDesign: boolean;
   mainImage: string;
@@ -33,7 +33,7 @@ const MyTattooDetailSection = ({
 
   const DESCRIPTION_ITEM_LIST = [
     { title: '컬러', property: `${color ? '컬러' : '흑백'}` },
-    { title: '크기', property: SizeEnum[size] },
+    { title: '크기', property: SizeEnum[size as keyof typeof SizeEnum] },
     { title: '수량', property: quantity },
     { title: '주제', property: topic },
     { title: '요청사항', property: requests },

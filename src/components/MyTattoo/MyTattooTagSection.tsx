@@ -1,12 +1,12 @@
 import { styled } from 'styled-components';
 
 interface MyTattooTagSectionProps {
-  shippingStatus: string;
-  isOpen: boolean;
+  shippingStatus?: string;
+  isOpen?: boolean;
 }
 
 const MyTattooTagSection = ({ shippingStatus, isOpen }: MyTattooTagSectionProps) => {
-  const shppingStatusText = (status: string) => {
+  const shppingStatusText = (status?: string) => {
     switch (status) {
       case 'receiving':
         return '접수 중';
@@ -63,7 +63,7 @@ const St = {
     color: ${({ theme }) => theme.colors.gray4};
   `,
 
-  MyTattooShippingStatusTag: styled.p<{ $shippingStatus: string }>`
+  MyTattooShippingStatusTag: styled.p<{ $shippingStatus?: string }>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,7 +85,7 @@ const St = {
     }};
   `,
 
-  MyTattooShippingStatusTagText: styled.span<{ $shippingStatus: string }>`
+  MyTattooShippingStatusTagText: styled.span<{ $shippingStatus?: string }>`
     margin-left: 0.8rem;
     margin-right: 0.8rem;
 
