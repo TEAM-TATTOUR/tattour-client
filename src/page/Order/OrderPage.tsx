@@ -146,7 +146,6 @@ const St = {
     z-index: 1;
 
     & > div {
-      width: initial !important;
       //height: 46.8rem !important;
     }
 
