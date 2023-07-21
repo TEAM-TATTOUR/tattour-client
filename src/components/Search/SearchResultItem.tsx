@@ -1,20 +1,28 @@
+import { useNavigate } from 'react-router';
 import { styled } from 'styled-components';
 
 const SearchResultItem = ({
+  id,
   title,
   img,
   price,
   discountRate,
   originalPrice,
 }: {
+  id: string;
   title: string;
   img: string;
   price: number;
   discountRate: number;
   originalPrice: number;
 }) => {
+  const navigate = useNavigate();
+  const handleClickSearchResultItem = () => {
+    navigate(`/detail/${id}`);
+  };
+
   return (
-    <St.SearchResultItem>
+    <St.SearchResultItem onClick={handleClickSearchResultItem}>
       <St.SearchResultItemImg src={img} />
       <St.SearchResultItemDescription>
         <St.SearchResultItemTitle>{title}</St.SearchResultItemTitle>
