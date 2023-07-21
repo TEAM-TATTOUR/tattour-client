@@ -39,7 +39,6 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
 
   const ref = useRef<HTMLInputElement | null>(null);
   const [toast, setToast] = useState<boolean>(false);
-  // const [freeDraw, setFreeDraw] = useState<boolean>(drawingImageURL ? true : false);
 
   const handleClickRefBtn = () => {
     if (previewURL.length < MAX_FILES) {
@@ -58,16 +57,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   useEffect(() => {
     if (!customImages) return;
     if (!drawingImageURL) return;
-    // const reader = new FileReader();
-    // reader.readAsDataURL(drawingImageURL);
-    // reader.onloadend = () => {
-    //   const result = reader.result;
-    //   if (typeof result === 'string') {
-    //     setPreviewURL([result]);
-    //   }
-    //   // console.log('메인이미지', drawingImageURL);
 
-    // };
     const blob = new Blob([new Uint8Array(drawingImageURL)], { type: 'image/png' });
     const file = new File([blob], 'image.png', {
       type: blob.type,
@@ -75,34 +65,10 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     setHandDrawingImage(file);
   }, [drawingImageURL]);
 
-  // useEffect(() => {
-  //   if (!customImages) return;
-  //   const blob = new Blob([new Uint8Array(drawingImageURL)], { type: 'image/jpeg', 'image/png' });
-
-  //   const fileList = Array.from(handDrawingImage);
-  //   for (const file of fileList) {
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onloadend = () => {
-  //       setPreviewURL((prevURLs) => [...prevURLs, reader.result as string]);
-  //       console.log('이미지들들들', previewURL);
-  //     };
-  //   }
-
-  //   if (handDrawingImage) {
-  //     setDrawingImageURL(previewURL);
-  //     console.log('손그림 있을 때', attachedImages);
-  //   }
-  // }, [attachedImages]);
-
   useEffect(() => {
     if (drawingImageURL) {
       setFreeDraw(true);
       const file = new File([drawingImageURL], 'image.png', { type: 'image/png' });
-      // const newCustomImg = customImages ? new FileList(customImages, file) : new FileList(file);
-      // newCustomImg.push(file);
-      // set paint
-      // setCustomImages(newCustomImg);
     } else setFreeDraw(false);
   }, [drawingImageURL, setFreeDraw]);
 
@@ -113,8 +79,6 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     if (files[3]) {
       setToast(true);
     }
-
-    // console.log('change image');
 
     const imageFiles = Array.from(files).slice(1);
 
