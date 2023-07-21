@@ -21,9 +21,9 @@ const CustomRequestPage = () => {
 
   const haveDesign = location.state ? location.state.haveDesign : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
-  const customMainImage = location.state ? location.state.customMainImage : null;
+  const customImages = location.state ? location.state.customImages : null;
 
-  //state에 있는 name, demand 값 가져오기 (처음 넘어올 때는 customMainImage 값이 없으므로 에러 방지 필요)
+  //state에 있는 name, demand 값 가져오기 (처음 넘어올 때는 값이 없으므로 에러 방지 필요)
   const writtenName =
     location.state && location.state.customInfo.name ? location.state.customInfo.name : null;
   const writtenDemand =
@@ -39,6 +39,8 @@ const CustomRequestPage = () => {
     name: name,
     demand: demand,
   };
+
+  console.log(location.state, '###');
 
   const renderCustomRequestPageHeader = () => {
     return (
@@ -73,7 +75,7 @@ const CustomRequestPage = () => {
           navigateURL='/price'
           haveDesign={haveDesign}
           customInfo={customInfo}
-          customMainImage={customMainImage}
+          customImages={customImages}
         />
       }
     >

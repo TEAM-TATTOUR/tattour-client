@@ -22,7 +22,7 @@ const PricePage = () => {
 
   const haveDesign = location.state ? location.state.haveDesign : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
-  const customMainImage = location.state ? location.state.customMainImage : null;
+  const handDrawingImage = location.state ? location.state.handDrawingImage : null;
   const customImages = location.state ? location.state.customImages : null;
 
   const CUSTOM_VIEW_COUNT = haveDesign ? 7 : 4;
@@ -36,12 +36,12 @@ const PricePage = () => {
     ...prevCustomInfo,
     haveDesign: haveDesign,
     viewCount: CUSTOM_VIEW_COUNT,
-    customMainImage: customMainImage,
+    handDrawingImage: handDrawingImage,
     customImages: customImages,
     count: count,
   };
 
-  console.log(customInfo, customMainImage); //오류 발생 방지 용 console 나중에 footer로 넘겨주고 지워주세요!
+  // console.log(customInfo, customMainImage); //오류 발생 방지 용 console 나중에 footer로 넘겨주고 지워주세요!
 
   const renderPricePageHeader = () => {
     return (
@@ -76,7 +76,7 @@ const PricePage = () => {
         <PriceFooter
           haveDesign={haveDesign}
           customInfo={customInfo}
-          customMainImage={customMainImage}
+          handDrawingImage={handDrawingImage}
           customImages={customImages}
         />
       }
