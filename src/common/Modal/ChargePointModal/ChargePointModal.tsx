@@ -1,19 +1,29 @@
 import { useEffect, useState } from 'react';
 import ModalPortal from '../ModalPortal';
 import ChargePointModalForm from './ChargePointModalForm';
+import useGetUserProfile from '../../../libs/hooks/useGetUserProfile';
 
 interface ChargePointModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
-  currPoint: number;
+  haveDesign: boolean;
 }
 
-const ChargePointModal = ({ setModalOn, currPoint }: ChargePointModalProps) => {
+const ChargePointModal = ({ setModalOn, haveDesign }: ChargePointModalProps) => {
+  const { response, error, loading } = useGetUserProfile();
+
+  const [currPoint, setCurrPoint] = useState(0);
+
+  // const currPoint = response?.point;
   const REGISTER_FEE = 990;
 
   const [calculatedPoint, setCalculatedPoint] = useState(0);
   const [bottomContentsTitle, setBottomContentsTitle] = useState('');
   const [navigationBtn, setNavigationBtn] = useState('');
   const [isEnoughPoint, setIsEnoughPoint] = useState(false);
+
+  useEffect(() => {
+    if (response) setCurrPoint(response.point);
+  }, [response]);
 
   useEffect(() => {
     if (currPoint > REGISTER_FEE) {
@@ -29,23 +39,27 @@ const ChargePointModal = ({ setModalOn, currPoint }: ChargePointModalProps) => {
       setIsEnoughPoint(false);
       return;
     }
-  }, []);
+  }, [currPoint, setCurrPoint]);
 
   return (
-    <ModalPortal>
-      <ChargePointModalForm
-        onClose={() => setModalOn(false)}
-        title={`신청서를 완성하기 위해\n결제가 필요해요`}
-        topContentsTitle={'보유 포인트'}
-        topContents={currPoint.toLocaleString()}
-        unit={'P'}
-        bottomContentsTitle={bottomContentsTitle}
-        bottomContents={calculatedPoint.toLocaleString()}
-        navigationBtn={navigationBtn}
-        // 포인트가 충분한지 여부
-        isEnoughPoint={isEnoughPoint}
-      />
-    </ModalPortal>
+    !error &&
+    !loading && (
+      <ModalPortal>
+        <ChargePointModalForm
+          onClose={() => setModalOn(false)}
+          title={`신청서를 완성하기 위해\n결제가 필요해요`}
+          topContentsTitle={'보유 포인트'}
+          topContents={currPoint.toLocaleString()}
+          unit={'P'}
+          bottomContentsTitle={bottomContentsTitle}
+          bottomContents={calculatedPoint.toLocaleString()}
+          navigationBtn={navigationBtn}
+          // 포인트가 충분한지 여부
+          isEnoughPoint={isEnoughPoint}
+          haveDesign={haveDesign}
+        />
+      </ModalPortal>
+    )
   );
 };
 

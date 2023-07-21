@@ -8,19 +8,34 @@ import Header from '../components/Header';
 import HotCustom from '../common/HotCustom';
 import MainHeaderButton from '../common/MainHeaderButton';
 import SideMenu from '../common/SideMenu';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ListPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state;
+  const type = state && (state as { type: string }).type;
+  const name = state && (state as { name: string }).name;
+
   const [isSortOpen, setSortOpen] = useState(false);
   const [isGenreOpen, setGenreOpen] = useState(false);
   const [isStyleOpen, setStyleOpen] = useState(false);
-  const [buttonName, setButtonName] = useState(['정렬', '장르', '스타일']);
+  const [buttonName, setButtonName] = useState([
+    '정렬',
+    `${state && type === '장르' ? name : '장르'}`,
+    `${state && type === '스타일' ? name : '스타일'}`,
+  ]);
   const [, setSelected] = useState(false);
   const [isSideMenuOpen, setSideMenuOpen] = useState(false);
 
   const renderListPageHeader = () => {
+
+    const handleClickLogo = () => {
+      navigate('/');
+    };
     return (
       <Header
-        leftSection={<ImgLogoDark />}
+        leftSection={<ImgLogoDark onClick={handleClickLogo} />}
         rightSection={<MainHeaderButton setIsSideMenuOpen={setSideMenuOpen} light={false} />}
       />
     );

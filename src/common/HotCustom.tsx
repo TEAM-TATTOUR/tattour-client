@@ -3,36 +3,44 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import { useNavigate } from 'react-router-dom';
 import { IcArrowRightDark, LabelCustomSmall } from '../assets/icon';
 import test_tattoo from '../assets/test_tattoo.png';
-
-interface HotCustomItemProps {
-  id: number;
-  img: string;
-  title: string;
-  originalPrice: number;
-  discountRate: number;
-}
+import useGetHotCustom, { HotCustomItemProps } from '../libs/hooks/useGetHotCustom';
 
 const dummyItemList: HotCustomItemProps[] = [
   {
     id: 1,
-    img: '',
-    title: '고양이 리본 타투',
-    originalPrice: 4000,
+    imageUrl: '',
+    name: '고양이 리본 타투',
+    price: 5000,
+    discountPrice: 4000,
     discountRate: 25,
+    isCustom: true,
   },
   {
     id: 2,
-    img: '',
-    title: '고양이 리본 타투',
-    originalPrice: 4000,
+    imageUrl: '',
+    name: '고양이 리본 타투',
+    price: 5000,
+    discountPrice: 4000,
     discountRate: 25,
+    isCustom: true,
   },
   {
     id: 3,
-    img: '',
-    title: '고양이 리본 타투',
-    originalPrice: 4000,
+    imageUrl: '',
+    name: '고양이 리본 타투',
+    price: 5000,
+    discountPrice: 4000,
     discountRate: 25,
+    isCustom: true,
+  },
+  {
+    id: 4,
+    imageUrl: '',
+    name: '고양이 리본 타투',
+    price: 5000,
+    discountPrice: 4000,
+    discountRate: 25,
+    isCustom: true,
   },
 ];
 
@@ -42,6 +50,12 @@ const HotCustom = () => {
   const handleClickHotCustom = () => {
     navigate('/list');
   };
+
+  const handleClickSticker = (id: number) => () => {
+    navigate(`/detail/${id}`);
+  };
+
+  const { response, error, loading } = useGetHotCustom();
 
   return (
     <St.HotCustomSection>
@@ -53,33 +67,37 @@ const HotCustom = () => {
       </St.Header>
       <St.HotCustomWrapper>
         <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
-          {dummyItemList.map(({ id, title, discountRate, originalPrice }) => {
-            return (
-              <St.HotCustomItem key={id}>
-                <St.labelWrapper>
-                  <St.HotCustomLabel>
-                    <LabelCustomSmall />
-                  </St.HotCustomLabel>
-                  <St.ImgWrapper>
-                    <img src={test_tattoo} />
-                  </St.ImgWrapper>
-                </St.labelWrapper>
-                <St.HotCustomItemTitle>
-                  <p>{title}</p>
-                  <span>NEW!</span>
-                </St.HotCustomItemTitle>
-                <St.HotCustomItemPriceWrapper>
-                  <St.HotCustomItemDiscountRate>{discountRate}%</St.HotCustomItemDiscountRate>
-                  <St.HotCustomItemPrice>
-                    {(originalPrice * discountRate * 0.01).toLocaleString()}원
-                  </St.HotCustomItemPrice>
-                </St.HotCustomItemPriceWrapper>
-                <St.HotCustomItemOriginPrice>
-                  {originalPrice.toLocaleString()}원
-                </St.HotCustomItemOriginPrice>
-              </St.HotCustomItem>
-            );
-          })}
+          {!loading &&
+            !error &&
+            response.map(({ id, name, imageUrl, discountRate, discountPrice, price }) => {
+              return (
+                <St.HotCustomItem key={id} onClick={handleClickSticker(id)}>
+                  <St.labelWrapper>
+                    <St.HotCustomLabel>
+                      <LabelCustomSmall />
+                    </St.HotCustomLabel>
+                    <St.ImgWrapper>
+                      <St.HotCustomImage src={imageUrl} />
+                    </St.ImgWrapper>
+                  </St.labelWrapper>
+                  <St.HotCustomItemTitle>
+                    <p>{name}</p>
+                    <span>NEW!</span>
+                  </St.HotCustomItemTitle>
+                  <St.HotCustomItemPriceWrapper>
+                    <St.HotCustomItemDiscountRate>
+                      {discountRate ? discountRate : 5}%
+                    </St.HotCustomItemDiscountRate>
+                    <St.HotCustomItemPrice>
+                      {discountPrice ? discountPrice.toLocaleString() : '4,000'}원
+                    </St.HotCustomItemPrice>
+                  </St.HotCustomItemPriceWrapper>
+                  <St.HotCustomItemOriginPrice>
+                    {price.toLocaleString()}원
+                  </St.HotCustomItemOriginPrice>
+                </St.HotCustomItem>
+              );
+            })}
         </ScrollContainer>
       </St.HotCustomWrapper>
     </St.HotCustomSection>
@@ -114,6 +132,11 @@ const St = {
   HotCustomTitle: styled.h2`
     ${({ theme }) => theme.fonts.title_eng_bold_20};
     color: ${({ theme }) => theme.colors.gray8};
+  `,
+
+  HotCustomImage: styled.img`
+    width: 15.3rem;
+    height: 16.3rem;
   `,
 
   HotCustomWrapper: styled.div`

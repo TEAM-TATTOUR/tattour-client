@@ -11,6 +11,7 @@ import MainEventBanner from '../components/MainPage/MainEventBanner';
 import MainStyle from '../components/MainPage/MainStyle';
 import SideMenu from '../common/SideMenu';
 import HotCustom from '../common/HotCustom';
+import { useNavigate } from 'react-router-dom';
 
 const MainPage = () => {
   const [isHeaderTransparent, setIsHeaderTransparent] = useState(true);

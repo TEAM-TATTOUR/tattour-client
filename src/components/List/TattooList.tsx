@@ -1,7 +1,11 @@
 import styled from 'styled-components';
-import { IcArrowBottomSmallGray, IcArrowBottomSmallLight } from '../../assets/icon';
+import {
+  IcArrowBottomSmallGray,
+  IcArrowBottomSmallLight,
+  LabelCustomSmall,
+} from '../../assets/icon';
 import { useState, useEffect, useRef } from 'react';
-import test_tattoo from '../../assets/test_tattoo.png';
+import useGetAllList from '../../libs/hooks/list/useGetAllList';
 import { useNavigate } from 'react-router-dom';
 
 interface TattooListProps {
@@ -13,51 +17,6 @@ interface TattooListProps {
 
 const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: TattooListProps) => {
   const [selectedFilter, setSelectedFilter] = useState([false, false, false]); // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
-
-  const TATTOO_LIST = [
-    {
-      id: 0,
-      name: '고양이 리본 타투',
-      price: 4000,
-      discount: 25,
-      finalPrice: 2500,
-    },
-    {
-      id: 1,
-      name: '고양이 리본 타투2',
-      price: 4000,
-      discount: 25,
-      finalPrice: 2500,
-    },
-    {
-      id: 2,
-      name: '고양이 리본 타투3',
-      price: 4000,
-      discount: 25,
-      finalPrice: 2500,
-    },
-    {
-      id: 3,
-      name: '고양이 리본 타투4',
-      price: 4000,
-      discount: 25,
-      finalPrice: 2500,
-    },
-    {
-      id: 4,
-      name: '고양이 리본 타투5',
-      price: 4000,
-      discount: 25,
-      finalPrice: 2500,
-    },
-    {
-      id: 5,
-      name: '고양이 리본 타투6',
-      price: 4000,
-      discount: 25,
-      finalPrice: 2500,
-    },
-  ];
 
   const navigate = useNavigate();
   const filterRef = useRef(null);
@@ -74,6 +33,8 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
     });
     setSelectedFilter(newSelectedFilter);
   }, [buttonName]);
+
+  const { response, error, loading } = useGetAllList(buttonName);
 
   const handleClickCard = (id: number) => {
     navigate(`/detail/${id}`);
@@ -106,21 +67,26 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
           </St.FilterBtn>
         ))}
       </St.BtnContainer>
-      <St.CountText>전체 {TATTOO_LIST.length}개</St.CountText>
+      <St.CountText>전체 {response.length}개</St.CountText>
       <St.CardContainer>
-        {TATTOO_LIST.map((el) => (
-          <St.Card key={el.name} onClick={() => handleClickCard(el.id)}>
-            <St.CardImg>
-              <img src={test_tattoo} />
-            </St.CardImg>
-            <h2>{el.name}</h2>
-            <div>
-              <St.CardDiscount>{el.discount}%</St.CardDiscount>
-              <St.CardPrice>{el.finalPrice.toLocaleString()}원</St.CardPrice>
-            </div>
-            <p>{el.price.toLocaleString()}원</p>
-          </St.Card>
-        ))}
+        {!loading &&
+          !error &&
+          response.map(({ id, name, imageUrl, price, discountRate, discountPrice, isCustom }) => {
+            return (
+              <St.Card key={id} onClick={() => handleClickCard(id)}>
+                <St.CardImg>
+                  {isCustom && <LabelCustomSmall />}
+                  <img src={imageUrl} />
+                </St.CardImg>
+                <h2>{name}</h2>
+                <div>
+                  <St.CardDiscount>{discountRate}%</St.CardDiscount>
+                  <St.CardPrice>{discountPrice && discountPrice.toLocaleString()}원</St.CardPrice>
+                </div>
+                <p>{price.toLocaleString()}원</p>
+              </St.Card>
+            );
+          })}
       </St.CardContainer>
     </St.Wrapper>
   );
@@ -192,8 +158,21 @@ const St = {
     justify-content: center;
     align-items: center;
 
+    position: relative;
+
     height: 20.1rem;
     background-color: ${({ theme }) => theme.colors.gray0};
+
+    & > img {
+      width: 18.3rem;
+      height: 18.3rem;
+    }
+
+    & > svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   `,
   CardDiscount: styled.span`
     color: ${({ theme }) => theme.colors.pink5};

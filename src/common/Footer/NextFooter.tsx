@@ -1,19 +1,37 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { customInfo } from '../../types/customInfo';
+// import { customInfoType } from '../../types/customInfoType';
 
 interface NextFooterProps {
   isActiveNext?: boolean;
   navigateURL: string;
-  stateList: customInfo;
+  haveDesign?: boolean;
+  customInfo?: customInfo;
+  customMainImage?: File;
+  customImages?: FileList;
 }
 
-const NextFooter = ({ isActiveNext = true, navigateURL, stateList }: NextFooterProps) => {
+const NextFooter = ({
+  isActiveNext = true,
+  navigateURL,
+  haveDesign,
+  customInfo,
+  customMainImage,
+  customImages,
+}: NextFooterProps) => {
   const navigate = useNavigate();
 
   const handleClickFooter = () => {
     {
-      isActiveNext && navigate(navigateURL, { state: stateList });
+      isActiveNext &&
+        navigate(navigateURL, {
+          state: {
+            haveDesign: haveDesign,
+            customInfo: customInfo,
+            customMainImage: customMainImage,
+            customImages: customImages,
+          },
+        });
     }
   };
 

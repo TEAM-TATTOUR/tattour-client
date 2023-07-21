@@ -10,7 +10,7 @@ import RegisterPhoneNumPage from './page/Register/RegisterPhoneNumPage';
 import WelcomePage from './page/Welcome/WelcomePage';
 import ChargePage from './page/PointCharge/ChargePage';
 import TransferPage from './page/PointCharge/TransferPage';
-import SelectPage from './page/Custom/SelectPage';
+import SelectPage from './page/Custom/Common/SelectPage';
 import CompletePage from './page/Order/CompletePage';
 import OrderPage from './page/Order/OrderPage';
 import SelectKeywordPage from './page/Custom/HaveDesign/SelectKeywordPage';
@@ -39,6 +39,7 @@ const Router = () => {
         <Route path='/order' element={<OrderPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/detail/:id' element={<DetailPage />} />
+        <Route path='/login/oauth2/callback' element={<LoginCallback />} />
         <Route path='/register' element={<RegisterNamePage />} />
         <Route path='/register-number' element={<RegisterPhoneNumPage />} />
         <Route path='/welcome-signup' element={<WelcomePage />} />

@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import Sheet from 'react-modal-sheet';
-import { IcCancelDark } from '../../assets/icon';
-import { REFUND_CUSTOM_POLICY } from '../../assets/data/REFUND_CUSTOM_POLICY';
+import { IcCancelDark } from '../../../assets/icon';
+import { REFUND_CUSTOM_POLICY } from '../../../assets/data/REFUND_CUSTOM_POLICY';
 interface PrePointPolicyProps {
   isSheetOpen: boolean;
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,6 +30,8 @@ export default SelectCustomPolicyBottom;
 
 const St = {
   SheetTitle: styled.h2`
+    margin-bottom: 2.8rem;
+
     ${({ theme }) => theme.fonts.title_semibold_20};
     color: ${({ theme }) => theme.colors.gray7};
   `,
@@ -43,12 +45,18 @@ const St = {
 };
 
 const CustomSheet = styled(Sheet)`
+  display: flex;
+  justify-content: center;
+
   .react-modal-sheet-backdrop {
     background-color: rgba(0, 0, 0, 0.6) !important;
   }
   .react-modal-sheet-container {
-    padding: 2.5rem 2.4rem 4.2rem 2.4rem;
-    border-radius: 1rem !important;
+    left: initial !important;
+    max-width: 43rem;
+    height: calc(90% - env(safe-area-inset-top) - 34px) !important;
+    padding: 2.5rem 2.4rem 0rem 2.4rem;
+    border-radius: 1rem 1rem 0rem 0rem !important;
   }
 
   // .react-modal-sheet-header
@@ -56,6 +64,10 @@ const CustomSheet = styled(Sheet)`
     display: flex;
     justify-content: space-between !important;
     margin-bottom: 2.8rem;
+  }
+
+  .react-modal-sheet-scroller {
+    padding-bottom: 6rem;
   }
 
   .react-modal-sheet-drag-indicator {
