@@ -1,32 +1,36 @@
-import { useState, useEffect } from 'react';
-import api from '../api';
+import { useEffect, useState } from 'react';
+import api from '../../api';
 import { AxiosError } from 'axios';
 
-export interface CustomSaveItemProps {
+export interface RelatedItemProps {
   id: number;
   name: string;
   imageUrl: string;
+  price: number;
+  discountRate: number;
+  discountPrice: number;
+  isCustom: boolean;
 }
 
-interface CustomSaveResponse {
+interface RelatedResponse {
   data: {
-    customs: CustomSaveItemProps[];
+    stickers: RelatedItemProps[];
   };
   code: number;
   message: string;
 }
 
-const useGetCustomSaveList = () => {
-  const [response, setResponse] = useState<CustomSaveItemProps[]>([]);
+const useGetRelated = (id: number) => {
+  const [response, setResponse] = useState<RelatedItemProps[]>([]);
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     await api
-      .get('/user/custom/incomplete')
+      .get(`/stickers/${id}/related`)
       .then((res) => {
-        const data: CustomSaveResponse = res.data;
-        setResponse(data.data.customs);
+        const data: RelatedResponse = res.data;
+        setResponse(data.data.stickers);
       })
       .catch((err) => {
         setError(err);
@@ -43,4 +47,4 @@ const useGetCustomSaveList = () => {
   return { response, error, loading };
 };
 
-export default useGetCustomSaveList;
+export default useGetRelated;

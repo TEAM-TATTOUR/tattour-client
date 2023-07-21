@@ -74,7 +74,7 @@ const RegisterPhoneNumForm = () => {
   };
 
   const handleClickSendMessageBtn = () => {
-    const ACCESS_TOKEN_KEY = 'accessToken';
+    const ACCESS_TOKEN_KEY = 'accesstoken';
     const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
 
     axios
@@ -117,7 +117,7 @@ const RegisterPhoneNumForm = () => {
 
     if (e.target.value.length === 6) {
       api
-        .get(`/user/phone-number/verification`, {
+        .get(`/user/phonenumber/verification`, {
           params: {
             verificationCode: `${e.target.value}`,
           },

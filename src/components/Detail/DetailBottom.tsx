@@ -3,37 +3,45 @@ import Sheet from 'react-modal-sheet';
 import { IcCancelDark, IcMinus, IcMinusOneunder, IcPlus } from '../../assets/icon';
 import DetailFooter from './DetailFooter';
 import { useEffect, useState } from 'react';
+import useGetPoint from '../../libs/hooks/detail/useGetPoint';
 
 interface DetailBottomProps {
   id: number;
   isSheetOpen: boolean;
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  like: boolean;
-  setLike: React.Dispatch<React.SetStateAction<boolean>>;
+  like: boolean | null;
+  setLike: React.Dispatch<React.SetStateAction<boolean | null>>;
+  discountPrice: number;
+  shippingCost: number;
 }
 
-const DetailBottom = ({ id, isSheetOpen, setSheetOpen, like, setLike }: DetailBottomProps) => {
+const DetailBottom = ({
+  id,
+  isSheetOpen,
+  setSheetOpen,
+  like,
+  setLike,
+  discountPrice,
+  shippingCost,
+}: DetailBottomProps) => {
   // '구매하기' 누르면서 바텀 시트 올라오자마자 서버한테 받아올 데이터
   // 사용자가 보유한 포인트, 상품1개 수량, 배송비
 
-  const PRICE = 2500;
-  const DELIVERY_PRICE = 3000;
-  const MY_POINT = 10000;
-
   const [count, setCount] = useState(1);
   const [isLack, setLack] = useState(false);
+
+  // 사용자 포인트 가져오는 서버 통신
+  const { response, error, loading } = useGetPoint();
 
   useEffect(() => {
     setCount(1);
   }, [isSheetOpen]);
 
   useEffect(() => {
-    if (MY_POINT < count * PRICE + DELIVERY_PRICE) {
-      setLack(true);
-    } else {
-      setLack(false);
-    }
-  }, [count]);
+    !error && !loading && response && response.point < count * discountPrice + shippingCost
+      ? setLack(true)
+      : setLack(false);
+  }, [count, loading]);
 
   return (
     <CustomSheet
@@ -42,39 +50,42 @@ const DetailBottom = ({ id, isSheetOpen, setSheetOpen, like, setLike }: DetailBo
       detent='content-height'
       disableDrag={true}
     >
+      {}
       <Sheet.Container>
         <Sheet.Header disableDrag={true}>
           <St.Title>수량</St.Title>
           <IcCancelDark onClick={() => setSheetOpen(false)} />
         </Sheet.Header>
         <Sheet.Content>
-          <St.FullBox>
-            <St.Wrapper>
-              <St.Stepper>
-                {count === 1 ? (
-                  <IcMinusOneunder />
-                ) : (
-                  <IcMinus onClick={() => setCount((prev) => prev - 1)} />
-                )}
-                <span>{count}</span>
-                <IcPlus onClick={() => setCount((prev) => prev + 1)} />
-              </St.Stepper>
-              <St.PriceContainer>
-                <St.Price>{(count * PRICE).toLocaleString()}</St.Price>
-                <St.PriceUnit>원</St.PriceUnit>
-              </St.PriceContainer>
-            </St.Wrapper>
-            <St.DeliveryPrice>+ 배송비 {DELIVERY_PRICE.toLocaleString()}원</St.DeliveryPrice>
-            <St.Line />
-            <St.FinalPriceContainer>
-              <St.PriceText>결제 금액</St.PriceText>
-              <St.FinalPrice $isLack={isLack}>
-                {(count * PRICE + DELIVERY_PRICE).toLocaleString()}
-              </St.FinalPrice>
-              <St.PriceText>원</St.PriceText>
-            </St.FinalPriceContainer>
-            <St.LackText $isLack={isLack}>보유 포인트가 부족합니다</St.LackText>
-          </St.FullBox>
+          {!error && !loading && (
+            <St.FullBox>
+              <St.Wrapper>
+                <St.Stepper>
+                  {count === 1 ? (
+                    <IcMinusOneunder />
+                  ) : (
+                    <IcMinus onClick={() => setCount((prev) => prev - 1)} />
+                  )}
+                  <span>{count}</span>
+                  <IcPlus onClick={() => setCount((prev) => prev + 1)} />
+                </St.Stepper>
+                <St.PriceContainer>
+                  <St.Price>{(count * discountPrice).toLocaleString()}</St.Price>
+                  <St.PriceUnit>원</St.PriceUnit>
+                </St.PriceContainer>
+              </St.Wrapper>
+              <St.DeliveryPrice>+ 배송비 {shippingCost.toLocaleString()}원</St.DeliveryPrice>
+              <St.Line />
+              <St.FinalPriceContainer>
+                <St.PriceText>결제 금액</St.PriceText>
+                <St.FinalPrice $isLack={isLack}>
+                  {(count * discountPrice + shippingCost).toLocaleString()}
+                </St.FinalPrice>
+                <St.PriceText>원</St.PriceText>
+              </St.FinalPriceContainer>
+              <St.LackText $isLack={isLack}>보유 포인트가 부족합니다</St.LackText>
+            </St.FullBox>
+          )}
           <DetailFooter
             id={id}
             setSheetOpen={setSheetOpen}
@@ -177,6 +188,8 @@ const St = {
 
 const CustomSheet = styled(Sheet)`
   height: 100%;
+  display: flex;
+  justify-content: center;
 
   .react-modal-sheet-backdrop {
     background-color: rgba(0, 0, 0, 0.6) !important;
@@ -184,6 +197,8 @@ const CustomSheet = styled(Sheet)`
   .react-modal-sheet-container {
     padding-top: 2.5rem;
     border-radius: 1rem !important;
+    left: initial !important;
+    max-width: 43rem;
   }
   // .react-modal-sheet-header
   .react-modal-sheet-container > div:nth-child(1) {

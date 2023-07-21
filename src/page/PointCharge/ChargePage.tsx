@@ -17,6 +17,7 @@ const ChargePage = () => {
   const { redirectURL } = location.state;
 
   const [isActiveNext, setIsActiveNext] = useState(false);
+  const [chargeAmount, setChargeAmount] = useState(0);
 
   const renderChargePageHeader = () => {
     return (
@@ -32,9 +33,15 @@ const ChargePage = () => {
   return (
     <PageLayout
       renderHeader={renderChargePageHeader}
-      footer={<PointChargeFooter isActiveNext={isActiveNext} redirectURL={redirectURL} />}
+      footer={
+        <PointChargeFooter
+          isActiveNext={isActiveNext}
+          redirectURL={redirectURL}
+          chargeAmount={chargeAmount}
+        />
+      }
     >
-      <Charge setIsActiveNext={setIsActiveNext} />
+      <Charge setIsActiveNext={setIsActiveNext} setChargeAmount={setChargeAmount} />
     </PageLayout>
   );
 };

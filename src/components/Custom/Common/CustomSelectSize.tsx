@@ -10,10 +10,30 @@ interface CustomSelectSizeProps {
 
 const CustomSelectSize = ({ setIsActiveNext, setSize, size }: CustomSelectSizeProps) => {
   const BTN_DATA = [
-    { id: 'quarter', title: '5cm 이하', detail: '동전 크기' },
-    { id: 'regular', title: 'A4 1/8', detail: '신용카드, 담뱃갑 크기' },
-    { id: 'half', title: 'A4 1/4', detail: '엽서, 손바닥 크기' },
-    { id: 'double', title: '5cm 이하', detail: '아래팔 한 쪽 면 크기' },
+    {
+      id: 'quarter',
+      title: '5cm 이하',
+      detail: '동전 크기',
+      imgURL: '/image/img_size1.png',
+    },
+    {
+      id: 'half',
+      title: 'A4 1/8',
+      detail: '신용카드, 담뱃갑 크기',
+      imgURL: '/image/img_size2.png',
+    },
+    {
+      id: 'regular',
+      title: 'A4 1/4',
+      detail: '엽서, 손바닥 크기',
+      imgURL: '/image/img_size3.png',
+    },
+    {
+      id: 'double',
+      title: 'A4 1/2',
+      detail: '아래팔 한 쪽 면 크기',
+      imgURL: '/image/img_size4.png',
+    },
   ];
 
   const [selectedBtn, setSelectedBtn] = useState(size ? size : '');
@@ -62,13 +82,15 @@ const CustomSelectSize = ({ setIsActiveNext, setSize, size }: CustomSelectSizePr
         </St.InfoSubTextBox>
       </St.SizeInfoContainer>
       <St.SizeBntContainer>
-        {BTN_DATA.map(({ id, title, detail }, idx) => {
+        {BTN_DATA.map(({ id, title, detail, imgURL }, idx) => {
           return (
             <CustomSelectSizeBtn
               key={id}
               id={id}
+              idx={idx}
               title={title}
               detail={detail}
+              imgURL={imgURL}
               ref={(element: HTMLButtonElement) => (sizeBtnRef.current[idx] = element)}
               onClick={handleClickSelBtn}
               isSelected={selectedBtn === id}
