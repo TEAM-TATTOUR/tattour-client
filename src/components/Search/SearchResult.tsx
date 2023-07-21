@@ -15,8 +15,8 @@ const SearchResult = () => {
           <SearchResultItem
             key={id}
             id={id}
-            img={img}
-            title={title}
+            img={imageUrl}
+            title={name}
             discountRate={discountRate}
             price={discountPrice}
             originalPrice={price}
