@@ -1,8 +1,5 @@
 import { styled } from 'styled-components';
-import { ImgStorage } from '../../assets/icon';
-import useGetCustomDetail from '../../libs/hooks/useGetCustomDetail';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import api from '../../libs/api';
 
 export interface CustomDetailItemProps {
