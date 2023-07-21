@@ -175,6 +175,10 @@ const St = {
     padding-right: 2.4rem;
 
     text-align: center;
+
+    & > a {
+      height: 2rem;
+    }
   `,
 
   SideMenuCSButtonWrapper: styled.div`
