@@ -11,7 +11,7 @@ import api from '../../libs/api';
 interface resProps {
   data: {
     data: {
-      verified: boolean;
+      isVerified: boolean;
     };
   };
 }
@@ -74,7 +74,7 @@ const RegisterPhoneNumForm = () => {
   };
 
   const handleClickSendMessageBtn = () => {
-    const ACCESS_TOKEN_KEY = 'accessToken';
+    const ACCESS_TOKEN_KEY = 'accesstoken';
     const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
 
     axios
@@ -117,15 +117,16 @@ const RegisterPhoneNumForm = () => {
 
     if (e.target.value.length === 6) {
       api
-        .get(`/user/phone-number/verification`, {
+        .get(`/user/phonenumber/verification`, {
           params: {
             verificationCode: `${e.target.value}`,
           },
         })
         .then((res: resProps) => {
-          const isVerified = res.data.data.verified;
+          const isVerified = res.data.data.isVerified;          
 
           if (isVerified) {
+            setIsError(false);
             patchProfile({ state, phoneNum });
           } else {
             setIsError(true);

@@ -5,7 +5,11 @@ const WelcomeFooter = () => {
   const navigate = useNavigate();
 
   const handleClickWelcomeFooter = () => {
-    navigate('/');
+    navigate('/', {
+      state: {
+        isWellcomeModalOpen: true,
+      },
+    });
   };
 
   return (
@@ -25,7 +29,7 @@ const St = {
 
     width: 100%;
     height: 7rem;
-
+    z-index: 11;
     background-color: ${({ theme }) => theme.colors.gray9};
 
     gap: 1rem;

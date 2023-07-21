@@ -2,13 +2,17 @@ import { styled } from 'styled-components';
 import CheckModal from '../../common/Modal/CheckModal/CheckModal';
 import { useState } from 'react';
 
+interface PointTransferFooterProps {
+  isActiveNext: boolean;
+  redirectURL: string;
+  chargeAmount: number;
+}
+
 const PointTransferFooter = ({
   isActiveNext,
   redirectURL,
-}: {
-  isActiveNext: boolean;
-  redirectURL: string;
-}) => {
+  chargeAmount,
+}: PointTransferFooterProps) => {
   const [modalOn, setModalOn] = useState(false);
 
   const handleClickFooter = () => {
@@ -21,7 +25,9 @@ const PointTransferFooter = ({
       <St.TransferFooter $isActiveNext={isActiveNext} onClick={handleClickFooter}>
         <St.FooterText>송금했어요</St.FooterText>
       </St.TransferFooter>
-      {modalOn && <CheckModal setModalOn={setModalOn} redirectURL={redirectURL} />}
+      {modalOn && (
+        <CheckModal setModalOn={setModalOn} redirectURL={redirectURL} chargeAmount={chargeAmount} />
+      )}
     </>
   );
 };

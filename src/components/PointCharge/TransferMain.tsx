@@ -1,9 +1,7 @@
 import { styled } from 'styled-components';
 import AccountCopy from './AccountCopy';
 
-const TransferMain = () => {
-  const chargedCost = 3000;
-
+const TransferMain = ({ chargeAmount }: { chargeAmount: number }) => {
   return (
     <St.TransferMainWrapper>
       <St.TransferInfoContainer>
@@ -16,7 +14,7 @@ const TransferMain = () => {
         <St.InfoPriceMain>
           <St.InfoPriceLeft>충전 금액</St.InfoPriceLeft>
           <St.InfoPriceRight>
-            <St.RightPrice>{chargedCost.toLocaleString()}</St.RightPrice>
+            <St.RightPrice>{chargeAmount.toLocaleString()}</St.RightPrice>
             <St.RightUnit>원</St.RightUnit>
           </St.InfoPriceRight>
         </St.InfoPriceMain>

@@ -27,7 +27,7 @@ const TempSaveModal = ({
         <St.BtnWrapper>
           <St.LoadBtn
             onClick={() => {
-              navigate('/my-tattoo');
+              navigate('/save');
             }}
           >
             불러오기

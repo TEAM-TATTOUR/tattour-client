@@ -16,7 +16,7 @@ const TransferPage = () => {
   const [isActiveNext, setIsActiveNext] = useState(false);
 
   const location = useLocation();
-  const { redirectURL } = location.state;
+  const { redirectURL, chargeAmount } = location.state;
 
   const renderTransferPageHeader = () => {
     return (
@@ -38,9 +38,15 @@ const TransferPage = () => {
   return (
     <PageLayout
       renderHeader={renderTransferPageHeader}
-      footer={<PointTransferFooter isActiveNext={isActiveNext} redirectURL={redirectURL} />}
+      footer={
+        <PointTransferFooter
+          isActiveNext={isActiveNext}
+          redirectURL={redirectURL}
+          chargeAmount={chargeAmount}
+        />
+      }
     >
-      <TransferMain />
+      <TransferMain chargeAmount={chargeAmount} />
       <TransferPolicy setIsActiveNext={setIsActiveNext} />
     </PageLayout>
   );
