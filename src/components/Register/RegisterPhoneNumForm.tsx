@@ -123,9 +123,10 @@ const RegisterPhoneNumForm = () => {
           },
         })
         .then((res: resProps) => {
-          const isVerified = res.data.data.verified;
+          const isVerified = res.data.data.isVerified;          
 
           if (isVerified) {
+            setIsError(false);
             patchProfile({ state, phoneNum });
           } else {
             setIsError(true);
