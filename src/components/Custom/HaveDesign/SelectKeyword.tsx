@@ -18,22 +18,30 @@ const SelectKeyword = ({
 
   const [genreKeywords, setGenreKeywords] = useState<
     { id: number; value: string; checked: boolean }[]
-  >(
-    genreResponse.map((genre: GenreItemProps) => ({
-      id: genre.id,
-      value: genre.name,
-      checked: false,
-    })),
-  );
+  >([]);
+
   const [styleKeywords, setStyleKeywords] = useState<
     { id: number; value: string; checked: boolean }[]
-  >(
-    styleResponse.map((style: StyleItemProps) => ({
-      id: style.id,
-      value: style.name,
-      checked: false,
-    })),
-  );
+  >([]);
+
+  useEffect(() => {
+    console.log(genreResponse);
+    setGenreKeywords(
+      genreResponse.map((genre: GenreItemProps) => ({
+        id: genre.id,
+        value: genre.name,
+        checked: false,
+      })),
+    );
+
+    setStyleKeywords(
+      styleResponse.map((style: StyleItemProps) => ({
+        id: style.id,
+        value: style.name,
+        checked: false,
+      })),
+    );
+  }, [genreResponse, styleResponse]);
 
   const handleKeywordChange = (index: number, type: string) => {
     const checkedStyle = styleKeywords.filter((keyword) => keyword.checked).length;
