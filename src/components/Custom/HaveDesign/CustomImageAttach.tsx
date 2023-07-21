@@ -91,10 +91,10 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     if (drawingImageURL) {
       setFreeDraw(true);
       const file = new File([drawingImageURL], 'image.png', { type: 'image/png' });
-      const newCustomImg = customImages ? new FileList(customImages, file) : new FileList(file);
+      // const newCustomImg = customImages ? new FileList(customImages, file) : new FileList(file);
       // newCustomImg.push(file);
       // set paint
-      setCustomImages(newCustomImg);
+      // setCustomImages(newCustomImg);
     } else setFreeDraw(false);
   }, [drawingImageURL, setFreeDraw]);
 
