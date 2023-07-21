@@ -177,6 +177,8 @@ const St = {
 
 const CustomSheet = styled(Sheet)`
   height: 100%;
+  display: flex;
+  justify-content: center;
 
   .react-modal-sheet-backdrop {
     background-color: rgba(0, 0, 0, 0.6) !important;
@@ -184,6 +186,8 @@ const CustomSheet = styled(Sheet)`
   .react-modal-sheet-container {
     padding-top: 2.5rem;
     border-radius: 1rem !important;
+    left: initial !important;
+    max-width: 43rem;
   }
   // .react-modal-sheet-header
   .react-modal-sheet-container > div:nth-child(1) {
