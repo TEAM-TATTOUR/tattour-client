@@ -4,9 +4,10 @@ import { styled } from 'styled-components';
 interface PointChargeFooterProps {
   isActiveNext: boolean;
   redirectURL: string;
+  chargeAmount: number;
 }
 
-const PointChargeFooter = ({ isActiveNext, redirectURL }: PointChargeFooterProps) => {
+const PointChargeFooter = ({ isActiveNext, redirectURL, chargeAmount }: PointChargeFooterProps) => {
   const navigate = useNavigate();
 
   const handleClickFooter = () => {
@@ -15,6 +16,7 @@ const PointChargeFooter = ({ isActiveNext, redirectURL }: PointChargeFooterProps
         navigate('/point-transfer', {
           state: {
             redirectURL: redirectURL,
+            chargeAmount: chargeAmount,
           },
         });
     }

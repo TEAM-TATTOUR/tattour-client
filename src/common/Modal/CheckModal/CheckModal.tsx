@@ -4,9 +4,10 @@ import CheckModalForm from './CheckModalForm';
 interface CheckModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
   redirectURL: string;
+  chargeAmount: number;
 }
 
-const CheckModal = ({ setModalOn, redirectURL }: CheckModalProps) => {
+const CheckModal = ({ setModalOn, redirectURL, chargeAmount }: CheckModalProps) => {
   return (
     <ModalPortal>
       <CheckModalForm
@@ -15,6 +16,7 @@ const CheckModal = ({ setModalOn, redirectURL }: CheckModalProps) => {
         subTitle={'정확하게 송금하지 않을 시 추후에 주문이 취소될 수 있어요'}
         continueBtn={'확인했어요'}
         redirectURL={redirectURL}
+        chargeAmount={chargeAmount}
       />
     </ModalPortal>
   );
