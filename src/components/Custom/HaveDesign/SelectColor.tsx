@@ -33,16 +33,12 @@ const SelectColor = ({
 
   const [activeBtn, setActiveBtn] = useState('');
 
-  const handleClickSelBtn = (id: string) => {
-    setActiveBtn(id);
-    setIsActiveNext(true);
-  };
-
   useEffect(() => {
     if (isColoredState) {
       setActiveBtn(isColoredState ? 'color' : 'black');
+      console.log('찍히니?', isColoredState);
     }
-    //버튼 하나씩만 누를 수 있도록
+    // 버튼 하나씩만 누를 수 있도록
     CASE_BTN_DATA.forEach((btn) => {
       if (btn.id === activeBtn) {
         btn.isSelected = true;
@@ -56,7 +52,12 @@ const SelectColor = ({
     } else {
       setIsColored(true);
     }
-  }, [isColoredState, activeBtn, CASE_BTN_DATA, setIsColored]);
+  }, [isColoredState, activeBtn]);
+
+  const handleClickSelBtn = (id: string) => {
+    setActiveBtn(id);
+    setIsActiveNext(true);
+  };
 
   return (
     <St.SelectWrapper>

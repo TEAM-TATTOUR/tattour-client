@@ -7,9 +7,9 @@ interface NextFooterProps {
   navigateURL: string;
   haveDesign?: boolean;
   customInfo?: customInfoType;
-  customMainImage?: File | null;
   customImages?: FileList | null;
-  freeDraw?: boolean;
+  handDrawingImage: File | null;
+  setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
 }
 
 const NextFooter = ({
@@ -17,9 +17,8 @@ const NextFooter = ({
   navigateURL,
   haveDesign,
   customInfo,
-  customMainImage,
   customImages,
-  freeDraw,
+  handDrawingImage,
 }: NextFooterProps) => {
   const navigate = useNavigate();
 
@@ -33,9 +32,8 @@ const NextFooter = ({
           state: {
             haveDesign: haveDesign,
             customInfo: customInfo,
-            customMainImage: customMainImage,
+            handDrawingImage: handDrawingImage,
             customImages: customImages,
-            freeDraw: freeDraw,
           },
         });
     }

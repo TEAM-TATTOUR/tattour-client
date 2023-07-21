@@ -18,22 +18,19 @@ const CustomReferencePage = () => {
   // 모달 사용할 때  활용
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
-  const [customMainImage, setCustomMainImage] = useState<File | null>(null);
+  const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
   const [customImages, setCustomImages] = useState<FileList | null>(null);
   const [freeDraw, setFreeDraw] = useState<boolean>(location.state.freeDraw ? true : false);
+  const [previewURL, setPreviewURL] = useState<string[]>([]); //페이지로 뺴주기
 
   console.log('back', location.state.freeDraw);
 
   const haveDesign = location.state ? location.state.haveDesign : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
-
-  const attachedMainImg =
-    location.state && location.state.customMainImage ? location.state.customMainImage : null;
-
+  const attachedHandDrawingImage =
+    location.state && location.state.handDrawingImage ? location.state.handDrawingImage : null;
   const attachedImages =
     location.state && location.state.customImages ? location.state.customImages : null;
-
-  console.log('back paint ', attachedImages ? attachedImages[-1] : null);
 
   useEffect(() => {
     if (!location.state) navigate('/onboarding');
@@ -71,21 +68,20 @@ const CustomReferencePage = () => {
           navigateURL={'/styling-color'}
           haveDesign={haveDesign}
           customInfo={customInfo}
-          customMainImage={customMainImage}
+          setHandDrawingImage={setHandDrawingImage}
           customImages={customImages}
-          freeDraw={freeDraw}
+          handDrawingImage={handDrawingImage}
         />
       }
     >
       <CustomReference
         setIsActiveNext={setIsActiveNext}
-        setCustomMainImage={setCustomMainImage}
+        setHandDrawingImage={setHandDrawingImage}
         setCustomImages={setCustomImages}
         customImages={customImages}
-        attachedMainImg={attachedMainImg}
-        attachedImages={attachedImages}
-        freeDraw={freeDraw}
+        handDrawingImage={handDrawingImage}
         setFreeDraw={setFreeDraw}
+        setPreviewURL={setPreviewURL}
       />
     </PageLayout>
   );

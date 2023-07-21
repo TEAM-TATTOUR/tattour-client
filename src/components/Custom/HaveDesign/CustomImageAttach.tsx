@@ -9,13 +9,12 @@ interface PaintBottomProps {
   drawingImageURL: string | null;
   setDrawingImageURL: React.Dispatch<React.SetStateAction<string | null>>;
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-  setCustomMainImage: React.Dispatch<React.SetStateAction<File | null>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
   customImages: FileList | null;
-  attachedMainImg: File | null;
   attachedImages: FileList | null;
   setFreeDraw: React.Dispatch<React.SetStateAction<boolean>>;
   freeDraw: boolean;
+  setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
 }
 
 const CustomImageAttach: React.FC<PaintBottomProps> = ({
@@ -23,18 +22,16 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   drawingImageURL,
   setDrawingImageURL,
   setIsActiveNext,
-  setCustomMainImage,
   setCustomImages,
   customImages,
-  attachedMainImg,
   attachedImages,
   freeDraw,
   setFreeDraw,
+  setHandDrawingImage,
 }) => {
   const MAX_FILES = 3;
 
   const ref = useRef<HTMLInputElement | null>(null);
-  const [previewURL, setPreviewURL] = useState<string[]>([]); //페이지로 뺴주기
   const [toast, setToast] = useState<boolean>(false);
   // const [freeDraw, setFreeDraw] = useState<boolean>(drawingImageURL ? true : false);
 
@@ -52,17 +49,17 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   }, [previewURL, setIsActiveNext]);
 
   useEffect(() => {
-    if (!attachedMainImg) return;
+    if (!customImages) return;
     const reader = new FileReader();
-    reader.readAsDataURL(attachedMainImg);
+    reader.readAsDataURL(drawingImageURL);
     reader.onloadend = () => {
       const result = reader.result;
       if (typeof result === 'string') {
         setPreviewURL([result]);
       }
-      console.log('메인이미지', attachedMainImg);
+      console.log('메인이미지', drawingImageURL);
     };
-  }, [attachedMainImg, setPreviewURL]);
+  }, [drawingImageURL, setPreviewURL]);
 
   useEffect(() => {
     if (!attachedImages) return;
@@ -82,8 +79,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     if (freeDraw === true) {
       setDrawingImageURL(previewURL[previewURL.length - 1]);
       setPreviewURL((prevURLs) => prevURLs.slice(0, -1));
-      console.log('손그림 있을 때', attachedMainImg);
-      console.log('손그림 있을 때 이미지들들들', attachedImages);
+      console.log('손그림 있을 때', attachedImages);
     }
   }, [attachedImages, freeDraw, attachedMainImg]);
 

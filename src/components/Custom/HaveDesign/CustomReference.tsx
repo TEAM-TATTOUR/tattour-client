@@ -6,22 +6,22 @@ import { useState } from 'react';
 
 const CustomReference = ({
   setIsActiveNext,
-  setCustomMainImage,
+  handDrawingImage,
+  setHandDrawingImage,
   setCustomImages,
   customImages,
-  attachedMainImg,
   attachedImages,
-  freeDraw,
+  setPreviewURL,
   setFreeDraw,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-  setCustomMainImage: React.Dispatch<React.SetStateAction<File | null>>;
+  setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
   customImages: FileList | null;
-  attachedMainImg: File | null;
   attachedImages: FileList | null;
-  freeDraw: boolean;
+  handDrawingImage: File | null;
   setFreeDraw: React.Dispatch<React.SetStateAction<boolean>>;
+  setPreviewURL: string[];
 }) => {
   const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
@@ -35,13 +35,12 @@ const CustomReference = ({
         drawingImageURL={drawingImageUrl}
         setDrawingImageURL={setDrawingImageUrl}
         setIsActiveNext={setIsActiveNext}
-        setCustomMainImage={setCustomMainImage}
         setCustomImages={setCustomImages}
-        customImages={customImages}
-        attachedMainImg={attachedMainImg}
         attachedImages={attachedImages}
         setFreeDraw={setFreeDraw}
         freeDraw={freeDraw}
+        customImages={customImages}
+        setHandDrawingImage={setHandDrawingImage}
       />
       {isBottomOpen && (
         <PaintBottomSheet
