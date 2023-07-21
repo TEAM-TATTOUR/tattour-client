@@ -27,6 +27,7 @@ const Canvas: React.FC<CanvasProps> = ({ setTempCanvas }: CanvasProps) => {
 
     if (!canvasRef || canvasRef.current === null) return;
 
+    setTempCanvas(canvasRef.current);
     return () => {
       setTempCanvas(canvasRef.current);
       canvas.dispose();
