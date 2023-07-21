@@ -149,6 +149,13 @@ const St = {
     flex-direction: column;
     align-items: flex-start;
     gap: 2.2rem;
+
+    & > li > button {
+      display: flex;
+      align-items: center;
+
+      padding: 0rem;
+    }
   `,
 
   SideMenuItemText: styled.span`
@@ -170,6 +177,10 @@ const St = {
     padding-right: 2.4rem;
 
     text-align: center;
+
+    & > a {
+      height: 2rem;
+    }
   `,
 
   SideMenuCSButtonWrapper: styled.div`

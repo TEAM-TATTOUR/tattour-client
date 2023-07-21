@@ -58,6 +58,8 @@ const St = {
 
     & > span {
       display: inline-block;
+
+      margin-left: 0.4rem;
       font: ${({ theme }) => theme.fonts.body_medium_16};
       color: ${({ theme }) => theme.colors.gray2};
     }
