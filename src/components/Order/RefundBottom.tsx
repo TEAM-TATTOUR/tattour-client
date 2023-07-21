@@ -44,6 +44,9 @@ const St = {
 };
 
 const CustomSheet = styled(Sheet)`
+  display: flex;
+  justify-content: center;
+
   .react-modal-sheet-backdrop {
     background-color: rgba(0, 0, 0, 0.6) !important;
   }
@@ -51,6 +54,8 @@ const CustomSheet = styled(Sheet)`
     padding: 2.5rem 2.4rem 0rem 2.4rem;
     // 모달 높이 낮추기
     height: calc(100% - 10.6rem) !important;
+    left: initial !important;
+    max-width: 43rem;
 
     border-radius: 1rem 1rem 0rem 0rem !important;
   }
