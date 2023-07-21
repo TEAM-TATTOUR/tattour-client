@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CancelBtn from '../../common/Header/CancelBtn';
 import CustomReference from '../../components/Custom/HaveDesign/CustomReference';
 import Header from '../../components/Header';
@@ -8,16 +8,27 @@ import CustomSizeEscapeModal from '../../common/Modal/EscapeModal/CustomSizeEsca
 import NextFooter from '../../common/Footer/NextFooter';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { IcBackDark } from '../../assets/icon';
+import { customInfoType } from '../../types/customInfoType';
 
 const CustomReferencePage = () => {
+  const CUSTOM_VIEW_COUNT = 2;
+
   // 모달 사용할 때  활용
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
+  const [customMainImage, setCustomMainImage] = useState<File | null>(null);
+  const [customImages, setCustomImages] = useState<FileList | null>(null);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const stateList = location.state;
+  const haveDesign = location.state ? location.state.haveDesign : null;
+  const customId = location.state ? location.state.customId : null;
+
+  const customInfo: customInfoType = {
+    viewCount: CUSTOM_VIEW_COUNT,
+    customId: customId,
+  };
 
   const renderCustomReferencePageHeader = () => {
     return (
@@ -44,11 +55,17 @@ const CustomReferencePage = () => {
         <NextFooter
           isActiveNext={isActiveNext}
           navigateURL={'/styling-color'}
-          customInfo={stateList}
+          customInfo={customInfo}
+          customMainImage={customMainImage}
+          customImages={customImages}
         />
       }
     >
-      <CustomReference setIsActiveNext={setIsActiveNext} />
+      <CustomReference
+        setIsActiveNext={setIsActiveNext}
+        setCustomMainImage={setCustomMainImage}
+        setCustomImages={setCustomImages}
+      />
     </PageLayout>
   );
 };

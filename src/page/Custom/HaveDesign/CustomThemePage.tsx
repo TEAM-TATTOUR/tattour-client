@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CustomTheme from '../../../components/Custom/HaveDesign/CustomTheme';
 import PageLayout from '../../../components/PageLayout';
 import Header from '../../../components/Header';
@@ -10,18 +10,42 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { IcBackDark } from '../../../assets/icon';
 
 const CustomThemePage = () => {
+  const CUSTOM_VIEW_COUNT = 5;
+
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const stateList = location.state;
+  const haveDesign = location.state ? location.state.haveDesgin : null;
+  const prevCustomInfo = location.state ? location.state.customInfo : null;
+  const customMainImage = location.state ? location.state.customMainImage : null;
+  const customImages = location.state ? location.state.customImages : null;
+
+  useEffect(() => {
+    if (!location.state) navigate('/onboarding');
+  }, [location.state, navigate]);
+
+  const customInfo = {
+    ...prevCustomInfo,
+    viewCount: CUSTOM_VIEW_COUNT,
+    name: name,
+    description: description,
+  };
 
   const renderCustomThemePageHeader = () => {
     return (
       <Header
-        leftSection={<IcBackDark onClick={() => navigate('/select-keyword')} />}
+        leftSection={
+          <IcBackDark
+            onClick={() =>
+              navigate('/select-keyword', { state: location.state ? location.state : null })
+            }
+          />
+        }
         title='커스텀 타투'
         rightSection={
           <CancelBtn
@@ -31,7 +55,7 @@ const CustomThemePage = () => {
           />
         }
         transparent={true}
-        progressBar={<ProgressBar curStep={6} maxStep={7} />}
+        progressBar={<ProgressBar curStep={5} maxStep={7} />}
       />
     );
   };
@@ -42,11 +66,18 @@ const CustomThemePage = () => {
         <NextFooter
           isActiveNext={isActiveNext}
           navigateURL={'/additional-request'}
-          stateList={stateList}
+          haveDesign={haveDesign}
+          customInfo={customInfo}
+          customMainImage={customMainImage}
+          customImages={customImages}
         />
       }
     >
-      <CustomTheme setIsActiveNext={setIsActiveNext} />
+      <CustomTheme
+        setIsActiveNext={setIsActiveNext}
+        setName={setName}
+        setDescription={setDescription}
+      />
     </PageLayout>
   );
 };
