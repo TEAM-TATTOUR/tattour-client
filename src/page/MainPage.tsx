@@ -13,7 +13,6 @@ import SideMenu from '../common/SideMenu';
 import HotCustom from '../common/HotCustom';
 import Toast from '../common/ToastMessage/Toast';
 import { useLocation } from 'react-router';
-import WelcomeFooter from '../components/Welcome/WelcomeFooter';
 import WelcomeModal from '../common/Modal/WelcomeModal/WelcomeModal';
 
 const MainPage = () => {

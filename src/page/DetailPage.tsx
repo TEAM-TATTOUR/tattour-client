@@ -8,15 +8,11 @@ import DetailBottom from '../components/Detail/DetailBottom';
 import CustomScrollContainer from '../common/CustomScrollContainer';
 import SmallTattooCard from '../common/SmallTattooCard';
 import BackBtn from '../common/Header/BackBtn';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useGetSticker from '../libs/hooks/detail/useGetSticker';
 import useGetRelated from '../libs/hooks/detail/useGetRelated';
-import { setAccessToken } from '../libs/api';
 
 const DetailPage = () => {
-  // setAccessToken(
-  //   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2ODk3NzA2MTUsImV4cCI6MTY5MDk4MDIxNSwidXNlcklkIjoiMSJ9.8Bts023pv_Sosybuq_ysC8j_OBG7D90yDPbp_hZpv2vNAtpw8oGcKpvWav94TUWzyPZUQ1Mm3viouzFMPnFs5Q',
-  // );
   const { id } = useParams();
   // param.id로 서버에서 상품 데이터 get 해오기
 

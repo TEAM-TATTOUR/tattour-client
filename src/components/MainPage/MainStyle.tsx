@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import useGetStyleCard, { MainStyleItemProps } from '../../libs/hooks/useGetStyleCard';
+import useGetStyleCard from '../../libs/hooks/useGetStyleCard';
 import { useNavigate } from 'react-router-dom';
 
 const MainStyle = () => {

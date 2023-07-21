@@ -14,7 +14,7 @@ const MainBanner = () => {
   return (
     <>
       <St.MainWrapper>
-        <St.Video loop='loop' muted='muted' autoPlay='autoPlay' playsInline>
+        <St.Video loop={true} muted={true} autoPlay={true} playsInline={true}>
           <source src={bannerVideo} type='video/mp4'></source>
         </St.Video>
       </St.MainWrapper>

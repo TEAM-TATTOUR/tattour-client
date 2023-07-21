@@ -3,18 +3,6 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import useGetThemeCard from '../../libs/hooks/useGetThemeCard';
 import { useNavigate } from 'react-router-dom';
 
-const renderMainThemeDummyImage = () => {
-  return (
-    <div
-      style={{
-        width: '15.3rem',
-        height: '9.6rem',
-        backgroundColor: 'gray',
-      }}
-    ></div>
-  );
-};
-
 const MainTheme = () => {
   const { response, error, loading } = useGetThemeCard();
 
