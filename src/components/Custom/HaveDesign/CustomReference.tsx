@@ -2,16 +2,22 @@ import { styled } from 'styled-components';
 import CustomTitle from './CustomTitle';
 import CustomImageAttach from './CustomImageAttach';
 import PaintBottomSheet from './PaintBottomSheet';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { customInfo } from '../../../types/customInfo';
 
 const CustomReference = ({
   setIsActiveNext,
+  setCustomMainImage,
+  setCustomImages,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  setCustomMainImage: React.Dispatch<React.SetStateAction<File | null>>;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
 }) => {
   const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
 
+  useEffect(() => {}, [drawingImageUrl]);
   return (
     <St.PageWrapper>
       <CustomTitle />

@@ -6,8 +6,10 @@ import IcCircleBlack from '../../../assets/icon/ic_circle_black.png';
 
 const SelectColor = ({
   setIsActiveNext,
+  setIsColored,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsColored: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const CASE_BTN_DATA = useMemo(
     () => [
@@ -43,7 +45,13 @@ const SelectColor = ({
         btn.isSelected = false;
       }
     });
-  }, [activeBtn, CASE_BTN_DATA]);
+
+    if (activeBtn === 'black') {
+      setIsColored(false);
+    } else {
+      setIsColored(true);
+    }
+  }, [activeBtn, CASE_BTN_DATA, setIsColored]);
 
   return (
     <St.SelectWrapper>
