@@ -1,9 +1,16 @@
 import { styled } from 'styled-components';
 import { LabelCustomSmall } from '../../assets/icon';
+import { useNavigate } from 'react-router-dom';
 
-const MyCustomItem = ({ name, imageUrl }: { name: string; imageUrl: string }) => {
+const MyCustomItem = ({ id, name, imageUrl }: { id: number; name: string; imageUrl: string }) => {
+  const navigate = useNavigate();
+
+  const handleClickMyCustom = (id: number) => () => {
+    navigate(`/my-tattoo/detail/${id}`);
+  };
+
   return (
-    <St.MyCustomItem>
+    <St.MyCustomItem onClick={handleClickMyCustom(id)}>
       <LabelCustomSmall />
       <St.MyCustomItemImg src={imageUrl} />
       <St.MyCustomItemTitle>{name}</St.MyCustomItemTitle>

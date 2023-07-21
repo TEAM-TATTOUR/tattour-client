@@ -4,9 +4,12 @@ import OnBoardingCarousel from '../../../components/Custom/Common/OnBoardingCaro
 import Header from '../../../components/Header';
 import PageLayout from '../../../components/PageLayout';
 import OnBoardingFooter from '../../../components/Custom/Common/OnBoardingFooter';
+import { useEffect, useState } from 'react';
+import { getAccessToken } from '../../../libs/api';
 
 const OnBoardingPage = () => {
   const navigate = useNavigate();
+  const [isLogin, setIsLogin] = useState(false);
 
   const renderOnBoardingPageHeader = () => {
     return (
@@ -14,8 +17,20 @@ const OnBoardingPage = () => {
     );
   };
 
+  useEffect(() => {
+    if (getAccessToken()) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+      navigate('/login');
+    }
+  }, [navigate]);
+
   return (
-    <PageLayout renderHeader={renderOnBoardingPageHeader} footer={<OnBoardingFooter />}>
+    <PageLayout
+      renderHeader={renderOnBoardingPageHeader}
+      footer={<OnBoardingFooter isLogin={isLogin} />}
+    >
       <OnBoardingCarousel />
     </PageLayout>
   );

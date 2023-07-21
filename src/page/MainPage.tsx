@@ -63,7 +63,7 @@ const MainPage = () => {
     >
       {isWelcomeModalOpen && <WelcomeModal setModalOn={setIsWelcomeModalOpen} />}
       <MainBanner />
-      <HotCustom />
+      <HotCustom arrow={true} />
       <MainEventBanner setToast={setToast} />
       <MainTheme />
       <MainStyle />
