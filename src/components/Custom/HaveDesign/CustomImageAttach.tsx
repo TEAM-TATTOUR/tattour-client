@@ -9,6 +9,8 @@ interface PaintBottomProps {
   drawingImageURL: string | null;
   setDrawingImageURL: React.Dispatch<React.SetStateAction<string | null>>;
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  setCustomMainImage: React.Dispatch<React.SetStateAction<File | null>>;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
 }
 
 const CustomImageAttach: React.FC<PaintBottomProps> = ({
@@ -16,6 +18,8 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   drawingImageURL,
   setDrawingImageURL,
   setIsActiveNext,
+  setCustomMainImage,
+  setCustomImages,
 }) => {
   const MAX_FILES = 3;
 
@@ -49,11 +53,23 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     if (files[3]) {
       setToast(true);
     }
+
+    const fileList = createFileList(Array.from(files).slice(1));
+    setCustomImages(fileList);
+
     const uploadImage = Array.from(files);
 
     //개수 제한 적용해주기
     const filesToEncode = Array.from(uploadImage).slice(0, MAX_FILES - previewURL.length);
     encodeFile(filesToEncode, e);
+  };
+
+  const createFileList = (files: File[]): FileList => {
+    const dataTransfer = new DataTransfer();
+    files.forEach((file) => {
+      dataTransfer.items.add(file);
+    });
+    return dataTransfer.files;
   };
 
   const encodeFile = async (fileBlob: File[], e: React.ChangeEvent<HTMLInputElement>) => {

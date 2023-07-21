@@ -27,6 +27,8 @@ const CustomReference = ({
         drawingImageURL={drawingImageUrl}
         setDrawingImageURL={setDrawingImageUrl}
         setIsActiveNext={setIsActiveNext}
+        setCustomMainImage={setCustomMainImage}
+        setCustomImages={setCustomImages}
       />
       {isBottomOpen && (
         <PaintBottomSheet
