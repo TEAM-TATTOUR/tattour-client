@@ -5,8 +5,12 @@ import GraphemeSplitter from 'grapheme-splitter';
 
 const CustomTheme = ({
   setIsActiveNext,
+  setName,
+  setDescription,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   //count 될 maxCount 수
   const MAX_NAME_COUNT = 10;
@@ -47,6 +51,8 @@ const CustomTheme = ({
 
     if (!lengthCount) return;
     setNameInputCount(lengthCount);
+
+    setName(e.target.value);
   };
 
   const handleChangeEtcTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -61,6 +67,8 @@ const CustomTheme = ({
 
     if (!lengthCount) return;
     setEtcTextAreaCount(lengthCount);
+
+    setDescription(e.target.value);
   };
 
   return (
