@@ -5,7 +5,7 @@ import useGetSearchSticker from '../../libs/hooks/useGetSearchSticker';
 const SearchResult = () => {
   const { keyword } = useParams<{ keyword: string }>();
 
-  const { response, error, loading } = useGetSearchSticker(keyword as string);
+  const { response } = useGetSearchSticker(keyword as string);
 
   return (
     <St.SearchResultPageWrapper>

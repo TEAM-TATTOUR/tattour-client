@@ -7,17 +7,16 @@ const SearchInputForm = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
-  const { pathname } = window.location;
-
-  const keyword = pathname.split('/')[2];
-
   const handleClickBackButton = () => {
     navigate('/');
   };
 
-  const handleSubmitSearchForm = (
-    event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLElement>,
-  ) => {
+  const handleSubmitSearchForm = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    navigate(`/search/${inputRef.current?.value}`);
+  };
+
+  const handleClickSearchForm = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     event.preventDefault();
     navigate(`/search/${inputRef.current?.value}`);
   };
@@ -30,7 +29,7 @@ const SearchInputForm = () => {
           ref={inputRef}
           placeholder={inputRef.current?.value ? inputRef.current?.value : '검색어를 입력해주세요.'}
         />
-        <IcSearchGray onClick={handleSubmitSearchForm} />
+        <IcSearchGray onClick={handleClickSearchForm} />
       </St.SearchForm>
     </St.SearchFormWrapper>
   );

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { IcArrowRightDark, LabelCustomSmall } from '../assets/icon';
 import useGetHotCustom from '../libs/hooks/useGetHotCustom';
 
-const HotCustom = ({ arrow }: { arrow: boolean }) => {
+const HotCustom = () => {
   const navigate = useNavigate();
 
   const handleClickHotCustom = () => {
@@ -22,7 +22,7 @@ const HotCustom = ({ arrow }: { arrow: boolean }) => {
       <St.Header>
         <St.HotCustomButton type='button' onClick={handleClickHotCustom}>
           <St.HotCustomTitle>HOT CUSTOM</St.HotCustomTitle>
-          {arrow && <IcArrowRightDark />}
+          <IcArrowRightDark />
         </St.HotCustomButton>
       </St.Header>
       <St.HotCustomWrapper>
