@@ -149,6 +149,9 @@ const St = {
     gap: 2.2rem;
 
     & > li > button {
+      display: flex;
+      align-items: center;
+
       padding: 0rem;
     }
   `,
