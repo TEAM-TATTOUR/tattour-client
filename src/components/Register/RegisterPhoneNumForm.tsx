@@ -74,7 +74,7 @@ const RegisterPhoneNumForm = () => {
   };
 
   const handleClickSendMessageBtn = () => {
-    const ACCESS_TOKEN_KEY = 'accessToken';
+    const ACCESS_TOKEN_KEY = 'accesstoken';
     const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
 
     axios
