@@ -54,7 +54,7 @@ const MainPage = () => {
       footer={<MainFooter isFooterVisible={isFooterVisible} />}
     >
       <MainBanner />
-      <HotCustom />
+      <HotCustom arrow={true} />
       <MainEventBanner />
       <MainTheme />
       <MainStyle />
