@@ -80,12 +80,9 @@
 * 내 도안 그대로 만들기 : 타투스티커 크기, 도안 이미지 첨부, 타투스티커 이름, 요청 사항, 수량 선택 가능
 * 타투어에게 도안 의뢰하기 : 타투스티커 크기, 참고 이미지 첨부, 레퍼런스 대충 그리기, 색상, 장르 , 스타일, 타투스티커 이름, 주제 및 추가 설명, 요청 사항, 수량 선택 가능
 
-<p align="center">
-<img align="left" width="480" alt="KakaoTalk_Photo_2023-07-21-22-58-42 003" src="https://github.com/TEAM-TATTOUR/tattour-client/assets/77691829/a8999877-8130-42ce-bd90-556e2e2eb511">
-<img align="right" width="480" alt="KakaoTalk_Photo_2023-07-21-22-58-42 004" src="https://github.com/TEAM-TATTOUR/tattour-client/assets/77691829/683d94dd-eb58-4036-a77a-bfdb2cf9232e">
-</p>
+<img width="595" alt="KakaoTalk_Photo_2023-07-21-22-58-42 003" src="https://github.com/TEAM-TATTOUR/tattour-client/assets/77691829/a8999877-8130-42ce-bd90-556e2e2eb511">
+<img width="595" alt="KakaoTalk_Photo_2023-07-21-22-58-42 004" src="https://github.com/TEAM-TATTOUR/tattour-client/assets/77691829/683d94dd-eb58-4036-a77a-bfdb2cf9232e">
 
-<br/>
 <br/>
 <hr/>
 
