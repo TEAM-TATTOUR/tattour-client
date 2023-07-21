@@ -8,10 +8,18 @@ const CustomReference = ({
   setIsActiveNext,
   setCustomMainImage,
   setCustomImages,
+  attachedMainImg,
+  attachedImages,
+  freeDraw,
+  setFreeDraw,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomMainImage: React.Dispatch<React.SetStateAction<File | null>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
+  attachedMainImg: File | null;
+  attachedImages: FileList | null;
+  freeDraw: boolean;
+  setFreeDraw: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
@@ -27,6 +35,10 @@ const CustomReference = ({
         setIsActiveNext={setIsActiveNext}
         setCustomMainImage={setCustomMainImage}
         setCustomImages={setCustomImages}
+        attachedMainImg={attachedMainImg}
+        attachedImages={attachedImages}
+        setFreeDraw={setFreeDraw}
+        freeDraw={freeDraw}
       />
       {isBottomOpen && (
         <PaintBottomSheet

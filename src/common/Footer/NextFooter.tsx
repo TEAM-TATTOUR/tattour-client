@@ -9,6 +9,7 @@ interface NextFooterProps {
   customInfo?: customInfoType;
   customMainImage?: File | null;
   customImages?: FileList | null;
+  freeDraw?: boolean;
 }
 
 const NextFooter = ({
@@ -18,6 +19,7 @@ const NextFooter = ({
   customInfo,
   customMainImage,
   customImages,
+  freeDraw,
 }: NextFooterProps) => {
   const navigate = useNavigate();
 
@@ -30,6 +32,7 @@ const NextFooter = ({
             customInfo: customInfo,
             customMainImage: customMainImage,
             customImages: customImages,
+            freeDraw: freeDraw,
           },
         });
     }
