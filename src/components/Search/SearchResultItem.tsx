@@ -69,6 +69,7 @@ const St = {
   SearchResultPriceWrapper: styled.p`
     display: flex;
     margin-top: 0.4rem;
+    gap: 0.5rem;
   `,
 
   SearchResultItemDiscountRate: styled.span`
@@ -82,6 +83,8 @@ const St = {
   `,
 
   SearchResultItemOriginalPrice: styled.span`
+    margin-top: 0.3rem;
+
     ${({ theme }) => theme.fonts.body_line_medium_14};
     color: ${({ theme }) => theme.colors.gray1};
   `,

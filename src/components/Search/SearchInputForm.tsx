@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { useRef } from 'react';
-import { IcArrowLeftGray, IcSearchGray } from '../../assets/icon';
+import { IcBackDark, IcSearchGray } from '../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 
 const SearchInputForm = () => {
@@ -23,7 +23,7 @@ const SearchInputForm = () => {
 
   return (
     <St.SearchFormWrapper>
-      <IcArrowLeftGray onClick={handleClickBackButton} />
+      <IcBackDark onClick={handleClickBackButton} />
       <St.SearchForm onSubmit={handleSubmitSearchForm}>
         <St.SearchInput
           ref={inputRef}
@@ -57,7 +57,7 @@ const St = {
     width: 29.7rem;
     height: 4.5rem;
     margin-left: 1.7rem;
-    padding-left: 1.2rem;
+    padding-left: 1.8rem;
 
     border: none;
     border-radius: 0.5rem;

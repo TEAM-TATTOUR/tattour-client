@@ -147,6 +147,7 @@ const St = {
     align-items: center;
 
     margin-top: 1.3rem;
+    margin-left: 0.5rem;
 
     & > p {
       ${({ theme }) => theme.fonts.body_medium_14};
@@ -164,6 +165,7 @@ const St = {
     width: 100%;
 
     margin-top: 0.4rem;
+    margin-left: 0.5rem;
   `,
 
   HotCustomItemDiscountRate: styled.span`
@@ -178,6 +180,7 @@ const St = {
   HotCustomItemOriginPrice: styled.span`
     margin-top: 0.1rem;
     margin-bottom: 4.1rem;
+    margin-left: 0.5rem;
 
     ${({ theme }) => theme.fonts.body_line_medium_14};
     color: ${({ theme }) => theme.colors.gray1};
