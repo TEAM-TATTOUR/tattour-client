@@ -1,20 +1,15 @@
 import { styled } from 'styled-components';
-import { IcCancelDark } from '../../../assets/icon';
+
 import { useNavigate } from 'react-router-dom';
 import useGetUserProfile from '../../../libs/hooks/useGetUserProfile';
 import { useEffect, useState } from 'react';
 
 interface ChargePointCompleteModalProps {
-  setIsOpenCompleteModal: React.Dispatch<React.SetStateAction<boolean>>;
   chargeAmount: number;
   redirectURL: string;
 }
 
-const ChargePointCompleteModal = ({
-  setIsOpenCompleteModal,
-  chargeAmount,
-  redirectURL,
-}: ChargePointCompleteModalProps) => {
+const ChargePointCompleteModal = ({ chargeAmount, redirectURL }: ChargePointCompleteModalProps) => {
   const navigate = useNavigate();
   const [currPoint, setCurrPoint] = useState(0);
 
@@ -34,7 +29,6 @@ const ChargePointCompleteModal = ({
       <St.ModalWrapper>
         <St.ModalContent>
           <St.ModalTitleWrapper>
-            <IcCancelDark onClick={() => setIsOpenCompleteModal(false)} />
             <St.ModalTitle>포인트 충전 완료</St.ModalTitle>
           </St.ModalTitleWrapper>
 
