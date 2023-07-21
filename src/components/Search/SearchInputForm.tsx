@@ -11,7 +11,7 @@ const SearchInputForm = () => {
     navigate('/');
   };
 
-  const handleSubmitSearchForm = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSubmitSearchForm = (event) => {
     event.preventDefault();
     navigate(`/search/${inputRef.current?.value}`);
   };
