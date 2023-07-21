@@ -15,6 +15,9 @@ interface PaintBottomProps {
   setFreeDraw: React.Dispatch<React.SetStateAction<boolean>>;
   freeDraw: boolean;
   setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
+  handDrawingImage: File | null;
+  previewURL: string[];
+  setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const CustomImageAttach: React.FC<PaintBottomProps> = ({
@@ -28,6 +31,9 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   freeDraw,
   setFreeDraw,
   setHandDrawingImage,
+  handDrawingImage,
+  previewURL,
+  setPreviewURL,
 }) => {
   const MAX_FILES = 3;
 
@@ -48,40 +54,46 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     previewURL.length !== 0 ? setIsActiveNext(true) : setIsActiveNext(false);
   }, [previewURL, setIsActiveNext]);
 
+  //이미지 파일 첨부하기
   useEffect(() => {
     if (!customImages) return;
-    const reader = new FileReader();
-    reader.readAsDataURL(drawingImageURL);
-    reader.onloadend = () => {
-      const result = reader.result;
-      if (typeof result === 'string') {
-        setPreviewURL([result]);
-      }
-      console.log('메인이미지', drawingImageURL);
-    };
-  }, [drawingImageURL, setPreviewURL]);
+    if (!drawingImageURL) return;
+    // const reader = new FileReader();
+    // reader.readAsDataURL(drawingImageURL);
+    // reader.onloadend = () => {
+    //   const result = reader.result;
+    //   if (typeof result === 'string') {
+    //     setPreviewURL([result]);
+    //   }
+    //   // console.log('메인이미지', drawingImageURL);
 
-  useEffect(() => {
-    if (!attachedImages) return;
+    // };
+    const blob = new Blob([new Uint8Array(drawingImageURL)], { type: 'image/png' });
+    const file = new File([blob], 'image.png', {
+      type: blob.type,
+    });
+    setHandDrawingImage(file);
+  }, [drawingImageURL]);
 
-    const fileList = Array.from(attachedImages);
+  // useEffect(() => {
+  //   if (!customImages) return;
+  //   const blob = new Blob([new Uint8Array(drawingImageURL)], { type: 'image/jpeg', 'image/png' });
 
-    for (const file of fileList) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        setPreviewURL((prevURLs) => [...prevURLs, reader.result as string]);
-        console.log('이미지들들들', previewURL);
-        console.log('손그림있나요?', freeDraw);
-      };
-    }
+  //   const fileList = Array.from(handDrawingImage);
+  //   for (const file of fileList) {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onloadend = () => {
+  //       setPreviewURL((prevURLs) => [...prevURLs, reader.result as string]);
+  //       console.log('이미지들들들', previewURL);
+  //     };
+  //   }
 
-    if (freeDraw === true) {
-      setDrawingImageURL(previewURL[previewURL.length - 1]);
-      setPreviewURL((prevURLs) => prevURLs.slice(0, -1));
-      console.log('손그림 있을 때', attachedImages);
-    }
-  }, [attachedImages, freeDraw, attachedMainImg]);
+  //   if (handDrawingImage) {
+  //     setDrawingImageURL(previewURL);
+  //     console.log('손그림 있을 때', attachedImages);
+  //   }
+  // }, [attachedImages]);
 
   useEffect(() => {
     if (drawingImageURL) {
@@ -102,9 +114,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
       setToast(true);
     }
 
-    setCustomMainImage(files[0]);
-
-    console.log('change image');
+    // console.log('change image');
 
     const imageFiles = Array.from(files).slice(1);
 
@@ -152,10 +162,11 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   const handleClickFreeDrawDelBtn = () => {
     setFreeDraw(false);
     setDrawingImageURL(null);
+    setHandDrawingImage(null);
   };
 
   const handleReferenceBtn = () => {
-    if (freeDraw) {
+    if (handDrawingImage) {
       return;
     } else {
       setBottomOpen(true);
@@ -183,7 +194,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
         ) : (
           ''
         )}
-        {freeDraw ? (
+        {handDrawingImage ? (
           <St.ImgPreviewContainer>
             <St.ImgPreviewDelBtn type='button' onClick={() => handleClickFreeDrawDelBtn()}>
               <IcCancelDark />
@@ -213,7 +224,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
         <St.ReferenceButton
           type='button'
           onClick={handleReferenceBtn}
-          className={freeDraw ? 'disabled' : ''}
+          className={handDrawingImage ? 'disabled' : ''}
         >
           <IcDraw />
           대충 그리기

@@ -82,6 +82,8 @@ const CustomReferencePage = () => {
         handDrawingImage={handDrawingImage}
         setFreeDraw={setFreeDraw}
         setPreviewURL={setPreviewURL}
+        previewURL={previewURL}
+        attachedImages={attachedImages}
       />
     </PageLayout>
   );
