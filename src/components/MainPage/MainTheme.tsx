@@ -56,7 +56,7 @@ const St = {
   `,
 
   MainThemeWrapper: styled.div`
-    margin-top: 1rem;
+    margin-top: 2.2rem;
     margin-right: 1.2rem;
 
     .scroll-container {

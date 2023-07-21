@@ -15,15 +15,15 @@ const CustomImgPage = () => {
   const navigate = useNavigate();
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
-  const [customMainImage, setCustomMainImage] = useState<File>();
+  const [customImages, setCustomImages] = useState<FileList>();
   const location = useLocation();
 
   const haveDesign = location.state ? location.state.haveDesgin : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
 
-  //state에 있는 img 파일 값 가져오기 (처음 넘어올 때는 customMainImage 값이 없으므로 에러 방지 필요)
+  //state에 있는 img 파일 값 가져오기 (처음 넘어올 때는  값이 없으므로 에러 방지 필요)
   const attachedImg =
-    location.state && location.state.customMainImage ? location.state.customMainImage : null;
+    location.state && location.state.customImages ? location.state.customImages : null;
 
   useEffect(() => {
     if (!location.state) navigate('/onboarding');
@@ -68,13 +68,13 @@ const CustomImgPage = () => {
           navigateURL='/custom-request'
           haveDesign={haveDesign}
           customInfo={customInfo}
-          customMainImage={customMainImage}
+          customImages={customImages}
         />
       }
     >
       <CustomImg
         setIsActiveNext={setIsActiveNext}
-        setCustomMainImage={setCustomMainImage}
+        setCustomImages={setCustomImages}
         attachedImg={attachedImg}
       />
     </PageLayout>

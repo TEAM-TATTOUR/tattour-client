@@ -22,7 +22,6 @@ export interface CustomDetailItemProps {
     isCompleted: boolean;
     process?: string;
     viewCount: number;
-    count: number;
 }
 
 interface CustomDetailResponse {
