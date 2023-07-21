@@ -8,7 +8,7 @@ const MainBanner = () => {
   const navigate = useNavigate();
 
   const handleClickHomekButton = () => {
-    getAccessToken() ? navigate('/login') : navigate('/onboarding');
+    getAccessToken() ? navigate('/onboarding') : navigate('/login');
   };
 
   return (
