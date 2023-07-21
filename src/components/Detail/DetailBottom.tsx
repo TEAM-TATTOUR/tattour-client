@@ -41,7 +41,7 @@ const DetailBottom = ({
     !error && !loading && response && response.point < count * discountPrice + shippingCost
       ? setLack(true)
       : setLack(false);
-  }, [count]);
+  }, [count, loading]);
 
   return (
     <CustomSheet
@@ -50,39 +50,42 @@ const DetailBottom = ({
       detent='content-height'
       disableDrag={true}
     >
+      {}
       <Sheet.Container>
         <Sheet.Header disableDrag={true}>
           <St.Title>수량</St.Title>
           <IcCancelDark onClick={() => setSheetOpen(false)} />
         </Sheet.Header>
         <Sheet.Content>
-          <St.FullBox>
-            <St.Wrapper>
-              <St.Stepper>
-                {count === 1 ? (
-                  <IcMinusOneunder />
-                ) : (
-                  <IcMinus onClick={() => setCount((prev) => prev - 1)} />
-                )}
-                <span>{count}</span>
-                <IcPlus onClick={() => setCount((prev) => prev + 1)} />
-              </St.Stepper>
-              <St.PriceContainer>
-                <St.Price>{(count * discountPrice).toLocaleString()}</St.Price>
-                <St.PriceUnit>원</St.PriceUnit>
-              </St.PriceContainer>
-            </St.Wrapper>
-            <St.DeliveryPrice>+ 배송비 {shippingCost.toLocaleString()}원</St.DeliveryPrice>
-            <St.Line />
-            <St.FinalPriceContainer>
-              <St.PriceText>결제 금액</St.PriceText>
-              <St.FinalPrice $isLack={isLack}>
-                {(count * discountPrice + shippingCost).toLocaleString()}
-              </St.FinalPrice>
-              <St.PriceText>원</St.PriceText>
-            </St.FinalPriceContainer>
-            <St.LackText $isLack={isLack}>보유 포인트가 부족합니다</St.LackText>
-          </St.FullBox>
+          {!error && !loading && (
+            <St.FullBox>
+              <St.Wrapper>
+                <St.Stepper>
+                  {count === 1 ? (
+                    <IcMinusOneunder />
+                  ) : (
+                    <IcMinus onClick={() => setCount((prev) => prev - 1)} />
+                  )}
+                  <span>{count}</span>
+                  <IcPlus onClick={() => setCount((prev) => prev + 1)} />
+                </St.Stepper>
+                <St.PriceContainer>
+                  <St.Price>{(count * discountPrice).toLocaleString()}</St.Price>
+                  <St.PriceUnit>원</St.PriceUnit>
+                </St.PriceContainer>
+              </St.Wrapper>
+              <St.DeliveryPrice>+ 배송비 {shippingCost.toLocaleString()}원</St.DeliveryPrice>
+              <St.Line />
+              <St.FinalPriceContainer>
+                <St.PriceText>결제 금액</St.PriceText>
+                <St.FinalPrice $isLack={isLack}>
+                  {(count * discountPrice + shippingCost).toLocaleString()}
+                </St.FinalPrice>
+                <St.PriceText>원</St.PriceText>
+              </St.FinalPriceContainer>
+              <St.LackText $isLack={isLack}>보유 포인트가 부족합니다</St.LackText>
+            </St.FullBox>
+          )}
           <DetailFooter
             id={id}
             setSheetOpen={setSheetOpen}
