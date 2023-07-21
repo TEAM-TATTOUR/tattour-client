@@ -3,21 +3,6 @@ import CustomScrollContainer from '../../common/CustomScrollContainer';
 import MyCustomItem from './MyCustomItem';
 import useGetMyCustom from '../../libs/hooks/useGetMyCustom';
 
-const dummyMyCustomData = [
-  {
-    id: 1,
-    title: '타투 제목',
-  },
-  {
-    id: 2,
-    title: '타투 제목',
-  },
-  {
-    id: 3,
-    title: '타투 제목',
-  },
-];
-
 const MyCustom = () => {
   const { response, error, loading } = useGetMyCustom();
 

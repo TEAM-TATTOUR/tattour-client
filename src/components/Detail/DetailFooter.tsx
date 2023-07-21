@@ -31,6 +31,11 @@ const DetailFooter = ({
   const [toast, setToast] = useState(false);
 
   const handleClickButton = () => {
+    if (like === null) {
+      // 로그인 상태가 아닌 경우
+      setToast(true);
+      return;
+    }
     if (text === '충전하기') {
       // state 하나 넘겨줘야함. 추후 추가 예정
       navigate('/point-charge', {
@@ -54,7 +59,6 @@ const DetailFooter = ({
 
   // 좋아요 추가 통신
   const postLiked = async () => {
-    console.log('좋아요 추가 통신', id);
     await api
       .post(`/user/productliked/save`, {
         stickerId: id,
@@ -71,8 +75,6 @@ const DetailFooter = ({
 
   // 좋아요 삭제 통신
   const postDisliked = async () => {
-    console.log('좋아요 삭제 통신', id);
-
     await api
       .delete(`/user/productliked/sticker/${id}/delete`)
       .then(() => {
@@ -89,15 +91,15 @@ const DetailFooter = ({
     if (like === null) {
       // 로그인 상태가 아닌 경우
       setToast(true);
-      // setLike(X)
     } else if (like) {
       // 로그인 상태인 경우
       // 만약 원래 좋아요가 눌린 상태면
       postDisliked();
+      setLike((prev) => !prev);
     } else {
       postLiked();
+      setLike((prev) => !prev);
     }
-    setLike((prev) => !prev);
   };
 
   return (

@@ -2,47 +2,7 @@ import { styled } from 'styled-components';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { useNavigate } from 'react-router-dom';
 import { IcArrowRightDark, LabelCustomSmall } from '../assets/icon';
-import test_tattoo from '../assets/test_tattoo.png';
-import useGetHotCustom, { HotCustomItemProps } from '../libs/hooks/useGetHotCustom';
-
-const dummyItemList: HotCustomItemProps[] = [
-  {
-    id: 1,
-    imageUrl: '',
-    name: '고양이 리본 타투',
-    price: 5000,
-    discountPrice: 4000,
-    discountRate: 25,
-    isCustom: true,
-  },
-  {
-    id: 2,
-    imageUrl: '',
-    name: '고양이 리본 타투',
-    price: 5000,
-    discountPrice: 4000,
-    discountRate: 25,
-    isCustom: true,
-  },
-  {
-    id: 3,
-    imageUrl: '',
-    name: '고양이 리본 타투',
-    price: 5000,
-    discountPrice: 4000,
-    discountRate: 25,
-    isCustom: true,
-  },
-  {
-    id: 4,
-    imageUrl: '',
-    name: '고양이 리본 타투',
-    price: 5000,
-    discountPrice: 4000,
-    discountRate: 25,
-    isCustom: true,
-  },
-];
+import useGetHotCustom from '../libs/hooks/useGetHotCustom';
 
 const HotCustom = () => {
   const navigate = useNavigate();

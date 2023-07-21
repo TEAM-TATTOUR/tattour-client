@@ -24,7 +24,7 @@ const ChargePage = () => {
       <Header
         leftSection={<St.BlankSection></St.BlankSection>}
         title='포인트 충전'
-        rightSection={<IcCancelDark onClick={() => navigate(-1)} />}
+        rightSection={<IcCancelDark onClick={() => navigate(redirectURL)} />}
         progressBar={<ProgressBar curStep={1} maxStep={2} />}
       />
     );

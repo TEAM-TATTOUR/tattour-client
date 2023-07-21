@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { StickerItemProps } from '../../libs/hooks/detail/useGetSticker';
 
-const DetailInfo = ({ response }: StickerItemProps) => {
+const DetailInfo = ({ response }: { response: StickerItemProps }) => {
   const [isOpen, setOpen] = useState(false);
 
   const {
@@ -16,7 +16,6 @@ const DetailInfo = ({ response }: StickerItemProps) => {
     stickerThemes,
     stickerStyles,
     description,
-    productLiked,
   } = response;
 
   return (
