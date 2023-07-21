@@ -1,23 +1,20 @@
 import { styled } from 'styled-components';
-import { IcArrowRightDark, ImgHome } from '../../assets/icon';
-import { renderToStaticMarkup } from 'react-dom/server';
+import { IcArrowRightDark } from '../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 import bannerVideo from '../../assets/video/tattour_home_banner.mp4';
+import { getAccessToken } from '../../libs/api';
 
 const MainBanner = () => {
-  const svgString = encodeURIComponent(renderToStaticMarkup(<ImgHome />));
-
   const navigate = useNavigate();
 
   const handleClickHomekButton = () => {
-    // 추후 수정
-    navigate('/onboarding');
+    getAccessToken() ? navigate('/login') : navigate('/onboarding');
   };
 
   return (
     <>
       <St.MainWrapper>
-        <St.Video autoPlay muted loop>
+        <St.Video loop='loop' muted='muted' autoPlay='autoPlay' playsInline>
           <source src={bannerVideo} type='video/mp4'></source>
         </St.Video>
       </St.MainWrapper>
@@ -80,7 +77,8 @@ const St = {
     height: 4.2rem;
 
     background-color: ${({ theme }) => theme.colors.pink5};
-    font: ${({ theme }) => theme.fonts.title_semibold_20};
+    ${({ theme }) => theme.fonts.title_semibold_20};
+    color: ${({ theme }) => theme.colors.gray9};
     border-radius: 0.5rem;
   `,
 };
