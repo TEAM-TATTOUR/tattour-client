@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import api from '../../api';
+import api, { getAccessToken } from '../../api';
 import { AxiosError } from 'axios';
 
 export interface PointItemProp {
@@ -17,6 +17,7 @@ const useGetPoint = () => {
   const [response, setResponse] = useState<PointItemProp>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
+  const [isLogin] = useState(getAccessToken);
 
   const fetchData = async () => {
     await api
@@ -34,6 +35,7 @@ const useGetPoint = () => {
   };
 
   useEffect(() => {
+    if (!isLogin) return;
     fetchData();
   }, []);
 

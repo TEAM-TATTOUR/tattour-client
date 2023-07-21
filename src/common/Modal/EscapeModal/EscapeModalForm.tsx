@@ -3,6 +3,7 @@ import { IcCancelDark } from '../../../assets/icon';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 interface EscapeModalFormProps {
+  redirectURL?: string;
   onClose: () => void;
   pageName: string;
   title: string;
@@ -12,6 +13,7 @@ interface EscapeModalFormProps {
 }
 
 const EscapeModalForm = ({
+  redirectURL,
   onClose,
   pageName,
   title,
@@ -32,7 +34,7 @@ const EscapeModalForm = ({
         break;
 
       case 'ChargePage':
-        navigate('/charge');
+        redirectURL ? navigate(redirectURL) : navigate('/');
         break;
 
       case 'CustomSizePage':

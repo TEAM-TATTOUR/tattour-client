@@ -88,14 +88,16 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
         <St.SideMenuEtcButtonWrapper>
           <a
             // 약관 동의 페이지
-            href='https://www.notion.so/About-Us-3b0b0b0b0b9e4b6e9b9b9b9b9b9b9b9b'
+            href='https://hallowed-passive-714.notion.site/c96132451bf54800ab488d21a12a3a3f?pvs=4'
             target='_blank'
             rel='noreferrer'
           >
             <IcInformation />
           </a>
           <St.SideMenuCSButtonWrapper>
-            <St.SideMenuCSButton type='button'>문의하기</St.SideMenuCSButton>
+            <a href='http://pf.kakao.com/_lxmxlIG' target='cs' rel='noreferrer'>
+              <St.SideMenuCSButton type='button'>문의하기</St.SideMenuCSButton>
+            </a>
             {isLogin && (
               <>
                 <St.Delimeter />

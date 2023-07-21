@@ -150,7 +150,7 @@ const FilterBottom = ({
     if (selectedTag[filterIdx] === FILTER[filterIdx].type) {
       newTag[filterIdx] = FILTER[filterIdx].data.map(() => false);
     } else {
-      newTag[filterIdx] = FILTER[filterIdx].data.map((item, idx) => {
+      newTag[filterIdx] = FILTER[filterIdx].data.map((_, idx) => {
         return idx === FILTER[filterIdx].data.indexOf(selectedTag[filterIdx]);
       });
     }

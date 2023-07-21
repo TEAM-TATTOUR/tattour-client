@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { StickerItemProps } from '../../libs/hooks/detail/useGetSticker';
 
-const DetailInfo = ({ response }: StickerItemProps) => {
+const DetailInfo = ({ response }: { response: StickerItemProps }) => {
   const [isOpen, setOpen] = useState(false);
 
   const {
@@ -16,7 +16,6 @@ const DetailInfo = ({ response }: StickerItemProps) => {
     stickerThemes,
     stickerStyles,
     description,
-    productLiked,
   } = response;
 
   return (
@@ -35,11 +34,11 @@ const DetailInfo = ({ response }: StickerItemProps) => {
       <St.OriginalPrice>{price && price.toLocaleString()}원</St.OriginalPrice>
       <St.LightLine />
       <St.Description>
-        <St.Category>구성</St.Category>
+        <span>구성</span>
         <span>{composition}</span>
-        <St.Category>크기</St.Category>
+        <span>크기</span>
         <span>{size}</span>
-        <St.Category>배송비</St.Category>
+        <span>배송비</span>
         <span>{shippingCost && shippingCost.toLocaleString()}원</span>
       </St.Description>
       <St.BoldLine />
@@ -126,14 +125,14 @@ const St = {
     gap: 0.6rem;
     margin-bottom: 0.2rem;
 
-    & > span {
+    & > span:nth-child(odd) {
       ${({ theme }) => theme.fonts.body_medium_14};
       color: ${({ theme }) => theme.colors.gray4};
     }
-  `,
-  Category: styled.span`
-    ${({ theme }) => theme.fonts.body_medium_14};
-    color: ${({ theme }) => theme.colors.gray3};
+    & > span:nth-child(even) {
+      ${({ theme }) => theme.fonts.body_medium_14};
+      color: ${({ theme }) => theme.colors.gray3};
+    }
   `,
   BoldLine: styled.hr`
     margin: 3rem -2.2rem 0rem -2.2rem;

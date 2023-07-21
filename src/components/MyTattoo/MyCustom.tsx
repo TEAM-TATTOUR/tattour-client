@@ -2,21 +2,7 @@ import { styled } from 'styled-components';
 import CustomScrollContainer from '../../common/CustomScrollContainer';
 import MyCustomItem from './MyCustomItem';
 import useGetMyCustom from '../../libs/hooks/useGetMyCustom';
-
-const dummyMyCustomData = [
-  {
-    id: 1,
-    title: '타투 제목',
-  },
-  {
-    id: 2,
-    title: '타투 제목',
-  },
-  {
-    id: 3,
-    title: '타투 제목',
-  },
-];
+import { useNavigate } from 'react-router-dom';
 
 const MyCustom = () => {
   const { response, error, loading } = useGetMyCustom();
@@ -27,7 +13,7 @@ const MyCustom = () => {
         {!error &&
           !loading &&
           response.map(({ id, name, imageUrl }) => {
-            return <MyCustomItem key={id} name={name} imageUrl={imageUrl} />;
+            return <MyCustomItem key={id} id={id} name={name} imageUrl={imageUrl} />;
           })}
       </CustomScrollContainer>
       <St.Divide />
