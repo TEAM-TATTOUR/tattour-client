@@ -3,18 +3,6 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import useGetStyleCard, { MainStyleItemProps } from '../../libs/hooks/useGetStyleCard';
 import { useNavigate } from 'react-router-dom';
 
-const renderMainStyleDummyImage = () => {
-  return (
-    <div
-      style={{
-        width: '15.3rem',
-        height: '9.6rem',
-        backgroundColor: 'gray',
-      }}
-    ></div>
-  );
-};
-
 const MainStyle = () => {
   const { response, error, loading } = useGetStyleCard();
 
@@ -38,12 +26,10 @@ const MainStyle = () => {
         <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
           {!loading &&
             !error &&
-            response.map((item) => {
+            response.map(({ id, name, imageUrl }) => {
               return (
-                <St.MainStyleItem key={item.id} onClick={handleClickCard(item.name)}>
-                  {renderMainStyleDummyImage()}
-                  <St.MainThemeItemTitle>{item.name}</St.MainThemeItemTitle>
-                  <St.MainThemeItemDescription>{item.description}</St.MainThemeItemDescription>
+                <St.MainStyleItem key={id} onClick={handleClickCard(name)}>
+                  <St.MainStyleImage src={imageUrl} />
                 </St.MainStyleItem>
               );
             })}
@@ -57,6 +43,7 @@ const St = {
   MainStyleSection: styled.section`
     padding-left: 2rem;
     margin-top: 3.6rem;
+    margin-bottom: 7rem;
   `,
 
   MainStyleHeader: styled.header`
@@ -86,6 +73,11 @@ const St = {
     flex-direction: column;
 
     width: 15.3rem;
+  `,
+
+  MainStyleImage: styled.img`
+    width: 15.3rem;
+    height: 9.6rem;
   `,
 
   MainThemeItemTitle: styled.span`
