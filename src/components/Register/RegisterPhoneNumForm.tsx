@@ -11,7 +11,7 @@ import api from '../../libs/api';
 interface resProps {
   data: {
     data: {
-      verified: boolean;
+      isVerified: boolean;
     };
   };
 }
