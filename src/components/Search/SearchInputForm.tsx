@@ -7,6 +7,10 @@ const SearchInputForm = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
+  const { pathname } = window.location;
+
+  const keyword = pathname.split('/')[2];
+
   const handleClickBackButton = () => {
     navigate('/');
   };
