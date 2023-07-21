@@ -6,8 +6,12 @@ import { useState } from 'react';
 
 const CustomReference = ({
   setIsActiveNext,
+  setCustomMainImage,
+  setCustomImages,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  setCustomMainImage: React.Dispatch<React.SetStateAction<File | null>>;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
 }) => {
   const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
@@ -21,6 +25,8 @@ const CustomReference = ({
         drawingImageURL={drawingImageUrl}
         setDrawingImageURL={setDrawingImageUrl}
         setIsActiveNext={setIsActiveNext}
+        setCustomMainImage={setCustomMainImage}
+        setCustomImages={setCustomImages}
       />
       {isBottomOpen && (
         <PaintBottomSheet
