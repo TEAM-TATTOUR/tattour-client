@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { customInfoType } from '../../types/customInfoType';
-import api from '../../libs/api';
+import api, { setAccessToken } from '../../libs/api';
+import { useEffect } from 'react';
 
 interface PriceFooterProps {
   haveDesign?: boolean;
   customInfo?: customInfoType;
   customMainImage: File;
-  customImages: FileList;
+  customImages?: FileList | null;
 }
 
 const PriceFooter = ({ customInfo, customMainImage, customImages }: PriceFooterProps) => {
@@ -15,22 +16,31 @@ const PriceFooter = ({ customInfo, customMainImage, customImages }: PriceFooterP
 
   const handleClickFooterBtn = async () => {
     const formData = new FormData();
-    formData.append('customInfo', JSON.stringify(customInfo));
-    formData.append('customMainImage', customMainImage);
-    if (customImages) {
-      for (let i = 0; i < customImages.length; i++) {
-        formData.append('customImages', customImages[i]);
-      }
-    }
     try {
-      const { data } = await api.patch('/custom/update', formData);
+      console.log('cm', customMainImage);
+      console.log('customI', customInfo);
+      formData.append('customMainImage', customMainImage);
+      const json = JSON.stringify(customInfo);
+      const blob = new Blob([json], { type: 'application/json' });
+
+      formData.append('customInfo', blob);
+      if (customImages) {
+        formData.append('customImages', customImages);
+      }
+      const { data } = await api.patch('/custom/update', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       navigate('/receipt', {
         state: {
           data: data,
         },
       });
     } catch (err) {
-      // console.log(err);
+      console.log(formData);
+
+      console.log(err);
     }
   };
 

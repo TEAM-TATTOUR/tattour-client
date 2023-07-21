@@ -15,15 +15,15 @@ import { IcBackDark } from '../../assets/icon';
 const PricePage = () => {
   const [modalOn, setModalOn] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   const haveDesign = location.state ? location.state.haveDesign : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
-  const customMainImage = location.state ? location.state.customInfo : null;
-  const customImages = location.state ? location.state.customInfo : null;
+  const customMainImage = location.state ? location.state.customMainImage : null;
+  const customImages = location.state ? location.state.customImages : null;
 
   const CUSTOM_VIEW_COUNT = haveDesign ? 7 : 4;
   const backNavigateURL = haveDesign ? '/additional-request' : '/custom-request';
