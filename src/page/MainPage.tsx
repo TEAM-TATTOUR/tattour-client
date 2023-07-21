@@ -47,7 +47,13 @@ const MainPage = () => {
     return (
       <Header
         transparent={isHeaderTransparent}
-        leftSection={isHeaderTransparent ? <ImgLogoLight /> : <ImgLogoDark />}
+        leftSection={
+          isHeaderTransparent ? (
+            <ImgLogoLight onClick={() => window.location.reload()} />
+          ) : (
+            <ImgLogoDark onClick={() => window.location.reload()} />
+          )
+        }
         rightSection={
           <MainHeaderButton setIsSideMenuOpen={setIsSideMenuOpen} light={isHeaderTransparent} />
         }
@@ -63,7 +69,7 @@ const MainPage = () => {
     >
       {isWelcomeModalOpen && <WelcomeModal setModalOn={setIsWelcomeModalOpen} />}
       <MainBanner />
-      <HotCustom arrow={true} />
+      <HotCustom />
       <MainEventBanner setToast={setToast} />
       <MainTheme />
       <MainStyle />

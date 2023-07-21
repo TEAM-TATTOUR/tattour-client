@@ -1,20 +1,28 @@
+import { useNavigate } from 'react-router';
 import { styled } from 'styled-components';
 
 const SearchResultItem = ({
+  id,
   title,
   img,
   price,
   discountRate,
   originalPrice,
 }: {
+  id: number;
   title: string;
   img: string;
   price: number;
   discountRate: number;
   originalPrice: number;
 }) => {
+  const navigate = useNavigate();
+  const handleClickSearchResultItem = () => {
+    navigate(`/detail/${id}`);
+  };
+
   return (
-    <St.SearchResultItem>
+    <St.SearchResultItem onClick={handleClickSearchResultItem}>
       <St.SearchResultItemImg src={img} />
       <St.SearchResultItemDescription>
         <St.SearchResultItemTitle>{title}</St.SearchResultItemTitle>
@@ -61,6 +69,7 @@ const St = {
   SearchResultPriceWrapper: styled.p`
     display: flex;
     margin-top: 0.4rem;
+    gap: 0.5rem;
   `,
 
   SearchResultItemDiscountRate: styled.span`
@@ -74,6 +83,8 @@ const St = {
   `,
 
   SearchResultItemOriginalPrice: styled.span`
+    margin-top: 0.3rem;
+
     ${({ theme }) => theme.fonts.body_line_medium_14};
     color: ${({ theme }) => theme.colors.gray1};
   `,
