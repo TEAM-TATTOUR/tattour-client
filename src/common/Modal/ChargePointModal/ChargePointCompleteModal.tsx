@@ -1,6 +1,8 @@
 import { styled } from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
+import useGetUserProfile from '../../../libs/hooks/useGetUserProfile';
+import { useEffect, useState } from 'react';
 
 interface ChargePointCompleteModalProps {
   setIsOpenCompleteModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,42 +16,52 @@ const ChargePointCompleteModal = ({
   redirectURL,
 }: ChargePointCompleteModalProps) => {
   const navigate = useNavigate();
+  const [currPoint, setCurrPoint] = useState(0);
+
+  const { response, error, loading } = useGetUserProfile();
+
+  useEffect(() => {
+    if (response) setCurrPoint(response.point);
+  }, [response]);
 
   const handleNavigateBtn = () => {
     navigate(redirectURL);
   };
 
   return (
-    <St.ModalWrapper>
-      <St.ModalContent>
-        <St.ModalTitleWrapper>
-          <IcCancelDark onClick={() => setIsOpenCompleteModal(false)} />
-          <St.ModalTitle>포인트 충전 완료</St.ModalTitle>
-        </St.ModalTitleWrapper>
+    !error &&
+    !loading && (
+      <St.ModalWrapper>
+        <St.ModalContent>
+          <St.ModalTitleWrapper>
+            <IcCancelDark onClick={() => setIsOpenCompleteModal(false)} />
+            <St.ModalTitle>포인트 충전 완료</St.ModalTitle>
+          </St.ModalTitleWrapper>
 
-        <St.ContentsWrapper>
-          <St.PointWrapper>
-            <St.PointTitle>충전한 금액</St.PointTitle>
-            <St.PointContentsWrapper>
-              <St.TopContents>{chargeAmount}</St.TopContents>
-              <St.Unit>P</St.Unit>
-            </St.PointContentsWrapper>
-          </St.PointWrapper>
+          <St.ContentsWrapper>
+            <St.PointWrapper>
+              <St.PointTitle>충전한 금액</St.PointTitle>
+              <St.PointContentsWrapper>
+                <St.TopContents>{chargeAmount}</St.TopContents>
+                <St.Unit>P</St.Unit>
+              </St.PointContentsWrapper>
+            </St.PointWrapper>
 
-          <St.PointWrapper>
-            <St.PointTitle>충전 후 포인트 잔액</St.PointTitle>
-            <St.PointContentsWrapper>
-              <St.BottomContents>13000</St.BottomContents>
-              <St.Unit>P</St.Unit>
-            </St.PointContentsWrapper>
-          </St.PointWrapper>
-        </St.ContentsWrapper>
+            <St.PointWrapper>
+              <St.PointTitle>충전 후 포인트 잔액</St.PointTitle>
+              <St.PointContentsWrapper>
+                <St.BottomContents>{currPoint}</St.BottomContents>
+                <St.Unit>P</St.Unit>
+              </St.PointContentsWrapper>
+            </St.PointWrapper>
+          </St.ContentsWrapper>
 
-        <St.BtnWrapper>
-          <St.NavigationBtn onClick={handleNavigateBtn}>포인트 쓰러가기</St.NavigationBtn>
-        </St.BtnWrapper>
-      </St.ModalContent>
-    </St.ModalWrapper>
+          <St.BtnWrapper>
+            <St.NavigationBtn onClick={handleNavigateBtn}>포인트 쓰러가기</St.NavigationBtn>
+          </St.BtnWrapper>
+        </St.ModalContent>
+      </St.ModalWrapper>
+    )
   );
 };
 
