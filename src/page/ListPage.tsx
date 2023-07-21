@@ -29,7 +29,6 @@ const ListPage = () => {
   const [isSideMenuOpen, setSideMenuOpen] = useState(false);
 
   const renderListPageHeader = () => {
-
     const handleClickLogo = () => {
       navigate('/');
     };

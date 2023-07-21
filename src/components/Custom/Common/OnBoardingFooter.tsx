@@ -1,19 +1,56 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import TempSaveModal from '../../../common/Modal/TempSaveModal/TempSaveModal';
-import useGetCustomSaveList from '../../../libs/hooks/useGetCustomSaveList';
 import { useNavigate } from 'react-router-dom';
+import api from '../../../libs/api';
+import { AxiosError } from 'axios';
 
-const OnBoardingFooter = () => {
+export interface CustomSaveItemProps {
+  id: number;
+  name: string;
+  imageUrl: string;
+}
+
+interface CustomSaveResponse {
+  data: {
+    customs: CustomSaveItemProps[];
+  };
+  code: number;
+  message: string;
+}
+
+const OnBoardingFooter = ({ isLogin }: { isLogin: boolean }) => {
   const navgiate = useNavigate();
 
   const [modalOn, setModalOn] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { response, error, loading } = useGetCustomSaveList();
+  const [response, setResponse] = useState<CustomSaveItemProps[]>([]);
+  const [error, setError] = useState<AxiosError>();
+  const [loading, setLoading] = useState(true);
+
+  const fetchData = async () => {
+    await api
+      .get('/user/custom/incomplete')
+      .then((res) => {
+        const data: CustomSaveResponse = res.data;
+        setResponse(data.data.customs);
+      })
+      .catch((err) => {
+        setError(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
-    if (response.length === 0) {
+    if (!isLogin) return;
+    fetchData();
+  }, [isLogin]);
+
+  useEffect(() => {
+    if (response?.length === 0) {
       setIsModalOpen(false);
     } else {
       setIsModalOpen(true);

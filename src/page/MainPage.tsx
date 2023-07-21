@@ -47,7 +47,13 @@ const MainPage = () => {
     return (
       <Header
         transparent={isHeaderTransparent}
-        leftSection={isHeaderTransparent ? <ImgLogoLight /> : <ImgLogoDark />}
+        leftSection={
+          isHeaderTransparent ? (
+            <ImgLogoLight onClick={() => window.location.reload()} />
+          ) : (
+            <ImgLogoDark onClick={() => window.location.reload()} />
+          )
+        }
         rightSection={
           <MainHeaderButton setIsSideMenuOpen={setIsSideMenuOpen} light={isHeaderTransparent} />
         }

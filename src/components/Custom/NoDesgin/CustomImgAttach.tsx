@@ -4,13 +4,13 @@ import React, { useEffect, useState } from 'react';
 
 interface CustomImgAttachProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-  setCustomMainImage: React.Dispatch<React.SetStateAction<File | undefined>>;
-  attachedImg: File | null;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | undefined>>;
+  attachedImg: FileList | null;
 }
 
 const CustomImgAttach = ({
   setIsActiveNext,
-  setCustomMainImage,
+  setCustomImages,
   attachedImg,
 }: CustomImgAttachProps) => {
   const [previewURL, setPreviewURL] = useState('');
@@ -22,28 +22,27 @@ const CustomImgAttach = ({
   useEffect(() => {
     //state에 있는 attachedImg 값 가져와서 미리보기 구현하기
     if (!attachedImg) return;
-    setCustomMainImage(attachedImg);
-
+    setCustomImages(attachedImg);
     const reader = new FileReader();
-    reader.readAsDataURL(attachedImg);
+    reader.readAsDataURL(attachedImg[0]);
     reader.onloadend = () => {
       setPreviewURL(reader.result as string);
     }; // FileReader로 이미지 미리보기 구현
-  }, [attachedImg, setCustomMainImage]);
+  }, [attachedImg]);
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
-    if (!files || !files[0]) return; // early return
+    if (!files) return; // early return
 
-    const fileBlob = files[0]; // 서버 통신 시 보낼 타입
-    setCustomMainImage(fileBlob);
+    const fileBlob = files; // 서버 통신 시 보낼 타입
+    setCustomImages(fileBlob);
 
     const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
+    reader.readAsDataURL(fileBlob[0]);
     reader.onloadend = () => {
       setPreviewURL(reader.result as string);
-      e.target.value = ''; // 같은 파일을 올리면 change 이벤트 인지 못해서 여기서 초기화
     }; // FileReader로 이미지 미리보기 구현
+    // e.target.value = ''; // 같은 파일을 올리면 change 이벤트 인지 못해서 여기서 초기화
   };
 
   const handleClickImgPreviewDelBtn = () => {

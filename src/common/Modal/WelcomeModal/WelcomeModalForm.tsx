@@ -13,7 +13,7 @@ const WelcomeModalForm = ({ onClose, title, continueBtn }: WelcomeModalFormProps
 
   const handleClickContinueBtn = () => {
     onClose();
-    navigate('/');
+    navigate('/onboarding');
   };
 
   return (

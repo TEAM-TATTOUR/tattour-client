@@ -4,12 +4,13 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 interface CustomTattooDetailProps {
   title: string;
   image: string[];
-  size: string;
-  quantity: number;
-  requests: string;
-  color?: string;
+  size?: string;
+  quantity?: number;
+  requests?: string;
+  color?: boolean;
   topic?: string;
   haveDesign: boolean;
+  mainImage: string;
 }
 
 const MyTattooDetailSection = ({
@@ -21,10 +22,18 @@ const MyTattooDetailSection = ({
   haveDesign,
   color,
   topic,
+  mainImage,
 }: CustomTattooDetailProps) => {
+  enum SizeEnum {
+    quarter = '5cm 이하',
+    half = 'A4 1/8',
+    regular = 'A4 1/4',
+    double = 'A4 1/2',
+  }
+
   const DESCRIPTION_ITEM_LIST = [
-    { title: '컬러', property: color },
-    { title: '크기', property: size },
+    { title: '컬러', property: `${color ? '컬러' : '흑백'}` },
+    { title: '크기', property: SizeEnum[size as keyof typeof SizeEnum] },
     { title: '수량', property: quantity },
     { title: '주제', property: topic },
     { title: '요청사항', property: requests },
@@ -36,6 +45,7 @@ const MyTattooDetailSection = ({
         <St.MyTattooTitle>{title}</St.MyTattooTitle>
         <St.MyTattooImageWrapper>
           <ScrollContainer className='scroll-container'>
+            {mainImage && <St.MyTattooImage src={mainImage} $haveDesign={haveDesign} />}
             {image.map((img, idx) => {
               return <St.MyTattooImage key={idx} src={img} $haveDesign={haveDesign} />;
             })}
