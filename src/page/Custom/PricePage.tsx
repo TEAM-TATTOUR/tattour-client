@@ -98,6 +98,6 @@ const St = {
     display: flex;
     flex-direction: column;
 
-    min-height: calc(100dvh - 35.1rem);
+    height: calc(100dvh - 25.7rem);
   `,
 };

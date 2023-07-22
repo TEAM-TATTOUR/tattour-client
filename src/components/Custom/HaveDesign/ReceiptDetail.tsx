@@ -20,9 +20,9 @@ const ReceiptDetail = () => {
   // const { name, hashtag, color, size, quantity, theme, request, previewURL } = SAMPLE[0];
 
   return (
-    <>
+    <St.ReceiptDetailWrapper>
       <St.Divider />
-      <St.ReceiptDetailWrapper>
+      <St.ReceiptDetailContainer>
         <St.ReceiptTitle>{name}</St.ReceiptTitle>
         <St.PreviewSection>
           <St.ImgPreviewContainer>
@@ -38,7 +38,7 @@ const ReceiptDetail = () => {
             ))}
           </St.HashtagGroup>
         </St.PreviewSection>
-      </St.ReceiptDetailWrapper>
+      </St.ReceiptDetailContainer>
       <St.Line />
       <St.DetailWrapper>
         <St.DetailSubject>컬러</St.DetailSubject>
@@ -60,19 +60,26 @@ const ReceiptDetail = () => {
         <St.DetailSubject>요청사항</St.DetailSubject>
         <St.DetailContent>{description}</St.DetailContent>
       </St.DetailWrapper>
-    </>
+    </St.ReceiptDetailWrapper>
   );
 };
 
 export default ReceiptDetail;
 
 const St = {
+  ReceiptDetailWrapper: styled.section`
+    display: flex;
+    flex-direction: column;
+
+    min-height: calc(100dvh - 36.92rem);
+  `,
+
   Divider: styled.div`
     height: 1.3rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
   `,
-  ReceiptDetailWrapper: styled.section`
+  ReceiptDetailContainer: styled.section`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
