@@ -11,9 +11,7 @@ interface PaintBottomProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
   customImages: FileList | null;
-  attachedImages: FileList | null;
   setFreeDraw: React.Dispatch<React.SetStateAction<boolean>>;
-  freeDraw: boolean;
   setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
   handDrawingImage: File | null;
   previewURL: string[];
@@ -27,8 +25,6 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   setIsActiveNext,
   setCustomImages,
   customImages,
-  attachedImages,
-  freeDraw,
   setFreeDraw,
   setHandDrawingImage,
   handDrawingImage,
@@ -53,24 +49,44 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     previewURL.length !== 0 ? setIsActiveNext(true) : setIsActiveNext(false);
   }, [previewURL, setIsActiveNext]);
 
+  function dataURItoBlob(dataURI) {
+    // convert base64 to raw binary data held in a string
+    // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+    const byteString = atob(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to an ArrayBuffer
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ab], { type: mimeString });
+  }
+
   //이미지 파일 첨부하기
   useEffect(() => {
     if (!customImages) return;
     if (!drawingImageURL) return;
-
-    const blob = new Blob([new Uint8Array(drawingImageURL)], { type: 'image/png' });
+    console.log('customImages', drawingImageURL);
+    // const blob = new Blob([drawingImageURL], { type: 'image/png' });
+    const blob = dataURItoBlob(drawingImageURL);
     const file = new File([blob], 'image.png', {
       type: blob.type,
     });
+    console.log(file, 'file');
     setHandDrawingImage(file);
   }, [drawingImageURL]);
 
-  useEffect(() => {
-    if (drawingImageURL) {
-      setFreeDraw(true);
-      const file = new File([drawingImageURL], 'image.png', { type: 'image/png' });
-    } else setFreeDraw(false);
-  }, [drawingImageURL, setFreeDraw]);
+  // useEffect(() => {
+  //   if (drawingImageURL) {
+  //     setFreeDraw(true);
+  //     const file = new File([drawingImageURL], 'image.png', { type: 'image/png' });
+  //   } else setFreeDraw(false);
+  // }, [drawingImageURL, setFreeDraw]);
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -152,12 +168,10 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
               </St.Image>
             </St.ImgPreviewContainer>
           ))
-        ) : freeDraw !== true ? (
+        ) : (
           <St.Image>
             <St.ImageDescription> 필수 1장 첨부, 최대 3장 첨부 가능합니다.</St.ImageDescription>
           </St.Image>
-        ) : (
-          ''
         )}
         {handDrawingImage ? (
           <St.ImgPreviewContainer>
