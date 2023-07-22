@@ -100,6 +100,7 @@ const St = {
     width: 7.9rem;
     height: 3.1rem;
     margin-top: 1.4rem;
+    padding: 0;
 
     background-color: ${({ theme }) => theme.colors.bg};
     border-radius: 0.5rem;

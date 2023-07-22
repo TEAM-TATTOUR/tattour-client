@@ -75,9 +75,10 @@ const St = {
     margin-bottom: 5.3rem;
     width: 11.1rem;
     height: 4.2rem;
+    padding: 0;
 
     background-color: ${({ theme }) => theme.colors.pink5};
-    ${({ theme }) => theme.fonts.title_semibold_18};
+    ${({ theme }) => theme.fonts.title_semibold_20};
 
     color: ${({ theme }) => theme.colors.gray9};
     border-radius: 0.5rem;
