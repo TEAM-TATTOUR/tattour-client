@@ -68,7 +68,6 @@ const CustomReferencePage = () => {
           navigateURL={'/styling-color'}
           haveDesign={haveDesign}
           customInfo={customInfo}
-          setHandDrawingImage={setHandDrawingImage}
           customImages={customImages}
           handDrawingImage={handDrawingImage}
         />

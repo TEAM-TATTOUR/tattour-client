@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 
 const api: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_URL,
-  timeout: 5000, // 원하는 경우 타임아웃 설정
+  // timeout: 5000, // 원하는 경우 타임아웃 설정
 });
 
 // const ACCESS_TOKEN_KEY = 'accessToken';

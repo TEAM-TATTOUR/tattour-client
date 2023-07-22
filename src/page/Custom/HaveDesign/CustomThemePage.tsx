@@ -22,7 +22,7 @@ const CustomThemePage = () => {
 
   const haveDesign = location.state ? location.state.haveDesign : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
-  const customMainImage = location.state ? location.state.customMainImage : null;
+  const handDrawingImage = location.state ? location.state.handDrawingImage : null;
   const customImages = location.state ? location.state.customImages : null;
 
   const customNameState = location.state && location.state.name ? location.state.name : null;
@@ -72,7 +72,7 @@ const CustomThemePage = () => {
           navigateURL={'/additional-request'}
           haveDesign={haveDesign}
           customInfo={customInfo}
-          customMainImage={customMainImage}
+          handDrawingImage={handDrawingImage}
           customImages={customImages}
         />
       }

@@ -1,45 +1,48 @@
+import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 const ReceiptDetail = () => {
-  const SAMPLE = [
-    {
-      name: '백합 타투',
-      hashtag: ['낙서타투', '시크한', '섬세한'],
-      color: '흑백',
-      size: '5cm 이하',
-      quantity: 1,
-      theme: '백조를 선으로 딴 라인 타투',
-      request: '백조를 이렇게 저렇게 해주세요',
-      previewURL: ['https://ibb.co/YWKwsv6', 'https://ibb.co/GFSGFvF', 'https://ibb.co/p11dRQx'],
-    },
-  ];
+  const location = useLocation();
 
-  const { name, hashtag, color, size, quantity, theme, request, previewURL } = SAMPLE[0];
+  const size = location.state ? location.state.data.size : '';
+  const count = location.state ? location.state.data.count : 1;
+  const isColored = location.state ? location.state.data.isColored : false;
+  const name = location.state ? location.state.data.name : '';
+  const description = location.state ? location.state.data.description : '';
+  const themes = location.state ? location.state.data.themes : [];
+  const styles = location.state ? location.state.data.styles : [];
+  const mainImageUrl = location.state ? location.state.data.mainImageUrl : '';
+  const handDrawingImageUrl = location.state ? location.state.data.handDrawingImageUrl : '';
+  const images = location.state ? location.state.data.images : [];
+  const previewURL = [...themes, ...styles];
+  const imagesArray = [mainImageUrl, ...images, handDrawingImageUrl];
+
+  // const { name, hashtag, color, size, quantity, theme, request, previewURL } = SAMPLE[0];
 
   return (
-    <>
+    <St.ReceiptDetailWrapper>
       <St.Divider />
-      <St.ReceiptDetailWrapper>
+      <St.ReceiptDetailContainer>
         <St.ReceiptTitle>{name}</St.ReceiptTitle>
         <St.PreviewSection>
           <St.ImgPreviewContainer>
-            {previewURL.map((url, index) => (
+            {imagesArray.map((url, index) => (
               <St.Image key={index}>
                 <img src={url} alt='첨부-이미지-미리보기' />
               </St.Image>
             ))}
           </St.ImgPreviewContainer>
           <St.HashtagGroup>
-            {hashtag.map((tag, index) => (
+            {previewURL.map((tag, index) => (
               <St.Hashtag key={index}>{`#${tag}`}</St.Hashtag>
             ))}
           </St.HashtagGroup>
         </St.PreviewSection>
-      </St.ReceiptDetailWrapper>
+      </St.ReceiptDetailContainer>
       <St.Line />
       <St.DetailWrapper>
         <St.DetailSubject>컬러</St.DetailSubject>
-        <St.DetailContent>{color}</St.DetailContent>
+        <St.DetailContent>{isColored ? '컬러' : '흑백'}</St.DetailContent>
       </St.DetailWrapper>
       <St.DetailWrapper>
         <St.DetailSubject>크기</St.DetailSubject>
@@ -47,29 +50,36 @@ const ReceiptDetail = () => {
       </St.DetailWrapper>
       <St.DetailWrapper>
         <St.DetailSubject>수량</St.DetailSubject>
-        <St.DetailContent>{quantity}개</St.DetailContent>
+        <St.DetailContent>{count}개</St.DetailContent>
       </St.DetailWrapper>
       <St.DetailWrapper>
         <St.DetailSubject>주제</St.DetailSubject>
-        <St.DetailContent>{theme}</St.DetailContent>
+        <St.DetailContent>{name}</St.DetailContent>
       </St.DetailWrapper>
       <St.DetailWrapper className='request'>
         <St.DetailSubject>요청사항</St.DetailSubject>
-        <St.DetailContent>{request}</St.DetailContent>
+        <St.DetailContent>{description}</St.DetailContent>
       </St.DetailWrapper>
-    </>
+    </St.ReceiptDetailWrapper>
   );
 };
 
 export default ReceiptDetail;
 
 const St = {
+  ReceiptDetailWrapper: styled.section`
+    display: flex;
+    flex-direction: column;
+
+    min-height: calc(100dvh - 36.92rem);
+  `,
+
   Divider: styled.div`
     height: 1.3rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
   `,
-  ReceiptDetailWrapper: styled.section`
+  ReceiptDetailContainer: styled.section`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
