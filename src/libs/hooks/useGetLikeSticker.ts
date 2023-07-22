@@ -25,7 +25,7 @@ const useGetLikeSticker = () => {
     const [loading, setLoading] = useState(true);
 
     const fetchData = async () => {
-        await api.get('/user/product-liked/saved')
+        await api.get('/user/productliked/saved')
             .then(res => {
                 const data: LikeStickerResponse = res.data;
                 setResponse(data.data.stickersliked);
