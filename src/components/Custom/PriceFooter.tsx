@@ -8,6 +8,9 @@ interface PriceFooterProps {
   customInfo?: customInfoType;
   handDrawingImage: File;
   customImages?: FileList | null;
+  isCompleted: boolean;
+  handleCompletedState: () => void;
+  isCompletedState: boolean;
 }
 
 const PriceFooter = ({ customInfo, handDrawingImage, customImages }: PriceFooterProps) => {
@@ -16,8 +19,13 @@ const PriceFooter = ({ customInfo, handDrawingImage, customImages }: PriceFooter
   const handleClickFooterBtn = async () => {
     const formData = new FormData();
     try {
+      // handleCompletedState(); 이렇게 하면 안되는 듯,,
       formData.append('handDrawingImage', handDrawingImage);
-      const json = JSON.stringify(customInfo);
+      const newCustomInfo = {
+        ...customInfo,
+        isCompleted: true,
+      };
+      const json = JSON.stringify(newCustomInfo);
       const blob = new Blob([json], { type: 'application/json' });
 
       formData.append('customInfo', blob);
@@ -32,7 +40,7 @@ const PriceFooter = ({ customInfo, handDrawingImage, customImages }: PriceFooter
           'Content-Type': 'multipart/form-data',
         },
       });
-      // console.log('data', data.data);
+      console.log('data', data.data, '!!!!!');
       navigate('/receipt', {
         state: {
           data: data.data,

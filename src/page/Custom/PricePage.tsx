@@ -16,6 +16,11 @@ const PricePage = () => {
   const [modalOn, setModalOn] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
   const [count, setCount] = useState(1);
+  const [isCompletedState, setIsCompletedState] = useState(false);
+
+  const handleCompletedState = () => {
+    setIsCompletedState(true);
+  };
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,6 +31,7 @@ const PricePage = () => {
   const customImages = location.state ? location.state.customImages : null;
   const size = location.state ? location.state.customInfo.size : null;
   const price = location.state ? location.state.customInfo.price : null;
+  const isCompleted = location.state ? location.state.customInfo.isCompleted : null;
 
   const CUSTOM_VIEW_COUNT = haveDesign ? 7 : 4;
   const backNavigateURL = haveDesign ? '/additional-request' : '/custom-request';
@@ -42,6 +48,7 @@ const PricePage = () => {
     customImages: customImages,
     count: count,
     price: price,
+    isCompleted: isCompleted,
   };
 
   const renderPricePageHeader = () => {
@@ -79,6 +86,9 @@ const PricePage = () => {
           customInfo={customInfo}
           handDrawingImage={handDrawingImage}
           customImages={customImages}
+          isCompleted={isCompleted}
+          handleCompletedState={handleCompletedState}
+          isCompletedState={isCompletedState}
         />
       }
     >
