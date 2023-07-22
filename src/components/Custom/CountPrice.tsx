@@ -6,7 +6,6 @@ import {
   IcBtnStepperPlusDark,
 } from '../../assets/icon';
 import { PRICE } from '../../assets/data/PRICE';
-import { useLocation } from 'react-router-dom';
 
 interface CountPriceProps {
   isPublic: boolean;
@@ -18,8 +17,7 @@ const CountPrice = ({ isPublic, setCount, size }: CountPriceProps) => {
   const price = PRICE.find((item) => item.size === size)?.price;
   const discount = PRICE.find((item) => item.size === size)?.discount;
   const [quantity, setQuantity] = useState(1);
-  // console.log('price', price);
-  // console.log('discount', discount);
+
   useEffect(() => {
     setCount(quantity);
   }, [quantity, setCount]);

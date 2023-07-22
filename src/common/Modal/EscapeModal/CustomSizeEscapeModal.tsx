@@ -9,7 +9,7 @@ interface CustomSizeEscapeModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
   haveDesign?: boolean;
   customInfo?: customInfoType;
-  handDrawingImage: File;
+  handDrawingImage?: File | null;
   customImages?: FileList | null;
 }
 
@@ -40,7 +40,7 @@ const CustomSizeEscapeModal = ({
           'Content-Type': 'multipart/form-data',
         },
       });
-      navigate('/receipt', {
+      navigate('/', {
         state: {
           data: data,
         },
@@ -49,7 +49,7 @@ const CustomSizeEscapeModal = ({
       console.log(formData);
       console.log(err);
     }
-
+    navigate('/');
     setModalOn(false);
   };
 

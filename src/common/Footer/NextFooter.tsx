@@ -9,7 +9,6 @@ interface NextFooterProps {
   customInfo?: customInfoType;
   handDrawingImage?: File | null;
   customImages?: FileList | null;
-  setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
 }
 
 const NextFooter = ({

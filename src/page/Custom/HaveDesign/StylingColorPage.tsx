@@ -21,7 +21,7 @@ const StylingColorPage = () => {
 
   const haveDesign = location.state ? location.state.haveDesign : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
-  const customMainImage = location.state ? location.state.customMainImage : null;
+  const handDrawingImage = location.state ? location.state.handDrawingImage : null;
   const customImages = location.state ? location.state.customImages : null;
 
   const isColoredState =
@@ -74,7 +74,7 @@ const StylingColorPage = () => {
           navigateURL={'/select-keyword'}
           haveDesign={haveDesign}
           customInfo={customInfo}
-          customMainImage={customMainImage}
+          handDrawingImage={handDrawingImage}
           customImages={customImages}
         />
       }

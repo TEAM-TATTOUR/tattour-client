@@ -74,21 +74,22 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
-    console.log(files);
+    // console.log(files, '+++++++');
     if (!files) return;
     if (files[3]) {
       setToast(true);
     }
 
-    const imageFiles = Array.from(files).slice(1);
-
+    const fileBlobs = files;
+    // const imageFiles = Array.from(fileBlobs).slice(1);
+    // console.log(files, '+++++++');
+    // console.log('imageFiles, ******', imageFiles);
     const dataTransfer = new DataTransfer();
-    imageFiles.forEach((file) => {
+    Array.from(fileBlobs).forEach((file) => {
       dataTransfer.items.add(file);
     });
 
     const fileList = dataTransfer.files;
-    console.log('fileList', fileList);
     setCustomImages(fileList);
 
     const uploadImage = Array.from(files);
@@ -112,7 +113,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
       setPreviewURL((prevURLs) => [...prevURLs, dataUrl]);
     }
 
-    e.target.value = '';
+    // e.target.value = '';
   };
 
   const handleClickPreviewDelBtn = (index: number) => {

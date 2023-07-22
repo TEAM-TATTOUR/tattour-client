@@ -32,14 +32,14 @@ const PriceFooter = ({ customInfo, handDrawingImage, customImages }: PriceFooter
           'Content-Type': 'multipart/form-data',
         },
       });
+      // console.log('data', data.data);
       navigate('/receipt', {
         state: {
-          data: data,
+          data: data.data,
         },
       });
     } catch (err) {
-      console.log(formData);
-      console.log(err);
+      console.log('Error', err);
     }
   };
 

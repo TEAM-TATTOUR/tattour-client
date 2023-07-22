@@ -44,8 +44,6 @@ const PricePage = () => {
     price: price,
   };
 
-  // console.log(customInfo, customMainImage); //오류 발생 방지 용 console 나중에 footer로 넘겨주고 지워주세요!
-
   const renderPricePageHeader = () => {
     return (
       <Header
