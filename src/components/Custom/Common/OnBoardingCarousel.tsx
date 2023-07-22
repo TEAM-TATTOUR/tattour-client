@@ -20,11 +20,26 @@ const OnBoardingCarousel = () => {
         pagination={{ clickable: true }}
         navigation
       >
-        {CUSTOM_CAROUSEL_DATA.map(({ id, content, imgAlt }) => {
+        {CUSTOM_CAROUSEL_DATA.map(({ id, bannerText, mainText, subText, mockUpImg, imgAlt }) => {
           return (
             <SwiperSlide key={id}>
               <St.SwiperContainer>
-                <img src={content} alt={imgAlt} />
+                <St.SwiperHeader>
+                  {bannerText ? (
+                    <St.SwiperHeaderBanner>
+                      <p>{bannerText}</p>
+                    </St.SwiperHeaderBanner>
+                  ) : (
+                    <></>
+                  )}
+                  <St.SwiperHeaderTextBox>
+                    <St.HeaderMainText>{mainText}</St.HeaderMainText>
+                    <St.HeaderSubText>{subText}</St.HeaderSubText>
+                  </St.SwiperHeaderTextBox>
+                </St.SwiperHeader>
+                <St.SwiperImgContainer>
+                  <img src={mockUpImg} alt={imgAlt} />
+                </St.SwiperImgContainer>
               </St.SwiperContainer>
             </SwiperSlide>
           );
@@ -33,75 +48,61 @@ const OnBoardingCarousel = () => {
     </St.SwiperWrapper>
   );
 };
-
 export default OnBoardingCarousel;
-
 const St = {
   SwiperWrapper: styled.section`
     display: flex;
     justify-content: center;
-    align-items: center;
-
+    /* align-items: center; */
     min-height: calc(100dvh - 12.6rem);
-
     /* swiper 영역 스타일링 */
     .swiper {
       height: 100%;
-
       .swiper-wrapper {
         height: 100%;
       }
-
       .swiper-slide {
         display: flex;
         flex-direction: column;
         height: 63.6rem;
         width: 100%;
       }
-
       /* swiper 버튼 커스텀 스타일링 */
       /* swiper 버튼 커스텀 첫 시작 / 맨 끝은 안보이게 */
       .swiper-button-disabled {
         display: none;
       }
-
       /* swiper 버튼 svg 아이콘으로 커스텀 */
       .swiper-button-next {
         width: 2rem;
         height: 2rem;
-        margin-right: 2.8rem;
-        margin-top: -3rem;
-
+        margin-top: 0.3rem;
+        margin-right: 0.8rem;
         background: url(${ic_arrow_right_gray}) no-repeat;
         background-position: center;
         background-size: auto;
       }
-
       .swiper-button-prev {
         width: 2rem;
         height: 2rem;
-        margin-left: 2.8rem;
-        margin-top: -3rem;
-
+        margin-top: 0.3rem;
+        margin-left: 0.8rem;
         background: url(${ic_arrow_left_gray}) no-repeat;
         background-position: center;
         background-size: auto;
       }
-
       /* 버튼 커스텀을 위해 원래 라이브러리의 버튼은 안보이게 */
       .swiper-button-next::after,
       .swiper-button-prev::after {
         display: none;
       }
-
       .swiper-pagination {
-        position: sticky;
+        position: fixed;
         bottom: 7rem;
-
         display: flex;
         justify-content: center;
         gap: 0.9rem;
-        padding-bottom: 4rem;
+        margin-bottom: 4rem;
       }
       /* swiper 페이지네이션 bullet 커스텀 스타일링 */
       .swiper-pagination-bullet {
@@ -111,7 +112,6 @@ const St = {
         background-color: ${({ theme }) => theme.colors.gray1};
         opacity: 100;
       }
-
       .swiper-pagination-bullet-active {
         height: 0.6rem;
         width: 0.6rem;
@@ -120,16 +120,53 @@ const St = {
       }
     }
   `,
-
   SwiperContainer: styled.article`
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: fit-content;
+  `,
+  SwiperHeader: styled.header`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: fit-content;
+    margin: 2rem 0 1.8rem 3.6rem;
+  `,
 
+  SwiperHeaderBanner: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: 2.6rem;
+    padding: 0.4rem 0.8rem;
+    background-color: ${({ theme }) => theme.colors.pink1};
+    border-radius: 0.5rem;
+    & > p {
+      color: ${({ theme }) => theme.colors.pink5};
+      ${({ theme }) => theme.fonts.body_medium_14};
+    }
+  `,
+
+  SwiperHeaderTextBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  `,
+
+  HeaderMainText: styled.h2`
+    color: ${({ theme }) => theme.colors.gray8};
+    ${({ theme }) => theme.fonts.title_semibold_20};
+  `,
+  HeaderSubText: styled.p`
+    color: ${({ theme }) => theme.colors.gray3};
+    ${({ theme }) => theme.fonts.body_medium_14};
+  `,
+  SwiperImgContainer: styled.div`
+    display: flex;
+    justify-content: center;
     & > img {
-      width: 30.7rem;
-      height: 62.6rem;
+      max-width: 100%;
+      height: auto;
     }
   `,
 };

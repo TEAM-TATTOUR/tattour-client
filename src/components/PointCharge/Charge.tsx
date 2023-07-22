@@ -84,8 +84,8 @@ const St = {
     flex-direction: column;
     gap: 1.3rem;
 
-    /* margin: 5.6rem 10rem 0 2.2rem; */ /*진짜 margin -> 추후 글씨체 문제 해결 되면 이걸로 바꾸기*/
-    margin: 5.6rem 9rem 0 2.2rem;
+    width: 33.5rem;
+    margin-top: 5.6rem;
   `,
 
   ChargeInfoTitle: styled.h2`
