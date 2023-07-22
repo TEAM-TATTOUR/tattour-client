@@ -49,7 +49,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     previewURL.length !== 0 ? setIsActiveNext(true) : setIsActiveNext(false);
   }, [previewURL, setIsActiveNext]);
 
-  function dataURItoBlob(dataURI) {
+  function dataURItoBlob(dataURI: string) {
     // convert base64 to raw binary data held in a string
     // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
     const byteString = atob(dataURI.split(',')[1]);
@@ -112,10 +112,10 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
 
     //개수 제한 적용해주기
     const filesToEncode = Array.from(uploadImage).slice(0, MAX_FILES - previewURL.length);
-    encodeFile(filesToEncode, e);
+    encodeFile(filesToEncode);
   };
 
-  const encodeFile = async (fileBlob: File[], e: React.ChangeEvent<HTMLInputElement>) => {
+  const encodeFile = async (fileBlob: File[]) => {
     for (let i = 0; i < fileBlob.length; i++) {
       const reader = new FileReader();
       const file = fileBlob[i];

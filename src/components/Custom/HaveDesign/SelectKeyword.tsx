@@ -88,7 +88,7 @@ const SelectKeyword = ({
       <St.RadioWrapper>
         {!genreLoading &&
           !genreError &&
-          genreKeywords.map(({ id, value, checked }, index: number) => (
+          genreKeywords.map(({ value, checked }, index: number) => (
             <St.RadioLabel key={index} htmlFor={value} checked={checked}>
               <St.RadioInput
                 type='checkbox'
@@ -108,7 +108,7 @@ const SelectKeyword = ({
       <St.RadioWrapper className='style-keywords'>
         {!styleLoading &&
           !styleError &&
-          styleKeywords.map(({ id, value, checked }, index: number) => (
+          styleKeywords.map(({ value, checked }, index: number) => (
             <St.RadioLabel key={index} htmlFor={value} checked={checked}>
               <St.RadioInput
                 type='checkbox'

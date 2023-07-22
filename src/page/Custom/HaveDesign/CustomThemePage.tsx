@@ -25,9 +25,9 @@ const CustomThemePage = () => {
   const handDrawingImage = location.state ? location.state.handDrawingImage : null;
   const customImages = location.state ? location.state.customImages : null;
 
-  const customNameState = location.state && location.state.name ? location.state.name : null;
-  const customDescriptionState =
-    location.state && location.state.description ? location.state.description : null;
+  // const customNameState = location.state && location.state.name ? location.state.name : null;
+  // const customDescriptionState =
+  //   location.state && location.state.description ? location.state.description : null;
 
   useEffect(() => {
     if (!location.state) navigate('/onboarding');
@@ -81,8 +81,6 @@ const CustomThemePage = () => {
         setIsActiveNext={setIsActiveNext}
         setName={setName}
         setDescription={setDescription}
-        customNameState={customNameState}
-        customDescriptionState={customDescriptionState}
       />
     </PageLayout>
   );

@@ -10,7 +10,6 @@ const CustomReference = ({
   setHandDrawingImage,
   setCustomImages,
   customImages,
-  attachedImages,
   setPreviewURL,
   setFreeDraw,
   previewURL,
@@ -19,7 +18,6 @@ const CustomReference = ({
   setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
   customImages: FileList | null;
-  attachedImages: FileList | null;
   handDrawingImage: File | null;
   setFreeDraw: React.Dispatch<React.SetStateAction<boolean>>;
   previewURL: string[];
@@ -38,7 +36,6 @@ const CustomReference = ({
         setDrawingImageURL={setDrawingImageUrl}
         setIsActiveNext={setIsActiveNext}
         setCustomImages={setCustomImages}
-        attachedImages={attachedImages}
         setFreeDraw={setFreeDraw}
         // freeDraw={freeDraw}
         customImages={customImages}

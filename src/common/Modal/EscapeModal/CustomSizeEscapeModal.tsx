@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 import ModalPortal from '../ModalPortal';
 import { IcCancelDark } from '../../../assets/icon';
-import api from '../../../libs/api';
 import { useNavigate } from 'react-router-dom';
 import { customInfoType } from '../../../types/customInfoType';
 

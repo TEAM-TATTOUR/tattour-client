@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
 // 이모티콘 카운팅 관련 라이브러리
 import GraphemeSplitter from 'grapheme-splitter';
@@ -7,14 +7,10 @@ const CustomTheme = ({
   setIsActiveNext,
   setName,
   setDescription,
-  customNameState,
-  customDescriptionState,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setName: React.Dispatch<React.SetStateAction<string>>;
   setDescription: React.Dispatch<React.SetStateAction<string>>;
-  customNameState: string;
-  customDescriptionState: string;
 }) => {
   //count 될 maxCount 수
   const MAX_NAME_COUNT = 10;

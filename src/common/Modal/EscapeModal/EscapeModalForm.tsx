@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface EscapeModalFormProps {
   redirectURL?: string;

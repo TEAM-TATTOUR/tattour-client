@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CancelBtn from '../../common/Header/CancelBtn';
 import CustomReference from '../../components/Custom/HaveDesign/CustomReference';
 import Header from '../../components/Header';
@@ -20,17 +20,15 @@ const CustomReferencePage = () => {
   const [isActiveNext, setIsActiveNext] = useState(false);
   const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
   const [customImages, setCustomImages] = useState<FileList | null>(null);
-  const [freeDraw, setFreeDraw] = useState<boolean>(location.state.freeDraw ? true : false);
+  const [, setFreeDraw] = useState<boolean>(location.state.freeDraw ? true : false);
   const [previewURL, setPreviewURL] = useState<string[]>([]); //페이지로 뺴주기
 
   console.log('back', location.state.freeDraw);
 
   const haveDesign = location.state ? location.state.haveDesign : null;
   const prevCustomInfo = location.state ? location.state.customInfo : null;
-  const attachedHandDrawingImage =
-    location.state && location.state.handDrawingImage ? location.state.handDrawingImage : null;
-  const attachedImages =
-    location.state && location.state.customImages ? location.state.customImages : null;
+  // const attachedImages =
+  //   location.state && location.state.customImages ? location.state.customImages : null;
 
   useEffect(() => {
     if (!location.state) navigate('/onboarding');
@@ -82,7 +80,6 @@ const CustomReferencePage = () => {
         setFreeDraw={setFreeDraw}
         setPreviewURL={setPreviewURL}
         previewURL={previewURL}
-        attachedImages={attachedImages}
       />
     </PageLayout>
   );

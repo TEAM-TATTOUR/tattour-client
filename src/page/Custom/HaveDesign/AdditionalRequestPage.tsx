@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import Header from '../../../components/Header';
 import CancelBtn from '../../../common/Header/CancelBtn';
