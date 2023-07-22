@@ -176,12 +176,12 @@ const St = {
   `,
   CardDiscount: styled.span`
     color: ${({ theme }) => theme.colors.pink5};
-    ${({ theme }) => theme.fonts.title_semibold_16};
+    ${({ theme }) => theme.fonts.title_extrabold_16};
   `,
   CardPrice: styled.span`
     margin-left: 0.5rem;
 
     color: ${({ theme }) => theme.colors.gray7};
-    ${({ theme }) => theme.fonts.title_semibold_16};
+    ${({ theme }) => theme.fonts.title_extrabold_16};
   `,
 };
