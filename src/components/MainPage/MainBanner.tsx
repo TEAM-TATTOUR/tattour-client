@@ -77,7 +77,8 @@ const St = {
     height: 4.2rem;
 
     background-color: ${({ theme }) => theme.colors.pink5};
-    ${({ theme }) => theme.fonts.title_semibold_20};
+    ${({ theme }) => theme.fonts.title_semibold_18};
+
     color: ${({ theme }) => theme.colors.gray9};
     border-radius: 0.5rem;
   `,

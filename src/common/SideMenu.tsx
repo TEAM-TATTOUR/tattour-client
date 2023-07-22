@@ -121,7 +121,7 @@ const St = {
     top: 0;
     z-index: 998;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     background-color: rgba(0, 0, 0, 0.6);
   `,
 
@@ -135,7 +135,7 @@ const St = {
     transition: transform 0.1s ease-in-out;
 
     width: 24rem;
-    height: 100vh;
+    height: 100dvh;
     background-color: ${({ theme }) => theme.colors.bg};
   `,
 
