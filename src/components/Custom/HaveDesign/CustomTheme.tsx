@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 // 이모티콘 카운팅 관련 라이브러리
 import GraphemeSplitter from 'grapheme-splitter';
 
 const CustomTheme = ({
   setIsActiveNext,
+  setName,
+  setDescription,
+  customNameState,
+  customDescriptionState,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
+  customNameState: string;
+  customDescriptionState: string;
 }) => {
   //count 될 maxCount 수
   const MAX_NAME_COUNT = 10;
@@ -15,6 +23,17 @@ const CustomTheme = ({
   //글자 수 세기 관련 state
   const [nameInputCount, setNameInputCount] = useState(0);
   const [etcTextAreaCount, setEtcTextAreaCount] = useState(0);
+
+  // useEffect(() => {
+  //   //state에 있는 attachedImg 값 가져와서 미리보기 구현하기
+  //   if (!customNameState || !customDescriptionState) return;
+
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(attachedImages);
+  //   reader.onloadend = () => {
+  //     setPreviewURL(reader.result as string);
+  //   };
+  // }, [attachedImg, setCustomMainImage]);
 
   // 이모티콘을 한 문자로 취급하여 글자 수 제한을 구현하는 함수
   const limitMaxLength = (
@@ -47,6 +66,8 @@ const CustomTheme = ({
 
     if (!lengthCount) return;
     setNameInputCount(lengthCount);
+
+    setName(e.target.value);
   };
 
   const handleChangeEtcTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -61,6 +82,8 @@ const CustomTheme = ({
 
     if (!lengthCount) return;
     setEtcTextAreaCount(lengthCount);
+
+    setDescription(e.target.value);
   };
 
   return (

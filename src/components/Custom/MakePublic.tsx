@@ -55,6 +55,7 @@ const St = {
     bottom: 2.9rem;
     height: 12.2rem;
 
+    padding-top: 7.3rem;
     background-color: ${({ theme }) => theme.colors.white};
   `,
   MakePublicWrapper: styled.section`

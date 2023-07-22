@@ -1,16 +1,47 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { IcCheckSmallPink } from '../../../assets/icon';
-import { KEYWORDS_GENRE } from '../../../assets/data/KEYWORDS_GENRE';
-import { KEYWORDS_STYLE } from '../../../assets/data/KEYWORDS_STYLE';
+import useGetGenre, { GenreItemProps } from '../../../libs/hooks/list/useGetGenre';
+import useGetStyle, { StyleItemProps } from '../../../libs/hooks/list/useGetStyle';
 
 const SelectKeyword = ({
   setIsActiveNext,
+  setStyles,
+  setThemes,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  setStyles: React.Dispatch<React.SetStateAction<number[]>>;
+  setThemes: React.Dispatch<React.SetStateAction<number[]>>;
 }) => {
-  const [genreKeywords, setGenreKeywords] = useState(KEYWORDS_GENRE);
-  const [styleKeywords, setStyleKeywords] = useState(KEYWORDS_STYLE);
+  const { genreResponse, genreError, genreLoading } = useGetGenre();
+  const { styleResponse, styleError, styleLoading } = useGetStyle();
+
+  const [genreKeywords, setGenreKeywords] = useState<
+    { id: number; value: string; checked: boolean }[]
+  >([]);
+
+  const [styleKeywords, setStyleKeywords] = useState<
+    { id: number; value: string; checked: boolean }[]
+  >([]);
+
+  useEffect(() => {
+    console.log(genreResponse);
+    setGenreKeywords(
+      genreResponse.map((genre: GenreItemProps) => ({
+        id: genre.id,
+        value: genre.name,
+        checked: false,
+      })),
+    );
+
+    setStyleKeywords(
+      styleResponse.map((style: StyleItemProps) => ({
+        id: style.id,
+        value: style.name,
+        checked: false,
+      })),
+    );
+  }, [genreResponse, styleResponse]);
 
   const handleKeywordChange = (index: number, type: string) => {
     const checkedStyle = styleKeywords.filter((keyword) => keyword.checked).length;
@@ -39,50 +70,59 @@ const SelectKeyword = ({
   };
 
   useEffect(() => {
-    const checkedStyle = styleKeywords.filter((keyword) => keyword.checked).length;
-    const checkedGenre = genreKeywords.filter((keyword) => keyword.checked).length;
-    const checkedKeywords = checkedStyle + checkedGenre;
+    const checkedStyle = styleKeywords.filter((keyword) => keyword.checked);
+    const checkedGenre = genreKeywords.filter((keyword) => keyword.checked);
+
+    const checkedStyleKeywords = checkedStyle.map((style) => style.id);
+    const checkedGenreKeywords = checkedGenre.map((genre) => genre.id);
+    const checkedKeywords = checkedStyle.length + checkedGenre.length;
 
     setIsActiveNext(checkedKeywords >= 1);
-  }, [genreKeywords, styleKeywords, setIsActiveNext]);
+    setStyles(checkedStyleKeywords);
+    setThemes(checkedGenreKeywords);
+  }, [genreKeywords, styleKeywords, setIsActiveNext, setThemes, setStyles]);
 
   return (
     <St.KeywordWrapper>
       <St.Title>장르</St.Title>
       <St.RadioWrapper>
-        {genreKeywords.map(({ value, checked }, index: number) => (
-          <St.RadioLabel key={index} htmlFor={value} checked={checked}>
-            <St.RadioInput
-              type='checkbox'
-              id={value}
-              name={value}
-              checked={checked}
-              onChange={() => handleKeywordChange(index, 'genre')}
-            />
-            <St.RadioText checked={checked}>
-              {checked && <IcCheckSmallPink />}
-              {value}
-            </St.RadioText>
-          </St.RadioLabel>
-        ))}
+        {!genreLoading &&
+          !genreError &&
+          genreKeywords.map(({ id, value, checked }, index: number) => (
+            <St.RadioLabel key={index} htmlFor={value} checked={checked}>
+              <St.RadioInput
+                type='checkbox'
+                id={value}
+                name={value}
+                checked={checked}
+                onChange={() => handleKeywordChange(index, 'genre')}
+              />
+              <St.RadioText checked={checked}>
+                {checked && <IcCheckSmallPink />}
+                {value}
+              </St.RadioText>
+            </St.RadioLabel>
+          ))}
       </St.RadioWrapper>
       <St.Title>스타일</St.Title>
       <St.RadioWrapper className='style-keywords'>
-        {styleKeywords.map(({ value, checked }, index: number) => (
-          <St.RadioLabel key={index} htmlFor={value} checked={checked}>
-            <St.RadioInput
-              type='checkbox'
-              id={value}
-              name={value}
-              checked={checked}
-              onChange={() => handleKeywordChange(index, 'style')}
-            />
-            <St.RadioText checked={checked}>
-              {checked && <IcCheckSmallPink />}
-              {value}
-            </St.RadioText>
-          </St.RadioLabel>
-        ))}
+        {!styleLoading &&
+          !styleError &&
+          styleKeywords.map(({ id, value, checked }, index: number) => (
+            <St.RadioLabel key={index} htmlFor={value} checked={checked}>
+              <St.RadioInput
+                type='checkbox'
+                id={value}
+                name={value}
+                checked={checked}
+                onChange={() => handleKeywordChange(index, 'style')}
+              />
+              <St.RadioText checked={checked}>
+                {checked && <IcCheckSmallPink />}
+                {value}
+              </St.RadioText>
+            </St.RadioLabel>
+          ))}
       </St.RadioWrapper>
     </St.KeywordWrapper>
   );

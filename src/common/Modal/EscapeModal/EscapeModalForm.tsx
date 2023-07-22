@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface EscapeModalFormProps {
   redirectURL?: string;
@@ -22,6 +22,8 @@ const EscapeModalForm = ({
   stopBtn,
 }: EscapeModalFormProps) => {
   const navigate = useNavigate();
+  // const location = useLocation();
+  // const patchStates = location.state;
 
   const handleClickStopBtn = () => {
     onClose();

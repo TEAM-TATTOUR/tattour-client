@@ -1,16 +1,51 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { customInfoType } from '../../types/customInfoType';
+import api from '../../libs/api';
 
-const PriceFooter = () => {
+interface PriceFooterProps {
+  haveDesign?: boolean;
+  customInfo?: customInfoType;
+  handDrawingImage: File;
+  customImages?: FileList | null;
+}
+
+const PriceFooter = ({ customInfo, handDrawingImage, customImages }: PriceFooterProps) => {
   const navigate = useNavigate();
 
-  const handleClickButton = () => {
-    navigate('/receipt');
+  const handleClickFooterBtn = async () => {
+    const formData = new FormData();
+    try {
+      formData.append('handDrawingImage', handDrawingImage);
+      const json = JSON.stringify(customInfo);
+      const blob = new Blob([json], { type: 'application/json' });
+
+      formData.append('customInfo', blob);
+
+      if (customImages) {
+        for (let i = 0; i < customImages.length; i++) {
+          formData.append('customImages', customImages.item(i) as File);
+        }
+      }
+      const { data } = await api.patch('/custom/update', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      // console.log('data', data.data);
+      navigate('/receipt', {
+        state: {
+          data: data.data,
+        },
+      });
+    } catch (err) {
+      console.log('Error', err);
+    }
   };
 
   return (
     <St.CustomFooter>
-      <St.FooterButton type='button' onClick={handleClickButton}>
+      <St.FooterButton type='button' onClick={handleClickFooterBtn}>
         접수 완료하기
       </St.FooterButton>
     </St.CustomFooter>

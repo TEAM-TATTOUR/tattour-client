@@ -9,6 +9,15 @@ interface PaintBottomProps {
   drawingImageURL: string | null;
   setDrawingImageURL: React.Dispatch<React.SetStateAction<string | null>>;
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
+  customImages: FileList | null;
+  attachedImages: FileList | null;
+  setFreeDraw: React.Dispatch<React.SetStateAction<boolean>>;
+  freeDraw: boolean;
+  setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
+  handDrawingImage: File | null;
+  previewURL: string[];
+  setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const CustomImageAttach: React.FC<PaintBottomProps> = ({
@@ -16,12 +25,19 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   drawingImageURL,
   setDrawingImageURL,
   setIsActiveNext,
+  setCustomImages,
+  customImages,
+  attachedImages,
+  freeDraw,
+  setFreeDraw,
+  setHandDrawingImage,
+  handDrawingImage,
+  previewURL,
+  setPreviewURL,
 }) => {
   const MAX_FILES = 3;
 
   const ref = useRef<HTMLInputElement | null>(null);
-  const [previewURL, setPreviewURL] = useState<string[]>([]);
-  const [freeDraw, setFreeDraw] = useState<boolean>(drawingImageURL ? true : false);
   const [toast, setToast] = useState<boolean>(false);
 
   const handleClickRefBtn = () => {
@@ -37,18 +53,45 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     previewURL.length !== 0 ? setIsActiveNext(true) : setIsActiveNext(false);
   }, [previewURL, setIsActiveNext]);
 
+  //이미지 파일 첨부하기
+  useEffect(() => {
+    if (!customImages) return;
+    if (!drawingImageURL) return;
+
+    const blob = new Blob([new Uint8Array(drawingImageURL)], { type: 'image/png' });
+    const file = new File([blob], 'image.png', {
+      type: blob.type,
+    });
+    setHandDrawingImage(file);
+  }, [drawingImageURL]);
+
   useEffect(() => {
     if (drawingImageURL) {
       setFreeDraw(true);
+      const file = new File([drawingImageURL], 'image.png', { type: 'image/png' });
     } else setFreeDraw(false);
-  }, [drawingImageURL]);
+  }, [drawingImageURL, setFreeDraw]);
 
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
-    if (!files || !files[0]) return;
+    // console.log(files, '+++++++');
+    if (!files) return;
     if (files[3]) {
       setToast(true);
     }
+
+    const fileBlobs = files;
+    // const imageFiles = Array.from(fileBlobs).slice(1);
+    // console.log(files, '+++++++');
+    // console.log('imageFiles, ******', imageFiles);
+    const dataTransfer = new DataTransfer();
+    Array.from(fileBlobs).forEach((file) => {
+      dataTransfer.items.add(file);
+    });
+
+    const fileList = dataTransfer.files;
+    setCustomImages(fileList);
+
     const uploadImage = Array.from(files);
 
     //개수 제한 적용해주기
@@ -70,7 +113,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
       setPreviewURL((prevURLs) => [...prevURLs, dataUrl]);
     }
 
-    e.target.value = '';
+    // e.target.value = '';
   };
 
   const handleClickPreviewDelBtn = (index: number) => {
@@ -84,10 +127,11 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   const handleClickFreeDrawDelBtn = () => {
     setFreeDraw(false);
     setDrawingImageURL(null);
+    setHandDrawingImage(null);
   };
 
   const handleReferenceBtn = () => {
-    if (freeDraw) {
+    if (handDrawingImage) {
       return;
     } else {
       setBottomOpen(true);
@@ -115,7 +159,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
         ) : (
           ''
         )}
-        {freeDraw ? (
+        {handDrawingImage ? (
           <St.ImgPreviewContainer>
             <St.ImgPreviewDelBtn type='button' onClick={() => handleClickFreeDrawDelBtn()}>
               <IcCancelDark />
@@ -145,7 +189,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
         <St.ReferenceButton
           type='button'
           onClick={handleReferenceBtn}
-          className={freeDraw ? 'disabled' : ''}
+          className={handDrawingImage ? 'disabled' : ''}
         >
           <IcDraw />
           대충 그리기

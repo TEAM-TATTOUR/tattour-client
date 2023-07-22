@@ -1,19 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import {
   IcBtnStepperMinusDark,
   IcBtnStepperMinusLight,
   IcBtnStepperPlusDark,
 } from '../../assets/icon';
+import { PRICE } from '../../assets/data/PRICE';
 
 interface CountPriceProps {
   isPublic: boolean;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+  size: string;
 }
 
-const CountPrice = ({ isPublic }: CountPriceProps) => {
-  const PRICE = 1000;
-  const DISCOUNT = 200;
+const CountPrice = ({ isPublic, setCount, size }: CountPriceProps) => {
+  const price = PRICE.find((item) => item.size === size)?.price;
+  const discount = PRICE.find((item) => item.size === size)?.discount;
   const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    setCount(quantity);
+  }, [quantity, setCount]);
 
   return (
     <St.CountPriceWrapper>
@@ -21,7 +28,7 @@ const CountPrice = ({ isPublic }: CountPriceProps) => {
         <St.DetailGroup className='price-group'>
           <St.Subject>가격</St.Subject>
           <St.PriceDetail>
-            <St.Price>1,000</St.Price>
+            <St.Price>{price}</St.Price>
             <St.Unit>원</St.Unit>
           </St.PriceDetail>
         </St.DetailGroup>
@@ -43,12 +50,14 @@ const CountPrice = ({ isPublic }: CountPriceProps) => {
           <St.TotalPriceGroup>
             {isPublic ? (
               <>
-                <St.Discount>{DISCOUNT}</St.Discount>
-                <St.TotalPrice>{(quantity * PRICE - DISCOUNT).toLocaleString()}</St.TotalPrice>
+                <St.Discount>{discount}</St.Discount>
+                <St.TotalPrice>
+                  {(quantity * (price || 0) - (discount || 0)).toLocaleString()}
+                </St.TotalPrice>
               </>
             ) : (
               <>
-                <St.TotalPrice>{(quantity * PRICE).toLocaleString()}</St.TotalPrice>
+                <St.TotalPrice>{(quantity * (price || 0)).toLocaleString()}</St.TotalPrice>
               </>
             )}
             <St.Unit>원</St.Unit>

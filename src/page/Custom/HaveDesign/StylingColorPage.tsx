@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NextFooter from '../../../common/Footer/NextFooter';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
@@ -10,19 +10,48 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { IcBackDark } from '../../../assets/icon';
 
 const StylingColorPage = () => {
+  const CUSTOM_VIEW_COUNT = 3;
+
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
+  const [isColored, setIsColored] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const stateList = location.state;
+  const haveDesign = location.state ? location.state.haveDesign : null;
+  const prevCustomInfo = location.state ? location.state.customInfo : null;
+  const handDrawingImage = location.state ? location.state.handDrawingImage : null;
+  const customImages = location.state ? location.state.customImages : null;
+
+  const isColoredState =
+    location.state && location.state.isColored ? location.state.isColored : null;
+
+  console.log('state image', customImages ? customImages[-1] : null);
+
+  useEffect(() => {
+    if (!location.state) navigate('/onboarding');
+  }, [location.state, navigate]);
+
+  const customInfo = {
+    ...prevCustomInfo,
+    viewCount: CUSTOM_VIEW_COUNT,
+    isColored: isColored,
+  };
 
   const renderStylingColorPageHeader = () => {
     return (
       <Header
         transparent={true}
-        leftSection={<IcBackDark onClick={() => navigate('/custom-reference')} />}
+        leftSection={
+          <IcBackDark
+            onClick={() =>
+              navigate('/custom-reference', {
+                state: location.state ? location.state : null,
+              })
+            }
+          />
+        }
         title='커스텀 타투'
         rightSection={
           <CancelBtn
@@ -43,11 +72,18 @@ const StylingColorPage = () => {
         <NextFooter
           isActiveNext={isActiveNext}
           navigateURL={'/select-keyword'}
-          stateList={stateList}
+          haveDesign={haveDesign}
+          customInfo={customInfo}
+          handDrawingImage={handDrawingImage}
+          customImages={customImages}
         />
       }
     >
-      <SelectColor setIsActiveNext={setIsActiveNext} />
+      <SelectColor
+        setIsActiveNext={setIsActiveNext}
+        setIsColored={setIsColored}
+        isColoredState={isColoredState}
+      />
     </PageLayout>
   );
 };
