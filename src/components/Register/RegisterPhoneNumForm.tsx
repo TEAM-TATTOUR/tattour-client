@@ -55,7 +55,7 @@ const RegisterPhoneNumForm = () => {
         {},
       )
       .then(() => {
-        navigate('/welcome-signup');
+        navigate('/login', { state: { step: 3 } });
       })
       .catch((Error: object) => {
         console.log(Error);
@@ -123,7 +123,7 @@ const RegisterPhoneNumForm = () => {
           },
         })
         .then((res: resProps) => {
-          const isVerified = res.data.data.isVerified;          
+          const isVerified = res.data.data.isVerified;
 
           if (isVerified) {
             setIsError(false);
