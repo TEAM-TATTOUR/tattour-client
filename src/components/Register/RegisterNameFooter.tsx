@@ -10,7 +10,7 @@ const RegisterNameFooter = ({ userName }: RegisterNameFooterProps) => {
 
   const handleClickFooter = () => {
     if (userName) {
-      navigate('/login', { state: { userName, step: 2 } });
+      navigate('/login', { state: { userName: userName, step: 2 } });
     }
   };
 
