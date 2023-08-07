@@ -125,6 +125,7 @@ const FilterBottom = ({
     }
     setSelectedTag(newSelectedTag);
 
+    // TODO: selectedTag와 tag를 아니까 class 토글 로직 간소화 가능
     // 태그 선택은 하나씩
     tagRefs.current.forEach((el: HTMLParagraphElement) => {
       if (!el) return;
