@@ -20,7 +20,6 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
   const [selectedFilter, setSelectedFilter] = useState([false, false, false]);
 
   const navigate = useNavigate();
-  const filterRef = useRef(null);
   const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
 
   // [ 필터 버튼명이 바뀔 때마다 버튼 색상을 세팅하는, 즉 selectedFilter를 업데이트하는 코드 ]
@@ -51,7 +50,7 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
   return (
     <St.Wrapper>
       <St.Header>ALL</St.Header>
-      <St.BtnContainer ref={filterRef}>
+      <St.BtnContainer>
         {buttonName.map((el, idx) => (
           // 각 필터 버튼
           <St.FilterBtn
