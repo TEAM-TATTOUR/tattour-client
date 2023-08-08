@@ -49,15 +49,7 @@ const CustomRequestPage = ({
   const renderCustomRequestPageHeader = () => {
     return (
       <Header
-        leftSection={
-          <IcBackDark
-            onClick={() =>
-              navigate('/custom-img', {
-                state: location.state ? location.state : null,
-              })
-            }
-          />
-        }
+        leftSection={<IcBackDark onClick={() => setStep((prev) => prev - 1)} />}
         title='커스텀 타투'
         rightSection={
           <CancelBtn
