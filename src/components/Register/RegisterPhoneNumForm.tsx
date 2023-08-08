@@ -7,6 +7,7 @@ import ErrorMessage from './ErrorMessage';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import api from '../../libs/api';
+import { RegisterPhoneNumProps } from './RegisterPhoneNum';
 
 interface resProps {
   data: {
@@ -20,7 +21,7 @@ interface usePatchProfileProps {
   phoneNum: string;
 }
 
-const RegisterPhoneNumForm = () => {
+const RegisterPhoneNumForm = ({setStep}: RegisterPhoneNumProps) => {
   const MINUTES_IN_MS = 5 * 60 * 1000;
 
   const navigate = useNavigate();
@@ -55,7 +56,8 @@ const RegisterPhoneNumForm = () => {
         {},
       )
       .then(() => {
-        navigate('/login', { state: { step: 3 } });
+        navigate('/login');
+        setStep(3);
       })
       .catch((Error: object) => {
         console.log(Error);

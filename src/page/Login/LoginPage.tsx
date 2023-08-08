@@ -21,7 +21,7 @@ const LoginPage = () => {
   const [modalOn, setModalOn] = useState(false);
   const navigate = useNavigate();
   const { state } = useLocation();
-  const step = state?.step || 0;
+  const [step, setStep] = useState(state?.step ? state.step : 0);
 
   const renderLoginPageHeader = () => {
     return <Header transparent={true} leftSection={<BackBtn />} fixed={true} />;
@@ -32,7 +32,14 @@ const LoginPage = () => {
       <Header
         leftSection={<St.BlankSection></St.BlankSection>}
         title='회원가입'
-        rightSection={<IcCancelDark onClick={() => navigate('/login')} />}
+        rightSection={
+          <IcCancelDark
+            onClick={() => {
+              navigate('/login');
+              setStep(0);
+            }}
+          />
+        }
         progressBar={<ProgressBar curStep={1} maxStep={3} />}
       />
     );
@@ -98,7 +105,10 @@ const LoginPage = () => {
 
     case 1:
       return (
-        <PageLayout renderHeader={renderHeader} footer={<RegisterNameFooter userName={userName} />}>
+        <PageLayout
+          renderHeader={renderHeader}
+          footer={<RegisterNameFooter userName={userName} setStep={setStep} />}
+        >
           <RegisterName setUserName={setUserName} />
         </PageLayout>
       );
@@ -106,7 +116,7 @@ const LoginPage = () => {
     case 2:
       return (
         <PageLayout renderHeader={renderHeader}>
-          <RegisterPhoneNum />
+          <RegisterPhoneNum setStep={setStep} />
         </PageLayout>
       );
 
