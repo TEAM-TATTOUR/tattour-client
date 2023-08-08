@@ -24,6 +24,9 @@ const ListPage = () => {
   // bottom modal이 현재 3개가 존재. 바텀 모달을 1개로 줄이고
   // 각 버튼마다 선택된 것에 따라 내용물만 교체하는 방법
 
+  // state && : 선택된 필터가 있을 경우
+  // state.type이 장르일 때 버튼명을 state.name 값으로, 아니면 '장르'
+  // state.type이 스타일일 때 버튼명을 state.name 값으로, 아니면 '스타일'
   const [buttonName, setButtonName] = useState([
     '정렬',
     `${state && type === '장르' ? name : '장르'}`,
