@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PricePage from '../PricePage';
 import CustomImgPage from './CustomImgPage';
 import CustomRequestPage from './CustomRequestPage';
 
@@ -22,6 +23,9 @@ const NoDesignCustomPage = () => {
       );
     case 1:
       return <CustomRequestPage setStep={setStep} />;
+
+    case 2:
+      return <PricePage />;
   }
 };
 
