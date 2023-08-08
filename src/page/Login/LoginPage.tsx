@@ -67,17 +67,36 @@ const LoginPage = () => {
     );
   };
 
+  const renderHeader = () => {
+    switch (step) {
+      case 0:
+        return renderLoginPageHeader();
+
+      case 1:
+        return renderRegisterNamePageHeader();
+
+      case 2:
+        return renderRegisterPhoneNumPageHeader();
+
+      case 3:
+        return renderWelcomePageHeader();
+
+      default:
+        return <></>;
+    }
+  };
+
   switch (step) {
     case 0:
       return (
-        <PageLayout renderHeader={renderLoginPageHeader} footer={<LoginFooter />}>
+        <PageLayout renderHeader={renderHeader} footer={<LoginFooter />}>
           <LoginHome />
         </PageLayout>
       );
 
     case 1:
       return (
-        <PageLayout renderHeader={renderRegisterNamePageHeader}>
+        <PageLayout renderHeader={renderHeader}>
           <RegisterName setUserName={setUserName} />
           <RegisterNameFooter userName={userName} />
         </PageLayout>
@@ -85,14 +104,14 @@ const LoginPage = () => {
 
     case 2:
       return (
-        <PageLayout renderHeader={renderRegisterPhoneNumPageHeader}>
+        <PageLayout renderHeader={renderHeader}>
           <RegisterPhoneNum />
         </PageLayout>
       );
 
     case 3:
       return (
-        <PageLayout renderHeader={renderWelcomePageHeader} footer={<WelcomeFooter />}>
+        <PageLayout renderHeader={renderHeader} footer={<WelcomeFooter />}>
           <WelcomeHome />
         </PageLayout>
       );
