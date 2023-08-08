@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import CustomSizePage from '../Common/CustomSizePage';
 import PricePage from '../PricePage';
 import CustomImgPage from './CustomImgPage';
@@ -17,7 +17,11 @@ const NoDesignCustomPage = () => {
   //요청사항 state
   const [demand, setDemand] = useState('');
 
-  console.log('!!!', customImages);
+  console.log('!!!', customImages, '\n', name, '\n', demand);
+
+  useEffect(() => {
+    setStep(1);
+  }, []);
 
   switch (step) {
     // case 0:
