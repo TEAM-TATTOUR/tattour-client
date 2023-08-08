@@ -24,7 +24,7 @@ const LoginPage = () => {
   const [step, setStep] = useState(state?.step ? state.step : 0);
 
   const renderLoginPageHeader = () => {
-    return <Header transparent={true} leftSection={<BackBtn />} fixed={true} />;
+    return <Header transparent={true} leftSection={<BackBtn step={step} setStep={setStep}/>} fixed={true} />;
   };
 
   const renderRegisterNamePageHeader = () => {
@@ -48,7 +48,7 @@ const LoginPage = () => {
   const renderRegisterPhoneNumPageHeader = () => {
     return (
       <Header
-        leftSection={<BackBtn />}
+        leftSection={<BackBtn step={step} setStep={setStep} />}
         title='회원가입'
         rightSection={
           <CancelBtn
