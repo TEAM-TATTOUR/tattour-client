@@ -7,23 +7,27 @@ import useGetGenre, { GenreItemProps } from '../../libs/hooks/list/useGetGenre';
 import useGetStyle, { StyleItemProps } from '../../libs/hooks/list/useGetStyle';
 
 interface FilterBottomProps {
-  isSortOpen: boolean;
-  setSortOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isGenreOpen: boolean;
-  setGenreOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isStyleOpen: boolean;
-  setStyleOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isSheetOpen: boolean[];
+  setSheetOpen: React.Dispatch<React.SetStateAction<boolean[]>>;
+  // isSortOpen: boolean;
+  // setSortOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  // isGenreOpen: boolean;
+  // setGenreOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  // isStyleOpen: boolean;
+  // setStyleOpen: React.Dispatch<React.SetStateAction<boolean>>;
   buttonName: string[];
   setButtonName: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const FilterBottom = ({
-  isSortOpen,
-  setSortOpen,
-  isGenreOpen,
-  setGenreOpen,
-  isStyleOpen,
-  setStyleOpen,
+  isSheetOpen,
+  setSheetOpen,
+  // isSortOpen,
+  // setSortOpen,
+  // isGenreOpen,
+  // setGenreOpen,
+  // isStyleOpen,
+  // setStyleOpen,
   buttonName,
   setButtonName,
 }: FilterBottomProps) => {
@@ -46,8 +50,12 @@ const FilterBottom = ({
   const FILTER = [
     {
       type: '정렬',
-      isOpen: isSortOpen,
-      onClose: () => setSortOpen(false),
+      isOpen: isSheetOpen[0],
+      onClose: () => {
+        const newSheetOpen = [...isSheetOpen];
+        newSheetOpen[0] = false;
+        setSheetOpen(newSheetOpen);
+      },
       // onTap 로직 : '태그 선택 여부' & '선택한 태그명을 반영한 새 버튼명' 을 저장 및 반영한 후 바텀시트 off
       onTap: (filter: boolean[]) => {
         // [ backdrop을 눌러서 바텀시트를 끌때, 현재 선택한 태그 정보를 저장하고 시트off 하는 코드 ]
@@ -57,7 +65,10 @@ const FilterBottom = ({
         const newFilterTag = [...filterTag];
         newFilterTag[0] = filter;
         setFilterTag(newFilterTag);
-        setSortOpen(false);
+        // setSortOpen(false);
+        const newSheetOpen = [...isSheetOpen];
+        newSheetOpen[0] = false;
+        setSheetOpen(newSheetOpen);
 
         // 현재 필터 내 '선택'된 태그의 index를 trueIdx에 저장
         const trueIdx = filterTag[0].indexOf(true);
@@ -73,13 +84,20 @@ const FilterBottom = ({
     },
     {
       type: '장르',
-      isOpen: isGenreOpen,
-      onClose: () => setGenreOpen(false),
+      isOpen: isSheetOpen[1],
+      onClose: () => {
+        const newSheetOpen = [...isSheetOpen];
+        newSheetOpen[1] = false;
+        setSheetOpen(newSheetOpen);
+      },
       onTap: (filter: boolean[]) => {
         const newFilterTag = [...filterTag];
         newFilterTag[1] = filter;
         setFilterTag(newFilterTag);
-        setGenreOpen(false);
+        //setGenreOpen(false);
+        const newSheetOpen = [...isSheetOpen];
+        newSheetOpen[1] = false;
+        setSheetOpen(newSheetOpen);
 
         const trueIdx = filterTag[1].indexOf(true);
 
@@ -91,15 +109,21 @@ const FilterBottom = ({
     },
     {
       type: '스타일',
-      isOpen: isStyleOpen,
+      isOpen: isSheetOpen[2],
       onClose: () => {
-        setStyleOpen(false);
+        //setStyleOpen(false);
+        const newSheetOpen = [...isSheetOpen];
+        newSheetOpen[2] = false;
+        setSheetOpen(newSheetOpen);
       },
       onTap: (filter: boolean[]) => {
         const newFilterTag = [...filterTag];
         newFilterTag[2] = filter;
         setFilterTag(newFilterTag);
-        setStyleOpen(false);
+        //setStyleOpen(false);
+        const newSheetOpen = [...isSheetOpen];
+        newSheetOpen[2] = false;
+        setSheetOpen(newSheetOpen);
 
         const trueIdx = filterTag[2].indexOf(true);
 

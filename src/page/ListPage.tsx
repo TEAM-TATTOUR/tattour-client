@@ -18,9 +18,12 @@ const ListPage = () => {
   const name = state && (state as { name: string }).name;
 
   // 각 필터별 바텀시트 on/off state
-  const [isSortOpen, setSortOpen] = useState(false);
-  const [isGenreOpen, setGenreOpen] = useState(false);
-  const [isStyleOpen, setStyleOpen] = useState(false);
+  // const [isSortOpen, setSortOpen] = useState(false);
+  // const [isGenreOpen, setGenreOpen] = useState(false);
+  // const [isStyleOpen, setStyleOpen] = useState(false);
+
+  const [isSheetOpen, setSheetOpen] = useState([false, false, false]);
+
   // TODO: open state를 통합할 수 없는지 고민
   // bottom modal이 현재 3개가 존재. 바텀 모달을 1개로 줄이고
   // 각 버튼마다 선택된 것에 따라 내용물만 교체하는 방법
@@ -52,19 +55,10 @@ const ListPage = () => {
     <PageLayout renderHeader={renderListPageHeader}>
       <HotCustom />
       <St.Line />
-      <TattooList
-        setSortOpen={setSortOpen}
-        setGenreOpen={setGenreOpen}
-        setStyleOpen={setStyleOpen}
-        buttonName={buttonName}
-      />
+      <TattooList isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} buttonName={buttonName} />
       <FilterBottom
-        isSortOpen={isSortOpen}
-        setSortOpen={setSortOpen}
-        isGenreOpen={isGenreOpen}
-        setGenreOpen={setGenreOpen}
-        isStyleOpen={isStyleOpen}
-        setStyleOpen={setStyleOpen}
+        isSheetOpen={isSheetOpen}
+        setSheetOpen={setSheetOpen}
         buttonName={buttonName}
         setButtonName={setButtonName}
       />
