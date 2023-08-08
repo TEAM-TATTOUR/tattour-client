@@ -67,6 +67,7 @@ const LoginPage = () => {
     );
   };
 
+  // 어떤 헤더를 렌더할지 결정하는 함수
   const renderHeader = () => {
     switch (step) {
       case 0:
@@ -86,6 +87,7 @@ const LoginPage = () => {
     }
   };
 
+  // 어떤 컴포넌트를 렌더할지 결정하는 함수
   switch (step) {
     case 0:
       return (
