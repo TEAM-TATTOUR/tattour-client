@@ -17,6 +17,7 @@ const ListPage = () => {
   const type = state && (state as { type: string }).type;
   const name = state && (state as { name: string }).name;
 
+  // 각 필터별 바텀시트 on/off state
   const [isSortOpen, setSortOpen] = useState(false);
   const [isGenreOpen, setGenreOpen] = useState(false);
   const [isStyleOpen, setStyleOpen] = useState(false);
@@ -32,6 +33,7 @@ const ListPage = () => {
     `${state && type === '장르' ? name : '장르'}`,
     `${state && type === '스타일' ? name : '스타일'}`,
   ]);
+  // 사이드 메뉴 관리 상태
   const [isSideMenuOpen, setSideMenuOpen] = useState(false);
 
   const renderListPageHeader = () => {
@@ -65,7 +67,6 @@ const ListPage = () => {
         setStyleOpen={setStyleOpen}
         buttonName={buttonName}
         setButtonName={setButtonName}
-        setSelected={setSelected}
       />
       <SideMenu isSideMenuOpen={isSideMenuOpen} setIsSideMenuOpen={setSideMenuOpen} />
     </PageLayout>
