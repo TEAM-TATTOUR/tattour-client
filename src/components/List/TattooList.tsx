@@ -4,7 +4,7 @@ import {
   IcArrowBottomSmallLight,
   LabelCustomSmall,
 } from '../../assets/icon';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import useGetAllList from '../../libs/hooks/list/useGetAllList';
 import { useNavigate } from 'react-router-dom';
 
