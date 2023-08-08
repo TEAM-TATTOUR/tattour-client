@@ -9,21 +9,29 @@ import NoDesignFooter from '../../../components/Custom/NoDesign/NoDesignFooter';
 import Header from '../../../components/Header';
 import PageLayout from '../../../components/PageLayout';
 
-const CustomImgPage = ({ setStep }: { setStep: React.Dispatch<React.SetStateAction<number>> }) => {
+interface CustomImgPageProps {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  customImages: FileList | undefined;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | undefined>>;
+}
+
+const CustomImgPage = ({ setStep, customImages, setCustomImages }: CustomImgPageProps) => {
   // const CUSTOM_VIEW_COUNT = 2;
 
   const navigate = useNavigate();
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
-  const [customImages, setCustomImages] = useState<FileList>();
+  // const [customImages, setCustomImages] = useState<FileList>();
   const location = useLocation();
 
   // const haveDesign = location.state ? location.state.haveDesgin : null;
   // const prevCustomInfo = location.state ? location.state.customInfo : null;
 
   // state에 있는 img 파일 값 가져오기 (처음 넘어올 때는  값이 없으므로 에러 방지 필요)
-  const attachedImg =
-    location.state && location.state.customImages ? location.state.customImages : null;
+  // const attachedImg =
+  //   location.state && location.state.customImages ? location.state.customImages : null;
+
+  const attachedImg = customImages ? customImages : null;
 
   // useEffect(() => {
   //   if (!location.state) navigate('/onboarding');
