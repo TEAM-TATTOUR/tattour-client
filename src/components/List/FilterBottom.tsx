@@ -207,12 +207,9 @@ const FilterBottom = ({
     }
     setFilterTag(newTag);
 
-    // TODO : tagRefs를 순회할 필요가 전혀없다. 각 요소(el)를 사용하지도 않고 있음.. 지우자
-    tagRefs.current.forEach(() => {
-      const newButtonName = [...buttonName];
-      newButtonName[filterIdx] = selectedTag[filterIdx];
-      setButtonName(newButtonName);
-    });
+    const newButtonName = [...buttonName];
+    newButtonName[filterIdx] = selectedTag[filterIdx];
+    setButtonName(newButtonName);
   };
 
   return (
