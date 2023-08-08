@@ -98,9 +98,8 @@ const LoginPage = () => {
 
     case 1:
       return (
-        <PageLayout renderHeader={renderHeader}>
+        <PageLayout renderHeader={renderHeader} footer={<RegisterNameFooter userName={userName} />}>
           <RegisterName setUserName={setUserName} />
-          <RegisterNameFooter userName={userName} />
         </PageLayout>
       );
 
