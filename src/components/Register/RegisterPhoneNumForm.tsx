@@ -17,7 +17,6 @@ interface resProps {
 }
 
 interface usePatchProfileProps {
-  state: string;
   phoneNum: string;
 }
 
@@ -41,21 +40,22 @@ const RegisterPhoneNumForm = () => {
   const [phoneNum, setPhoneNum] = useState('');
 
   const { state } = useLocation();
+  const userName = state.userName;
 
-  const patchProfile = ({ state, phoneNum }: usePatchProfileProps) => {
+  const patchProfile = ({ phoneNum }: usePatchProfileProps) => {
     api
       .patch(
         `/user/profile`,
         // post body
         {
-          name: `${state}`,
+          name: `${userName}`,
           phoneNumber: `${phoneNum}`,
         },
         // request headers
         {},
       )
       .then(() => {
-        navigate('/welcome-signup');
+        navigate('/login', { state: { step: 3 } });
       })
       .catch((Error: object) => {
         console.log(Error);
@@ -123,11 +123,11 @@ const RegisterPhoneNumForm = () => {
           },
         })
         .then((res: resProps) => {
-          const isVerified = res.data.data.isVerified;          
+          const isVerified = res.data.data.isVerified;
 
           if (isVerified) {
             setIsError(false);
-            patchProfile({ state, phoneNum });
+            patchProfile({ phoneNum });
           } else {
             setIsError(true);
           }
