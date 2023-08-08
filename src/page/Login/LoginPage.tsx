@@ -14,7 +14,8 @@ import RegisterPhoneNum from '../../components/Register/RegisterPhoneNum';
 import WelcomeHome from '../../components/Welcome/WelcomeHome';
 import WelcomeFooter from '../../components/Welcome/WelcomeFooter';
 import LoginEscapeModal from '../../common/Modal/EscapeModal/LoginEscapeModal';
-import { IcCancelDark } from '../../assets/icon';
+import { IcBackDark, IcCancelDark } from '../../assets/icon';
+import { removeAccessToken } from '../../libs/api';
 
 const LoginPage = () => {
   const [userName, setUserName] = useState('');
@@ -22,9 +23,23 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [step, setStep] = useState(state?.step ? state.step : 0);
+  const ACCESS_TOKEN_KEY = 'accesstoken';
 
   const renderLoginPageHeader = () => {
-    return <Header transparent={true} leftSection={<BackBtn step={step} setStep={setStep}/>} fixed={true} />;
+    return (
+      <Header
+        transparent={true}
+        leftSection={
+          <IcBackDark
+            onClick={() => {
+              navigate('/');
+              removeAccessToken(ACCESS_TOKEN_KEY);
+            }}
+          />
+        }
+        fixed={true}
+      />
+    );
   };
 
   const renderRegisterNamePageHeader = () => {
