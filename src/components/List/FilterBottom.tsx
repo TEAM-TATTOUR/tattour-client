@@ -33,21 +33,40 @@ const FilterBottom = ({
   const genreData = genreResponse.map((genre: GenreItemProps) => genre.name);
   const styleData = styleResponse.map((style: StyleItemProps) => style.name);
 
+  // 각 바텀시트의 메타데이터를 모아놓은 배열
+  /*
+  {
+    type : 어떤 버튼인지 (정렬? 장르? 스타일?),
+    isOpen : 바텀시트 on/off를 다루는 state
+    onClose : 바텀시트를 off 시키는 state setter,
+    onTap : 바텀시트의 backdrop 터치 시 실행할 함수,
+    data : 각 필터별 바텀시트의 내부 요소들 
+  }
+  */
   const FILTER = [
     {
       type: '정렬',
       isOpen: isSortOpen,
       onClose: () => setSortOpen(false),
+      // onTap 로직 : '태그 선택 여부' & '선택한 태그명을 반영한 새 버튼명' 을 저장 및 반영한 후 바텀시트 off
       onTap: (filter: boolean[]) => {
+        // [ backdrop을 눌러서 바텀시트를 끌때, 현재 선택한 태그 정보를 저장하고 시트off 하는 코드 ]
+        // 0. 인자 filter : 현재 필터 내 각 태그의 선택 여부 배열
+        // 1. 모든 필터 내 각 태그의 선택 여부를 관리하는 filterTag에 '현태 필터 태그 여부인 filter'를 반영하여 update
+        // 2. 바텀시트 off
         const newFilterTag = [...filterTag];
         newFilterTag[0] = filter;
         setFilterTag(newFilterTag);
         setSortOpen(false);
 
+        // 현재 필터 내 '선택'된 태그의 index를 trueIdx에 저장
         const trueIdx = filterTag[0].indexOf(true);
 
+        // [ 현재 '선택'된 태그 명으로 필터 버튼명을 업데이트하는 코드 ]
+        // 0. selectedTag : 필터 버튼명을 관리하는 state (바텀시트 on일 동안 건드리는 state / buttonName은 off일때 건드림)
+        // 1. trueIdx를 활용해서 선택한 태그의 이름으로 버튼명을 update
         const newSelectedTag = [...selectedTag];
-        newSelectedTag[0] = FILTER[0].data[trueIdx];
+        newSelectedTag[0] = FILTER[0].data[trueIdx]; //TODO : FILTER[].data -> styleData로 변경
         setSelectedTag(newSelectedTag);
       },
       data: ['인기 순', '가격 낮은 순', '가격 높은 순'],
@@ -92,16 +111,26 @@ const FilterBottom = ({
     },
   ];
 
+  // 바텀시트 내 각 태그 ref
   const tagRefs = useRef<HTMLParagraphElement[]>([]);
-  const filterRef = useRef<HTMLElement>(null);
-  const [selectedTag, setSelectedTag] = useState(buttonName); // 선택한 태그 저장
+  const filterRef = useRef<HTMLElement>(null); // TODO : 삭제
+  // 필터 버튼명(선택한 태그명)을 임시로 관리하는 state
+  // buttonName을 건드릴 경우, 태그를 선택할 때마다 버튼명이 변경된다. 이를 방지하고, 임시 저장해뒀다가 바텀시트 내렸을 때 반응하기 위해 별도로 관리!
+  const [selectedTag, setSelectedTag] = useState(buttonName);
 
+  // 필터 내 각 태그의 선택 여부를 관리하는 이차원배열 state ([정렬, 장르, 스타일])
   const [filterTag, setFilterTag] = useState([
     [false, false, false],
     [false, false, false, false, false, false],
     [false, false, false, false, false, false],
   ]);
 
+  // [ 바텀시트를 열때, 기존에 선택됐던 태그를 표시하기 위한 코드 ]
+  // 1. 서버통신을로 바텀시트에 들어갈 태그 정보를 불러올 때마다(바텀시트를 열 때마다) useEffect 실행
+  // 2. 태그 선택 여부를 관리하는 filterTag에서 각 정렬, 장르, 스타일의 값들을 세팅
+  // 2-a. 정렬 : 모두 flase로
+  // 2-b. 장르 : 각 태그가 현재버튼명(현재 선택돼있는 태그명)과 동일하면 true(표시), 아니면 false
+  // 2-c. 스타일 : 각 태그가 현재버튼명(현재 선택돼있는 태그명)과 동일하면 true(표시), 아니면 flase
   useEffect(() => {
     const newFilterTag = [...filterTag];
     newFilterTag[0] = [false, false, false];
@@ -109,6 +138,12 @@ const FilterBottom = ({
     newFilterTag[2] = styleResponse.map((item) => buttonName[2] === item.name);
     setFilterTag(newFilterTag);
   }, [genreResponse, styleResponse]);
+
+  // [ 필터 내 각 태그 클릭 시 실행하는 함수 - selectedTag update & check 토글 ]
+  // 0. tag : 태그명, index : 태그index, filterIdx : 필터index(0/1/2)
+  // 1. 필터 버튼명(선택한 태그명)을 임시로 관리하는 selectedTag를 상황에 따라 update
+  // 1-a. 현재 필터에서 기존에 선택된 태그와 현재 클릭한 태그가 동일하다면 -> 버튼명(선택된 태그)는 디폴트(미선택)로 변경(정렬/장르/스타일)
+  // 1-b. 기존에 선택된 태그와 다른 태그를 클릭했다면 -> 버튼명(선택된 태그)을 현재 클릭한 태그명으로 변경
 
   const handleClickTag = (tag: string, index: number, filterIdx: number) => {
     const newSelectedTag = [...selectedTag];
@@ -120,9 +155,17 @@ const FilterBottom = ({
     setSelectedTag(newSelectedTag);
 
     // TODO: selectedTag와 tag를 아니까 class 토글 로직 간소화 가능
-    // 태그 선택은 하나씩
+    // 승희의 TODO
+    // tagRefs에서 index와 맞는 ref 아이템 찾기 -> selectedTag에서 tag 찾기 로 대체하면 될듯
+    // 토글 구현 파트는 그대로 가져가야하고 (class토글 방식을 사용하려면 ref.current[index]를 써야하기 때문에)
+    // forEach(el) ... if (tagRefs.current.indexOf(el) === index) {tagRefs.current[index].classList~}
+    // 위의 코드는 '반 학생을 한명씩 불러서, 이 사람이 승희일 경우, 승희에게 사과를 줘라' 의 구조임. 즉 중복됐다는 뜻
+    // 이 문장은 '승희에게 사과를 줘라' 라고만 말해도 똑같이 작동함
+    // 따라서 불필요한 반복문과 조건문! -> 삭제하자.
+
     tagRefs.current.forEach((el: HTMLParagraphElement) => {
       if (!el) return;
+      // 선택된 태그에 대해서
       if (tagRefs.current.indexOf(el) === index) {
         // 클릭할 때마다 토글 구현
         if (tagRefs.current[index].classList[2] === 'checked') {
@@ -131,6 +174,7 @@ const FilterBottom = ({
           tagRefs.current[index].classList.add('checked');
         }
       } else {
+        // 태그는 한개씩만 선택 가능하므로, 선택된 태그가 아닌 나머지는 remove
         if (el.classList[2] === 'checked') {
           el.classList.remove('checked');
         }
@@ -138,8 +182,16 @@ const FilterBottom = ({
     });
   };
 
+  // [ '적용하기' footer 클릭 시 실행하는 함수 - 바텀시트 닫고 버튼명 filterTag & buttonName update ]
+  // 0. onClose : 바텀시트를 닫는 함수, filterIdx : 필터index(0/1/2)
+  // 1. 바텀시트 닫기
+  // 2. filterTag(각 태그 선택 여부 관리하는 이차원 배열) update
+  // 2-a. 선택된 태그명이 필터의 디폴트와 같다면 (아무 태그도 선택X) -> 해당 필터의 선택여부 모두 false
+  // 2-b. 아니라면 (어떤 태그가 선택됐다면) -> 해당 필터의 각 태그 선택여부 표시 (선택한 태그의 index 위치만 true)
+  // 3. buttonName update
+  // 3-a. 임시 보관해둔 selectedTag의 데이터를 buttonName에 반영
   const handleClickButton = (onClose: () => void, filterIdx: number) => {
-    onClose(); // 모달 내리기
+    onClose();
 
     const newTag = [...filterTag];
     if (selectedTag[filterIdx] === FILTER[filterIdx].type) {
@@ -149,9 +201,9 @@ const FilterBottom = ({
         return idx === FILTER[filterIdx].data.indexOf(selectedTag[filterIdx]);
       });
     }
-
     setFilterTag(newTag);
 
+    // TODO : tagRefs를 순회할 필요가 전혀없다. 각 요소(el)를 사용하지도 않고 있음.. 지우자
     tagRefs.current.forEach(() => {
       const newButtonName = [...buttonName];
       newButtonName[filterIdx] = selectedTag[filterIdx];
