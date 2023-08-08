@@ -84,7 +84,7 @@ const FilterBottom = ({
         const trueIdx = filterTag[1].indexOf(true);
 
         const newSelectedTag = [...selectedTag];
-        newSelectedTag[1] = FILTER[1].data[trueIdx]; //TODO : FILTER[].data -> styleData로 변경
+        newSelectedTag[1] = genreData[trueIdx];
         setSelectedTag(newSelectedTag);
       },
       data: genreData,
@@ -104,7 +104,7 @@ const FilterBottom = ({
         const trueIdx = filterTag[2].indexOf(true);
 
         const newSelectedTag = [...selectedTag];
-        newSelectedTag[2] = FILTER[2].data[trueIdx]; //TODO : FILTER[].data -> styleData로 변경
+        newSelectedTag[2] = styleData[trueIdx];
         setSelectedTag(newSelectedTag);
       },
       data: styleData,
