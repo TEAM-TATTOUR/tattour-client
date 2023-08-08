@@ -16,11 +16,19 @@ interface TattooListProps {
 }
 
 const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: TattooListProps) => {
-  const [selectedFilter, setSelectedFilter] = useState([false, false, false]); // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
+  // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
+  const [selectedFilter, setSelectedFilter] = useState([false, false, false]);
 
   const navigate = useNavigate();
   const filterRef = useRef(null);
   const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
+
+  // [ 필터 버튼명이 바뀔 때마다 버튼 색상을 세팅하는, 즉 selectedFilter를 업데이트하는 코드 ]
+  // 1. 기존의 selectedFilter를 newSelectedFilter에 복사하고 (직접 set 시 불필요한 렌더링 발생)
+  // 2. 현재 각 버튼명을 순회하면서, 각 버튼명이 디폴트명인지 체크한다.
+  // 2-a. 디폴트명이 아닐 경우 (특정 필터를 선택한 경우) -> true, 검정 버튼
+  // 2-b. 디폴트명일 경우 (특정 필터를 선택하지 않은 경우) -> false, 회색 버튼
+  // 3. 변경한 배열로 selectedFilter update
 
   useEffect(() => {
     const newSelectedFilter = [...selectedFilter];
@@ -45,10 +53,12 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
       <St.Header>ALL</St.Header>
       <St.BtnContainer ref={filterRef}>
         {buttonName.map((el, idx) => (
+          // 각 필터 버튼
           <St.FilterBtn
             key={el}
             $selected={selectedFilter[idx]}
             onClick={() => {
+              // 클릭한 버튼에 해당하는 바텀시트 on
               switch (idx) {
                 case 0:
                   setSortOpen(true);
