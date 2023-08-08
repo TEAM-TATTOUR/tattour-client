@@ -66,7 +66,7 @@ const FilterBottom = ({
         // 0. selectedTag : 필터 버튼명을 관리하는 state (바텀시트 on일 동안 건드리는 state / buttonName은 off일때 건드림)
         // 1. trueIdx를 활용해서 선택한 태그의 이름으로 버튼명을 update
         const newSelectedTag = [...selectedTag];
-        newSelectedTag[0] = FILTER[0].data[trueIdx]; //TODO : FILTER[].data -> styleData로 변경
+        newSelectedTag[0] = FILTER[0].data[trueIdx];
         setSelectedTag(newSelectedTag);
       },
       data: ['인기 순', '가격 낮은 순', '가격 높은 순'],
@@ -84,7 +84,7 @@ const FilterBottom = ({
         const trueIdx = filterTag[1].indexOf(true);
 
         const newSelectedTag = [...selectedTag];
-        newSelectedTag[1] = FILTER[1].data[trueIdx];
+        newSelectedTag[1] = FILTER[1].data[trueIdx]; //TODO : FILTER[].data -> styleData로 변경
         setSelectedTag(newSelectedTag);
       },
       data: genreData,
@@ -104,7 +104,7 @@ const FilterBottom = ({
         const trueIdx = filterTag[2].indexOf(true);
 
         const newSelectedTag = [...selectedTag];
-        newSelectedTag[2] = FILTER[2].data[trueIdx];
+        newSelectedTag[2] = FILTER[2].data[trueIdx]; //TODO : FILTER[].data -> styleData로 변경
         setSelectedTag(newSelectedTag);
       },
       data: styleData,
