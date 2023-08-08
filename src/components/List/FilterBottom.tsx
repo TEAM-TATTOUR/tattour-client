@@ -15,7 +15,6 @@ interface FilterBottomProps {
   setStyleOpen: React.Dispatch<React.SetStateAction<boolean>>;
   buttonName: string[];
   setButtonName: React.Dispatch<React.SetStateAction<string[]>>;
-  setSelected: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const FilterBottom = ({
@@ -27,12 +26,7 @@ const FilterBottom = ({
   setStyleOpen,
   buttonName,
   setButtonName,
-  setSelected,
 }: FilterBottomProps) => {
-  useEffect(() => {
-    setSelected(false);
-  }, []);
-
   const { genreResponse } = useGetGenre();
   const { styleResponse } = useGetStyle();
 

@@ -32,7 +32,6 @@ const ListPage = () => {
     `${state && type === '장르' ? name : '장르'}`,
     `${state && type === '스타일' ? name : '스타일'}`,
   ]);
-  const [, setSelected] = useState(false); // TODO: 제거
   const [isSideMenuOpen, setSideMenuOpen] = useState(false);
 
   const renderListPageHeader = () => {
