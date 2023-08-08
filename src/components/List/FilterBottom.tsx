@@ -113,7 +113,6 @@ const FilterBottom = ({
 
   // 바텀시트 내 각 태그 ref
   const tagRefs = useRef<HTMLParagraphElement[]>([]);
-  const filterRef = useRef<HTMLElement>(null); // TODO : 삭제
   // 필터 버튼명(선택한 태그명)을 임시로 관리하는 state
   // buttonName을 건드릴 경우, 태그를 선택할 때마다 버튼명이 변경된다. 이를 방지하고, 임시 저장해뒀다가 바텀시트 내렸을 때 반응하기 위해 별도로 관리!
   const [selectedTag, setSelectedTag] = useState(buttonName);
@@ -223,7 +222,7 @@ const FilterBottom = ({
         >
           <Sheet.Container>
             <Sheet.Header disableDrag={true} />
-            <Sheet.Content ref={filterRef}>
+            <Sheet.Content>
               {filter.data.map((el, idx) => (
                 <St.TagBox
                   key={idx}
