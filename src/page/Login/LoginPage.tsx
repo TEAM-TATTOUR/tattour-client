@@ -23,7 +23,6 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [step, setStep] = useState(state?.step ? state.step : 0);
-  const ACCESS_TOKEN_KEY = 'accesstoken';
 
   const renderLoginPageHeader = () => {
     return (
@@ -33,7 +32,7 @@ const LoginPage = () => {
           <IcBackDark
             onClick={() => {
               navigate('/');
-              removeAccessToken(ACCESS_TOKEN_KEY);
+              removeAccessToken();
             }}
           />
         }
