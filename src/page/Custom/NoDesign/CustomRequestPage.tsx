@@ -1,15 +1,19 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { IcBackDark } from '../../../assets/icon';
-import NextFooter from '../../../common/Footer/NextFooter';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import ProgressBar from '../../../common/ProgressBar';
 import CustomRequset from '../../../components/Custom/NoDesign/CustomRequset';
+import NoDesignFooter from '../../../components/Custom/NoDesign/NoDesignFooter';
 import Header from '../../../components/Header';
 import PageLayout from '../../../components/PageLayout';
 
-const CustomRequestPage = () => {
+const CustomRequestPage = ({
+  setStep,
+}: {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+}) => {
   const CUSTOM_VIEW_COUNT = 3;
 
   const navigate = useNavigate();
@@ -69,15 +73,7 @@ const CustomRequestPage = () => {
   return (
     <PageLayout
       renderHeader={renderCustomRequestPageHeader}
-      footer={
-        <NextFooter
-          isActiveNext={isActiveNext}
-          navigateURL='/price'
-          haveDesign={haveDesign}
-          customInfo={customInfo}
-          customImages={customImages}
-        />
-      }
+      footer={<NoDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
       <CustomRequset
         setIsActiveNext={setIsActiveNext}

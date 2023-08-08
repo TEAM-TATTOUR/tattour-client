@@ -62,16 +62,7 @@ const CustomImgPage = ({ setStep }: { setStep: React.Dispatch<React.SetStateActi
   return (
     <PageLayout
       renderHeader={renderCustomImgPageHeader}
-      footer={
-        <NoDesignFooter
-          isActiveNext={isActiveNext}
-          // navigateURL='/custom-request'
-          // haveDesign={haveDesign}
-          // customInfo={customInfo}
-          // customImages={customImages}
-          setStep={setStep}
-        />
-      }
+      footer={<NoDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
       <CustomImg
         setIsActiveNext={setIsActiveNext}

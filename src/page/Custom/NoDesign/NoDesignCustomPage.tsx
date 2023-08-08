@@ -9,7 +9,7 @@ const NoDesignCustomPage = () => {
     case 0:
       return <CustomImgPage setStep={setStep} />;
     case 1:
-      return <CustomRequestPage />;
+      return <CustomRequestPage setStep={setStep} />;
   }
 };
 
