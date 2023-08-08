@@ -1,5 +1,16 @@
+import { useState } from 'react';
+import CustomImgPage from './CustomImgPage';
+import CustomRequestPage from './CustomRequestPage';
+
 const NoDesignCustomPage = () => {
-  return <div>없어요 없다구요</div>;
+  const [step, setStep] = useState(0);
+
+  switch (step) {
+    case 0:
+      return <CustomImgPage setStep={setStep} />;
+    case 1:
+      return <CustomRequestPage />;
+  }
 };
 
 export default NoDesignCustomPage;

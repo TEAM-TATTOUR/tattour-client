@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { IcBackDark } from '../../../assets/icon';
+import NextFooter from '../../../common/Footer/NextFooter';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import ProgressBar from '../../../common/ProgressBar';
 import CustomRequset from '../../../components/Custom/NoDesign/CustomRequset';
 import Header from '../../../components/Header';
 import PageLayout from '../../../components/PageLayout';
-import NextFooter from '../../../common/Footer/NextFooter';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { IcBackDark } from '../../../assets/icon';
 
 const CustomRequestPage = () => {
   const CUSTOM_VIEW_COUNT = 3;
@@ -29,9 +29,9 @@ const CustomRequestPage = () => {
   const writtenDemand =
     location.state && location.state.customInfo.demand ? location.state.customInfo.demand : null;
 
-  useEffect(() => {
-    if (!location.state) navigate('/onboarding');
-  }, [location.state, navigate]);
+  // useEffect(() => {
+  //   if (!location.state) navigate('/onboarding');
+  // }, [location.state, navigate]);
 
   const customInfo = {
     ...prevCustomInfo,
