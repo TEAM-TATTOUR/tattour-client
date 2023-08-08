@@ -1,42 +1,12 @@
-import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 interface NoDesignFooterProps {
   isActiveNext?: boolean;
-  // navigateURL: string;
-  // haveDesign?: boolean;
-  // customInfo?: customInfoType;
-  // handDrawingImage?: File | null;
-  // customImages?: FileList | null;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const NoDesignFooter = ({
-  isActiveNext = true,
-  // navigateURL,
-  // haveDesign,
-  // customInfo,
-  // handDrawingImage,
-  // customImages,
-  setStep,
-}: NoDesignFooterProps) => {
-  // const navigate = useNavigate();
-
-  const location = useLocation();
-  console.log(location.state);
-
+const NoDesignFooter = ({ isActiveNext = true, setStep }: NoDesignFooterProps) => {
   const handleClickFooter = () => {
-    // {
-    //   isActiveNext &&
-    //     navigate(navigateURL, {
-    //       state: {
-    //         haveDesign: haveDesign,
-    //         customInfo: customInfo,
-    //         handDrawingImage: handDrawingImage,
-    //         customImages: customImages,
-    //       },
-    //     });
-    // }
     {
       isActiveNext && setStep((prev) => prev + 1);
     }

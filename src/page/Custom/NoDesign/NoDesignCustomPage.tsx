@@ -17,8 +17,7 @@ const NoDesignCustomPage = () => {
   //요청사항 state
   const [demand, setDemand] = useState('');
 
-  console.log('!!!', customImages, '\n', name, '\n', demand);
-
+  //customSizePage가 공통으로 쓰여 아직 처리를 못해줘, step이 1부터 시작하도록 useEffect로 테스트 코드 추가. 추후 삭제 예정
   useEffect(() => {
     setStep(1);
   }, []);
