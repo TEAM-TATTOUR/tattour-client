@@ -36,8 +36,13 @@ const RegisterPhoneNumForm = () => {
   const [certificationLen, setCertificationLen] = useState(1);
   const [isTimeout, setIsTimeout] = useState(false);
   const [leftTime, setLeftTime] = useState<number>(MINUTES_IN_MS);
-  const [text, setText] = useState('');
-  const [phoneNum, setPhoneNum] = useState('');
+
+  const [inputData, setInputData] = useState({
+    phoneNum: '',
+    certificationNum: '',
+  });
+
+  const { phoneNum, certificationNum } = inputData;
 
   const { state } = useLocation();
   const userName = state.userName;
@@ -69,7 +74,11 @@ const RegisterPhoneNumForm = () => {
       setNumLength(0);
     } else {
       setNumLength(e.target.value.length);
-      setPhoneNum(e.target.value.replace(/-/g, ''));
+      setInputData({
+        ...inputData,
+        // 하이픈 제거
+        [e.target.name]: e.target.value.replace(/-/g, ''),
+      });
     }
   };
 
@@ -99,7 +108,6 @@ const RegisterPhoneNumForm = () => {
         if (isVisible) {
           setIsTimeout(false);
           setLeftTime(MINUTES_IN_MS);
-          setText('');
           setCertificationLen(1);
         }
       })
@@ -112,14 +120,17 @@ const RegisterPhoneNumForm = () => {
   };
 
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
+    setInputData({
+      ...inputData,
+      [e.target.name]: e.target.value,
+    });
     setCertificationLen(e.target.value.length);
 
     if (e.target.value.length === 6) {
       api
         .get(`/user/phonenumber/verification`, {
           params: {
-            verificationCode: `${e.target.value}`,
+            verificationCode: `${certificationNum}`,
           },
         })
         .then((res: resProps) => {
@@ -144,6 +155,7 @@ const RegisterPhoneNumForm = () => {
     <>
       <St.InputContentsWrapper>
         <St.InputContent
+          name='phoneNum'
           type='tel'
           placeholder='ex) 010-0000-0000'
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
@@ -155,21 +167,21 @@ const RegisterPhoneNumForm = () => {
           $length={numLength}
           onClick={handleClickSendMessageBtn}
         >
-          {isVisible ? '재인증' : '인증하기'}
+          {isVisible && numLength === 13 ? '재인증' : '인증하기'}
           {toast && <Toast setToast={setToast} text='인증번호가 발송되었습니다.' />}
         </St.SendMessageBtn>
       </St.InputContentsWrapper>
 
-      {isVisible && (
+      {isVisible && numLength === 13 && (
         <St.CertificationInputWrapper>
           <St.CertificationInput
+            name='certificationNum'
             type='number'
             id={(isError && certificationLen === 6) || isTimeout ? 'errorInput' : 'successInput'}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeCertificationInput(e)}
             disabled={isTimeout ? true : false}
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 6, 'onlyNum')}
             placeholder='인증번호를 입력해주세요'
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeCertificationInput(e)}
-            value={text}
           ></St.CertificationInput>
           <Timer
             isTimeout={isTimeout}
