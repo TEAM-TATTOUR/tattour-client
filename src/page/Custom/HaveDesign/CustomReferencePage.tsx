@@ -18,10 +18,10 @@ const CustomReferencePage = () => {
   // 모달 사용할 때  활용
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
-  const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
-  const [customImages, setCustomImages] = useState<FileList | null>(null);
+  // const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
+  // const [customImages, setCustomImages] = useState<FileList | null>(null);
   const [, setFreeDraw] = useState<boolean>(location.state.freeDraw ? true : false);
-  const [previewURL, setPreviewURL] = useState<string[]>([]); //페이지로 뺴주기
+  // const [previewURL, setPreviewURL] = useState<string[]>([]); //페이지로 뺴주기
 
   console.log('back', location.state.freeDraw);
 
