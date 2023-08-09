@@ -31,7 +31,7 @@ const RegisterPhoneNumForm = () => {
   // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
   const [isError, setIsError] = useState(false);
   // 입력한 인증번호 자릿수
-  const [certificationLen, setCertificationLen] = useState(1);
+  const [certificationLen, setCertificationLen] = useState(0);
   const [isTimeout, setIsTimeout] = useState(false);
   const [leftTime, setLeftTime] = useState<number>(MINUTES_IN_MS);
 
@@ -105,7 +105,7 @@ const RegisterPhoneNumForm = () => {
           setToast(true);
           setIsTimeout(false);
           setLeftTime(MINUTES_IN_MS);
-          setCertificationLen(1);
+          setCertificationLen(0);
         })
         .catch((Error: object) => {
           console.log(Error);
