@@ -129,42 +129,14 @@ const LoginPage = () => {
     }
   }
 
-  // 어떤 컴포넌트를 렌더할지 결정하는 함수
-  switch (step) {
-    case 0:
-      return (
-        <PageLayout renderHeader={renderHeader} footer={<LoginFooter />}>
-          <LoginHome />
-        </PageLayout>
-      );
-
-    case 1:
-      return (
-        <PageLayout
-          renderHeader={renderHeader}
-          footer={<RegisterNameFooter userName={userName} setStep={setStep} />}
-        >
-          <RegisterName setUserName={setUserName} />
-        </PageLayout>
-      );
-
-    case 2:
-      return (
-        <PageLayout renderHeader={renderHeader}>
-          <RegisterPhoneNum setStep={setStep} />
-        </PageLayout>
-      );
-
-    case 3:
-      return (
-        <PageLayout renderHeader={renderHeader} footer={<WelcomeFooter />}>
-          <WelcomeHome />
-        </PageLayout>
-      );
-
-    default:
-      break;
-  }
+  return (
+    <PageLayout renderHeader={renderHeader} footer={renderFooter()}>
+      {step === 0 && <LoginHome />}
+      {step === 1 && <RegisterName setUserName={setUserName} />}
+      {step === 2 && <RegisterPhoneNum setStep={setStep} />}
+      {step === 3 && <WelcomeHome />}
+    </PageLayout>
+  );
 };
 
 const St = {
