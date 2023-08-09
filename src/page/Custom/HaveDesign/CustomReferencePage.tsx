@@ -5,39 +5,31 @@ import Header from '../../../components/Header';
 import PageLayout from '../../../components/PageLayout';
 import ProgressBar from '../../../common/ProgressBar';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import NextFooter from '../../../common/Footer/NextFooter';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { IcBackDark } from '../../../assets/icon';
+import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFooter';
 
-const CustomReferencePage = () => {
-  const CUSTOM_VIEW_COUNT = 2;
+interface CustomReferencePageProps {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  customImages: FileList | null;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
+  setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
+}
 
-  const navigate = useNavigate();
-  const location = useLocation();
-
+const CustomReferencePage = ({
+  setStep,
+  customImages,
+  setCustomImages,
+  setHandDrawingImage,
+}: CustomReferencePageProps) => {
   // 모달 사용할 때  활용
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
-  // const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
-  // const [customImages, setCustomImages] = useState<FileList | null>(null);
-
-  const haveDesign = location.state ? location.state.haveDesign : null;
-  const prevCustomInfo = location.state ? location.state.customInfo : null;
-
-  useEffect(() => {
-    if (!location.state) navigate('/onboarding');
-  }, [location.state, navigate]);
-
-  const customInfo = {
-    ...prevCustomInfo,
-    viewCount: CUSTOM_VIEW_COUNT,
-  };
 
   const renderCustomReferencePageHeader = () => {
     return (
       <Header
         transparent={true}
-        leftSection={<IcBackDark onClick={() => navigate('/custom-size')} />}
+        leftSection={<IcBackDark onClick={() => setStep((prev) => prev - 1)} />}
         title='커스텀 타투'
         rightSection={
           <CancelBtn
@@ -54,16 +46,7 @@ const CustomReferencePage = () => {
   return (
     <PageLayout
       renderHeader={renderCustomReferencePageHeader}
-      footer={
-        <NextFooter
-          isActiveNext={isActiveNext}
-          navigateURL={'/styling-color'}
-          haveDesign={haveDesign}
-          customInfo={customInfo}
-          customImages={customImages}
-          handDrawingImage={handDrawingImage}
-        />
-      }
+      footer={<HaveDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
       <CustomReference
         setIsActiveNext={setIsActiveNext}

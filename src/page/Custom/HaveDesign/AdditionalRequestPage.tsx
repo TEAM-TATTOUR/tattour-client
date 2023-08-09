@@ -1,49 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import Header from '../../../components/Header';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import ProgressBar from '../../../common/ProgressBar';
 import AdditionalRequest from '../../../components/Custom/HaveDesign/AdditionalRequest';
-import NextFooter from '../../../common/Footer/NextFooter';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { IcBackDark } from '../../../assets/icon';
+import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFooter';
 
-const AdditionalRequestPage = () => {
-  const CUSTOM_VIEW_COUNT = 6;
+interface AdditionalRequestPageProps {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  setDemand: React.Dispatch<React.SetStateAction<string>>;
+}
 
+const AdditionalRequestPage = ({ setStep, setDemand }: AdditionalRequestPageProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
-  const [demand, setDemand] = useState('');
-
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const haveDesign = location.state ? location.state.haveDesign : null;
-  const prevCustomInfo = location.state ? location.state.customInfo : null;
-  const handDrawingImage = location.state ? location.state.handDrawingImage : null;
-  const customImages = location.state ? location.state.customImages : null;
-
-  useEffect(() => {
-    if (!location.state) navigate('/onboarding');
-  }, [location.state, navigate]);
-
-  const customInfo = {
-    ...prevCustomInfo,
-    viewCount: CUSTOM_VIEW_COUNT,
-    demand: demand,
-  };
 
   const renderAdditionalRequestPageHeader = () => {
     return (
       <Header
-        leftSection={
-          <IcBackDark
-            onClick={() =>
-              navigate('/custom-theme', { state: location.state ? location.state : null })
-            }
-          />
-        }
+        leftSection={<IcBackDark onClick={() => setStep((prev) => prev - 1)} />}
         title='커스텀 타투'
         rightSection={
           <CancelBtn
@@ -60,16 +37,7 @@ const AdditionalRequestPage = () => {
   return (
     <PageLayout
       renderHeader={renderAdditionalRequestPageHeader}
-      footer={
-        <NextFooter
-          isActiveNext={isActiveNext}
-          navigateURL={'/price'}
-          haveDesign={haveDesign}
-          customInfo={customInfo}
-          handDrawingImage={handDrawingImage}
-          customImages={customImages}
-        />
-      }
+      footer={<HaveDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
       <AdditionalRequest setIsActiveNext={setIsActiveNext} setDemand={setDemand} />
     </PageLayout>

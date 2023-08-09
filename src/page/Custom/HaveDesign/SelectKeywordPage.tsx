@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SelectKeywordHeading from '../../../components/Custom/HaveDesign/SelectKeywordHeading';
 import PageLayout from '../../../components/PageLayout';
 import CancelBtn from '../../../common/Header/CancelBtn';
@@ -6,41 +6,23 @@ import Header from '../../../components/Header';
 import ProgressBar from '../../../common/ProgressBar';
 import SelectKeyword from '../../../components/Custom/HaveDesign/SelectKeyword';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import NextFooter from '../../../common/Footer/NextFooter';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { IcBackDark } from '../../../assets/icon';
+import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFooter';
 
-const SelectKeywordPage = () => {
-  const CUSTOM_VIEW_COUNT = 4;
+interface SelectKeywordPageProps {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  setStyles: React.Dispatch<React.SetStateAction<number[]>>;
+  setThemes: React.Dispatch<React.SetStateAction<number[]>>;
+}
 
+const SelectKeywordPage = ({ setStep, setStyles, setThemes }: SelectKeywordPageProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
-  const [styles, setStyles] = useState<number[]>([]);
-  const [themes, setThemes] = useState<number[]>([]);
-
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const haveDesign = location.state ? location.state.haveDesign : null;
-  const prevCustomInfo = location.state ? location.state.customInfo : null;
-  const handDrawingImage = location.state ? location.state.handDrawingImage : null;
-  const customImages = location.state ? location.state.customImages : null;
-
-  useEffect(() => {
-    if (!location.state) navigate('/onboarding');
-  }, [location.state, navigate]);
-
-  const customInfo = {
-    ...prevCustomInfo,
-    viewCount: CUSTOM_VIEW_COUNT,
-    styles: styles,
-    themes: themes,
-  };
 
   const renderSelectKeywordPageHeader = () => {
     return (
       <Header
-        leftSection={<IcBackDark onClick={() => navigate('/styling-color')} />}
+        leftSection={<IcBackDark onClick={() => setStep((prev) => prev - 1)} />}
         title='커스텀 타투'
         rightSection={
           <CancelBtn
@@ -58,16 +40,7 @@ const SelectKeywordPage = () => {
   return (
     <PageLayout
       renderHeader={renderSelectKeywordPageHeader}
-      footer={
-        <NextFooter
-          isActiveNext={isActiveNext}
-          navigateURL={'/custom-theme'}
-          haveDesign={haveDesign}
-          customInfo={customInfo}
-          handDrawingImage={handDrawingImage}
-          customImages={customImages}
-        />
-      }
+      footer={<HaveDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
       <SelectKeywordHeading />
       <SelectKeyword
