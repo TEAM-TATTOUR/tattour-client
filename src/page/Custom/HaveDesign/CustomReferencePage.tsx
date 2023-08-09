@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import CancelBtn from '../../common/Header/CancelBtn';
-import CustomReference from '../../components/Custom/HaveDesign/CustomReference';
-import Header from '../../components/Header';
-import PageLayout from '../../components/PageLayout';
-import ProgressBar from '../../common/ProgressBar';
-import CustomSizeEscapeModal from '../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import NextFooter from '../../common/Footer/NextFooter';
+import CancelBtn from '../../../common/Header/CancelBtn';
+import CustomReference from '../../../components/Custom/HaveDesign/CustomReference';
+import Header from '../../../components/Header';
+import PageLayout from '../../../components/PageLayout';
+import ProgressBar from '../../../common/ProgressBar';
+import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import NextFooter from '../../../common/Footer/NextFooter';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { IcBackDark } from '../../assets/icon';
+import { IcBackDark } from '../../../assets/icon';
 
 const CustomReferencePage = () => {
   const CUSTOM_VIEW_COUNT = 2;
