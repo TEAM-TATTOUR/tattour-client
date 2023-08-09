@@ -30,18 +30,19 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
   const navigate = useNavigate();
   // 입력한 전화번호 자릿수
   const [numLength, setNumLength] = useState(0);
-  // toast message
   const [toast, setToast] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isRequired, setIsRequired] = useState(false);
   // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
   const [isError, setIsError] = useState(false);
-  // 입력한 인증번호 자릿수
-  const [certificationLen, setCertificationLen] = useState(1);
   const [isTimeout, setIsTimeout] = useState(false);
   const [leftTime, setLeftTime] = useState<number>(MINUTES_IN_MS);
-  const [text, setText] = useState('');
-  const [phoneNum, setPhoneNum] = useState('');
+
+  const [inputData, setInputData] = useState({
+    phoneNum: '',
+    certificationNum: '',
+  });
+
+  const { phoneNum, certificationNum } = inputData;
 
   const { state } = useLocation();
   const userName = state.userName;
@@ -74,7 +75,11 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
       setNumLength(0);
     } else {
       setNumLength(e.target.value.length);
-      setPhoneNum(e.target.value.replace(/-/g, ''));
+      setInputData({
+        ...inputData,
+        // 하이픈 제거
+        [e.target.name]: e.target.value.replace(/-/g, ''),
+      });
     }
   };
 
@@ -82,44 +87,45 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
     const ACCESS_TOKEN_KEY = 'accesstoken';
     const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
 
-    axios
-      .post(
-        `https://api.tattour.shop/sms/send/verification-code`,
-        // post body
-        {
-          phoneNumber: `${phoneNum}`,
-        },
-        // request headers
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
+    if (numLength === 13) {
+      axios
+        .post(
+          `https://api.tattour.shop/sms/send/verification-code`,
+          // post body
+          {
+            phoneNumber: `${phoneNum}`,
           },
-        },
-      )
-      .then(() => {
-        // 인증번호 입력 폼 나옴
-        setIsVisible(true);
-
-        // 인증번호 입력 폼이 나온 경우
-        if (isVisible) {
+          // request headers
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          },
+        )
+        .then(() => {
+          // 인증번호 입력 폼 나옴
+          setIsVisible(true);
+          setToast(true);
           setIsTimeout(false);
           setLeftTime(MINUTES_IN_MS);
-          setText('');
-          setCertificationLen(1);
-        }
-      })
-      .catch((Error: object) => {
-        console.log(Error);
-      });
-
-    setToast(true);
-    setIsRequired(!isRequired);
+        })
+        .catch((Error: object) => {
+          console.log(Error);
+        });
+    }
+    setIsVisible(false);
   };
 
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-    setCertificationLen(e.target.value.length);
+    setInputData({
+      ...inputData,
+      [e.target.name]: e.target.value,
+    });
 
+    checkCertificationNum(e);
+  };
+
+  const checkCertificationNum = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length === 6) {
       api
         .get(`/user/phonenumber/verification`, {
@@ -149,32 +155,32 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
     <>
       <St.InputContentsWrapper>
         <St.InputContent
+          name='phoneNum'
           type='tel'
           placeholder='ex) 010-0000-0000'
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
         ></St.InputContent>
-        <St.SendMessageBtn
-          type='button'
-          $isvisible={isVisible}
-          $length={numLength}
-          onClick={handleClickSendMessageBtn}
-        >
-          {isVisible ? '재인증' : '인증하기'}
+        <St.SendMessageBtn type='button' $length={numLength} onClick={handleClickSendMessageBtn}>
+          {isVisible && numLength === 13 ? '재인증' : '인증하기'}
           {toast && <Toast setToast={setToast} text='인증번호가 발송되었습니다.' />}
         </St.SendMessageBtn>
       </St.InputContentsWrapper>
 
-      {isVisible && (
+      {isVisible && numLength === 13 && (
         <St.CertificationInputWrapper>
           <St.CertificationInput
+            name='certificationNum'
             type='number'
-            id={(isError && certificationLen === 6) || isTimeout ? 'errorInput' : 'successInput'}
+            id={
+              (isError && certificationNum.length === 6) || isTimeout
+                ? 'errorInput'
+                : 'successInput'
+            }
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeCertificationInput(e)}
             disabled={isTimeout ? true : false}
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 6, 'onlyNum')}
             placeholder='인증번호를 입력해주세요'
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeCertificationInput(e)}
-            value={text}
           ></St.CertificationInput>
           <Timer
             isTimeout={isTimeout}
@@ -183,7 +189,7 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
             setLeftTime={setLeftTime}
           />
 
-          {((isError && certificationLen === 6) || isTimeout) && (
+          {((isError && certificationNum.length === 6) || isTimeout) && (
             <ErrorMessage isTimeout={isTimeout} />
           )}
         </St.CertificationInputWrapper>
@@ -225,7 +231,7 @@ const St = {
     }
   `,
 
-  SendMessageBtn: styled.button<{ $isvisible: boolean; $length: number }>`
+  SendMessageBtn: styled.button<{ $length: number }>`
     width: 9.2rem;
     height: 4.5rem;
 
@@ -234,8 +240,8 @@ const St = {
 
     color: ${({ theme }) => theme.colors.white};
 
-    background-color: ${({ $isvisible, theme, $length }) =>
-      $isvisible || $length === 13 ? theme.colors.gray7 : theme.colors.gray3};
+    background-color: ${({ theme, $length }) =>
+      $length === 13 ? theme.colors.gray7 : theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.title_semibold_16};
   `,
