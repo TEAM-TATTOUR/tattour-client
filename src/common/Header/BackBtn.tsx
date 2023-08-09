@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 
 interface BackBtnProps {
   step?: number;
-  setStep: React.Dispatch<SetStateAction<number>>;
+  setStep?: React.Dispatch<SetStateAction<number>>;
 }
 
 const BackBtn = ({ step, setStep }: BackBtnProps) => {
   const navigate = useNavigate();
 
   const handleClickBack = () => {
-    step === 0 ? navigate('/') : setStep((prev) => prev - 1);
+    step && setStep ? setStep(step - 1) : navigate(-1);
   };
 
   return <IcBackDark onClick={handleClickBack} />;
