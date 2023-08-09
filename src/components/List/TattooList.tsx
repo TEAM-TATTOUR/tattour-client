@@ -9,9 +9,6 @@ import useGetAllList from '../../libs/hooks/list/useGetAllList';
 import { useNavigate } from 'react-router-dom';
 
 interface TattooListProps {
-  // setSortOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  // setGenreOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  // setStyleOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isSheetOpen: boolean[];
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean[]>>;
   buttonName: string[];
@@ -23,13 +20,6 @@ const TattooList = ({ isSheetOpen, setSheetOpen, buttonName }: TattooListProps) 
 
   const navigate = useNavigate();
   const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
-
-  // [ 필터 버튼명이 바뀔 때마다 버튼 색상을 세팅하는, 즉 selectedFilter를 업데이트하는 코드 ]
-  // 1. 기존의 selectedFilter를 newSelectedFilter에 복사하고 (직접 set 시 불필요한 렌더링 발생)
-  // 2. 현재 각 버튼명을 순회하면서, 각 버튼명이 디폴트명인지 체크한다.
-  // 2-a. 디폴트명이 아닐 경우 (특정 필터를 선택한 경우) -> true, 검정 버튼
-  // 2-b. 디폴트명일 경우 (특정 필터를 선택하지 않은 경우) -> false, 회색 버튼
-  // 3. 변경한 배열로 selectedFilter update
 
   useEffect(() => {
     const newSelectedFilter = [...selectedFilter];
@@ -54,27 +44,13 @@ const TattooList = ({ isSheetOpen, setSheetOpen, buttonName }: TattooListProps) 
       <St.Header>ALL</St.Header>
       <St.BtnContainer>
         {buttonName.map((el, idx) => (
-          // 각 필터 버튼
           <St.FilterBtn
             key={el}
             $selected={selectedFilter[idx]}
             onClick={() => {
-              // 클릭한 버튼에 해당하는 바텀시트 on
               const newSheetOpen = [...isSheetOpen];
               newSheetOpen[idx] = true;
               setSheetOpen(newSheetOpen);
-              // switch (idx) {
-              //   case 0:
-              //     setSheetOpen
-              //     setSortOpen(true);
-              //     break;
-              //   case 1:
-              //     setGenreOpen(true);
-              //     break;
-              //   case 2:
-              //     setStyleOpen(true);
-              //     break;
-              // }
             }}
           >
             {el}
