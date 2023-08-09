@@ -121,11 +121,15 @@ const RegisterPhoneNumForm = () => {
     });
     setCertificationLen(e.target.value.length);
 
+    checkCertificationNum(e);
+  };
+
+  const checkCertificationNum = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length === 6) {
       api
         .get(`/user/phonenumber/verification`, {
           params: {
-            verificationCode: `${certificationNum}`,
+            verificationCode: `${e.target.value}`,
           },
         })
         .then((res: resProps) => {
@@ -156,11 +160,7 @@ const RegisterPhoneNumForm = () => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
         ></St.InputContent>
-        <St.SendMessageBtn
-          type='button'
-          $length={numLength}
-          onClick={handleClickSendMessageBtn}
-        >
+        <St.SendMessageBtn type='button' $length={numLength} onClick={handleClickSendMessageBtn}>
           {isVisible && numLength === 13 ? '재인증' : '인증하기'}
           {toast && <Toast setToast={setToast} text='인증번호가 발송되었습니다.' />}
         </St.SendMessageBtn>
@@ -280,4 +280,3 @@ const St = {
 };
 
 export default RegisterPhoneNumForm;
-
