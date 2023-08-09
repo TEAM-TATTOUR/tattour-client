@@ -84,36 +84,34 @@ const RegisterPhoneNumForm = () => {
     const ACCESS_TOKEN_KEY = 'accesstoken';
     const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
 
-    axios
-      .post(
-        `https://api.tattour.shop/sms/send/verification-code`,
-        // post body
-        {
-          phoneNumber: `${phoneNum}`,
-        },
-        // request headers
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
+    if (numLength === 13) {
+      axios
+        .post(
+          `https://api.tattour.shop/sms/send/verification-code`,
+          // post body
+          {
+            phoneNumber: `${phoneNum}`,
           },
-        },
-      )
-      .then(() => {
-        // 인증번호 입력 폼 나옴
-        setIsVisible(true);
-
-        // 인증번호 입력 폼이 나온 경우
-        if (isVisible) {
+          // request headers
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          },
+        )
+        .then(() => {
+          // 인증번호 입력 폼 나옴
+          setIsVisible(true);
+          setToast(true);
           setIsTimeout(false);
           setLeftTime(MINUTES_IN_MS);
           setCertificationLen(1);
-        }
-      })
-      .catch((Error: object) => {
-        console.log(Error);
-      });
-
-    setToast(true);
+        })
+        .catch((Error: object) => {
+          console.log(Error);
+        });
+    }
+    setIsVisible(false);
   };
 
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -158,7 +156,11 @@ const RegisterPhoneNumForm = () => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
         ></St.InputContent>
-        <St.SendMessageBtn type='button' $length={numLength} onClick={handleClickSendMessageBtn}>
+        <St.SendMessageBtn
+          type='button'
+          $length={numLength}
+          onClick={handleClickSendMessageBtn}
+        >
           {isVisible && numLength === 13 ? '재인증' : '인증하기'}
           {toast && <Toast setToast={setToast} text='인증번호가 발송되었습니다.' />}
         </St.SendMessageBtn>
@@ -278,3 +280,4 @@ const St = {
 };
 
 export default RegisterPhoneNumForm;
+
