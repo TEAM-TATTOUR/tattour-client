@@ -26,10 +26,8 @@ const RegisterPhoneNumForm = () => {
   const navigate = useNavigate();
   // 입력한 전화번호 자릿수
   const [numLength, setNumLength] = useState(0);
-  // toast message
   const [toast, setToast] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isRequired, setIsRequired] = useState(false);
   // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
   const [isError, setIsError] = useState(false);
   // 입력한 인증번호 자릿수
@@ -116,7 +114,6 @@ const RegisterPhoneNumForm = () => {
       });
 
     setToast(true);
-    setIsRequired(!isRequired);
   };
 
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -161,12 +158,7 @@ const RegisterPhoneNumForm = () => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
         ></St.InputContent>
-        <St.SendMessageBtn
-          type='button'
-          $isvisible={isVisible}
-          $length={numLength}
-          onClick={handleClickSendMessageBtn}
-        >
+        <St.SendMessageBtn type='button' $length={numLength} onClick={handleClickSendMessageBtn}>
           {isVisible && numLength === 13 ? '재인증' : '인증하기'}
           {toast && <Toast setToast={setToast} text='인증번호가 발송되었습니다.' />}
         </St.SendMessageBtn>
@@ -232,7 +224,7 @@ const St = {
     }
   `,
 
-  SendMessageBtn: styled.button<{ $isvisible: boolean; $length: number }>`
+  SendMessageBtn: styled.button<{ $length: number }>`
     width: 9.2rem;
     height: 4.5rem;
 
@@ -241,8 +233,8 @@ const St = {
 
     color: ${({ theme }) => theme.colors.white};
 
-    background-color: ${({ $isvisible, theme, $length }) =>
-      $isvisible || $length === 13 ? theme.colors.gray7 : theme.colors.gray3};
+    background-color: ${({ theme, $length }) =>
+      $length === 13 ? theme.colors.gray7 : theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.title_semibold_16};
   `,
