@@ -30,8 +30,6 @@ const RegisterPhoneNumForm = () => {
   const [isVisible, setIsVisible] = useState(false);
   // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
   const [isError, setIsError] = useState(false);
-  // 입력한 인증번호 자릿수
-  const [certificationLen, setCertificationLen] = useState(0);
   const [isTimeout, setIsTimeout] = useState(false);
   const [leftTime, setLeftTime] = useState<number>(MINUTES_IN_MS);
 
@@ -105,7 +103,6 @@ const RegisterPhoneNumForm = () => {
           setToast(true);
           setIsTimeout(false);
           setLeftTime(MINUTES_IN_MS);
-          setCertificationLen(0);
         })
         .catch((Error: object) => {
           console.log(Error);
@@ -119,7 +116,6 @@ const RegisterPhoneNumForm = () => {
       ...inputData,
       [e.target.name]: e.target.value,
     });
-    setCertificationLen(e.target.value.length);
 
     checkCertificationNum(e);
   };
@@ -171,7 +167,11 @@ const RegisterPhoneNumForm = () => {
           <St.CertificationInput
             name='certificationNum'
             type='number'
-            id={(isError && certificationLen === 6) || isTimeout ? 'errorInput' : 'successInput'}
+            id={
+              (isError && certificationNum.length === 6) || isTimeout
+                ? 'errorInput'
+                : 'successInput'
+            }
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeCertificationInput(e)}
             disabled={isTimeout ? true : false}
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 6, 'onlyNum')}
@@ -184,7 +184,7 @@ const RegisterPhoneNumForm = () => {
             setLeftTime={setLeftTime}
           />
 
-          {((isError && certificationLen === 6) || isTimeout) && (
+          {((isError && certificationNum.length === 6) || isTimeout) && (
             <ErrorMessage isTimeout={isTimeout} />
           )}
         </St.CertificationInputWrapper>
