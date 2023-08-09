@@ -108,6 +108,27 @@ const LoginPage = () => {
     }
   };
 
+  // 어떤 푸터를 렌더할지 결정하는 함수
+  const renderFooter = () => {
+    switch (step) {
+      case 0:
+        return <LoginFooter />;
+        
+
+      case 1:
+        return <RegisterNameFooter userName={userName} setStep={setStep} />;
+
+      case 2:
+        return <></>;
+
+      case 3:
+        return <WelcomeFooter />;
+
+      default:
+        return <></>;
+    }
+  }
+
   // 어떤 컴포넌트를 렌더할지 결정하는 함수
   switch (step) {
     case 0:
