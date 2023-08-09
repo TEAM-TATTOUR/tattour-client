@@ -14,17 +14,31 @@ import RegisterPhoneNum from '../../components/Register/RegisterPhoneNum';
 import WelcomeHome from '../../components/Welcome/WelcomeHome';
 import WelcomeFooter from '../../components/Welcome/WelcomeFooter';
 import LoginEscapeModal from '../../common/Modal/EscapeModal/LoginEscapeModal';
-import { IcCancelDark } from '../../assets/icon';
+import { IcBackDark, IcCancelDark } from '../../assets/icon';
+import { removeAccessToken } from '../../libs/api';
 
 const LoginPage = () => {
   const [userName, setUserName] = useState('');
   const [modalOn, setModalOn] = useState(false);
   const navigate = useNavigate();
   const { state } = useLocation();
-  const step = state?.step || 0;
+  const [step, setStep] = useState(state?.step ? state.step : 0);
 
   const renderLoginPageHeader = () => {
-    return <Header transparent={true} leftSection={<BackBtn />} fixed={true} />;
+    return (
+      <Header
+        transparent={true}
+        leftSection={
+          <IcBackDark
+            onClick={() => {
+              navigate('/');
+              removeAccessToken();
+            }}
+          />
+        }
+        fixed={true}
+      />
+    );
   };
 
   const renderRegisterNamePageHeader = () => {
@@ -32,7 +46,14 @@ const LoginPage = () => {
       <Header
         leftSection={<St.BlankSection></St.BlankSection>}
         title='회원가입'
-        rightSection={<IcCancelDark onClick={() => navigate('/login')} />}
+        rightSection={
+          <IcCancelDark
+            onClick={() => {
+              navigate('/login');
+              setStep(0);
+            }}
+          />
+        }
         progressBar={<ProgressBar curStep={1} maxStep={3} />}
       />
     );
@@ -41,7 +62,7 @@ const LoginPage = () => {
   const renderRegisterPhoneNumPageHeader = () => {
     return (
       <Header
-        leftSection={<BackBtn />}
+        leftSection={<BackBtn step={step} setStep={setStep} />}
         title='회원가입'
         rightSection={
           <CancelBtn
@@ -87,39 +108,35 @@ const LoginPage = () => {
     }
   };
 
-  // 어떤 컴포넌트를 렌더할지 결정하는 함수
-  switch (step) {
-    case 0:
-      return (
-        <PageLayout renderHeader={renderHeader} footer={<LoginFooter />}>
-          <LoginHome />
-        </PageLayout>
-      );
+  // 어떤 푸터를 렌더할지 결정하는 함수
+  const renderFooter = () => {
+    switch (step) {
+      case 0:
+        return <LoginFooter />;
+        
 
-    case 1:
-      return (
-        <PageLayout renderHeader={renderHeader} footer={<RegisterNameFooter userName={userName} />}>
-          <RegisterName setUserName={setUserName} />
-        </PageLayout>
-      );
+      case 1:
+        return <RegisterNameFooter userName={userName} setStep={setStep} />;
 
-    case 2:
-      return (
-        <PageLayout renderHeader={renderHeader}>
-          <RegisterPhoneNum />
-        </PageLayout>
-      );
+      case 2:
+        return <></>;
 
-    case 3:
-      return (
-        <PageLayout renderHeader={renderHeader} footer={<WelcomeFooter />}>
-          <WelcomeHome />
-        </PageLayout>
-      );
+      case 3:
+        return <WelcomeFooter />;
 
-    default:
-      break;
+      default:
+        return <></>;
+    }
   }
+
+  return (
+    <PageLayout renderHeader={renderHeader} footer={renderFooter()}>
+      {step === 0 && <LoginHome />}
+      {step === 1 && <RegisterName setUserName={setUserName} />}
+      {step === 2 && <RegisterPhoneNum setStep={setStep} />}
+      {step === 3 && <WelcomeHome />}
+    </PageLayout>
+  );
 };
 
 const St = {

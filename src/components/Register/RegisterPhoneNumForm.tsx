@@ -1,12 +1,16 @@
 import { styled } from 'styled-components';
 import sliceMaxLength from '../../utils/sliceMaxLength';
-import React, { useState } from 'react';
+import React, { SetStateAction, useState } from 'react';
 import Toast from '../../common/ToastMessage/Toast';
 import Timer from './Timer';
 import ErrorMessage from './ErrorMessage';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import api from '../../libs/api';
+
+interface RegisterPhoneNumFormProps {
+  setStep: React.Dispatch<SetStateAction<number>>;
+}
 
 interface resProps {
   data: {
@@ -20,7 +24,7 @@ interface usePatchProfileProps {
   phoneNum: string;
 }
 
-const RegisterPhoneNumForm = () => {
+const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
   const MINUTES_IN_MS = 5 * 60 * 1000;
 
   const navigate = useNavigate();
@@ -56,7 +60,8 @@ const RegisterPhoneNumForm = () => {
         {},
       )
       .then(() => {
-        navigate('/login', { state: { step: 3 } });
+        navigate('/login');
+        setStep(3);
       })
       .catch((Error: object) => {
         console.log(Error);
