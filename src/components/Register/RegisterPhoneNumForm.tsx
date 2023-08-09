@@ -28,8 +28,6 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
   const MINUTES_IN_MS = 5 * 60 * 1000;
 
   const navigate = useNavigate();
-  // 입력한 전화번호 자릿수
-  const [numLength, setNumLength] = useState(0);
   const [toast, setToast] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
@@ -72,9 +70,7 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
     // 전화번호 입력이 되지 않았을 경우
     if (e.target.value.length === 0) {
       setIsVisible(false);
-      setNumLength(0);
     } else {
-      setNumLength(e.target.value.length);
       setInputData({
         ...inputData,
         // 하이픈 제거
@@ -87,7 +83,7 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
     const ACCESS_TOKEN_KEY = 'accesstoken';
     const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
 
-    if (numLength === 13) {
+    if (phoneNum.length === 11) {
       axios
         .post(
           `https://api.tattour.shop/sms/send/verification-code`,
@@ -161,13 +157,13 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
         ></St.InputContent>
-        <St.SendMessageBtn type='button' $length={numLength} onClick={handleClickSendMessageBtn}>
-          {isVisible && numLength === 13 ? '재인증' : '인증하기'}
+        <St.SendMessageBtn type='button' $length={phoneNum.length} onClick={handleClickSendMessageBtn}>
+          {isVisible && phoneNum.length === 11 ? '재인증' : '인증하기'}
           {toast && <Toast setToast={setToast} text='인증번호가 발송되었습니다.' />}
         </St.SendMessageBtn>
       </St.InputContentsWrapper>
 
-      {isVisible && numLength === 13 && (
+      {isVisible && phoneNum.length === 11 && (
         <St.CertificationInputWrapper>
           <St.CertificationInput
             name='certificationNum'
@@ -241,7 +237,7 @@ const St = {
     color: ${({ theme }) => theme.colors.white};
 
     background-color: ${({ theme, $length }) =>
-      $length === 13 ? theme.colors.gray7 : theme.colors.gray3};
+      $length === 11 ? theme.colors.gray7 : theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.title_semibold_16};
   `,
