@@ -9,7 +9,8 @@ type Action =
   | { type: 'HIDE_CERTIFICATION_FORM' }
   | { type: 'VERIFIED_NOT_FAILED' }
   | { type: 'VERIFIED_FAILED' }
-  | { type: 'SET_LEFT_TIME'; payload: number };
+  | { type: 'SET_LEFT_TIME'; payload: number }
+  | { type: 'RESET_LEFT_TIME' };
 
 export const reducer = (state: State, action: Action): State => {
   const MINUTES_IN_MS = 5 * 60 * 1000;
@@ -38,6 +39,9 @@ export const reducer = (state: State, action: Action): State => {
     // 타이머 시간이 줄어들게 하는 동작
     case 'SET_LEFT_TIME':
       return { ...state, leftTime: state.leftTime - action.payload };
+
+    case 'RESET_LEFT_TIME':
+      return { ...state, leftTime: MINUTES_IN_MS };
     default:
       throw new Error('Unhandled action');
   }
