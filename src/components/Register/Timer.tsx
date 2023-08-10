@@ -1,6 +1,6 @@
 import { memo, useEffect, useReducer } from 'react';
 import { styled } from 'styled-components';
-import { reducer } from '../../libs/reducers/reducer';
+import { reducer } from '../../libs/reducers/registerReducer';
 
 interface TimerProps {
   isTimeout: boolean;

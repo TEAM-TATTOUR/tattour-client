@@ -7,7 +7,7 @@ import ErrorMessage from './ErrorMessage';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import api from '../../libs/api';
-import { reducer } from '../../libs/reducers/reducer';
+import { reducer } from '../../libs/reducers/registerReducer';
 
 interface RegisterPhoneNumFormProps {
   setStep: React.Dispatch<SetStateAction<number>>;
