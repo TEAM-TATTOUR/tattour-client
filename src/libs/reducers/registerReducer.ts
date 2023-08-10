@@ -2,6 +2,7 @@ type State = {
   isVisible: boolean;
   isError: boolean;
   leftTime: number;
+  resetTime: boolean;
 };
 
 type Action =
@@ -22,6 +23,7 @@ export const reducer = (state: State, action: Action): State => {
         ...state,
         isVisible: true,
         leftTime: MINUTES_IN_MS,
+        resetTime: !state.resetTime,
       };
 
     // 인증번호 입력 폼을 사라지게 하는 동작
