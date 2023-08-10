@@ -7,7 +7,7 @@ type State = {
 type Action =
   | { type: 'SHOW_CERTIFICATION_FORM' }
   | { type: 'HIDE_CERTIFICATION_FORM' }
-  | { type: 'VERIFIED_SUCCESS' }
+  | { type: 'VERIFIED_NOT_FAILED' }
   | { type: 'VERIFIED_FAILED' }
   | { type: 'SET_LEFT_TIME'; payload: number };
 
@@ -23,7 +23,7 @@ export const reducer = (state: State, action: Action): State => {
       };
     case 'HIDE_CERTIFICATION_FORM':
       return { ...state, isVisible: false };
-    case 'VERIFIED_SUCCESS':
+    case 'VERIFIED_NOT_FAILED':
       return { ...state, isError: false };
     case 'VERIFIED_FAILED':
       return { ...state, isError: true };
