@@ -17,19 +17,17 @@ const ListPage = () => {
   const type = state && (state as { type: string }).type;
   const name = state && (state as { name: string }).name;
 
-  const [isSortOpen, setSortOpen] = useState(false);
-  const [isGenreOpen, setGenreOpen] = useState(false);
-  const [isStyleOpen, setStyleOpen] = useState(false);
-  // TODO: open state를 통합할 수 없는지 고민
-  // bottom modal이 현재 3개가 존재. 바텀 모달을 1개로 줄이고
-  // 각 버튼마다 선택된 것에 따라 내용물만 교체하는 방법
+  const [isSheetOpen, setSheetOpen] = useState([false, false, false]);
 
+  // state && : 선택된 필터가 있을 경우
+  // state.type이 장르일 때 버튼명을 state.name 값으로, 아니면 '장르'
+  // state.type이 스타일일 때 버튼명을 state.name 값으로, 아니면 '스타일'
   const [buttonName, setButtonName] = useState([
     '정렬',
     `${state && type === '장르' ? name : '장르'}`,
     `${state && type === '스타일' ? name : '스타일'}`,
   ]);
-  const [, setSelected] = useState(false); // TODO: 제거
+  // 사이드 메뉴 관리 상태
   const [isSideMenuOpen, setSideMenuOpen] = useState(false);
 
   const renderListPageHeader = () => {
@@ -48,22 +46,12 @@ const ListPage = () => {
     <PageLayout renderHeader={renderListPageHeader}>
       <HotCustom />
       <St.Line />
-      <TattooList
-        setSortOpen={setSortOpen}
-        setGenreOpen={setGenreOpen}
-        setStyleOpen={setStyleOpen}
-        buttonName={buttonName}
-      />
+      <TattooList isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} buttonName={buttonName} />
       <FilterBottom
-        isSortOpen={isSortOpen}
-        setSortOpen={setSortOpen}
-        isGenreOpen={isGenreOpen}
-        setGenreOpen={setGenreOpen}
-        isStyleOpen={isStyleOpen}
-        setStyleOpen={setStyleOpen}
+        isSheetOpen={isSheetOpen}
+        setSheetOpen={setSheetOpen}
         buttonName={buttonName}
         setButtonName={setButtonName}
-        setSelected={setSelected}
       />
       <SideMenu isSideMenuOpen={isSideMenuOpen} setIsSideMenuOpen={setSideMenuOpen} />
     </PageLayout>

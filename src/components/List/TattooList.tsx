@@ -4,22 +4,21 @@ import {
   IcArrowBottomSmallLight,
   LabelCustomSmall,
 } from '../../assets/icon';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import useGetAllList from '../../libs/hooks/list/useGetAllList';
 import { useNavigate } from 'react-router-dom';
 
 interface TattooListProps {
-  setSortOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setGenreOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setStyleOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isSheetOpen: boolean[];
+  setSheetOpen: React.Dispatch<React.SetStateAction<boolean[]>>;
   buttonName: string[];
 }
 
-const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: TattooListProps) => {
-  const [selectedFilter, setSelectedFilter] = useState([false, false, false]); // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
+const TattooList = ({ isSheetOpen, setSheetOpen, buttonName }: TattooListProps) => {
+  // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
+  const [selectedFilter, setSelectedFilter] = useState([false, false, false]);
 
   const navigate = useNavigate();
-  const filterRef = useRef(null);
   const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
 
   useEffect(() => {
@@ -43,23 +42,15 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
   return (
     <St.Wrapper>
       <St.Header>ALL</St.Header>
-      <St.BtnContainer ref={filterRef}>
+      <St.BtnContainer>
         {buttonName.map((el, idx) => (
           <St.FilterBtn
             key={el}
             $selected={selectedFilter[idx]}
             onClick={() => {
-              switch (idx) {
-                case 0:
-                  setSortOpen(true);
-                  break;
-                case 1:
-                  setGenreOpen(true);
-                  break;
-                case 2:
-                  setStyleOpen(true);
-                  break;
-              }
+              const newSheetOpen = [...isSheetOpen];
+              newSheetOpen[idx] = true;
+              setSheetOpen(newSheetOpen);
             }}
           >
             {el}
