@@ -44,16 +44,15 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
     leftTime: MINUTES_IN_MS,
   });
 
+  // 사용자 정보를 패치하는 함수
   const patchProfile = ({ phoneNum }: usePatchProfileProps) => {
     api
       .patch(
         `/user/profile`,
-        // post body
         {
           name: `${userName}`,
           phoneNumber: `${phoneNum}`,
         },
-        // request headers
         {},
       )
       .then(() => {
@@ -65,10 +64,10 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
       });
   };
 
+  // 전화번호 입력을 감지하는 함수
   const handleChangeInputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 전화번호 입력이 되지 않았을 경우
     if (e.target.value.length === 0) {
-      // setIsVisible(false);
       dispatch({ type: 'HIDE_CERTIFICATION_FORM' });
     } else {
       setInputData({
@@ -79,19 +78,19 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
     }
   };
 
+  // 클릭 시, 인증번호를 받을 수 있는 버튼
   const handleClickSendMessageBtn = () => {
     const ACCESS_TOKEN_KEY = 'accesstoken';
     const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
 
+    // 전화번호가 제대로 입력된 경우에만 인증번호를 받을 수 있음
     if (phoneNum.length === 11) {
       axios
         .post(
           `https://api.tattour.shop/sms/send/verification-code`,
-          // post body
           {
             phoneNumber: `${phoneNum}`,
           },
-          // request headers
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -110,6 +109,7 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
     dispatch({ type: 'HIDE_CERTIFICATION_FORM' });
   };
 
+  // 인증번호 입력을 감지하는 함수
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputData({
       ...inputData,
@@ -119,7 +119,11 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
     checkCertificationNum(e);
   };
 
+
+  // 전화번호 인증을 처리하는 함수
   const checkCertificationNum = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    // 인증번호 6자리를 모두 입력했을 경우에만 서버와 소통
     if (e.target.value.length === 6) {
       api
         .get(`/user/phonenumber/verification`, {
@@ -128,10 +132,11 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
           },
         })
         .then((res: resProps) => {
+          // 인증 성공 여부를 나타내는 변수
           const isVerified = res.data.data.isVerified;
 
           if (isVerified) {
-            dispatch({ type: 'VERIFIED_SUCCESS' });
+            dispatch({ type: 'VERIFIED_NOT_FAILED' });
             patchProfile({ phoneNum });
           } else {
             dispatch({ type: 'VERIFIED_FAILED' });
@@ -141,7 +146,7 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
           console.log(Error);
         });
     } else {
-      dispatch({ type: 'VERIFIED_SUCCESS' });
+      dispatch({ type: 'VERIFIED_NOT_FAILED' });
     }
   };
 
