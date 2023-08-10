@@ -1,12 +1,13 @@
 import { styled } from 'styled-components';
 import sliceMaxLength from '../../utils/sliceMaxLength';
-import React, { SetStateAction, useState } from 'react';
+import React, { SetStateAction, useReducer, useState } from 'react';
 import Toast from '../../common/ToastMessage/Toast';
 import Timer from './Timer';
 import ErrorMessage from './ErrorMessage';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import api from '../../libs/api';
+import { reducer } from '../../libs/reducers/registerReducer';
 
 interface RegisterPhoneNumFormProps {
   setStep: React.Dispatch<SetStateAction<number>>;
@@ -26,37 +27,32 @@ interface usePatchProfileProps {
 
 const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
   const MINUTES_IN_MS = 5 * 60 * 1000;
-
   const navigate = useNavigate();
-  // 입력한 전화번호 자릿수
-  const [numLength, setNumLength] = useState(0);
   const [toast, setToast] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
-  const [isError, setIsError] = useState(false);
   const [isTimeout, setIsTimeout] = useState(false);
-  const [leftTime, setLeftTime] = useState<number>(MINUTES_IN_MS);
-
   const [inputData, setInputData] = useState({
     phoneNum: '',
     certificationNum: '',
   });
-
   const { phoneNum, certificationNum } = inputData;
-
   const { state } = useLocation();
   const userName = state.userName;
 
+  const [registerState, dispatch] = useReducer(reducer, {
+    isVisible: false,
+    isError: false,
+    leftTime: MINUTES_IN_MS,
+  });
+
+  // 사용자 정보를 패치하는 함수
   const patchProfile = ({ phoneNum }: usePatchProfileProps) => {
     api
       .patch(
         `/user/profile`,
-        // post body
         {
           name: `${userName}`,
           phoneNumber: `${phoneNum}`,
         },
-        // request headers
         {},
       )
       .then(() => {
@@ -68,13 +64,12 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
       });
   };
 
+  // 전화번호 입력을 감지하는 함수
   const handleChangeInputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 전화번호 입력이 되지 않았을 경우
     if (e.target.value.length === 0) {
-      setIsVisible(false);
-      setNumLength(0);
+      dispatch({ type: 'HIDE_CERTIFICATION_FORM' });
     } else {
-      setNumLength(e.target.value.length);
       setInputData({
         ...inputData,
         // 하이픈 제거
@@ -83,19 +78,19 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
     }
   };
 
+  // 클릭 시, 인증번호를 받을 수 있는 버튼
   const handleClickSendMessageBtn = () => {
     const ACCESS_TOKEN_KEY = 'accesstoken';
     const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
 
-    if (numLength === 13) {
+    // 전화번호가 제대로 입력된 경우에만 인증번호를 받을 수 있음
+    if (phoneNum.length === 11) {
       axios
         .post(
           `https://api.tattour.shop/sms/send/verification-code`,
-          // post body
           {
             phoneNumber: `${phoneNum}`,
           },
-          // request headers
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -103,19 +98,18 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
           },
         )
         .then(() => {
-          // 인증번호 입력 폼 나옴
-          setIsVisible(true);
+          dispatch({ type: 'SHOW_CERTIFICATION_FORM' });
           setToast(true);
           setIsTimeout(false);
-          setLeftTime(MINUTES_IN_MS);
         })
         .catch((Error: object) => {
           console.log(Error);
         });
     }
-    setIsVisible(false);
+    dispatch({ type: 'HIDE_CERTIFICATION_FORM' });
   };
 
+  // 인증번호 입력을 감지하는 함수
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputData({
       ...inputData,
@@ -125,7 +119,9 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
     checkCertificationNum(e);
   };
 
+  // 전화번호 인증을 처리하는 함수
   const checkCertificationNum = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // 인증번호 6자리를 모두 입력했을 경우에만 서버와 소통
     if (e.target.value.length === 6) {
       api
         .get(`/user/phonenumber/verification`, {
@@ -134,20 +130,21 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
           },
         })
         .then((res: resProps) => {
+          // 인증 성공 여부를 나타내는 변수
           const isVerified = res.data.data.isVerified;
 
           if (isVerified) {
-            setIsError(false);
+            dispatch({ type: 'VERIFIED_NOT_FAILED' });
             patchProfile({ phoneNum });
           } else {
-            setIsError(true);
+            dispatch({ type: 'VERIFIED_FAILED' });
           }
         })
         .catch((Error: object) => {
           console.log(Error);
         });
     } else {
-      setIsError(false);
+      dispatch({ type: 'VERIFIED_NOT_FAILED' });
     }
   };
 
@@ -161,19 +158,23 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
         ></St.InputContent>
-        <St.SendMessageBtn type='button' $length={numLength} onClick={handleClickSendMessageBtn}>
-          {isVisible && numLength === 13 ? '재인증' : '인증하기'}
+        <St.SendMessageBtn
+          type='button'
+          $length={phoneNum.length}
+          onClick={handleClickSendMessageBtn}
+        >
+          {registerState.isVisible && phoneNum.length === 11 ? '재인증' : '인증하기'}
           {toast && <Toast setToast={setToast} text='인증번호가 발송되었습니다.' />}
         </St.SendMessageBtn>
       </St.InputContentsWrapper>
 
-      {isVisible && numLength === 13 && (
+      {registerState.isVisible && phoneNum.length === 11 && (
         <St.CertificationInputWrapper>
           <St.CertificationInput
             name='certificationNum'
             type='number'
             id={
-              (isError && certificationNum.length === 6) || isTimeout
+              (registerState.isError && certificationNum.length === 6) || isTimeout
                 ? 'errorInput'
                 : 'successInput'
             }
@@ -182,14 +183,9 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 6, 'onlyNum')}
             placeholder='인증번호를 입력해주세요'
           ></St.CertificationInput>
-          <Timer
-            isTimeout={isTimeout}
-            setIsTimeout={setIsTimeout}
-            leftTime={leftTime}
-            setLeftTime={setLeftTime}
-          />
+          <Timer isTimeout={isTimeout} setIsTimeout={setIsTimeout} />
 
-          {((isError && certificationNum.length === 6) || isTimeout) && (
+          {((registerState.isError && certificationNum.length === 6) || isTimeout) && (
             <ErrorMessage isTimeout={isTimeout} />
           )}
         </St.CertificationInputWrapper>
@@ -241,7 +237,7 @@ const St = {
     color: ${({ theme }) => theme.colors.white};
 
     background-color: ${({ theme, $length }) =>
-      $length === 13 ? theme.colors.gray7 : theme.colors.gray3};
+      $length === 11 ? theme.colors.gray7 : theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.title_semibold_16};
   `,
