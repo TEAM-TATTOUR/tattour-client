@@ -19,6 +19,10 @@ const FilterBottom = ({
   buttonName,
   setButtonName,
 }: FilterBottomProps) => {
+  const SORT_INDEX = 0;
+  const GENRE_INDEX = 1;
+  const STYLE_INDEX = 2;
+
   const { genreResponse } = useGetGenre();
   const { styleResponse } = useGetStyle();
 
@@ -38,75 +42,75 @@ const FilterBottom = ({
   const FILTER = [
     {
       type: '정렬',
-      isOpen: isSheetOpen[0],
+      isOpen: isSheetOpen[SORT_INDEX],
       onClose: () => {
         const newSheetOpen = [...isSheetOpen];
-        newSheetOpen[0] = false;
+        newSheetOpen[SORT_INDEX] = false;
         setSheetOpen(newSheetOpen);
       },
       onTap: (filter: boolean[]) => {
         const newFilterTag = [...filterTag];
-        newFilterTag[0] = filter;
+        newFilterTag[SORT_INDEX] = filter;
         setFilterTag(newFilterTag);
 
         const newSheetOpen = [...isSheetOpen];
-        newSheetOpen[0] = false;
+        newSheetOpen[SORT_INDEX] = false;
         setSheetOpen(newSheetOpen);
 
-        const trueIdx = filterTag[0].indexOf(true);
+        const trueIdx = filterTag[SORT_INDEX].indexOf(true);
 
         const newSelectedTag = [...selectedTag];
-        newSelectedTag[0] = FILTER[0].data[trueIdx];
+        newSelectedTag[SORT_INDEX] = FILTER[SORT_INDEX].data[trueIdx];
         setSelectedTag(newSelectedTag);
       },
       data: ['인기 순', '가격 낮은 순', '가격 높은 순'],
     },
     {
       type: '장르',
-      isOpen: isSheetOpen[1],
+      isOpen: isSheetOpen[GENRE_INDEX],
       onClose: () => {
         const newSheetOpen = [...isSheetOpen];
-        newSheetOpen[1] = false;
+        newSheetOpen[GENRE_INDEX] = false;
         setSheetOpen(newSheetOpen);
       },
       onTap: (filter: boolean[]) => {
         const newFilterTag = [...filterTag];
-        newFilterTag[1] = filter;
+        newFilterTag[GENRE_INDEX] = filter;
         setFilterTag(newFilterTag);
 
         const newSheetOpen = [...isSheetOpen];
-        newSheetOpen[1] = false;
+        newSheetOpen[GENRE_INDEX] = false;
         setSheetOpen(newSheetOpen);
 
-        const trueIdx = filterTag[1].indexOf(true);
+        const trueIdx = filterTag[GENRE_INDEX].indexOf(true);
 
         const newSelectedTag = [...selectedTag];
-        newSelectedTag[1] = genreData[trueIdx];
+        newSelectedTag[GENRE_INDEX] = genreData[trueIdx];
         setSelectedTag(newSelectedTag);
       },
       data: genreData,
     },
     {
       type: '스타일',
-      isOpen: isSheetOpen[2],
+      isOpen: isSheetOpen[STYLE_INDEX],
       onClose: () => {
         const newSheetOpen = [...isSheetOpen];
-        newSheetOpen[2] = false;
+        newSheetOpen[STYLE_INDEX] = false;
         setSheetOpen(newSheetOpen);
       },
       onTap: (filter: boolean[]) => {
         const newFilterTag = [...filterTag];
-        newFilterTag[2] = filter;
+        newFilterTag[STYLE_INDEX] = filter;
         setFilterTag(newFilterTag);
 
         const newSheetOpen = [...isSheetOpen];
-        newSheetOpen[2] = false;
+        newSheetOpen[STYLE_INDEX] = false;
         setSheetOpen(newSheetOpen);
 
-        const trueIdx = filterTag[2].indexOf(true);
+        const trueIdx = filterTag[STYLE_INDEX].indexOf(true);
 
         const newSelectedTag = [...selectedTag];
-        newSelectedTag[2] = styleData[trueIdx];
+        newSelectedTag[STYLE_INDEX] = styleData[trueIdx];
         setSelectedTag(newSelectedTag);
       },
       data: styleData,
@@ -128,9 +132,9 @@ const FilterBottom = ({
 
   useEffect(() => {
     const newFilterTag = [...filterTag];
-    newFilterTag[0] = [false, false, false];
-    newFilterTag[1] = genreResponse.map((item) => buttonName[1] === item.name);
-    newFilterTag[2] = styleResponse.map((item) => buttonName[2] === item.name);
+    newFilterTag[SORT_INDEX] = [false, false, false];
+    newFilterTag[GENRE_INDEX] = genreResponse.map((item) => buttonName[GENRE_INDEX] === item.name);
+    newFilterTag[STYLE_INDEX] = styleResponse.map((item) => buttonName[STYLE_INDEX] === item.name);
     setFilterTag(newFilterTag);
   }, [genreResponse, styleResponse]);
 
@@ -148,14 +152,14 @@ const FilterBottom = ({
       // 선택된 태그에 대해서
       if (tagRefs.current.indexOf(el) === index) {
         // 클릭할 때마다 토글 구현
-        if (tagRefs.current[index].classList[2] === 'checked') {
+        if (tagRefs.current[index].classList[STYLE_INDEX] === 'checked') {
           tagRefs.current[index].classList.remove('checked');
         } else {
           tagRefs.current[index].classList.add('checked');
         }
       } else {
         // 태그는 한개씩만 선택 가능하므로, 선택된 태그가 아닌 나머지는 remove
-        if (el.classList[2] === 'checked') {
+        if (el.classList[STYLE_INDEX] === 'checked') {
           el.classList.remove('checked');
         }
       }
