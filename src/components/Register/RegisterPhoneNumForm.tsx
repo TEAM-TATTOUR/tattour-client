@@ -38,7 +38,7 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
   const { state } = useLocation();
   const userName = state.userName;
 
-  const [reducerState, dispatch] = useReducer(reducer, {
+  const [registerState, dispatch] = useReducer(reducer, {
     isVisible: false,
     isError: false,
     leftTime: MINUTES_IN_MS,
@@ -119,10 +119,8 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
     checkCertificationNum(e);
   };
 
-
   // 전화번호 인증을 처리하는 함수
   const checkCertificationNum = (e: React.ChangeEvent<HTMLInputElement>) => {
-
     // 인증번호 6자리를 모두 입력했을 경우에만 서버와 소통
     if (e.target.value.length === 6) {
       api
@@ -165,18 +163,18 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
           $length={phoneNum.length}
           onClick={handleClickSendMessageBtn}
         >
-          {reducerState.isVisible && phoneNum.length === 11 ? '재인증' : '인증하기'}
+          {registerState.isVisible && phoneNum.length === 11 ? '재인증' : '인증하기'}
           {toast && <Toast setToast={setToast} text='인증번호가 발송되었습니다.' />}
         </St.SendMessageBtn>
       </St.InputContentsWrapper>
 
-      {reducerState.isVisible && phoneNum.length === 11 && (
+      {registerState.isVisible && phoneNum.length === 11 && (
         <St.CertificationInputWrapper>
           <St.CertificationInput
             name='certificationNum'
             type='number'
             id={
-              (reducerState.isError && certificationNum.length === 6) || isTimeout
+              (registerState.isError && certificationNum.length === 6) || isTimeout
                 ? 'errorInput'
                 : 'successInput'
             }
@@ -187,7 +185,7 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
           ></St.CertificationInput>
           <Timer isTimeout={isTimeout} setIsTimeout={setIsTimeout} />
 
-          {((reducerState.isError && certificationNum.length === 6) || isTimeout) && (
+          {((registerState.isError && certificationNum.length === 6) || isTimeout) && (
             <ErrorMessage isTimeout={isTimeout} />
           )}
         </St.CertificationInputWrapper>
