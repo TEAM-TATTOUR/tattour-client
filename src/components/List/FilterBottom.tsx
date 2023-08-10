@@ -152,14 +152,14 @@ const FilterBottom = ({
       // 선택된 태그에 대해서
       if (tagRefs.current.indexOf(el) === index) {
         // 클릭할 때마다 토글 구현
-        if (tagRefs.current[index].classList[STYLE_INDEX] === 'checked') {
+        if (tagRefs.current[index].classList.contains('checked')) {
           tagRefs.current[index].classList.remove('checked');
         } else {
           tagRefs.current[index].classList.add('checked');
         }
       } else {
         // 태그는 한개씩만 선택 가능하므로, 선택된 태그가 아닌 나머지는 remove
-        if (el.classList[STYLE_INDEX] === 'checked') {
+        if (el.classList.contains('checked')) {
           el.classList.remove('checked');
         }
       }
