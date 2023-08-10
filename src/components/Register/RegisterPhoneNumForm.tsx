@@ -30,22 +30,19 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
   const navigate = useNavigate();
   const [toast, setToast] = useState(false);
   const [isTimeout, setIsTimeout] = useState(false);
+  const [inputData, setInputData] = useState({
+    phoneNum: '',
+    certificationNum: '',
+  });
+  const { phoneNum, certificationNum } = inputData;
+  const { state } = useLocation();
+  const userName = state.userName;
 
   const [reducerState, dispatch] = useReducer(reducer, {
     isVisible: false,
     isError: false,
     leftTime: MINUTES_IN_MS,
   });
-
-  const [inputData, setInputData] = useState({
-    phoneNum: '',
-    certificationNum: '',
-  });
-
-  const { phoneNum, certificationNum } = inputData;
-
-  const { state } = useLocation();
-  const userName = state.userName;
 
   const patchProfile = ({ phoneNum }: usePatchProfileProps) => {
     api
