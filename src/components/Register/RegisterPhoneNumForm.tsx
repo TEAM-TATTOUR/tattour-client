@@ -27,17 +27,15 @@ interface usePatchProfileProps {
 
 const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
   const MINUTES_IN_MS = 5 * 60 * 1000;
-
   const navigate = useNavigate();
+  const [toast, setToast] = useState(false);
+  const [isTimeout, setIsTimeout] = useState(false);
 
   const [reducerState, dispatch] = useReducer(reducer, {
     isVisible: false,
     isError: false,
     leftTime: MINUTES_IN_MS,
   });
-
-  const [toast, setToast] = useState(false);
-  const [isTimeout, setIsTimeout] = useState(false);
 
   const [inputData, setInputData] = useState({
     phoneNum: '',
