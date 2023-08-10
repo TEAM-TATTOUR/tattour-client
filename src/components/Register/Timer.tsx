@@ -1,6 +1,6 @@
 import { memo, useEffect, useReducer } from 'react';
 import { styled } from 'styled-components';
-import { reducer } from './RegisterPhoneNumForm';
+import { reducer } from '../../libs/reducers/reducer';
 
 interface TimerProps {
   isTimeout: boolean;
