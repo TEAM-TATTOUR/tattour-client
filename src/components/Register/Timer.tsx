@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { memo, useEffect, useReducer, useRef } from 'react';
 import { styled } from 'styled-components';
 import { reducer } from '../../libs/reducers/registerReducer';
 
@@ -7,7 +7,7 @@ interface TimerProps {
   setIsTimeout: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Timer = ({ isTimeout, setIsTimeout }: TimerProps) => {
+const Timer = memo(({ isTimeout, setIsTimeout }: TimerProps) => {
   const MINUTES_IN_MS = 5 * 60 * 1000;
   const INTERVAL = 1000;
 
@@ -46,7 +46,7 @@ const Timer = ({ isTimeout, setIsTimeout }: TimerProps) => {
       {isTimeout ? '시간 만료' : `${minutes} : ${second}`}
     </St.AuthTimer>
   );
-};
+});
 
 const St = {
   AuthTimer: styled.span<{ $isTimeout: boolean }>`
