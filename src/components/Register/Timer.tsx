@@ -4,10 +4,11 @@ import { reducer } from '../../libs/reducers/registerReducer';
 
 interface TimerProps {
   isTimeout: boolean;
+  resetTime: boolean;
   setIsTimeout: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Timer = memo(({ isTimeout, setIsTimeout }: TimerProps) => {
+const Timer = memo(({ isTimeout, setIsTimeout, resetTime }: TimerProps) => {
   const MINUTES_IN_MS = 5 * 60 * 1000;
   const INTERVAL = 1000;
 
@@ -15,6 +16,7 @@ const Timer = memo(({ isTimeout, setIsTimeout }: TimerProps) => {
     isVisible: false,
     isError: false,
     leftTime: MINUTES_IN_MS,
+    resetTime: false,
   });
 
   const timer = useRef(0);
@@ -40,6 +42,10 @@ const Timer = memo(({ isTimeout, setIsTimeout }: TimerProps) => {
       clearInterval(timer.current);
     };
   }, [timerState.leftTime, setIsTimeout]);
+
+  useEffect(() => {
+    dispatch({ type: 'RESET_LEFT_TIME' });
+  }, [resetTime]);
 
   return (
     <St.AuthTimer $isTimeout={isTimeout}>
