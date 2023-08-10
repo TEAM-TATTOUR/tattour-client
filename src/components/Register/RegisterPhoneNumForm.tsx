@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import sliceMaxLength from '../../utils/sliceMaxLength';
-import React, { SetStateAction, useState } from 'react';
+import React, { SetStateAction, useReducer, useState } from 'react';
 import Toast from '../../common/ToastMessage/Toast';
 import Timer from './Timer';
 import ErrorMessage from './ErrorMessage';
@@ -24,16 +24,55 @@ interface usePatchProfileProps {
   phoneNum: string;
 }
 
+type State = {
+  isVisible: boolean;
+  isError: boolean;
+  leftTime: number;
+};
+
+type Action =
+  | { type: 'SHOW_CERTIFICATION_FORM' }
+  | { type: 'HIDE_CERTIFICATION_FORM' }
+  | { type: 'VERIFIED_SUCCESS' }
+  | { type: 'VERIFIED_FAILED' }
+  | { type: 'SET_LEFT_TIME'; payload: number };
+
+export const reducer = (state: State, action: Action): State => {
+  const MINUTES_IN_MS = 5 * 60 * 1000;
+
+  switch (action.type) {
+    case 'SHOW_CERTIFICATION_FORM':
+      return {
+        ...state,
+        isVisible: true,
+        leftTime: MINUTES_IN_MS,
+      };
+    case 'HIDE_CERTIFICATION_FORM':
+      return { ...state, isVisible: false };
+    case 'VERIFIED_SUCCESS':
+      return { ...state, isError: false };
+    case 'VERIFIED_FAILED':
+      return { ...state, isError: true };
+    case 'SET_LEFT_TIME':
+      return { ...state, leftTime: state.leftTime - action.payload };
+    default:
+      throw new Error('Unhandled action');
+  }
+};
+
 const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
   const MINUTES_IN_MS = 5 * 60 * 1000;
 
   const navigate = useNavigate();
+
+  const [reducerState, dispatch] = useReducer(reducer, {
+    isVisible: false,
+    isError: false,
+    leftTime: MINUTES_IN_MS,
+  });
+
   const [toast, setToast] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  // 인증번호와 입력번호의 일치 여부 확인하기 위한 상태
-  const [isError, setIsError] = useState(false);
   const [isTimeout, setIsTimeout] = useState(false);
-  const [leftTime, setLeftTime] = useState<number>(MINUTES_IN_MS);
 
   const [inputData, setInputData] = useState({
     phoneNum: '',
@@ -69,7 +108,8 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
   const handleChangeInputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 전화번호 입력이 되지 않았을 경우
     if (e.target.value.length === 0) {
-      setIsVisible(false);
+      // setIsVisible(false);
+      dispatch({ type: 'HIDE_CERTIFICATION_FORM' });
     } else {
       setInputData({
         ...inputData,
@@ -99,17 +139,15 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
           },
         )
         .then(() => {
-          // 인증번호 입력 폼 나옴
-          setIsVisible(true);
+          dispatch({ type: 'SHOW_CERTIFICATION_FORM' });
           setToast(true);
           setIsTimeout(false);
-          setLeftTime(MINUTES_IN_MS);
         })
         .catch((Error: object) => {
           console.log(Error);
         });
     }
-    setIsVisible(false);
+    dispatch({ type: 'HIDE_CERTIFICATION_FORM' });
   };
 
   const handleChangeCertificationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -133,17 +171,17 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
           const isVerified = res.data.data.isVerified;
 
           if (isVerified) {
-            setIsError(false);
+            dispatch({ type: 'VERIFIED_SUCCESS' });
             patchProfile({ phoneNum });
           } else {
-            setIsError(true);
+            dispatch({ type: 'VERIFIED_FAILED' });
           }
         })
         .catch((Error: object) => {
           console.log(Error);
         });
     } else {
-      setIsError(false);
+      dispatch({ type: 'VERIFIED_SUCCESS' });
     }
   };
 
@@ -157,19 +195,23 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInputContent(e)}
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
         ></St.InputContent>
-        <St.SendMessageBtn type='button' $length={phoneNum.length} onClick={handleClickSendMessageBtn}>
-          {isVisible && phoneNum.length === 11 ? '재인증' : '인증하기'}
+        <St.SendMessageBtn
+          type='button'
+          $length={phoneNum.length}
+          onClick={handleClickSendMessageBtn}
+        >
+          {reducerState.isVisible && phoneNum.length === 11 ? '재인증' : '인증하기'}
           {toast && <Toast setToast={setToast} text='인증번호가 발송되었습니다.' />}
         </St.SendMessageBtn>
       </St.InputContentsWrapper>
 
-      {isVisible && phoneNum.length === 11 && (
+      {reducerState.isVisible && phoneNum.length === 11 && (
         <St.CertificationInputWrapper>
           <St.CertificationInput
             name='certificationNum'
             type='number'
             id={
-              (isError && certificationNum.length === 6) || isTimeout
+              (reducerState.isError && certificationNum.length === 6) || isTimeout
                 ? 'errorInput'
                 : 'successInput'
             }
@@ -178,14 +220,9 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 6, 'onlyNum')}
             placeholder='인증번호를 입력해주세요'
           ></St.CertificationInput>
-          <Timer
-            isTimeout={isTimeout}
-            setIsTimeout={setIsTimeout}
-            leftTime={leftTime}
-            setLeftTime={setLeftTime}
-          />
+          <Timer isTimeout={isTimeout} setIsTimeout={setIsTimeout} />
 
-          {((isError && certificationNum.length === 6) || isTimeout) && (
+          {((reducerState.isError && certificationNum.length === 6) || isTimeout) && (
             <ErrorMessage isTimeout={isTimeout} />
           )}
         </St.CertificationInputWrapper>
