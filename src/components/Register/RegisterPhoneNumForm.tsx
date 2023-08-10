@@ -42,6 +42,7 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
     isVisible: false,
     isError: false,
     leftTime: MINUTES_IN_MS,
+    resetTime: false,
   });
 
   // 사용자 정보를 패치하는 함수
@@ -183,7 +184,11 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 6, 'onlyNum')}
             placeholder='인증번호를 입력해주세요'
           ></St.CertificationInput>
-          <Timer isTimeout={isTimeout} setIsTimeout={setIsTimeout} />
+          <Timer
+            isTimeout={isTimeout}
+            setIsTimeout={setIsTimeout}
+            resetTime={registerState.resetTime}
+          />
 
           {((registerState.isError && certificationNum.length === 6) || isTimeout) && (
             <ErrorMessage isTimeout={isTimeout} />
