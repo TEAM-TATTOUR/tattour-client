@@ -1,13 +1,13 @@
 import { styled } from 'styled-components';
-import sliceMaxLength from '../../utils/sliceMaxLength';
 import React, { SetStateAction, useReducer, useState } from 'react';
-import Toast from '../../common/ToastMessage/Toast';
-import Timer from './Timer';
-import ErrorMessage from './ErrorMessage';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import api from '../../libs/api';
 import { reducer } from '../../libs/reducers/registerReducer';
+import sliceMaxLength from '../../utils/sliceMaxLength';
+import Toast from '../../common/ToastMessage/Toast';
+import Timer from './Timer';
+import ErrorMessage from './ErrorMessage';
 
 interface RegisterPhoneNumFormProps {
   setStep: React.Dispatch<SetStateAction<number>>;
