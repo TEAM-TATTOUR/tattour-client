@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import React, { SetStateAction, useReducer, useState } from 'react';
-import { useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import api from '../../libs/api';
 import { reducer } from '../../libs/reducers/registerReducer';
@@ -279,6 +279,19 @@ const St = {
 
     &#errorInput {
       border: 0.1rem solid ${({ theme }) => theme.colors.red};
+    }
+
+    // input type 'number' 화살표 없애기
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox  */
+    &[type='number'] {
+      -moz-appearance: textfield;
     }
   `,
 };
