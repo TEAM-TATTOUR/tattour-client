@@ -10,7 +10,7 @@ import ReceiptPage from './page/Custom/HaveDesign/ReceiptPage';
 import SelectKeywordPage from './page/Custom/HaveDesign/SelectKeywordPage';
 import StylingColorPage from './page/Custom/HaveDesign/StylingColorPage';
 import CustomImgLayout from './components/Custom/NoDesign/Img/CustomImgLayout';
-import CustomRequestLayout from './page/Custom/NoDesign/CustomRequestLayout';
+import CustomRequestLayout from './components/Custom/NoDesign/Request/CustomRequestLayout';
 import NoDesignCustomPage from './page/Custom/NoDesign/NoDesignCustomPage';
 import PricePage from './page/Custom/PricePage';
 import CustomReferencePage from './page/CustomReference/CustomReferencePage';
