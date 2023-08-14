@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import React, { SetStateAction, useReducer, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 import axios from 'axios';
 import api from '../../libs/api';
 import { reducer } from '../../libs/reducers/registerReducer';
@@ -27,7 +27,6 @@ interface usePatchProfileProps {
 
 const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
   const MINUTES_IN_MS = 5 * 60 * 1000;
-  const navigate = useNavigate();
   const [toast, setToast] = useState(false);
   const [isTimeout, setIsTimeout] = useState(false);
   const [inputData, setInputData] = useState({
@@ -57,7 +56,6 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
         {},
       )
       .then(() => {
-        navigate('/login');
         setStep(3);
       })
       .catch((Error: object) => {
