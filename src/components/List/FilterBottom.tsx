@@ -45,7 +45,7 @@ const FilterBottom = ({
   */
 
   // FILTER를 간소화한, 메타데이터의 틀을 만들어주는 함수
-  const filterMetaData = ({ index, tagData }: { index: number; tagData: string[] }) => ({
+  const filterMetaData = (index: number, tagData: string[]) => ({
     type: defaultName[index],
     isOpen: isSheetOpen[index],
     onClose: () => {
@@ -72,81 +72,9 @@ const FilterBottom = ({
   });
 
   const FILTER = [
-    {
-      type: '정렬',
-      isOpen: isSheetOpen[SORT_INDEX],
-      onClose: () => {
-        const newSheetOpen = [...isSheetOpen];
-        newSheetOpen[SORT_INDEX] = false;
-        setSheetOpen(newSheetOpen);
-      },
-      onTap: (filter: boolean[]) => {
-        const newFilterTag = [...filterTag];
-        newFilterTag[SORT_INDEX] = filter;
-        setFilterTag(newFilterTag);
-
-        const newSheetOpen = [...isSheetOpen];
-        newSheetOpen[SORT_INDEX] = false;
-        setSheetOpen(newSheetOpen);
-
-        const trueIdx = filterTag[SORT_INDEX].indexOf(true);
-
-        const newSelectedTag = [...selectedTag];
-        newSelectedTag[SORT_INDEX] = FILTER[SORT_INDEX].data[trueIdx];
-        setSelectedTag(newSelectedTag);
-      },
-      data: SORT_DATA,
-    },
-    {
-      type: '장르',
-      isOpen: isSheetOpen[GENRE_INDEX],
-      onClose: () => {
-        const newSheetOpen = [...isSheetOpen];
-        newSheetOpen[GENRE_INDEX] = false;
-        setSheetOpen(newSheetOpen);
-      },
-      onTap: (filter: boolean[]) => {
-        const newFilterTag = [...filterTag];
-        newFilterTag[GENRE_INDEX] = filter;
-        setFilterTag(newFilterTag);
-
-        const newSheetOpen = [...isSheetOpen];
-        newSheetOpen[GENRE_INDEX] = false;
-        setSheetOpen(newSheetOpen);
-
-        const trueIdx = filterTag[GENRE_INDEX].indexOf(true);
-
-        const newSelectedTag = [...selectedTag];
-        newSelectedTag[GENRE_INDEX] = GENRE_DATA[trueIdx];
-        setSelectedTag(newSelectedTag);
-      },
-      data: GENRE_DATA,
-    },
-    {
-      type: '스타일',
-      isOpen: isSheetOpen[STYLE_INDEX],
-      onClose: () => {
-        const newSheetOpen = [...isSheetOpen];
-        newSheetOpen[STYLE_INDEX] = false;
-        setSheetOpen(newSheetOpen);
-      },
-      onTap: (filter: boolean[]) => {
-        const newFilterTag = [...filterTag];
-        newFilterTag[STYLE_INDEX] = filter;
-        setFilterTag(newFilterTag);
-
-        const newSheetOpen = [...isSheetOpen];
-        newSheetOpen[STYLE_INDEX] = false;
-        setSheetOpen(newSheetOpen);
-
-        const trueIdx = filterTag[STYLE_INDEX].indexOf(true);
-
-        const newSelectedTag = [...selectedTag];
-        newSelectedTag[STYLE_INDEX] = STYLE_DATA[trueIdx];
-        setSelectedTag(newSelectedTag);
-      },
-      data: STYLE_DATA,
-    },
+    filterMetaData(SORT_INDEX, SORT_DATA),
+    filterMetaData(GENRE_INDEX, GENRE_DATA),
+    filterMetaData(STYLE_INDEX, STYLE_DATA),
   ];
 
   // 바텀시트 내 각 태그 ref
@@ -156,10 +84,11 @@ const FilterBottom = ({
   const [selectedTag, setSelectedTag] = useState(buttonName);
 
   // 필터 내 각 태그의 선택 여부를 관리하는 이차원배열 state ([정렬, 장르, 스타일])
+  // 추후 해당 배열 파괴 -> 각 숫자를 data.length로 변경 예정
   const [filterTag, setFilterTag] = useState([
-    [false, false, false],
-    [false, false, false, false, false, false],
-    [false, false, false, false, false, false],
+    new Array(3).fill(false),
+    new Array(6).fill(false),
+    new Array(6).fill(false),
   ]);
 
   useEffect(() => {
