@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 // import CustomSizePage from '../Common/CustomSizePage';
 import PricePage from '../PricePage';
-import CustomImgPage from './CustomImgPage';
+import CustomImgPage from './CustomImgLayout';
 import CustomRequestPage from './CustomRequestPage';
 
 const NoDesignCustomPage = () => {
