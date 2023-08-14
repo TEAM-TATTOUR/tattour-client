@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 // import CustomSizePage from '../Common/CustomSizePage';
 import PricePage from '../PricePage';
-import CustomImgPage from './CustomImgLayout';
+import CustomImgLayout from '../../../components/Custom/NoDesign/Img/CustomImgLayout';
 import CustomRequestPage from './CustomRequestPage';
 
 const NoDesignCustomPage = () => {
@@ -27,7 +27,7 @@ const NoDesignCustomPage = () => {
     //   return <CustomSizePage setStep={setStep} />;
     case 1:
       return (
-        <CustomImgPage
+        <CustomImgLayout
           setStep={setStep}
           customImages={customImages}
           setCustomImages={setCustomImages}

@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
-import { IcCheckSmallGray } from '../../../assets/icon';
-
+import { IcCheckSmallGray } from '../../../../assets/icon';
 const CustomImgHeader = () => {
   return (
     <St.ImgInfoContainer>
