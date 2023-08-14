@@ -29,12 +29,14 @@ const OrderPage = () => {
   const [isSheetOpen, setSheetOpen] = useState(false);
 
   const [isComplete, setComplete] = useState(false);
-  const [input, setInput] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
+  const [input, setInput] = useState<string>('기본값');
+  const [phone, setPhone] = useState<string>('010-0000-0000');
   const [address, setAddress] = useState<string>(''); // 우편번호
   const [firstAddress, setFirstAddress] = useState<string>(''); // 첫주소
   const [detailAddress, setDetailAddress] = useState<string>(''); // 세부주소
   const [agree, setAgree] = useState<boolean>(false);
+
+  console.log(response);
 
   const postData = {
     stickerId: state.stickerId,
