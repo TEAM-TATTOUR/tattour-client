@@ -3,7 +3,7 @@ import { IcBackDark } from '../../../assets/icon';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import ProgressBar from '../../../common/ProgressBar';
-import CustomImg from '../../../components/Custom/NoDesgin/CustomImg';
+import CustomImg from '../../../components/Custom/NoDesign/CustomImg';
 import NoDesignFooter from '../../../components/Custom/NoDesign/NoDesignFooter';
 import Header from '../../../components/Header';
 import PageLayout from '../../../components/PageLayout';
