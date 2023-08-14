@@ -10,7 +10,7 @@ import ReceiptPage from './page/Custom/HaveDesign/ReceiptPage';
 import SelectKeywordPage from './page/Custom/HaveDesign/SelectKeywordPage';
 import StylingColorPage from './page/Custom/HaveDesign/StylingColorPage';
 import CustomImgLayout from './components/Custom/NoDesign/Img/CustomImgLayout';
-import CustomRequestPage from './page/Custom/NoDesign/CustomRequestPage';
+import CustomRequestLayout from './page/Custom/NoDesign/CustomRequestLayout';
 import NoDesignCustomPage from './page/Custom/NoDesign/NoDesignCustomPage';
 import PricePage from './page/Custom/PricePage';
 import CustomReferencePage from './page/CustomReference/CustomReferencePage';
@@ -59,7 +59,7 @@ const Router = () => {
         <Route path='/onboarding' element={<OnBoardingPage />} />
         <Route path='/custom-size' element={<CustomSizePage />} />
         <Route path='/custom-img' element={<CustomImgLayout />} />
-        <Route path='/custom-request' element={<CustomRequestPage />} />
+        <Route path='/custom-request' element={<CustomRequestLayout />} />
         <Route path='/custom-theme' element={<CustomThemePage />} />
         <Route path='/additional-request' element={<AdditionalRequestPage />} />
         <Route path='/price' element={<PricePage />} />

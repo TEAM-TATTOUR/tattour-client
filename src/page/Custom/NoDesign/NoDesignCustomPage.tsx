@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 // import CustomSizePage from '../Common/CustomSizePage';
 import PricePage from '../PricePage';
 import CustomImgLayout from '../../../components/Custom/NoDesign/Img/CustomImgLayout';
-import CustomRequestPage from './CustomRequestPage';
+import CustomRequestLayout from './CustomRequestLayout';
 
 const NoDesignCustomPage = () => {
   //커스텀 신청서 플로우에 따른 각 단계별 컴포넌트 렌더링 플래그
@@ -35,7 +35,7 @@ const NoDesignCustomPage = () => {
       );
     case 2:
       return (
-        <CustomRequestPage
+        <CustomRequestLayout
           setStep={setStep}
           name={name}
           setName={setName}

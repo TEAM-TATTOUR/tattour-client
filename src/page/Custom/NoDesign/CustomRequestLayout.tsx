@@ -16,7 +16,7 @@ interface CustomRequestPageProps {
   setDemand: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const CustomRequestPage = ({
+const CustomRequestLayout = ({
   setStep,
   name,
   setName,
@@ -60,4 +60,4 @@ const CustomRequestPage = ({
   );
 };
 
-export default CustomRequestPage;
+export default CustomRequestLayout;
