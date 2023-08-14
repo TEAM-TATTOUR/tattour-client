@@ -28,8 +28,10 @@ const FilterBottom = ({
   const { genreResponse } = useGetGenre();
   const { styleResponse } = useGetStyle();
 
-  const genreData = genreResponse.map((genre: GenreItemProps) => genre.name);
-  const styleData = styleResponse.map((style: StyleItemProps) => style.name);
+  // 필터(바텀시트)의 각 태그명
+  const SORT_DATA = ['인기 순', '가격 낮은 순', '가격 높은 순'];
+  const GENRE_DATA = genreResponse.map((genre: GenreItemProps) => genre.name);
+  const STYLE_DATA = styleResponse.map((style: StyleItemProps) => style.name);
 
   // 각 바텀시트의 메타데이터를 모아놓은 배열
   /*
@@ -65,7 +67,7 @@ const FilterBottom = ({
         newSelectedTag[SORT_INDEX] = FILTER[SORT_INDEX].data[trueIdx];
         setSelectedTag(newSelectedTag);
       },
-      data: ['인기 순', '가격 낮은 순', '가격 높은 순'],
+      data: SORT_DATA,
     },
     {
       type: '장르',
@@ -87,10 +89,10 @@ const FilterBottom = ({
         const trueIdx = filterTag[GENRE_INDEX].indexOf(true);
 
         const newSelectedTag = [...selectedTag];
-        newSelectedTag[GENRE_INDEX] = genreData[trueIdx];
+        newSelectedTag[GENRE_INDEX] = GENRE_DATA[trueIdx];
         setSelectedTag(newSelectedTag);
       },
-      data: genreData,
+      data: GENRE_DATA,
     },
     {
       type: '스타일',
@@ -112,10 +114,10 @@ const FilterBottom = ({
         const trueIdx = filterTag[STYLE_INDEX].indexOf(true);
 
         const newSelectedTag = [...selectedTag];
-        newSelectedTag[STYLE_INDEX] = styleData[trueIdx];
+        newSelectedTag[STYLE_INDEX] = STYLE_DATA[trueIdx];
         setSelectedTag(newSelectedTag);
       },
-      data: styleData,
+      data: STYLE_DATA,
     },
   ];
 
