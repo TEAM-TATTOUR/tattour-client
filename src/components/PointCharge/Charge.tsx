@@ -43,6 +43,10 @@ const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
     }
   };
 
+  const ERR_MSG_CONTENT = isZeroWarning
+    ? '1,000원 이상부터 충전이 가능해요'
+    : '1,000원 단위 충전만 가능해요';
+
   return (
     <St.ChargeWrapper>
       <St.ChargeInfoContainer>
@@ -67,9 +71,7 @@ const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
           $isWarning={isWarning}
           autoFocus
         />
-        <St.ChargeWarningMsg $isWarning={isWarning}>
-          1,000원 단위 충전만 가능해요
-        </St.ChargeWarningMsg>
+        <St.ChargeWarningMsg $isWarning={isWarning}>{ERR_MSG_CONTENT}</St.ChargeWarningMsg>
       </St.ChargeInputContainer>
     </St.ChargeWrapper>
   );
