@@ -1,13 +1,13 @@
 import { styled } from 'styled-components';
-import sliceMaxLength from '../../utils/sliceMaxLength';
 import React, { SetStateAction, useReducer, useState } from 'react';
-import Toast from '../../common/ToastMessage/Toast';
-import Timer from './Timer';
-import ErrorMessage from './ErrorMessage';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import api from '../../libs/api';
 import { reducer } from '../../libs/reducers/registerReducer';
+import sliceMaxLength from '../../utils/sliceMaxLength';
+import Toast from '../../common/ToastMessage/Toast';
+import Timer from './Timer';
+import ErrorMessage from './ErrorMessage';
 
 interface RegisterPhoneNumFormProps {
   setStep: React.Dispatch<SetStateAction<number>>;
@@ -27,7 +27,6 @@ interface usePatchProfileProps {
 
 const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
   const MINUTES_IN_MS = 5 * 60 * 1000;
-  const navigate = useNavigate();
   const [toast, setToast] = useState(false);
   const [isTimeout, setIsTimeout] = useState(false);
   const [inputData, setInputData] = useState({
@@ -42,6 +41,7 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
     isVisible: false,
     isError: false,
     leftTime: MINUTES_IN_MS,
+    resetTime: false,
   });
 
   // 사용자 정보를 패치하는 함수
@@ -56,7 +56,6 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
         {},
       )
       .then(() => {
-        navigate('/login');
         setStep(3);
       })
       .catch((Error: object) => {
@@ -183,7 +182,11 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 6, 'onlyNum')}
             placeholder='인증번호를 입력해주세요'
           ></St.CertificationInput>
-          <Timer isTimeout={isTimeout} setIsTimeout={setIsTimeout} />
+          <Timer
+            isTimeout={isTimeout}
+            setIsTimeout={setIsTimeout}
+            resetTime={registerState.resetTime}
+          />
 
           {((registerState.isError && certificationNum.length === 6) || isTimeout) && (
             <ErrorMessage isTimeout={isTimeout} />
@@ -276,6 +279,19 @@ const St = {
 
     &#errorInput {
       border: 0.1rem solid ${({ theme }) => theme.colors.red};
+    }
+
+    // input type 'number' 화살표 없애기
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox  */
+    &[type='number'] {
+      -moz-appearance: textfield;
     }
   `,
 };
