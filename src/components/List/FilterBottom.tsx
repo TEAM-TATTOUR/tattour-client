@@ -11,6 +11,7 @@ interface FilterBottomProps {
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean[]>>;
   buttonName: string[];
   setButtonName: React.Dispatch<React.SetStateAction<string[]>>;
+  defaultName: string[];
 }
 
 const FilterBottom = ({
@@ -18,6 +19,7 @@ const FilterBottom = ({
   setSheetOpen,
   buttonName,
   setButtonName,
+  defaultName,
 }: FilterBottomProps) => {
   const SORT_INDEX = 0;
   const GENRE_INDEX = 1;

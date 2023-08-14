@@ -12,21 +12,21 @@ interface TattooListProps {
   isSheetOpen: boolean[];
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean[]>>;
   buttonName: string[];
+  defaultName: string[];
 }
 
-const TattooList = ({ isSheetOpen, setSheetOpen, buttonName }: TattooListProps) => {
+const TattooList = ({ isSheetOpen, setSheetOpen, buttonName, defaultName }: TattooListProps) => {
   // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
   const [selectedFilter, setSelectedFilter] = useState([false, false, false]);
 
   const navigate = useNavigate();
-  const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
 
   useEffect(() => {
     const newSelectedFilter = [...selectedFilter];
     buttonName.forEach((btn, idx) => {
-      if (btn !== DEFAULT_BUTTON_NAME[idx]) {
+      if (btn !== defaultName[idx]) {
         newSelectedFilter[idx] = true;
-      } else if (btn === DEFAULT_BUTTON_NAME[idx]) {
+      } else if (btn === defaultName[idx]) {
         newSelectedFilter[idx] = false;
       }
     });
