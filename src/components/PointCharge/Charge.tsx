@@ -9,6 +9,7 @@ interface ChargeProps {
 
 const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
   const [isWarning, setIsWarning] = useState(false);
+  const [isZeroWarning, setIsZeroWarning] = useState(false);
   const [parsedPrice, setParsedPrice] = useState('');
 
   const handleChangeChargeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,11 +26,18 @@ const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
     setChargeAmount(removedCommaValue);
     setParsedPrice(removedCommaValue.toLocaleString());
 
-    //1000원 단위인지 확인
-    if (removedCommaValue % 1000 === 0) {
+    if (removedCommaValue === 0) {
+      //0원이면 경고 메시지
+      setIsZeroWarning(true);
+      setIsWarning(true);
+      setIsActiveNext(false);
+    } else if (removedCommaValue % 1000 === 0) {
+      //1000원 단위인지 확인
       setIsWarning(false);
       setIsActiveNext(true);
     } else {
+      //0원이 아닌데, 1000원 단위가 아닐 때 경고 메시지
+      setIsZeroWarning(false);
       setIsWarning(true);
       setIsActiveNext(false);
     }
