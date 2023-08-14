@@ -43,6 +43,34 @@ const FilterBottom = ({
     data : 각 필터별 바텀시트의 내부 요소들 
   }
   */
+
+  // FILTER를 간소화한, 메타데이터의 틀을 만들어주는 함수
+  const filterMetaData = ({ index, tagData }: { index: number; tagData: string[] }) => ({
+    type: defaultName[index],
+    isOpen: isSheetOpen[index],
+    onClose: () => {
+      const newSheetOpen = [...isSheetOpen];
+      newSheetOpen[index] = false;
+      setSheetOpen(newSheetOpen);
+    },
+    onTap: (filter: boolean[]) => {
+      const newFilterTag = [...filterTag];
+      newFilterTag[index] = filter;
+      setFilterTag(newFilterTag);
+
+      const newSheetOpen = [...isSheetOpen];
+      newSheetOpen[index] = false;
+      setSheetOpen(newSheetOpen);
+
+      const trueIdx = filterTag[index].indexOf(true);
+
+      const newSelectedTag = [...selectedTag];
+      newSelectedTag[index] = FILTER[index].data[trueIdx];
+      setSelectedTag(newSelectedTag);
+    },
+    data: tagData,
+  });
+
   const FILTER = [
     {
       type: '정렬',
