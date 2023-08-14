@@ -33,6 +33,7 @@ const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
       setIsActiveNext(false);
     } else if (removedCommaValue % 1000 === 0) {
       //1000원 단위인지 확인
+      setIsZeroWarning(false);
       setIsWarning(false);
       setIsActiveNext(true);
     } else {
