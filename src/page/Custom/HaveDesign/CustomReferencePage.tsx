@@ -13,6 +13,8 @@ interface CustomReferencePageProps {
   customImages: FileList | null;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
   setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
+  setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
+  previewURL: string[];
 }
 
 const CustomReferencePage = ({
@@ -20,6 +22,8 @@ const CustomReferencePage = ({
   customImages,
   setCustomImages,
   setHandDrawingImage,
+  setPreviewURL,
+  previewURL
 }: CustomReferencePageProps) => {
   // 모달 사용할 때  활용
   const [modalOn, setModalOn] = useState(false);
@@ -52,6 +56,8 @@ const CustomReferencePage = ({
         setIsActiveNext={setIsActiveNext}
         setHandDrawingImage={setHandDrawingImage}
         setCustomImages={setCustomImages}
+        setPreviewURL={setPreviewURL}
+        previewURL={previewURL}
       />
     </PageLayout>
   );

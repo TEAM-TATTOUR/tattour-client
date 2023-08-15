@@ -43,6 +43,8 @@ const HaveDesignCustomPage = () => {
           customImages={customImages}
           setCustomImages={setCustomImages}
           setHandDrawingImage={setHandDrawingImage}
+          setPreviewURL={setPreviewURL}
+          previewURL={previewURL}
         />
       );
 

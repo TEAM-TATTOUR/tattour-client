@@ -10,6 +10,8 @@ interface PaintBottomProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
   setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
+  previewURL: string[];
+  setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
 }
 const MAX_FILES = 3;
 
@@ -20,10 +22,11 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   setIsActiveNext,
   setCustomImages,
   setHandDrawingImage,
+  previewURL,
+  setPreviewURL,
 }) => {
   const ref = useRef<HTMLInputElement | null>(null);
   const [toast, setToast] = useState<boolean>(false);
-  const [previewURL, setPreviewURL] = useState<string[]>([]); //페이지로 뺴주기
 
   const handleClickRefBtn = () => {
     if (previewURL.length < MAX_FILES) {
@@ -35,7 +38,9 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
 
   // 이미지 없으면 다음 비활성화
   useEffect(() => {
-    previewURL.length !== 0 ? setIsActiveNext(true) : setIsActiveNext(false);
+    if (Array.isArray(previewURL)) {
+      setIsActiveNext(previewURL.length !== 0);
+    }
   }, [previewURL, setIsActiveNext]);
 
   function dataURItoBlob(dataURI: string) {
@@ -98,8 +103,6 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
 
       setPreviewURL((prevURLs) => [...prevURLs, dataUrl]);
     }
-
-    // e.target.value = '';
   };
 
   const handleClickPreviewDelBtn = (index: number) => {
@@ -126,7 +129,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   return (
     <St.CustomReferenceWrapper>
       <St.PreviewSection>
-        {previewURL.length > 0 ? (
+        {Array.isArray(previewURL) && previewURL.length > 0 ? (
           previewURL.map((url, index) => (
             <St.ImgPreviewContainer key={index}>
               <St.ImgPreviewDelBtn type='button' onClick={() => handleClickPreviewDelBtn(index)}>

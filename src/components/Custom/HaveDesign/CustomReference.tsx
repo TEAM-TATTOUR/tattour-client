@@ -8,10 +8,14 @@ const CustomReference = ({
   setIsActiveNext,
   setHandDrawingImage,
   setCustomImages,
+  setPreviewURL,
+  previewURL,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
+  setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
+  previewURL: string[];
 }) => {
   const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
@@ -26,6 +30,8 @@ const CustomReference = ({
         setIsActiveNext={setIsActiveNext}
         setCustomImages={setCustomImages}
         setHandDrawingImage={setHandDrawingImage}
+        previewURL={previewURL}
+        setPreviewURL={setPreviewURL}
       />
       {isBottomOpen && (
         <PaintBottomSheet
