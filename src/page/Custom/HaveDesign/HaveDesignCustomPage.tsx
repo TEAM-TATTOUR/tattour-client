@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 // import CustomSizePage from '../Common/CustomSizePage';
 import CustomReferencePage from './CustomReferencePage';
 import StylingColorPage from './StylingColorPage';
@@ -10,9 +11,14 @@ const HaveDesignCustomPage = () => {
   const [step, setStep] = useState(0);
 
   //step 1: CustomImg - 그려둔 도안 이미지 state
-  const [customImages, setCustomImages] = useState<FileList | null>(null);
-  const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
-  const [previewURL, setPreviewURL] = useState<string[]>([]);
+  // const [customImages, setCustomImages] = useState<FileList | null>(null);
+  // const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
+
+  // useEffect(() => {
+  //   setPreviewURL(previewURL);
+  //   setHandDrawingImage(handDrawingImage);
+  //   setCustomImages(customImages);
+  // }, [customImages, handDrawingImage]);
 
   //step 2: 색상 선택 state
   const [isColoredState, setIsColored] = useState(false);
@@ -40,11 +46,12 @@ const HaveDesignCustomPage = () => {
       return (
         <CustomReferencePage
           setStep={setStep}
-          customImages={customImages}
-          setCustomImages={setCustomImages}
-          setHandDrawingImage={setHandDrawingImage}
-          setPreviewURL={setPreviewURL}
-          previewURL={previewURL}
+          // customImages={customImages}
+          // setCustomImages={setCustomImages}
+          // handDrawingImage={handDrawingImage}
+          // setHandDrawingImage={setHandDrawingImage}
+          // setPreviewURL={setPreviewURL}
+          // previewURL={previewURL}
         />
       );
 

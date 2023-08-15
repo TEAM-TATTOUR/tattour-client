@@ -1,40 +1,44 @@
 import { styled } from 'styled-components';
 import { IcDraw, IcPhoto, IcCancelDark } from '../../../assets/icon';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
+import { useState } from 'react';
 import Toast from '../../../common/ToastMessage/Toast';
 
-interface PaintBottomProps {
+interface CustomImageAttachProps {
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
   drawingImageURL: string | null;
   setDrawingImageURL: React.Dispatch<React.SetStateAction<string | null>>;
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
+  customImages: FileList | null;
+  handDrawingImage: File | null;
   setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
   previewURL: string[];
   setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
 }
-const MAX_FILES = 3;
 
-const CustomImageAttach: React.FC<PaintBottomProps> = ({
+const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
   setBottomOpen,
   drawingImageURL,
   setDrawingImageURL,
   setIsActiveNext,
   setCustomImages,
+  customImages,
+  handDrawingImage,
   setHandDrawingImage,
   previewURL,
   setPreviewURL,
-}) => {
+}: CustomImageAttachProps) => {
+  const MAX_FILES = 3;
   const ref = useRef<HTMLInputElement | null>(null);
   const [toast, setToast] = useState<boolean>(false);
 
-  const handleClickRefBtn = () => {
-    if (previewURL.length < MAX_FILES) {
-      ref.current?.click();
-    } else {
-      setToast(true);
-    }
-  };
+  useEffect(() => {
+    setPreviewURL(previewURL);
+    setHandDrawingImage(handDrawingImage);
+    setDrawingImageURL(drawingImageURL);
+    setCustomImages(customImages);
+  }, [customImages, handDrawingImage, previewURL, drawingImageURL]);
 
   // 이미지 없으면 다음 비활성화
   useEffect(() => {
@@ -67,13 +71,20 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     setHandDrawingImage(file);
   }, [drawingImageURL]);
 
+  const handleClickRefBtn = () => {
+    if (previewURL.length < MAX_FILES) {
+      ref.current?.click();
+    } else {
+      setToast(true);
+    }
+  };
+
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (!files) return;
-    if (files[3]) {
+    if (files && files.length >= 4) {
       setToast(true);
     }
-
     const fileBlobs = files;
     const dataTransfer = new DataTransfer();
     Array.from(fileBlobs).forEach((file) => {

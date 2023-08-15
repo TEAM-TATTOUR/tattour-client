@@ -2,23 +2,35 @@ import { styled } from 'styled-components';
 import CustomTitle from './CustomTitle';
 import CustomImageAttach from './CustomImageAttach';
 import PaintBottomSheet from './PaintBottomSheet';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+interface CustomReferenceProps {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  handDrawingImage: File | null;
+  setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
+  customImages: FileList | null;
+  setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
+  previewURL: string[];
+}
 
 const CustomReference = ({
   setIsActiveNext,
+  handDrawingImage,
   setHandDrawingImage,
   setCustomImages,
+  customImages,
   setPreviewURL,
   previewURL,
-}: {
-  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-  setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
-  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
-  setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
-  previewURL: string[];
-}) => {
+}: CustomReferenceProps) => {
   const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    setPreviewURL(previewURL);
+    setHandDrawingImage(handDrawingImage);
+    setCustomImages(customImages);
+  }, [customImages, handDrawingImage, previewURL]);
 
   return (
     <St.PageWrapper>
@@ -29,6 +41,8 @@ const CustomReference = ({
         setDrawingImageURL={setDrawingImageUrl}
         setIsActiveNext={setIsActiveNext}
         setCustomImages={setCustomImages}
+        customImages={customImages}
+        handDrawingImage={handDrawingImage}
         setHandDrawingImage={setHandDrawingImage}
         previewURL={previewURL}
         setPreviewURL={setPreviewURL}
