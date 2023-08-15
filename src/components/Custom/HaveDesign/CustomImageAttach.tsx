@@ -30,15 +30,9 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
   setPreviewURL,
 }: CustomImageAttachProps) => {
   const MAX_FILES = 3;
+
   const ref = useRef<HTMLInputElement | null>(null);
   const [toast, setToast] = useState<boolean>(false);
-
-  useEffect(() => {
-    setPreviewURL(previewURL);
-    setHandDrawingImage(handDrawingImage);
-    setDrawingImageURL(drawingImageURL);
-    setCustomImages(customImages);
-  }, [customImages, handDrawingImage, previewURL, drawingImageURL]);
 
   // 이미지 없으면 다음 비활성화
   useEffect(() => {

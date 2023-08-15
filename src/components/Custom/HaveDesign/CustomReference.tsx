@@ -26,12 +26,6 @@ const CustomReference = ({
   const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
 
-  useEffect(() => {
-    setPreviewURL(previewURL);
-    setHandDrawingImage(handDrawingImage);
-    setCustomImages(customImages);
-  }, [customImages, handDrawingImage, previewURL]);
-
   return (
     <St.PageWrapper>
       <CustomTitle />
