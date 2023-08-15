@@ -30,6 +30,7 @@ import SearchPage from './page/Search/SearchPage';
 import SearchResultPage from './page/Search/SearchResultPage';
 import WelcomePage from './page/Welcome/WelcomePage';
 import CustomReferencePage from './page/Custom/HaveDesign/CustomReferencePage';
+import SelectKeywordPage from './page/Custom/HaveDesign/SelectKeywordPage';
 
 const Router = () => {
   return (
@@ -53,7 +54,6 @@ const Router = () => {
         <Route path='/point-charge' element={<ChargePage />} />
         <Route path='/point-transfer' element={<TransferPage />} />
         <Route path='/select' element={<SelectPage />} />
-        <Route path='/reference' element={<CustomReferencePage />} />
         <Route path='/styling-color' element={<StylingColorPage />} />
         <Route path='/select-keyword' element={<SelectKeywordPage />} />
         <Route path='/onboarding' element={<OnBoardingPage />} />
