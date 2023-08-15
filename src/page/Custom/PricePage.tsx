@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { styled } from 'styled-components';
+import { IcBackDark } from '../../assets/icon';
 import CancelBtn from '../../common/Header/CancelBtn';
+import CustomSizeEscapeModal from '../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import ProgressBar from '../../common/ProgressBar';
 import CountPrice from '../../components/Custom/CountPrice';
+import MakePublic from '../../components/Custom/MakePublic';
+import PriceFooter from '../../components/Custom/PriceFooter';
 import PriceHeading from '../../components/Custom/PriceHeading';
 import Header from '../../components/Header';
 import PageLayout from '../../components/PageLayout';
-import PriceFooter from '../../components/Custom/PriceFooter';
-import MakePublic from '../../components/Custom/MakePublic';
-import CustomSizeEscapeModal from '../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import { styled } from 'styled-components';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { IcBackDark } from '../../assets/icon';
 
 const PricePage = () => {
   const [modalOn, setModalOn] = useState(false);
@@ -36,9 +36,9 @@ const PricePage = () => {
   const CUSTOM_VIEW_COUNT = haveDesign ? 7 : 4;
   const backNavigateURL = haveDesign ? '/additional-request' : '/custom-request';
 
-  useEffect(() => {
-    if (!location.state) navigate('/onboarding');
-  }, [location.state, navigate]);
+  // useEffect(() => {
+  //   if (!location.state) navigate('/onboarding');
+  // }, [location.state, navigate]);
 
   const customInfo = {
     ...prevCustomInfo,
