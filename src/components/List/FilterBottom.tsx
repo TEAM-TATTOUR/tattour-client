@@ -30,9 +30,6 @@ const FilterBottom = ({
 
   // 필터(바텀시트)의 각 태그명
   // 필터의 index로 접근하기 위해 하나의 배열로 묶기
-  // const SORT_DATA = ['인기 순', '가격 낮은 순', '가격 높은 순'];
-  // const GENRE_DATA = genreResponse.map((genre: GenreItemProps) => genre.name);
-  // const STYLE_DATA = styleResponse.map((style: StyleItemProps) => style.name);
   const DATA = [
     ['인기 순', '가격 낮은 순', '가격 높은 순'],
     genreResponse.map((genre: GenreItemProps) => genre.name),
@@ -74,14 +71,9 @@ const FilterBottom = ({
       setSelectedTag(newSelectedTag);
     },
     data: tagData,
-    // 여기에 추가한다면
-    // isTagSelected : new Array(tagData.length).fill(false) -> state가 안됨!
   });
 
   const FILTER = [
-    // filterMetaData(SORT_INDEX, SORT_DATA),
-    // filterMetaData(GENRE_INDEX, GENRE_DATA),
-    // filterMetaData(STYLE_INDEX, STYLE_DATA),
     filterMetaData(SORT_INDEX, DATA[SORT_INDEX]),
     filterMetaData(GENRE_INDEX, DATA[GENRE_INDEX]),
     filterMetaData(STYLE_INDEX, DATA[STYLE_INDEX]),
