@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import Sheet from 'react-modal-sheet';
 import PaintBottomHeader from './PaintBottomHeader';
 import Canvas from './Canvas';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface PaintBottomProps {
   isBottomOpen: boolean;
@@ -20,6 +20,10 @@ const PaintBottomSheet = ({
   const [canvasState, setCanvasState] = useState<HTMLCanvasElement | null>(null); //수정함
 
   const closeBottom = () => setBottomOpen(false);
+
+  useEffect(() => {
+    setDrawingImageURL(drawingImageURL);
+  }, [drawingImageURL]);
 
   const onClickSubmitImage = () => {
     // 캔버스 저장 후 전달
