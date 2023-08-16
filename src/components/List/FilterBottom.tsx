@@ -35,6 +35,18 @@ const FilterBottom = ({
     genreResponse.map((genre: GenreItemProps) => genre.name),
     styleResponse.map((style: StyleItemProps) => style.name),
   ];
+  // 필터 버튼명(선택한 태그명)을 임시로 관리하는 state
+  const [selectedTag, setSelectedTag] = useState(buttonName);
+  // 필터 내 각 태그의 선택 여부를 관리하는 이차원배열 state ([정렬, 장르, 스타일])
+  // 추후 해당 배열 파괴 -> 각 숫자를 data.length로 변경 예정
+  const [filterTag, setFilterTag] = useState([
+    new Array(DATA[SORT_INDEX].length).fill(false),
+    new Array(DATA[GENRE_INDEX].length).fill(false),
+    new Array(DATA[STYLE_INDEX].length).fill(false),
+  ]);
+
+  // 바텀시트 내 각 태그 ref
+  const tagRefs = useRef<HTMLParagraphElement[]>([]);
 
   // backdrop 클릭 시 바텀시트 꺼지는 함수
   const onTapBack = (filter: boolean[]) => {
@@ -51,28 +63,6 @@ const FilterBottom = ({
     setSelectedTag(newSelectedTag);
   };
 
-  // 바텀시트 내 각 태그 ref
-  const tagRefs = useRef<HTMLParagraphElement[]>([]);
-  // 필터 버튼명(선택한 태그명)을 임시로 관리하는 state
-  // buttonName을 건드릴 경우, 태그를 선택할 때마다 버튼명이 변경된다. 이를 방지하고, 임시 저장해뒀다가 바텀시트 내렸을 때 반응하기 위해 별도로 관리!
-  const [selectedTag, setSelectedTag] = useState(buttonName);
-
-  // 필터 내 각 태그의 선택 여부를 관리하는 이차원배열 state ([정렬, 장르, 스타일])
-  // 추후 해당 배열 파괴 -> 각 숫자를 data.length로 변경 예정
-  const [filterTag, setFilterTag] = useState([
-    new Array(DATA[SORT_INDEX].length).fill(false),
-    new Array(DATA[GENRE_INDEX].length).fill(false),
-    new Array(DATA[STYLE_INDEX].length).fill(false),
-  ]);
-
-  useEffect(() => {
-    const newFilterTag = [...filterTag];
-    newFilterTag[SORT_INDEX] = [false, false, false];
-    newFilterTag[GENRE_INDEX] = genreResponse.map((item) => buttonName[GENRE_INDEX] === item.name);
-    newFilterTag[STYLE_INDEX] = styleResponse.map((item) => buttonName[STYLE_INDEX] === item.name);
-    setFilterTag(newFilterTag);
-  }, [genreResponse, styleResponse]);
-
   const handleClickTag = (tag: string, index: number, filterIdx: number) => {
     const newSelectedTag = [...selectedTag];
     if (selectedTag[filterIdx] === tag) {
@@ -84,16 +74,13 @@ const FilterBottom = ({
 
     tagRefs.current.forEach((el: HTMLParagraphElement) => {
       if (!el) return;
-      // 선택된 태그에 대해서
       if (tagRefs.current.indexOf(el) === index) {
-        // 클릭할 때마다 토글 구현
         if (tagRefs.current[index].classList.contains('checked')) {
           tagRefs.current[index].classList.remove('checked');
         } else {
           tagRefs.current[index].classList.add('checked');
         }
       } else {
-        // 태그는 한개씩만 선택 가능하므로, 선택된 태그가 아닌 나머지는 remove
         if (el.classList.contains('checked')) {
           el.classList.remove('checked');
         }
@@ -102,7 +89,7 @@ const FilterBottom = ({
   };
 
   const handleClickButton = (filterIdx: number) => {
-    setSheetOpen(-1); // 바텀시트 닫기
+    setSheetOpen(-1);
 
     const newTag = [...filterTag];
     if (selectedTag[filterIdx] === defaultName[isSheetOpen]) {
@@ -118,6 +105,14 @@ const FilterBottom = ({
     newButtonName[filterIdx] = selectedTag[filterIdx];
     setButtonName(newButtonName);
   };
+
+  useEffect(() => {
+    const newFilterTag = [...filterTag];
+    newFilterTag[SORT_INDEX] = [false, false, false];
+    newFilterTag[GENRE_INDEX] = genreResponse.map((item) => buttonName[GENRE_INDEX] === item.name);
+    newFilterTag[STYLE_INDEX] = styleResponse.map((item) => buttonName[STYLE_INDEX] === item.name);
+    setFilterTag(newFilterTag);
+  }, [genreResponse, styleResponse]);
 
   return (
     <St.Wrapper>
