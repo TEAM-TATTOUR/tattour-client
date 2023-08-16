@@ -6,6 +6,8 @@ import StylingColorPage from './StylingColorPage';
 import SelectKeywordPage from './SelectKeywordPage';
 import CustomThemePage from './CustomThemePage';
 import AdditionalRequestPage from './AdditionalRequestPage';
+import ReceiptPage from './ReceiptPage';
+import PricePage from '../PricePage';
 
 const HaveDesignCustomPage = () => {
   const [step, setStep] = useState(0);
@@ -69,6 +71,12 @@ const HaveDesignCustomPage = () => {
 
     case 5:
       return <AdditionalRequestPage setStep={setStep} setDemand={setDemand} />;
+
+    case 6:
+      return <PricePage />;
+
+    case 7:
+      return <ReceiptPage />;
   }
 };
 
