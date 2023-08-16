@@ -3,7 +3,7 @@ import { IcBackDark } from '../../../../assets/icon';
 import CancelBtn from '../../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import ProgressBar from '../../../../common/ProgressBar';
-import CustomRequset from './CustomRequset';
+import CustomRequest from './CustomRequest';
 import NoDesignFooter from '../NoDesignFooter';
 import Header from '../../../Header';
 import PageLayout from '../../../PageLayout';
@@ -49,7 +49,7 @@ const CustomRequestLayout = ({
       renderHeader={renderCustomRequestPageHeader}
       footer={<NoDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
-      <CustomRequset
+      <CustomRequest
         setIsActiveNext={setIsActiveNext}
         setName={setName}
         setDemand={setDemand}
