@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import Sheet from 'react-modal-sheet';
 import PaintBottomHeader from './PaintBottomHeader';
 import Canvas from './Canvas';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface PaintBottomProps {
   isBottomOpen: boolean;
