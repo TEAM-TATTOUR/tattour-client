@@ -33,13 +33,6 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
   const ref = useRef<HTMLInputElement | null>(null);
   const [toast, setToast] = useState<boolean>(false);
 
-  useEffect(() => {
-    setPreviewURL(previewURL);
-    setHandDrawingImage(handDrawingImage);
-    setDrawingImageURL(drawingImageURL);
-    setCustomImages(customImages);
-  }, [customImages, handDrawingImage, previewURL, drawingImageURL]);
-
   // 이미지 없으면 다음 비활성화
   useEffect(() => {
     if (Array.isArray(previewURL)) {

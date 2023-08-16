@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import CustomTitle from './CustomTitle';
 import CustomImageAttach from './CustomImageAttach';
 import PaintBottomSheet from './PaintBottomSheet';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface CustomReferenceProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,12 +25,6 @@ const CustomReference = ({
 }: CustomReferenceProps) => {
   const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    setPreviewURL(previewURL);
-    setHandDrawingImage(handDrawingImage);
-    setCustomImages(customImages);
-  }, [customImages, handDrawingImage, previewURL]);
 
   return (
     <St.PageWrapper>

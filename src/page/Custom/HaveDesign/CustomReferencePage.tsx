@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomReference from '../../../components/Custom/HaveDesign/CustomReference';
 import Header from '../../../components/Header';
@@ -10,29 +10,26 @@ import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFo
 
 interface CustomReferencePageProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
-  // customImages: FileList | null;
-  // setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
-  // handDrawingImage: File | null;
-  // setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
-  // setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
-  // previewURL: string[];
+  customImages: FileList | null;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
+  handDrawingImage: File | null;
+  setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
+  setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
+  previewURL: string[];
 }
 
 const CustomReferencePage = ({
   setStep,
-}: // customImages,
-// setCustomImages,
-// handDrawingImage,
-// setHandDrawingImage,
-// setPreviewURL,
-// previewURL,
-CustomReferencePageProps) => {
+  customImages,
+  setCustomImages,
+  handDrawingImage,
+  setHandDrawingImage,
+  setPreviewURL,
+  previewURL,
+}: CustomReferencePageProps) => {
   // 모달 사용할 때  활용
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
-  const [previewURL, setPreviewURL] = useState<string[]>([]);
-  const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
-  const [customImages, setCustomImages] = useState<FileList | null>(null);
 
   const renderCustomReferencePageHeader = () => {
     return (

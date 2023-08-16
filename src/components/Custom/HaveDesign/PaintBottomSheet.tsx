@@ -21,10 +21,6 @@ const PaintBottomSheet = ({
 
   const closeBottom = () => setBottomOpen(false);
 
-  useEffect(() => {
-    setDrawingImageURL(drawingImageURL);
-  }, [drawingImageURL]);
-
   const onClickSubmitImage = () => {
     // 캔버스 저장 후 전달
     if (!canvasState) return;
