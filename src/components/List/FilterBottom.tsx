@@ -68,6 +68,8 @@ const FilterBottom = ({
       setSelectedTag(newSelectedTag);
     },
     data: tagData,
+    // 여기에 추가한다면
+    // isTagSelected : new Array(tagData.length).fill(false) -> state가 안됨!
   });
 
   const FILTER = [
@@ -85,9 +87,9 @@ const FilterBottom = ({
   // 필터 내 각 태그의 선택 여부를 관리하는 이차원배열 state ([정렬, 장르, 스타일])
   // 추후 해당 배열 파괴 -> 각 숫자를 data.length로 변경 예정
   const [filterTag, setFilterTag] = useState([
-    new Array(3).fill(false),
-    new Array(6).fill(false),
-    new Array(6).fill(false),
+    new Array(SORT_DATA.length).fill(false),
+    new Array(GENRE_DATA.length).fill(false),
+    new Array(STYLE_DATA.length).fill(false),
   ]);
 
   useEffect(() => {
