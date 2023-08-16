@@ -5,6 +5,7 @@ import ic_check_small_light from '../../assets/icon/ic_check_small_light.svg';
 import ic_check_small_pink from '../../assets/icon/ic_check_small_pink.svg';
 import useGetGenre, { GenreItemProps } from '../../libs/hooks/list/useGetGenre';
 import useGetStyle, { StyleItemProps } from '../../libs/hooks/list/useGetStyle';
+import { LoDashImplicitNumberArrayWrapper } from 'lodash';
 
 interface FilterBottomProps {
   isSheetOpen: number;
@@ -36,19 +37,8 @@ const FilterBottom = ({
     styleResponse.map((style: StyleItemProps) => style.name),
   ];
 
-  // 각 바텀시트의 메타데이터를 모아놓은 배열
-  /*
-  {
-    type : 어떤 버튼인지 (정렬? 장르? 스타일?),
-    isOpen : 바텀시트 on/off를 다루는 state
-    onClose : 바텀시트를 off 시키는 state setter,
-    onTap : 바텀시트의 backdrop 터치 시 실행할 함수,
-    data : 각 필터별 바텀시트의 내부 요소들 
-  }
-  */
-
   // FILTER를 간소화한, 메타데이터의 틀을 만들어주는 함수
-  const filterMetaData = (index: number, tagData: string[]) => ({
+  const filterMetaData = (index: number) => ({
     type: defaultName[index],
     // isOpen -> boolean이어야함, 지금 열고자하는 필터가 맞는지 여부를 비교
     isOpen: isSheetOpen === index,
@@ -70,13 +60,14 @@ const FilterBottom = ({
       newSelectedTag[index] = FILTER[index].data[trueIdx];
       setSelectedTag(newSelectedTag);
     },
-    data: tagData,
+    // data: tagData,
+    data: DATA[index],
   });
 
   const FILTER = [
-    filterMetaData(SORT_INDEX, DATA[SORT_INDEX]),
-    filterMetaData(GENRE_INDEX, DATA[GENRE_INDEX]),
-    filterMetaData(STYLE_INDEX, DATA[STYLE_INDEX]),
+    filterMetaData(SORT_INDEX),
+    filterMetaData(GENRE_INDEX),
+    filterMetaData(STYLE_INDEX),
   ];
 
   // 바텀시트 내 각 태그 ref
