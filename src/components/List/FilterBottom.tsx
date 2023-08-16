@@ -36,32 +36,20 @@ const FilterBottom = ({
     styleResponse.map((style: StyleItemProps) => style.name),
   ];
 
-  // FILTER를 간소화한, 메타데이터의 틀을 만들어주는 함수
-  const filterMetaData = (index: number) => ({
-    type: defaultName[index],
-    // isOpen -> boolean이어야함, 지금 열고자하는 필터가 맞는지 여부를 비교
-    isOpen: isSheetOpen === index,
-    onClose: () => {
-      // 바텀시트 닫는 부분
-      setSheetOpen(-1);
-    },
-    onTap: (filter: boolean[]) => {
-      const newFilterTag = [...filterTag];
-      newFilterTag[index] = filter;
-      setFilterTag(newFilterTag);
+  // backdrop 클릭 시 바텀시트 꺼지는 함수
+  const onTapBack = (filter: boolean[]) => {
+    const newFilterTag = [...filterTag];
+    newFilterTag[isSheetOpen] = filter;
+    setFilterTag(newFilterTag);
 
-      // 여기도 바텀시트 닫는 부분 (onClose와 동일)
-      setSheetOpen(-1);
+    setSheetOpen(-1);
 
-      const trueIdx = filterTag[index].indexOf(true);
+    const trueIdx = filterTag[isSheetOpen].indexOf(true);
 
-      const newSelectedTag = [...selectedTag];
-      newSelectedTag[index] = DATA[index][trueIdx];
-      setSelectedTag(newSelectedTag);
-    },
-    // data: tagData,
-    data: DATA[index],
-  });
+    const newSelectedTag = [...selectedTag];
+    newSelectedTag[isSheetOpen] = DATA[isSheetOpen][trueIdx];
+    setSelectedTag(newSelectedTag);
+  };
 
   // 바텀시트 내 각 태그 ref
   const tagRefs = useRef<HTMLParagraphElement[]>([]);
@@ -88,7 +76,7 @@ const FilterBottom = ({
   const handleClickTag = (tag: string, index: number, filterIdx: number) => {
     const newSelectedTag = [...selectedTag];
     if (selectedTag[filterIdx] === tag) {
-      newSelectedTag[filterIdx] = filterMetaData(isSheetOpen).type;
+      newSelectedTag[filterIdx] = defaultName[isSheetOpen];
     } else {
       newSelectedTag[filterIdx] = tag;
     }
@@ -113,11 +101,11 @@ const FilterBottom = ({
     });
   };
 
-  const handleClickButton = (onClose: () => void, filterIdx: number) => {
-    onClose();
+  const handleClickButton = (filterIdx: number) => {
+    setSheetOpen(-1); // 바텀시트 닫기
 
     const newTag = [...filterTag];
-    if (selectedTag[filterIdx] === filterMetaData(filterIdx).type) {
+    if (selectedTag[filterIdx] === defaultName[isSheetOpen]) {
       newTag[filterIdx] = DATA[filterIdx].map(() => false);
     } else {
       newTag[filterIdx] = DATA[filterIdx].map((_, idx) => {
@@ -135,15 +123,17 @@ const FilterBottom = ({
     <St.Wrapper>
       {isSheetOpen !== -1 && (
         <CustomSheet
-          isOpen={filterMetaData(isSheetOpen).isOpen}
-          onClose={filterMetaData(isSheetOpen).onClose}
+          isOpen={isSheetOpen !== -1}
+          onClose={() => {
+            setSheetOpen(-1);
+          }}
           detent='content-height'
           disableDrag={true}
         >
           <Sheet.Container>
             <Sheet.Header disableDrag={true} />
             <Sheet.Content>
-              {filterMetaData(isSheetOpen).data.map((el, idx) => (
+              {DATA[isSheetOpen].map((el, idx) => (
                 <St.TagBox
                   key={idx}
                   onClick={() => handleClickTag(el, idx, isSheetOpen)}
@@ -157,18 +147,13 @@ const FilterBottom = ({
               ))}
 
               <St.Footer>
-                <St.Button
-                  type='button'
-                  onClick={() =>
-                    handleClickButton(filterMetaData(isSheetOpen).onClose, isSheetOpen)
-                  }
-                >
+                <St.Button type='button' onClick={() => handleClickButton(isSheetOpen)}>
                   적용하기
                 </St.Button>
               </St.Footer>
             </Sheet.Content>
           </Sheet.Container>
-          <Sheet.Backdrop onTap={() => filterMetaData(isSheetOpen).onTap(filterTag[isSheetOpen])} />
+          <Sheet.Backdrop onTap={() => onTapBack(filterTag[isSheetOpen])} />
         </CustomSheet>
       )}
     </St.Wrapper>
