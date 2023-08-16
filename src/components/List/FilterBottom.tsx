@@ -5,7 +5,6 @@ import ic_check_small_light from '../../assets/icon/ic_check_small_light.svg';
 import ic_check_small_pink from '../../assets/icon/ic_check_small_pink.svg';
 import useGetGenre, { GenreItemProps } from '../../libs/hooks/list/useGetGenre';
 import useGetStyle, { StyleItemProps } from '../../libs/hooks/list/useGetStyle';
-import { LoDashImplicitNumberArrayWrapper } from 'lodash';
 
 interface FilterBottomProps {
   isSheetOpen: number;
@@ -57,18 +56,12 @@ const FilterBottom = ({
       const trueIdx = filterTag[index].indexOf(true);
 
       const newSelectedTag = [...selectedTag];
-      newSelectedTag[index] = FILTER[index].data[trueIdx];
+      newSelectedTag[index] = DATA[index][trueIdx];
       setSelectedTag(newSelectedTag);
     },
     // data: tagData,
     data: DATA[index],
   });
-
-  const FILTER = [
-    filterMetaData(SORT_INDEX),
-    filterMetaData(GENRE_INDEX),
-    filterMetaData(STYLE_INDEX),
-  ];
 
   // 바텀시트 내 각 태그 ref
   const tagRefs = useRef<HTMLParagraphElement[]>([]);
@@ -95,7 +88,7 @@ const FilterBottom = ({
   const handleClickTag = (tag: string, index: number, filterIdx: number) => {
     const newSelectedTag = [...selectedTag];
     if (selectedTag[filterIdx] === tag) {
-      newSelectedTag[filterIdx] = FILTER[filterIdx].type;
+      newSelectedTag[filterIdx] = filterMetaData(isSheetOpen).type;
     } else {
       newSelectedTag[filterIdx] = tag;
     }
@@ -124,11 +117,11 @@ const FilterBottom = ({
     onClose();
 
     const newTag = [...filterTag];
-    if (selectedTag[filterIdx] === FILTER[filterIdx].type) {
-      newTag[filterIdx] = FILTER[filterIdx].data.map(() => false);
+    if (selectedTag[filterIdx] === filterMetaData(filterIdx).type) {
+      newTag[filterIdx] = DATA[filterIdx].map(() => false);
     } else {
-      newTag[filterIdx] = FILTER[filterIdx].data.map((_, idx) => {
-        return idx === FILTER[filterIdx].data.indexOf(selectedTag[filterIdx]);
+      newTag[filterIdx] = DATA[filterIdx].map((_, idx) => {
+        return idx === DATA[filterIdx].indexOf(selectedTag[filterIdx]);
       });
     }
     setFilterTag(newTag);
@@ -140,23 +133,22 @@ const FilterBottom = ({
 
   return (
     <St.Wrapper>
-      {FILTER.map((filter, filterIdx) => (
+      {isSheetOpen !== -1 && (
         <CustomSheet
-          key={filter.type}
-          isOpen={filter.isOpen}
-          onClose={filter.onClose}
+          isOpen={filterMetaData(isSheetOpen).isOpen}
+          onClose={filterMetaData(isSheetOpen).onClose}
           detent='content-height'
           disableDrag={true}
         >
           <Sheet.Container>
             <Sheet.Header disableDrag={true} />
             <Sheet.Content>
-              {filter.data.map((el, idx) => (
+              {filterMetaData(isSheetOpen).data.map((el, idx) => (
                 <St.TagBox
                   key={idx}
-                  onClick={() => handleClickTag(el, idx, filterIdx)}
+                  onClick={() => handleClickTag(el, idx, isSheetOpen)}
                   ref={(refEl: HTMLParagraphElement) => (tagRefs.current[idx] = refEl)}
-                  className={filterTag[filterIdx][idx] ? 'checked' : ''}
+                  className={filterTag[isSheetOpen][idx] ? 'checked' : ''}
                 >
                   <span></span>
                   {el}
@@ -167,16 +159,18 @@ const FilterBottom = ({
               <St.Footer>
                 <St.Button
                   type='button'
-                  onClick={() => handleClickButton(filter.onClose, filterIdx)}
+                  onClick={() =>
+                    handleClickButton(filterMetaData(isSheetOpen).onClose, isSheetOpen)
+                  }
                 >
                   적용하기
                 </St.Button>
               </St.Footer>
             </Sheet.Content>
           </Sheet.Container>
-          <Sheet.Backdrop onTap={() => filter.onTap(filterTag[filterIdx])} />
+          <Sheet.Backdrop onTap={() => filterMetaData(isSheetOpen).onTap(filterTag[isSheetOpen])} />
         </CustomSheet>
-      ))}
+      )}
     </St.Wrapper>
   );
 };
