@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import ProgressBar from '../../../common/ProgressBar';
@@ -16,6 +16,10 @@ interface StylingColorPageProps {
 const StylingColorPage = ({ setStep, isColoredState, setIsColored }: StylingColorPageProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
+
+  useEffect(() => {
+    setIsColored(isColoredState);
+  }, [isColoredState]);
 
   const renderStylingColorPageHeader = () => {
     return (
