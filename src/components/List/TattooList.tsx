@@ -9,13 +9,12 @@ import useGetAllList from '../../libs/hooks/list/useGetAllList';
 import { useNavigate } from 'react-router-dom';
 
 interface TattooListProps {
-  isSheetOpen: boolean[];
-  setSheetOpen: React.Dispatch<React.SetStateAction<boolean[]>>;
+  setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
   buttonName: string[];
   defaultName: string[];
 }
 
-const TattooList = ({ isSheetOpen, setSheetOpen, buttonName, defaultName }: TattooListProps) => {
+const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) => {
   // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
   const [selectedFilter, setSelectedFilter] = useState([false, false, false]);
 
@@ -48,9 +47,8 @@ const TattooList = ({ isSheetOpen, setSheetOpen, buttonName, defaultName }: Tatt
             key={el}
             $selected={selectedFilter[idx]}
             onClick={() => {
-              const newSheetOpen = [...isSheetOpen];
-              newSheetOpen[idx] = true;
-              setSheetOpen(newSheetOpen);
+              // 필터 버튼을 클릭하여 바텀시트를 켜는 부분
+              setSheetOpen(idx); // 어떤 필터 버튼을 클릭했는지에 따라 isSheetOpen 값이 0, 1, 2로 바뀜
             }}
           >
             {el}

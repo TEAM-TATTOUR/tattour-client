@@ -7,8 +7,8 @@ import useGetGenre, { GenreItemProps } from '../../libs/hooks/list/useGetGenre';
 import useGetStyle, { StyleItemProps } from '../../libs/hooks/list/useGetStyle';
 
 interface FilterBottomProps {
-  isSheetOpen: boolean[];
-  setSheetOpen: React.Dispatch<React.SetStateAction<boolean[]>>;
+  isSheetOpen: number;
+  setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
   buttonName: string[];
   setButtonName: React.Dispatch<React.SetStateAction<string[]>>;
   defaultName: string[];
@@ -47,20 +47,19 @@ const FilterBottom = ({
   // FILTER를 간소화한, 메타데이터의 틀을 만들어주는 함수
   const filterMetaData = (index: number, tagData: string[]) => ({
     type: defaultName[index],
-    isOpen: isSheetOpen[index],
+    // isOpen -> boolean이어야함, 지금 열고자하는 필터가 맞는지 여부를 비교
+    isOpen: isSheetOpen === index,
     onClose: () => {
-      const newSheetOpen = [...isSheetOpen];
-      newSheetOpen[index] = false;
-      setSheetOpen(newSheetOpen);
+      // 바텀시트 닫는 부분
+      setSheetOpen(-1);
     },
     onTap: (filter: boolean[]) => {
       const newFilterTag = [...filterTag];
       newFilterTag[index] = filter;
       setFilterTag(newFilterTag);
 
-      const newSheetOpen = [...isSheetOpen];
-      newSheetOpen[index] = false;
-      setSheetOpen(newSheetOpen);
+      // 여기도 바텀시트 닫는 부분 (onClose와 동일)
+      setSheetOpen(-1);
 
       const trueIdx = filterTag[index].indexOf(true);
 
