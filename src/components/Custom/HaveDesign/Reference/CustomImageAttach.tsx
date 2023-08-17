@@ -1,8 +1,7 @@
+import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
-import { IcDraw, IcPhoto, IcCancelDark } from '../../../assets/icon';
-import { useRef, useEffect } from 'react';
-import { useState } from 'react';
-import Toast from '../../../common/ToastMessage/Toast';
+import { IcCancelDark, IcDraw, IcPhoto } from '../../../../assets/icon';
+import Toast from '../../../../common/ToastMessage/Toast';
 
 interface CustomImageAttachProps {
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;

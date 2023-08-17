@@ -1,8 +1,8 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { styled } from 'styled-components';
+import IcCircleBlack from '../../../../assets/icon/ic_circle_black.png';
+import IcCircleRainbow from '../../../../assets/icon/ic_color_rainbow.png';
 import SelectColorBtn from './SelectColorBtn';
-import IcCircleRainbow from '../../../assets/icon/ic_circle_rainbow.png';
-import IcCircleBlack from '../../../assets/icon/ic_circle_black.png';
 
 interface SelectColorProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;

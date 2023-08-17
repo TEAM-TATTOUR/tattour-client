@@ -10,17 +10,20 @@ import TransferPage from './page/PointCharge/TransferPage';
 import SelectPage from './page/Custom/Common/SelectPage';
 import CompletePage from './page/Order/CompletePage';
 import OrderPage from './page/Order/OrderPage';
-import SelectKeywordPage from './page/Custom/HaveDesign/SelectKeywordLayout';
+
 import OnBoardingPage from './page/Custom/Common/OnBoardingPage';
 import CustomSizePage from './page/Custom/Common/CustomSizePage';
 import CustomImgLayout from './components/Custom/NoDesign/Img/CustomImgLayout';
 import CustomRequestLayout from './components/Custom/NoDesign/Request/CustomRequestLayout';
-import CustomThemePage from './page/Custom/HaveDesign/CustomThemeLayout';
-import AdditionalRequestPage from './components/Custom/HaveDesign/AdditionalRequestLayout';
+
+import CustomReferenceLayout from './components/Custom/HaveDesign/Reference/CustomReferenceLayout';
+import ReceiptLayout from './components/Custom/HaveDesign/Receipt/ReceiptLayout';
+import AdditionalRequestLayout from './components/Custom/HaveDesign/AdditionalRequest/AdditionalRequestLayout';
+import CustomThemeLayout from './components/Custom/HaveDesign/CustomTheme/CustomThemeLayout';
+import SelectKeywordLayout from './components/Custom/HaveDesign/SelectKeyword/SelectKeywordLayout';
+import StylingColorLayout from './components/Custom/HaveDesign/SelectColor/StylingColorLayout';
 import PricePage from './components/Custom/Common/PriceLayout';
-import ReceiptPage from './page/Custom/HaveDesign/ReceiptLayout';
-import StylingColorPage from './page/Custom/HaveDesign/StylingColorLayout';
-import CustomReferencePage from './page/Custom/HaveDesign/CustomReferenceLayout';
+
 import SearchPage from './page/Search/SearchPage';
 import SearchResultPage from './page/Search/SearchResultPage';
 import ScrollToTop from './libs/hooks/ScrollTop';
@@ -48,18 +51,18 @@ const Router = () => {
         <Route path='/point-charge' element={<ChargePage />} />
         <Route path='/point-transfer' element={<TransferPage />} />
         <Route path='/select' element={<SelectPage />} />
-        <Route path='/styling-color' element={<StylingColorPage />} />
-        <Route path='/select-keyword' element={<SelectKeywordPage />} />
+        <Route path='/styling-color' element={<StylingColorLayout />} />
+        <Route path='/select-keyword' element={<SelectKeywordLayout />} />
         <Route path='/onboarding' element={<OnBoardingPage />} />
         <Route path='/custom-size' element={<CustomSizePage />} />
         <Route path='/custom-img' element={<CustomImgLayout />} />
         <Route path='/custom-request' element={<CustomRequestLayout />} />
-        <Route path='/custom-theme' element={<CustomThemePage />} />
-        <Route path='/additional-request' element={<AdditionalRequestPage />} />
+        <Route path='/custom-theme' element={<CustomThemeLayout />} />
+        <Route path='/additional-request' element={<AdditionalRequestLayout />} />
         <Route path='/price' element={<PricePage />} />
-        <Route path='/receipt' element={<ReceiptPage />} />
+        <Route path='/receipt' element={<ReceiptLayout />} />
         <Route path='/complete' element={<CompletePage />} />
-        <Route path='/custom-reference' element={<CustomReferencePage />} />
+        <Route path='/custom-reference' element={<CustomReferenceLayout />} />
         <Route path='/save' element={<SavePage />} />
         <Route path='/haveDesign' element={<HaveDesignCustomPage />} />
         <Route path='/noDesign' element={<NoDesignCustomPage />} />

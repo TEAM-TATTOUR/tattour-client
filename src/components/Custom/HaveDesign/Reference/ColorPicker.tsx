@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import {
   IcBrushBold,
-  IcBrushLight,
-  IcBrushMedium,
   IcBrushBoldSelected,
+  IcBrushLight,
   IcBrushLightSelected,
+  IcBrushMedium,
   IcBrushMediumSelected,
   IcColorBlack,
   IcColorBlackSelected,
@@ -13,11 +13,11 @@ import {
   IcColorBlueSelected,
   IcColorRed,
   IcColorRedSelected,
+  IcColorSelectedLine,
   IcColorYellow,
   IcColorYellowSelected,
-  IcColorSelectedLine,
-} from '../../../assets/icon';
-import IcColorRainbow from '../../../assets/icon/ic_color_rainbow.png';
+} from '../../../../assets/icon';
+import IcColorRainbow from '../../../../assets/icon/ic_color_rainbow.png';
 
 interface ColorPickerProps {
   onColorChange: (color: string) => void;

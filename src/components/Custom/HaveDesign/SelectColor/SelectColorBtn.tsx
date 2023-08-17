@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { IcApplyCheckGray, IcApplyCheckPink } from '../../../assets/icon';
+import { IcApplyCheckGray, IcApplyCheckPink } from '../../../../assets/icon';
 
 interface SelectColorBtnProps {
   id: string;
