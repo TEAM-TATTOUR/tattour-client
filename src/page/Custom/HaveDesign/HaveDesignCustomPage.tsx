@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 // import CustomSizePage from '../Common/CustomSizePage';
-import CustomReferencePage from './CustomReferencePage';
-import StylingColorPage from './StylingColorPage';
-import SelectKeywordPage from './SelectKeywordPage';
-import CustomThemePage from './CustomThemePage';
-import AdditionalRequestPage from './AdditionalRequestPage';
-import ReceiptPage from './ReceiptPage';
-import PricePage from '../PricePage';
+import CustomReferenceLayout from './CustomReferenceLayout';
+import StylingColorLayout from './StylingColorLayout';
+import SelectKeywordLayout from './SelectKeywordLayout';
+import CustomThemeLayout from './CustomThemeLayout';
+import AdditionalRequestLayout from './AdditionalRequestLayout';
+import ReceiptLayout from './ReceiptLayout';
+import PriceLayout from '../PriceLayout';
 
 const HaveDesignCustomPage = () => {
   const [step, setStep] = useState(0);
@@ -41,7 +41,7 @@ const HaveDesignCustomPage = () => {
     //   return <CustomSizePage setStep={setStep} />;
     case 1:
       return (
-        <CustomReferencePage
+        <CustomReferenceLayout
           setStep={setStep}
           customImages={customImages}
           setCustomImages={setCustomImages}
@@ -54,7 +54,7 @@ const HaveDesignCustomPage = () => {
 
     case 2:
       return (
-        <StylingColorPage
+        <StylingColorLayout
           setStep={setStep}
           isColoredState={isColoredState}
           setIsColored={setIsColored}
@@ -62,21 +62,21 @@ const HaveDesignCustomPage = () => {
       );
 
     case 3:
-      return <SelectKeywordPage setStep={setStep} setStyles={setStyles} setThemes={setThemes} />;
+      return <SelectKeywordLayout setStep={setStep} setStyles={setStyles} setThemes={setThemes} />;
 
     case 4:
       return (
-        <CustomThemePage setStep={setStep} setName={setName} setDescription={setDescription} />
+        <CustomThemeLayout setStep={setStep} setName={setName} setDescription={setDescription} />
       );
 
     case 5:
-      return <AdditionalRequestPage setStep={setStep} setDemand={setDemand} />;
+      return <AdditionalRequestLayout setStep={setStep} setDemand={setDemand} />;
 
     case 6:
-      return <PricePage />;
+      return <PriceLayout />;
 
     case 7:
-      return <ReceiptPage />;
+      return <ReceiptLayout />;
   }
 };
 

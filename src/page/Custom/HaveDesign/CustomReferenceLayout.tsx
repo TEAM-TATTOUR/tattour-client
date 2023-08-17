@@ -8,7 +8,7 @@ import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeE
 import { IcBackDark } from '../../../assets/icon';
 import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFooter';
 
-interface CustomReferencePageProps {
+interface CustomReferenceLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   customImages: FileList | null;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
@@ -18,7 +18,7 @@ interface CustomReferencePageProps {
   previewURL: string[];
 }
 
-const CustomReferencePage = ({
+const CustomReferenceLayout = ({
   setStep,
   customImages,
   setCustomImages,
@@ -26,12 +26,12 @@ const CustomReferencePage = ({
   setHandDrawingImage,
   setPreviewURL,
   previewURL,
-}: CustomReferencePageProps) => {
+}: CustomReferenceLayoutProps) => {
   // 모달 사용할 때  활용
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
-  const renderCustomReferencePageHeader = () => {
+  const renderCustomReferenceLayoutHeader = () => {
     return (
       <Header
         transparent={true}
@@ -51,7 +51,7 @@ const CustomReferencePage = ({
 
   return (
     <PageLayout
-      renderHeader={renderCustomReferencePageHeader}
+      renderHeader={renderCustomReferenceLayoutHeader}
       footer={<HaveDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
       <CustomReference
@@ -67,4 +67,4 @@ const CustomReferencePage = ({
   );
 };
 
-export default CustomReferencePage;
+export default CustomReferenceLayout;

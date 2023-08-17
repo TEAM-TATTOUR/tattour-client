@@ -8,10 +8,10 @@ import ReceiptFooter from '../../../components/Custom/HaveDesign/ReceiptFooter';
 import PageLayout from '../../../components/PageLayout';
 import Submitted from '../../../components/Custom/HaveDesign/Submitted';
 
-const ReceiptPage = () => {
+const ReceiptLayout = () => {
   const [modalOn, setModalOn] = useState(false);
 
-  const renderReceiptPageHeader = () => {
+  const renderReceiptLayoutHeader = () => {
     return (
       <Header
         leftSection={<BackBtn />}
@@ -29,11 +29,11 @@ const ReceiptPage = () => {
   };
 
   return (
-    <PageLayout renderHeader={renderReceiptPageHeader} footer={<ReceiptFooter />}>
+    <PageLayout renderHeader={renderReceiptLayoutHeader} footer={<ReceiptFooter />}>
       <Submitted />
       <ReceiptDetail />
     </PageLayout>
   );
 };
 
-export default ReceiptPage;
+export default ReceiptLayout;

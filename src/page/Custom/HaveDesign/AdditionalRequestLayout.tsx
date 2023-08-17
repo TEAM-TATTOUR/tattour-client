@@ -1,30 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import PageLayout from '../../../components/PageLayout';
+import Header from '../../../components/Header';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import ProgressBar from '../../../common/ProgressBar';
-import SelectColor from '../../../components/Custom/HaveDesign/SelectColor';
-import Header from '../../../components/Header';
-import PageLayout from '../../../components/PageLayout';
+import AdditionalRequest from '../../../components/Custom/HaveDesign/AdditionalRequest';
 import { IcBackDark } from '../../../assets/icon';
 import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFooter';
-interface StylingColorPageProps {
+
+interface AdditionalRequestLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
-  isColoredState: boolean;
-  setIsColored: React.Dispatch<React.SetStateAction<boolean>>;
+  setDemand: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const StylingColorPage = ({ setStep, isColoredState, setIsColored }: StylingColorPageProps) => {
+const AdditionalRequestLayout = ({ setStep, setDemand }: AdditionalRequestLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
-  useEffect(() => {
-    setIsColored(isColoredState);
-  }, [isColoredState]);
-
-  const renderStylingColorPageHeader = () => {
+  const renderAdditionalRequestLayoutHeader = () => {
     return (
       <Header
-        transparent={true}
         leftSection={<IcBackDark onClick={() => setStep((prev) => prev - 1)} />}
         title='커스텀 타투'
         rightSection={
@@ -34,23 +29,19 @@ const StylingColorPage = ({ setStep, isColoredState, setIsColored }: StylingColo
             targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
           />
         }
-        progressBar={<ProgressBar curStep={3} maxStep={7} />}
+        transparent={true}
+        progressBar={<ProgressBar curStep={6} maxStep={7} />}
       />
     );
   };
-
   return (
     <PageLayout
-      renderHeader={renderStylingColorPageHeader}
+      renderHeader={renderAdditionalRequestLayoutHeader}
       footer={<HaveDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
-      <SelectColor
-        setIsActiveNext={setIsActiveNext}
-        setIsColored={setIsColored}
-        isColoredState={isColoredState}
-      />
+      <AdditionalRequest setIsActiveNext={setIsActiveNext} setDemand={setDemand} />
     </PageLayout>
   );
 };
 
-export default StylingColorPage;
+export default AdditionalRequestLayout;

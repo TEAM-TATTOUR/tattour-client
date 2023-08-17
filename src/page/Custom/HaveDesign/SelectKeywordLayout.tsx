@@ -9,17 +9,17 @@ import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeE
 import { IcBackDark } from '../../../assets/icon';
 import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFooter';
 
-interface SelectKeywordPageProps {
+interface SelectKeywordLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   setStyles: React.Dispatch<React.SetStateAction<number[]>>;
   setThemes: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
-const SelectKeywordPage = ({ setStep, setStyles, setThemes }: SelectKeywordPageProps) => {
+const SelectKeywordLayout = ({ setStep, setStyles, setThemes }: SelectKeywordLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
-  const renderSelectKeywordPageHeader = () => {
+  const renderSelectKeywordLayoutHeader = () => {
     return (
       <Header
         leftSection={<IcBackDark onClick={() => setStep((prev) => prev - 1)} />}
@@ -39,7 +39,7 @@ const SelectKeywordPage = ({ setStep, setStyles, setThemes }: SelectKeywordPageP
 
   return (
     <PageLayout
-      renderHeader={renderSelectKeywordPageHeader}
+      renderHeader={renderSelectKeywordLayoutHeader}
       footer={<HaveDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
       <SelectKeywordHeading />
@@ -52,4 +52,4 @@ const SelectKeywordPage = ({ setStep, setStyles, setThemes }: SelectKeywordPageP
   );
 };
 
-export default SelectKeywordPage;
+export default SelectKeywordLayout;

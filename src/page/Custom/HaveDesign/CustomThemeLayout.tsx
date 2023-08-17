@@ -1,23 +1,23 @@
 import { useState } from 'react';
+import CustomTheme from '../../../components/Custom/HaveDesign/CustomTheme';
 import PageLayout from '../../../components/PageLayout';
 import Header from '../../../components/Header';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import ProgressBar from '../../../common/ProgressBar';
-import AdditionalRequest from '../../../components/Custom/HaveDesign/AdditionalRequest';
 import { IcBackDark } from '../../../assets/icon';
 import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFooter';
-
-interface AdditionalRequestPageProps {
+interface CustomThemeLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
-  setDemand: React.Dispatch<React.SetStateAction<string>>;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const AdditionalRequestPage = ({ setStep, setDemand }: AdditionalRequestPageProps) => {
+const CustomThemeLayout = ({ setStep, setName, setDescription }: CustomThemeLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
-  const renderAdditionalRequestPageHeader = () => {
+  const renderCustomThemeLayoutHeader = () => {
     return (
       <Header
         leftSection={<IcBackDark onClick={() => setStep((prev) => prev - 1)} />}
@@ -30,18 +30,22 @@ const AdditionalRequestPage = ({ setStep, setDemand }: AdditionalRequestPageProp
           />
         }
         transparent={true}
-        progressBar={<ProgressBar curStep={6} maxStep={7} />}
+        progressBar={<ProgressBar curStep={5} maxStep={7} />}
       />
     );
   };
   return (
     <PageLayout
-      renderHeader={renderAdditionalRequestPageHeader}
+      renderHeader={renderCustomThemeLayoutHeader}
       footer={<HaveDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
-      <AdditionalRequest setIsActiveNext={setIsActiveNext} setDemand={setDemand} />
+      <CustomTheme
+        setIsActiveNext={setIsActiveNext}
+        setName={setName}
+        setDescription={setDescription}
+      />
     </PageLayout>
   );
 };
 
-export default AdditionalRequestPage;
+export default CustomThemeLayout;

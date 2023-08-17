@@ -12,7 +12,7 @@ import PriceHeading from '../../components/Custom/PriceHeading';
 import Header from '../../components/Header';
 import PageLayout from '../../components/PageLayout';
 
-const PricePage = () => {
+const PriceLayout = () => {
   const [modalOn, setModalOn] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
   const [count, setCount] = useState(1);
@@ -51,7 +51,7 @@ const PricePage = () => {
     isCompleted: isCompleted,
   };
 
-  const renderPricePageHeader = () => {
+  const renderPriceLayoutHeader = () => {
     return (
       <Header
         leftSection={
@@ -79,7 +79,7 @@ const PricePage = () => {
 
   return (
     <PageLayout
-      renderHeader={renderPricePageHeader}
+      renderHeader={renderPriceLayoutHeader}
       footer={
         <PriceFooter
           haveDesign={haveDesign}
@@ -101,7 +101,7 @@ const PricePage = () => {
   );
 };
 
-export default PricePage;
+export default PriceLayout;
 
 const St = {
   TopWrapper: styled.section`

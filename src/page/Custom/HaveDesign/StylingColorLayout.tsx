@@ -1,25 +1,30 @@
-import { useState } from 'react';
-import CustomTheme from '../../../components/Custom/HaveDesign/CustomTheme';
-import PageLayout from '../../../components/PageLayout';
-import Header from '../../../components/Header';
+import { useEffect, useState } from 'react';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import ProgressBar from '../../../common/ProgressBar';
+import SelectColor from '../../../components/Custom/HaveDesign/SelectColor';
+import Header from '../../../components/Header';
+import PageLayout from '../../../components/PageLayout';
 import { IcBackDark } from '../../../assets/icon';
 import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFooter';
-interface CustomThemePageProps {
+interface StylingColorLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
-  setName: React.Dispatch<React.SetStateAction<string>>;
-  setDescription: React.Dispatch<React.SetStateAction<string>>;
+  isColoredState: boolean;
+  setIsColored: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CustomThemePage = ({ setStep, setName, setDescription }: CustomThemePageProps) => {
+const StylingColorLayout = ({ setStep, isColoredState, setIsColored }: StylingColorLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
-  const renderCustomThemePageHeader = () => {
+  useEffect(() => {
+    setIsColored(isColoredState);
+  }, [isColoredState]);
+
+  const renderStylingColorLayoutHeader = () => {
     return (
       <Header
+        transparent={true}
         leftSection={<IcBackDark onClick={() => setStep((prev) => prev - 1)} />}
         title='커스텀 타투'
         rightSection={
@@ -29,23 +34,23 @@ const CustomThemePage = ({ setStep, setName, setDescription }: CustomThemePagePr
             targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
           />
         }
-        transparent={true}
-        progressBar={<ProgressBar curStep={5} maxStep={7} />}
+        progressBar={<ProgressBar curStep={3} maxStep={7} />}
       />
     );
   };
+
   return (
     <PageLayout
-      renderHeader={renderCustomThemePageHeader}
+      renderHeader={renderStylingColorLayoutHeader}
       footer={<HaveDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
-      <CustomTheme
+      <SelectColor
         setIsActiveNext={setIsActiveNext}
-        setName={setName}
-        setDescription={setDescription}
+        setIsColored={setIsColored}
+        isColoredState={isColoredState}
       />
     </PageLayout>
   );
 };
 
-export default CustomThemePage;
+export default StylingColorLayout;
