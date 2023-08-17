@@ -16,6 +16,8 @@ interface CustomReferenceLayoutProps {
   setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
   setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
   previewURL: string[];
+  drawingImageUrl: string | null;
+  setDrawingImageUrl: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const CustomReferenceLayout = ({
@@ -26,6 +28,8 @@ const CustomReferenceLayout = ({
   setHandDrawingImage,
   setPreviewURL,
   previewURL,
+  drawingImageUrl,
+  setDrawingImageUrl,
 }: CustomReferenceLayoutProps) => {
   // 모달 사용할 때  활용
   const [modalOn, setModalOn] = useState(false);
@@ -62,6 +66,8 @@ const CustomReferenceLayout = ({
         customImages={customImages}
         setPreviewURL={setPreviewURL}
         previewURL={previewURL}
+        drawingImageUrl={drawingImageUrl}
+        setDrawingImageUrl={setDrawingImageUrl}
       />
     </PageLayout>
   );

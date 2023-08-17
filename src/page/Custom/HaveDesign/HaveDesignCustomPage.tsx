@@ -16,6 +16,7 @@ const HaveDesignCustomPage = () => {
   const [customImages, setCustomImages] = useState<FileList | null>(null);
   const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
   const [previewURL, setPreviewURL] = useState<string[]>([]);
+  const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
 
   //step 2: 색상 선택 state
   const [isColoredState, setIsColored] = useState(false);
@@ -49,6 +50,8 @@ const HaveDesignCustomPage = () => {
           setHandDrawingImage={setHandDrawingImage}
           setPreviewURL={setPreviewURL}
           previewURL={previewURL}
+          drawingImageUrl={drawingImageUrl}
+          setDrawingImageUrl={setDrawingImageUrl}
         />
       );
 

@@ -7,28 +7,28 @@ import PaintBottomHeader from './PaintBottomHeader';
 interface PaintBottomProps {
   isBottomOpen: boolean;
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setDrawingImageURL: React.Dispatch<React.SetStateAction<string | null>>;
-  drawingImageURL: string | null;
+  setDrawingImageUrl: React.Dispatch<React.SetStateAction<string | null>>;
+  drawingImageUrl: string | null;
 }
 
 const PaintBottomSheet = ({
   isBottomOpen,
   setBottomOpen,
-  setDrawingImageURL,
-  drawingImageURL,
+  setDrawingImageUrl,
+  drawingImageUrl,
 }: PaintBottomProps) => {
   const [canvasState, setCanvasState] = useState<HTMLCanvasElement | null>(null); //수정함
 
   const closeBottom = () => setBottomOpen(false);
 
   useEffect(() => {
-    setDrawingImageURL(drawingImageURL);
-  }, [drawingImageURL]);
+    setDrawingImageUrl(drawingImageUrl);
+  }, [drawingImageUrl]);
 
   const onClickSubmitImage = () => {
     // 캔버스 저장 후 전달
     if (!canvasState) return;
-    setDrawingImageURL(canvasState?.toDataURL());
+    setDrawingImageUrl(canvasState?.toDataURL());
     setBottomOpen(false);
   };
 
