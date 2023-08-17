@@ -29,16 +29,12 @@ const FilterBottom = ({
   const { styleResponse } = useGetStyle();
 
   // 필터(바텀시트)의 각 태그명
-  // 필터의 index로 접근하기 위해 하나의 배열로 묶기
   const DATA = [
     ['인기 순', '가격 낮은 순', '가격 높은 순'],
     genreResponse.map((genre: GenreItemProps) => genre.name),
     styleResponse.map((style: StyleItemProps) => style.name),
   ];
-  // 필터 버튼명(선택한 태그명)을 임시로 관리하는 state
-  const [selectedTag, setSelectedTag] = useState(buttonName);
-  // 필터 내 각 태그의 선택 여부를 관리하는 이차원배열 state ([정렬, 장르, 스타일])
-  // 추후 해당 배열 파괴 -> 각 숫자를 data.length로 변경 예정
+  const [selectedTag, setSelectedTag] = useState(buttonName); // 필터 버튼명(선택한 태그명)을 임시로 관리하는 state
   const [filterTag, setFilterTag] = useState([
     new Array(DATA[SORT_INDEX].length).fill(false),
     new Array(DATA[GENRE_INDEX].length).fill(false),
