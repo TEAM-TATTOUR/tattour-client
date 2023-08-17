@@ -12,6 +12,16 @@ const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
   const [isZeroWarning, setIsZeroWarning] = useState(false);
   const [parsedPrice, setParsedPrice] = useState('');
 
+  //input에 금액을 입력 했을 때 1) 0원, 2) 1000원이 아닌 단위 예외 처리를 해 주는 함수
+  const updateStateBasedOnValue = (removedCommaValue: number) => {
+    const isZero = removedCommaValue === 0;
+    const isThousandMultiple = removedCommaValue % 1000 === 0;
+
+    setIsZeroWarning(isZero); //0원일 때 감지
+    setIsWarning(isZero || !isThousandMultiple); //0원일 때 혹은 1000원 단위가 아닐 때 경고 메시지 띄우기
+    setIsActiveNext(!isZero && isThousandMultiple); // 0원이 아니고, 1000원 단위일 때만 다음 버튼 활성화
+  };
+
   const handleChangeChargeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 숫자가 아닌 text가 들어왔을 때 방지
     const re = /[^0-9]/gi;
@@ -26,22 +36,8 @@ const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
     setChargeAmount(removedCommaValue);
     setParsedPrice(removedCommaValue.toLocaleString());
 
-    if (removedCommaValue === 0) {
-      //0원이면 경고 메시지
-      setIsZeroWarning(true);
-      setIsWarning(true);
-      setIsActiveNext(false);
-    } else if (removedCommaValue % 1000 === 0) {
-      //1000원 단위인지 확인
-      setIsZeroWarning(false);
-      setIsWarning(false);
-      setIsActiveNext(true);
-    } else {
-      //0원이 아닌데, 1000원 단위가 아닐 때 경고 메시지
-      setIsZeroWarning(false);
-      setIsWarning(true);
-      setIsActiveNext(false);
-    }
+    // 금액 입력 시 예외 처리 해주는 함수 호출
+    updateStateBasedOnValue(removedCommaValue);
   };
 
   const ERR_MSG_CONTENT = isZeroWarning
