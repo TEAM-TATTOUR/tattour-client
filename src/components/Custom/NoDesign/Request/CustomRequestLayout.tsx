@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { IcBackDark } from '../../../assets/icon';
-import CancelBtn from '../../../common/Header/CancelBtn';
-import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import ProgressBar from '../../../common/ProgressBar';
-import CustomRequset from '../../../components/Custom/NoDesign/CustomRequset';
-import NoDesignFooter from '../../../components/Custom/NoDesign/NoDesignFooter';
-import Header from '../../../components/Header';
-import PageLayout from '../../../components/PageLayout';
+import { IcBackDark } from '../../../../assets/icon';
+import CancelBtn from '../../../../common/Header/CancelBtn';
+import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import ProgressBar from '../../../../common/ProgressBar';
+import CustomRequest from './CustomRequest';
+import NoDesignFooter from '../NoDesignFooter';
+import Header from '../../../Header';
+import PageLayout from '../../../PageLayout';
 
 interface CustomRequestPageProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -16,7 +16,7 @@ interface CustomRequestPageProps {
   setDemand: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const CustomRequestPage = ({
+const CustomRequestLayout = ({
   setStep,
   name,
   setName,
@@ -49,7 +49,7 @@ const CustomRequestPage = ({
       renderHeader={renderCustomRequestPageHeader}
       footer={<NoDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
-      <CustomRequset
+      <CustomRequest
         setIsActiveNext={setIsActiveNext}
         setName={setName}
         setDemand={setDemand}
@@ -60,4 +60,4 @@ const CustomRequestPage = ({
   );
 };
 
-export default CustomRequestPage;
+export default CustomRequestLayout;

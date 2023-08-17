@@ -1,6 +1,6 @@
-import { styled } from 'styled-components';
-import { IcCancelDark, IcPhoto } from '../../../assets/icon';
 import React, { useEffect, useState } from 'react';
+import { styled } from 'styled-components';
+import { IcCancelDark, IcPhoto } from '../../../../assets/icon';
 
 interface CustomImgAttachProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;

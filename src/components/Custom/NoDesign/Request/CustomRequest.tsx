@@ -11,7 +11,7 @@ interface CustomRequestProps {
   writtenDemand: string | null;
 }
 
-const CustomRequset = ({
+const CustomRequest = ({
   setIsActiveNext,
   setName,
   setDemand,
@@ -133,7 +133,7 @@ const CustomRequset = ({
   );
 };
 
-export default CustomRequset;
+export default CustomRequest;
 
 const St = {
   CustomRequestWrapper: styled.section`

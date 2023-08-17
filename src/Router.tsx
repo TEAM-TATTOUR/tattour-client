@@ -6,6 +6,11 @@ import OnBoardingPage from './page/Custom/Common/OnBoardingPage';
 import SelectPage from './page/Custom/Common/SelectPage';
 import AdditionalRequestPage from './page/Custom/HaveDesign/AdditionalRequestPage';
 import CustomThemePage from './page/Custom/HaveDesign/CustomThemePage';
+import ReceiptPage from './page/Custom/HaveDesign/ReceiptPage';
+import SelectKeywordPage from './page/Custom/HaveDesign/SelectKeywordPage';
+import StylingColorPage from './page/Custom/HaveDesign/StylingColorPage';
+import CustomImgLayout from './components/Custom/NoDesign/Img/CustomImgLayout';
+import CustomRequestLayout from './components/Custom/NoDesign/Request/CustomRequestLayout';
 import CustomImgPage from './page/Custom/NoDesign/CustomImgPage';
 import CustomRequestPage from './page/Custom/NoDesign/CustomRequestPage';
 import NoDesignCustomPage from './page/Custom/NoDesign/NoDesignCustomPage';
@@ -58,8 +63,8 @@ const Router = () => {
         <Route path='/select-keyword' element={<SelectKeywordPage />} />
         <Route path='/onboarding' element={<OnBoardingPage />} />
         <Route path='/custom-size' element={<CustomSizePage />} />
-        <Route path='/custom-img' element={<CustomImgPage />} />
-        <Route path='/custom-request' element={<CustomRequestPage />} />
+        <Route path='/custom-img' element={<CustomImgLayout />} />
+        <Route path='/custom-request' element={<CustomRequestLayout />} />
         <Route path='/custom-theme' element={<CustomThemePage />} />
         <Route path='/additional-request' element={<AdditionalRequestPage />} />
         <Route path='/price' element={<PricePage />} />

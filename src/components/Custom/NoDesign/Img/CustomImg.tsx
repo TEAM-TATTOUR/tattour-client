@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
-import CustomImgHeader from './CustomImgHeader';
 import CustomImgAttach from './CustomImgAttach';
+import CustomImgHeader from './CustomImgHeader';
 
 interface CustomImgProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;

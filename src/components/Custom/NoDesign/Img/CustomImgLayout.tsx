@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { IcBackDark } from '../../../assets/icon';
-import CancelBtn from '../../../common/Header/CancelBtn';
-import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import ProgressBar from '../../../common/ProgressBar';
-import CustomImg from '../../../components/Custom/NoDesgin/CustomImg';
-import NoDesignFooter from '../../../components/Custom/NoDesign/NoDesignFooter';
-import Header from '../../../components/Header';
-import PageLayout from '../../../components/PageLayout';
+import { IcBackDark } from '../../../../assets/icon';
+import CancelBtn from '../../../../common/Header/CancelBtn';
+import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import ProgressBar from '../../../../common/ProgressBar';
+import CustomImg from './CustomImg';
+import NoDesignFooter from '../NoDesignFooter';
+import Header from '../../../Header';
+import PageLayout from '../../../PageLayout';
 
 interface CustomImgPageProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -14,7 +14,7 @@ interface CustomImgPageProps {
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | undefined>>;
 }
 
-const CustomImgPage = ({ setStep, customImages, setCustomImages }: CustomImgPageProps) => {
+const CustomImgLayout = ({ setStep, customImages, setCustomImages }: CustomImgPageProps) => {
   // const CUSTOM_VIEW_COUNT = 2;
 
   const [modalOn, setModalOn] = useState(false);
@@ -53,4 +53,4 @@ const CustomImgPage = ({ setStep, customImages, setCustomImages }: CustomImgPage
   );
 };
 
-export default CustomImgPage;
+export default CustomImgLayout;
