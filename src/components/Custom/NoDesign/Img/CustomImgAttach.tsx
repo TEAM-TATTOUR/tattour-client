@@ -42,11 +42,14 @@ const CustomImgAttach = ({
     reader.onloadend = () => {
       setPreviewURL(reader.result as string);
     }; // FileReader로 이미지 미리보기 구현
-    // e.target.value = ''; // 같은 파일을 올리면 change 이벤트 인지 못해서 여기서 초기화
+
+    const dataTransfer = new DataTransfer();
+    e.target.files = dataTransfer.files;
   };
 
   const handleClickImgPreviewDelBtn = () => {
     setPreviewURL('');
+    setCustomImages(undefined);
   };
 
   return (
