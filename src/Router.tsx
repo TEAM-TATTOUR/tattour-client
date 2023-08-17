@@ -6,14 +6,13 @@ import OnBoardingPage from './page/Custom/Common/OnBoardingPage';
 import SelectPage from './page/Custom/Common/SelectPage';
 import AdditionalRequestPage from './page/Custom/HaveDesign/AdditionalRequestPage';
 import CustomThemePage from './page/Custom/HaveDesign/CustomThemePage';
-import ReceiptPage from './page/Custom/HaveDesign/ReceiptPage';
-import SelectKeywordPage from './page/Custom/HaveDesign/SelectKeywordPage';
-import StylingColorPage from './page/Custom/HaveDesign/StylingColorPage';
 import CustomImgPage from './page/Custom/NoDesign/CustomImgPage';
 import CustomRequestPage from './page/Custom/NoDesign/CustomRequestPage';
 import NoDesignCustomPage from './page/Custom/NoDesign/NoDesignCustomPage';
 import PricePage from './page/Custom/PricePage';
-import CustomReferencePage from './page/CustomReference/CustomReferencePage';
+import ReceiptPage from './page/Custom/HaveDesign/ReceiptPage';
+import StylingColorPage from './page/Custom/HaveDesign/StylingColorPage';
+import HaveDesignCustomPage from './page/Custom/HaveDesign/HaveDesignCustomPage';
 import DetailPage from './page/DetailPage';
 import ListPage from './page/ListPage';
 import LoginPage from './page/Login/LoginPage';
@@ -30,6 +29,8 @@ import SavePage from './page/SavePage';
 import SearchPage from './page/Search/SearchPage';
 import SearchResultPage from './page/Search/SearchResultPage';
 import WelcomePage from './page/Welcome/WelcomePage';
+import CustomReferencePage from './page/Custom/HaveDesign/CustomReferencePage';
+import SelectKeywordPage from './page/Custom/HaveDesign/SelectKeywordPage';
 
 const Router = () => {
   return (
@@ -53,7 +54,6 @@ const Router = () => {
         <Route path='/point-charge' element={<ChargePage />} />
         <Route path='/point-transfer' element={<TransferPage />} />
         <Route path='/select' element={<SelectPage />} />
-        <Route path='/reference' element={<CustomReferencePage />} />
         <Route path='/styling-color' element={<StylingColorPage />} />
         <Route path='/select-keyword' element={<SelectKeywordPage />} />
         <Route path='/onboarding' element={<OnBoardingPage />} />
@@ -66,6 +66,7 @@ const Router = () => {
         <Route path='/receipt' element={<ReceiptPage />} />
         <Route path='/complete' element={<CompletePage />} />
         <Route path='/custom-reference' element={<CustomReferencePage />} />
+        <Route path='/haveDesign' element={<HaveDesignCustomPage />} />
         <Route path='/save' element={<SavePage />} />
         <Route path='/noDesign' element={<NoDesignCustomPage />} />
       </Routes>

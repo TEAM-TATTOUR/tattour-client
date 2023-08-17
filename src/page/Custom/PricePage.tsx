@@ -34,7 +34,7 @@ const PricePage = () => {
   const isCompleted = location.state ? location.state.customInfo.isCompleted : null;
 
   const CUSTOM_VIEW_COUNT = haveDesign ? 7 : 4;
-  const backNavigateURL = haveDesign ? '/additional-request' : '/custom-request';
+  const backNavigateURL = haveDesign ? '/haveDesign' : '/noDesign';
 
   // useEffect(() => {
   //   if (!location.state) navigate('/onboarding');

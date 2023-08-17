@@ -7,10 +7,8 @@ import ReceiptDetail from '../../../components/Custom/HaveDesign/ReceiptDetail';
 import ReceiptFooter from '../../../components/Custom/HaveDesign/ReceiptFooter';
 import PageLayout from '../../../components/PageLayout';
 import Submitted from '../../../components/Custom/HaveDesign/Submitted';
-// import { useLocation } from 'react-router-dom';
 
 const ReceiptPage = () => {
-  // const location = useLocation();
   const [modalOn, setModalOn] = useState(false);
 
   const renderReceiptPageHeader = () => {

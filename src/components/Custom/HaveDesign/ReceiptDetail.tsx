@@ -15,9 +15,9 @@ const ReceiptDetail = () => {
   const handDrawingImageUrl = location.state ? location.state.data.handDrawingImageUrl : '';
   const images = location.state ? location.state.data.images : [];
   const previewURL = [...themes, ...styles];
-  const imagesArray = [mainImageUrl, ...images, handDrawingImageUrl];
-
-  // const { name, hashtag, color, size, quantity, theme, request, previewURL } = SAMPLE[0];
+  const imagesArray = handDrawingImageUrl
+    ? [mainImageUrl, ...images, handDrawingImageUrl]
+    : [mainImageUrl, ...images];
 
   return (
     <St.ReceiptDetailWrapper>

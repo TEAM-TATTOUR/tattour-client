@@ -4,6 +4,16 @@ import CustomImageAttach from './CustomImageAttach';
 import PaintBottomSheet from './PaintBottomSheet';
 import { useState } from 'react';
 
+interface CustomReferenceProps {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  handDrawingImage: File | null;
+  setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
+  customImages: FileList | null;
+  setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
+  previewURL: string[];
+}
+
 const CustomReference = ({
   setIsActiveNext,
   handDrawingImage,
@@ -11,18 +21,8 @@ const CustomReference = ({
   setCustomImages,
   customImages,
   setPreviewURL,
-  setFreeDraw,
   previewURL,
-}: {
-  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-  setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
-  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
-  customImages: FileList | null;
-  handDrawingImage: File | null;
-  setFreeDraw: React.Dispatch<React.SetStateAction<boolean>>;
-  previewURL: string[];
-  setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
-}) => {
+}: CustomReferenceProps) => {
   const [isBottomOpen, setBottomOpen] = useState(false);
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
 
@@ -30,17 +30,14 @@ const CustomReference = ({
     <St.PageWrapper>
       <CustomTitle />
       <CustomImageAttach
-        isBottomOpen={isBottomOpen}
         setBottomOpen={setBottomOpen}
         drawingImageURL={drawingImageUrl}
         setDrawingImageURL={setDrawingImageUrl}
         setIsActiveNext={setIsActiveNext}
         setCustomImages={setCustomImages}
-        setFreeDraw={setFreeDraw}
-        // freeDraw={freeDraw}
         customImages={customImages}
-        setHandDrawingImage={setHandDrawingImage}
         handDrawingImage={handDrawingImage}
+        setHandDrawingImage={setHandDrawingImage}
         previewURL={previewURL}
         setPreviewURL={setPreviewURL}
       />
