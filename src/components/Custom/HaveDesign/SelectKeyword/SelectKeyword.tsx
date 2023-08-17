@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-import { IcCheckSmallPink } from '../../../assets/icon';
-import useGetGenre, { GenreItemProps } from '../../../libs/hooks/list/useGetGenre';
-import useGetStyle, { StyleItemProps } from '../../../libs/hooks/list/useGetStyle';
+import { IcCheckSmallPink } from '../../../../assets/icon';
+import useGetGenre, { GenreItemProps } from '../../../../libs/hooks/list/useGetGenre';
+import useGetStyle, { StyleItemProps } from '../../../../libs/hooks/list/useGetStyle';
 
 const SelectKeyword = ({
   setIsActiveNext,

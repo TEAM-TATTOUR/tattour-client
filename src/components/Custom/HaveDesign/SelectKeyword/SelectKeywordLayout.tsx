@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import SelectKeywordHeading from '../../../components/Custom/HaveDesign/SelectKeywordHeading';
-import PageLayout from '../../../components/PageLayout';
-import CancelBtn from '../../../common/Header/CancelBtn';
-import Header from '../../../components/Header';
-import ProgressBar from '../../../common/ProgressBar';
-import SelectKeyword from '../../../components/Custom/HaveDesign/SelectKeyword';
-import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import { IcBackDark } from '../../../assets/icon';
-import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFooter';
+import { IcBackDark } from '../../../../assets/icon';
+import CancelBtn from '../../../../common/Header/CancelBtn';
+import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import ProgressBar from '../../../../common/ProgressBar';
+import Header from '../../../Header';
+import PageLayout from '../../../PageLayout';
+import HaveDesignFooter from '../HaveDesignFooter';
+import SelectKeyword from './SelectKeyword';
+import SelectKeywordInstruction from './SelectKeywordInstruction';
 
 interface SelectKeywordLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -42,7 +42,7 @@ const SelectKeywordLayout = ({ setStep, setStyles, setThemes }: SelectKeywordLay
       renderHeader={renderSelectKeywordLayoutHeader}
       footer={<HaveDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
-      <SelectKeywordHeading />
+      <SelectKeywordInstruction />
       <SelectKeyword
         setIsActiveNext={setIsActiveNext}
         setStyles={setStyles}

@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import Sheet from 'react-modal-sheet';
 import PaintBottomHeader from './PaintBottomHeader';
-import Canvas from './Canvas';
+import Canvas from './Reference/Canvas';
 import { useEffect, useState } from 'react';
 
 interface PaintBottomProps {

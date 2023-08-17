@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import Header from '../../../components/Header';
-import BackBtn from '../../../common/Header/BackBtn';
-import CancelBtn from '../../../common/Header/CancelBtn';
-import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import ReceiptDetail from '../../../components/Custom/HaveDesign/ReceiptDetail';
-import ReceiptFooter from '../../../components/Custom/HaveDesign/ReceiptFooter';
-import PageLayout from '../../../components/PageLayout';
-import Submitted from '../../../components/Custom/HaveDesign/Submitted';
+import BackBtn from '../../../../common/Header/BackBtn';
+import CancelBtn from '../../../../common/Header/CancelBtn';
+import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import Header from '../../../Header';
+import PageLayout from '../../../PageLayout';
+import ReceiptDetail from './ReceiptDetail';
+import ReceiptFooter from './ReceiptFooter';
+import Submitted from './Submitted';
 
 const ReceiptLayout = () => {
   const [modalOn, setModalOn] = useState(false);

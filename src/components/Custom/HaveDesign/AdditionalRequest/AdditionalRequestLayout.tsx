@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import PageLayout from '../../../components/PageLayout';
-import Header from '../../../components/Header';
-import CancelBtn from '../../../common/Header/CancelBtn';
-import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import ProgressBar from '../../../common/ProgressBar';
-import AdditionalRequest from '../../../components/Custom/HaveDesign/AdditionalRequest';
-import { IcBackDark } from '../../../assets/icon';
-import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFooter';
+import { IcBackDark } from '../../../../assets/icon';
+import CancelBtn from '../../../../common/Header/CancelBtn';
+import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import ProgressBar from '../../../../common/ProgressBar';
+import Header from '../../../Header';
+import PageLayout from '../../../PageLayout';
+import HaveDesignFooter from '../HaveDesignFooter';
+import AdditionalRequest from './AdditionalRequest';
 
 interface AdditionalRequestLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;

@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { IcBackDark } from '../../assets/icon';
-import CancelBtn from '../../common/Header/CancelBtn';
-import CustomSizeEscapeModal from '../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import ProgressBar from '../../common/ProgressBar';
-import CountPrice from '../../components/Custom/CountPrice';
-import MakePublic from '../../components/Custom/MakePublic';
-import PriceFooter from '../../components/Custom/PriceFooter';
-import PriceHeading from '../../components/Custom/PriceHeading';
-import Header from '../../components/Header';
-import PageLayout from '../../components/PageLayout';
+import { IcBackDark } from '../../../assets/icon';
+import CancelBtn from '../../../common/Header/CancelBtn';
+import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import ProgressBar from '../../../common/ProgressBar';
+import CountPrice from '../CountPrice';
+import MakePublic from '../MakePublic';
+import PriceFooter from '../PriceFooter';
+import PriceHeading from '../PriceHeading';
+import Header from '../../Header';
+import PageLayout from '../../PageLayout';
 
 const PriceLayout = () => {
   const [modalOn, setModalOn] = useState(false);

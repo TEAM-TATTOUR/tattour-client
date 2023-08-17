@@ -1,4 +1,4 @@
-import Result from '../../../common/Result';
+import Result from '../../../../common/Result';
 
 const Submitted = () => {
   return (

@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
-import { IcCheckSmallGray } from '../../../assets/icon';
+import { IcCheckSmallGray } from '../../../../assets/icon';
 
-const CustomTitle = () => {
+const ReferenceInstruction = () => {
   return (
     <St.TitleWrapper>
       <St.CustomReferenceTitle>참고 이미지를 첨부해 주세요</St.CustomReferenceTitle>
@@ -49,4 +49,4 @@ const St = {
     ${({ theme }) => theme.fonts.body_medium_14};
   `,
 };
-export default CustomTitle;
+export default ReferenceInstruction;

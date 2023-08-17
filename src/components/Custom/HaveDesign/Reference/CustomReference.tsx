@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import { styled } from 'styled-components';
-import CustomTitle from './CustomTitle';
 import CustomImageAttach from './CustomImageAttach';
 import PaintBottomSheet from './PaintBottomSheet';
-import { useState } from 'react';
+import ReferenceInstruction from './ReferenceInstruction';
 
 interface CustomReferenceProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,7 +28,7 @@ const CustomReference = ({
 
   return (
     <St.PageWrapper>
-      <CustomTitle />
+      <ReferenceInstruction />
       <CustomImageAttach
         setBottomOpen={setBottomOpen}
         drawingImageURL={drawingImageUrl}

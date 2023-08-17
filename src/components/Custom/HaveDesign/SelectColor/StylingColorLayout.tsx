@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import CancelBtn from '../../../common/Header/CancelBtn';
-import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import ProgressBar from '../../../common/ProgressBar';
-import SelectColor from '../../../components/Custom/HaveDesign/SelectColor';
-import Header from '../../../components/Header';
-import PageLayout from '../../../components/PageLayout';
-import { IcBackDark } from '../../../assets/icon';
-import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFooter';
+import { IcBackDark } from '../../../../assets/icon';
+import CancelBtn from '../../../../common/Header/CancelBtn';
+import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import ProgressBar from '../../../../common/ProgressBar';
+import Header from '../../../Header';
+import PageLayout from '../../../PageLayout';
+import HaveDesignFooter from '../HaveDesignFooter';
+import SelectColor from './SelectColor';
+
 interface StylingColorLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   isColoredState: boolean;

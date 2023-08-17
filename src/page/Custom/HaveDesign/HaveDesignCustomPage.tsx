@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import PriceLayout from '../../../components/Custom/Common/PriceLayout';
+import AdditionalRequestLayout from '../../../components/Custom/HaveDesign/AdditionalRequest/AdditionalRequestLayout';
+import CustomThemeLayout from '../../../components/Custom/HaveDesign/CustomTheme/CustomThemeLayout';
+import ReceiptLayout from '../../../components/Custom/HaveDesign/Receipt/ReceiptLayout';
+import CustomReferenceLayout from '../../../components/Custom/HaveDesign/Reference/CustomReferenceLayout';
+import StylingColorLayout from '../../../components/Custom/HaveDesign/SelectColor/StylingColorLayout';
+import SelectKeywordLayout from '../../../components/Custom/HaveDesign/SelectKeyword/SelectKeywordLayout';
+
 // import CustomSizePage from '../Common/CustomSizePage';
-import CustomReferenceLayout from './CustomReferenceLayout';
-import StylingColorLayout from './StylingColorLayout';
-import SelectKeywordLayout from './SelectKeywordLayout';
-import CustomThemeLayout from './CustomThemeLayout';
-import AdditionalRequestLayout from './AdditionalRequestLayout';
-import ReceiptLayout from './ReceiptLayout';
-import PriceLayout from '../PriceLayout';
 
 const HaveDesignCustomPage = () => {
   const [step, setStep] = useState(0);

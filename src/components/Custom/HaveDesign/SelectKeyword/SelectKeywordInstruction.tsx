@@ -1,18 +1,18 @@
 import { styled } from 'styled-components';
 
-const SelectKeywordHeading = () => {
+const SelectKeywordInstruction = () => {
   return (
-    <St.HeadingWrapper>
+    <St.InstructionWrapper>
       <St.Title>원하는 키워드를 선택해주세요</St.Title>
       <St.SubTitle>최대 3개까지 선택할 수 있어요</St.SubTitle>
-    </St.HeadingWrapper>
+    </St.InstructionWrapper>
   );
 };
 
-export default SelectKeywordHeading;
+export default SelectKeywordInstruction;
 
 const St = {
-  HeadingWrapper: styled.section`
+  InstructionWrapper: styled.section`
     display: flex;
     flex-direction: column;
     align-items: start;
