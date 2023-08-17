@@ -25,8 +25,6 @@ const Canvas: React.FC<CanvasProps> = ({ setCanvasState }: CanvasProps) => {
 
     fabricCanvasRef.current = canvas;
 
-    // if (!canvasRef || canvasRef.current === null) return;
-
     setCanvasState(canvasRef.current);
 
     return () => {

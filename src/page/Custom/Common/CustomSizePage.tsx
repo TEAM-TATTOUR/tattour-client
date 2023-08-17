@@ -24,7 +24,7 @@ const CustomSizePage = () => {
   const customId = location.state ? location.state.customId : null;
   const customImages = location.state ? location.state.customImages : null;
   const handDrawingImage = location.state ? location.state.handDrawingImage : null;
-  const navigateURL = haveDesign ? '/haveDesign' : '/custom-img';
+  const navigateURL = haveDesign ? '/custom-reference' : '/custom-img';
 
   const sizeState =
     location.state && location.state.customInfo ? location.state.customInfo.size : null;

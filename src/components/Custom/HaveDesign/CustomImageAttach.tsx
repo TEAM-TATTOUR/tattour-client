@@ -64,6 +64,7 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
     setHandDrawingImage(file);
   }, [drawingImageURL]);
 
+  //3장 이하면 첨부하기 버튼 활성화
   const handleClickRefBtn = () => {
     if (previewURL.length < MAX_FILES) {
       ref.current?.click();
@@ -72,6 +73,7 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
     }
   };
 
+  //이미지 최대 3개 첨부 가능하도록 제한 & 첨부한 이미지 업데이트
   const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (!files) return;
@@ -94,6 +96,7 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
     encodeFile(filesToEncode);
   };
 
+  //파일을 URL로 변환
   const encodeFile = async (fileBlob: File[]) => {
     for (let i = 0; i < fileBlob.length; i++) {
       const reader = new FileReader();
@@ -109,6 +112,7 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
     }
   };
 
+  //일반 첨부사진 삭제하기
   const handleClickPreviewDelBtn = (index: number) => {
     setPreviewURL((prevURLs) => {
       const updatedURLs = [...prevURLs];
@@ -117,11 +121,13 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
     });
   };
 
+  //손그림 삭제하기
   const handleClickFreeDrawDelBtn = () => {
     setDrawingImageURL(null);
     setHandDrawingImage(null);
   };
 
+  //손그림 최대 한 개만 그릴 수 있게 버튼에 제약
   const handleReferenceBtn = () => {
     if (drawingImageURL) {
       return;
