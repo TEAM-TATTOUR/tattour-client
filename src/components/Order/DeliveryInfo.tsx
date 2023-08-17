@@ -41,7 +41,6 @@ const DeliveryInfo = ({
             type='text'
             id='receiver'
             name='receiver'
-            placeholder='김타투'
             value={input}
             onChange={(e) => {
               setInput(e.target.value);
@@ -54,7 +53,6 @@ const DeliveryInfo = ({
             type='tel'
             id='phone'
             name='phone'
-            placeholder='010-0000-0000'
             maxLength={13}
             value={phone}
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e)} // 자동 하이픈

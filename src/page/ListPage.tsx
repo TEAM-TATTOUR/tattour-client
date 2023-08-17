@@ -17,7 +17,8 @@ const ListPage = () => {
   const type = state && (state as { type: string }).type;
   const name = state && (state as { name: string }).name;
 
-  const [isSheetOpen, setSheetOpen] = useState([false, false, false]);
+  const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
+  const [isSheetOpen, setSheetOpen] = useState(-1); // -1이 바텀시트 off 상태
 
   // state && : 선택된 필터가 있을 경우
   // state.type이 장르일 때 버튼명을 state.name 값으로, 아니면 '장르'
@@ -46,12 +47,17 @@ const ListPage = () => {
     <PageLayout renderHeader={renderListPageHeader}>
       <HotCustom />
       <St.Line />
-      <TattooList isSheetOpen={isSheetOpen} setSheetOpen={setSheetOpen} buttonName={buttonName} />
+      <TattooList
+        setSheetOpen={setSheetOpen}
+        buttonName={buttonName}
+        defaultName={DEFAULT_BUTTON_NAME}
+      />
       <FilterBottom
         isSheetOpen={isSheetOpen}
         setSheetOpen={setSheetOpen}
         buttonName={buttonName}
         setButtonName={setButtonName}
+        defaultName={DEFAULT_BUTTON_NAME}
       />
       <SideMenu isSideMenuOpen={isSideMenuOpen} setIsSideMenuOpen={setSideMenuOpen} />
     </PageLayout>
