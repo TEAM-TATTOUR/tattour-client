@@ -1,63 +1,50 @@
 import { styled } from 'styled-components';
 import { IcDraw, IcPhoto, IcCancelDark } from '../../../assets/icon';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
+import { useState } from 'react';
 import Toast from '../../../common/ToastMessage/Toast';
 
-interface PaintBottomProps {
-  isBottomOpen: boolean;
+interface CustomImageAttachProps {
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
   drawingImageURL: string | null;
   setDrawingImageURL: React.Dispatch<React.SetStateAction<string | null>>;
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
   customImages: FileList | null;
-  setFreeDraw: React.Dispatch<React.SetStateAction<boolean>>;
-  setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
   handDrawingImage: File | null;
+  setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
   previewURL: string[];
   setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const CustomImageAttach: React.FC<PaintBottomProps> = ({
+const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
   setBottomOpen,
   drawingImageURL,
   setDrawingImageURL,
   setIsActiveNext,
   setCustomImages,
   customImages,
-  setFreeDraw,
-  setHandDrawingImage,
   handDrawingImage,
+  setHandDrawingImage,
   previewURL,
   setPreviewURL,
-}) => {
+}: CustomImageAttachProps) => {
   const MAX_FILES = 3;
-
   const ref = useRef<HTMLInputElement | null>(null);
   const [toast, setToast] = useState<boolean>(false);
 
-  const handleClickRefBtn = () => {
-    if (previewURL.length < MAX_FILES) {
-      ref.current?.click();
-    } else {
-      setToast(true);
-    }
-  };
-
   // 이미지 없으면 다음 비활성화
   useEffect(() => {
-    previewURL.length !== 0 ? setIsActiveNext(true) : setIsActiveNext(false);
+    if (Array.isArray(previewURL)) {
+      setIsActiveNext(previewURL.length !== 0);
+    }
   }, [previewURL, setIsActiveNext]);
 
   function dataURItoBlob(dataURI: string) {
-    // convert base64 to raw binary data held in a string
-    // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
     const byteString = atob(dataURI.split(',')[1]);
 
-    // separate out the mime component
     const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
 
-    // write the bytes of the string to an ArrayBuffer
     const ab = new ArrayBuffer(byteString.length);
     const ia = new Uint8Array(ab);
     for (let i = 0; i < byteString.length; i++) {
@@ -69,37 +56,31 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
 
   //이미지 파일 첨부하기
   useEffect(() => {
-    if (!customImages) return;
     if (!drawingImageURL) return;
-    console.log('customImages', drawingImageURL);
-    // const blob = new Blob([drawingImageURL], { type: 'image/png' });
     const blob = dataURItoBlob(drawingImageURL);
     const file = new File([blob], 'image.png', {
       type: blob.type,
     });
-    console.log(file, 'file');
     setHandDrawingImage(file);
   }, [drawingImageURL]);
 
-  // useEffect(() => {
-  //   if (drawingImageURL) {
-  //     setFreeDraw(true);
-  //     const file = new File([drawingImageURL], 'image.png', { type: 'image/png' });
-  //   } else setFreeDraw(false);
-  // }, [drawingImageURL, setFreeDraw]);
-
-  const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target;
-    // console.log(files, '+++++++');
-    if (!files) return;
-    if (files[3]) {
+  //3장 이하면 첨부하기 버튼 활성화
+  const handleClickRefBtn = () => {
+    if (previewURL.length < MAX_FILES) {
+      ref.current?.click();
+    } else {
       setToast(true);
     }
+  };
 
+  //이미지 최대 3개 첨부 가능하도록 제한 & 첨부한 이미지 업데이트
+  const handleChangeImgAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    if (!files) return;
+    if (files && files.length >= 4) {
+      setToast(true);
+    }
     const fileBlobs = files;
-    // const imageFiles = Array.from(fileBlobs).slice(1);
-    // console.log(files, '+++++++');
-    // console.log('imageFiles, ******', imageFiles);
     const dataTransfer = new DataTransfer();
     Array.from(fileBlobs).forEach((file) => {
       dataTransfer.items.add(file);
@@ -115,6 +96,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     encodeFile(filesToEncode);
   };
 
+  //파일을 URL로 변환
   const encodeFile = async (fileBlob: File[]) => {
     for (let i = 0; i < fileBlob.length; i++) {
       const reader = new FileReader();
@@ -128,10 +110,9 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
 
       setPreviewURL((prevURLs) => [...prevURLs, dataUrl]);
     }
-
-    // e.target.value = '';
   };
 
+  //일반 첨부사진 삭제하기
   const handleClickPreviewDelBtn = (index: number) => {
     setPreviewURL((prevURLs) => {
       const updatedURLs = [...prevURLs];
@@ -140,14 +121,15 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
     });
   };
 
+  //손그림 삭제하기
   const handleClickFreeDrawDelBtn = () => {
-    setFreeDraw(false);
     setDrawingImageURL(null);
     setHandDrawingImage(null);
   };
 
+  //손그림 최대 한 개만 그릴 수 있게 버튼에 제약
   const handleReferenceBtn = () => {
-    if (handDrawingImage) {
+    if (drawingImageURL) {
       return;
     } else {
       setBottomOpen(true);
@@ -157,7 +139,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
   return (
     <St.CustomReferenceWrapper>
       <St.PreviewSection>
-        {previewURL.length > 0 ? (
+        {Array.isArray(previewURL) && previewURL.length > 0 ? (
           previewURL.map((url, index) => (
             <St.ImgPreviewContainer key={index}>
               <St.ImgPreviewDelBtn type='button' onClick={() => handleClickPreviewDelBtn(index)}>
@@ -173,7 +155,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
             <St.ImageDescription> 필수 1장 첨부, 최대 3장 첨부 가능합니다.</St.ImageDescription>
           </St.Image>
         )}
-        {handDrawingImage ? (
+        {drawingImageURL ? (
           <St.ImgPreviewContainer>
             <St.ImgPreviewDelBtn type='button' onClick={() => handleClickFreeDrawDelBtn()}>
               <IcCancelDark />
@@ -203,7 +185,7 @@ const CustomImageAttach: React.FC<PaintBottomProps> = ({
         <St.ReferenceButton
           type='button'
           onClick={handleReferenceBtn}
-          className={handDrawingImage ? 'disabled' : ''}
+          className={drawingImageURL ? 'disabled' : ''}
         >
           <IcDraw />
           대충 그리기

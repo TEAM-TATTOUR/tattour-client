@@ -1,55 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CustomTheme from '../../../components/Custom/HaveDesign/CustomTheme';
 import PageLayout from '../../../components/PageLayout';
 import Header from '../../../components/Header';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import ProgressBar from '../../../common/ProgressBar';
-import NextFooter from '../../../common/Footer/NextFooter';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { IcBackDark } from '../../../assets/icon';
+import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFooter';
+interface CustomThemePageProps {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const CustomThemePage = () => {
-  const CUSTOM_VIEW_COUNT = 5;
-
+const CustomThemePage = ({ setStep, setName, setDescription }: CustomThemePageProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const haveDesign = location.state ? location.state.haveDesign : null;
-  const prevCustomInfo = location.state ? location.state.customInfo : null;
-  const handDrawingImage = location.state ? location.state.handDrawingImage : null;
-  const customImages = location.state ? location.state.customImages : null;
-
-  // const customNameState = location.state && location.state.name ? location.state.name : null;
-  // const customDescriptionState =
-  //   location.state && location.state.description ? location.state.description : null;
-
-  useEffect(() => {
-    if (!location.state) navigate('/onboarding');
-  }, [location.state, navigate]);
-
-  const customInfo = {
-    ...prevCustomInfo,
-    viewCount: CUSTOM_VIEW_COUNT,
-    name: name,
-    description: description,
-  };
 
   const renderCustomThemePageHeader = () => {
     return (
       <Header
-        leftSection={
-          <IcBackDark
-            onClick={() =>
-              navigate('/select-keyword', { state: location.state ? location.state : null })
-            }
-          />
-        }
+        leftSection={<IcBackDark onClick={() => setStep((prev) => prev - 1)} />}
         title='커스텀 타투'
         rightSection={
           <CancelBtn
@@ -66,16 +37,7 @@ const CustomThemePage = () => {
   return (
     <PageLayout
       renderHeader={renderCustomThemePageHeader}
-      footer={
-        <NextFooter
-          isActiveNext={isActiveNext}
-          navigateURL={'/additional-request'}
-          haveDesign={haveDesign}
-          customInfo={customInfo}
-          handDrawingImage={handDrawingImage}
-          customImages={customImages}
-        />
-      }
+      footer={<HaveDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
       <CustomTheme
         setIsActiveNext={setIsActiveNext}
