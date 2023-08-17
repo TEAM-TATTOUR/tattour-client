@@ -36,8 +36,6 @@ const OrderPage = () => {
   const [detailAddress, setDetailAddress] = useState<string>(''); // 세부주소
   const [agree, setAgree] = useState<boolean>(false);
 
-  console.log(response);
-
   const postData = {
     stickerId: state.stickerId,
     productCount: state.count,
