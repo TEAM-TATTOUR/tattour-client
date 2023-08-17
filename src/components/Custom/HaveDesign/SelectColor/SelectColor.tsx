@@ -55,6 +55,10 @@ const SelectColor = ({
     } else {
       setIsColored(true);
     }
+
+    if (activeBtn) {
+      setIsActiveNext(true);
+    }
   }, [isColoredState, activeBtn]);
 
   const handleClickSelBtn = (id: string) => {
