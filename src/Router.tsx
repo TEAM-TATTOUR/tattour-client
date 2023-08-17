@@ -5,9 +5,6 @@ import LoginPage from './page/Login/LoginPage';
 import DetailPage from './page/DetailPage';
 import MyTattoo from './page/MyTattoo';
 import MyTattooDetail from './page/MyTattooDetail';
-import RegisterNamePage from './page/Register/RegisterNamePage';
-import RegisterPhoneNumPage from './page/Register/RegisterPhoneNumPage';
-import WelcomePage from './page/Welcome/WelcomePage';
 import ChargePage from './page/PointCharge/ChargePage';
 import TransferPage from './page/PointCharge/TransferPage';
 import SelectPage from './page/Custom/Common/SelectPage';
@@ -41,9 +38,6 @@ const Router = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/detail/:id' element={<DetailPage />} />
         <Route path='/login/oauth2/callback' element={<LoginCallback />} />
-        <Route path='/register' element={<RegisterNamePage />} />
-        <Route path='/register-number' element={<RegisterPhoneNumPage />} />
-        <Route path='/welcome-signup' element={<WelcomePage />} />
         <Route path='/my-tattoo' element={<MyTattoo />} />
         <Route path='/my-tattoo/detail/:id' element={<MyTattooDetail />} />
         <Route path='/search' element={<SearchPage />}>

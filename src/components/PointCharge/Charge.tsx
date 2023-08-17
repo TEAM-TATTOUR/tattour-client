@@ -9,7 +9,18 @@ interface ChargeProps {
 
 const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
   const [isWarning, setIsWarning] = useState(false);
+  const [isZeroWarning, setIsZeroWarning] = useState(false);
   const [parsedPrice, setParsedPrice] = useState('');
+
+  //input에 금액을 입력 했을 때 1) 0원, 2) 1000원이 아닌 단위 예외 처리를 해 주는 함수
+  const updateStateBasedOnValue = (removedCommaValue: number) => {
+    const isZero = removedCommaValue === 0;
+    const isThousandMultiple = removedCommaValue % 1000 === 0;
+
+    setIsZeroWarning(isZero); //0원일 때 감지
+    setIsWarning(isZero || !isThousandMultiple); //0원일 때 혹은 1000원 단위가 아닐 때 경고 메시지 띄우기
+    setIsActiveNext(!isZero && isThousandMultiple); // 0원이 아니고, 1000원 단위일 때만 다음 버튼 활성화
+  };
 
   const handleChangeChargeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 숫자가 아닌 text가 들어왔을 때 방지
@@ -25,15 +36,13 @@ const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
     setChargeAmount(removedCommaValue);
     setParsedPrice(removedCommaValue.toLocaleString());
 
-    //1000원 단위인지 확인
-    if (removedCommaValue % 1000 === 0) {
-      setIsWarning(false);
-      setIsActiveNext(true);
-    } else {
-      setIsWarning(true);
-      setIsActiveNext(false);
-    }
+    // 금액 입력 시 예외 처리 해주는 함수 호출
+    updateStateBasedOnValue(removedCommaValue);
   };
+
+  const ERR_MSG_CONTENT = isZeroWarning
+    ? '1,000원 이상부터 충전이 가능해요'
+    : '1,000원 단위 충전만 가능해요';
 
   return (
     <St.ChargeWrapper>
@@ -59,9 +68,7 @@ const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
           $isWarning={isWarning}
           autoFocus
         />
-        <St.ChargeWarningMsg $isWarning={isWarning}>
-          1,000원 단위 충전만 가능해요
-        </St.ChargeWarningMsg>
+        <St.ChargeWarningMsg $isWarning={isWarning}>{ERR_MSG_CONTENT}</St.ChargeWarningMsg>
       </St.ChargeInputContainer>
     </St.ChargeWrapper>
   );

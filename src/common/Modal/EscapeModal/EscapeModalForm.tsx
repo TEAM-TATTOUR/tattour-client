@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
+import { removeAccessToken } from '../../../libs/api';
 
 interface EscapeModalFormProps {
   redirectURL?: string;
@@ -22,15 +23,14 @@ const EscapeModalForm = ({
   stopBtn,
 }: EscapeModalFormProps) => {
   const navigate = useNavigate();
-  // const location = useLocation();
-  // const patchStates = location.state;
 
   const handleClickStopBtn = () => {
     onClose();
     switch (pageName) {
       // 페이지 이름과 라우팅 주소는 나중에 보고 수정
       case 'LoginPage':
-        navigate('/login');
+        navigate('/');
+        removeAccessToken();
         break;
 
       case 'ChargePage':
