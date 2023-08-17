@@ -1,16 +1,19 @@
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { SetStateAction } from 'react';
 
 interface RegisterNameFooterProps {
   userName: string;
+  setStep: React.Dispatch<SetStateAction<number>>;
 }
 
-const RegisterNameFooter = ({ userName }: RegisterNameFooterProps) => {
+const RegisterNameFooter = ({ userName, setStep }: RegisterNameFooterProps) => {
   const navigate = useNavigate();
 
   const handleClickFooter = () => {
     if (userName) {
-      navigate('/register-number', { state: userName });
+      navigate('/login', { state: { userName: userName } });
+      setStep(2);
     }
   };
 

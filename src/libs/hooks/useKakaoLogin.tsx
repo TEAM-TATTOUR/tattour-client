@@ -38,7 +38,7 @@ const useKakaoLogin = () => {
 
           setAccessToken(accessToken);
 
-          isUserExist ? navigate('/') : navigate('/register');
+          isUserExist ? navigate('/') : navigate('/login', { state: { step: 1 } });
         })
         .catch((Error: object) => {
           console.log(Error);
