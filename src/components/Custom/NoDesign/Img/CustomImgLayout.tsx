@@ -8,13 +8,13 @@ import NoDesignFooter from '../NoDesignFooter';
 import Header from '../../../Header';
 import PageLayout from '../../../PageLayout';
 
-interface CustomImgPageProps {
+interface CustomImgLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   customImages: FileList | undefined;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | undefined>>;
 }
 
-const CustomImgLayout = ({ setStep, customImages, setCustomImages }: CustomImgPageProps) => {
+const CustomImgLayout = ({ setStep, customImages, setCustomImages }: CustomImgLayoutProps) => {
   // const CUSTOM_VIEW_COUNT = 2;
 
   const [modalOn, setModalOn] = useState(false);
