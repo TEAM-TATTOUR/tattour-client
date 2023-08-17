@@ -20,6 +20,7 @@ const HaveDesignCustomPage = () => {
 
   //step 2: 색상 선택 state
   const [isColoredState, setIsColored] = useState(false);
+  const [activeBtn, setActiveBtn] = useState('');
 
   //step 3: 키워드 선택 state
   const [styles, setStyles] = useState<number[]>([]);
@@ -61,6 +62,8 @@ const HaveDesignCustomPage = () => {
           setStep={setStep}
           isColoredState={isColoredState}
           setIsColored={setIsColored}
+          activeBtn={activeBtn}
+          setActiveBtn={setActiveBtn}
         />
       );
 

@@ -1,16 +1,24 @@
 import { useEffect, useMemo, useState } from 'react';
 import { styled } from 'styled-components';
 import IcCircleBlack from '../../../../assets/icon/ic_circle_black.png';
-import IcCircleRainbow from '../../../../assets/icon/ic_color_rainbow.png';
+import IcCircleRainbow from '../../../../assets/icon/ic_circle_rainbow.png';
 import SelectColorBtn from './SelectColorBtn';
 
 interface SelectColorProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   isColoredState: boolean;
   setIsColored: React.Dispatch<React.SetStateAction<boolean>>;
+  activeBtn: string;
+  setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SelectColor = ({ setIsActiveNext, setIsColored, isColoredState }: SelectColorProps) => {
+const SelectColor = ({
+  setIsActiveNext,
+  setIsColored,
+  isColoredState,
+  activeBtn,
+  setActiveBtn,
+}: SelectColorProps) => {
   const CASE_BTN_DATA = useMemo(
     () => [
       {
@@ -28,8 +36,6 @@ const SelectColor = ({ setIsActiveNext, setIsColored, isColoredState }: SelectCo
     ],
     [],
   );
-
-  const [activeBtn, setActiveBtn] = useState('');
 
   useEffect(() => {
     if (isColoredState) {
@@ -53,7 +59,6 @@ const SelectColor = ({ setIsActiveNext, setIsColored, isColoredState }: SelectCo
 
   const handleClickSelBtn = (id: string) => {
     setActiveBtn(id);
-    setIsActiveNext(true);
   };
 
   return (
