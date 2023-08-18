@@ -1,18 +1,24 @@
 import { styled } from 'styled-components';
 import SelectCustom from '../../../components/Custom/Common/SelectCustom';
 import Header from '../../../components/Header';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { IcCancelDark } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 import SelectCustomFooter from '../../../components/Custom/Common/SelectCustomFooter';
 import SelectCustomPolicy from '../../../components/Custom/Common/SelectCustomPolicy';
 
-const SelectPage = () => {
+interface SelectPageProps {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  haveDesign: boolean;
+  setHaveDesign: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SelectPage = ({ setStep, haveDesign, setHaveDesign }: SelectPageProps) => {
   const navigate = useNavigate();
 
   const [isActiveNext, setIsActiveNext] = useState(false);
-  const [haveDesign, setHaveDesign] = useState(true);
+  // const [haveDesign, setHaveDesign] = useState(true);
 
   const renderSelectCustomPageHeader = () => {
     return (
@@ -27,7 +33,9 @@ const SelectPage = () => {
   return (
     <PageLayout
       renderHeader={renderSelectCustomPageHeader}
-      footer={<SelectCustomFooter isActiveNext={isActiveNext} haveDesign={haveDesign} />}
+      footer={
+        <SelectCustomFooter isActiveNext={isActiveNext} haveDesign={haveDesign} setStep={setStep} />
+      }
     >
       <SelectCustom setIsActiveNext={setIsActiveNext} setHaveDesign={setHaveDesign} />
       <SelectCustomPolicy />

@@ -31,6 +31,7 @@ import LoginCallback from './components/Login/LoginCallback';
 import SavePage from './page/SavePage';
 import NoDesignCustomPage from './page/Custom/NoDesign/NoDesignCustomPage';
 import HaveDesignCustomPage from './page/Custom/HaveDesign/HaveDesignCustomPage';
+import CommonCustomPage from './page/Custom/Common/CommonCustomPage';
 
 const Router = () => {
   return (
@@ -66,6 +67,7 @@ const Router = () => {
         <Route path='/save' element={<SavePage />} />
         <Route path='/haveDesign' element={<HaveDesignCustomPage />} />
         <Route path='/noDesign' element={<NoDesignCustomPage />} />
+        <Route path='/custom' element={<CommonCustomPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -29,9 +29,9 @@ const CustomSizePage = () => {
   const sizeState =
     location.state && location.state.customInfo ? location.state.customInfo.size : null;
 
-  useEffect(() => {
-    if (!location.state) navigate('/onboarding');
-  }, [location.state, navigate]);
+  // useEffect(() => {
+  //   if (!location.state) navigate('/onboarding');
+  // }, [location.state, navigate]);
 
   const customInfo = {
     viewCount: CUSTOM_VIEW_COUNT,
