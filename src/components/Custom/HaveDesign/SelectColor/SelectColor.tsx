@@ -1,16 +1,24 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useEffect, useMemo, } from 'react';
 import { styled } from 'styled-components';
+import IcCircleBlack from '../../../../assets/icon/ic_circle_black.png';
+import IcCircleRainbow from '../../../../assets/icon/ic_circle_rainbow.png';
 import SelectColorBtn from './SelectColorBtn';
-import IcCircleRainbow from '../../../assets/icon/ic_circle_rainbow.png';
-import IcCircleBlack from '../../../assets/icon/ic_circle_black.png';
 
 interface SelectColorProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   isColoredState: boolean;
   setIsColored: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedColorMode: string;
+  setSelectedColorMode: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SelectColor = ({ setIsActiveNext, setIsColored, isColoredState }: SelectColorProps) => {
+const SelectColor = ({
+  setIsActiveNext,
+  setIsColored,
+  isColoredState,
+  selectedColorMode,
+  setSelectedColorMode,
+}: SelectColorProps) => {
   const CASE_BTN_DATA = useMemo(
     () => [
       {
@@ -29,31 +37,32 @@ const SelectColor = ({ setIsActiveNext, setIsColored, isColoredState }: SelectCo
     [],
   );
 
-  const [activeBtn, setActiveBtn] = useState('');
-
   useEffect(() => {
     if (isColoredState) {
-      setActiveBtn(isColoredState ? 'color' : 'black');
+      setSelectedColorMode(isColoredState ? 'color' : 'black');
     }
     // 버튼 하나씩만 누를 수 있도록
     CASE_BTN_DATA.forEach((btn) => {
-      if (btn.id === activeBtn) {
+      if (btn.id === selectedColorMode) {
         btn.isSelected = true;
       } else {
         btn.isSelected = false;
       }
     });
 
-    if (activeBtn === 'black') {
+    if (selectedColorMode === 'black') {
       setIsColored(false);
     } else {
       setIsColored(true);
     }
-  }, [isColoredState, activeBtn]);
+
+    if (selectedColorMode) {
+      setIsActiveNext(true);
+    }
+  }, [isColoredState, selectedColorMode]);
 
   const handleClickSelBtn = (id: string) => {
-    setActiveBtn(id);
-    setIsActiveNext(true);
+    setSelectedColorMode(id);
   };
 
   return (
@@ -71,7 +80,7 @@ const SelectColor = ({ setIsActiveNext, setIsColored, isColoredState }: SelectCo
                 title={title}
                 src={src}
                 onClick={() => handleClickSelBtn(id)}
-                activeBtn={activeBtn}
+                activeBtn={selectedColorMode}
               />
             );
           })}

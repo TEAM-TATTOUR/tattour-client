@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 // 이모티콘 카운팅 관련 라이브러리
 import GraphemeSplitter from 'grapheme-splitter';
 
-const CustomTheme = ({
-  setIsActiveNext,
-  setDemand,
-}: {
+interface AdditionalRequestProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  demand: string;
   setDemand: React.Dispatch<React.SetStateAction<string>>;
-}) => {
+}
+
+const AdditionalRequest = ({ setIsActiveNext, demand, setDemand }: AdditionalRequestProps) => {
   //count 될 maxCount 수
   const MAX_ETC_COUNT = 100;
   setIsActiveNext(true);
 
   //글자 수 세기 관련 state
-  const [etcTextAreaCount, setEtcTextAreaCount] = useState(0);
+  const [demandTextAreaCount, setDemandTextAreaCount] = useState(0);
+  const demandTextAreaRef = useRef<HTMLTextAreaElement | null>(null);
 
   // 이모티콘을 한 문자로 취급하여 글자 수 제한을 구현하는 함수
   const limitMaxLength = (
@@ -37,7 +38,7 @@ const CustomTheme = ({
 
   const handleChangeEtcTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value === '') {
-      setEtcTextAreaCount(0);
+      setDemandTextAreaCount(0);
       setIsActiveNext(false);
     } else {
       setIsActiveNext(true);
@@ -46,10 +47,17 @@ const CustomTheme = ({
     const lengthCount = limitMaxLength(e, MAX_ETC_COUNT);
 
     if (!lengthCount) return;
-    setEtcTextAreaCount(lengthCount);
+    setDemandTextAreaCount(lengthCount);
 
     setDemand(e.target.value);
   };
+//이모지 글자수 제대로 카운트 되게 수정 필요
+  useEffect(() => {
+    if (!demand || !demandTextAreaRef.current) return;
+    demandTextAreaRef.current.value = demand;
+    setDemandTextAreaCount(demand.length);
+    setDemand(demand);
+  }, [demand]);
 
   return (
     <St.CustomRequestWrapper>
@@ -67,17 +75,18 @@ const CustomTheme = ({
       <St.RequestEtcContainer>
         <St.RequestEtcTextArea
           onChange={handleChangeEtcTextArea}
+          ref={demandTextAreaRef}
           placeholder='ex. 라인 1mm로 얇게 그려주세요 &#13;&#10; &nbsp; &nbsp;  추가적인 명암은 넣지 말아주세요.'
         />
         <St.RequestInputCount>
-          ({etcTextAreaCount}/{MAX_ETC_COUNT})
+          ({demandTextAreaCount}/{MAX_ETC_COUNT})
         </St.RequestInputCount>
       </St.RequestEtcContainer>
     </St.CustomRequestWrapper>
   );
 };
 
-export default CustomTheme;
+export default AdditionalRequest;
 
 const St = {
   CustomRequestWrapper: styled.section`

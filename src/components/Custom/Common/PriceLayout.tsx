@@ -1,18 +1,22 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { IcBackDark } from '../../assets/icon';
-import CancelBtn from '../../common/Header/CancelBtn';
-import CustomSizeEscapeModal from '../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import ProgressBar from '../../common/ProgressBar';
-import CountPrice from '../../components/Custom/CountPrice';
-import MakePublic from '../../components/Custom/MakePublic';
-import PriceFooter from '../../components/Custom/PriceFooter';
-import PriceHeading from '../../components/Custom/PriceHeading';
-import Header from '../../components/Header';
-import PageLayout from '../../components/PageLayout';
+import { IcBackDark } from '../../../assets/icon';
+import CancelBtn from '../../../common/Header/CancelBtn';
+import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import ProgressBar from '../../../common/ProgressBar';
+import CountPrice from '../CountPrice';
+import MakePublic from '../MakePublic';
+import PriceFooter from '../PriceFooter';
+import PriceHeading from '../PriceHeading';
+import Header from '../../Header';
+import PageLayout from '../../PageLayout';
 
-const PricePage = () => {
+interface PriceLayoutProps {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const PriceLayout = ({ setStep }: PriceLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
   const [count, setCount] = useState(1);
@@ -34,7 +38,6 @@ const PricePage = () => {
   const isCompleted = location.state ? location.state.customInfo.isCompleted : null;
 
   const CUSTOM_VIEW_COUNT = haveDesign ? 7 : 4;
-  const backNavigateURL = haveDesign ? '/haveDesign' : '/noDesign';
 
   // useEffect(() => {
   //   if (!location.state) navigate('/onboarding');
@@ -51,18 +54,10 @@ const PricePage = () => {
     isCompleted: isCompleted,
   };
 
-  const renderPricePageHeader = () => {
+  const renderPriceLayoutHeader = () => {
     return (
       <Header
-        leftSection={
-          <IcBackDark
-            onClick={() =>
-              navigate(backNavigateURL, {
-                state: location.state ? location.state : null,
-              })
-            }
-          />
-        }
+        leftSection={<IcBackDark onClick={() => setStep((prev) => prev - 1)} />}
         title='커스텀 타투'
         rightSection={
           <CancelBtn
@@ -79,7 +74,7 @@ const PricePage = () => {
 
   return (
     <PageLayout
-      renderHeader={renderPricePageHeader}
+      renderHeader={renderPriceLayoutHeader}
       footer={
         <PriceFooter
           haveDesign={haveDesign}
@@ -101,7 +96,7 @@ const PricePage = () => {
   );
 };
 
-export default PricePage;
+export default PriceLayout;
 
 const St = {
   TopWrapper: styled.section`

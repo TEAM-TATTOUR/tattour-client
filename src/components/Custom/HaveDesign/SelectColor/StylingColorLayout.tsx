@@ -1,19 +1,28 @@
 import { useEffect, useState } from 'react';
-import CancelBtn from '../../../common/Header/CancelBtn';
-import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import ProgressBar from '../../../common/ProgressBar';
-import SelectColor from '../../../components/Custom/HaveDesign/SelectColor';
-import Header from '../../../components/Header';
-import PageLayout from '../../../components/PageLayout';
-import { IcBackDark } from '../../../assets/icon';
-import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFooter';
-interface StylingColorPageProps {
+import { IcBackDark } from '../../../../assets/icon';
+import CancelBtn from '../../../../common/Header/CancelBtn';
+import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import ProgressBar from '../../../../common/ProgressBar';
+import Header from '../../../Header';
+import PageLayout from '../../../PageLayout';
+import HaveDesignFooter from '../HaveDesignFooter';
+import SelectColor from './SelectColor';
+
+interface StylingColorLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   isColoredState: boolean;
   setIsColored: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedColorMode: string;
+  setSelectedColorMode: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const StylingColorPage = ({ setStep, isColoredState, setIsColored }: StylingColorPageProps) => {
+const StylingColorLayout = ({
+  setStep,
+  isColoredState,
+  setIsColored,
+  selectedColorMode,
+  setSelectedColorMode,
+}: StylingColorLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
@@ -21,7 +30,7 @@ const StylingColorPage = ({ setStep, isColoredState, setIsColored }: StylingColo
     setIsColored(isColoredState);
   }, [isColoredState]);
 
-  const renderStylingColorPageHeader = () => {
+  const renderStylingColorLayoutHeader = () => {
     return (
       <Header
         transparent={true}
@@ -41,16 +50,18 @@ const StylingColorPage = ({ setStep, isColoredState, setIsColored }: StylingColo
 
   return (
     <PageLayout
-      renderHeader={renderStylingColorPageHeader}
+      renderHeader={renderStylingColorLayoutHeader}
       footer={<HaveDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
       <SelectColor
         setIsActiveNext={setIsActiveNext}
         setIsColored={setIsColored}
         isColoredState={isColoredState}
+        selectedColorMode={selectedColorMode}
+        setSelectedColorMode={setSelectedColorMode}
       />
     </PageLayout>
   );
 };
 
-export default StylingColorPage;
+export default StylingColorLayout;

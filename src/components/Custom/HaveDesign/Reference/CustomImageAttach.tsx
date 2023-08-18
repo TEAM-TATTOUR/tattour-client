@@ -1,13 +1,12 @@
+import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
-import { IcDraw, IcPhoto, IcCancelDark } from '../../../assets/icon';
-import { useRef, useEffect } from 'react';
-import { useState } from 'react';
-import Toast from '../../../common/ToastMessage/Toast';
+import { IcCancelDark, IcDraw, IcPhoto } from '../../../../assets/icon';
+import Toast from '../../../../common/ToastMessage/Toast';
 
 interface CustomImageAttachProps {
   setBottomOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  drawingImageURL: string | null;
-  setDrawingImageURL: React.Dispatch<React.SetStateAction<string | null>>;
+  drawingImageUrl: string | null;
+  setDrawingImageUrl: React.Dispatch<React.SetStateAction<string | null>>;
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
   customImages: FileList | null;
@@ -19,8 +18,8 @@ interface CustomImageAttachProps {
 
 const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
   setBottomOpen,
-  drawingImageURL,
-  setDrawingImageURL,
+  drawingImageUrl,
+  setDrawingImageUrl,
   setIsActiveNext,
   setCustomImages,
   customImages,
@@ -54,15 +53,15 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
     return new Blob([ab], { type: mimeString });
   }
 
-  //이미지 파일 첨부하기
+  //손그림 있을 시 파일로 바꿔서 저장
   useEffect(() => {
-    if (!drawingImageURL) return;
-    const blob = dataURItoBlob(drawingImageURL);
+    if (!drawingImageUrl) return;
+    const blob = dataURItoBlob(drawingImageUrl);
     const file = new File([blob], 'image.png', {
       type: blob.type,
     });
     setHandDrawingImage(file);
-  }, [drawingImageURL]);
+  }, [drawingImageUrl]);
 
   //3장 이하면 첨부하기 버튼 활성화
   const handleClickRefBtn = () => {
@@ -94,9 +93,13 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
     //개수 제한 적용해주기
     const filesToEncode = Array.from(uploadImage).slice(0, MAX_FILES - previewURL.length);
     encodeFile(filesToEncode);
+
+    //중복 이미지 연속 선택 가능하도록 초기화 해주기
+    const newDataTransfer = new DataTransfer();
+    e.target.files = newDataTransfer.files;
   };
 
-  //파일을 URL로 변환
+  //파일을 URL로 변환 후 previewURL에 URL 추가
   const encodeFile = async (fileBlob: File[]) => {
     for (let i = 0; i < fileBlob.length; i++) {
       const reader = new FileReader();
@@ -107,7 +110,7 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
         reader.onerror = reject;
         reader.readAsDataURL(file);
       });
-
+      //미리보기 state에 url 추가
       setPreviewURL((prevURLs) => [...prevURLs, dataUrl]);
     }
   };
@@ -123,13 +126,13 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
 
   //손그림 삭제하기
   const handleClickFreeDrawDelBtn = () => {
-    setDrawingImageURL(null);
+    setDrawingImageUrl(null);
     setHandDrawingImage(null);
   };
 
   //손그림 최대 한 개만 그릴 수 있게 버튼에 제약
   const handleReferenceBtn = () => {
-    if (drawingImageURL) {
+    if (drawingImageUrl) {
       return;
     } else {
       setBottomOpen(true);
@@ -155,13 +158,13 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
             <St.ImageDescription> 필수 1장 첨부, 최대 3장 첨부 가능합니다.</St.ImageDescription>
           </St.Image>
         )}
-        {drawingImageURL ? (
+        {drawingImageUrl ? (
           <St.ImgPreviewContainer>
             <St.ImgPreviewDelBtn type='button' onClick={() => handleClickFreeDrawDelBtn()}>
               <IcCancelDark />
             </St.ImgPreviewDelBtn>
             <St.Image>
-              {drawingImageURL && <img src={drawingImageURL} alt='첨부-이미지-미리보기' />}
+              {drawingImageUrl && <img src={drawingImageUrl} alt='첨부-이미지-미리보기' />}
             </St.Image>
           </St.ImgPreviewContainer>
         ) : (
@@ -185,7 +188,7 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
         <St.ReferenceButton
           type='button'
           onClick={handleReferenceBtn}
-          className={drawingImageURL ? 'disabled' : ''}
+          className={drawingImageUrl ? 'disabled' : ''}
         >
           <IcDraw />
           대충 그리기

@@ -1,25 +1,33 @@
 import { useState } from 'react';
-import SelectKeywordHeading from '../../../components/Custom/HaveDesign/SelectKeywordHeading';
-import PageLayout from '../../../components/PageLayout';
-import CancelBtn from '../../../common/Header/CancelBtn';
-import Header from '../../../components/Header';
-import ProgressBar from '../../../common/ProgressBar';
-import SelectKeyword from '../../../components/Custom/HaveDesign/SelectKeyword';
-import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import { IcBackDark } from '../../../assets/icon';
-import HaveDesignFooter from '../../../components/Custom/HaveDesign/HaveDesignFooter';
+import { IcBackDark } from '../../../../assets/icon';
+import CancelBtn from '../../../../common/Header/CancelBtn';
+import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import ProgressBar from '../../../../common/ProgressBar';
+import Header from '../../../Header';
+import PageLayout from '../../../PageLayout';
+import HaveDesignFooter from '../HaveDesignFooter';
+import SelectKeyword from './SelectKeyword';
+import SelectKeywordInstruction from './SelectKeywordInstruction';
 
-interface SelectKeywordPageProps {
+interface SelectKeywordLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  styles: number[];
   setStyles: React.Dispatch<React.SetStateAction<number[]>>;
+  themes: number[];
   setThemes: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
-const SelectKeywordPage = ({ setStep, setStyles, setThemes }: SelectKeywordPageProps) => {
+const SelectKeywordLayout = ({
+  setStep,
+  styles,
+  setStyles,
+  themes,
+  setThemes,
+}: SelectKeywordLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
-  const renderSelectKeywordPageHeader = () => {
+  const renderSelectKeywordLayoutHeader = () => {
     return (
       <Header
         leftSection={<IcBackDark onClick={() => setStep((prev) => prev - 1)} />}
@@ -39,17 +47,19 @@ const SelectKeywordPage = ({ setStep, setStyles, setThemes }: SelectKeywordPageP
 
   return (
     <PageLayout
-      renderHeader={renderSelectKeywordPageHeader}
+      renderHeader={renderSelectKeywordLayoutHeader}
       footer={<HaveDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
-      <SelectKeywordHeading />
+      <SelectKeywordInstruction />
       <SelectKeyword
         setIsActiveNext={setIsActiveNext}
+        styles={styles}
         setStyles={setStyles}
+        themes={themes}
         setThemes={setThemes}
       />
     </PageLayout>
   );
 };
 
-export default SelectKeywordPage;
+export default SelectKeywordLayout;

@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import { styled } from 'styled-components';
-import CustomTitle from './CustomTitle';
 import CustomImageAttach from './CustomImageAttach';
 import PaintBottomSheet from './PaintBottomSheet';
-import { useState } from 'react';
+import ReferenceInstruction from './ReferenceInstruction';
 
 interface CustomReferenceProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,6 +12,8 @@ interface CustomReferenceProps {
   customImages: FileList | null;
   setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
   previewURL: string[];
+  drawingImageUrl: string | null;
+  setDrawingImageUrl: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const CustomReference = ({
@@ -22,17 +24,18 @@ const CustomReference = ({
   customImages,
   setPreviewURL,
   previewURL,
+  drawingImageUrl,
+  setDrawingImageUrl,
 }: CustomReferenceProps) => {
   const [isBottomOpen, setBottomOpen] = useState(false);
-  const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
 
   return (
     <St.PageWrapper>
-      <CustomTitle />
+      <ReferenceInstruction />
       <CustomImageAttach
         setBottomOpen={setBottomOpen}
-        drawingImageURL={drawingImageUrl}
-        setDrawingImageURL={setDrawingImageUrl}
+        drawingImageUrl={drawingImageUrl}
+        setDrawingImageUrl={setDrawingImageUrl}
         setIsActiveNext={setIsActiveNext}
         setCustomImages={setCustomImages}
         customImages={customImages}
@@ -45,8 +48,8 @@ const CustomReference = ({
         <PaintBottomSheet
           isBottomOpen={isBottomOpen}
           setBottomOpen={setBottomOpen}
-          drawingImageURL={drawingImageUrl}
-          setDrawingImageURL={setDrawingImageUrl}
+          drawingImageUrl={drawingImageUrl}
+          setDrawingImageUrl={setDrawingImageUrl}
         />
       )}
     </St.PageWrapper>

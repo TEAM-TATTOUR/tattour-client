@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+// import PriceLayout from '../../../components/Custom/Common/PriceLayout';
+import AdditionalRequestLayout from '../../../components/Custom/HaveDesign/AdditionalRequest/AdditionalRequestLayout';
+import CustomThemeLayout from '../../../components/Custom/HaveDesign/CustomTheme/CustomThemeLayout';
+// import ReceiptLayout from '../../../components/Custom/HaveDesign/Receipt/ReceiptLayout';
+import CustomReferenceLayout from '../../../components/Custom/HaveDesign/Reference/CustomReferenceLayout';
+import StylingColorLayout from '../../../components/Custom/HaveDesign/SelectColor/StylingColorLayout';
+import SelectKeywordLayout from '../../../components/Custom/HaveDesign/SelectKeyword/SelectKeywordLayout';
+
 // import CustomSizePage from '../Common/CustomSizePage';
-import CustomReferencePage from './CustomReferencePage';
-import StylingColorPage from './StylingColorPage';
-import SelectKeywordPage from './SelectKeywordPage';
-import CustomThemePage from './CustomThemePage';
-import AdditionalRequestPage from './AdditionalRequestPage';
-import ReceiptPage from './ReceiptPage';
-import PricePage from '../PricePage';
 
 const HaveDesignCustomPage = () => {
   const [step, setStep] = useState(0);
@@ -16,9 +16,11 @@ const HaveDesignCustomPage = () => {
   const [customImages, setCustomImages] = useState<FileList | null>(null);
   const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
   const [previewURL, setPreviewURL] = useState<string[]>([]);
+  const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
 
   //step 2: 색상 선택 state
   const [isColoredState, setIsColored] = useState(false);
+  const [selectedColorMode, setSelectedColorMode] = useState('');
 
   //step 3: 키워드 선택 state
   const [styles, setStyles] = useState<number[]>([]);
@@ -41,7 +43,7 @@ const HaveDesignCustomPage = () => {
     //   return <CustomSizePage setStep={setStep} />;
     case 1:
       return (
-        <CustomReferencePage
+        <CustomReferenceLayout
           setStep={setStep}
           customImages={customImages}
           setCustomImages={setCustomImages}
@@ -49,34 +51,52 @@ const HaveDesignCustomPage = () => {
           setHandDrawingImage={setHandDrawingImage}
           setPreviewURL={setPreviewURL}
           previewURL={previewURL}
+          drawingImageUrl={drawingImageUrl}
+          setDrawingImageUrl={setDrawingImageUrl}
         />
       );
 
     case 2:
       return (
-        <StylingColorPage
+        <StylingColorLayout
           setStep={setStep}
           isColoredState={isColoredState}
           setIsColored={setIsColored}
+          selectedColorMode={selectedColorMode}
+          setSelectedColorMode={setSelectedColorMode}
         />
       );
 
     case 3:
-      return <SelectKeywordPage setStep={setStep} setStyles={setStyles} setThemes={setThemes} />;
+      return (
+        <SelectKeywordLayout
+          setStep={setStep}
+          styles={styles}
+          setStyles={setStyles}
+          themes={themes}
+          setThemes={setThemes}
+        />
+      );
 
     case 4:
       return (
-        <CustomThemePage setStep={setStep} setName={setName} setDescription={setDescription} />
+        <CustomThemeLayout
+          setStep={setStep}
+          name={name}
+          setName={setName}
+          description={description}
+          setDescription={setDescription}
+        />
       );
 
     case 5:
-      return <AdditionalRequestPage setStep={setStep} setDemand={setDemand} />;
+      return <AdditionalRequestLayout setStep={setStep} demand={demand} setDemand={setDemand} />;
 
-    case 6:
-      return <PricePage />;
+    // case 6:
+    //   return <PriceLayout setStep={setStep} />;
 
-    case 7:
-      return <ReceiptPage />;
+    // case 7:
+    //   return <ReceiptLayout />;
   }
 };
 
