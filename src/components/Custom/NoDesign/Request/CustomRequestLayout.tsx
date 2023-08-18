@@ -8,7 +8,7 @@ import NoDesignFooter from '../NoDesignFooter';
 import Header from '../../../Header';
 import PageLayout from '../../../PageLayout';
 
-interface CustomRequestPageProps {
+interface CustomRequestLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   name: string;
   setName: React.Dispatch<React.SetStateAction<string>>;
@@ -22,7 +22,7 @@ const CustomRequestLayout = ({
   setName,
   demand,
   setDemand,
-}: CustomRequestPageProps) => {
+}: CustomRequestLayoutProps) => {
   // const CUSTOM_VIEW_COUNT = 3;
 
   const [modalOn, setModalOn] = useState(false);

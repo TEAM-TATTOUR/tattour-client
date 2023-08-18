@@ -17,17 +17,19 @@ const CompletePage = () => {
 
   return (
     <PageLayout renderHeader={renderCompletePageHeader} footer={<CompleteFooter />}>
-      <Result
-        mainText={'결제가 완료되었어요'}
-        description={'3일 내에 배송이 시작되며, 문자로 안내드려요'}
-      />
-      <St.Line />
-      <St.Title>주문 정보</St.Title>
-      <ProductInfo getOrderSheetStickerInfo={getOrderSheetStickerInfo} />
-      <St.LightLine />
-      <St.PriceContainer>
-        <PaymentMini getOrderAmountRes={getOrderAmountRes} />
-      </St.PriceContainer>
+      <St.Container>
+        <Result
+          mainText={'결제가 완료되었어요'}
+          description={'3일 내에 배송이 시작되며, 문자로 안내드려요'}
+        />
+        <St.Line />
+        <St.Title>주문 정보</St.Title>
+        <ProductInfo getOrderSheetStickerInfo={getOrderSheetStickerInfo} />
+        <St.LightLine />
+        <St.PriceContainer>
+          <PaymentMini getOrderAmountRes={getOrderAmountRes} />
+        </St.PriceContainer>
+      </St.Container>
     </PageLayout>
   );
 };
@@ -35,6 +37,9 @@ const CompletePage = () => {
 export default CompletePage;
 
 const St = {
+  Container: styled.section`
+    height: calc(100vh - 12.6rem);
+  `,
   Line: styled.hr`
     height: 1.3rem;
 
