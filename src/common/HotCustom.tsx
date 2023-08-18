@@ -18,7 +18,7 @@ const HotCustom = ({ isList }: { isList: boolean }) => {
   const { response, error, loading } = useGetHotCustom();
 
   return (
-    <St.HotCustomSection>
+    <>
       <St.Header>
         <St.HotCustomButton type='button' onClick={handleClickHotCustom}>
           <St.HotCustomTitle>HOT CUSTOM</St.HotCustomTitle>
@@ -60,15 +60,12 @@ const HotCustom = ({ isList }: { isList: boolean }) => {
             })}
         </ScrollContainer>
       </St.HotCustomWrapper>
-    </St.HotCustomSection>
+    </>
   );
 };
 
 const St = {
-  HotCustomSection: styled.section`
-    padding-left: 2rem;
-  `,
-
+  // HotCustomSection padding-left 삭제로, 스타일컴포넌트 아예 삭제
   Header: styled.header`
     display: flex;
     justify-content: start;
@@ -90,6 +87,8 @@ const St = {
   `,
 
   HotCustomTitle: styled.h2`
+    margin-left: 2rem;
+
     ${({ theme }) => theme.fonts.title_eng_bold_20};
     color: ${({ theme }) => theme.colors.gray8};
   `,
@@ -104,7 +103,6 @@ const St = {
     flex-direction: row;
     gap: 1.2rem;
     justify-content: space-between;
-    margin-right: 1.2rem;
 
     .scroll-container {
       display: flex;
@@ -113,6 +111,8 @@ const St = {
 
       height: 28rem;
       width: 100%;
+
+      padding: 0rem 2rem;
     }
   `,
 
