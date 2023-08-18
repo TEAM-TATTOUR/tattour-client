@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-// import PriceLayout from '../../../components/Custom/Common/PriceLayout';
+import PriceLayout from '../../../components/Custom/Common/PriceLayout';
 import AdditionalRequestLayout from '../../../components/Custom/HaveDesign/AdditionalRequest/AdditionalRequestLayout';
 import CustomThemeLayout from '../../../components/Custom/HaveDesign/CustomTheme/CustomThemeLayout';
-// import ReceiptLayout from '../../../components/Custom/HaveDesign/Receipt/ReceiptLayout';
+import ReceiptLayout from '../../../components/Custom/HaveDesign/Receipt/ReceiptLayout';
 import CustomReferenceLayout from '../../../components/Custom/HaveDesign/Reference/CustomReferenceLayout';
 import StylingColorLayout from '../../../components/Custom/HaveDesign/SelectColor/StylingColorLayout';
 import SelectKeywordLayout from '../../../components/Custom/HaveDesign/SelectKeyword/SelectKeywordLayout';
@@ -92,11 +92,11 @@ const HaveDesignCustomPage = () => {
     case 5:
       return <AdditionalRequestLayout setStep={setStep} demand={demand} setDemand={setDemand} />;
 
-    // case 6:
-    //   return <PriceLayout setStep={setStep} />;
+    case 6:
+      return <PriceLayout setStep={setStep} />;
 
-    // case 7:
-    //   return <ReceiptLayout />;
+    case 7:
+      return <ReceiptLayout />;
   }
 };
 
