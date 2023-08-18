@@ -7,7 +7,7 @@ import MyTattoo from './page/MyTattoo';
 import MyTattooDetail from './page/MyTattooDetail';
 import ChargePage from './page/PointCharge/ChargePage';
 import TransferPage from './page/PointCharge/TransferPage';
-import SelectCustomLayout from './page/Custom/Common/SelectCustomLayout';
+import SelectCustomLayout from './components/Custom/Common/Select/SelectCustomLayout';
 import CompletePage from './page/Order/CompletePage';
 import OrderPage from './page/Order/OrderPage';
 

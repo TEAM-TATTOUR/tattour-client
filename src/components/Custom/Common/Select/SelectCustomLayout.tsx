@@ -1,12 +1,12 @@
 import { styled } from 'styled-components';
-import SelectCustom from '../../../components/Custom/Common/SelectCustom';
-import Header from '../../../components/Header';
+import SelectCustom from './SelectCustom';
+import Header from '../../../Header';
 import React, { useState } from 'react';
-import PageLayout from '../../../components/PageLayout';
-import { IcCancelDark } from '../../../assets/icon';
+import PageLayout from '../../../PageLayout';
+import { IcCancelDark } from '../../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
-import SelectCustomFooter from '../../../components/Custom/Common/SelectCustomFooter';
-import SelectCustomPolicy from '../../../components/Custom/Common/SelectCustomPolicy';
+import SelectCustomFooter from './SelectCustomFooter';
+import SelectCustomPolicy from './SelectCustomPolicy';
 
 interface SelectCustomLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;

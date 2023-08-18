@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import ChargePointModal from '../../../common/Modal/ChargePointModal/ChargePointModal';
+import ChargePointModal from '../../../../common/Modal/ChargePointModal/ChargePointModal';
 import React, { useState } from 'react';
 
 interface SelectCustomFooterProps {

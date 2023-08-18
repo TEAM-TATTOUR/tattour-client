@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SelectCustomLayout from './SelectCustomLayout';
+import SelectCustomLayout from '../../../components/Custom/Common/Select/SelectCustomLayout';
 import CustomSizePage from './CustomSizePage';
 
 const CommonCustomPage = () => {
