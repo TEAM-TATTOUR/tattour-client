@@ -12,7 +12,7 @@ import CompletePage from './page/Order/CompletePage';
 import OrderPage from './page/Order/OrderPage';
 
 import OnBoardingPage from './page/Custom/Common/OnBoardingPage';
-import CustomSizePage from './page/Custom/Common/CustomSizePage';
+import CustomSizeLayout from './components/Custom/Common/Size/CustomSizeLayout';
 import CustomImgLayout from './components/Custom/NoDesign/Img/CustomImgLayout';
 import CustomRequestLayout from './components/Custom/NoDesign/Request/CustomRequestLayout';
 
@@ -55,7 +55,7 @@ const Router = () => {
         <Route path='/styling-color' element={<StylingColorLayout />} />
         <Route path='/select-keyword' element={<SelectKeywordLayout />} />
         <Route path='/onboarding' element={<OnBoardingPage />} />
-        <Route path='/custom-size' element={<CustomSizePage />} />
+        <Route path='/custom-size' element={<CustomSizeLayout />} />
         <Route path='/custom-img' element={<CustomImgLayout />} />
         <Route path='/custom-request' element={<CustomRequestLayout />} />
         <Route path='/custom-theme' element={<CustomThemeLayout />} />

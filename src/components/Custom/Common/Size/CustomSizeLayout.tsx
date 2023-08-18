@@ -1,12 +1,12 @@
 import { styled } from 'styled-components';
-import CustomSelectSize from '../../../components/Custom/Common/CustomSelectSize';
-import Header from '../../../components/Header';
-import CancelBtn from '../../../common/Header/CancelBtn';
-import ProgressBar from '../../../common/ProgressBar';
-import PageLayout from '../../../components/PageLayout';
+import CustomSelectSize from './CustomSelectSize';
+import Header from '../../../Header';
+import CancelBtn from '../../../../common/Header/CancelBtn';
+import ProgressBar from '../../../../common/ProgressBar';
+import PageLayout from '../../../PageLayout';
 import { useState } from 'react';
-import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import NoDesignFooter from '../../../components/Custom/NoDesign/NoDesignFooter';
+import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import NoDesignFooter from '../../NoDesign/NoDesignFooter';
 
 interface CustomSizeLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
