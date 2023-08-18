@@ -10,11 +10,12 @@ import SelectCustomPolicy from '../../../components/Custom/Common/SelectCustomPo
 
 interface SelectPageProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  setCustomId: React.Dispatch<React.SetStateAction<number | undefined>>;
   haveDesign: boolean;
   setHaveDesign: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SelectPage = ({ setStep, haveDesign, setHaveDesign }: SelectPageProps) => {
+const SelectPage = ({ setStep, setCustomId, haveDesign, setHaveDesign }: SelectPageProps) => {
   const navigate = useNavigate();
 
   const [isActiveNext, setIsActiveNext] = useState(false);
@@ -34,7 +35,12 @@ const SelectPage = ({ setStep, haveDesign, setHaveDesign }: SelectPageProps) => 
     <PageLayout
       renderHeader={renderSelectCustomPageHeader}
       footer={
-        <SelectCustomFooter isActiveNext={isActiveNext} haveDesign={haveDesign} setStep={setStep} />
+        <SelectCustomFooter
+          isActiveNext={isActiveNext}
+          haveDesign={haveDesign}
+          setStep={setStep}
+          setCustomId={setCustomId}
+        />
       }
     >
       <SelectCustom setIsActiveNext={setIsActiveNext} setHaveDesign={setHaveDesign} />

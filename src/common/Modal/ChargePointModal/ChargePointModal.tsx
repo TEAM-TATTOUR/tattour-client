@@ -7,9 +7,15 @@ interface ChargePointModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
   haveDesign: boolean;
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  setCustomId: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
 
-const ChargePointModal = ({ setModalOn, haveDesign, setStep }: ChargePointModalProps) => {
+const ChargePointModal = ({
+  setModalOn,
+  haveDesign,
+  setStep,
+  setCustomId,
+}: ChargePointModalProps) => {
   const { response, error, loading } = useGetUserProfile();
 
   const [currPoint, setCurrPoint] = useState(0);
@@ -59,6 +65,7 @@ const ChargePointModal = ({ setModalOn, haveDesign, setStep }: ChargePointModalP
           isEnoughPoint={isEnoughPoint}
           haveDesign={haveDesign}
           setStep={setStep}
+          setCustomId={setCustomId}
         />
       </ModalPortal>
     )

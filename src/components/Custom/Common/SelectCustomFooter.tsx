@@ -6,9 +6,15 @@ interface SelectCustomFooterProps {
   isActiveNext: boolean;
   haveDesign: boolean;
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  setCustomId: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
 
-const SelectCustomFooter = ({ isActiveNext, haveDesign, setStep }: SelectCustomFooterProps) => {
+const SelectCustomFooter = ({
+  isActiveNext,
+  haveDesign,
+  setStep,
+  setCustomId,
+}: SelectCustomFooterProps) => {
   const [modalOn, setModalOn] = useState(false);
 
   const handleClickFooter = () => {
@@ -22,7 +28,12 @@ const SelectCustomFooter = ({ isActiveNext, haveDesign, setStep }: SelectCustomF
         <St.FooterText>다음</St.FooterText>
       </St.SelectCustomFooter>
       {modalOn && (
-        <ChargePointModal setModalOn={setModalOn} haveDesign={haveDesign} setStep={setStep} />
+        <ChargePointModal
+          setModalOn={setModalOn}
+          haveDesign={haveDesign}
+          setStep={setStep}
+          setCustomId={setCustomId}
+        />
       )}
     </>
   );

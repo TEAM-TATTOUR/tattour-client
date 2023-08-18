@@ -16,6 +16,7 @@ interface ChargePointModalFormProps {
   isEnoughPoint: boolean;
   haveDesign: boolean;
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  setCustomId: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
 
 const ChargePointModalForm = ({
@@ -31,6 +32,7 @@ const ChargePointModalForm = ({
   isEnoughPoint,
   haveDesign,
   setStep,
+  setCustomId,
 }: ChargePointModalFormProps) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -50,6 +52,7 @@ const ChargePointModalForm = ({
         //   },
         // });
         setStep((prev) => prev + 1);
+        setCustomId(data.data.customId);
       } catch (err) {
         // navigate("/error") //에러 처리 추가 예정
       }
