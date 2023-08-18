@@ -23,7 +23,7 @@ const CustomSizePage = ({ setStep, size, setSize, haveDesign }: CustomSizePagePr
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
-  const navigateURL = haveDesign ? '/haveDesgin' : '/noDesign';
+  const navigateURL = haveDesign ? '/haveDesign' : '/noDesign';
 
   // const [size, setSize] = useState('');
 
