@@ -4,10 +4,8 @@ import Header from '../../../components/Header';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import ProgressBar from '../../../common/ProgressBar';
 import PageLayout from '../../../components/PageLayout';
-import NextFooter from '../../../common/Footer/NextFooter';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
-import { useLocation, useNavigate } from 'react-router-dom';
 import NoDesignFooter from '../../../components/Custom/NoDesign/NoDesignFooter';
 
 interface CustomSizePageProps {
