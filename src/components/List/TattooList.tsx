@@ -56,7 +56,9 @@ const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) 
           </St.FilterBtn>
         ))}
       </St.BtnContainer>
-      <St.CountText>전체 {response.length}개</St.CountText>
+      <St.CountText>
+        전체 <span>{response.length}</span>개
+      </St.CountText>
       <St.CardContainer>
         {!loading &&
           !error &&
@@ -115,6 +117,10 @@ const St = {
     margin: 2.8rem 0rem 1.6rem 2.2rem;
     color: ${({ theme }) => theme.colors.gray4};
     ${({ theme }) => theme.fonts.body_medium_14};
+
+    & > span {
+      ${({ theme }) => theme.fonts.body_semibold_14};
+    }
   `,
   CardContainer: styled.section`
     display: grid;
