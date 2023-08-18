@@ -7,182 +7,129 @@ import useGetGenre, { GenreItemProps } from '../../libs/hooks/list/useGetGenre';
 import useGetStyle, { StyleItemProps } from '../../libs/hooks/list/useGetStyle';
 
 interface FilterBottomProps {
-  isSortOpen: boolean;
-  setSortOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isGenreOpen: boolean;
-  setGenreOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isStyleOpen: boolean;
-  setStyleOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isSheetOpen: number;
+  setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
   buttonName: string[];
   setButtonName: React.Dispatch<React.SetStateAction<string[]>>;
-  setSelected: React.Dispatch<React.SetStateAction<boolean>>;
+  defaultName: string[];
 }
 
 const FilterBottom = ({
-  isSortOpen,
-  setSortOpen,
-  isGenreOpen,
-  setGenreOpen,
-  isStyleOpen,
-  setStyleOpen,
+  isSheetOpen,
+  setSheetOpen,
   buttonName,
   setButtonName,
-  setSelected,
+  defaultName,
 }: FilterBottomProps) => {
-  useEffect(() => {
-    setSelected(false);
-  }, []);
+  const SORT_INDEX = 0;
+  const GENRE_INDEX = 1;
+  const STYLE_INDEX = 2;
 
   const { genreResponse } = useGetGenre();
   const { styleResponse } = useGetStyle();
 
-  const genreData = genreResponse.map((genre: GenreItemProps) => genre.name);
-  const styleData = styleResponse.map((style: StyleItemProps) => style.name);
-
-  const FILTER = [
-    {
-      type: '정렬',
-      isOpen: isSortOpen,
-      onClose: () => setSortOpen(false),
-      onTap: (filter: boolean[]) => {
-        const newFilterTag = [...filterTag];
-        newFilterTag[0] = filter;
-        setFilterTag(newFilterTag);
-        setSortOpen(false);
-
-        const trueIdx = filterTag[0].indexOf(true);
-
-        const newSelectedTag = [...selectedTag];
-        newSelectedTag[0] = FILTER[0].data[trueIdx];
-        setSelectedTag(newSelectedTag);
-      },
-      data: ['인기 순', '가격 낮은 순', '가격 높은 순'],
-    },
-    {
-      type: '장르',
-      isOpen: isGenreOpen,
-      onClose: () => setGenreOpen(false),
-      onTap: (filter: boolean[]) => {
-        const newFilterTag = [...filterTag];
-        newFilterTag[1] = filter;
-        setFilterTag(newFilterTag);
-        setGenreOpen(false);
-
-        const trueIdx = filterTag[1].indexOf(true);
-
-        const newSelectedTag = [...selectedTag];
-        newSelectedTag[1] = FILTER[1].data[trueIdx];
-        setSelectedTag(newSelectedTag);
-      },
-      data: genreData,
-    },
-    {
-      type: '스타일',
-      isOpen: isStyleOpen,
-      onClose: () => {
-        setStyleOpen(false);
-      },
-      onTap: (filter: boolean[]) => {
-        const newFilterTag = [...filterTag];
-        newFilterTag[2] = filter;
-        setFilterTag(newFilterTag);
-        setStyleOpen(false);
-
-        const trueIdx = filterTag[2].indexOf(true);
-
-        const newSelectedTag = [...selectedTag];
-        newSelectedTag[2] = FILTER[2].data[trueIdx];
-        setSelectedTag(newSelectedTag);
-      },
-      data: styleData,
-    },
+  // 필터(바텀시트)의 각 태그명
+  const DATA = [
+    ['인기 순', '가격 낮은 순', '가격 높은 순'],
+    genreResponse.map((genre: GenreItemProps) => genre.name),
+    styleResponse.map((style: StyleItemProps) => style.name),
   ];
-
-  const tagRefs = useRef<HTMLParagraphElement[]>([]);
-  const filterRef = useRef<HTMLElement>(null);
-  const [selectedTag, setSelectedTag] = useState(buttonName); // 선택한 태그 저장
-
+  const [selectedTag, setSelectedTag] = useState(buttonName); // 필터 버튼명(선택한 태그명)을 임시로 관리하는 state
   const [filterTag, setFilterTag] = useState([
-    [false, false, false],
-    [false, false, false, false, false, false],
-    [false, false, false, false, false, false],
+    new Array(DATA[SORT_INDEX].length).fill(false),
+    new Array(DATA[GENRE_INDEX].length).fill(false),
+    new Array(DATA[STYLE_INDEX].length).fill(false),
   ]);
 
-  useEffect(() => {
+  // 바텀시트 내 각 태그 ref
+  const tagRefs = useRef<HTMLParagraphElement[]>([]);
+
+  // backdrop 클릭 시 바텀시트 꺼지는 함수
+  const onTapBack = (filter: boolean[]) => {
     const newFilterTag = [...filterTag];
-    newFilterTag[0] = [false, false, false];
-    newFilterTag[1] = genreResponse.map((item) => buttonName[1] === item.name);
-    newFilterTag[2] = styleResponse.map((item) => buttonName[2] === item.name);
+    newFilterTag[isSheetOpen] = filter;
     setFilterTag(newFilterTag);
-  }, [genreResponse, styleResponse]);
+
+    setSheetOpen(-1);
+
+    const trueIdx = filterTag[isSheetOpen].indexOf(true);
+
+    const newSelectedTag = [...selectedTag];
+    newSelectedTag[isSheetOpen] = DATA[isSheetOpen][trueIdx];
+    setSelectedTag(newSelectedTag);
+  };
 
   const handleClickTag = (tag: string, index: number, filterIdx: number) => {
     const newSelectedTag = [...selectedTag];
     if (selectedTag[filterIdx] === tag) {
-      newSelectedTag[filterIdx] = FILTER[filterIdx].type;
+      newSelectedTag[filterIdx] = defaultName[isSheetOpen];
     } else {
       newSelectedTag[filterIdx] = tag;
     }
     setSelectedTag(newSelectedTag);
 
-    // 태그 선택은 하나씩
     tagRefs.current.forEach((el: HTMLParagraphElement) => {
       if (!el) return;
       if (tagRefs.current.indexOf(el) === index) {
-        // 클릭할 때마다 토글 구현
-        if (tagRefs.current[index].classList[2] === 'checked') {
+        if (tagRefs.current[index].classList.contains('checked')) {
           tagRefs.current[index].classList.remove('checked');
         } else {
           tagRefs.current[index].classList.add('checked');
         }
       } else {
-        if (el.classList[2] === 'checked') {
+        if (el.classList.contains('checked')) {
           el.classList.remove('checked');
         }
       }
     });
   };
 
-  const handleClickButton = (onClose: () => void, filterIdx: number) => {
-    onClose(); // 모달 내리기
+  const handleClickButton = (filterIdx: number) => {
+    setSheetOpen(-1);
 
     const newTag = [...filterTag];
-    if (selectedTag[filterIdx] === FILTER[filterIdx].type) {
-      newTag[filterIdx] = FILTER[filterIdx].data.map(() => false);
+    if (selectedTag[filterIdx] === defaultName[isSheetOpen]) {
+      newTag[filterIdx] = DATA[filterIdx].map(() => false);
     } else {
-      newTag[filterIdx] = FILTER[filterIdx].data.map((_, idx) => {
-        return idx === FILTER[filterIdx].data.indexOf(selectedTag[filterIdx]);
+      newTag[filterIdx] = DATA[filterIdx].map((_, idx) => {
+        return idx === DATA[filterIdx].indexOf(selectedTag[filterIdx]);
       });
     }
-
     setFilterTag(newTag);
 
-    tagRefs.current.forEach(() => {
-      const newButtonName = [...buttonName];
-      newButtonName[filterIdx] = selectedTag[filterIdx];
-      setButtonName(newButtonName);
-    });
+    const newButtonName = [...buttonName];
+    newButtonName[filterIdx] = selectedTag[filterIdx];
+    setButtonName(newButtonName);
   };
+
+  useEffect(() => {
+    const newFilterTag = [...filterTag];
+    newFilterTag[SORT_INDEX] = [false, false, false];
+    newFilterTag[GENRE_INDEX] = genreResponse.map((item) => buttonName[GENRE_INDEX] === item.name);
+    newFilterTag[STYLE_INDEX] = styleResponse.map((item) => buttonName[STYLE_INDEX] === item.name);
+    setFilterTag(newFilterTag);
+  }, [genreResponse, styleResponse]);
 
   return (
     <St.Wrapper>
-      {FILTER.map((filter, filterIdx) => (
+      {isSheetOpen !== -1 && (
         <CustomSheet
-          key={filter.type}
-          isOpen={filter.isOpen}
-          onClose={filter.onClose}
+          isOpen={isSheetOpen !== -1}
+          onClose={() => {
+            setSheetOpen(-1);
+          }}
           detent='content-height'
           disableDrag={true}
         >
           <Sheet.Container>
             <Sheet.Header disableDrag={true} />
-            <Sheet.Content ref={filterRef}>
-              {filter.data.map((el, idx) => (
+            <Sheet.Content>
+              {DATA[isSheetOpen].map((el, idx) => (
                 <St.TagBox
                   key={idx}
-                  onClick={() => handleClickTag(el, idx, filterIdx)}
+                  onClick={() => handleClickTag(el, idx, isSheetOpen)}
                   ref={(refEl: HTMLParagraphElement) => (tagRefs.current[idx] = refEl)}
-                  className={filterTag[filterIdx][idx] ? 'checked' : ''}
+                  className={filterTag[isSheetOpen][idx] ? 'checked' : ''}
                 >
                   <span></span>
                   {el}
@@ -191,18 +138,15 @@ const FilterBottom = ({
               ))}
 
               <St.Footer>
-                <St.Button
-                  type='button'
-                  onClick={() => handleClickButton(filter.onClose, filterIdx)}
-                >
+                <St.Button type='button' onClick={() => handleClickButton(isSheetOpen)}>
                   적용하기
                 </St.Button>
               </St.Footer>
             </Sheet.Content>
           </Sheet.Container>
-          <Sheet.Backdrop onTap={() => filter.onTap(filterTag[filterIdx])} />
+          <Sheet.Backdrop onTap={() => onTapBack(filterTag[isSheetOpen])} />
         </CustomSheet>
-      ))}
+      )}
     </St.Wrapper>
   );
 };
