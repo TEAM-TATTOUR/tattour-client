@@ -93,9 +93,13 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
     //개수 제한 적용해주기
     const filesToEncode = Array.from(uploadImage).slice(0, MAX_FILES - previewURL.length);
     encodeFile(filesToEncode);
+
+    //중복 이미지 연속 선택 가능하도록 초기화 해주기
+    const newDataTransfer = new DataTransfer();
+    e.target.files = newDataTransfer.files;
   };
 
-  //파일을 URL로 변환
+  //파일을 URL로 변환 후 previewURL에 URL 추가
   const encodeFile = async (fileBlob: File[]) => {
     for (let i = 0; i < fileBlob.length; i++) {
       const reader = new FileReader();
@@ -106,7 +110,7 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
         reader.onerror = reject;
         reader.readAsDataURL(file);
       });
-
+      //미리보기 state에 url 추가
       setPreviewURL((prevURLs) => [...prevURLs, dataUrl]);
     }
   };
