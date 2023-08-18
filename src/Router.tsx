@@ -7,7 +7,7 @@ import MyTattoo from './page/MyTattoo';
 import MyTattooDetail from './page/MyTattooDetail';
 import ChargePage from './page/PointCharge/ChargePage';
 import TransferPage from './page/PointCharge/TransferPage';
-import SelectPage from './page/Custom/Common/SelectPage';
+import SelectCustomLayout from './page/Custom/Common/SelectCustomLayout';
 import CompletePage from './page/Order/CompletePage';
 import OrderPage from './page/Order/OrderPage';
 
@@ -51,7 +51,7 @@ const Router = () => {
         </Route>
         <Route path='/point-charge' element={<ChargePage />} />
         <Route path='/point-transfer' element={<TransferPage />} />
-        <Route path='/select' element={<SelectPage />} />
+        <Route path='/select' element={<SelectCustomLayout />} />
         <Route path='/styling-color' element={<StylingColorLayout />} />
         <Route path='/select-keyword' element={<SelectKeywordLayout />} />
         <Route path='/onboarding' element={<OnBoardingPage />} />

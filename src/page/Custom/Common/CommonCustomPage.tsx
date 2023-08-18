@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SelectPage from './SelectPage';
+import SelectCustomLayout from './SelectCustomLayout';
 import CustomSizePage from './CustomSizePage';
 
 const CommonCustomPage = () => {
@@ -17,7 +17,7 @@ const CommonCustomPage = () => {
   switch (step) {
     case 0:
       return (
-        <SelectPage
+        <SelectCustomLayout
           setStep={setStep}
           setCustomId={setCustomId}
           haveDesign={haveDesign}

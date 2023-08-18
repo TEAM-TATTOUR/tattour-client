@@ -8,14 +8,19 @@ import { useNavigate } from 'react-router-dom';
 import SelectCustomFooter from '../../../components/Custom/Common/SelectCustomFooter';
 import SelectCustomPolicy from '../../../components/Custom/Common/SelectCustomPolicy';
 
-interface SelectPageProps {
+interface SelectCustomLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   setCustomId: React.Dispatch<React.SetStateAction<number | undefined>>;
   haveDesign: boolean;
   setHaveDesign: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SelectPage = ({ setStep, setCustomId, haveDesign, setHaveDesign }: SelectPageProps) => {
+const SelectCustomLayout = ({
+  setStep,
+  setCustomId,
+  haveDesign,
+  setHaveDesign,
+}: SelectCustomLayoutProps) => {
   const navigate = useNavigate();
 
   const [isActiveNext, setIsActiveNext] = useState(false);
@@ -49,7 +54,7 @@ const SelectPage = ({ setStep, setCustomId, haveDesign, setHaveDesign }: SelectP
   );
 };
 
-export default SelectPage;
+export default SelectCustomLayout;
 
 const St = {
   BlankSection: styled.div`
