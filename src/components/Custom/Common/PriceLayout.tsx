@@ -12,7 +12,11 @@ import PriceHeading from '../PriceHeading';
 import Header from '../../Header';
 import PageLayout from '../../PageLayout';
 
-const PriceLayout = () => {
+interface PriceLayoutProps {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const PriceLayout = ({ setStep }: PriceLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
   const [count, setCount] = useState(1);
@@ -34,7 +38,6 @@ const PriceLayout = () => {
   const isCompleted = location.state ? location.state.customInfo.isCompleted : null;
 
   const CUSTOM_VIEW_COUNT = haveDesign ? 7 : 4;
-  const backNavigateURL = haveDesign ? '/haveDesign' : '/noDesign';
 
   // useEffect(() => {
   //   if (!location.state) navigate('/onboarding');
@@ -54,15 +57,7 @@ const PriceLayout = () => {
   const renderPriceLayoutHeader = () => {
     return (
       <Header
-        leftSection={
-          <IcBackDark
-            onClick={() =>
-              navigate(backNavigateURL, {
-                state: location.state ? location.state : null,
-              })
-            }
-          />
-        }
+        leftSection={<IcBackDark onClick={() => setStep((prev) => prev - 1)} />}
         title='커스텀 타투'
         rightSection={
           <CancelBtn
