@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, } from 'react';
 import { styled } from 'styled-components';
 import IcCircleBlack from '../../../../assets/icon/ic_circle_black.png';
 import IcCircleRainbow from '../../../../assets/icon/ic_circle_rainbow.png';
@@ -8,16 +8,16 @@ interface SelectColorProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   isColoredState: boolean;
   setIsColored: React.Dispatch<React.SetStateAction<boolean>>;
-  activeBtn: string;
-  setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
+  selectedColorMode: string;
+  setSelectedColorMode: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const SelectColor = ({
   setIsActiveNext,
   setIsColored,
   isColoredState,
-  activeBtn,
-  setActiveBtn,
+  selectedColorMode,
+  setSelectedColorMode,
 }: SelectColorProps) => {
   const CASE_BTN_DATA = useMemo(
     () => [
@@ -39,30 +39,30 @@ const SelectColor = ({
 
   useEffect(() => {
     if (isColoredState) {
-      setActiveBtn(isColoredState ? 'color' : 'black');
+      setSelectedColorMode(isColoredState ? 'color' : 'black');
     }
     // 버튼 하나씩만 누를 수 있도록
     CASE_BTN_DATA.forEach((btn) => {
-      if (btn.id === activeBtn) {
+      if (btn.id === selectedColorMode) {
         btn.isSelected = true;
       } else {
         btn.isSelected = false;
       }
     });
 
-    if (activeBtn === 'black') {
+    if (selectedColorMode === 'black') {
       setIsColored(false);
     } else {
       setIsColored(true);
     }
 
-    if (activeBtn) {
+    if (selectedColorMode) {
       setIsActiveNext(true);
     }
-  }, [isColoredState, activeBtn]);
+  }, [isColoredState, selectedColorMode]);
 
   const handleClickSelBtn = (id: string) => {
-    setActiveBtn(id);
+    setSelectedColorMode(id);
   };
 
   return (
@@ -80,7 +80,7 @@ const SelectColor = ({
                 title={title}
                 src={src}
                 onClick={() => handleClickSelBtn(id)}
-                activeBtn={activeBtn}
+                activeBtn={selectedColorMode}
               />
             );
           })}

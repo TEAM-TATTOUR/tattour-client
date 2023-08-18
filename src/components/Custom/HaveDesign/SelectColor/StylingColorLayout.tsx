@@ -12,16 +12,16 @@ interface StylingColorLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   isColoredState: boolean;
   setIsColored: React.Dispatch<React.SetStateAction<boolean>>;
-  activeBtn: string;
-  setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
+  selectedColorMode: string;
+  setSelectedColorMode: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const StylingColorLayout = ({
   setStep,
   isColoredState,
   setIsColored,
-  activeBtn,
-  setActiveBtn,
+  selectedColorMode,
+  setSelectedColorMode,
 }: StylingColorLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
@@ -57,8 +57,8 @@ const StylingColorLayout = ({
         setIsActiveNext={setIsActiveNext}
         setIsColored={setIsColored}
         isColoredState={isColoredState}
-        activeBtn={activeBtn}
-        setActiveBtn={setActiveBtn}
+        selectedColorMode={selectedColorMode}
+        setSelectedColorMode={setSelectedColorMode}
       />
     </PageLayout>
   );

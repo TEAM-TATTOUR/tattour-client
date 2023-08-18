@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import PriceLayout from '../../../components/Custom/Common/PriceLayout';
+// import PriceLayout from '../../../components/Custom/Common/PriceLayout';
 import AdditionalRequestLayout from '../../../components/Custom/HaveDesign/AdditionalRequest/AdditionalRequestLayout';
 import CustomThemeLayout from '../../../components/Custom/HaveDesign/CustomTheme/CustomThemeLayout';
-import ReceiptLayout from '../../../components/Custom/HaveDesign/Receipt/ReceiptLayout';
+// import ReceiptLayout from '../../../components/Custom/HaveDesign/Receipt/ReceiptLayout';
 import CustomReferenceLayout from '../../../components/Custom/HaveDesign/Reference/CustomReferenceLayout';
 import StylingColorLayout from '../../../components/Custom/HaveDesign/SelectColor/StylingColorLayout';
 import SelectKeywordLayout from '../../../components/Custom/HaveDesign/SelectKeyword/SelectKeywordLayout';
@@ -20,7 +20,7 @@ const HaveDesignCustomPage = () => {
 
   //step 2: 색상 선택 state
   const [isColoredState, setIsColored] = useState(false);
-  const [activeBtn, setActiveBtn] = useState('');
+  const [selectedColorMode, setSelectedColorMode] = useState('');
 
   //step 3: 키워드 선택 state
   const [styles, setStyles] = useState<number[]>([]);
@@ -62,8 +62,8 @@ const HaveDesignCustomPage = () => {
           setStep={setStep}
           isColoredState={isColoredState}
           setIsColored={setIsColored}
-          activeBtn={activeBtn}
-          setActiveBtn={setActiveBtn}
+          selectedColorMode={selectedColorMode}
+          setSelectedColorMode={setSelectedColorMode}
         />
       );
 
