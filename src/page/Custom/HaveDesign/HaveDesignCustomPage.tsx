@@ -92,11 +92,11 @@ const HaveDesignCustomPage = () => {
     case 5:
       return <AdditionalRequestLayout setStep={setStep} demand={demand} setDemand={setDemand} />;
 
-    case 6:
-      return <PriceLayout setStep={setStep} />;
+    // case 6:
+    //   return <PriceLayout setStep={setStep} />;
 
-    case 7:
-      return <ReceiptLayout />;
+    // case 7:
+    //   return <ReceiptLayout />;
   }
 };
 
