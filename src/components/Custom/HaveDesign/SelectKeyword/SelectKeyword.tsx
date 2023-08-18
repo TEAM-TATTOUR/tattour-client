@@ -30,6 +30,7 @@ const SelectKeyword = ({
     { id: number; value: string; checked: boolean }[]
   >([]);
 
+  //통신 완료하면 키워드들 불러오기
   useEffect(() => {
     if (!genreLoading && !genreError) {
       const updatedGenreKeywords = genreResponse.map((genre: GenreItemProps) => ({
@@ -54,13 +55,9 @@ const SelectKeyword = ({
   useEffect(() => {
     const checkedStyle = styleKeywords.filter((keyword) => keyword.checked);
     const checkedGenre = genreKeywords.filter((keyword) => keyword.checked);
-    const checkedStyleKeywords = checkedStyle.map((style) => style.id);
-    const checkedGenreKeywords = checkedGenre.map((genre) => genre.id);
     const checkedKeywords = checkedStyle.length + checkedGenre.length;
 
     setIsActiveNext(checkedKeywords >= 1);
-    setStyles(checkedStyleKeywords);
-    setThemes(checkedGenreKeywords);
   }, [genreKeywords, styleKeywords]);
 
   //키워드 클릭 시 개수 제한에 안 걸리면 버튼 눌리고 선택된 키워드 저장되도록 설정
@@ -77,6 +74,10 @@ const SelectKeyword = ({
       } else {
         updatedKeywords[index].checked = !updatedKeywords[index].checked;
         setGenreKeywords(updatedKeywords);
+        //클릭해서 체크 반영되면 state에도 선택된 값 id 저장해주기
+        const checkedGenre = genreKeywords.filter((keyword) => keyword.checked);
+        const checkedGenreKeywords = checkedGenre.map((genre) => genre.id);
+        setThemes(checkedGenreKeywords);
       }
     } else if (type === 'style') {
       const updatedKeywords = [...styleKeywords];
@@ -86,6 +87,10 @@ const SelectKeyword = ({
       } else {
         updatedKeywords[index].checked = !updatedKeywords[index].checked;
         setStyleKeywords(updatedKeywords);
+        //클릭해서 체크 반영되면 state에도 선택된 값 id 저장해주기
+        const checkedStyle = styleKeywords.filter((keyword) => keyword.checked);
+        const checkedStyleKeywords = checkedStyle.map((style) => style.id);
+        setStyles(checkedStyleKeywords);
       }
     }
   };
