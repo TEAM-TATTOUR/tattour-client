@@ -11,6 +11,9 @@ const CommonCustomPage = () => {
 
   console.log(customId, '\n', haveDesign);
 
+  // step 1: SizePage - 선택한 타투 스티거 사이즈 state
+  const [size, setSize] = useState('');
+
   switch (step) {
     case 0:
       return (
@@ -22,7 +25,9 @@ const CommonCustomPage = () => {
         />
       );
     case 1:
-      return <CustomSizePage />;
+      return (
+        <CustomSizePage setStep={setStep} size={size} setSize={setSize} haveDesign={haveDesign} />
+      );
   }
 };
 

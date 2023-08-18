@@ -8,36 +8,46 @@ import NextFooter from '../../../common/Footer/NextFooter';
 import { useEffect, useState } from 'react';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import { useLocation, useNavigate } from 'react-router-dom';
+import NoDesignFooter from '../../../components/Custom/NoDesign/NoDesignFooter';
 
-const CustomSizePage = () => {
-  const CUSTOM_VIEW_COUNT = 1;
+interface CustomSizePageProps {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  size: string;
+  setSize: React.Dispatch<React.SetStateAction<string>>;
+  haveDesign: boolean;
+}
+
+const CustomSizePage = ({ setStep, size, setSize, haveDesign }: CustomSizePageProps) => {
+  // const CUSTOM_VIEW_COUNT = 1;
 
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
-  const [size, setSize] = useState('');
+  const navigateURL = haveDesign ? '/haveDesgin' : '/noDesign';
 
-  const navigate = useNavigate();
-  const location = useLocation();
+  // const [size, setSize] = useState('');
 
-  const haveDesign = location.state ? location.state.haveDesign : null;
-  const customId = location.state ? location.state.customId : null;
-  const customImages = location.state ? location.state.customImages : null;
-  const handDrawingImage = location.state ? location.state.handDrawingImage : null;
-  const navigateURL = haveDesign ? '/custom-reference' : '/custom-img';
+  // const navigate = useNavigate();
+  // const location = useLocation();
 
-  const sizeState =
-    location.state && location.state.customInfo ? location.state.customInfo.size : null;
+  // const haveDesign = location.state ? location.state.haveDesign : null;
+  // const customId = location.state ? location.state.customId : null;
+  // const customImages = location.state ? location.state.customImages : null;
+  // const handDrawingImage = location.state ? location.state.handDrawingImage : null;
+  // const navigateURL = haveDesign ? '/custom-reference' : '/custom-img';
+
+  // const sizeState =
+  //   location.state && location.state.customInfo ? location.state.customInfo.size : null;
 
   // useEffect(() => {
   //   if (!location.state) navigate('/onboarding');
   // }, [location.state, navigate]);
 
-  const customInfo = {
-    viewCount: CUSTOM_VIEW_COUNT,
-    customId: customId,
-    size: size,
-  };
+  // const customInfo = {
+  //   viewCount: CUSTOM_VIEW_COUNT,
+  //   customId: customId,
+  //   size: size,
+  // };
 
   const renderCustomSizePageHeader = () => {
     return (
@@ -59,17 +69,10 @@ const CustomSizePage = () => {
     <PageLayout
       renderHeader={renderCustomSizePageHeader}
       footer={
-        <NextFooter
-          isActiveNext={isActiveNext}
-          navigateURL={navigateURL}
-          haveDesign={haveDesign}
-          customInfo={customInfo}
-          customImages={customImages}
-          handDrawingImage={handDrawingImage}
-        />
+        <NoDesignFooter isActiveNext={isActiveNext} setStep={setStep} navigateURL={navigateURL} />
       }
     >
-      <CustomSelectSize setIsActiveNext={setIsActiveNext} setSize={setSize} size={sizeState} />
+      <CustomSelectSize setIsActiveNext={setIsActiveNext} setSize={setSize} size={size} />
     </PageLayout>
   );
 };
