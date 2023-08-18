@@ -24,7 +24,6 @@ const SelectCustomLayout = ({
   const navigate = useNavigate();
 
   const [isActiveNext, setIsActiveNext] = useState(false);
-  // const [haveDesign, setHaveDesign] = useState(true);
 
   const renderSelectCustomPageHeader = () => {
     return (

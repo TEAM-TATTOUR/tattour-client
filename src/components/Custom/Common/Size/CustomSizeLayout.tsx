@@ -16,36 +16,10 @@ interface CustomSizeLayoutProps {
 }
 
 const CustomSizeLayout = ({ setStep, size, setSize, haveDesign }: CustomSizeLayoutProps) => {
-  // const CUSTOM_VIEW_COUNT = 1;
-
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
   const navigateURL = haveDesign ? '/haveDesign' : '/noDesign';
-
-  // const [size, setSize] = useState('');
-
-  // const navigate = useNavigate();
-  // const location = useLocation();
-
-  // const haveDesign = location.state ? location.state.haveDesign : null;
-  // const customId = location.state ? location.state.customId : null;
-  // const customImages = location.state ? location.state.customImages : null;
-  // const handDrawingImage = location.state ? location.state.handDrawingImage : null;
-  // const navigateURL = haveDesign ? '/custom-reference' : '/custom-img';
-
-  // const sizeState =
-  //   location.state && location.state.customInfo ? location.state.customInfo.size : null;
-
-  // useEffect(() => {
-  //   if (!location.state) navigate('/onboarding');
-  // }, [location.state, navigate]);
-
-  // const customInfo = {
-  //   viewCount: CUSTOM_VIEW_COUNT,
-  //   customId: customId,
-  //   size: size,
-  // };
 
   const renderCustomSizePageHeader = () => {
     return (

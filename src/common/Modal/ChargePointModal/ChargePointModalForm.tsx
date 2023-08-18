@@ -45,12 +45,7 @@ const ChargePointModalForm = ({
         const { data } = await api.post('/custom/apply', {
           haveDesign: haveDesign,
         });
-        // navigate('/custom-size', {
-        //   state: {
-        //     haveDesign: haveDesign,
-        //     customId: data.data.customId,
-        //   },
-        // });
+
         setStep((prev) => prev + 1);
         setCustomId(data.data.customId);
       } catch (err) {

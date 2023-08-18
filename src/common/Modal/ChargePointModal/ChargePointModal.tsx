@@ -20,7 +20,6 @@ const ChargePointModal = ({
 
   const [currPoint, setCurrPoint] = useState(0);
 
-  // const currPoint = response?.point;
   const REGISTER_FEE = 990;
 
   const [calculatedPoint, setCalculatedPoint] = useState(0);
