@@ -49,7 +49,8 @@ const HotCustom = ({ isList }: { isList: boolean }) => {
                       {discountRate ? discountRate : 5}%
                     </St.HotCustomItemDiscountRate>
                     <St.HotCustomItemPrice>
-                      {discountPrice ? discountPrice.toLocaleString() : '4,000'}원
+                      {discountPrice ? discountPrice.toLocaleString() : '4,000'}
+                      <span>원</span>
                     </St.HotCustomItemPrice>
                   </St.HotCustomItemPriceWrapper>
                   <St.HotCustomItemOriginPrice>
@@ -176,6 +177,10 @@ const St = {
   `,
   HotCustomItemPrice: styled.p`
     ${({ theme }) => theme.fonts.title_extrabold_16};
+
+    & > span {
+      ${({ theme }) => theme.fonts.title_semibold_16};
+    }
   `,
   HotCustomItemOriginPrice: styled.span`
     margin-top: 0.1rem;
