@@ -1,35 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 // 이모티콘 카운팅 관련 라이브러리
 import GraphemeSplitter from 'grapheme-splitter';
 
+interface CustomThemeProps {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  name: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  description: string;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
+}
+
 const CustomTheme = ({
   setIsActiveNext,
+  name,
   setName,
+  description,
   setDescription,
-}: {
-  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-  setName: React.Dispatch<React.SetStateAction<string>>;
-  setDescription: React.Dispatch<React.SetStateAction<string>>;
-}) => {
+}: CustomThemeProps) => {
   //count 될 maxCount 수
   const MAX_NAME_COUNT = 10;
   const MAX_ETC_COUNT = 100;
 
   //글자 수 세기 관련 state
   const [nameInputCount, setNameInputCount] = useState(0);
-  const [etcTextAreaCount, setEtcTextAreaCount] = useState(0);
+  const [descriptionTextAreaCount, setDescriptionTextAreaCount] = useState(0);
 
-  // useEffect(() => {
-  //   //state에 있는 attachedImg 값 가져와서 미리보기 구현하기
-  //   if (!customNameState || !customDescriptionState) return;
+  const nameInputRef = useRef<HTMLInputElement | null>(null);
+  const descriptionTextAreaRef = useRef<HTMLTextAreaElement | null>(null);
+  //이모지 글자수 제대로 카운트 되게 수정 필요
+  useEffect(() => {
+    if (!name || !nameInputRef.current) return;
+    nameInputRef.current.value = name;
+    setNameInputCount(name.length);
+    setName(name);
+    setIsActiveNext(true);
 
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(attachedImages);
-  //   reader.onloadend = () => {
-  //     setPreviewURL(reader.result as string);
-  //   };
-  // }, [attachedImg, setCustomMainImage]);
+    if (!description || !descriptionTextAreaRef.current) return;
+    descriptionTextAreaRef.current.value = description;
+    setDescriptionTextAreaCount(description.length);
+    setDescription(description);
+  }, [name, description]);
 
   // 이모티콘을 한 문자로 취급하여 글자 수 제한을 구현하는 함수
   const limitMaxLength = (
@@ -45,7 +56,6 @@ const CustomTheme = ({
       e.target.value = parsedValue.splice(0, MAXLength).join('');
       return;
     }
-
     return parsedValue.length;
   };
 
@@ -54,7 +64,7 @@ const CustomTheme = ({
     if (e.target.value === '') {
       setNameInputCount(0);
       setIsActiveNext(false);
-    } else if (nameInputCount && etcTextAreaCount) {
+    } else if (nameInputCount && descriptionTextAreaCount) {
       setIsActiveNext(true);
     }
 
@@ -62,22 +72,21 @@ const CustomTheme = ({
 
     if (!lengthCount) return;
     setNameInputCount(lengthCount);
-
     setName(e.target.value);
   };
 
-  const handleChangeEtcTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChangeDescriptionTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value === '') {
-      setEtcTextAreaCount(0);
+      setDescriptionTextAreaCount(0);
       setIsActiveNext(false);
-    } else if (nameInputCount && etcTextAreaCount) {
+    } else if (nameInputCount && descriptionTextAreaCount) {
       setIsActiveNext(true);
     }
 
     const lengthCount = limitMaxLength(e, MAX_ETC_COUNT);
 
     if (!lengthCount) return;
-    setEtcTextAreaCount(lengthCount);
+    setDescriptionTextAreaCount(lengthCount);
 
     setDescription(e.target.value);
   };
@@ -88,6 +97,7 @@ const CustomTheme = ({
         <St.RequestNameTitle>타투의 이름을 지어주세요</St.RequestNameTitle>
         <St.RequestNameDetail>추후 아카이브 또는 공개 시 해당 이름이 노출돼요</St.RequestNameDetail>
         <St.RequestNameInput
+          ref={nameInputRef}
           type='text'
           onChange={handleChangeNameInput}
           placeholder='ex. 우리 가족 타투, 백조 타투'
@@ -100,11 +110,12 @@ const CustomTheme = ({
       <St.RequestEtcContainer>
         <St.RequestEtcTitle>주제 및 추가설명</St.RequestEtcTitle>
         <St.RequestEtcTextArea
-          onChange={handleChangeEtcTextArea}
+          ref={descriptionTextAreaRef}
+          onChange={handleChangeDescriptionTextArea}
           placeholder='ex. 가족이 전부 외부 선으로 따져있는 라인 타투'
         />
         <St.RequestInputCount>
-          ({etcTextAreaCount}/{MAX_ETC_COUNT})
+          ({descriptionTextAreaCount}/{MAX_ETC_COUNT})
         </St.RequestInputCount>
       </St.RequestEtcContainer>
     </St.CustomRequestWrapper>

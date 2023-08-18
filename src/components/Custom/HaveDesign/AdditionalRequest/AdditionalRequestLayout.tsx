@@ -10,10 +10,11 @@ import AdditionalRequest from './AdditionalRequest';
 
 interface AdditionalRequestLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  demand: string;
   setDemand: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const AdditionalRequestLayout = ({ setStep, setDemand }: AdditionalRequestLayoutProps) => {
+const AdditionalRequestLayout = ({ setStep, demand, setDemand }: AdditionalRequestLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
@@ -39,7 +40,7 @@ const AdditionalRequestLayout = ({ setStep, setDemand }: AdditionalRequestLayout
       renderHeader={renderAdditionalRequestLayoutHeader}
       footer={<HaveDesignFooter isActiveNext={isActiveNext} setStep={setStep} />}
     >
-      <AdditionalRequest setIsActiveNext={setIsActiveNext} setDemand={setDemand} />
+      <AdditionalRequest setIsActiveNext={setIsActiveNext} demand={demand} setDemand={setDemand} />
     </PageLayout>
   );
 };

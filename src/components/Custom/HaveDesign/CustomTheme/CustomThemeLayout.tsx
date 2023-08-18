@@ -10,11 +10,19 @@ import CustomTheme from './CustomTheme';
 
 interface CustomThemeLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  name: string;
   setName: React.Dispatch<React.SetStateAction<string>>;
+  description: string;
   setDescription: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const CustomThemeLayout = ({ setStep, setName, setDescription }: CustomThemeLayoutProps) => {
+const CustomThemeLayout = ({
+  setStep,
+  name,
+  setName,
+  description,
+  setDescription,
+}: CustomThemeLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
@@ -42,7 +50,9 @@ const CustomThemeLayout = ({ setStep, setName, setDescription }: CustomThemeLayo
     >
       <CustomTheme
         setIsActiveNext={setIsActiveNext}
+        name={name}
         setName={setName}
+        description={description}
         setDescription={setDescription}
       />
     </PageLayout>
