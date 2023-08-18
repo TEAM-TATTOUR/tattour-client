@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import SelectCustomLayout from '../../../components/Custom/Common/Select/SelectCustomLayout';
-import CustomSizePage from './CustomSizePage';
+import CustomSizeLayout from './CustomSizeLayout';
 
 const CommonCustomPage = () => {
   const [step, setStep] = useState(0);
@@ -26,7 +26,7 @@ const CommonCustomPage = () => {
       );
     case 1:
       return (
-        <CustomSizePage setStep={setStep} size={size} setSize={setSize} haveDesign={haveDesign} />
+        <CustomSizeLayout setStep={setStep} size={size} setSize={setSize} haveDesign={haveDesign} />
       );
   }
 };

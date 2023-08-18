@@ -8,14 +8,14 @@ import { useState } from 'react';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import NoDesignFooter from '../../../components/Custom/NoDesign/NoDesignFooter';
 
-interface CustomSizePageProps {
+interface CustomSizeLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   size: string;
   setSize: React.Dispatch<React.SetStateAction<string>>;
   haveDesign: boolean;
 }
 
-const CustomSizePage = ({ setStep, size, setSize, haveDesign }: CustomSizePageProps) => {
+const CustomSizeLayout = ({ setStep, size, setSize, haveDesign }: CustomSizeLayoutProps) => {
   // const CUSTOM_VIEW_COUNT = 1;
 
   const [modalOn, setModalOn] = useState(false);
@@ -75,7 +75,7 @@ const CustomSizePage = ({ setStep, size, setSize, haveDesign }: CustomSizePagePr
   );
 };
 
-export default CustomSizePage;
+export default CustomSizeLayout;
 
 const St = {
   BlankSection: styled.div`
