@@ -4,15 +4,21 @@ import { IcCheckSmallPink } from '../../../../assets/icon';
 import useGetGenre, { GenreItemProps } from '../../../../libs/hooks/list/useGetGenre';
 import useGetStyle, { StyleItemProps } from '../../../../libs/hooks/list/useGetStyle';
 
+interface SelectKeywordProps {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  styles: number[];
+  setStyles: React.Dispatch<React.SetStateAction<number[]>>;
+  themes: number[];
+  setThemes: React.Dispatch<React.SetStateAction<number[]>>;
+}
+
 const SelectKeyword = ({
   setIsActiveNext,
+  styles,
   setStyles,
+  themes,
   setThemes,
-}: {
-  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-  setStyles: React.Dispatch<React.SetStateAction<number[]>>;
-  setThemes: React.Dispatch<React.SetStateAction<number[]>>;
-}) => {
+}: SelectKeywordProps) => {
   const { genreResponse, genreError, genreLoading } = useGetGenre();
   const { styleResponse, styleError, styleLoading } = useGetStyle();
 
@@ -25,54 +31,29 @@ const SelectKeyword = ({
   >([]);
 
   useEffect(() => {
-    console.log(genreResponse);
-    setGenreKeywords(
-      genreResponse.map((genre: GenreItemProps) => ({
+    if (!genreLoading && !genreError) {
+      const updatedGenreKeywords = genreResponse.map((genre: GenreItemProps) => ({
         id: genre.id,
         value: genre.name,
-        checked: false,
-      })),
-    );
+        checked: themes.includes(genre.id),
+      }));
+      setGenreKeywords(updatedGenreKeywords);
+    }
 
-    setStyleKeywords(
-      styleResponse.map((style: StyleItemProps) => ({
+    if (!styleLoading && !styleError) {
+      const updatedStyleKeywords = styleResponse.map((style: StyleItemProps) => ({
         id: style.id,
         value: style.name,
-        checked: false,
-      })),
-    );
+        checked: styles.includes(style.id),
+      }));
+      setStyleKeywords(updatedStyleKeywords);
+    }
   }, [genreResponse, styleResponse]);
 
-  const handleKeywordChange = (index: number, type: string) => {
-    const checkedStyle = styleKeywords.filter((keyword) => keyword.checked).length;
-    const checkedGenre = genreKeywords.filter((keyword) => keyword.checked).length;
-    const checkedKeywords = checkedStyle + checkedGenre;
-
-    if (type === 'genre') {
-      const updatedKeywords = [...genreKeywords];
-      //전체 개수 제한
-      if (checkedKeywords >= 3 && updatedKeywords[index].checked === false) {
-        return;
-      } else {
-        updatedKeywords[index].checked = !updatedKeywords[index].checked;
-        setGenreKeywords(updatedKeywords);
-      }
-    } else if (type === 'style') {
-      const updatedKeywords = [...styleKeywords];
-      //개수 제한
-      if (checkedKeywords >= 3 && updatedKeywords[index].checked === false) {
-        return;
-      } else {
-        updatedKeywords[index].checked = !updatedKeywords[index].checked;
-        setStyleKeywords(updatedKeywords);
-      }
-    }
-  };
-
+  //선택 개수에 따른 버튼 활성화
   useEffect(() => {
     const checkedStyle = styleKeywords.filter((keyword) => keyword.checked);
     const checkedGenre = genreKeywords.filter((keyword) => keyword.checked);
-
     const checkedStyleKeywords = checkedStyle.map((style) => style.id);
     const checkedGenreKeywords = checkedGenre.map((genre) => genre.id);
     const checkedKeywords = checkedStyle.length + checkedGenre.length;
@@ -80,7 +61,34 @@ const SelectKeyword = ({
     setIsActiveNext(checkedKeywords >= 1);
     setStyles(checkedStyleKeywords);
     setThemes(checkedGenreKeywords);
-  }, [genreKeywords, styleKeywords, setIsActiveNext, setThemes, setStyles]);
+  }, [genreKeywords, styleKeywords]);
+
+  //키워드 클릭 시 개수 제한에 안 걸리면 버튼 눌리고 선택된 키워드 저장되도록 설정
+  const handleKeywordChange = (index: number, type: string) => {
+    const checkedStyleLength = styleKeywords.filter((keyword) => keyword.checked).length;
+    const checkedGenreLength = genreKeywords.filter((keyword) => keyword.checked).length;
+    const checkedKeywordsLength = checkedStyleLength + checkedGenreLength;
+
+    if (type === 'genre') {
+      const updatedKeywords = [...genreKeywords];
+      //스타일 선택 시 개수 제한 체크
+      if (checkedKeywordsLength >= 3 && updatedKeywords[index].checked === false) {
+        return;
+      } else {
+        updatedKeywords[index].checked = !updatedKeywords[index].checked;
+        setGenreKeywords(updatedKeywords);
+      }
+    } else if (type === 'style') {
+      const updatedKeywords = [...styleKeywords];
+      //장르 선택 시 개수 제한 체크
+      if (checkedKeywordsLength >= 3 && updatedKeywords[index].checked === false) {
+        return;
+      } else {
+        updatedKeywords[index].checked = !updatedKeywords[index].checked;
+        setStyleKeywords(updatedKeywords);
+      }
+    }
+  };
 
   return (
     <St.KeywordWrapper>

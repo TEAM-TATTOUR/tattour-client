@@ -68,18 +68,32 @@ const HaveDesignCustomPage = () => {
       );
 
     case 3:
-      return <SelectKeywordLayout setStep={setStep} setStyles={setStyles} setThemes={setThemes} />;
+      return (
+        <SelectKeywordLayout
+          setStep={setStep}
+          styles={styles}
+          setStyles={setStyles}
+          themes={themes}
+          setThemes={setThemes}
+        />
+      );
 
     case 4:
       return (
-        <CustomThemeLayout setStep={setStep} setName={setName} setDescription={setDescription} />
+        <CustomThemeLayout
+          setStep={setStep}
+          name={name}
+          setName={setName}
+          description={description}
+          setDescription={setDescription}
+        />
       );
 
     case 5:
-      return <AdditionalRequestLayout setStep={setStep} setDemand={setDemand} />;
+      return <AdditionalRequestLayout setStep={setStep} demand={demand} setDemand={setDemand} />;
 
     case 6:
-      return <PriceLayout />;
+      return <PriceLayout setStep={setStep} />;
 
     case 7:
       return <ReceiptLayout />;

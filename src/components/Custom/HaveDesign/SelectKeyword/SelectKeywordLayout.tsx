@@ -11,11 +11,19 @@ import SelectKeywordInstruction from './SelectKeywordInstruction';
 
 interface SelectKeywordLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  styles: number[];
   setStyles: React.Dispatch<React.SetStateAction<number[]>>;
+  themes: number[];
   setThemes: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
-const SelectKeywordLayout = ({ setStep, setStyles, setThemes }: SelectKeywordLayoutProps) => {
+const SelectKeywordLayout = ({
+  setStep,
+  styles,
+  setStyles,
+  themes,
+  setThemes,
+}: SelectKeywordLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
@@ -45,7 +53,9 @@ const SelectKeywordLayout = ({ setStep, setStyles, setThemes }: SelectKeywordLay
       <SelectKeywordInstruction />
       <SelectKeyword
         setIsActiveNext={setIsActiveNext}
+        styles={styles}
         setStyles={setStyles}
+        themes={themes}
         setThemes={setThemes}
       />
     </PageLayout>
