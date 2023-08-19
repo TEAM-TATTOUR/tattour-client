@@ -24,12 +24,11 @@ const CustomScrollContainer = ({
 
 const St = {
   CustomScrollWrapper: styled.section`
-    padding-left: 2rem;
-
     background-color: ${({ theme }) => theme.colors.white};
   `,
 
   CustomScrollHeader: styled.header`
+    margin-left: 2.2rem;
     display: flex;
   `,
 
@@ -42,11 +41,12 @@ const St = {
     gap: 1.2rem;
     justify-content: space-between;
     margin-top: 2.2rem;
-    margin-right: 1.2rem;
 
     .scroll-container {
       display: flex;
-      gap: 1.2rem;
+      gap: 1rem;
+
+      padding: 0rem 2rem;
 
       height: 23.3rem;
       width: 100%;
