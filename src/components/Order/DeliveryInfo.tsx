@@ -148,7 +148,9 @@ const St = {
     gap: 1.2rem;
   `,
   SearchBtn: styled.button`
-    padding: 1.3rem 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     background-color: ${({ theme }) => theme.colors.gray7};
     border-radius: 0.6rem;
