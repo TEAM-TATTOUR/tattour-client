@@ -68,10 +68,9 @@ const DetailPage = () => {
           <DetailInfo response={response} />
         </>
       )}
-      <CustomScrollContainer title='비슷한 제품도 추천드려요'>
-        {!relatedError &&
-          !relatedLoading &&
-          relatedResponse.map((el) => (
+      {!relatedError && !relatedLoading && relatedResponse && (
+        <CustomScrollContainer title='비슷한 제품도 추천드려요'>
+          {relatedResponse.map((el) => (
             <SmallTattooCard
               key={el.id}
               id={el.id}
@@ -83,7 +82,8 @@ const DetailPage = () => {
               isCustom={el.isCustom}
             />
           ))}
-      </CustomScrollContainer>
+        </CustomScrollContainer>
+      )}
       {!error && !loading && response && (
         <DetailBottom
           id={Number(id)}
