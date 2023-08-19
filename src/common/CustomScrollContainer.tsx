@@ -1,5 +1,7 @@
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { styled } from 'styled-components';
+import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const CustomScrollContainer = ({
   title,
@@ -8,6 +10,14 @@ const CustomScrollContainer = ({
   title: string;
   children: React.ReactNode;
 }) => {
+  const { pathname } = useLocation();
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    ref.current.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <>
       <St.CustomScrollWrapper>
@@ -15,7 +25,9 @@ const CustomScrollContainer = ({
           <St.CustomScrollTitle>{title}</St.CustomScrollTitle>
         </St.CustomScrollHeader>
         <St.CustomScrollItemWrapper>
-          <ScrollContainer className='scroll-container'>{children}</ScrollContainer>
+          <ScrollContainer innerRef={ref} className='scroll-container'>
+            {children}
+          </ScrollContainer>
         </St.CustomScrollItemWrapper>
       </St.CustomScrollWrapper>
     </>
