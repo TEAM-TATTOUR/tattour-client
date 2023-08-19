@@ -7,6 +7,7 @@ interface CheckModalFormProps {
   onClose: () => void;
   title: string;
   subTitle: string;
+  subTitle_2: string;
   continueBtn: string;
   chargeAmount: number;
   setIsOpenCompleteModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,6 +17,7 @@ const CheckModalForm = ({
   onClose,
   title,
   subTitle,
+  subTitle_2,
   continueBtn,
   chargeAmount,
   setIsOpenCompleteModal,
@@ -41,6 +43,7 @@ const CheckModalForm = ({
           <IcCancelDark onClick={onClose} />
           <St.ModalTitle>{title}</St.ModalTitle>
           <St.ModalSubTitle>{subTitle}</St.ModalSubTitle>
+          <St.ModalSubTitle>{subTitle_2}</St.ModalSubTitle>
         </St.ModalTitleWrapper>
 
         <St.BtnWrapper>
@@ -71,6 +74,7 @@ const St = {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     position: relative;
     width: 33.5rem;
     height: 24.1rem;
@@ -95,14 +99,14 @@ const St = {
   `,
 
   ModalTitle: styled.h2`
+    margin-bottom: 1.4rem;
+
     color: ${({ theme }) => theme.colors.gray7};
 
     ${({ theme }) => theme.fonts.title_semibold_20};
   `,
 
   ModalSubTitle: styled.p`
-    padding: 1.6rem 7.25rem 4rem 7.25rem;
-
     text-align: center;
     color: ${({ theme }) => theme.colors.gray3};
 
@@ -125,6 +129,7 @@ const St = {
     align-items: center;
     width: 100%;
     height: 7rem;
+    margin-top: 4rem;
 
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
