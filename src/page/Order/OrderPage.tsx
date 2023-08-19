@@ -51,7 +51,12 @@ const OrderPage = () => {
   useEffect(() => {
     if (!response) return;
     setInput(response.userProfileInfo.name);
-    setPhone(response.userProfileInfo.phoneNumber);
+    setPhone(
+      response.userProfileInfo.phoneNumber
+        .replace(/[^0-9]/g, '')
+        .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
+        .replace(/(-{1,2})$/g, ''),
+    );
   }, [response]);
 
   useEffect(() => {
