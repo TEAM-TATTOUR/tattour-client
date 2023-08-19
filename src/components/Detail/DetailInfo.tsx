@@ -127,11 +127,11 @@ const St = {
 
     & > span:nth-child(odd) {
       ${({ theme }) => theme.fonts.body_medium_14};
-      color: ${({ theme }) => theme.colors.gray4};
+      color: ${({ theme }) => theme.colors.gray3};
     }
     & > span:nth-child(even) {
       ${({ theme }) => theme.fonts.body_medium_14};
-      color: ${({ theme }) => theme.colors.gray3};
+      color: ${({ theme }) => theme.colors.gray4};
     }
   `,
   BoldLine: styled.hr`
