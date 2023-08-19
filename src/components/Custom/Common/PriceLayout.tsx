@@ -11,32 +11,31 @@ import PriceFooter from '../PriceFooter';
 import PriceHeading from '../PriceHeading';
 import Header from '../../Header';
 import PageLayout from '../../PageLayout';
+import { customInfoType } from '../../../types/customInfoType';
 
 interface PriceLayoutProps {
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
-  customId: number;
-  size: string;
-  name: string;
-  demand: string;
+
+  customInfo: customInfoType;
   customImages: FileList | undefined;
   handDrawingImage?: string;
+
+  setReceiptData: React.Dispatch<React.SetStateAction<object | undefined>>;
 }
 
 const PriceLayout = ({
   step,
   setStep,
-  customId,
-  size,
-  name,
-  demand,
+  customInfo,
   customImages,
   handDrawingImage,
+  setReceiptData,
 }: PriceLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
   const [count, setCount] = useState(1);
-  const [isCompletedState, setIsCompletedState] = useState(false);
+  const [isCompletedState, setIsCompletedState] = useState(true);
 
   const handleCompletedState = () => {
     setIsCompletedState(true);
@@ -70,14 +69,11 @@ const PriceLayout = ({
   //   isCompleted: isCompleted,
   // };
 
-  const customInfo = {
-    customId: customId,
-    size: size,
-    name: name,
-    demand: demand,
+  const updatedCustomInfo = {
+    ...customInfo,
     count: count,
     isPublic: isPublic,
-    isCompleted: isCompletedState,
+    isCompleted: true,
     price: 0,
     viewCount: step,
   };
@@ -105,18 +101,19 @@ const PriceLayout = ({
       renderHeader={renderPriceLayoutHeader}
       footer={
         <PriceFooter
-          customInfo={customInfo}
+          customInfo={updatedCustomInfo}
           handDrawingImage={handDrawingImage ? handDrawingImage : ''}
           customImages={customImages}
           handleCompletedState={handleCompletedState}
           isCompletedState={isCompletedState}
           setStep={setStep}
+          setReceiptData={setReceiptData}
         />
       }
     >
       <St.TopWrapper>
         <PriceHeading />
-        <CountPrice isPublic={isPublic} setCount={setCount} size={size} />
+        <CountPrice isPublic={isPublic} setCount={setCount} size={customInfo.size} />
       </St.TopWrapper>
       <MakePublic isPublic={isPublic} setIsPublic={setIsPublic} />
     </PageLayout>

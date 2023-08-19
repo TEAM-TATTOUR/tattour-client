@@ -24,6 +24,17 @@ const NoDesignCustomPage = () => {
   const size = location.state ? location.state.size : null;
   const customId = location.state ? location.state.customId : null;
 
+  const customInfo = {
+    customId: customId,
+    size: size,
+    name: name,
+    demand: demand,
+    viewCount: step,
+  };
+
+  const [receiptData, setReceiptData] = useState<object>();
+  console.log(receiptData);
+
   //customSizePage가 공통으로 쓰여 아직 처리를 못해줘, step이 1부터 시작하도록 useEffect로 테스트 코드 추가. 추후 삭제 예정
   useEffect(() => {
     setStep(1);
@@ -56,11 +67,9 @@ const NoDesignCustomPage = () => {
         <PriceLayout
           step={step}
           setStep={setStep}
-          customId={customId}
-          size={size}
-          name={name}
-          demand={demand}
+          customInfo={customInfo}
           customImages={customImages}
+          setReceiptData={setReceiptData}
         />
       );
 

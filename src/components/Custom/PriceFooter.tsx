@@ -12,11 +12,17 @@ interface PriceFooterProps {
   isCompleted?: boolean;
   handleCompletedState?: () => void;
   isCompletedState?: boolean;
-
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  setReceiptData: React.Dispatch<React.SetStateAction<object | undefined>>;
 }
 
-const PriceFooter = ({ customInfo, handDrawingImage, customImages, setStep }: PriceFooterProps) => {
+const PriceFooter = ({
+  customInfo,
+  handDrawingImage,
+  customImages,
+  setStep,
+  setReceiptData,
+}: PriceFooterProps) => {
   // const navigate = useNavigate();
 
   const handleClickFooterBtn = async () => {
@@ -45,6 +51,8 @@ const PriceFooter = ({ customInfo, handDrawingImage, customImages, setStep }: Pr
         },
       });
       console.log('data', data.data, '!!!!!');
+      setReceiptData(data.data);
+
       // navigate('/receipt', {
       //   state: {
       //     data: data.data,
