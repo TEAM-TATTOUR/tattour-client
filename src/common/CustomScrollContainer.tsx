@@ -34,7 +34,7 @@ const St = {
   `,
 
   CustomScrollTitle: styled.h2`
-    ${({ theme }) => theme.fonts.title_eng_bold_18};
+    ${({ theme }) => theme.fonts.title_semibold_16};
   `,
 
   CustomScrollItemWrapper: styled.div`
