@@ -28,6 +28,7 @@ const Toast = ({ setToast, text }: ToastProps) => {
 const St = {
   ToastWrapper: styled.div`
     display: flex;
+    z-index: 1;
   `,
   ToastContentsWrapper: styled.div`
     display: flex;
