@@ -22,7 +22,7 @@ const NoDesignCustomPage = () => {
 
   const location = useLocation();
 
-  // 앞에 size + customId 통합해놓은거에서 navigate로 내홨기 때문에 우선 navigate state로 관련 정보 불러옴
+  // 앞에 size + customId 통합 해놓은거에서 우선 navigate state로 관련 정보 불러옴 추후 통합시 제거 예정
   const size = location.state ? location.state.size : null;
   const customId = location.state ? location.state.customId : null;
 

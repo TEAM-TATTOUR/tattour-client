@@ -34,9 +34,10 @@ const PriceLayout = ({
   const [modalOn, setModalOn] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
   const [count, setCount] = useState(1);
-  const [isCompletedState, setIsCompletedState] = useState(true);
+  const [isCompletedState, setIsCompletedState] = useState(true); //이거 왜 꼭 state로 쓰는지 궁금합니다! 꼭 필요한 부분인가요?
 
   const handleCompletedState = () => {
+    //이 코드의 역할이 궁금합니다! 꼭 필요한 함수인가요?
     setIsCompletedState(true);
   };
 
