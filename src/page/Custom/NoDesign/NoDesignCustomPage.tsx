@@ -5,6 +5,7 @@ import CustomRequestLayout from '../../../components/Custom/NoDesign/Request/Cus
 import PriceLayout from '../../../components/Custom/Common/PriceLayout';
 import { useLocation } from 'react-router-dom';
 import ReceiptLayout from '../../../components/Custom/Common/Receipt/ReceiptLayout';
+import { resCustomInfoType } from '../../../types/customInfoType';
 
 const NoDesignCustomPage = () => {
   //커스텀 신청서 플로우에 따른 각 단계별 컴포넌트 렌더링 플래그
@@ -32,7 +33,7 @@ const NoDesignCustomPage = () => {
     viewCount: step,
   };
 
-  const [receiptData, setReceiptData] = useState<object>();
+  const [receiptData, setReceiptData] = useState<resCustomInfoType>();
   console.log(receiptData);
 
   //customSizePage가 공통으로 쓰여 아직 처리를 못해줘, step이 1부터 시작하도록 useEffect로 테스트 코드 추가. 추후 삭제 예정

@@ -7,9 +7,10 @@ import PageLayout from '../../../PageLayout';
 import ReceiptDetail from './ReceiptDetail';
 import ReceiptFooter from './ReceiptFooter';
 import Submitted from './Submitted';
+import { resCustomInfoType } from '../../../../types/customInfoType';
 
 interface ReceiptLayoutProps {
-  receiptData: object | undefined;
+  receiptData: resCustomInfoType | undefined;
 }
 
 const ReceiptLayout = ({ receiptData }: ReceiptLayoutProps) => {

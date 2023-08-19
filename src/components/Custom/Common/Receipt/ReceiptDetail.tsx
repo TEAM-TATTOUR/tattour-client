@@ -1,8 +1,9 @@
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { resCustomInfoType } from '../../../../types/customInfoType';
 
 interface ReceiptDetailProps {
-  receiptData: object | undefined;
+  receiptData: resCustomInfoType | undefined;
 }
 
 const ReceiptDetail = ({ receiptData }: ReceiptDetailProps) => {

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { customInfoType } from '../../types/customInfoType';
+import { customInfoType, resCustomInfoType } from '../../types/customInfoType';
 import api from '../../libs/api';
 import React from 'react';
 
@@ -13,7 +13,7 @@ interface PriceFooterProps {
   handleCompletedState?: () => void;
   isCompletedState?: boolean;
   setStep: React.Dispatch<React.SetStateAction<number>>;
-  setReceiptData: React.Dispatch<React.SetStateAction<object | undefined>>;
+  setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
 }
 
 const PriceFooter = ({

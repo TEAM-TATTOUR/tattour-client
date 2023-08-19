@@ -11,7 +11,7 @@ import PriceFooter from '../PriceFooter';
 import PriceHeading from '../PriceHeading';
 import Header from '../../Header';
 import PageLayout from '../../PageLayout';
-import { customInfoType } from '../../../types/customInfoType';
+import { customInfoType, resCustomInfoType } from '../../../types/customInfoType';
 
 interface PriceLayoutProps {
   step: number;
@@ -21,7 +21,7 @@ interface PriceLayoutProps {
   customImages: FileList | undefined;
   handDrawingImage?: string;
 
-  setReceiptData: React.Dispatch<React.SetStateAction<object | undefined>>;
+  setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
 }
 
 const PriceLayout = ({
