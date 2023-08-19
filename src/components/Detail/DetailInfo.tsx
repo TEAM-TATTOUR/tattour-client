@@ -1,10 +1,7 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 import { StickerItemProps } from '../../libs/hooks/detail/useGetSticker';
 
 const DetailInfo = ({ response }: { response: StickerItemProps }) => {
-  const [isOpen, setOpen] = useState(false);
-
   const {
     name,
     discountRate,
@@ -46,21 +43,7 @@ const DetailInfo = ({ response }: { response: StickerItemProps }) => {
         {stickerThemes && stickerThemes.map((el: string) => <St.Tag key={el}>{el}</St.Tag>)}
         {stickerStyles && stickerStyles.map((el: string) => <St.Tag key={el}>{el}</St.Tag>)}
       </St.TagContainer>
-      {description && (
-        <p>
-          <St.DetailText>{description.substring(0, 60)}</St.DetailText>
-          {isOpen ? (
-            <St.DetailText>{description.substring(61)}</St.DetailText>
-          ) : (
-            description.length > 61 && (
-              <St.DetailText>
-                {'···'}
-                <St.Button onClick={() => setOpen(true)}>더보기</St.Button>
-              </St.DetailText>
-            )
-          )}
-        </p>
-      )}
+      <St.DetailText>{description}</St.DetailText>
       <St.BoldLine />
     </St.Wrapper>
   );
@@ -159,10 +142,5 @@ const St = {
   DetailText: styled.span`
     ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray4};
-  `,
-  Button: styled.button`
-    display: inline;
-    ${({ theme }) => theme.fonts.body_underline_medium_14};
-    color: ${({ theme }) => theme.colors.gray5};
   `,
 };
