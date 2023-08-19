@@ -133,8 +133,8 @@ const St = {
     align-items: center;
     width: 29.1rem;
     height: 9.6rem;
-    margin-top: 1.5rem;
-    margin-bottom: 4rem;
+    margin-top: 2.5rem;
+    margin-bottom: 3rem;
     gap: 1.4rem;
 
     border-radius: 0.6rem;
@@ -166,7 +166,7 @@ const St = {
   TopContents: styled.p`
     color: ${({ theme }) => theme.colors.gray5};
 
-    ${({ theme }) => theme.fonts.title_semibold_18};
+    ${({ theme }) => theme.fonts.title_medium_18};
   `,
 
   BottomContents: styled.p`
