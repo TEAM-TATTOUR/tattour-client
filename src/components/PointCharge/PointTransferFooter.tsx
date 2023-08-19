@@ -35,7 +35,11 @@ const PointTransferFooter = ({
         />
       )}
       {isOpenCompleteModal && (
-        <ChargePointCompleteModal setModalOn={setModalOn} chargeAmount={chargeAmount} redirectURL={redirectURL} />
+        <ChargePointCompleteModal
+          setModalOn={setIsOpenCompletModal}
+          chargeAmount={chargeAmount}
+          redirectURL={redirectURL}
+        />
       )}
     </>
   );
