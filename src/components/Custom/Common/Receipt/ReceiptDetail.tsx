@@ -6,18 +6,19 @@ interface ReceiptDetailProps {
 }
 
 const ReceiptDetail = ({ receiptData }: ReceiptDetailProps) => {
-  // const location = useLocation();
+  //typeError 방지용 early return
+  // if (receiptData === undefined) return;
 
-  const size = receiptData ? receiptData?.size : '';
-  const count = receiptData ? receiptData?.count : 1;
-  const isColored = receiptData ? receiptData?.isColored : false;
-  const name = receiptData ? receiptData?.name : '';
-  const description = receiptData ? receiptData?.description : '';
-  const themes = receiptData ? receiptData?.themes : [];
-  const styles = receiptData ? receiptData?.styles : [];
-  const mainImageUrl = receiptData ? receiptData?.mainImageUrl : '';
-  const handDrawingImageUrl = receiptData ? receiptData?.handDrawingImageUrl : '';
-  const images = receiptData ? receiptData?.images : [];
+  const size = receiptData ? receiptData.size : '';
+  const count = receiptData ? receiptData.count : 1;
+  const isColored = receiptData ? receiptData.isColored : false;
+  const name = receiptData ? receiptData.name : '';
+  const description = receiptData ? receiptData.description : '';
+  const themes = receiptData ? receiptData.themes : [];
+  const styles = receiptData ? receiptData.styles : [];
+  const mainImageUrl = receiptData ? receiptData.mainImageUrl : '';
+  const handDrawingImageUrl = receiptData ? receiptData.handDrawingImageUrl : '';
+  const images = receiptData ? receiptData.images : [];
   const previewURL = [...themes, ...styles];
   const imagesArray = handDrawingImageUrl
     ? [mainImageUrl, ...images, handDrawingImageUrl]
