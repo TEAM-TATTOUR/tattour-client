@@ -1,15 +1,20 @@
 import { styled } from 'styled-components';
-
 import { useNavigate } from 'react-router-dom';
 import useGetUserProfile from '../../../libs/hooks/useGetUserProfile';
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
+import { IcCancelDark } from '../../../assets/icon';
 
 interface ChargePointCompleteModalProps {
   chargeAmount: number;
   redirectURL: string;
+  setModalOn: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const ChargePointCompleteModal = ({ chargeAmount, redirectURL }: ChargePointCompleteModalProps) => {
+const ChargePointCompleteModal = ({
+  chargeAmount,
+  redirectURL,
+  setModalOn,
+}: ChargePointCompleteModalProps) => {
   const navigate = useNavigate();
   const [currPoint, setCurrPoint] = useState(0);
 
@@ -29,6 +34,7 @@ const ChargePointCompleteModal = ({ chargeAmount, redirectURL }: ChargePointComp
       <St.ModalWrapper>
         <St.ModalContent>
           <St.ModalTitleWrapper>
+            <IcCancelDark onClick={() => setModalon(false)} />
             <St.ModalTitle>포인트 충전 완료</St.ModalTitle>
           </St.ModalTitleWrapper>
 
