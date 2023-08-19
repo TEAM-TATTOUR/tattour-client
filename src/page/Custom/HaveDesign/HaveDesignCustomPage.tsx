@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-// import PriceLayout from '../../../components/Custom/Common/PriceLayout';
+import PriceLayout from '../../../components/Custom/Common/PriceLayout';
 import AdditionalRequestLayout from '../../../components/Custom/HaveDesign/AdditionalRequest/AdditionalRequestLayout';
 import CustomThemeLayout from '../../../components/Custom/HaveDesign/CustomTheme/CustomThemeLayout';
-// import ReceiptLayout from '../../../components/Custom/HaveDesign/Receipt/ReceiptLayout';
+import ReceiptLayout from '../../../components/Custom/Common/Receipt/ReceiptLayout';
 import CustomReferenceLayout from '../../../components/Custom/HaveDesign/Reference/CustomReferenceLayout';
 import StylingColorLayout from '../../../components/Custom/HaveDesign/SelectColor/StylingColorLayout';
 import SelectKeywordLayout from '../../../components/Custom/HaveDesign/SelectKeyword/SelectKeywordLayout';
@@ -12,7 +12,7 @@ import SelectKeywordLayout from '../../../components/Custom/HaveDesign/SelectKey
 const HaveDesignCustomPage = () => {
   const [step, setStep] = useState(0);
 
-  //step 1: CustomImg - 그려둔 도안 이미지 state
+  //step 1: 이미지 첨부하기 관련 state
   const [customImages, setCustomImages] = useState<FileList | null>(null);
   const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
   const [previewURL, setPreviewURL] = useState<string[]>([]);
@@ -92,11 +92,11 @@ const HaveDesignCustomPage = () => {
     case 5:
       return <AdditionalRequestLayout setStep={setStep} demand={demand} setDemand={setDemand} />;
 
-    // case 6:
-    //   return <PriceLayout setStep={setStep} />;
+    case 6:
+      return <PriceLayout setStep={setStep} />;
 
-    // case 7:
-    //   return <ReceiptLayout />;
+    case 7:
+      return <ReceiptLayout />;
   }
 };
 

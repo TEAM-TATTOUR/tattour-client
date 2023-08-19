@@ -17,12 +17,12 @@ import OnBoardingPage from './page/Custom/Common/OnBoardingPage';
 // import CustomRequestLayout from './components/Custom/NoDesign/Request/CustomRequestLayout';
 
 // import CustomReferenceLayout from './components/Custom/HaveDesign/Reference/CustomReferenceLayout';
-import ReceiptLayout from './components/Custom/HaveDesign/Receipt/ReceiptLayout';
 // import AdditionalRequestLayout from './components/Custom/HaveDesign/AdditionalRequest/AdditionalRequestLayout';
 // import CustomThemeLayout from './components/Custom/HaveDesign/CustomTheme/CustomThemeLayout';
 // import SelectKeywordLayout from './components/Custom/HaveDesign/SelectKeyword/SelectKeywordLayout';
 // import StylingColorLayout from './components/Custom/HaveDesign/SelectColor/StylingColorLayout';
 import PricePage from './components/Custom/Common/PriceLayout';
+import ReceiptLayout from './components/Custom/Common/Receipt/ReceiptLayout';
 
 import SearchPage from './page/Search/SearchPage';
 import SearchResultPage from './page/Search/SearchResultPage';
@@ -60,8 +60,8 @@ const Router = () => {
         {/* <Route path='/custom-request' element={<CustomRequestLayout />} /> */}
         {/* <Route path='/custom-theme' element={<CustomThemeLayout />} /> */}
         {/* <Route path='/additional-request' element={<AdditionalRequestLayout />} /> */}
-        <Route path='/price' element={<PricePage />} />
-        <Route path='/receipt' element={<ReceiptLayout />} />
+        {/* <Route path='/price' element={<PricePage />} /> */}
+        {/* <Route path='/receipt' element={<ReceiptLayout />} /> */}
         <Route path='/complete' element={<CompletePage />} />
         {/* <Route path='/custom-reference' element={<CustomReferenceLayout />} /> */}
         <Route path='/save' element={<SavePage />} />
