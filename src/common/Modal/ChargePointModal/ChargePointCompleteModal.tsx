@@ -42,7 +42,7 @@ const ChargePointCompleteModal = ({
             <St.PointWrapper>
               <St.PointTitle>충전한 금액</St.PointTitle>
               <St.PointContentsWrapper>
-                <St.TopContents>{chargeAmount}</St.TopContents>
+                <St.TopContents>{chargeAmount.toLocaleString()}</St.TopContents>
                 <St.Unit>P</St.Unit>
               </St.PointContentsWrapper>
             </St.PointWrapper>
@@ -50,7 +50,7 @@ const ChargePointCompleteModal = ({
             <St.PointWrapper>
               <St.PointTitle>충전 후 포인트 잔액</St.PointTitle>
               <St.PointContentsWrapper>
-                <St.BottomContents>{currPoint}</St.BottomContents>
+                <St.BottomContents>{currPoint.toLocaleString()}</St.BottomContents>
                 <St.Unit>P</St.Unit>
               </St.PointContentsWrapper>
             </St.PointWrapper>
