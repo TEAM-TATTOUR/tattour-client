@@ -69,6 +69,8 @@ const St = {
 
   SmallTattooCardPriceTextWrapper: styled.div`
     display: flex;
+
+    margin-top: 0.3rem;
   `,
 
   SmallTattooCardDiscountRate: styled.p`
