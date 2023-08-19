@@ -21,8 +21,8 @@ import OnBoardingPage from './page/Custom/Common/OnBoardingPage';
 // import CustomThemeLayout from './components/Custom/HaveDesign/CustomTheme/CustomThemeLayout';
 // import SelectKeywordLayout from './components/Custom/HaveDesign/SelectKeyword/SelectKeywordLayout';
 // import StylingColorLayout from './components/Custom/HaveDesign/SelectColor/StylingColorLayout';
-import PricePage from './components/Custom/Common/PriceLayout';
-import ReceiptLayout from './components/Custom/Common/Receipt/ReceiptLayout';
+// import PricePage from './components/Custom/Common/PriceLayout';
+// import ReceiptLayout from './components/Custom/Common/Receipt/ReceiptLayout';
 
 import SearchPage from './page/Search/SearchPage';
 import SearchResultPage from './page/Search/SearchResultPage';

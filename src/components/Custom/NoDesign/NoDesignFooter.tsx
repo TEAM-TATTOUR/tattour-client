@@ -5,7 +5,8 @@ interface NoDesignFooterProps {
   isActiveNext?: boolean;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   navigateURL?: string;
-  size: string;
+  //지금은 해당 값들을 navigate으로 넘겨줘야 하기 때문에 필요한 props들 추후 통합 시 삭제 할 예정
+  size?: string;
   customId?: number;
 }
 
