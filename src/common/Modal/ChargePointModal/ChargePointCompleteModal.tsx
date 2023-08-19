@@ -34,7 +34,7 @@ const ChargePointCompleteModal = ({
       <St.ModalWrapper>
         <St.ModalContent>
           <St.ModalTitleWrapper>
-            <IcCancelDark onClick={() => setModalon(false)} />
+            <IcCancelDark onClick={() => setModalOn(false)} />
             <St.ModalTitle>포인트 충전 완료</St.ModalTitle>
           </St.ModalTitleWrapper>
 
