@@ -1,19 +1,23 @@
 import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-const ReceiptDetail = () => {
-  const location = useLocation();
+interface ReceiptDetailProps {
+  receiptData: object | undefined;
+}
 
-  const size = location.state ? location.state.data.size : '';
-  const count = location.state ? location.state.data.count : 1;
-  const isColored = location.state ? location.state.data.isColored : false;
-  const name = location.state ? location.state.data.name : '';
-  const description = location.state ? location.state.data.description : '';
-  const themes = location.state ? location.state.data.themes : [];
-  const styles = location.state ? location.state.data.styles : [];
-  const mainImageUrl = location.state ? location.state.data.mainImageUrl : '';
-  const handDrawingImageUrl = location.state ? location.state.data.handDrawingImageUrl : '';
-  const images = location.state ? location.state.data.images : [];
+const ReceiptDetail = ({ receiptData }: ReceiptDetailProps) => {
+  // const location = useLocation();
+
+  const size = receiptData ? receiptData?.size : '';
+  const count = receiptData ? receiptData?.count : 1;
+  const isColored = receiptData ? receiptData?.isColored : false;
+  const name = receiptData ? receiptData?.name : '';
+  const description = receiptData ? receiptData?.description : '';
+  const themes = receiptData ? receiptData?.themes : [];
+  const styles = receiptData ? receiptData?.styles : [];
+  const mainImageUrl = receiptData ? receiptData?.mainImageUrl : '';
+  const handDrawingImageUrl = receiptData ? receiptData?.handDrawingImageUrl : '';
+  const images = receiptData ? receiptData?.images : [];
   const previewURL = [...themes, ...styles];
   const imagesArray = handDrawingImageUrl
     ? [mainImageUrl, ...images, handDrawingImageUrl]

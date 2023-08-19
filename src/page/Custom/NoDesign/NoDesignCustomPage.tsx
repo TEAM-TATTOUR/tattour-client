@@ -74,7 +74,7 @@ const NoDesignCustomPage = () => {
       );
 
     case 4:
-      return <ReceiptLayout />;
+      return <ReceiptLayout receiptData={receiptData} />;
   }
 };
 
