@@ -17,7 +17,7 @@ import CustomImgLayout from './components/Custom/NoDesign/Img/CustomImgLayout';
 import CustomRequestLayout from './components/Custom/NoDesign/Request/CustomRequestLayout';
 
 import CustomReferenceLayout from './components/Custom/HaveDesign/Reference/CustomReferenceLayout';
-import ReceiptLayout from './components/Custom/HaveDesign/Receipt/ReceiptLayout';
+import ReceiptLayout from './components/Custom/Common/Receipt/ReceiptLayout';
 import AdditionalRequestLayout from './components/Custom/HaveDesign/AdditionalRequest/AdditionalRequestLayout';
 import CustomThemeLayout from './components/Custom/HaveDesign/CustomTheme/CustomThemeLayout';
 import SelectKeywordLayout from './components/Custom/HaveDesign/SelectKeyword/SelectKeywordLayout';

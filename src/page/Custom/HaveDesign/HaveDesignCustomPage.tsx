@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import PriceLayout from '../../../components/Custom/Common/PriceLayout';
 import AdditionalRequestLayout from '../../../components/Custom/HaveDesign/AdditionalRequest/AdditionalRequestLayout';
 import CustomThemeLayout from '../../../components/Custom/HaveDesign/CustomTheme/CustomThemeLayout';
-import ReceiptLayout from '../../../components/Custom/HaveDesign/Receipt/ReceiptLayout';
+import ReceiptLayout from '../../../components/Custom/Common/Receipt/ReceiptLayout';
 import CustomReferenceLayout from '../../../components/Custom/HaveDesign/Reference/CustomReferenceLayout';
 import StylingColorLayout from '../../../components/Custom/HaveDesign/SelectColor/StylingColorLayout';
 import SelectKeywordLayout from '../../../components/Custom/HaveDesign/SelectKeyword/SelectKeywordLayout';
