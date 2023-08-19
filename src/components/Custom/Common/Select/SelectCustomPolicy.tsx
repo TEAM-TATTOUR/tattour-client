@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { IcArrowRightDark } from '../../../assets/icon';
+import { IcArrowRightDark } from '../../../../assets/icon';
 import SelectCustomPolicyBottom from './SelectCustomPolicyBottom';
 import { useState } from 'react';
 
