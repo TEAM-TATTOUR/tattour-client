@@ -30,7 +30,7 @@ const PaymentInfo = ({
           </St.MainText>
         </St.PointText>
         <St.PointText>
-          <St.MainText>남는 포인트</St.MainText>
+          <St.MainText>결제 후 남는 포인트</St.MainText>
           <St.MainText>
             <span>{resultPoint && resultPoint.toLocaleString()}</span>
             <span>P</span>

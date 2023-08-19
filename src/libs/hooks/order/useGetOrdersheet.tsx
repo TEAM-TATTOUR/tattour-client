@@ -28,10 +28,17 @@ export interface getUserOrderPointResProps {
   lacked: boolean;
 }
 
+export interface getUserProfileInfoProps {
+  id: number;
+  name: string;
+  phoneNumber: string;
+}
+
 export interface OrderSheetProps {
   getOrderSheetStickerInfo: getOrderSheetStickerInfoProps;
   getOrderAmountRes: getOrderAmountResProps;
   getUserOrderPointRes: getUserOrderPointResProps;
+  userProfileInfo: getUserProfileInfoProps;
 }
 
 interface OrderSheetResponse {

@@ -45,7 +45,7 @@ const ListPage = () => {
 
   return (
     <PageLayout renderHeader={renderListPageHeader}>
-      <HotCustom />
+      <HotCustom isList={true} />
       <St.Line />
       <TattooList
         setSheetOpen={setSheetOpen}
