@@ -29,8 +29,8 @@ const OrderPage = () => {
   const [isSheetOpen, setSheetOpen] = useState(false);
 
   const [isComplete, setComplete] = useState(false);
-  const [input, setInput] = useState<string>('기본값');
-  const [phone, setPhone] = useState<string>('010-0000-0000');
+  const [input, setInput] = useState<string>('');
+  const [phone, setPhone] = useState<string>('');
   const [address, setAddress] = useState<string>(''); // 우편번호
   const [firstAddress, setFirstAddress] = useState<string>(''); // 첫주소
   const [detailAddress, setDetailAddress] = useState<string>(''); // 세부주소
@@ -47,6 +47,17 @@ const OrderPage = () => {
     baseAddress: firstAddress,
     detailAddress: detailAddress,
   };
+
+  useEffect(() => {
+    if (!response) return;
+    setInput(response.userProfileInfo.name);
+    setPhone(
+      response.userProfileInfo.phoneNumber
+        .replace(/[^0-9]/g, '')
+        .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
+        .replace(/(-{1,2})$/g, ''),
+    );
+  }, [response]);
 
   useEffect(() => {
     if (input === '' || phone === '' || address === '' || detailAddress === '' || agree === false) {

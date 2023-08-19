@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IcArrowRightDark } from '../../assets/icon';
+import { IcArrowRightGray4 } from '../../assets/icon';
 import ic_check from '../../assets/icon/ic_check.svg';
 import ic_check_selected from '../../assets/icon/ic_check_selected.svg';
 
@@ -14,7 +14,7 @@ const RefundInfo = ({ setSheetOpen, setAgree }: RefundInfoProps) => {
       <label htmlFor='agree'></label>
       <St.Button onClick={() => setSheetOpen(true)}>
         <St.Text>타투어 환불 정책에 동의합니다</St.Text>
-        <IcArrowRightDark />
+        <IcArrowRightGray4 />
       </St.Button>
     </St.Wrapper>
   );
