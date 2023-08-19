@@ -15,6 +15,7 @@ const ReceiptDetail = ({ receiptData }: ReceiptDetailProps) => {
   const isColored = receiptData ? receiptData.isColored : false;
   const name = receiptData ? receiptData.name : '';
   const description = receiptData ? receiptData.description : '';
+  const demand = receiptData ? receiptData.demand : '';
   const themes = receiptData ? receiptData.themes : [];
   const styles = receiptData ? receiptData.styles : [];
   const mainImageUrl = receiptData ? receiptData.mainImageUrl : '';
@@ -60,11 +61,11 @@ const ReceiptDetail = ({ receiptData }: ReceiptDetailProps) => {
       </St.DetailWrapper>
       <St.DetailWrapper>
         <St.DetailSubject>주제</St.DetailSubject>
-        <St.DetailContent>{name}</St.DetailContent>
+        <St.DetailContent>{description}</St.DetailContent>
       </St.DetailWrapper>
       <St.DetailWrapper className='request'>
         <St.DetailSubject>요청사항</St.DetailSubject>
-        <St.DetailContent>{description}</St.DetailContent>
+        <St.DetailContent>{demand}</St.DetailContent>
       </St.DetailWrapper>
     </St.ReceiptDetailWrapper>
   );
