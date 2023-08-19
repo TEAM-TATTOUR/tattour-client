@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { IcBackDark } from '../../../assets/icon';
 import CancelBtn from '../../../common/Header/CancelBtn';
@@ -41,40 +40,12 @@ const PriceLayout = ({
     setIsCompletedState(true);
   };
 
-  // const navigate = useNavigate();
-  // const location = useLocation();
-
-  // const haveDesign = location.state ? location.state.haveDesign : null;
-  // const prevCustomInfo = location.state ? location.state.customInfo : null;
-  // const handDrawingImage = location.state ? location.state.handDrawingImage : null;
-  // const customImages = location.state ? location.state.customImages : null;
-  // const size = location.state ? location.state.customInfo.size : null;
-  // const price = location.state ? location.state.customInfo.price : null;
-  // const isCompleted = location.state ? location.state.customInfo.isCompleted : null;
-
-  // const CUSTOM_VIEW_COUNT = haveDesign ? 7 : 4;
-
-  // useEffect(() => {
-  //   if (!location.state) navigate('/onboarding');
-  // }, [location.state, navigate]);
-
-  // const customInfo = {
-  //   ...prevCustomInfo,
-  //   haveDesign: haveDesign,
-  //   viewCount: CUSTOM_VIEW_COUNT,
-  //   handDrawingImage: handDrawingImage,
-  //   customImages: customImages,
-  //   count: count,
-  //   price: price,
-  //   isCompleted: isCompleted,
-  // };
-
   const updatedCustomInfo = {
     ...customInfo,
     count: count,
     isPublic: isPublic,
     isCompleted: true,
-    price: 0,
+    price: 0, //price 최상단(여기 layout 컴포넌트)에서 관리할 수 있게 + 할인 로직까지 포함해서 수정 부탁해용 !!
     viewCount: step,
   };
 

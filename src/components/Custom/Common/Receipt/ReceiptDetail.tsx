@@ -1,4 +1,3 @@
-// import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { resCustomInfoType } from '../../../../types/customInfoType';
 

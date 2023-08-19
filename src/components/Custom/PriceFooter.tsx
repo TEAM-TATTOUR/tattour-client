@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { customInfoType, resCustomInfoType } from '../../types/customInfoType';
 import api from '../../libs/api';
@@ -7,7 +6,7 @@ import React from 'react';
 interface PriceFooterProps {
   haveDesign?: boolean;
   customInfo: customInfoType;
-  handDrawingImage: string;
+  handDrawingImage: string; //handDrawingImage string으로 넘기면 되는지 확인 부탁!(swagger에는 string으로 명시 됨)
   customImages: FileList | undefined;
   isCompleted?: boolean;
   handleCompletedState?: () => void;
@@ -28,36 +27,28 @@ const PriceFooter = ({
   const handleClickFooterBtn = async () => {
     const formData = new FormData();
     try {
-      // handleCompletedState(); 이렇게 하면 안되는 듯,,
+      // 1. handDrawingImage(손 그림) append
       formData.append('handDrawingImage', handDrawingImage);
-      // const newCustomInfo = {
-      //   ...customInfo,
-      //   isCompleted: true,
-      // };
-      const newCustomInfo = customInfo;
-      const json = JSON.stringify(newCustomInfo);
-      const blob = new Blob([json], { type: 'application/json' });
 
+      // 2. customInfo(커스텀 정보들) append
+      const json = JSON.stringify(customInfo);
+      const blob = new Blob([json], { type: 'application/json' });
       formData.append('customInfo', blob);
 
+      // 3. customImage(도안 이미지) append
       if (customImages) {
         for (let i = 0; i < customImages.length; i++) {
           formData.append('customImages', customImages.item(i) as File);
         }
       }
+
       const { data } = await api.patch('/custom/update', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('data', data.data, '!!!!!');
+      // console.log('data', data.data, '!!!!!');
       setReceiptData(data.data);
-
-      // navigate('/receipt', {
-      //   state: {
-      //     data: data.data,
-      //   },
-      // });
       setStep((prev) => prev + 1);
     } catch (err) {
       console.log('Error', err);

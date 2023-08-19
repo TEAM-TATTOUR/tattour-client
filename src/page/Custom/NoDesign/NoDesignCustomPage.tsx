@@ -22,9 +22,11 @@ const NoDesignCustomPage = () => {
 
   const location = useLocation();
 
+  // 앞에 size + customId 통합해놓은거에서 navigate로 내홨기 때문에 우선 navigate state로 관련 정보 불러옴
   const size = location.state ? location.state.size : null;
   const customId = location.state ? location.state.customId : null;
 
+  //patch에 보낼 정보들 객체로 모으기
   const customInfo = {
     customId: customId,
     size: size,
@@ -33,8 +35,8 @@ const NoDesignCustomPage = () => {
     viewCount: step,
   };
 
+  // patch 통신 response = receipt 뷰에 넘겨줘야 하는 정보들
   const [receiptData, setReceiptData] = useState<resCustomInfoType>();
-  console.log(receiptData);
 
   //customSizePage가 공통으로 쓰여 아직 처리를 못해줘, step이 1부터 시작하도록 useEffect로 테스트 코드 추가. 추후 삭제 예정
   useEffect(() => {
