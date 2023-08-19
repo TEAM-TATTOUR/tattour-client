@@ -8,19 +8,22 @@ interface ReceiptDetailProps {
 
 const ReceiptDetail = ({ receiptData }: ReceiptDetailProps) => {
   //typeError 방지용 early return
-  // if (receiptData === undefined) return;
+  if (receiptData === undefined) return;
 
-  const size = receiptData ? receiptData.size : '';
-  const count = receiptData ? receiptData.count : 1;
-  const isColored = receiptData ? receiptData.isColored : false;
-  const name = receiptData ? receiptData.name : '';
-  const description = receiptData ? receiptData.description : '';
-  const demand = receiptData ? receiptData.demand : '';
-  const themes = receiptData ? receiptData.themes : [];
-  const styles = receiptData ? receiptData.styles : [];
-  const mainImageUrl = receiptData ? receiptData.mainImageUrl : '';
-  const handDrawingImageUrl = receiptData ? receiptData.handDrawingImageUrl : '';
-  const images = receiptData ? receiptData.images : [];
+  const {
+    size,
+    count,
+    isColored,
+    name,
+    description,
+    demand,
+    themes,
+    styles,
+    mainImageUrl,
+    handDrawingImageUrl,
+    images,
+  } = receiptData;
+
   const previewURL = [...themes, ...styles];
   const imagesArray = handDrawingImageUrl
     ? [mainImageUrl, ...images, handDrawingImageUrl]
