@@ -24,7 +24,13 @@ const CommonCustomPage = () => {
       );
     case 1:
       return (
-        <CustomSizeLayout setStep={setStep} size={size} setSize={setSize} haveDesign={haveDesign} />
+        <CustomSizeLayout
+          setStep={setStep}
+          size={size}
+          setSize={setSize}
+          haveDesign={haveDesign}
+          customId={customId}
+        />
       );
   }
 };

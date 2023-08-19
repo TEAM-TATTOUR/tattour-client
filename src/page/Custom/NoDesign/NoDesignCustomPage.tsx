@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 // import CustomSizePage from '../Common/CustomSizePage';
-import PricePage from '../../../components/Custom/Common/PriceLayout';
 import CustomImgLayout from '../../../components/Custom/NoDesign/Img/CustomImgLayout';
 import CustomRequestLayout from '../../../components/Custom/NoDesign/Request/CustomRequestLayout';
+import PriceLayout from '../../../components/Custom/Common/PriceLayout';
+import { useLocation } from 'react-router-dom';
+import ReceiptLayout from '../../../components/Custom/Common/Receipt/ReceiptLayout';
 
 const NoDesignCustomPage = () => {
   //커스텀 신청서 플로우에 따른 각 단계별 컴포넌트 렌더링 플래그
@@ -16,6 +18,11 @@ const NoDesignCustomPage = () => {
   const [name, setName] = useState('');
   //요청사항 state
   const [demand, setDemand] = useState('');
+
+  const location = useLocation();
+
+  const size = location.state ? location.state.size : null;
+  const customId = location.state ? location.state.customId : null;
 
   //customSizePage가 공통으로 쓰여 아직 처리를 못해줘, step이 1부터 시작하도록 useEffect로 테스트 코드 추가. 추후 삭제 예정
   useEffect(() => {
@@ -45,7 +52,20 @@ const NoDesignCustomPage = () => {
       );
 
     case 3:
-      return <PricePage setStep={setStep} />;
+      return (
+        <PriceLayout
+          step={step}
+          setStep={setStep}
+          customId={customId}
+          size={size}
+          name={name}
+          demand={demand}
+          customImages={customImages}
+        />
+      );
+
+    case 4:
+      return <ReceiptLayout />;
   }
 };
 

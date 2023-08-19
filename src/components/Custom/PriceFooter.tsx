@@ -2,29 +2,33 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { customInfoType } from '../../types/customInfoType';
 import api from '../../libs/api';
+import React from 'react';
 
 interface PriceFooterProps {
   haveDesign?: boolean;
-  customInfo?: customInfoType;
-  handDrawingImage: File;
-  customImages?: FileList | null;
-  isCompleted: boolean;
-  handleCompletedState: () => void;
-  isCompletedState: boolean;
+  customInfo: customInfoType;
+  handDrawingImage: string;
+  customImages: FileList | undefined;
+  isCompleted?: boolean;
+  handleCompletedState?: () => void;
+  isCompletedState?: boolean;
+
+  setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const PriceFooter = ({ customInfo, handDrawingImage, customImages }: PriceFooterProps) => {
-  const navigate = useNavigate();
+const PriceFooter = ({ customInfo, handDrawingImage, customImages, setStep }: PriceFooterProps) => {
+  // const navigate = useNavigate();
 
   const handleClickFooterBtn = async () => {
     const formData = new FormData();
     try {
       // handleCompletedState(); 이렇게 하면 안되는 듯,,
       formData.append('handDrawingImage', handDrawingImage);
-      const newCustomInfo = {
-        ...customInfo,
-        isCompleted: true,
-      };
+      // const newCustomInfo = {
+      //   ...customInfo,
+      //   isCompleted: true,
+      // };
+      const newCustomInfo = customInfo;
       const json = JSON.stringify(newCustomInfo);
       const blob = new Blob([json], { type: 'application/json' });
 
@@ -41,11 +45,12 @@ const PriceFooter = ({ customInfo, handDrawingImage, customImages }: PriceFooter
         },
       });
       console.log('data', data.data, '!!!!!');
-      navigate('/receipt', {
-        state: {
-          data: data.data,
-        },
-      });
+      // navigate('/receipt', {
+      //   state: {
+      //     data: data.data,
+      //   },
+      // });
+      setStep((prev) => prev + 1);
     } catch (err) {
       console.log('Error', err);
     }

@@ -13,10 +13,26 @@ import Header from '../../Header';
 import PageLayout from '../../PageLayout';
 
 interface PriceLayoutProps {
+  step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  customId: number;
+  size: string;
+  name: string;
+  demand: string;
+  customImages: FileList | undefined;
+  handDrawingImage?: string;
 }
 
-const PriceLayout = ({ setStep }: PriceLayoutProps) => {
+const PriceLayout = ({
+  step,
+  setStep,
+  customId,
+  size,
+  name,
+  demand,
+  customImages,
+  handDrawingImage,
+}: PriceLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
   const [count, setCount] = useState(1);
@@ -26,32 +42,44 @@ const PriceLayout = ({ setStep }: PriceLayoutProps) => {
     setIsCompletedState(true);
   };
 
-  const navigate = useNavigate();
-  const location = useLocation();
+  // const navigate = useNavigate();
+  // const location = useLocation();
 
-  const haveDesign = location.state ? location.state.haveDesign : null;
-  const prevCustomInfo = location.state ? location.state.customInfo : null;
-  const handDrawingImage = location.state ? location.state.handDrawingImage : null;
-  const customImages = location.state ? location.state.customImages : null;
-  const size = location.state ? location.state.customInfo.size : null;
-  const price = location.state ? location.state.customInfo.price : null;
-  const isCompleted = location.state ? location.state.customInfo.isCompleted : null;
+  // const haveDesign = location.state ? location.state.haveDesign : null;
+  // const prevCustomInfo = location.state ? location.state.customInfo : null;
+  // const handDrawingImage = location.state ? location.state.handDrawingImage : null;
+  // const customImages = location.state ? location.state.customImages : null;
+  // const size = location.state ? location.state.customInfo.size : null;
+  // const price = location.state ? location.state.customInfo.price : null;
+  // const isCompleted = location.state ? location.state.customInfo.isCompleted : null;
 
-  const CUSTOM_VIEW_COUNT = haveDesign ? 7 : 4;
+  // const CUSTOM_VIEW_COUNT = haveDesign ? 7 : 4;
 
   // useEffect(() => {
   //   if (!location.state) navigate('/onboarding');
   // }, [location.state, navigate]);
 
+  // const customInfo = {
+  //   ...prevCustomInfo,
+  //   haveDesign: haveDesign,
+  //   viewCount: CUSTOM_VIEW_COUNT,
+  //   handDrawingImage: handDrawingImage,
+  //   customImages: customImages,
+  //   count: count,
+  //   price: price,
+  //   isCompleted: isCompleted,
+  // };
+
   const customInfo = {
-    ...prevCustomInfo,
-    haveDesign: haveDesign,
-    viewCount: CUSTOM_VIEW_COUNT,
-    handDrawingImage: handDrawingImage,
-    customImages: customImages,
+    customId: customId,
+    size: size,
+    name: name,
+    demand: demand,
     count: count,
-    price: price,
-    isCompleted: isCompleted,
+    isPublic: isPublic,
+    isCompleted: isCompletedState,
+    price: 0,
+    viewCount: step,
   };
 
   const renderPriceLayoutHeader = () => {
@@ -67,7 +95,7 @@ const PriceLayout = ({ setStep }: PriceLayoutProps) => {
           />
         }
         transparent={true}
-        progressBar={<ProgressBar curStep={CUSTOM_VIEW_COUNT} maxStep={CUSTOM_VIEW_COUNT} />}
+        progressBar={<ProgressBar curStep={step} maxStep={step} />}
       />
     );
   };
@@ -77,13 +105,12 @@ const PriceLayout = ({ setStep }: PriceLayoutProps) => {
       renderHeader={renderPriceLayoutHeader}
       footer={
         <PriceFooter
-          haveDesign={haveDesign}
           customInfo={customInfo}
-          handDrawingImage={handDrawingImage}
+          handDrawingImage={handDrawingImage ? handDrawingImage : ''}
           customImages={customImages}
-          isCompleted={isCompleted}
           handleCompletedState={handleCompletedState}
           isCompletedState={isCompletedState}
+          setStep={setStep}
         />
       }
     >
