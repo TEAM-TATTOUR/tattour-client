@@ -12,7 +12,8 @@ const LoginEscapeModal = ({ setModalOn }: LoginEscapeModalProps) => {
         onClose={() => setModalOn(false)}
         pageName={'LoginPage'}
         title={'정말 그만두시나요?'}
-        subTitle={'지금 그만두시면 회원가입을 처음부터 다시 진행해야 해요'}
+        subTitle={'지금 그만두시면 회원가입을'}
+        subTitle_2={'처음부터 다시 진행해야 해요'}
         continueBtn={'계속하기'}
         stopBtn={'그만하기'}
       />

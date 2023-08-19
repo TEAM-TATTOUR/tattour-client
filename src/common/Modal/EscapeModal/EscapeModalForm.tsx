@@ -9,6 +9,7 @@ interface EscapeModalFormProps {
   pageName: string;
   title: string;
   subTitle: string;
+  subTitle_2: string;
   continueBtn: string;
   stopBtn: string;
 }
@@ -19,6 +20,7 @@ const EscapeModalForm = ({
   pageName,
   title,
   subTitle,
+  subTitle_2,
   continueBtn,
   stopBtn,
 }: EscapeModalFormProps) => {
@@ -54,6 +56,7 @@ const EscapeModalForm = ({
           <IcCancelDark onClick={onClose} />
           <St.ModalTitle>{title}</St.ModalTitle>
           <St.ModalSubTitle>{subTitle}</St.ModalSubTitle>
+          <St.ModalSubTitle>{subTitle_2}</St.ModalSubTitle>
         </St.ModalTitleWrapper>
 
         <St.BtnWrapper>
@@ -99,7 +102,7 @@ const St = {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 4.7rem;
+    margin-top: 4.9rem;
 
     & > svg {
       position: absolute;
@@ -109,14 +112,13 @@ const St = {
   `,
 
   ModalTitle: styled.h2`
+    margin-bottom: 1.4rem;
     color: ${({ theme }) => theme.colors.gray7};
 
     ${({ theme }) => theme.fonts.title_semibold_20};
   `,
 
   ModalSubTitle: styled.p`
-    padding: 1.6rem 2.6rem 4rem 2.6rem;
-
     text-align: center;
     color: ${({ theme }) => theme.colors.gray3};
 
@@ -133,6 +135,7 @@ const St = {
     align-items: flex-end;
     width: 100%;
     padding: 0;
+    margin-top: 4rem;
   `,
 
   ContinueBtn: styled.button`
