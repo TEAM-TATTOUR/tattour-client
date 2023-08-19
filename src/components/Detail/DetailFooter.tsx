@@ -142,6 +142,10 @@ const St = {
     background-color: ${({ theme }) => theme.colors.gray5};
   `,
   Like: styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 7rem;
     height: 7rem;
   `,
