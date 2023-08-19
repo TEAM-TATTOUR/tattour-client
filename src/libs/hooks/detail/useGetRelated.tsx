@@ -42,7 +42,7 @@ const useGetRelated = (id: number) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   return { response, error, loading };
 };
