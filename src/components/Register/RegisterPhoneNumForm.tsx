@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import React, { SetStateAction, useReducer, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import api from '../../libs/api';
 import { reducer } from '../../libs/reducers/registerReducer';
@@ -26,6 +26,7 @@ interface usePatchProfileProps {
 }
 
 const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
+  const navigate = useNavigate();
   const MINUTES_IN_MS = 5 * 60 * 1000;
   const [toast, setToast] = useState(false);
   const [isTimeout, setIsTimeout] = useState(false);
@@ -58,8 +59,8 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
       .then(() => {
         setStep(3);
       })
-      .catch((Error: object) => {
-        console.log(Error);
+      .catch(() => {
+        navigate('/error');
       });
   };
 
@@ -101,8 +102,8 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
           setToast(true);
           setIsTimeout(false);
         })
-        .catch((Error: object) => {
-          console.log(Error);
+        .catch(() => {
+          navigate('/error');
         });
     }
     dispatch({ type: 'HIDE_CERTIFICATION_FORM' });
@@ -139,8 +140,8 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
             dispatch({ type: 'VERIFIED_FAILED' });
           }
         })
-        .catch((Error: object) => {
-          console.log(Error);
+        .catch(() => {
+          navigate('/error');
         });
     } else {
       dispatch({ type: 'VERIFIED_NOT_FAILED' });
