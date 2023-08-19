@@ -112,7 +112,8 @@ const St = {
   `,
   Info: styled.li`
     & > label {
-      margin: 2rem 0rem 1rem 0rem;
+      display: block;
+      margin-bottom: 1rem;
 
       ${({ theme }) => theme.fonts.body_medium_14};
       color: ${({ theme }) => theme.colors.gray3};
@@ -120,7 +121,6 @@ const St = {
     & input {
       width: 100%;
       padding: 1.2rem 2rem;
-      margin-top: 1rem;
       background-color: ${({ theme }) => theme.colors.bg};
       border-width: 0rem;
       border-radius: 0.5rem;
@@ -149,7 +149,6 @@ const St = {
   `,
   SearchBtn: styled.button`
     padding: 1.3rem 1.6rem;
-    margin-top: 1rem;
 
     background-color: ${({ theme }) => theme.colors.gray7};
     border-radius: 0.6rem;
