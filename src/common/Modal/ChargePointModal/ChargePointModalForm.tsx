@@ -48,7 +48,7 @@ const ChargePointModalForm = ({
           },
         });
       } catch (err) {
-        // navigate("/error") //에러 처리 추가 예정
+        navigate('/error');
       }
     } else {
       navigate('/point-charge', {
