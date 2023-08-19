@@ -1,13 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 interface NoDesignFooterProps {
   isActiveNext?: boolean;
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  navigateURL?: string;
 }
 
-const NoDesignFooter = ({ isActiveNext = true, setStep }: NoDesignFooterProps) => {
+const NoDesignFooter = ({ isActiveNext = true, setStep, navigateURL }: NoDesignFooterProps) => {
+  const navigate = useNavigate();
   const handleClickFooter = () => {
     {
+      navigateURL && navigate(navigateURL);
       isActiveNext && setStep((prev) => prev + 1);
     }
   };

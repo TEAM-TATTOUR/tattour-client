@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import Sheet from 'react-modal-sheet';
-import { IcCancelDark } from '../../../assets/icon';
-import { REFUND_CUSTOM_POLICY } from '../../../assets/data/REFUND_CUSTOM_POLICY';
+import { IcCancelDark } from '../../../../assets/icon';
+import { REFUND_CUSTOM_POLICY } from '../../../../assets/data/REFUND_CUSTOM_POLICY';
 interface PrePointPolicyProps {
   isSheetOpen: boolean;
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;

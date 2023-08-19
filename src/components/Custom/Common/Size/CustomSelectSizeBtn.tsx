@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-import { IcApplyCheckLight, IcApplyCheckPink } from '../../../assets/icon';
+import { IcApplyCheckLight, IcApplyCheckPink } from '../../../../assets/icon';
 import { forwardRef } from 'react';
 
 interface CustomSelectSizeBtnProps {

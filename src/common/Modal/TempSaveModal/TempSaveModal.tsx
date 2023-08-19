@@ -34,7 +34,7 @@ const TempSaveModal = ({
           </St.LoadBtn>
           <St.NewBtn
             onClick={() => {
-              navigate('/select');
+              navigate('/custom');
             }}
           >
             새로 작성하기

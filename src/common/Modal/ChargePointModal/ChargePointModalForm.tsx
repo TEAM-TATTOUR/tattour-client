@@ -15,6 +15,8 @@ interface ChargePointModalFormProps {
   unit: string;
   isEnoughPoint: boolean;
   haveDesign: boolean;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  setCustomId: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
 
 const ChargePointModalForm = ({
@@ -29,6 +31,8 @@ const ChargePointModalForm = ({
   unit,
   isEnoughPoint,
   haveDesign,
+  setStep,
+  setCustomId,
 }: ChargePointModalFormProps) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -41,12 +45,9 @@ const ChargePointModalForm = ({
         const { data } = await api.post('/custom/apply', {
           haveDesign: haveDesign,
         });
-        navigate('/custom-size', {
-          state: {
-            haveDesign: haveDesign,
-            customId: data.data.customId,
-          },
-        });
+
+        setStep((prev) => prev + 1);
+        setCustomId(data.data.customId);
       } catch (err) {
         // navigate("/error") //에러 처리 추가 예정
       }
