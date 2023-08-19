@@ -32,7 +32,10 @@ const SmallTattooCard = ({
       <St.SmallTattooCardTitle>{title}</St.SmallTattooCardTitle>
       <St.SmallTattooCardPriceTextWrapper>
         <St.SmallTattooCardDiscountRate>{discountRate}%</St.SmallTattooCardDiscountRate>
-        <St.SmallTattooCardPriceText>{price.toLocaleString()}원</St.SmallTattooCardPriceText>
+        <St.SmallTattooCardPriceText>
+          {price.toLocaleString()}
+          <span>원</span>
+        </St.SmallTattooCardPriceText>
       </St.SmallTattooCardPriceTextWrapper>
       <St.SmallTattooCardOriginalPriceText>
         {originalPrice.toLocaleString()}원
@@ -78,6 +81,10 @@ const St = {
 
     ${({ theme }) => theme.fonts.title_extrabold_16};
     color: ${({ theme }) => theme.colors.gray7};
+
+    & > span {
+      ${({ theme }) => theme.fonts.title_semibold_16};
+    }
   `,
 
   SmallTattooCardOriginalPriceText: styled.p`
