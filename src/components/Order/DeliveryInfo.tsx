@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import sliceMaxLength from '../../utils/sliceMaxLength';
 
 interface DeliveryInfoProps {
   handleModal: () => void;
@@ -23,14 +24,6 @@ const DeliveryInfo = ({
   detailAddress,
   setDetailAddress,
 }: DeliveryInfoProps) => {
-  // 자동 하이픈
-  const sliceMaxLength = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.value = e.target.value
-      .replace(/[^0-9]/g, '')
-      .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
-      .replace(/(-{1,2})$/g, '');
-  };
-
   return (
     <St.Wrapper>
       <St.Title>배송 정보</St.Title>
@@ -55,7 +48,7 @@ const DeliveryInfo = ({
             name='phone'
             maxLength={13}
             value={phone}
-            onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e)} // 자동 하이픈
+            onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
             onChange={(e) => {
               setPhone(e.target.value);
             }}
