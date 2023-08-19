@@ -12,7 +12,7 @@ import SelectKeywordLayout from '../../../components/Custom/HaveDesign/SelectKey
 const HaveDesignCustomPage = () => {
   const [step, setStep] = useState(0);
 
-  //step 1: CustomImg - 그려둔 도안 이미지 state
+  //step 1: 이미지 첨부하기 관련 state
   const [customImages, setCustomImages] = useState<FileList | null>(null);
   const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
   const [previewURL, setPreviewURL] = useState<string[]>([]);

@@ -12,6 +12,7 @@ const Canvas: React.FC<CanvasProps> = ({ setCanvasState }: CanvasProps) => {
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
 
   useEffect(() => {
+    //새 캔버스 만들기
     const canvas = new fabric.Canvas(canvasRef.current, {
       isDrawingMode: true,
       width: 335,
@@ -47,6 +48,7 @@ const Canvas: React.FC<CanvasProps> = ({ setCanvasState }: CanvasProps) => {
     }
   };
 
+  //전체 삭제 기능
   const handleDelete = () => {
     fabricCanvasRef.current?.clear();
   };

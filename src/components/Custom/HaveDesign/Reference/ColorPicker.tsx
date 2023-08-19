@@ -39,28 +39,33 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
   const [selectedBrush, setSelectedBrush] = useState<number>(4);
   const [isColorPickerSelected, setIsColorPickerSelected] = useState(false);
 
+  //색상 변경(현재 선택된 색상 설정)
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const color = event.target.value;
     setSelectedColor(color);
     onColorChange(color);
   };
 
+  //브러시 크기 변경 관리
   const handleChangeBrush = (brush: number) => {
     setSelectedBrush(brush);
     onBrushChange(brush);
   };
 
+  //사용자 지정 색상 외에 지정된 색상 옵션들 변경 관리
   const handleChangeSuggestedColor = (color: string) => {
     setIsColorPickerSelected(false);
     setSelectedSuggestedColor(color);
     onColorChange(color);
   };
 
+  //사용자 지정 색상 변경 관리
   const handleChangeRainbowColor = () => {
     setSelectedSuggestedColor('');
     setIsColorPickerSelected(!isColorPickerSelected);
   };
 
+  //색상 선택과 미선택 각각에 다른 아이콘 띄워주기
   const COLOR_ICONS = [
     {
       color: COLOR_BLACK,
@@ -80,6 +85,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
     },
   ];
 
+  //브러시 옵션 선택에 따라 굵기 다르게 지정하기
   const BRUSH_ICONS = [
     {
       brush: 4,

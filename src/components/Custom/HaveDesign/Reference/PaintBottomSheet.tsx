@@ -17,7 +17,7 @@ const PaintBottomSheet = ({
   setDrawingImageUrl,
   drawingImageUrl,
 }: PaintBottomProps) => {
-  const [canvasState, setCanvasState] = useState<HTMLCanvasElement | null>(null); //수정함
+  const [canvasState, setCanvasState] = useState<HTMLCanvasElement | null>(null);
 
   const closeBottom = () => setBottomOpen(false);
 
