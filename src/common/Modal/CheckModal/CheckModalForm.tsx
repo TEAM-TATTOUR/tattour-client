@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
-
+import { useNavigate } from 'react-router-dom';
 import api from '../../../libs/api';
 
 interface CheckModalFormProps {
@@ -20,6 +20,7 @@ const CheckModalForm = ({
   chargeAmount,
   setIsOpenCompleteModal,
 }: CheckModalFormProps) => {
+  const navigate = useNavigate();
   const handleClickContinueBtn = async () => {
     //포인트 충전
     try {
@@ -28,10 +29,8 @@ const CheckModalForm = ({
       });
       setIsOpenCompleteModal(true);
       onClose();
-      // navigate(redirectURL);
     } catch (err) {
-      // console.log(err); //추후 삭제 예정(에러 페이지 라우팅 하면)
-      // navigate("/error")
+      navigate('/error');
     }
   };
 
