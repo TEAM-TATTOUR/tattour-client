@@ -26,6 +26,7 @@ import SearchResultPage from './page/Search/SearchResultPage';
 import ScrollToTop from './libs/hooks/ScrollTop';
 import LoginCallback from './components/Login/LoginCallback';
 import SavePage from './page/SavePage';
+import ErrorPage from './page/Error/ErrorPage';
 
 const Router = () => {
   return (
@@ -60,6 +61,7 @@ const Router = () => {
         <Route path='/complete' element={<CompletePage />} />
         <Route path='/custom-reference' element={<CustomReferencePage />} />
         <Route path='/save' element={<SavePage />} />
+        <Route path='/error' element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );
