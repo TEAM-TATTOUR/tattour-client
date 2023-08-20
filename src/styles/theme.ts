@@ -266,6 +266,66 @@ const fonts = {
     line-height: 130%;
     letter-spacing: 0.054rem;
   `,
+  title_bold_20: css`
+    font-family: 'Pretendard Variable', system-ui, 'Helvetica Neue', 'Segoe UI',
+      'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', sans-serif;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: -0.01rem;
+  `,
+  title_bold_16: css`
+    font-family: 'Pretendard Variable', system-ui, 'Helvetica Neue', 'Segoe UI',
+      'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', sans-serif;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: -0.01rem;
+  `,
+  title_bold_24: css`
+    font-family: 'Pretendard Variable', system-ui, 'Helvetica Neue', 'Segoe UI',
+      'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', sans-serif;
+    font-size: 2.4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: -0.01rem;
+  `,
+  detail_bold_12: css`
+      font-family: 'Pretendard Variable', system-ui, 'Helvetica Neue', 'Segoe UI',
+        'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', sans-serif;
+      font-size: 1.2rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 130%;
+      letter-spacing: -0.01rem;
+  `,
+  title_bold_18: css`
+      font-family: 'Pretendard Variable', system-ui, 'Helvetica Neue', 'Segoe UI',
+        'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', sans-serif;
+      font-size: 1.8rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 130%;
+      letter-spacing: -0.01rem;
+  `,
+  body_bold_14: css`
+      font-family: 'Pretendard Variable', system-ui, 'Helvetica Neue', 'Segoe UI',
+        'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', sans-serif;
+      font-size: 1.4rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 130%;
+      letter-spacing: -0.01rem;
+  `
 };
 
 const theme: DefaultTheme = {

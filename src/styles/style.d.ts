@@ -35,12 +35,14 @@ declare module 'styled-components' {
       title_semibold_16: SerializedStyles;
       body_medium_16: SerializedStyles;
       body_semibold_14: SerializedStyles;
+      body_bold_14: SerializedStyles;
       body_medium_14: SerializedStyles;
       body_line_medium_14: SerializedStyles;
       body_underline_medium_14: SerializedStyles;
       body_line_medium_12: SerializedStyles;
       detail_medium_12: SerializedStyles;
       detail_semibold_12: SerializedStyles;
+      detail_bold_12: SerializedStyles;
       title_extrabold_16: SerializedStyles;
       title_extrabold_18: SerializedStyles;
       title_extrabold_22: SerializedStyles;
@@ -48,6 +50,10 @@ declare module 'styled-components' {
       title_eng_bold_20: SerializedStyles;
       body_eng_bold_10: SerializedStyles;
       title_eng_bold_18: SerializedStyles;
+      title_bold_20: SerializedStyles;
+      title_bold_16: SerializedStyles;
+      title_bold_24: SerializedStyles;
+      title_bold_18: SerializedStyles;
     };
   }
 }
