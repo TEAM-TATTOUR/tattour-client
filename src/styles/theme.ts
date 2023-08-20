@@ -325,7 +325,17 @@ const fonts = {
       font-weight: 700;
       line-height: 130%;
       letter-spacing: -0.01rem;
-  `
+  `,
+  body_bold_16: css`
+    font-family: 'Pretendard Variable', system-ui, 'Helvetica Neue', 'Segoe UI',
+      'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', sans-serif;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: -0.01rem;
+`
 };
 
 const theme: DefaultTheme = {
