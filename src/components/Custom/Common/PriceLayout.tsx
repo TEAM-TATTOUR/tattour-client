@@ -20,6 +20,9 @@ interface PriceLayoutProps {
   customImages: FileList | undefined;
   handDrawingImage?: string;
 
+  count: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+
   setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
 }
 
@@ -29,24 +32,20 @@ const PriceLayout = ({
   customInfo,
   customImages,
   handDrawingImage,
+  count,
+  setCount,
   setReceiptData,
 }: PriceLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
-  const [count, setCount] = useState(1);
-  const [isCompletedState, setIsCompletedState] = useState(true); //이거 왜 꼭 state로 쓰는지 궁금합니다! 꼭 필요한 부분인가요?
-
-  const handleCompletedState = () => {
-    //이 코드의 역할이 궁금합니다! 꼭 필요한 함수인가요?
-    setIsCompletedState(true);
-  };
+  const [isCompletedState, setIsCompletedState] = useState(false); //이거 왜 꼭 state로 쓰는지 궁금합니다! 꼭 필요한 부분인가요? => 푸터까지 눌러서 사용자가 진짜 최종 접수하기를 한 상태였을 때에만 내 타투로 이동하고 아니면 임시저장으로 빼줘야 한다고 생각했습니다!
 
   const updatedCustomInfo = {
     ...customInfo,
     count: count,
     isPublic: isPublic,
     isCompleted: true,
-    price: 0, //price 최상단(여기 layout 컴포넌트)에서 관리할 수 있게 + 할인 로직까지 포함해서 수정 부탁해용 !!
+    // price: price, //price 최상단(여기 layout 컴포넌트)에서 관리할 수 있게 + 할인 로직까지 포함해서 수정 부탁해용 !! => 우리 patch할 때 가격 안 보내는 걸로 알아서 확인 필요..!
     viewCount: step,
   };
 
@@ -76,7 +75,7 @@ const PriceLayout = ({
           customInfo={updatedCustomInfo}
           handDrawingImage={handDrawingImage ? handDrawingImage : ''}
           customImages={customImages}
-          handleCompletedState={handleCompletedState}
+          setIsCompletedState={setIsCompletedState}
           isCompletedState={isCompletedState}
           setStep={setStep}
           setReceiptData={setReceiptData}

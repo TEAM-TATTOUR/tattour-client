@@ -8,9 +8,8 @@ interface PriceFooterProps {
   customInfo: customInfoType;
   handDrawingImage: string; //handDrawingImage string으로 넘기면 되는지 확인 부탁!(swagger에는 string으로 명시 됨)
   customImages: FileList | undefined;
-  isCompleted?: boolean;
-  handleCompletedState?: () => void;
-  isCompletedState?: boolean;
+  isCompletedState: boolean;
+  setIsCompletedState: React.Dispatch<React.SetStateAction<boolean>>;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
 }
@@ -19,12 +18,15 @@ const PriceFooter = ({
   customInfo,
   handDrawingImage,
   customImages,
+  isCompletedState,
+  setIsCompletedState,
   setStep,
   setReceiptData,
 }: PriceFooterProps) => {
   // const navigate = useNavigate();
 
   const handleClickFooterBtn = async () => {
+    setIsCompletedState(true);
     const formData = new FormData();
     try {
       // 1. handDrawingImage(손 그림) append
