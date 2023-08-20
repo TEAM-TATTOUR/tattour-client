@@ -56,7 +56,9 @@ const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) 
           </St.FilterBtn>
         ))}
       </St.BtnContainer>
-      <St.CountText>전체 {response.length}개</St.CountText>
+      <St.CountText>
+        전체 <span>{response.length}</span>개
+      </St.CountText>
       <St.CardContainer>
         {!loading &&
           !error &&
@@ -70,7 +72,10 @@ const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) 
                 <h2>{name}</h2>
                 <div>
                   <St.CardDiscount>{discountRate}%</St.CardDiscount>
-                  <St.CardPrice>{discountPrice && discountPrice.toLocaleString()}원</St.CardPrice>
+                  <St.CardPrice>
+                    {discountPrice && discountPrice.toLocaleString()}
+                    <span>원</span>
+                  </St.CardPrice>
                 </div>
                 <p>{price.toLocaleString()}원</p>
               </St.Card>
@@ -115,6 +120,10 @@ const St = {
     margin: 2.8rem 0rem 1.6rem 2.2rem;
     color: ${({ theme }) => theme.colors.gray4};
     ${({ theme }) => theme.fonts.body_medium_14};
+
+    & > span {
+      ${({ theme }) => theme.fonts.body_semibold_14};
+    }
   `,
   CardContainer: styled.section`
     display: grid;
@@ -129,7 +138,7 @@ const St = {
     & > h2 {
       margin: 1.5rem 0rem 0rem 2rem;
       color: ${({ theme }) => theme.colors.gray7};
-      ${({ theme }) => theme.fonts.title_semibold_16};
+      ${({ theme }) => theme.fonts.body_medium_16};
     }
 
     & > p {
@@ -172,5 +181,9 @@ const St = {
 
     color: ${({ theme }) => theme.colors.gray7};
     ${({ theme }) => theme.fonts.title_extrabold_16};
+
+    & > span {
+      ${({ theme }) => theme.fonts.title_semibold_16};
+    }
   `,
 };
