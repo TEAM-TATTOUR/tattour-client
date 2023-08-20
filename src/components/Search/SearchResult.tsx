@@ -9,7 +9,10 @@ const SearchResult = () => {
 
   return (
     <St.SearchResultPageWrapper>
-      <St.SearchResultText>전체 {response.length}개</St.SearchResultText>
+      <St.SearchResultText>
+        전체
+        <St.SearchNumberText>{' ' + response.length}</St.SearchNumberText>개
+      </St.SearchResultText>
       <St.SearchResultList>
         {response.map(({ id, imageUrl, name, discountRate, discountPrice, price }) => (
           <SearchResultItem
@@ -34,7 +37,7 @@ const St = {
     margin-top: 2.2rem;
     margin-left: 2.2rem;
 
-    ${({ theme }) => theme.fonts.body_semibold_14};
+    ${({ theme }) => theme.fonts.body_medium_14};
 
     color: ${({ theme }) => theme.colors.gray4};
   `,
@@ -44,6 +47,11 @@ const St = {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 0.1rem;
     margin-top: 1.6rem;
+  `,
+
+  SearchNumberText: styled.span`
+    ${({ theme }) => theme.fonts.body_semibold_14};
+    color: ${({ theme }) => theme.colors.gray4};
   `,
 };
 
