@@ -10,7 +10,7 @@ import { PRICE } from '../../assets/data/PRICE';
 interface CountPriceProps {
   isPublic: boolean;
   setCount: React.Dispatch<React.SetStateAction<number>>;
-  size: string;
+  size: string | undefined;
 }
 
 const CountPrice = ({ isPublic, setCount, size }: CountPriceProps) => {

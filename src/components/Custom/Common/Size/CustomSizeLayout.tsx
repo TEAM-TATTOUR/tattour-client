@@ -13,9 +13,16 @@ interface CustomSizeLayoutProps {
   size: string;
   setSize: React.Dispatch<React.SetStateAction<string>>;
   haveDesign: boolean;
+  customId: number | undefined;
 }
 
-const CustomSizeLayout = ({ setStep, size, setSize, haveDesign }: CustomSizeLayoutProps) => {
+const CustomSizeLayout = ({
+  setStep,
+  size,
+  setSize,
+  haveDesign,
+  customId,
+}: CustomSizeLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
@@ -41,7 +48,13 @@ const CustomSizeLayout = ({ setStep, size, setSize, haveDesign }: CustomSizeLayo
     <PageLayout
       renderHeader={renderCustomSizePageHeader}
       footer={
-        <NoDesignFooter isActiveNext={isActiveNext} setStep={setStep} navigateURL={navigateURL} />
+        <NoDesignFooter
+          isActiveNext={isActiveNext}
+          setStep={setStep}
+          navigateURL={navigateURL}
+          size={size}
+          customId={customId}
+        />
       }
     >
       <CustomSelectSize setIsActiveNext={setIsActiveNext} setSize={setSize} size={size} />

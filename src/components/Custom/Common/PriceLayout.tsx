@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { IcBackDark } from '../../../assets/icon';
 import CancelBtn from '../../../common/Header/CancelBtn';
@@ -11,47 +10,44 @@ import PriceFooter from '../PriceFooter';
 import PriceHeading from '../PriceHeading';
 import Header from '../../Header';
 import PageLayout from '../../PageLayout';
+import { customInfoType, resCustomInfoType } from '../../../types/customInfoType';
 
 interface PriceLayoutProps {
+  step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
+
+  customInfo: customInfoType;
+  customImages: FileList | undefined;
+  handDrawingImage?: string;
+
+  setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
 }
 
-const PriceLayout = ({ setStep }: PriceLayoutProps) => {
+const PriceLayout = ({
+  step,
+  setStep,
+  customInfo,
+  customImages,
+  handDrawingImage,
+  setReceiptData,
+}: PriceLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
   const [count, setCount] = useState(1);
-  const [isCompletedState, setIsCompletedState] = useState(false);
+  const [isCompletedState, setIsCompletedState] = useState(true); //이거 왜 꼭 state로 쓰는지 궁금합니다! 꼭 필요한 부분인가요?
 
   const handleCompletedState = () => {
+    //이 코드의 역할이 궁금합니다! 꼭 필요한 함수인가요?
     setIsCompletedState(true);
   };
 
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const haveDesign = location.state ? location.state.haveDesign : null;
-  const prevCustomInfo = location.state ? location.state.customInfo : null;
-  const handDrawingImage = location.state ? location.state.handDrawingImage : null;
-  const customImages = location.state ? location.state.customImages : null;
-  const size = location.state ? location.state.customInfo.size : null;
-  const price = location.state ? location.state.customInfo.price : null;
-  const isCompleted = location.state ? location.state.customInfo.isCompleted : null;
-
-  const CUSTOM_VIEW_COUNT = haveDesign ? 7 : 4;
-
-  // useEffect(() => {
-  //   if (!location.state) navigate('/onboarding');
-  // }, [location.state, navigate]);
-
-  const customInfo = {
-    ...prevCustomInfo,
-    haveDesign: haveDesign,
-    viewCount: CUSTOM_VIEW_COUNT,
-    handDrawingImage: handDrawingImage,
-    customImages: customImages,
+  const updatedCustomInfo = {
+    ...customInfo,
     count: count,
-    price: price,
-    isCompleted: isCompleted,
+    isPublic: isPublic,
+    isCompleted: true,
+    price: 0, //price 최상단(여기 layout 컴포넌트)에서 관리할 수 있게 + 할인 로직까지 포함해서 수정 부탁해용 !!
+    viewCount: step,
   };
 
   const renderPriceLayoutHeader = () => {
@@ -67,7 +63,7 @@ const PriceLayout = ({ setStep }: PriceLayoutProps) => {
           />
         }
         transparent={true}
-        progressBar={<ProgressBar curStep={CUSTOM_VIEW_COUNT} maxStep={CUSTOM_VIEW_COUNT} />}
+        progressBar={<ProgressBar curStep={step} maxStep={step} />}
       />
     );
   };
@@ -77,19 +73,19 @@ const PriceLayout = ({ setStep }: PriceLayoutProps) => {
       renderHeader={renderPriceLayoutHeader}
       footer={
         <PriceFooter
-          haveDesign={haveDesign}
-          customInfo={customInfo}
-          handDrawingImage={handDrawingImage}
+          customInfo={updatedCustomInfo}
+          handDrawingImage={handDrawingImage ? handDrawingImage : ''}
           customImages={customImages}
-          isCompleted={isCompleted}
           handleCompletedState={handleCompletedState}
           isCompletedState={isCompletedState}
+          setStep={setStep}
+          setReceiptData={setReceiptData}
         />
       }
     >
       <St.TopWrapper>
         <PriceHeading />
-        <CountPrice isPublic={isPublic} setCount={setCount} size={size} />
+        <CountPrice isPublic={isPublic} setCount={setCount} size={customInfo.size} />
       </St.TopWrapper>
       <MakePublic isPublic={isPublic} setIsPublic={setIsPublic} />
     </PageLayout>

@@ -13,3 +13,25 @@ export interface customInfoType {
   price?: number;
   viewCount?: number;
 }
+
+export interface resCustomInfoType {
+  id: number;
+  userId: number;
+  stickerId: number;
+  themes: Array<string>;
+  styles: Array<string>;
+  mainImageUrl: string;
+  handDrawingImageUrl: string;
+  images: Array<string>;
+  haveDesign: boolean;
+  size: string;
+  name: string;
+  description: string;
+  demand: string;
+  count: number;
+  isColored: boolean;
+  isPublic: boolean;
+  isCompleted: boolean;
+  process: string;
+  viewCount: number;
+}

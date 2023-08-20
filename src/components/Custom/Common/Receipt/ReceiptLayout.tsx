@@ -7,8 +7,13 @@ import PageLayout from '../../../PageLayout';
 import ReceiptDetail from './ReceiptDetail';
 import ReceiptFooter from './ReceiptFooter';
 import Submitted from './Submitted';
+import { resCustomInfoType } from '../../../../types/customInfoType';
 
-const ReceiptLayout = () => {
+interface ReceiptLayoutProps {
+  receiptData: resCustomInfoType | undefined;
+}
+
+const ReceiptLayout = ({ receiptData }: ReceiptLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
 
   const renderReceiptLayoutHeader = () => {
@@ -31,7 +36,7 @@ const ReceiptLayout = () => {
   return (
     <PageLayout renderHeader={renderReceiptLayoutHeader} footer={<ReceiptFooter />}>
       <Submitted />
-      <ReceiptDetail />
+      <ReceiptDetail receiptData={receiptData} />
     </PageLayout>
   );
 };

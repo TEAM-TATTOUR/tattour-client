@@ -5,13 +5,28 @@ interface NoDesignFooterProps {
   isActiveNext?: boolean;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   navigateURL?: string;
+  //지금은 해당 값들을 navigate으로 넘겨줘야 하기 때문에 필요한 props들 추후 통합 시 삭제 할 예정
+  size?: string;
+  customId?: number;
 }
 
-const NoDesignFooter = ({ isActiveNext = true, setStep, navigateURL }: NoDesignFooterProps) => {
+const NoDesignFooter = ({
+  isActiveNext = true,
+  setStep,
+  navigateURL,
+  size,
+  customId,
+}: NoDesignFooterProps) => {
   const navigate = useNavigate();
   const handleClickFooter = () => {
     {
-      navigateURL && navigate(navigateURL);
+      navigateURL &&
+        navigate(navigateURL, {
+          state: {
+            size: size,
+            customId: customId,
+          },
+        });
       isActiveNext && setStep((prev) => prev + 1);
     }
   };

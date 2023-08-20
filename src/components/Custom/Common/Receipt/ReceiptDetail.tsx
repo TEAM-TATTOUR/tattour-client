@@ -1,19 +1,28 @@
-import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { resCustomInfoType } from '../../../../types/customInfoType';
 
-const ReceiptDetail = () => {
-  const location = useLocation();
+interface ReceiptDetailProps {
+  receiptData: resCustomInfoType | undefined;
+}
 
-  const size = location.state ? location.state.data.size : '';
-  const count = location.state ? location.state.data.count : 1;
-  const isColored = location.state ? location.state.data.isColored : false;
-  const name = location.state ? location.state.data.name : '';
-  const description = location.state ? location.state.data.description : '';
-  const themes = location.state ? location.state.data.themes : [];
-  const styles = location.state ? location.state.data.styles : [];
-  const mainImageUrl = location.state ? location.state.data.mainImageUrl : '';
-  const handDrawingImageUrl = location.state ? location.state.data.handDrawingImageUrl : '';
-  const images = location.state ? location.state.data.images : [];
+const ReceiptDetail = ({ receiptData }: ReceiptDetailProps) => {
+  //typeError 방지용 early return
+  if (receiptData === undefined) return;
+
+  const {
+    size,
+    count,
+    isColored,
+    name,
+    description,
+    demand,
+    themes,
+    styles,
+    mainImageUrl,
+    handDrawingImageUrl,
+    images,
+  } = receiptData;
+
   const previewURL = [...themes, ...styles];
   const imagesArray = handDrawingImageUrl
     ? [mainImageUrl, ...images, handDrawingImageUrl]
@@ -54,11 +63,11 @@ const ReceiptDetail = () => {
       </St.DetailWrapper>
       <St.DetailWrapper>
         <St.DetailSubject>주제</St.DetailSubject>
-        <St.DetailContent>{name}</St.DetailContent>
+        <St.DetailContent>{description}</St.DetailContent>
       </St.DetailWrapper>
       <St.DetailWrapper className='request'>
         <St.DetailSubject>요청사항</St.DetailSubject>
-        <St.DetailContent>{description}</St.DetailContent>
+        <St.DetailContent>{demand}</St.DetailContent>
       </St.DetailWrapper>
     </St.ReceiptDetailWrapper>
   );
