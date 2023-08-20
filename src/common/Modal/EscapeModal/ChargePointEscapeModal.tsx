@@ -15,7 +15,7 @@ const ChargePointEscapeModal = ({ setModalOn, redirectURL }: ChargePointEscapeMo
         pageName={'ChargePage'}
         title={'정말 그만두시나요?'}
         subTitle={'지금 그만두시면 포인트 충전을'}
-        subTitle_2={'처음부터 다시 진행해야 해요'}
+        subTitle2={'처음부터 다시 진행해야 해요'}
         continueBtn={'계속하기'}
         stopBtn={'그만하기'}
       />

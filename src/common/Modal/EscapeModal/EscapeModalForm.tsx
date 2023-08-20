@@ -9,7 +9,7 @@ interface EscapeModalFormProps {
   pageName: string;
   title: string;
   subTitle: string;
-  subTitle_2: string;
+  subTitle2: string;
   continueBtn: string;
   stopBtn: string;
 }
@@ -20,7 +20,7 @@ const EscapeModalForm = ({
   pageName,
   title,
   subTitle,
-  subTitle_2,
+  subTitle2,
   continueBtn,
   stopBtn,
 }: EscapeModalFormProps) => {
@@ -56,7 +56,7 @@ const EscapeModalForm = ({
           <IcCancelDark onClick={onClose} />
           <St.ModalTitle>{title}</St.ModalTitle>
           <St.ModalSubTitle>{subTitle}</St.ModalSubTitle>
-          <St.ModalSubTitle>{subTitle_2}</St.ModalSubTitle>
+          <St.ModalSubTitle>{subTitle2}</St.ModalSubTitle>
         </St.ModalTitleWrapper>
 
         <St.BtnWrapper>

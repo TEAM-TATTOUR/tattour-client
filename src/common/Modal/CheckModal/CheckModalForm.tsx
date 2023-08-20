@@ -7,7 +7,7 @@ interface CheckModalFormProps {
   onClose: () => void;
   title: string;
   subTitle: string;
-  subTitle_2: string;
+  subTitle2: string;
   continueBtn: string;
   chargeAmount: number;
   setIsOpenCompleteModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,7 +17,7 @@ const CheckModalForm = ({
   onClose,
   title,
   subTitle,
-  subTitle_2,
+  subTitle2,
   continueBtn,
   chargeAmount,
   setIsOpenCompleteModal,
@@ -43,7 +43,7 @@ const CheckModalForm = ({
           <IcCancelDark onClick={onClose} />
           <St.ModalTitle>{title}</St.ModalTitle>
           <St.ModalSubTitle>{subTitle}</St.ModalSubTitle>
-          <St.ModalSubTitle>{subTitle_2}</St.ModalSubTitle>
+          <St.ModalSubTitle>{subTitle2}</St.ModalSubTitle>
         </St.ModalTitleWrapper>
 
         <St.BtnWrapper>
