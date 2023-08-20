@@ -1,15 +1,20 @@
 import { styled } from 'styled-components';
-
 import { useNavigate } from 'react-router-dom';
 import useGetUserProfile from '../../../libs/hooks/useGetUserProfile';
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
+import { IcCancelDark } from '../../../assets/icon';
 
 interface ChargePointCompleteModalProps {
   chargeAmount: number;
   redirectURL: string;
+  setModalOn: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const ChargePointCompleteModal = ({ chargeAmount, redirectURL }: ChargePointCompleteModalProps) => {
+const ChargePointCompleteModal = ({
+  chargeAmount,
+  redirectURL,
+  setModalOn,
+}: ChargePointCompleteModalProps) => {
   const navigate = useNavigate();
   const [currPoint, setCurrPoint] = useState(0);
 
@@ -29,6 +34,7 @@ const ChargePointCompleteModal = ({ chargeAmount, redirectURL }: ChargePointComp
       <St.ModalWrapper>
         <St.ModalContent>
           <St.ModalTitleWrapper>
+            <IcCancelDark onClick={() => setModalOn(false)} />
             <St.ModalTitle>포인트 충전 완료</St.ModalTitle>
           </St.ModalTitleWrapper>
 
@@ -36,7 +42,7 @@ const ChargePointCompleteModal = ({ chargeAmount, redirectURL }: ChargePointComp
             <St.PointWrapper>
               <St.PointTitle>충전한 금액</St.PointTitle>
               <St.PointContentsWrapper>
-                <St.TopContents>{chargeAmount}</St.TopContents>
+                <St.TopContents>{chargeAmount.toLocaleString()}</St.TopContents>
                 <St.Unit>P</St.Unit>
               </St.PointContentsWrapper>
             </St.PointWrapper>
@@ -44,7 +50,7 @@ const ChargePointCompleteModal = ({ chargeAmount, redirectURL }: ChargePointComp
             <St.PointWrapper>
               <St.PointTitle>충전 후 포인트 잔액</St.PointTitle>
               <St.PointContentsWrapper>
-                <St.BottomContents>{currPoint}</St.BottomContents>
+                <St.BottomContents>{currPoint.toLocaleString()}</St.BottomContents>
                 <St.Unit>P</St.Unit>
               </St.PointContentsWrapper>
             </St.PointWrapper>
@@ -127,8 +133,8 @@ const St = {
     align-items: center;
     width: 29.1rem;
     height: 9.6rem;
-    margin-top: 1.5rem;
-    margin-bottom: 4rem;
+    margin-top: 2.5rem;
+    margin-bottom: 3rem;
     gap: 1.4rem;
 
     border-radius: 0.6rem;
@@ -160,7 +166,7 @@ const St = {
   TopContents: styled.p`
     color: ${({ theme }) => theme.colors.gray5};
 
-    ${({ theme }) => theme.fonts.title_semibold_18};
+    ${({ theme }) => theme.fonts.title_medium_18};
   `,
 
   BottomContents: styled.p`
