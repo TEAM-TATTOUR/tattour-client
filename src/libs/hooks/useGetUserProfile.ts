@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import { AxiosError } from "axios";
 
 export interface UserProfileProps {
-    name: string;
-    point: number;
+    homeUserInfo: {
+        name: string;
+        point: number;
+    }
 }
 
 interface UserProfileResponse {

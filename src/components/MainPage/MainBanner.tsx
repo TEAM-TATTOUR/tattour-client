@@ -64,7 +64,7 @@ const St = {
 
   SmallCopy: styled.p`
     padding-top: 1.2rem;
-    ${({ theme }) => theme.fonts.body_medium_16};
+    ${({ theme }) => theme.fonts.body_bold_16};
     color: ${({ theme }) => theme.colors.white};
   `,
 
@@ -79,7 +79,7 @@ const St = {
     padding-left: 1.5rem;
 
     background-color: ${({ theme }) => theme.colors.pink5};
-    ${({ theme }) => theme.fonts.title_semibold_20};
+    ${({ theme }) => theme.fonts.title_bold_20};
 
     color: ${({ theme }) => theme.colors.gray9};
     border-radius: 0.5rem;
