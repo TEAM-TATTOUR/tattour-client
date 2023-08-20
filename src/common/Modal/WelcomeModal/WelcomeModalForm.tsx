@@ -96,10 +96,7 @@ const St = {
   `,
 
   BtnWrapper: styled.div`
-    display: flex;
-    align-items: flex-end;
     width: 100%;
-    padding: 0;
   `,
 
   ContinueBtn: styled.button`

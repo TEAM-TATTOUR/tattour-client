@@ -20,7 +20,7 @@ const AccountCopy = () => {
           <St.AccountBoxCopy>복사하기</St.AccountBoxCopy>
         </St.AccountBox>
       </CopyToClipboard>
-      {toast && <Toast setToast={setToast} text='계좌번호가 발송되었습니다.' />}
+      {toast && <Toast setToast={setToast} text='계좌번호가 복사 되었습니다.' />}
     </St.TransferAccountContainer>
   );
 };

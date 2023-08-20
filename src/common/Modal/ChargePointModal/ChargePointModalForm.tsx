@@ -49,7 +49,7 @@ const ChargePointModalForm = ({
         setStep((prev) => prev + 1);
         setCustomId(data.data.customId);
       } catch (err) {
-        // navigate("/error") //에러 처리 추가 예정
+        navigate('/error');
       }
     } else {
       navigate('/point-charge', {
@@ -162,7 +162,7 @@ const St = {
     width: 29.1rem;
     height: 9.6rem;
     margin-top: 1.5rem;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     gap: 1.4rem;
 
     border-radius: 0.6rem;
@@ -194,7 +194,7 @@ const St = {
   TopContents: styled.p`
     color: ${({ theme }) => theme.colors.gray5};
 
-    ${({ theme }) => theme.fonts.title_semibold_18};
+    ${({ theme }) => theme.fonts.title_medium_18};
   `,
 
   BottomContents: styled.p<{ $isEnoughPoint: boolean }>`

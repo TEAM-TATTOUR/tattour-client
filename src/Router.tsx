@@ -32,6 +32,7 @@ import SavePage from './page/SavePage';
 import NoDesignCustomPage from './page/Custom/NoDesign/NoDesignCustomPage';
 import HaveDesignCustomPage from './page/Custom/HaveDesign/HaveDesignCustomPage';
 import CommonCustomPage from './page/Custom/Common/CommonCustomPage';
+import ErrorPage from './page/Error/ErrorPage';
 
 const Router = () => {
   return (
@@ -68,6 +69,7 @@ const Router = () => {
         <Route path='/haveDesign' element={<HaveDesignCustomPage />} />
         <Route path='/noDesign' element={<NoDesignCustomPage />} />
         <Route path='/custom' element={<CommonCustomPage />} />
+        <Route path='/error' element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );

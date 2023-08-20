@@ -13,7 +13,7 @@ const PreventAccess = ({ title, btnContents, isError }: PreventAccessProps) => {
   const navigate = useNavigate();
 
   const handleClickButton = () => {
-    isError ? window.location.reload() : navigate('/');
+    isError ? navigate(-1) : navigate('/');
   };
 
   return (

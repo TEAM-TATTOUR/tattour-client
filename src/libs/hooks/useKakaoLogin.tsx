@@ -40,8 +40,8 @@ const useKakaoLogin = () => {
 
           isUserExist ? navigate('/') : navigate('/login', { state: { step: 1 } });
         })
-        .catch((Error: object) => {
-          console.log(Error);
+        .catch(() => {
+          navigate('/error');
         });
     }
   }, []);
