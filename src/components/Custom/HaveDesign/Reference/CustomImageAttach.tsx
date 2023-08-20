@@ -8,8 +8,8 @@ interface CustomImageAttachProps {
   drawingImageUrl: string | null;
   setDrawingImageUrl: React.Dispatch<React.SetStateAction<string | null>>;
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
-  customImages: FileList | null;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | undefined>>;
+  customImages: FileList | undefined;
   handDrawingImage: File | null;
   setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
   previewURL: string[];
