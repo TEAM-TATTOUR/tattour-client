@@ -6,7 +6,7 @@ import React from 'react';
 interface PriceFooterProps {
   haveDesign?: boolean;
   customInfo: customInfoType;
-  handDrawingImage: string; //handDrawingImage string으로 넘기면 되는지 확인 부탁!(swagger에는 string으로 명시 됨)
+  handDrawingImage: string;
   customImages: FileList | undefined;
   isCompletedState: boolean;
   setIsCompletedState: React.Dispatch<React.SetStateAction<boolean>>;
@@ -49,7 +49,7 @@ const PriceFooter = ({
           'Content-Type': 'multipart/form-data',
         },
       });
-      // console.log('data', data.data, '!!!!!');
+
       setReceiptData(data.data);
       setStep((prev) => prev + 1);
     } catch (err) {

@@ -38,7 +38,9 @@ const HaveDesignCustomPage = () => {
   //step 6: 주문 관련 state
   const [count, setCount] = useState(1);
   const [isPublic, setIsPublic] = useState(false);
-  const [isCompletedState, setIsCompletedState] = useState(false); //이거 왜 꼭 state로 쓰는지 궁금합니다! 꼭 필요한 부분인가요? => 푸터까지 눌러서 사용자가 진짜 최종 접수하기를 한 상태였을 때에만 내 타투로 이동하고 아니면 임시저장으로 빼줘야 한다고 생각했습니다!
+  const [isCompletedState, setIsCompletedState] = useState(false);
+  //이거 왜 꼭 state로 쓰는지 궁금합니다! 꼭 필요한 부분인가요?
+  //=> 푸터까지 눌러서 사용자가 진짜 최종 접수하기를 한 상태였을 때에만 내 타투로 이동하고 아니면 임시저장으로 빼줘야 한다고 생각했습니다!
 
   const location = useLocation();
 
@@ -137,6 +139,7 @@ const HaveDesignCustomPage = () => {
           customInfo={customInfo}
           customImages={customImages}
           setReceiptData={setReceiptData}
+          handDrawingImage={drawingImageUrl}
           isPublic={isPublic}
           setIsPublic={setIsPublic}
           isCompletedState={isCompletedState}

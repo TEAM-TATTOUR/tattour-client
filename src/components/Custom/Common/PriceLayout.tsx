@@ -18,7 +18,7 @@ interface PriceLayoutProps {
 
   customInfo: customInfoType;
   customImages: FileList | undefined;
-  handDrawingImage?: string;
+  handDrawingImage?: string | null;
 
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
