@@ -40,13 +40,10 @@ const St = {
   SearchResultItem: styled.li`
     display: flex;
     flex-direction: column;
-    width: 18.7rem;
-    height: 28.3rem;
     margin-bottom: 2.2rem;
   `,
 
   SearchResultItemImg: styled.img`
-    width: 18.7rem;
     height: 20.1rem;
 
     background-color: ${({ theme }) => theme.colors.gray0};
