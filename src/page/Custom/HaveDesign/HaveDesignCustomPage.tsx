@@ -47,7 +47,9 @@ const HaveDesignCustomPage = () => {
   // 앞부분 임시 통합한 곳에서 state 불러오기. 최종 통합 때 제거 예정
   const size = location.state ? location.state.size : null;
   const customId = location.state ? location.state.customId : null;
-  const haveDesign = location.state ? location.state.haveDesign : null;
+  // const haveDesign = location.state ? location.state.haveDesign : null;
+  const haveDesign = true;
+  //통합하면 이 부분 넘겨받는 걸로 수정하기!
 
   //patch에 보낼 정보들 객체로 모으기
   const customInfo = {
