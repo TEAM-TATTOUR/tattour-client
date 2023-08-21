@@ -125,7 +125,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
             onClick={handleChangeRainbowColor}
           />
           {isColorPickerSelected && (
-            <St.SelectedIcon isSelected={isColorPickerSelected}>
+            <St.SelectedIcon isSelected={isColorPickerSelected} onClick={handleChangeRainbowColor}>
               <IcColorSelectedLine />
             </St.SelectedIcon>
           )}
