@@ -22,6 +22,8 @@ const NoDesignCustomPage = () => {
 
   //step 3: 주문 관련 state -> 이 부분 나중에 같이 논의 필요합니다
   const [count, setCount] = useState(1);
+  const [isPublic, setIsPublic] = useState(false);
+  const [isCompletedState, setIsCompletedState] = useState(false);
 
   const location = useLocation();
 
@@ -77,8 +79,12 @@ const NoDesignCustomPage = () => {
           customInfo={customInfo}
           customImages={customImages}
           setReceiptData={setReceiptData}
-          count={count}//임시로 count 관련 props 추가로 넘겨줬습니다
+          count={count} //여기부터 수정하면서 필요해진 props 임시로 추가했습니다!
           setCount={setCount}
+          isPublic={isPublic}
+          setIsPublic={setIsPublic}
+          isCompletedState={isCompletedState}
+          setIsCompletedState={setIsCompletedState}
         />
       );
 
