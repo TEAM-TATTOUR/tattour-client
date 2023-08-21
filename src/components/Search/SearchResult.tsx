@@ -44,9 +44,11 @@ const St = {
 
   SearchResultList: styled.ul`
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: 0.1rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.1rem;
+    justify-content: center;
     margin-top: 1.6rem;
+    overflow-x: hidden;
   `,
 
   SearchNumberText: styled.span`
