@@ -44,7 +44,9 @@ const ReceiptDetail = ({ receiptData, haveDesign }: ReceiptDetailProps) => {
               ))}
             </St.HaveDesignPreviewContainer>
           ) : (
-            <img src={mainImageUrl} alt='첨부-이미지-미리보기' />
+            <St.NoDesignImage>
+              <img src={mainImageUrl} alt='첨부-이미지-미리보기' />
+            </St.NoDesignImage>
           )}
           {haveDesign ? (
             <St.HashtagGroup>
@@ -58,10 +60,14 @@ const ReceiptDetail = ({ receiptData, haveDesign }: ReceiptDetailProps) => {
         </St.PreviewSection>
       </St.ReceiptDetailContainer>
       <St.Line />
-      <St.DetailWrapper>
-        <St.DetailSubject>컬러</St.DetailSubject>
-        <St.DetailContent>{isColored ? '컬러' : '흑백'}</St.DetailContent>
-      </St.DetailWrapper>
+      {haveDesign ? (
+        <St.DetailWrapper>
+          <St.DetailSubject>컬러</St.DetailSubject>
+          <St.DetailContent>{isColored ? '컬러' : '흑백'}</St.DetailContent>
+        </St.DetailWrapper>
+      ) : (
+        <></>
+      )}
       <St.DetailWrapper>
         <St.DetailSubject>크기</St.DetailSubject>
         <St.DetailContent>{size}</St.DetailContent>
@@ -132,12 +138,18 @@ const St = {
   `,
   NoDesignPreviewContainer: styled.div`
     display: flex;
+    justify-content: center;
     height: 18rem;
     width: 33.5rem;
-    gap: 1rem;
-    & > img {
-      object-fit: contain;
-    }
+  `,
+  NoDesignImage: styled.article`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 18rem;
+    width: 33.5rem;
+
+    background-color: ${({ theme }) => theme.colors.gray0};
   `,
 
   Image: styled.article`

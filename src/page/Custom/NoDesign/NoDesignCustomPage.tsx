@@ -20,11 +20,15 @@ const NoDesignCustomPage = () => {
   //요청사항 state
   const [demand, setDemand] = useState('');
 
+  //step 3: 주문 관련 state -> 이 부분 나중에 같이 논의 필요합니다
+  const [count, setCount] = useState(1);
+
   const location = useLocation();
 
   // 앞에 size + customId 통합 해놓은거에서 우선 navigate state로 관련 정보 불러옴 추후 통합시 제거 예정
   const size = location.state ? location.state.size : null;
   const customId = location.state ? location.state.customId : null;
+  const haveDesign = location.state ? location.state.haveDesign : null; //영수증 뷰 다르게 띄워주기 위해서 임시 추가했습니다
 
   //patch에 보낼 정보들 객체로 모으기
   const customInfo = {
@@ -73,11 +77,13 @@ const NoDesignCustomPage = () => {
           customInfo={customInfo}
           customImages={customImages}
           setReceiptData={setReceiptData}
+          count={count}//임시로 count 관련 props 추가로 넘겨줬습니다
+          setCount={setCount}
         />
       );
 
     case 4:
-      return <ReceiptLayout receiptData={receiptData} />;
+      return <ReceiptLayout receiptData={receiptData} haveDesign={haveDesign} />; //haveDesign 임의로 추가해서 넘겨줬습니다
   }
 };
 
