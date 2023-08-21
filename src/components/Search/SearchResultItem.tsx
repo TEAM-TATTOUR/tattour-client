@@ -28,9 +28,11 @@ const SearchResultItem = ({
         <St.SearchResultItemTitle>{title}</St.SearchResultItemTitle>
         <St.SearchResultPriceWrapper>
           <St.SearchResultItemDiscountRate>{discountRate}%</St.SearchResultItemDiscountRate>
-          <St.SearchResultItemPrice>{price}원</St.SearchResultItemPrice>
+          <St.SearchResultItemPrice>{price.toLocaleString()}원</St.SearchResultItemPrice>
         </St.SearchResultPriceWrapper>
-        <St.SearchResultItemOriginalPrice>{originalPrice}원</St.SearchResultItemOriginalPrice>
+        <St.SearchResultItemOriginalPrice>
+          {originalPrice.toLocaleString()}원
+        </St.SearchResultItemOriginalPrice>
       </St.SearchResultItemDescription>
     </St.SearchResultItem>
   );
