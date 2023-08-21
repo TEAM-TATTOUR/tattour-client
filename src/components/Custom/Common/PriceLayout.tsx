@@ -22,6 +22,10 @@ interface PriceLayoutProps {
 
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
+  isPublic: boolean;
+  setIsPublic: React.Dispatch<React.SetStateAction<boolean>>;
+  isCompletedState: boolean;
+  setIsCompletedState: React.Dispatch<React.SetStateAction<boolean>>;
 
   setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
 }
@@ -34,12 +38,16 @@ const PriceLayout = ({
   handDrawingImage,
   count,
   setCount,
+  isPublic,
+  setIsPublic,
+  isCompletedState,
+  setIsCompletedState,
   setReceiptData,
 }: PriceLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
-  const [isPublic, setIsPublic] = useState(false);
-  const [isCompletedState, setIsCompletedState] = useState(false); //이거 왜 꼭 state로 쓰는지 궁금합니다! 꼭 필요한 부분인가요? => 푸터까지 눌러서 사용자가 진짜 최종 접수하기를 한 상태였을 때에만 내 타투로 이동하고 아니면 임시저장으로 빼줘야 한다고 생각했습니다!
+  // const [isCompletedState, setIsCompletedState] = useState(false); //이거 왜 꼭 state로 쓰는지 궁금합니다! 꼭 필요한 부분인가요? => 푸터까지 눌러서 사용자가 진짜 최종 접수하기를 한 상태였을 때에만 내 타투로 이동하고 아니면 임시저장으로 빼줘야 한다고 생각했습니다!
 
+  //isPublic 여부에 따라 바꿔줘야 할듯
   const updatedCustomInfo = {
     ...customInfo,
     count: count,
