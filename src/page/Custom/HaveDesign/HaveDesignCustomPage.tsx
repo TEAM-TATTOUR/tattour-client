@@ -60,7 +60,7 @@ const HaveDesignCustomPage = () => {
     themes: themes,
     styles: styles,
     handDrawingUrl: drawingImageUrl,
-    // mainImageUrl:customImages[0], => 타입에 맞게 코드 수정 필요!!
+    mainImageUrl: previewURL[0],
     count: count,
     isColored: isColoredState,
     isPublic: isPublic,
