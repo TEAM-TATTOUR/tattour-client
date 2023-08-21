@@ -161,7 +161,7 @@ const St = {
   SideMenuItemText: styled.span`
     margin-left: 0.8rem;
 
-    ${({ theme }) => theme.fonts.title_semibold_18};
+    ${({ theme }) => theme.fonts.title_bold_18};
     color: ${({ theme }) => theme.colors.gray8};
   `,
 
@@ -189,7 +189,7 @@ const St = {
   `,
 
   SideMenuCSButton: styled.button`
-    ${({ theme }) => theme.fonts.body_medium_14};
+    ${({ theme }) => theme.fonts.body_bold_14};
     color: ${({ theme }) => theme.colors.gray3};
   `,
 
@@ -200,7 +200,7 @@ const St = {
   `,
 
   SideMenuLogOutButton: styled.button`
-    ${({ theme }) => theme.fonts.body_medium_14};
+    ${({ theme }) => theme.fonts.body_bold_14};
     color: ${({ theme }) => theme.colors.gray3};
   `,
 };

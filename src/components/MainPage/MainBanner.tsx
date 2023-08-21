@@ -47,9 +47,10 @@ const St = {
 
   Video: styled.video`
     position: relative;
-    width: 37.5rem;
-    height: 34rem;
+    width: 100%;
+    height: 100%;
     margin-top: 7rem;
+    object-fit: fill;
   `,
 
   SubWrapper: styled.div`
@@ -63,22 +64,22 @@ const St = {
 
   SmallCopy: styled.p`
     padding-top: 1.2rem;
-    ${({ theme }) => theme.fonts.body_medium_16};
+    ${({ theme }) => theme.fonts.body_bold_16};
     color: ${({ theme }) => theme.colors.white};
   `,
 
   HomeButton: styled.button`
     display: flex;
-    justify-content: center;
     align-items: center;
     margin-top: 1rem;
     margin-bottom: 5.3rem;
     width: 11.1rem;
     height: 4.2rem;
     padding: 0;
+    padding-left: 1.5rem;
 
     background-color: ${({ theme }) => theme.colors.pink5};
-    ${({ theme }) => theme.fonts.title_semibold_20};
+    ${({ theme }) => theme.fonts.title_bold_20};
 
     color: ${({ theme }) => theme.colors.gray9};
     border-radius: 0.5rem;

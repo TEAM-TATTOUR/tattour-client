@@ -37,7 +37,7 @@ const St = {
   `,
 
   SideMenuAnoymousTitle: styled.h2`
-    font: ${({ theme }) => theme.fonts.title_semibold_16};
+    ${({ theme }) => theme.fonts.title_bold_16};
     color: ${({ theme }) => theme.colors.gray1};
   `,
 };

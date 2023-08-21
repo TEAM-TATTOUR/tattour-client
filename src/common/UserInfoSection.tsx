@@ -22,13 +22,15 @@ const UserInfoSection = () => {
     !loading && (
       <St.SideMenuUserInfoSection>
         <St.SideMenuUserName>
-          {response?.name}
+          {response?.homeUserInfo.name}
           <span>님</span>
         </St.SideMenuUserName>
         <St.SideMenuUserPointWrapper>
           <St.SideMenuUserPointTitle>보유 포인트</St.SideMenuUserPointTitle>
           <St.SideMenuUserPointTextWrapper>
-            <St.SideMenuUserPoint>{response?.point.toLocaleString()}</St.SideMenuUserPoint>
+            <St.SideMenuUserPoint>
+              {response?.homeUserInfo.point.toLocaleString()}
+            </St.SideMenuUserPoint>
             <span>P</span>
           </St.SideMenuUserPointTextWrapper>
           <St.SideMenuUserPointChargeButton onClick={handleClickChargeBtn}>
@@ -53,14 +55,14 @@ const St = {
 
     border-bottom: 0.1rem solid ${({ theme }) => theme.colors.gray7};
 
-    font: ${({ theme }) => theme.fonts.title_semibold_20};
+    ${({ theme }) => theme.fonts.title_bold_20};
     color: ${({ theme }) => theme.colors.white};
 
     & > span {
       display: inline-block;
 
       margin-left: 0.4rem;
-      font: ${({ theme }) => theme.fonts.body_medium_16};
+      ${({ theme }) => theme.fonts.title_bold_16};
       color: ${({ theme }) => theme.colors.gray2};
     }
   `,
@@ -81,18 +83,18 @@ const St = {
 
     & > span {
       margin-left: 0.4rem;
-      font: ${({ theme }) => theme.fonts.title_semibold_20};
+      ${({ theme }) => theme.fonts.title_bold_20};
       color: ${({ theme }) => theme.colors.gray2};
     }
   `,
 
   SideMenuUserPointTitle: styled.h2`
-    font: ${({ theme }) => theme.fonts.detail_medium_12};
+    ${({ theme }) => theme.fonts.detail_bold_12};
     color: ${({ theme }) => theme.colors.gray2};
   `,
 
   SideMenuUserPoint: styled.p`
-    font: ${({ theme }) => theme.fonts.title_semibold_24};
+    ${({ theme }) => theme.fonts.title_bold_24};
     color: ${({ theme }) => theme.colors.white};
   `,
 
@@ -105,7 +107,7 @@ const St = {
     background-color: ${({ theme }) => theme.colors.bg};
     border-radius: 0.5rem;
 
-    font: ${({ theme }) => theme.fonts.title_semibold_16};
+    ${({ theme }) => theme.fonts.title_bold_16};
     color: ${({ theme }) => theme.colors.gray8};
   `,
 };
