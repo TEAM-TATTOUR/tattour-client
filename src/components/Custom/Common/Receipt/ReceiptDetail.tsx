@@ -3,9 +3,10 @@ import { resCustomInfoType } from '../../../../types/customInfoType';
 
 interface ReceiptDetailProps {
   receiptData: resCustomInfoType | undefined;
+  haveDesign: boolean;
 }
 
-const ReceiptDetail = ({ receiptData }: ReceiptDetailProps) => {
+const ReceiptDetail = ({ receiptData, haveDesign }: ReceiptDetailProps) => {
   //typeError 방지용 early return
   if (receiptData === undefined) return;
 
@@ -23,7 +24,7 @@ const ReceiptDetail = ({ receiptData }: ReceiptDetailProps) => {
     images,
   } = receiptData;
 
-  const previewURL = [...themes, ...styles];
+  const keywords = [...themes, ...styles];
   const imagesArray = handDrawingImageUrl
     ? [mainImageUrl, ...images, handDrawingImageUrl]
     : [mainImageUrl, ...images];
@@ -34,18 +35,26 @@ const ReceiptDetail = ({ receiptData }: ReceiptDetailProps) => {
       <St.ReceiptDetailContainer>
         <St.ReceiptTitle>{name}</St.ReceiptTitle>
         <St.PreviewSection>
-          <St.ImgPreviewContainer>
-            {imagesArray.map((url, index) => (
-              <St.Image key={index}>
-                <img src={url} alt='첨부-이미지-미리보기' />
-              </St.Image>
-            ))}
-          </St.ImgPreviewContainer>
-          <St.HashtagGroup>
-            {previewURL.map((tag, index) => (
-              <St.Hashtag key={index}>{`#${tag}`}</St.Hashtag>
-            ))}
-          </St.HashtagGroup>
+          {haveDesign ? (
+            <St.HaveDesignPreviewContainer>
+              {imagesArray.map((url, index) => (
+                <St.Image key={index}>
+                  <img src={url} alt='첨부-이미지-미리보기' />
+                </St.Image>
+              ))}
+            </St.HaveDesignPreviewContainer>
+          ) : (
+            <img src={mainImageUrl} alt='첨부-이미지-미리보기' />
+          )}
+          {haveDesign ? (
+            <St.HashtagGroup>
+              {keywords.map((tag, index) => (
+                <St.Hashtag key={index}>{`#${tag}`}</St.Hashtag>
+              ))}
+            </St.HashtagGroup>
+          ) : (
+            <></>
+          )}
         </St.PreviewSection>
       </St.ReceiptDetailContainer>
       <St.Line />
@@ -61,10 +70,14 @@ const ReceiptDetail = ({ receiptData }: ReceiptDetailProps) => {
         <St.DetailSubject>수량</St.DetailSubject>
         <St.DetailContent>{count}개</St.DetailContent>
       </St.DetailWrapper>
-      <St.DetailWrapper>
-        <St.DetailSubject>주제</St.DetailSubject>
-        <St.DetailContent>{description}</St.DetailContent>
-      </St.DetailWrapper>
+      {haveDesign ? (
+        <St.DetailWrapper>
+          <St.DetailSubject>주제</St.DetailSubject>
+          <St.DetailContent>{description}</St.DetailContent>
+        </St.DetailWrapper>
+      ) : (
+        <></>
+      )}
       <St.DetailWrapper className='request'>
         <St.DetailSubject>요청사항</St.DetailSubject>
         <St.DetailContent>{demand}</St.DetailContent>
@@ -103,7 +116,7 @@ const St = {
   PreviewSection: styled.div`
     overflow-x: auto;
   `,
-  ImgPreviewContainer: styled.div`
+  HaveDesignPreviewContainer: styled.div`
     display: flex;
     height: 11.9rem;
     gap: 1rem;
@@ -117,6 +130,16 @@ const St = {
       display: none; // Chrome, Safari, Opera
     }
   `,
+  NoDesignPreviewContainer: styled.div`
+    display: flex;
+    height: 18rem;
+    width: 33.5rem;
+    gap: 1rem;
+    & > img {
+      object-fit: contain;
+    }
+  `,
+
   Image: styled.article`
     display: flex;
     align-items: center;

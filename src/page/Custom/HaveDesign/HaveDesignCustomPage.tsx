@@ -43,6 +43,7 @@ const HaveDesignCustomPage = () => {
   // 앞부분 임시 통합한 곳에서 state 불러오기. 최종 통합 때 제거 예정
   const size = location.state ? location.state.size : null;
   const customId = location.state ? location.state.customId : null;
+  const haveDesign = location.state ? location.state.haveDesign : null;
 
   //patch에 보낼 정보들 객체로 모으기
   const customInfo = {
@@ -138,7 +139,7 @@ const HaveDesignCustomPage = () => {
       );
 
     case 7:
-      return <ReceiptLayout receiptData={receiptData} />;
+      return <ReceiptLayout receiptData={receiptData} haveDesign={haveDesign} />;
   }
 };
 
