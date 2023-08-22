@@ -54,7 +54,7 @@ const St = {
   `,
 
   SearchInput: styled.input`
-    width: 29.7rem;
+    width: 80vw;
     height: 4.5rem;
     margin-left: 1.7rem;
     padding-left: 1.8rem;
