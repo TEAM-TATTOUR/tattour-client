@@ -34,8 +34,8 @@ const St = {
     flex-direction: column;
     gap: 1rem;
 
-    height: 12.2rem;
-    padding: 2.6rem 0 2.9rem 4.95rem;
+    height: 6.7rem;
+    padding-left: 2.4rem;
   `,
 
   PolicyAgreeTouchArea: styled.article`

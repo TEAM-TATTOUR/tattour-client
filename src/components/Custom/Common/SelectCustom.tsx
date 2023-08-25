@@ -82,7 +82,7 @@ const St = {
     flex-direction: column;
     justify-content: center;
 
-    padding: 0 2.75rem;
+    padding: 0 2rem;
 
     width: 100%;
     height: calc(
