@@ -23,7 +23,7 @@ const NoDesignCustomPage = () => {
   //step 3: 주문 관련 state -> 이 부분 나중에 같이 논의 필요합니다
   const [count, setCount] = useState(1);
   const [isPublic, setIsPublic] = useState(false);
-  const [isCompletedState, setIsCompletedState] = useState(false);
+  const [price, setPrice] = useState(0); //수정하면서 임의로 추가했습니다!
 
   const location = useLocation();
 
@@ -83,8 +83,8 @@ const NoDesignCustomPage = () => {
           setCount={setCount}
           isPublic={isPublic}
           setIsPublic={setIsPublic}
-          isCompletedState={isCompletedState}
-          setIsCompletedState={setIsCompletedState}
+          price={price}
+          setPrice={setPrice}
         />
       );
 
