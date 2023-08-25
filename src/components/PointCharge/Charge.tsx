@@ -9,17 +9,26 @@ interface ChargeProps {
 
 const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
   const [isWarning, setIsWarning] = useState(false);
-  const [isZeroWarning, setIsZeroWarning] = useState(false);
   const [parsedPrice, setParsedPrice] = useState('');
+  const [errMsg, setErrMsg] = useState('1,000원 단위 충전만 가능해요');
 
   //input에 금액을 입력 했을 때 1) 0원, 2) 1000원이 아닌 단위 예외 처리를 해 주는 함수
   const updateStateBasedOnValue = (removedCommaValue: number) => {
-    const isZero = removedCommaValue === 0;
-    const isThousandMultiple = removedCommaValue % 1000 === 0;
+    const isZero = removedCommaValue === 0; //0원 금지
+    const isMoreMillion = removedCommaValue > 1000000; //100만원 이상 금지
+    const isThousandMultiple = removedCommaValue % 1000 === 0; //1000원 단위만 가능
 
-    setIsZeroWarning(isZero); //0원일 때 감지
-    setIsWarning(isZero || !isThousandMultiple); //0원일 때 혹은 1000원 단위가 아닐 때 경고 메시지 띄우기
-    setIsActiveNext(!isZero && isThousandMultiple); // 0원이 아니고, 1000원 단위일 때만 다음 버튼 활성화
+    setIsWarning(isZero || !isThousandMultiple || isMoreMillion); // 0원일 때 혹은 1000원 단위가 아닐 때, 100만원 이상일 때 경고 메시지 띄우기
+    setIsActiveNext(!isZero && isThousandMultiple && !isMoreMillion); // 0원이 아니고, 1000원 단위일 때, 100만원 이하일 때만 다음 버튼 활성화
+
+    // 에러메시지 설정
+    if (isZero) {
+      setErrMsg('1,000원 이상부터 충전이 가능해요');
+    } else if (isMoreMillion) {
+      setErrMsg('1,000,000원까지 충전 가능해요');
+    } else if (isZero || !isThousandMultiple) {
+      setErrMsg('1,000원 단위 충전만 가능해요');
+    }
   };
 
   const handleChangeChargeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,10 +48,6 @@ const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
     // 금액 입력 시 예외 처리 해주는 함수 호출
     updateStateBasedOnValue(removedCommaValue);
   };
-
-  const ERR_MSG_CONTENT = isZeroWarning
-    ? '1,000원 이상부터 충전이 가능해요'
-    : '1,000원 단위 충전만 가능해요';
 
   return (
     <St.ChargeWrapper>
@@ -68,7 +73,7 @@ const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
           $isWarning={isWarning}
           autoFocus
         />
-        <St.ChargeWarningMsg $isWarning={isWarning}>{ERR_MSG_CONTENT}</St.ChargeWarningMsg>
+        <St.ChargeWarningMsg $isWarning={isWarning}>{errMsg}</St.ChargeWarningMsg>
       </St.ChargeInputContainer>
     </St.ChargeWrapper>
   );
@@ -128,7 +133,8 @@ const St = {
   ChargeInput: styled.input<{ $isWarning: boolean }>`
     width: 33.5rem;
     height: 4.5rem;
-    padding: 1.2rem 4.3rem;
+    padding: 1.2rem 0;
+    padding-right: 4rem;
 
     ${({ theme }) => theme.fonts.body_medium_16};
 
