@@ -56,6 +56,8 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
   //손그림 있을 시 파일로 바꿔서 저장
   useEffect(() => {
     if (!drawingImageUrl) return;
+    // if drawingImageUrl is present on S3 return immediately
+    if (drawingImageUrl.includes('https://')) return;
     const blob = dataURItoBlob(drawingImageUrl);
     const file = new File([blob], 'image.png', {
       type: blob.type,

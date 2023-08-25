@@ -12,35 +12,43 @@ import { resCustomInfoType } from '../../../types/customInfoType';
 // import CustomSizePage from '../Common/CustomSizePage';
 
 const HaveDesignCustomPage = () => {
-  const [step, setStep] = useState(0);
+  const location = useLocation();
+  const [step, setStep] = useState(location.state ? location.state.step : 1);
 
   //step 1: 이미지 첨부하기 관련 state
   const [customImages, setCustomImages] = useState<FileList | undefined>();
   const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
-  const [previewURL, setPreviewURL] = useState<string[]>([]);
-  const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(null);
+  const [previewURL, setPreviewURL] = useState<string[]>(
+    location.state ? [location.state.mainImageUrl, ...location.state.images] : [],
+  );
+  const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(
+    location.state ? location.state.handDrawingImageUrl : null,
+  );
 
   //step 2: 색상 선택 state
-  const [isColoredState, setIsColored] = useState(false);
+  const [isColoredState, setIsColored] = useState(
+    location.state ? location.state.isColored : false,
+  );
   const [selectedColorMode, setSelectedColorMode] = useState('');
 
   //step 3: 키워드 선택 state
   const [styles, setStyles] = useState<number[]>([]);
   const [themes, setThemes] = useState<number[]>([]);
 
+  const stylesKeyword = location.state ? location.state.styles : [];
+  const themesKeyword = location.state ? location.state.themes : [];
+
   //step 4: 타투 이름 입력 관련 state
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState(location.state ? location.state.name : '');
+  const [description, setDescription] = useState(location.state ? location.state.description : '');
 
   //step 5: 추가 요구사항 관련 state
-  const [demand, setDemand] = useState('');
+  const [demand, setDemand] = useState(location.state ? location.state.demand : '');
 
   //step 6: 주문 관련 state
   const [count, setCount] = useState(1);
   const [isPublic, setIsPublic] = useState(false);
   const [price, setPrice] = useState(0);
-
-  const location = useLocation();
 
   // 앞부분 임시 통합한 곳에서 state 불러오기. 최종 통합 때 제거 예정
   const size = location.state ? location.state.size : null;
@@ -53,7 +61,7 @@ const HaveDesignCustomPage = () => {
   const customInfo = {
     customId: customId,
     size: size,
-    name: name,
+    name: name === '' ? '임시 저장' : name,
     description: description,
     demand: demand,
     viewCount: step,
@@ -64,10 +72,10 @@ const HaveDesignCustomPage = () => {
   // patch 통신 response = receipt 뷰에 넘겨줘야 하는 정보들
   const [receiptData, setReceiptData] = useState<resCustomInfoType>();
 
-  //customSizePage 이후 시작하도록 일시적으로 추가한 코드.
-  useEffect(() => {
-    setStep(1);
-  }, []);
+  // //customSizePage 이후 시작하도록 일시적으로 추가한 코드.
+  // useEffect(() => {
+  //   setStep(1);
+  // }, []);
 
   switch (step) {
     // case 0:
@@ -84,6 +92,7 @@ const HaveDesignCustomPage = () => {
           previewURL={previewURL}
           drawingImageUrl={drawingImageUrl}
           setDrawingImageUrl={setDrawingImageUrl}
+          customInfo={customInfo}
         />
       );
 
@@ -95,6 +104,9 @@ const HaveDesignCustomPage = () => {
           setIsColored={setIsColored}
           selectedColorMode={selectedColorMode}
           setSelectedColorMode={setSelectedColorMode}
+          customInfo={customInfo}
+          customImages={customImages}
+          handDrawingImage={handDrawingImage}
         />
       );
 
@@ -106,6 +118,11 @@ const HaveDesignCustomPage = () => {
           setStyles={setStyles}
           themes={themes}
           setThemes={setThemes}
+          stylesKeyword={stylesKeyword}
+          themesKeyword={themesKeyword}
+          customInfo={customInfo}
+          customImages={customImages}
+          handDrawingImage={handDrawingImage}
         />
       );
 
@@ -116,12 +133,24 @@ const HaveDesignCustomPage = () => {
           name={name}
           setName={setName}
           description={description}
+          customInfo={customInfo}
+          customImages={customImages}
+          handDrawingImage={handDrawingImage}
           setDescription={setDescription}
         />
       );
 
     case 5:
-      return <AdditionalRequestLayout setStep={setStep} demand={demand} setDemand={setDemand} />;
+      return (
+        <AdditionalRequestLayout
+          setStep={setStep}
+          demand={demand}
+          setDemand={setDemand}
+          customInfo={customInfo}
+          customImages={customImages}
+          handDrawingImage={handDrawingImage}
+        />
+      );
 
     case 6:
       return (
