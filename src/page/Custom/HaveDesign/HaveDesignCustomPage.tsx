@@ -53,6 +53,7 @@ const HaveDesignCustomPage = () => {
   const customInfo = {
     customId: customId,
     size: size,
+    isColored: isColoredState,
     name: name,
     description: description,
     demand: demand,

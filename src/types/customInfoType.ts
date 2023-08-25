@@ -1,5 +1,5 @@
 export interface customInfoType {
-  customId?: number;
+  customId: number;
   size?: string;
   isColored?: boolean;
   themes?: number[];

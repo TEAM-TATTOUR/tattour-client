@@ -2,11 +2,12 @@ import { styled } from 'styled-components';
 import { customInfoType, resCustomInfoType } from '../../types/customInfoType';
 import api from '../../libs/api';
 import React from 'react';
+// import { useNavigate } from 'react-router-dom';
 
 interface PriceFooterProps {
   haveDesign?: boolean;
   customInfo: customInfoType;
-  handDrawingImage: File | null;
+  handDrawingImage?: File | null;
   customImages: FileList | undefined;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
@@ -25,7 +26,7 @@ const PriceFooter = ({
     const formData = new FormData();
     try {
       // 1. handDrawingImage(손 그림) append
-      if (handDrawingImage !== null) {
+      if (handDrawingImage) {
         formData.append('handDrawingImage', handDrawingImage);
       }
 
