@@ -25,7 +25,7 @@ const Charge = ({ setIsActiveNext, setChargeAmount }: ChargeProps) => {
     if (isZero) {
       setErrMsg('1,000원 이상부터 충전이 가능해요');
     } else if (isMoreMillion) {
-      setErrMsg('1,000,000원까지 충전 가능해요');
+      setErrMsg('100만 원까지 충전 가능해요');
     } else if (isZero || !isThousandMultiple) {
       setErrMsg('1,000원 단위 충전만 가능해요');
     }
