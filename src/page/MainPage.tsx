@@ -14,6 +14,7 @@ import HotCustom from '../common/HotCustom';
 import Toast from '../common/ToastMessage/Toast';
 import { useLocation } from 'react-router';
 import WelcomeModal from '../common/Modal/WelcomeModal/WelcomeModal';
+import MainArticle from '../components/MainPage/MainArticle';
 
 const MainPage = () => {
   const [isHeaderTransparent, setIsHeaderTransparent] = useState(true);
@@ -73,6 +74,7 @@ const MainPage = () => {
       <MainEventBanner setToast={setToast} />
       <MainTheme />
       <MainStyle />
+      <MainArticle />
       {toast && <Toast setToast={setToast} text='이미 참여한 이벤트예요' />}
       <SideMenu isSideMenuOpen={isSideMenuOpen} setIsSideMenuOpen={setIsSideMenuOpen} />
     </PageLayout>
