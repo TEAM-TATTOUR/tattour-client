@@ -10,7 +10,7 @@ interface CheckModalFormProps {
   subTitle2: string;
   continueBtn: string;
   chargeAmount: number;
-  setIsOpenCompleteModal: React.Dispatch<React.SetStateAction<boolean>>;
+  redirectURL: string;
 }
 
 const CheckModalForm = ({
@@ -20,7 +20,7 @@ const CheckModalForm = ({
   subTitle2,
   continueBtn,
   chargeAmount,
-  setIsOpenCompleteModal,
+  redirectURL,
 }: CheckModalFormProps) => {
   const navigate = useNavigate();
   const handleClickContinueBtn = async () => {
@@ -29,8 +29,14 @@ const CheckModalForm = ({
       await api.post('/user/point/charge', {
         chargeAmount: chargeAmount,
       });
-      setIsOpenCompleteModal(true);
       onClose();
+      navigate('/', {
+        state: {
+          isPointModalOpen: true,
+          chargeAmount: chargeAmount,
+          redirectURL: redirectURL,
+        },
+      });
     } catch (err) {
       navigate('/error');
     }
