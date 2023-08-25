@@ -6,10 +6,8 @@ import React from 'react';
 interface PriceFooterProps {
   haveDesign?: boolean;
   customInfo: customInfoType;
-  handDrawingImage: string;
+  handDrawingImage: File | null;
   customImages: FileList | undefined;
-  isCompletedState: boolean;
-  setIsCompletedState: React.Dispatch<React.SetStateAction<boolean>>;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
 }
@@ -18,19 +16,18 @@ const PriceFooter = ({
   customInfo,
   handDrawingImage,
   customImages,
-  isCompletedState,
-  setIsCompletedState,
   setStep,
   setReceiptData,
 }: PriceFooterProps) => {
   // const navigate = useNavigate();
 
   const handleClickFooterBtn = async () => {
-    setIsCompletedState(true);
     const formData = new FormData();
     try {
       // 1. handDrawingImage(손 그림) append
-      formData.append('handDrawingImage', handDrawingImage);
+      if (handDrawingImage !== null) {
+        formData.append('handDrawingImage', handDrawingImage);
+      }
 
       // 2. customInfo(커스텀 정보들) append
       const json = JSON.stringify(customInfo);
