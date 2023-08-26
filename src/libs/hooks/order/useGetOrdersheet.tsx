@@ -9,7 +9,7 @@ export interface OrderSheetRequest {
   shippingFee: number;
 }
 
-export interface getOrderSheetStickerInfoProps {
+export interface readOrderSheetStickerInfoProps {
   mainImageUrl: string;
   name: string;
   price: number;
@@ -17,13 +17,13 @@ export interface getOrderSheetStickerInfoProps {
   count: number;
 }
 
-export interface getOrderAmountResProps {
+export interface orderAmountInfoProps {
   totalAmount: number;
   productAmount: number;
   shippingFee: number;
 }
 
-export interface getUserOrderPointResProps {
+export interface userPointAfterOrderInfoProps {
   userPoint: number;
   resultPoint: number;
   lacked: boolean;
@@ -36,9 +36,9 @@ export interface getUserProfileInfoProps {
 }
 
 export interface OrderSheetProps {
-  getOrderSheetStickerInfo: getOrderSheetStickerInfoProps;
-  getOrderAmountRes: getOrderAmountResProps;
-  getUserOrderPointRes: getUserOrderPointResProps;
+  readOrderSheetStickerInfo: readOrderSheetStickerInfoProps;
+  orderAmountInfo: orderAmountInfoProps;
+  userPointAfterOrderInfo: userPointAfterOrderInfoProps;
   userProfileInfo: getUserProfileInfoProps;
 }
 
