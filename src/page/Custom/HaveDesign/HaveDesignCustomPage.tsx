@@ -13,21 +13,32 @@ import { resCustomInfoType } from '../../../types/customInfoType';
 
 const HaveDesignCustomPage = () => {
   const location = useLocation();
-  const [step, setStep] = useState(location.state ? location.state.step : 1);
+  console.log(location.state);
+  const [step, setStep] = useState(
+    location.state && location.state.step !== undefined ? location.state.step : 1,
+  );
 
   //step 1: 이미지 첨부하기 관련 state
   const [customImages, setCustomImages] = useState<FileList | undefined>();
   const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
   const [previewURL, setPreviewURL] = useState<string[]>(
-    location.state ? [location.state.mainImageUrl, ...location.state.images] : [],
+    location.state &&
+      location.state.mainImageUrl !== undefined &&
+      location.state.images !== undefined
+      ? [location.state.mainImageUrl, ...location.state.images]
+      : [],
   );
   const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(
-    location.state ? location.state.handDrawingImageUrl : null,
+    location.state &&
+      location.state.handDrawingImageUrl !== undefined &&
+      location.state.handDrawingImageUrl !== null
+      ? location.state.handDrawingImageUrl
+      : null,
   );
 
   //step 2: 색상 선택 state
   const [isColoredState, setIsColored] = useState(
-    location.state ? location.state.isColored : false,
+    location.state && location.state.isColored !== undefined ? location.state.isColored : false,
   );
   const [selectedColorMode, setSelectedColorMode] = useState('');
 
@@ -35,15 +46,23 @@ const HaveDesignCustomPage = () => {
   const [styles, setStyles] = useState<number[]>([]);
   const [themes, setThemes] = useState<number[]>([]);
 
-  const stylesKeyword = location.state ? location.state.styles : [];
-  const themesKeyword = location.state ? location.state.themes : [];
+  const stylesKeyword =
+    location.state && location.state.styles !== undefined ? location.state.styles : [];
+  const themesKeyword =
+    location.state && location.state.themes !== undefined ? location.state.themes : [];
 
   //step 4: 타투 이름 입력 관련 state
-  const [name, setName] = useState(location.state ? location.state.name : '');
-  const [description, setDescription] = useState(location.state ? location.state.description : '');
+  const [name, setName] = useState(
+    location.state && location.state.name !== undefined ? location.state.name : '',
+  );
+  const [description, setDescription] = useState(
+    location.state && location.state.description !== undefined ? location.state.description : '',
+  );
 
   //step 5: 추가 요구사항 관련 state
-  const [demand, setDemand] = useState(location.state ? location.state.demand : '');
+  const [demand, setDemand] = useState(
+    location.state && location.state.demand !== undefined ? location.state.demand : '',
+  );
 
   //step 6: 주문 관련 state
   const [count, setCount] = useState(1);
