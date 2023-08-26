@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
 import { IcCancelDark, IcPhoto } from '../../../../assets/icon';
 
@@ -6,7 +6,7 @@ interface CustomImgAttachProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | undefined>>;
   attachedImg: FileList | null;
-  previewURL: string[];
+  previewURL: string;
   setPreviewURL: React.Dispatch<React.SetStateAction<string>>;
 }
 

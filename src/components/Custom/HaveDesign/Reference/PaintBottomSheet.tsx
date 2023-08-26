@@ -12,7 +12,6 @@ interface PaintBottomProps {
 }
 
 const PaintBottomSheet = ({
-  isBottomOpen,
   setBottomOpen,
   setDrawingImageUrl,
   drawingImageUrl,

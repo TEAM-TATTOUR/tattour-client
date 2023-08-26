@@ -22,8 +22,6 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
   setDrawingImageUrl,
   setIsActiveNext,
   setCustomImages,
-  customImages,
-  handDrawingImage,
   setHandDrawingImage,
   previewURL,
   setPreviewURL,

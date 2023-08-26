@@ -11,7 +11,7 @@ import PriceHeading from '../PriceHeading';
 import Header from '../../Header';
 import PageLayout from '../../PageLayout';
 import { customInfoType, resCustomInfoType } from '../../../types/customInfoType';
-import { PRICE } from '../../../assets/data/PRICE';
+// import { PRICE } from '../../../assets/data/PRICE';
 
 interface PriceLayoutProps {
   step: number;
@@ -41,8 +41,6 @@ const PriceLayout = ({
   setCount,
   isPublic,
   setIsPublic,
-  price,
-  setPrice,
   setReceiptData,
 }: PriceLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);

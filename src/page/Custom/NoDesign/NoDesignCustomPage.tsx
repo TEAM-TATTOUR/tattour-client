@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 // import CustomSizePage from '../Common/CustomSizePage';
 import CustomImgLayout from '../../../components/Custom/NoDesign/Img/CustomImgLayout';
 import CustomRequestLayout from '../../../components/Custom/NoDesign/Request/CustomRequestLayout';
@@ -6,6 +6,7 @@ import PriceLayout from '../../../components/Custom/Common/PriceLayout';
 import { useLocation } from 'react-router-dom';
 import ReceiptLayout from '../../../components/Custom/Common/Receipt/ReceiptLayout';
 import { resCustomInfoType } from '../../../types/customInfoType';
+import CustomSizeLayout from '../../../components/Custom/Common/Size/CustomSizeLayout';
 
 const NoDesignCustomPage = () => {
   const location = useLocation();
@@ -40,7 +41,8 @@ const NoDesignCustomPage = () => {
   const [price, setPrice] = useState(0); //수정하면서 임의로 추가했습니다!
 
   // 앞에 size + customId 통합 해놓은거에서 우선 navigate state로 관련 정보 불러옴 추후 통합시 제거 예정
-  const size = location.state ? location.state.size : null;
+  const [size, setSize] = useState(location.state ? location.state.size : null);
+  // const size = location.state ? location.state.size : null;
   const customId = location.state ? location.state.customId : null;
   const haveDesign = location.state ? location.state.haveDesign : null; //영수증 뷰 다르게 띄워주기 위해서 임시 추가했습니다
 
@@ -62,8 +64,16 @@ const NoDesignCustomPage = () => {
   // }, []);
 
   switch (step) {
-    // case 0:
-    //   return <CustomSizePage setStep={setStep} />;
+    case 0:
+      return (
+        <CustomSizeLayout
+          setStep={setStep}
+          size={size}
+          setSize={setSize}
+          haveDesign={haveDesign}
+          customId={customId}
+        />
+      );
     case 1:
       return (
         <CustomImgLayout

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PriceLayout from '../../../components/Custom/Common/PriceLayout';
 import AdditionalRequestLayout from '../../../components/Custom/HaveDesign/AdditionalRequest/AdditionalRequestLayout';
 import CustomThemeLayout from '../../../components/Custom/HaveDesign/CustomTheme/CustomThemeLayout';
@@ -8,6 +8,7 @@ import StylingColorLayout from '../../../components/Custom/HaveDesign/SelectColo
 import SelectKeywordLayout from '../../../components/Custom/HaveDesign/SelectKeyword/SelectKeywordLayout';
 import { useLocation } from 'react-router-dom';
 import { resCustomInfoType } from '../../../types/customInfoType';
+import CustomSizeLayout from '../../../components/Custom/Common/Size/CustomSizeLayout';
 
 // import CustomSizePage from '../Common/CustomSizePage';
 
@@ -70,7 +71,7 @@ const HaveDesignCustomPage = () => {
   const [price, setPrice] = useState(0);
 
   // 앞부분 임시 통합한 곳에서 state 불러오기. 최종 통합 때 제거 예정
-  const size = location.state ? location.state.size : null;
+  const [size, setSize] = useState(location.state ? location.state.size : null);
   const customId = location.state ? location.state.customId : null;
   // const haveDesign = location.state ? location.state.haveDesign : null;
   const haveDesign = true;
@@ -98,8 +99,16 @@ const HaveDesignCustomPage = () => {
   // }, []);
 
   switch (step) {
-    // case 0:
-    //   return <CustomSizePage setStep={setStep} />;
+    case 0:
+      return (
+        <CustomSizeLayout
+          setStep={setStep}
+          size={size}
+          setSize={setSize}
+          haveDesign={haveDesign}
+          customId={customId}
+        />
+      );
     case 1:
       return (
         <CustomReferenceLayout
