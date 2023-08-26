@@ -82,12 +82,11 @@ const St = {
     flex-direction: column;
     justify-content: center;
 
-    padding: 0 2.75rem;
-
     width: 100%;
     height: calc(
       100dvh - 24.8rem
     ); //탭 바 제외 높이 - (헤더 영역 + 정책 영역 + cta 푸터 영역 높이 값)
+    padding: 0 2rem;
   `,
 
   SelectTopSectionContainerWrapper: styled.section`
@@ -111,8 +110,8 @@ const St = {
 
   SelectBtnContainer: styled.article`
     display: flex;
-    gap: 1.5rem;
-    justify-content: center;
+    justify-content: space-between;
+    /* gap: 1.5rem; */
 
     width: 100%;
   `,
