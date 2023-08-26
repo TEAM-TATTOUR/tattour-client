@@ -14,7 +14,7 @@ const MagazinePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const NOTION_PAGE_ID = '8bb5ffb084d54477a0bef50b43cdd055';
+    const NOTION_PAGE_ID = 'e26136e9440a4766a91944cfacbdfa67';
     fetch(`https://notion-api.splitbee.io/v1/page/${NOTION_PAGE_ID}`)
       .then((res) => res.json())
       .then((resJson) => {
@@ -89,8 +89,12 @@ const St = {
     }
 
     .notion-quote b {
-      // 24
-      ${({ theme }) => theme.fonts.title_extrabold_24};
+      ${({ theme }) => theme.fonts.title_extrabold_24}
+      color: #ff3767
+    }
+
+    .notion-pink {
+      color: #ff3767;
     }
   `,
 };

@@ -17,32 +17,32 @@ const MainArticle = () => {
       <St.MainArticleWrapper>
         <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
           <St.MainArticleItem onClick={handleClickArticle(1)}>
-            <St.MainArticleItemImage src='https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg' />
+            <St.MainArticleItemImage src='/image/magazine_thumnail_1.png' />
             <St.MainArticleTextWrapper>
-              <St.MainArticleItemTitle>타투, 어디에 하는게 후회 안할까?</St.MainArticleItemTitle>
+              <St.MainArticleItemTitle>타투 스티커, 어떻게 사용해요?</St.MainArticleItemTitle>
               <St.MainArticleItemContent>
-                첫 타투는 충분히 고민을 해도 좋고, 즉흥적인 것도 괜찮다. 스스로 하고 싶다는 생각이
-                들 때가 적당한 때라고 생각
+                안녕하세요. 후회없는 선택의 여정을 함께, 커스텀 타투 체험 서비스 타투어입니다. 🦋
+                타투 스티커, 올바른 사용 방법 알고 계신가요?
               </St.MainArticleItemContent>
             </St.MainArticleTextWrapper>
           </St.MainArticleItem>
           <St.MainArticleItem onClick={handleClickArticle(1)}>
-            <St.MainArticleItemImage src='https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg' />
+            <St.MainArticleItemImage src='/image/magazine_thumnail_1.png' />
             <St.MainArticleTextWrapper>
-              <St.MainArticleItemTitle>타투, 어디에 하는게 후회 안할까?</St.MainArticleItemTitle>
+              <St.MainArticleItemTitle>타투 스티커, 어떻게 사용해요?</St.MainArticleItemTitle>
               <St.MainArticleItemContent>
-                첫 타투는 충분히 고민을 해도 좋고, 즉흥적인 것도 괜찮다. 스스로 하고 싶다는 생각이
-                들 때가 적당한 때라고 생각
+                안녕하세요. 후회없는 선택의 여정을 함께, 커스텀 타투 체험 서비스 타투어입니다. 🦋
+                타투 스티커, 올바른 사용 방법 알고 계신가요?
               </St.MainArticleItemContent>
             </St.MainArticleTextWrapper>
           </St.MainArticleItem>
           <St.MainArticleItem onClick={handleClickArticle(1)}>
-            <St.MainArticleItemImage src='https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg' />
+            <St.MainArticleItemImage src='/image/magazine_thumnail_1.png' />
             <St.MainArticleTextWrapper>
-              <St.MainArticleItemTitle>타투, 어디에 하는게 후회 안할까?</St.MainArticleItemTitle>
+              <St.MainArticleItemTitle>타투 스티커, 어떻게 사용해요?</St.MainArticleItemTitle>
               <St.MainArticleItemContent>
-                첫 타투는 충분히 고민을 해도 좋고, 즉흥적인 것도 괜찮다. 스스로 하고 싶다는 생각이
-                들 때가 적당한 때라고 생각
+                안녕하세요. 후회없는 선택의 여정을 함께, 커스텀 타투 체험 서비스 타투어입니다. 🦋
+                타투 스티커, 올바른 사용 방법 알고 계신가요?
               </St.MainArticleItemContent>
             </St.MainArticleTextWrapper>
           </St.MainArticleItem>
@@ -56,6 +56,7 @@ const St = {
   MainArticleSection: styled.section`
     padding-left: 2rem;
     margin-top: 2.8rem;
+    margin-bottom: 3rem;
   `,
 
   MainArticleHeader: styled.header`
