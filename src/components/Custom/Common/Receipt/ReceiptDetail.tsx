@@ -98,6 +98,7 @@ const St = {
   ReceiptDetailWrapper: styled.section`
     display: flex;
     flex-direction: column;
+    padding-bottom: 5.8rem;
 
     min-height: calc(100dvh - 36.92rem);
   `,
@@ -186,7 +187,7 @@ const St = {
     ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray4};
     background-color: ${({ theme }) => theme.colors.bg};
-  `, 
+  `,
   Line: styled.div`
     height: 0.1rem;
     margin: 3.2rem 0 3rem 0;
