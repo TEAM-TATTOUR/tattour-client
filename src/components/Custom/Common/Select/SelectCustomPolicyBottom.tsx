@@ -36,7 +36,7 @@ const St = {
     color: ${({ theme }) => theme.colors.gray7};
   `,
   SheetText: styled.p`
-    ${({ theme }) => theme.fonts.body_medium_16};
+    ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray3};
 
     overflow: auto;
@@ -63,7 +63,6 @@ const CustomSheet = styled(Sheet)`
   .react-modal-sheet-container > div {
     display: flex;
     justify-content: space-between !important;
-    margin-bottom: 2.8rem;
   }
 
   .react-modal-sheet-scroller {

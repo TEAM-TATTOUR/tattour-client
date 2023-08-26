@@ -28,7 +28,7 @@ const CountPrice = ({ isPublic, setCount, size }: CountPriceProps) => {
         <St.DetailGroup className='price-group'>
           <St.Subject>가격</St.Subject>
           <St.PriceDetail>
-            <St.Price>{price}</St.Price>
+            <St.Price>{price?.toLocaleString()}</St.Price>
             <St.Unit>원</St.Unit>
           </St.PriceDetail>
         </St.DetailGroup>
@@ -50,7 +50,7 @@ const CountPrice = ({ isPublic, setCount, size }: CountPriceProps) => {
           <St.TotalPriceGroup>
             {isPublic ? (
               <>
-                <St.Discount>{discount}</St.Discount>
+                <St.Discount>{discount?.toLocaleString()}</St.Discount>
                 <St.TotalPrice>
                   {(quantity * (price || 0) - (discount || 0)).toLocaleString()}
                 </St.TotalPrice>
