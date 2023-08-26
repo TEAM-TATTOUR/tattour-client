@@ -1,11 +1,11 @@
 import { styled } from 'styled-components';
-import { ImgLogoLight } from '../../assets/icon';
+import { ImgTattourLogin } from '../../assets/icon';
 
 const LoginHome = () => {
   return (
     <St.LoginWrapper>
       <St.ContentsWrapper>
-        <ImgLogoLight />
+        <ImgTattourLogin />
         <St.Title>후회없는 선택의 여정을 함께,</St.Title>
         <St.SubTitle>1초만에 가입하고 지금만 받을 수 있는 혜택 받아가세요!</St.SubTitle>
       </St.ContentsWrapper>
@@ -21,7 +21,7 @@ const St = {
     align-items: center;
 
     position: fixed;
-    min-height: 100dvh;
+    min-height: calc(100dvh - 7rem);;
     width: 100%;
     max-width: 43rem;
 

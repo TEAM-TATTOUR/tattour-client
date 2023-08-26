@@ -73,6 +73,8 @@ const St = {
     height: 100vh;
 
     background: rgba(0, 0, 0, 0.6);
+
+    z-index: 30;
   `,
 
   ModalContent: styled.div`

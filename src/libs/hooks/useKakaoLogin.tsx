@@ -6,8 +6,7 @@ interface resProps {
   data: {
     data: {
       accessToken: string;
-      isUserExist: boolean;
-      // isUserSignUpCompleted: boolean;
+      isUserSignUpCompleted: boolean;
     };
   };
 }
@@ -35,13 +34,11 @@ const useKakaoLogin = () => {
         )
         .then((res: resProps) => {
           // accessToken 값 저장
-          const { accessToken, isUserExist } = res.data.data;
-          // const { accessToken, isUserSignUpCompleted } = res.data.data;
+          const { accessToken, isUserSignUpCompleted } = res.data.data;
 
           setAccessToken(accessToken);
 
-          isUserExist ? navigate('/') : navigate('/login', { state: { step: 1 } });
-          // isUserSignUpCompleted ? navigate('/') : navigate('/login', { state: { step: 1 } });
+          isUserSignUpCompleted ? navigate('/') : navigate('/login', { state: { step: 1 } });
         })
         .catch(() => {
           navigate('/error');
