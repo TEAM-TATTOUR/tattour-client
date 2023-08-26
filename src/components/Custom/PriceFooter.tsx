@@ -2,15 +2,13 @@ import { styled } from 'styled-components';
 import { customInfoType, resCustomInfoType } from '../../types/customInfoType';
 import api from '../../libs/api';
 import React from 'react';
+// import { useNavigate } from 'react-router-dom';
 
 interface PriceFooterProps {
   haveDesign?: boolean;
   customInfo: customInfoType;
-  handDrawingImage: string; //handDrawingImage string으로 넘기면 되는지 확인 부탁!(swagger에는 string으로 명시 됨)
+  handDrawingImage?: File | null;
   customImages: FileList | undefined;
-  isCompleted?: boolean;
-  handleCompletedState?: () => void;
-  isCompletedState?: boolean;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
 }
@@ -28,7 +26,9 @@ const PriceFooter = ({
     const formData = new FormData();
     try {
       // 1. handDrawingImage(손 그림) append
-      formData.append('handDrawingImage', handDrawingImage);
+      if (handDrawingImage) {
+        formData.append('handDrawingImage', handDrawingImage);
+      }
 
       // 2. customInfo(커스텀 정보들) append
       const json = JSON.stringify(customInfo);
@@ -47,7 +47,7 @@ const PriceFooter = ({
           'Content-Type': 'multipart/form-data',
         },
       });
-      // console.log('data', data.data, '!!!!!');
+
       setReceiptData(data.data);
       setStep((prev) => prev + 1);
     } catch (err) {

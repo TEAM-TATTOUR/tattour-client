@@ -51,7 +51,7 @@ const AdditionalRequest = ({ setIsActiveNext, demand, setDemand }: AdditionalReq
 
     setDemand(e.target.value);
   };
-//이모지 글자수 제대로 카운트 되게 수정 필요
+  //이모지 글자수 제대로 카운트 되게 수정 필요
   useEffect(() => {
     if (!demand || !demandTextAreaRef.current) return;
     demandTextAreaRef.current.value = demand;
@@ -165,7 +165,7 @@ const St = {
 
   RequestInputCount: styled.p`
     position: absolute;
-    right: 0;
+    right: 0.4rem;
     bottom: -2.1rem;
 
     color: ${({ theme }) => theme.colors.gray2};
