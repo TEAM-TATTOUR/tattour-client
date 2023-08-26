@@ -39,12 +39,12 @@ const St = {
   `,
 
   SubtitleWrapper: styled.div`
-    gap: 0.3rem;
+    gap: 0.5rem;
   `,
 
   CustomReferenceSubtitle: styled.p`
     display: flex;
-    align-items: center;
+    gap: 0.3rem;
     color: ${({ theme }) => theme.colors.gray3};
     ${({ theme }) => theme.fonts.body_medium_14};
   `,
