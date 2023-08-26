@@ -49,6 +49,8 @@ const St = {
     height: 100vh;
 
     background: rgba(0, 0, 0, 0.6);
+
+    z-index: 10;
   `,
 
   ModalContent: styled.div`
@@ -69,7 +71,7 @@ const St = {
 
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
-    
+
     background-color: ${({ theme }) => theme.colors.white};
   `,
 
