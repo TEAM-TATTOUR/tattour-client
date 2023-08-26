@@ -125,7 +125,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
             onClick={handleChangeRainbowColor}
           />
           {isColorPickerSelected && (
-            <St.SelectedIcon isSelected={isColorPickerSelected}>
+            <St.SelectedIcon isSelected={isColorPickerSelected} onClick={handleChangeRainbowColor}>
               <IcColorSelectedLine />
             </St.SelectedIcon>
           )}
@@ -208,8 +208,8 @@ const St = {
     cursor: pointer;
 
     svg {
-      width: 100%;
-      height: 100%;
+      width: 3rem;
+      height: 3rem;
     }
   `,
   ColorIconWrapper: styled.div<{ isSelected: boolean }>`
@@ -221,8 +221,8 @@ const St = {
     position: relative;
 
     svg {
-      width: 100%;
-      height: 100%;
+      width: 2.2rem;
+      height: 2.2rem;
     }
   `,
   SelectedIcon: styled.div<{ isSelected: boolean }>`
