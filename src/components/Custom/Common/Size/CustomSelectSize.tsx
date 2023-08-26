@@ -120,7 +120,7 @@ const St = {
     flex-direction: column;
     gap: 1.2rem;
 
-    margin: 4.6rem 0 3rem 0;
+    margin: 5.6rem 0 3rem 0;
   `,
 
   InfoMainText: styled.h2`

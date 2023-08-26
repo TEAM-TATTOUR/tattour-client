@@ -133,7 +133,7 @@ const St = {
 
   ImgPreviewArea: styled.div`
     width: 100%;
-    height: 24.6rem;
+    height: 25.6rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
 
