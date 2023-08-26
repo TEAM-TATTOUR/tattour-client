@@ -42,6 +42,14 @@ const CustomTheme = ({
     setDescription(description);
   }, [name, description]);
 
+  useEffect(() => {
+    if (nameInputCount > 0 && descriptionTextAreaCount > 0) {
+      setIsActiveNext(true);
+    } else {
+      setIsActiveNext(false);
+    }
+  }, [nameInputCount, descriptionTextAreaCount]);
+
   // 이모티콘을 한 문자로 취급하여 글자 수 제한을 구현하는 함수
   const limitMaxLength = (
     e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>,
@@ -60,6 +68,7 @@ const CustomTheme = ({
   };
 
   const handleChangeNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const lengthCount = limitMaxLength(e, MAX_NAME_COUNT);
     //value가 없을 때 0으로 글자 수 세지도록
     if (e.target.value === '') {
       setNameInputCount(0);
@@ -67,9 +76,6 @@ const CustomTheme = ({
     } else if (nameInputCount > 0 && descriptionTextAreaCount > 0) {
       setIsActiveNext(true);
     }
-
-    const lengthCount = limitMaxLength(e, MAX_NAME_COUNT);
-
     if (!lengthCount) return;
     setNameInputCount(lengthCount);
     setName(e.target.value);
@@ -82,12 +88,12 @@ const CustomTheme = ({
     } else if (nameInputCount > 0 && descriptionTextAreaCount > 0) {
       setIsActiveNext(true);
     }
-
+    console.log('ㅇㅇnameInputCount', nameInputCount);
+    console.log('ㅇㅇdescriptionTextAreaCount', descriptionTextAreaCount);
     const lengthCount = limitMaxLength(e, MAX_ETC_COUNT);
 
     if (!lengthCount) return;
     setDescriptionTextAreaCount(lengthCount);
-
     setDescription(e.target.value);
   };
 
