@@ -58,6 +58,6 @@ const St = {
     border-width: 0rem;
   `,
   PriceContainer: styled.article`
-    padding: 2.8rem 2.2rem 7.5rem 2.2rem;
+    padding: 2.8rem 2.2rem 14.5rem 2.2rem;
   `,
 };
