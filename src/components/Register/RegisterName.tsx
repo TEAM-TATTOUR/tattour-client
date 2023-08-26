@@ -32,7 +32,11 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
+    margin-top: 5.6rem;
+
+    position: fixed;
+    max-width: 43rem;
+    width: 100%;
     height: calc(100dvh - 7rem);
   `,
 
