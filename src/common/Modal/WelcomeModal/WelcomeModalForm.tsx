@@ -50,7 +50,7 @@ const St = {
 
     background: rgba(0, 0, 0, 0.6);
 
-    z-index: 10;
+    z-index: 30;
   `,
 
   ModalContent: styled.div`
