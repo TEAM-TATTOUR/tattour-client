@@ -12,7 +12,6 @@ const PaymentInfo = ({
   orderAmountInfo: orderAmountInfoProps;
   userPointAfterOrderInfo: userPointAfterOrderInfoProps;
 }) => {
-  console.log(userPointAfterOrderInfo);
   const { userPoint, resultPoint } = userPointAfterOrderInfo;
 
   return (

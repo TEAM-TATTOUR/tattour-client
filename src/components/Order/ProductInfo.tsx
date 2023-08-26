@@ -6,7 +6,6 @@ const ProductInfo = ({
 }: {
   readOrderSheetStickerInfo: readOrderSheetStickerInfoProps;
 }) => {
-  console.log(readOrderSheetStickerInfo);
   const { mainImageUrl, name, price, discountedPrice, count } = readOrderSheetStickerInfo;
 
   return (
