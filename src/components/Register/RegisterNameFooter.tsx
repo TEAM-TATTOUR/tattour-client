@@ -29,10 +29,12 @@ const St = {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: fixed;
+    bottom: 0;
+
+    max-width: 43rem;
     width: 100%;
     height: 7rem;
-    position: absolute;
-    bottom: 0;
 
     background-size: auto;
     background-color: ${({ theme, $userName }) =>

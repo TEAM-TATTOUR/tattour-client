@@ -14,6 +14,7 @@ import HotCustom from '../common/HotCustom';
 import Toast from '../common/ToastMessage/Toast';
 import { useLocation } from 'react-router';
 import WelcomeModal from '../common/Modal/WelcomeModal/WelcomeModal';
+import ChargePointCompleteModal from '../common/Modal/ChargePointModal/ChargePointCompleteModal';
 import MainArticle from '../components/MainPage/MainArticle';
 
 const MainPage = () => {
@@ -21,12 +22,19 @@ const MainPage = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(false);
   const [toast, setToast] = useState<boolean>(false);
+  // const [, setIsOpenCompletModal] = useState(false);
 
   const location = useLocation();
 
   const [isWelcomeModalOpen, setIsWelcomeModalOpen] = useState(
     location.state?.isWellcomeModalOpen || false,
   );
+  const [isPointModalOpen, setIsPointModalOpen] = useState(
+    location.state?.isPointModalOpen || false,
+  );
+
+  const chargeAmount = location.state ? location.state.chargeAmount : null;
+  const redirectURL = location.state ? location.state.redirectURL : null;
 
   useEffect(() => {
     const debouncedHandleScroll = throttle(handleScroll, 100);
@@ -77,6 +85,13 @@ const MainPage = () => {
       <MainArticle />
       {toast && <Toast setToast={setToast} text='이미 참여한 이벤트예요' />}
       <SideMenu isSideMenuOpen={isSideMenuOpen} setIsSideMenuOpen={setIsSideMenuOpen} />
+      {isPointModalOpen && chargeAmount && redirectURL && (
+        <ChargePointCompleteModal
+          setModalOn={setIsPointModalOpen}
+          chargeAmount={chargeAmount}
+          redirectURL={redirectURL}
+        />
+      )}
     </PageLayout>
   );
 };
