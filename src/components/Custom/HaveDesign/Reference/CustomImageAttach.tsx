@@ -248,8 +248,6 @@ const St = {
     justify-content: center;
 
     width: 33.5rem;
-    /* width: 100%; */
-    /* height: 24.6rem; */
     aspect-ratio: 335 / 246;
     background-color: ${({ theme }) => theme.colors.bg};
 
@@ -265,8 +263,6 @@ const St = {
     justify-content: center;
 
     width: 100%;
-    /* width: 100%; */
-    /* height: 24.6rem; */
     aspect-ratio: 335 / 246;
     background-color: ${({ theme }) => theme.colors.bg};
 
@@ -303,8 +299,6 @@ const St = {
     justify-content: center;
 
     height: fit-content;
-    /* width: fit-content; */
-    /* padding-bottom: 8.3rem; */
     gap: 1rem;
   `,
 
@@ -314,7 +308,6 @@ const St = {
     justify-content: center;
     column-gap: 0.6rem;
 
-    /* width: 33.5rem; */
     width: 100%;
     height: 5rem;
 
