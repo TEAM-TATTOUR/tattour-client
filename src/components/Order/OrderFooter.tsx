@@ -73,7 +73,8 @@ const St = {
     position: fixed;
     bottom: 0;
 
-    min-width: 43rem;
+    max-width: 43rem;
+    width: 100%;
     height: 7rem;
   `,
 
