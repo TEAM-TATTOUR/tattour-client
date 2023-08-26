@@ -136,20 +136,22 @@ const St = {
   RequestNameContainer: styled.article`
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    row-gap: 1.2rem;
 
     position: relative;
 
-    margin: 5.6rem 2rem 0 2.2rem;
+    margin: 5.6rem 2rem 0 2rem;
   `,
 
   RequestNameTitle: styled.h2`
+    margin-left: 0.2rem;
     color: ${({ theme }) => theme.colors.gray8};
     ${({ theme }) => theme.fonts.title_semibold_20};
   `,
 
   RequestNameDetail: styled.p`
     margin-bottom: 0.8rem;
+    margin-left: 0.2rem;
 
     color: ${({ theme }) => theme.colors.gray3};
     ${({ theme }) => theme.fonts.body_medium_14};
@@ -185,15 +187,16 @@ const St = {
   RequestEtcContainer: styled.article`
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    row-gap: 2rem;
 
     position: relative;
 
-    margin: 0 2rem 0 2.2rem;
+    margin: 0 2rem 0 2rem;
   `,
 
   RequestEtcTitle: styled.h2`
     padding-top: 4rem;
+    margin-left: 0.2rem;
 
     color: ${({ theme }) => theme.colors.gray8};
     ${({ theme }) => theme.fonts.title_semibold_20};
@@ -228,7 +231,7 @@ const St = {
 
   RequestInputCount: styled.p`
     position: absolute;
-    right: 0;
+    right: 0.4rem;
     bottom: -2.1rem;
 
     color: ${({ theme }) => theme.colors.gray2};

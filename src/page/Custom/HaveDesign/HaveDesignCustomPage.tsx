@@ -61,6 +61,7 @@ const HaveDesignCustomPage = () => {
   const customInfo = {
     customId: customId,
     size: size,
+    isColored: isColoredState,
     name: name === '' ? '임시 저장' : name,
     description: description,
     demand: demand,

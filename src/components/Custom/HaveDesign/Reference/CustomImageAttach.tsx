@@ -284,7 +284,7 @@ const St = {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6rem;
+    column-gap: 0.6rem;
 
     width: 33.5rem;
     height: 5rem;
@@ -294,7 +294,7 @@ const St = {
     color: ${({ theme }) => theme.colors.gray3};
 
     border-radius: 0.5rem;
-    border: 1px solid ${({ theme }) => theme.colors.gray2};
+    border: 1px solid ${({ theme }) => theme.colors.gray1};
 
     &.disabled {
       background-color: ${({ theme }) => theme.colors.gray0};
