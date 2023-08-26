@@ -102,7 +102,7 @@ const SelectKeyword = ({
   return (
     <St.KeywordWrapper>
       <St.Title>장르</St.Title>
-      <St.RadioWrapper>
+      <St.RadioGenreWrapper>
         {!genreLoading &&
           !genreError &&
           genreKeywords.map(({ value, checked }, index: number) => (
@@ -120,9 +120,9 @@ const SelectKeyword = ({
               </St.RadioText>
             </St.RadioLabel>
           ))}
-      </St.RadioWrapper>
+      </St.RadioGenreWrapper>
       <St.Title>스타일</St.Title>
-      <St.RadioWrapper className='style-keywords'>
+      <St.RadioStyleWrapper>
         {!styleLoading &&
           !styleError &&
           styleKeywords.map(({ value, checked }, index: number) => (
@@ -140,7 +140,7 @@ const SelectKeyword = ({
               </St.RadioText>
             </St.RadioLabel>
           ))}
-      </St.RadioWrapper>
+      </St.RadioStyleWrapper>
     </St.KeywordWrapper>
   );
 };
@@ -157,25 +157,26 @@ const St = {
     width: 100%;
     padding-left: 2rem;
     min-height: calc(100dvh - 28.8rem);
-
-    .style-keywords {
-      width: 26rem;
-      gap: 1.2rem;
-
-      display: flex;
-      flex-wrap: wrap;
-    }
   `,
   Title: styled.h3`
     ${({ theme }) => theme.fonts.body_semibold_14};
     color: ${({ theme }) => theme.colors.gray5};
   `,
-  RadioWrapper: styled.section`
+  RadioGenreWrapper: styled.section`
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    column-gap: 1rem;
+    row-gap: 1.6rem;
 
-    width: 33.9rem;
+    width: 28.7rem;
+  `,
+  RadioStyleWrapper: styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1.2rem;
+    row-gap: 1.6rem;
+
+    width: 28.1rem;
   `,
   RadioLabel: styled.label<{ checked: boolean }>`
     display: flex;
@@ -183,7 +184,8 @@ const St = {
     justify-content: center;
     user-select: none;
 
-    border: 1px solid ${({ theme, checked }) => (checked ? theme.colors.pink5 : theme.colors.bg)};
+    padding: 0;
+    border: 0.1rem solid ${({ theme, checked }) => (checked ? theme.colors.pink5 : theme.colors.bg)};
     border-radius: 0.5rem;
     background-color: ${({ theme }) => theme.colors.bg};
   `,
