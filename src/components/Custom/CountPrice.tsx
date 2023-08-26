@@ -59,7 +59,7 @@ const CountPrice = ({ isPublic, setCount, size, setTotalPrice }: CountPriceProps
           <St.TotalPriceGroup>
             {isPublic ? (
               <>
-                <St.Discount>{discount}</St.Discount>
+                <St.Discount>{discount?.toLocaleString()}</St.Discount>
                 <St.TotalPrice>
                   {(quantity * (price || 0) - (discount || 0)).toLocaleString()}
                 </St.TotalPrice>

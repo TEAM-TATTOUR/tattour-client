@@ -19,12 +19,14 @@ const WelcomeModalForm = ({ onClose, title, continueBtn }: WelcomeModalFormProps
   return (
     <St.ModalContainer>
       <St.ModalContent>
-        <St.ModalTitleWrapper>
-          <IcCancelDark onClick={onClose} />
-          <St.ModalTitle>{title}</St.ModalTitle>
-        </St.ModalTitleWrapper>
+        <St.Contents>
+          <St.ModalTitleWrapper>
+            <IcCancelDark onClick={onClose} />
+            <St.ModalTitle>{title}</St.ModalTitle>
+          </St.ModalTitleWrapper>
 
-        <ImgPointCoupon />
+          <ImgPointCoupon />
+        </St.Contents>
 
         <St.BtnWrapper>
           <St.ContinueBtn onClick={handleClickContinueBtn}>{continueBtn}</St.ContinueBtn>
@@ -56,10 +58,18 @@ const St = {
     align-items: center;
     position: relative;
     width: 33.5rem;
-    height: 41.8rem;
+  `,
 
-    border-radius: 1rem;
+  Contents: styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 34.8rem;
 
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+    
     background-color: ${({ theme }) => theme.colors.white};
   `,
 
@@ -103,7 +113,6 @@ const St = {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 4rem;
     width: 100%;
     height: 7rem;
 

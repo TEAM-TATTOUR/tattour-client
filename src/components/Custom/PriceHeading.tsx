@@ -34,6 +34,8 @@ const St = {
     color: ${({ theme }) => theme.colors.gray8};
   `,
   SubtitleWrapper: styled.div`
+    display: flex;
+    flex-direction: column;
     gap: 0.3rem;
   `,
 
