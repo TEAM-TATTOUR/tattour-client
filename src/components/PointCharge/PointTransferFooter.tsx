@@ -44,6 +44,7 @@ const St = {
     justify-content: center;
     align-items: center;
     width: 100%;
+    max-width: 43rem;
     height: 7rem;
     background-color: ${({ $isActiveNext, theme }) =>
       $isActiveNext ? theme.colors.gray9 : theme.colors.gray3};

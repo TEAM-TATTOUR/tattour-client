@@ -30,7 +30,8 @@ const St = {
   TransferMainWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
+    padding: 0 2.2rem;
 
     height: calc(100dvh - 21.6rem);
   `,
@@ -48,7 +49,6 @@ const St = {
     gap: 1.2rem;
 
     width: 100%;
-    padding-left: 2.2rem;
   `,
 
   InfoMsgTitle: styled.h2`
@@ -67,7 +67,6 @@ const St = {
     align-items: center;
 
     margin: 3.4rem 0 3.7rem 0;
-    padding: 0 2.2rem 0 2.2rem;
   `,
 
   InfoPriceLeft: styled.p`
