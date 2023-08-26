@@ -28,17 +28,16 @@ const MakePublic: React.FC<MakePublicProps> = ({ isPublic, setIsPublic }) => {
         />
         <label htmlFor='pointAgree'></label>
 
-        <St.PublicAgreeTouchArea>
+        <St.PublicAgreeTouchArea onClick={() => setBottomOpen(true)}>
           <St.PublicAgreeText>커스텀 도안 공개하고 단가 낮출래요</St.PublicAgreeText>
-          <IcArrowRightDark onClick={() => setBottomOpen(true)} />
+          <IcArrowRightDark />
         </St.PublicAgreeTouchArea>
       </St.MakePublicWrapper>
       <St.PublicAgreeSubtext>
         해당 도안을 다른 타투어도 구매할 수 있게 공개하면 즉시 할인 받을 수 있어요
       </St.PublicAgreeSubtext>
-      {isBottomOpen && (
-        <PublicBottomSheet isSheetOpen={isBottomOpen} setSheetOpen={setBottomOpen} />
-      )}
+
+      <PublicBottomSheet isSheetOpen={isBottomOpen} setSheetOpen={setBottomOpen} />
     </St.Wrapper>
   );
 };
