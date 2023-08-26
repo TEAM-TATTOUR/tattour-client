@@ -63,7 +63,6 @@ const CustomSheet = styled(Sheet)`
   .react-modal-sheet-container > div {
     display: flex;
     justify-content: space-between !important;
-    margin-bottom: 2.8rem;
   }
 
   .react-modal-sheet-scroller {
