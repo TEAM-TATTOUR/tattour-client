@@ -16,7 +16,7 @@ interface ChargePointModalFormProps {
   isEnoughPoint: boolean;
   haveDesign: boolean;
   setStep: React.Dispatch<React.SetStateAction<number>>;
-  setCustomId: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setCustomId: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const ChargePointModalForm = ({

@@ -7,7 +7,7 @@ interface ChargePointModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
   haveDesign: boolean;
   setStep: React.Dispatch<React.SetStateAction<number>>;
-  setCustomId: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setCustomId: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const ChargePointModal = ({

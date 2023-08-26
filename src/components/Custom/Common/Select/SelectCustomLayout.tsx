@@ -10,7 +10,7 @@ import SelectCustomPolicy from './SelectCustomPolicy';
 
 interface SelectCustomLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
-  setCustomId: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setCustomId: React.Dispatch<React.SetStateAction<number>>;
   haveDesign: boolean;
   setHaveDesign: React.Dispatch<React.SetStateAction<boolean>>;
 }

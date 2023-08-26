@@ -21,7 +21,7 @@ export interface resCustomInfoType {
   themes: Array<string>;
   styles: Array<string>;
   mainImageUrl: string;
-  handDrawingImageUrl: File | null;
+  handDrawingImageUrl: string | null;
   images: Array<string>;
   haveDesign: boolean;
   size: string;
