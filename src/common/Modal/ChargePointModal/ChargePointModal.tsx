@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ModalPortal from '../ModalPortal';
 import ChargePointModalForm from './ChargePointModalForm';
 import useGetUserProfile from '../../../libs/hooks/useGetUserProfile';
@@ -6,14 +6,20 @@ import useGetUserProfile from '../../../libs/hooks/useGetUserProfile';
 interface ChargePointModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
   haveDesign: boolean;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  setCustomId: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
 
-const ChargePointModal = ({ setModalOn, haveDesign }: ChargePointModalProps) => {
+const ChargePointModal = ({
+  setModalOn,
+  haveDesign,
+  setStep,
+  setCustomId,
+}: ChargePointModalProps) => {
   const { response, error, loading } = useGetUserProfile();
 
   const [currPoint, setCurrPoint] = useState(0);
 
-  // const currPoint = response?.point;
   const REGISTER_FEE = 990;
 
   const [calculatedPoint, setCalculatedPoint] = useState(0);
@@ -57,6 +63,8 @@ const ChargePointModal = ({ setModalOn, haveDesign }: ChargePointModalProps) => 
           // 포인트가 충분한지 여부
           isEnoughPoint={isEnoughPoint}
           haveDesign={haveDesign}
+          setStep={setStep}
+          setCustomId={setCustomId}
         />
       </ModalPortal>
     )
