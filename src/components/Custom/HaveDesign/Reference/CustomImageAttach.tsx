@@ -214,17 +214,16 @@ const St = {
 
     width: 100%;
 
-    padding: 0 2rem 8.3rem 2rem;
+    padding: 0 2rem 8.3rem 0;
     /* padding-bottom: 8.3rem; */
   `,
   PreviewSection: styled.div`
     display: flex;
     justify-content: flex-start;
-
     gap: 1rem;
 
     width: 100%;
-    aspect-ratio: 335 / 246;
+    /* aspect-ratio: 335 / 246; */
     /* height: 24.6rem; */
     margin-bottom: 2rem;
 
@@ -297,6 +296,7 @@ const St = {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-left: 2rem;
 
     height: fit-content;
     gap: 1rem;
