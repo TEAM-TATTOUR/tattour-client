@@ -134,7 +134,7 @@ const St = {
   CustomRequestWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
 
     width: 100%;
     min-height: calc(100dvh - 13.6rem);

@@ -143,7 +143,9 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
     <St.CustomReferenceWrapper>
       <St.PreviewSection
         id='preview-section'
-        style={{ justifyContent: previewURL.length > 1 ? 'flex-start' : 'center' }}
+        style={{
+          justifyContent: previewURL.length > 1 || drawingImageUrl ? 'flex-start' : 'center',
+        }}
       >
         {drawingImageUrl ? (
           <St.ImgPreviewContainer>
@@ -158,9 +160,9 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
           ''
         )}
         {previewURL.length === 0 && !drawingImageUrl ? (
-          <St.Image>
+          <St.BlankImage>
             <St.ImageDescription> 필수 1장 첨부, 최대 3장 첨부 가능합니다.</St.ImageDescription>
-          </St.Image>
+          </St.BlankImage>
         ) : Array.isArray(previewURL) && previewURL.length > 0 ? (
           previewURL.reverse().map((url, index) => (
             <St.ImgPreviewContainer key={index}>
@@ -208,20 +210,22 @@ const St = {
   CustomReferenceWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
 
     width: 100%;
 
-    padding-bottom: 8.3rem;
+    padding: 0 2rem 8.3rem 2rem;
+    /* padding-bottom: 8.3rem; */
   `,
   PreviewSection: styled.div`
     display: flex;
-    /* justify-content: flex-start; */
+    justify-content: flex-start;
 
     gap: 1rem;
 
     width: 100%;
-    height: 24.6rem;
+    aspect-ratio: 335 / 246;
+    /* height: 24.6rem; */
     margin-bottom: 2rem;
 
     overflow-x: auto;
@@ -244,7 +248,22 @@ const St = {
     justify-content: center;
 
     width: 33.5rem;
-    height: 24.6rem;
+    aspect-ratio: 335 / 246;
+    background-color: ${({ theme }) => theme.colors.bg};
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  `,
+  BlankImage: styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    aspect-ratio: 335 / 246;
     background-color: ${({ theme }) => theme.colors.bg};
 
     & > img {
@@ -280,8 +299,6 @@ const St = {
     justify-content: center;
 
     height: fit-content;
-    width: fit-content;
-    /* padding-bottom: 8.3rem; */
     gap: 1rem;
   `,
 
@@ -291,7 +308,7 @@ const St = {
     justify-content: center;
     column-gap: 0.6rem;
 
-    width: 33.5rem;
+    width: 100%;
     height: 5rem;
 
     background-color: ${({ theme }) => theme.colors.white};
