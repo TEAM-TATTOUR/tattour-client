@@ -55,7 +55,7 @@ const PriceLayout = ({
     count: count,
     isPublic: isPublic,
     isCompleted: true,
-    price: totalPrice, //price 최상단(여기 layout 컴포넌트)에서 관리할 수 있게 + 할인 로직까지 포함해서 수정 부탁해용 !! => 우리 patch할 때 가격 안 보내는 걸로 알아서 확인 필요..!
+    price: totalPrice,
     viewCount: step,
   };
 
