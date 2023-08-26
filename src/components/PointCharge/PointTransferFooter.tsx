@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 import CheckModal from '../../common/Modal/CheckModal/CheckModal';
 import { useState } from 'react';
-import ChargePointCompleteModal from '../../common/Modal/ChargePointModal/ChargePointCompleteModal';
 
 interface PointTransferFooterProps {
   isActiveNext: boolean;
@@ -15,7 +14,7 @@ const PointTransferFooter = ({
   chargeAmount,
 }: PointTransferFooterProps) => {
   const [modalOn, setModalOn] = useState(false);
-  const [isOpenCompleteModal, setIsOpenCompletModal] = useState(false);
+  // const [isOpenCompleteModal, setIsOpenCompletModal] = useState(false);
 
   const handleClickFooter = () => {
     //여기 수정 필요 -> 포인트 충전으로 들어오기 전 url로 보내기
@@ -28,18 +27,7 @@ const PointTransferFooter = ({
         <St.FooterText>송금했어요</St.FooterText>
       </St.TransferFooter>
       {modalOn && (
-        <CheckModal
-          setModalOn={setModalOn}
-          chargeAmount={chargeAmount}
-          setIsOpenCompleteModal={setIsOpenCompletModal}
-        />
-      )}
-      {isOpenCompleteModal && (
-        <ChargePointCompleteModal
-          setModalOn={setIsOpenCompletModal}
-          chargeAmount={chargeAmount}
-          redirectURL={redirectURL}
-        />
+        <CheckModal setModalOn={setModalOn} chargeAmount={chargeAmount} redirectURL={redirectURL} />
       )}
     </>
   );
@@ -49,13 +37,14 @@ export default PointTransferFooter;
 
 const St = {
   TransferFooter: styled.footer<{ $isActiveNext: boolean }>`
-    position: sticky;
+    position: fixed;
     bottom: 0;
 
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    max-width: 43rem;
     height: 7rem;
     background-color: ${({ $isActiveNext, theme }) =>
       $isActiveNext ? theme.colors.gray9 : theme.colors.gray3};
