@@ -43,7 +43,7 @@ const St = {
   MainStyleSection: styled.section`
     padding-left: 2rem;
     margin-top: 3.6rem;
-    margin-bottom: 7rem;
+    margin-bottom: 3rem;
   `,
 
   MainStyleHeader: styled.header`

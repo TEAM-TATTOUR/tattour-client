@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../../api';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface StickerItemProps {
   id: number;
@@ -26,6 +27,7 @@ interface StickerResponse {
 }
 
 const useGetSticker = (id: number) => {
+  const navigate = useNavigate();
   const [response, setResponse] = useState<StickerItemProps>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
@@ -39,6 +41,7 @@ const useGetSticker = (id: number) => {
       })
       .catch((err) => {
         setError(err);
+        navigate('/complete');
       })
       .finally(() => {
         setLoading(false);

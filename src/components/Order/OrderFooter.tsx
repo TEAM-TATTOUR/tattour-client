@@ -70,9 +70,10 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    position: sticky;
+    position: fixed;
     bottom: 0;
 
+    max-width: 43rem;
     width: 100%;
     height: 7rem;
   `,

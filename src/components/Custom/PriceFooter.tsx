@@ -1,51 +1,55 @@
-import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { customInfoType } from '../../types/customInfoType';
+import { customInfoType, resCustomInfoType } from '../../types/customInfoType';
 import api from '../../libs/api';
+import React from 'react';
+// import { useNavigate } from 'react-router-dom';
 
 interface PriceFooterProps {
   haveDesign?: boolean;
-  customInfo?: customInfoType;
-  handDrawingImage: File;
-  customImages?: FileList | null;
-  isCompleted: boolean;
-  handleCompletedState: () => void;
-  isCompletedState: boolean;
+  customInfo: customInfoType;
+  handDrawingImage?: File | null;
+  customImages: FileList | undefined;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
 }
 
-const PriceFooter = ({ customInfo, handDrawingImage, customImages }: PriceFooterProps) => {
-  const navigate = useNavigate();
+const PriceFooter = ({
+  customInfo,
+  handDrawingImage,
+  customImages,
+  setStep,
+  setReceiptData,
+}: PriceFooterProps) => {
+  // const navigate = useNavigate();
 
   const handleClickFooterBtn = async () => {
     const formData = new FormData();
     try {
-      // handleCompletedState(); 이렇게 하면 안되는 듯,,
-      formData.append('handDrawingImage', handDrawingImage);
-      const newCustomInfo = {
-        ...customInfo,
-        isCompleted: true,
-      };
-      const json = JSON.stringify(newCustomInfo);
-      const blob = new Blob([json], { type: 'application/json' });
+      // 1. handDrawingImage(손 그림) append
+      if (handDrawingImage) {
+        formData.append('handDrawingImage', handDrawingImage);
+      }
 
+      // 2. customInfo(커스텀 정보들) append
+      const json = JSON.stringify(customInfo);
+      const blob = new Blob([json], { type: 'application/json' });
       formData.append('customInfo', blob);
 
+      // 3. customImage(도안 이미지) append
       if (customImages) {
         for (let i = 0; i < customImages.length; i++) {
           formData.append('customImages', customImages.item(i) as File);
         }
       }
+
       const { data } = await api.patch('/custom/update', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('data', data.data, '!!!!!');
-      navigate('/receipt', {
-        state: {
-          data: data.data,
-        },
-      });
+
+      setReceiptData(data.data);
+      setStep((prev) => prev + 1);
     } catch (err) {
       console.log('Error', err);
     }
@@ -76,6 +80,9 @@ const St = {
   `,
 
   FooterButton: styled.button`
+    width: 100%;
+    height: 100%;
+
     color: ${({ theme }) => theme.colors.pink5};
     ${({ theme }) => theme.fonts.title_semibold_18};
   `,

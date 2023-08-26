@@ -3,6 +3,7 @@ import ModalPortal from '../ModalPortal';
 import { IcCancelDark } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 import { customInfoType } from '../../../types/customInfoType';
+import api from '../../../libs/api';
 
 interface CustomSizeEscapeModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,40 +15,43 @@ interface CustomSizeEscapeModalProps {
 
 const CustomSizeEscapeModal = ({
   setModalOn,
-}: // customInfo,
-// handDrawingImage,
-// customImages,
-CustomSizeEscapeModalProps) => {
+  customInfo,
+  handDrawingImage,
+  customImages,
+}: CustomSizeEscapeModalProps) => {
   const navigate = useNavigate();
 
   const handleClickStopBtn = async () => {
-    // const formData = new FormData();
-    // try {
-    //   formData.append('handDrawingImage', handDrawingImage);
-    //   const json = JSON.stringify(customInfo);
-    //   const blob = new Blob([json], { type: 'application/json' });
+    const formData = new FormData();
+    const json = JSON.stringify(customInfo);
 
-    //   formData.append('customInfo', blob);
+    try {
+      if (handDrawingImage) {
+        formData.append('handDrawingImage', handDrawingImage);
+      }
+      const blob = new Blob([json], { type: 'application/json' });
+      formData.append('customInfo', blob);
+      if (customImages) {
+        for (let i = 0; i < customImages.length; i++) {
+          console.log(customImages.item(i));
+          formData.append('customImages', customImages.item(i) as File);
+        }
+      }
 
-    //   if (customImages) {
-    //     for (let i = 0; i < customImages.length; i++) {
-    //       formData.append('customImages', customImages.item(i) as File);
-    //     }
-    //   }
-    //   const { data } = await api.patch('/custom/update', formData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data',
-    //     },
-    //   });
-    //   navigate('/', {
-    //     state: {
-    //       data: data,
-    //     },
-    //   });
-    // } catch (err) {
-    //   console.log(formData);
-    //   console.log(err);
-    // }
+      const { data } = await api.patch('/custom/update', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      navigate('/', {
+        state: {
+          data: data,
+        },
+      });
+    } catch (err) {
+      console.log(formData);
+      console.log(err);
+    }
     navigate('/');
     setModalOn(false);
   };

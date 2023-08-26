@@ -28,7 +28,7 @@ const St = {
     align-items: center;
     gap: 1.8rem;
 
-    margin: 2.8rem 0rem 4.8rem 2rem;
+    margin: 2.8rem 0rem 11.8rem 2rem;
   `,
   Checkbox: styled.input`
     display: none;
