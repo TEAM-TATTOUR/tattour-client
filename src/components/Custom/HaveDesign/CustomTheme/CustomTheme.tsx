@@ -231,7 +231,7 @@ const St = {
 
   RequestInputCount: styled.p`
     position: absolute;
-    right: 0;
+    right: 0.4rem;
     bottom: -2.1rem;
 
     color: ${({ theme }) => theme.colors.gray2};
