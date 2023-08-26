@@ -13,7 +13,7 @@ import { resCustomInfoType } from '../../../types/customInfoType';
 
 const HaveDesignCustomPage = () => {
   const location = useLocation();
-  console.log(location.state);
+
   const [step, setStep] = useState(
     location.state && location.state.step !== undefined ? location.state.step : 1,
   );

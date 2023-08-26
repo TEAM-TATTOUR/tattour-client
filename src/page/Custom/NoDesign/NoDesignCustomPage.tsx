@@ -10,8 +10,6 @@ import { resCustomInfoType } from '../../../types/customInfoType';
 const NoDesignCustomPage = () => {
   const location = useLocation();
 
-  console.log('state', location.state);
-
   //커스텀 신청서 플로우에 따른 각 단계별 컴포넌트 렌더링 플래그
   const [step, setStep] = useState(
     location.state && location.state.step !== undefined ? location.state.step : 1,
