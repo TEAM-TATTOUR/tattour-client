@@ -85,11 +85,12 @@ const St = {
   ChargeWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     gap: 3rem; /*디테일 설명과 input 사이 간격 */
     /* height: calc(100dvh - 13.6rem); */
 
     width: 100%;
+    padding: 0 2rem;
   `,
 
   ChargeInfoContainer: styled.article`
@@ -99,6 +100,7 @@ const St = {
 
     width: 33.5rem;
     margin-top: 5.6rem;
+    padding-left: 0.2rem;
   `,
 
   ChargeInfoTitle: styled.h2`
@@ -132,8 +134,9 @@ const St = {
   `,
 
   ChargeInput: styled.input<{ $isWarning: boolean }>`
-    width: 33.5rem;
-    height: 4.5rem;
+    /* width: 33.5rem; */
+    width: 100%;
+    height: 4.8rem;
     padding: 1.2rem 0;
     padding-right: 4rem;
 
