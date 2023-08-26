@@ -22,6 +22,11 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    position: fixed;
+    margin-top: 5.6rem;
+    width: 100%;
+    max-width: 43rem;
   `,
 };
 

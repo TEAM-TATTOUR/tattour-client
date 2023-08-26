@@ -3,11 +3,11 @@ import CheckModalForm from './CheckModalForm';
 
 interface CheckModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsOpenCompleteModal: React.Dispatch<React.SetStateAction<boolean>>;
   chargeAmount: number;
+  redirectURL: string;
 }
 
-const CheckModal = ({ setModalOn, chargeAmount, setIsOpenCompleteModal }: CheckModalProps) => {
+const CheckModal = ({ setModalOn, chargeAmount, redirectURL }: CheckModalProps) => {
   return (
     <ModalPortal>
       <CheckModalForm
@@ -17,7 +17,7 @@ const CheckModal = ({ setModalOn, chargeAmount, setIsOpenCompleteModal }: CheckM
         subTitle2={'추후에 주문이 취소될 수 있어요'}
         continueBtn={'확인했어요'}
         chargeAmount={chargeAmount}
-        setIsOpenCompleteModal={setIsOpenCompleteModal}
+        redirectURL={redirectURL}
       />
     </ModalPortal>
   );
