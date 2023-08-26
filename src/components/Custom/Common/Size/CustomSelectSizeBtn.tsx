@@ -58,25 +58,18 @@ const St = {
   SizeBtnWrapper: styled.button`
     display: flex;
     flex-direction: column;
-
-    /* width: 16rem; */
     width: 100%;
     aspect-ratio: 160 / 209;
-    /* height: 20.9rem; */
-    /* height: 100%; */
     padding: 0;
 
     &.isSelected {
       box-shadow: 0 0 0 0.1rem ${({ theme }) => theme.colors.pink5};
-      /* border: 0.1rem solid ${({ theme }) => theme.colors.pink5}; */
       border-radius: 0.5rem;
     }
   `,
 
   SizeBtnImgBox: styled(SizeBtnImgBoxTemplate)<{ $imgURL: string }>`
     border-radius: 0.5rem 0.5rem 0 0;
-
-    /* background: ${({ $imgURL }) => `url(${$imgURL})`}; */
   `,
 
   SelectedSizeBtnImgBox: styled(SizeBtnImgBoxTemplate)`

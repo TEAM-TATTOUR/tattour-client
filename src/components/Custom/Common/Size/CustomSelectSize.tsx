@@ -144,9 +144,7 @@ const St = {
     grid-template-rows: repeat(2, 1fr);
     gap: 1.5rem;
 
-    /* width: 33.5rem; */
     width: 100%;
-    /* height: 43.3rem; */
     margin-bottom: 4.9rem;
   `,
 };
