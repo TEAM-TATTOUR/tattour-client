@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { IcBackDark } from '../assets/icon';
 import PageLayout from '../components/PageLayout';
@@ -6,7 +6,7 @@ import { NotionRenderer } from 'react-notion';
 import 'react-notion/src/styles.css';
 import 'prismjs/themes/prism-tomorrow.css';
 import { styled } from 'styled-components';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const MagazinePage = () => {
   const [blockRecord, setBlockRecord] = useState({});
