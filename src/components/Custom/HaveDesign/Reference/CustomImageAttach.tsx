@@ -258,7 +258,7 @@ const St = {
     display: flex;
     align-items: center;
     justify-content: center;
-
+    margin-left: 2rem;
     width: 100%;
     aspect-ratio: 335 / 246;
     background-color: ${({ theme }) => theme.colors.bg};
