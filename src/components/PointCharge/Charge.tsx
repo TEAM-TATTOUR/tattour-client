@@ -85,9 +85,7 @@ const St = {
   ChargeWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     gap: 3rem; /*디테일 설명과 input 사이 간격 */
-    /* height: calc(100dvh - 13.6rem); */
 
     width: 100%;
     padding: 0 2rem;

@@ -30,7 +30,6 @@ const St = {
   TransferMainWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     padding: 0 2.2rem;
 
     height: calc(100dvh - 21.6rem);
