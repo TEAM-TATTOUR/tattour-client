@@ -15,7 +15,7 @@ const Canvas: React.FC<CanvasProps> = ({ setCanvasState }: CanvasProps) => {
     //새 캔버스 만들기
     const canvas = new fabric.Canvas(canvasRef.current, {
       isDrawingMode: true,
-      width: 335,
+      width: 380,
       height: 313,
       allowTouchScrolling: true, //얘도 좀 의심해봐야 할 것 같다..!
     });
@@ -81,7 +81,7 @@ const St = {
     font: ${({ theme }) => theme.fonts.body_underline_medium_14};
   `,
   Canvas: styled.div`
-    width: 33.5rem;
+    width: 38rem;
     height: 31.3rem;
     margin-bottom: 1.6rem;
 

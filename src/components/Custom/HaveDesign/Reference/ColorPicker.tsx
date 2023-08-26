@@ -142,11 +142,12 @@ const St = {
     display: flex;
     width: 100%;
 
-    gap: 0.9rem;
+    gap: 4rem;
   `,
   ColorPickerWrapper: styled.div<ColorPickerWrapperProps>`
     position: relative;
-    width: 2.2rem;
+    /* width: 2.2rem; */
+    width: 3rem;
     height: 2.2rem;
     border-radius: 0.5rem;
 
