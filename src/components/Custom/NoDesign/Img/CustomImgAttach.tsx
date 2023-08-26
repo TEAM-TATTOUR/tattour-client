@@ -86,11 +86,10 @@ const St = {
   ImgAttachContainer: styled.article`
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     width: 100%;
     gap: 2rem;
-    padding: 0 2rem 12.3rem 2rem;
+    padding-bottom: 12.3rem;
 
     & > input {
       display: none;
@@ -102,7 +101,7 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    width: 33.5rem;
+    width: 100%;
     height: 24.6rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
@@ -133,7 +132,7 @@ const St = {
   `,
 
   ImgPreviewArea: styled.div`
-    width: 33.5rem;
+    width: 100%;
     height: 24.6rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
@@ -151,7 +150,7 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    width: 33.5rem;
+    width: 100%;
     height: 5rem;
 
     background-color: ${({ theme }) => theme.colors.white};
