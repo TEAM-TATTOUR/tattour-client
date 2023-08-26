@@ -40,7 +40,7 @@ const CustomTheme = ({
     descriptionTextAreaRef.current.value = description;
     setDescriptionTextAreaCount(description.length);
     setDescription(description);
-  }, [name, description]);
+  }, []);
 
   useEffect(() => {
     if (nameInputCount > 0 && descriptionTextAreaCount > 0) {
