@@ -131,7 +131,6 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
         })
         .then((res: resProps) => {
           // 인증 성공 여부를 나타내는 변수
-          // const isVerified = res.data.data.isVerified;
           const isVerified = res.data.data;
 
           if (isVerified) {
@@ -211,7 +210,7 @@ const St = {
 
   InputContent: styled.input`
     width: calc(100% - 9.7rem);
-    height: 4.5rem;
+    height: 4.8rem;
     padding-left: 2rem;
 
     border: none;
@@ -257,7 +256,7 @@ const St = {
 
   CertificationInput: styled.input`
     width: 100%;
-    height: 4.5rem;
+    height: 4.8rem;
     padding-left: 2rem;
 
     border: none;
