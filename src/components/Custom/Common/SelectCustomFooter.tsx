@@ -29,13 +29,14 @@ export default SelectCustomFooter;
 
 const St = {
   SelectCustomFooter: styled.footer<{ $isActiveNext: boolean }>`
-    position: absolute;
+    position: fixed;
     bottom: 0;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
+    max-width: 43rem;
     width: 100%;
     height: 7rem;
 
