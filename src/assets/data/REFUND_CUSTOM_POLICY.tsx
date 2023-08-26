@@ -1,5 +1,4 @@
-export const REFUND_CUSTOM_POLICY = `
-제 10조 (커스텀 도안 구매 환불 정책)\n
+export const REFUND_CUSTOM_POLICY = `제 10조 (커스텀 도안 구매 환불 정책)\n
 1.  취소 및 환불
 ・ 고객은 커스텀 도안 신청을 한 이후에는 신청서를 회수 및 취소할 수 없습니다.
 ・ 고객의 구매 취소 요청은 다음 각호와 같이 처리됩니다.

@@ -129,6 +129,7 @@ const St = {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.1rem;
+    padding-bottom: 1.4rem;
   `,
   Card: styled.article`
     display: flex;

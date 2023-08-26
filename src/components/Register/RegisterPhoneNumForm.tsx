@@ -87,8 +87,7 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
     if (phoneNum.length === 11) {
       axios
         .post(
-          `https://api.tattour.shop/sms/send/verification-code`,
-          // `https://dev.tattour.shop/sms/send/verification-code`,
+          `https://dev.tattour.shop/sms/send/verification-code`,
           {
             phoneNumber: `${phoneNum}`,
           },

@@ -1,13 +1,13 @@
 import ic_check from '../../assets/icon/ic_check.svg';
 import ic_check_selected from '../../assets/icon/ic_check_selected.svg';
 import { styled } from 'styled-components';
-import { IcArrowRightDark } from '../../assets/icon';
+import { IcArrowRightGray4 } from '../../assets/icon';
 import { useState } from 'react';
 import PublicBottomSheet from './PublicBottomSheet';
 
 interface MakePublicProps {
   isPublic: boolean;
-  setIsPublic: (value: boolean) => void;
+  setIsPublic: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const MakePublic: React.FC<MakePublicProps> = ({ isPublic, setIsPublic }) => {
@@ -28,17 +28,16 @@ const MakePublic: React.FC<MakePublicProps> = ({ isPublic, setIsPublic }) => {
         />
         <label htmlFor='pointAgree'></label>
 
-        <St.PublicAgreeTouchArea>
+        <St.PublicAgreeTouchArea onClick={() => setBottomOpen(true)}>
           <St.PublicAgreeText>커스텀 도안 공개하고 단가 낮출래요</St.PublicAgreeText>
-          <IcArrowRightDark onClick={() => setBottomOpen(true)} />
+          <IcArrowRightGray4 />
         </St.PublicAgreeTouchArea>
       </St.MakePublicWrapper>
       <St.PublicAgreeSubtext>
         해당 도안을 다른 타투어도 구매할 수 있게 공개하면 즉시 할인 받을 수 있어요
       </St.PublicAgreeSubtext>
-      {isBottomOpen && (
-        <PublicBottomSheet isSheetOpen={isBottomOpen} setSheetOpen={setBottomOpen} />
-      )}
+
+      <PublicBottomSheet isSheetOpen={isBottomOpen} setSheetOpen={setBottomOpen} />
     </St.Wrapper>
   );
 };

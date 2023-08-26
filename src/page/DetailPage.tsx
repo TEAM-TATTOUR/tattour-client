@@ -79,7 +79,7 @@ const DetailPage = () => {
               img={el.imageUrl}
               title={el.name}
               discountRate={el.discountRate}
-              price={el.price}
+              price={el.discountPrice}
               originalPrice={el.price}
               isCustom={el.isCustom}
             />
