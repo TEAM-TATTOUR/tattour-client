@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { styled } from 'styled-components';
 import IcCircleBlack from '../../../../assets/icon/ic_circle_black.png';
 import IcCircleRainbow from '../../../../assets/icon/ic_circle_rainbow.png';
