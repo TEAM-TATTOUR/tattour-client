@@ -8,6 +8,7 @@ import PageLayout from '../../../PageLayout';
 import HaveDesignFooter from '../HaveDesignFooter';
 import SelectKeyword from './SelectKeyword';
 import SelectKeywordInstruction from './SelectKeywordInstruction';
+import { customInfoType } from '../../../../types/customInfoType';
 
 interface SelectKeywordLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -15,6 +16,11 @@ interface SelectKeywordLayoutProps {
   setStyles: React.Dispatch<React.SetStateAction<number[]>>;
   themes: number[];
   setThemes: React.Dispatch<React.SetStateAction<number[]>>;
+  customInfo: customInfoType;
+  customImages: FileList | undefined;
+  handDrawingImage: File | null;
+  stylesKeyword: string[];
+  themesKeyword: string[];
 }
 
 const SelectKeywordLayout = ({
@@ -23,6 +29,11 @@ const SelectKeywordLayout = ({
   setStyles,
   themes,
   setThemes,
+  customInfo,
+  customImages,
+  handDrawingImage,
+  stylesKeyword,
+  themesKeyword,
 }: SelectKeywordLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
@@ -36,7 +47,14 @@ const SelectKeywordLayout = ({
           <CancelBtn
             modalOn={modalOn}
             setModalOn={setModalOn}
-            targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
+            targetModal={
+              <CustomSizeEscapeModal
+                setModalOn={setModalOn}
+                customInfo={customInfo}
+                customImages={customImages}
+                handDrawingImage={handDrawingImage}
+              />
+            }
           />
         }
         transparent={true}
@@ -57,6 +75,8 @@ const SelectKeywordLayout = ({
         setStyles={setStyles}
         themes={themes}
         setThemes={setThemes}
+        stylesKeyword={stylesKeyword}
+        themesKeyword={themesKeyword}
       />
     </PageLayout>
   );

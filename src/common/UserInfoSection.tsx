@@ -22,13 +22,15 @@ const UserInfoSection = () => {
     !loading && (
       <St.SideMenuUserInfoSection>
         <St.SideMenuUserName>
-          {response?.name}
+          {response?.homeUserInfo.name}
           <span>님</span>
         </St.SideMenuUserName>
         <St.SideMenuUserPointWrapper>
           <St.SideMenuUserPointTitle>보유 포인트</St.SideMenuUserPointTitle>
           <St.SideMenuUserPointTextWrapper>
-            <St.SideMenuUserPoint>{response?.point.toLocaleString()}</St.SideMenuUserPoint>
+            <St.SideMenuUserPoint>
+              {response?.homeUserInfo.point.toLocaleString()}
+            </St.SideMenuUserPoint>
             <span>P</span>
           </St.SideMenuUserPointTextWrapper>
           <St.SideMenuUserPointChargeButton onClick={handleClickChargeBtn}>

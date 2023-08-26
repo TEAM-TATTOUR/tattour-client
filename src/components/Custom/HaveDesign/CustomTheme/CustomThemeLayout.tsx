@@ -7,6 +7,7 @@ import Header from '../../../Header';
 import PageLayout from '../../../PageLayout';
 import HaveDesignFooter from '../HaveDesignFooter';
 import CustomTheme from './CustomTheme';
+import { customInfoType } from '../../../../types/customInfoType';
 
 interface CustomThemeLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -14,6 +15,9 @@ interface CustomThemeLayoutProps {
   setName: React.Dispatch<React.SetStateAction<string>>;
   description: string;
   setDescription: React.Dispatch<React.SetStateAction<string>>;
+  customInfo: customInfoType;
+  handDrawingImage: File | null;
+  customImages: FileList | undefined;
 }
 
 const CustomThemeLayout = ({
@@ -22,6 +26,9 @@ const CustomThemeLayout = ({
   setName,
   description,
   setDescription,
+  customInfo,
+  handDrawingImage,
+  customImages,
 }: CustomThemeLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
@@ -35,7 +42,14 @@ const CustomThemeLayout = ({
           <CancelBtn
             modalOn={modalOn}
             setModalOn={setModalOn}
-            targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
+            targetModal={
+              <CustomSizeEscapeModal
+                setModalOn={setModalOn}
+                customImages={customImages}
+                handDrawingImage={handDrawingImage}
+                customInfo={customInfo}
+              />
+            }
           />
         }
         transparent={true}

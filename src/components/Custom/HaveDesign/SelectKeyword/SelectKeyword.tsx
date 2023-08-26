@@ -10,6 +10,8 @@ interface SelectKeywordProps {
   setStyles: React.Dispatch<React.SetStateAction<number[]>>;
   themes: number[];
   setThemes: React.Dispatch<React.SetStateAction<number[]>>;
+  stylesKeyword: string[];
+  themesKeyword: string[];
 }
 
 const SelectKeyword = ({
@@ -18,6 +20,8 @@ const SelectKeyword = ({
   setStyles,
   themes,
   setThemes,
+  stylesKeyword,
+  themesKeyword,
 }: SelectKeywordProps) => {
   const { genreResponse, genreError, genreLoading } = useGetGenre();
   const { styleResponse, styleError, styleLoading } = useGetStyle();
@@ -36,7 +40,7 @@ const SelectKeyword = ({
       const updatedGenreKeywords = genreResponse.map((genre: GenreItemProps) => ({
         id: genre.id,
         value: genre.name,
-        checked: themes.includes(genre.id),
+        checked: themes.includes(genre.id) || themesKeyword.includes(genre.name),
       }));
       setGenreKeywords(updatedGenreKeywords);
     }
@@ -45,7 +49,7 @@ const SelectKeyword = ({
       const updatedStyleKeywords = styleResponse.map((style: StyleItemProps) => ({
         id: style.id,
         value: style.name,
-        checked: styles.includes(style.id),
+        checked: styles.includes(style.id) || stylesKeyword.includes(style.name),
       }));
       setStyleKeywords(updatedStyleKeywords);
     }

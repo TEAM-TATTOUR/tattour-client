@@ -28,7 +28,7 @@ const ChargePointModal = ({
   const [isEnoughPoint, setIsEnoughPoint] = useState(false);
 
   useEffect(() => {
-    if (response) setCurrPoint(response.point);
+    if (response) setCurrPoint(response.homeUserInfo.point);
   }, [response]);
 
   useEffect(() => {

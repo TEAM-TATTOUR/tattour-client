@@ -8,24 +8,36 @@ import ReceiptLayout from '../../../components/Custom/Common/Receipt/ReceiptLayo
 import { resCustomInfoType } from '../../../types/customInfoType';
 
 const NoDesignCustomPage = () => {
+  const location = useLocation();
+
   //커스텀 신청서 플로우에 따른 각 단계별 컴포넌트 렌더링 플래그
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(
+    location.state && location.state.step !== undefined ? location.state.step : 1,
+  );
 
   //step 1: CustomImg - 그려둔 도안 이미지 state
   const [customImages, setCustomImages] = useState<FileList>();
+  const [previewURL, setPreviewURL] = useState(
+    location.state && location.state.mainImageUrl !== undefined
+      ? location.state.mainImageUrl
+      : null,
+  );
 
   //step 2: CustomRequest
   //타투 이름 state
-  const [name, setName] = useState('');
+  const [name, setName] = useState(
+    location.state && location.state.name !== undefined ? location.state.name : '',
+  );
+
   //요청사항 state
-  const [demand, setDemand] = useState('');
+  const [demand, setDemand] = useState(
+    location.state && location.state.demand !== undefined ? location.state.demand : '',
+  );
 
   //step 3: 주문 관련 state -> 이 부분 나중에 같이 논의 필요합니다
   const [count, setCount] = useState(1);
   const [isPublic, setIsPublic] = useState(false);
   const [price, setPrice] = useState(0); //수정하면서 임의로 추가했습니다!
-
-  const location = useLocation();
 
   // 앞에 size + customId 통합 해놓은거에서 우선 navigate state로 관련 정보 불러옴 추후 통합시 제거 예정
   const size = location.state ? location.state.size : null;
@@ -36,7 +48,7 @@ const NoDesignCustomPage = () => {
   const customInfo = {
     customId: customId,
     size: size,
-    name: name,
+    name: name === '' ? '임시저장' : name,
     demand: demand,
     viewCount: step,
   };
@@ -45,9 +57,9 @@ const NoDesignCustomPage = () => {
   const [receiptData, setReceiptData] = useState<resCustomInfoType>();
 
   //customSizePage가 공통으로 쓰여 아직 처리를 못해줘, step이 1부터 시작하도록 useEffect로 테스트 코드 추가. 추후 삭제 예정
-  useEffect(() => {
-    setStep(1);
-  }, []);
+  // useEffect(() => {
+  //   setStep(1);
+  // }, []);
 
   switch (step) {
     // case 0:
@@ -58,6 +70,9 @@ const NoDesignCustomPage = () => {
           setStep={setStep}
           customImages={customImages}
           setCustomImages={setCustomImages}
+          customInfo={customInfo}
+          previewURL={previewURL}
+          setPreviewURL={setPreviewURL}
         />
       );
     case 2:
@@ -68,6 +83,8 @@ const NoDesignCustomPage = () => {
           setName={setName}
           demand={demand}
           setDemand={setDemand}
+          customInfo={customInfo}
+          customImages={customImages}
         />
       );
 

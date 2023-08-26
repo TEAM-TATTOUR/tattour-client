@@ -7,6 +7,7 @@ import CustomRequest from './CustomRequest';
 import NoDesignFooter from '../NoDesignFooter';
 import Header from '../../../Header';
 import PageLayout from '../../../PageLayout';
+import { customInfoType } from '../../../../types/customInfoType';
 
 interface CustomRequestLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -14,6 +15,8 @@ interface CustomRequestLayoutProps {
   setName: React.Dispatch<React.SetStateAction<string>>;
   demand: string;
   setDemand: React.Dispatch<React.SetStateAction<string>>;
+  customInfo: customInfoType;
+  customImages: FileList | undefined;
 }
 
 const CustomRequestLayout = ({
@@ -22,6 +25,8 @@ const CustomRequestLayout = ({
   setName,
   demand,
   setDemand,
+  customInfo,
+  customImages,
 }: CustomRequestLayoutProps) => {
   // const CUSTOM_VIEW_COUNT = 3;
 
@@ -37,7 +42,13 @@ const CustomRequestLayout = ({
           <CancelBtn
             modalOn={modalOn}
             setModalOn={setModalOn}
-            targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
+            targetModal={
+              <CustomSizeEscapeModal
+                setModalOn={setModalOn}
+                customInfo={customInfo}
+                customImages={customImages}
+              />
+            }
           />
         }
         progressBar={<ProgressBar curStep={3} maxStep={4} />}

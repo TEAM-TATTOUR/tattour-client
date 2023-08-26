@@ -7,6 +7,7 @@ import Header from '../../../Header';
 import PageLayout from '../../../PageLayout';
 import HaveDesignFooter from '../HaveDesignFooter';
 import SelectColor from './SelectColor';
+import { customInfoType } from '../../../../types/customInfoType';
 
 interface StylingColorLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -14,6 +15,9 @@ interface StylingColorLayoutProps {
   setIsColored: React.Dispatch<React.SetStateAction<boolean>>;
   selectedColorMode: string;
   setSelectedColorMode: React.Dispatch<React.SetStateAction<string>>;
+  customInfo: customInfoType;
+  customImages: FileList | undefined;
+  handDrawingImage: File | null;
 }
 
 const StylingColorLayout = ({
@@ -22,6 +26,9 @@ const StylingColorLayout = ({
   setIsColored,
   selectedColorMode,
   setSelectedColorMode,
+  customInfo,
+  customImages,
+  handDrawingImage,
 }: StylingColorLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
@@ -40,7 +47,14 @@ const StylingColorLayout = ({
           <CancelBtn
             modalOn={modalOn}
             setModalOn={setModalOn}
-            targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
+            targetModal={
+              <CustomSizeEscapeModal
+                setModalOn={setModalOn}
+                customImages={customImages}
+                handDrawingImage={handDrawingImage}
+                customInfo={customInfo}
+              />
+            }
           />
         }
         progressBar={<ProgressBar curStep={3} maxStep={7} />}
