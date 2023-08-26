@@ -34,7 +34,6 @@ export interface getUserProfileInfoProps {
   name: string;
   phoneNumber: string;
 }
-
 export interface OrderSheetProps {
   readOrderSheetStickerInfo: readOrderSheetStickerInfoProps;
   orderAmountInfo: orderAmountInfoProps;

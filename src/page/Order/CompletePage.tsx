@@ -13,7 +13,7 @@ const CompletePage = () => {
   };
 
   const location = useLocation();
-  const { getOrderSheetStickerInfo, getOrderAmountRes } = location.state;
+  const { readOrderSheetStickerInfo, orderAmountInfo } = location.state;
 
   return (
     <PageLayout renderHeader={renderCompletePageHeader} footer={<CompleteFooter />}>
@@ -24,10 +24,10 @@ const CompletePage = () => {
         />
         <St.Line />
         <St.Title>주문 정보</St.Title>
-        <ProductInfo getOrderSheetStickerInfo={getOrderSheetStickerInfo} />
+        <ProductInfo readOrderSheetStickerInfo={readOrderSheetStickerInfo} />
         <St.LightLine />
         <St.PriceContainer>
-          <PaymentMini getOrderAmountRes={getOrderAmountRes} />
+          <PaymentMini orderAmountInfo={orderAmountInfo} />
         </St.PriceContainer>
       </St.Container>
     </PageLayout>
