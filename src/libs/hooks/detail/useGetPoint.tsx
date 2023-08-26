@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api, { getAccessToken } from '../../api';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface PointItemProp {
   name: string;
@@ -14,6 +15,7 @@ interface PointResponse {
 }
 
 const useGetPoint = () => {
+  const navigate = useNavigate();
   const [response, setResponse] = useState<PointItemProp>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
@@ -28,6 +30,7 @@ const useGetPoint = () => {
       })
       .catch((err) => {
         setError(err);
+        navigate('/complete');
       })
       .finally(() => {
         setLoading(false);

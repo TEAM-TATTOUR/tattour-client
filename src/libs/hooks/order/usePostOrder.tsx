@@ -30,6 +30,7 @@ const usePostOrder = ({ postData }: { postData: OrderRequest }) => {
       })
       .catch((err) => {
         console.log(err);
+        navigate('/error');
       });
   };
 

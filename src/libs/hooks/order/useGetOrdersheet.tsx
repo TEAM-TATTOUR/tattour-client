@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../../api';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface OrderSheetRequest {
   stickerId: number;
@@ -48,6 +49,8 @@ interface OrderSheetResponse {
 }
 
 const useGetOrdersheet = ({ stickerId, count, shippingFee }: OrderSheetRequest) => {
+  const navigate = useNavigate();
+
   const [response, setResponse] = useState<OrderSheetProps>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
@@ -61,6 +64,7 @@ const useGetOrdersheet = ({ stickerId, count, shippingFee }: OrderSheetRequest) 
       })
       .catch((err) => {
         setError(err);
+        navigate('/error');
       })
       .finally(() => {
         setLoading(false);
