@@ -33,6 +33,7 @@ import NoDesignCustomPage from './page/Custom/NoDesign/NoDesignCustomPage';
 import HaveDesignCustomPage from './page/Custom/HaveDesign/HaveDesignCustomPage';
 import CommonCustomPage from './page/Custom/Common/CommonCustomPage';
 import ErrorPage from './page/Error/ErrorPage';
+import MagazinePage from './page/MagazinePage';
 
 const Router = () => {
   return (
@@ -70,6 +71,7 @@ const Router = () => {
         <Route path='/noDesign' element={<NoDesignCustomPage />} />
         <Route path='/custom' element={<CommonCustomPage />} />
         <Route path='/error' element={<ErrorPage />} />
+        <Route path='/article/:id' element={<MagazinePage />} />
       </Routes>
     </BrowserRouter>
   );

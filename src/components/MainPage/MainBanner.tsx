@@ -50,6 +50,7 @@ const St = {
     width: 100%;
     height: 34rem;
     margin-top: 7rem;
+
     object-fit: fill;
   `,
 
