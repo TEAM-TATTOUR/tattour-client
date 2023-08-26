@@ -98,7 +98,7 @@ const OrderPage = () => {
     >
       {!error && !loading && response && (
         <>
-          <ProductInfo getOrderSheetStickerInfo={response.readOrderSheetStickerInfo} />
+          <ProductInfo readOrderSheetStickerInfo={response.readOrderSheetStickerInfo} />
           <St.Line />
           <DeliveryInfo
             handleModal={handleModal}
@@ -114,8 +114,8 @@ const OrderPage = () => {
           />
           <St.Line />
           <PaymentInfo
-            getOrderAmountRes={response.orderAmountInfo}
-            getUserOrderPointRes={response.userPointAfterOrderInfo}
+            orderAmountInfo={response.orderAmountInfo}
+            userPointAfterOrderInfo={response.userPointAfterOrderInfo}
           />
           <St.Line />
           <RefundInfo setSheetOpen={setSheetOpen} setAgree={setAgree} />
