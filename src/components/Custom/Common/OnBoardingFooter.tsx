@@ -58,7 +58,7 @@ const OnBoardingFooter = ({ isLogin }: { isLogin: boolean }) => {
   }, [response]);
 
   const handleClickFooter = () => {
-    isModalOpen ? setModalOn(true) : navgiate('/select');
+    isModalOpen ? setModalOn(true) : navgiate('/custom');
   };
 
   return (
