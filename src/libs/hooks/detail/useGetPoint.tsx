@@ -4,8 +4,10 @@ import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export interface PointItemProp {
-  name: string;
-  point: number;
+  homeUserInfo: {
+    name: string;
+    point: number;
+  };
 }
 
 interface PointResponse {

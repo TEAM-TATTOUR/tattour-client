@@ -38,11 +38,17 @@ const DetailBottom = ({
   }, [isSheetOpen]);
 
   useEffect(() => {
-    !error && !loading && response && response.point < count * discountPrice + shippingCost
+    !error &&
+    !loading &&
+    response &&
+    response.homeUserInfo.point < count * discountPrice + shippingCost
       ? setLack(true)
       : setLack(false);
   }, [count, loading]);
 
+  useEffect(() => {
+    console.log(isLack);
+  }, [isLack]);
   return (
     <CustomSheet
       isOpen={isSheetOpen}
@@ -195,7 +201,7 @@ const CustomSheet = styled(Sheet)`
     background-color: rgba(0, 0, 0, 0.6) !important;
   }
   .react-modal-sheet-container {
-    padding-top: 2.5rem;
+    padding: 2.5rem 0rem 7rem 0rem;
     border-radius: 1rem !important;
     left: initial !important;
     max-width: 43rem;
