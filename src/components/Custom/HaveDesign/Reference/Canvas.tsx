@@ -17,7 +17,7 @@ const Canvas: React.FC<CanvasProps> = ({ setCanvasState }: CanvasProps) => {
       isDrawingMode: true,
       width: 335,
       height: 313,
-      allowTouchScrolling: true,
+      allowTouchScrolling: true, //얘도 좀 의심해봐야 할 것 같다..!
     });
 
     // 그리기 설정
@@ -30,7 +30,9 @@ const Canvas: React.FC<CanvasProps> = ({ setCanvasState }: CanvasProps) => {
 
     return () => {
       setCanvasState(canvasRef.current);
-      canvas.dispose();
+      if (fabricCanvasRef.current) {
+        fabricCanvasRef.current.dispose();
+      }
     };
   }, [setCanvasState]);
 

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, } from 'react';
+import { useEffect, useMemo } from 'react';
 import { styled } from 'styled-components';
 import IcCircleBlack from '../../../../assets/icon/ic_circle_black.png';
 import IcCircleRainbow from '../../../../assets/icon/ic_circle_rainbow.png';
@@ -121,7 +121,7 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    min-height: calc(100dvh - 20.6rem);
+    min-height: calc(100dvh - 28.8rem);
   `,
 
   SelectBtnContainer: styled.div`
