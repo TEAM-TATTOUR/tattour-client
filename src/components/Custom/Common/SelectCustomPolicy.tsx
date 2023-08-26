@@ -47,7 +47,7 @@ const St = {
 
   PolicyAgreeMainText: styled.p`
     color: ${({ theme }) => theme.colors.gray4};
-    ${({ theme }) => theme.fonts.body_medium_16};
+    ${({ theme }) => theme.fonts.title_semibold_16};
   `,
 
   PolicyAgreeSubTextBox: styled.div`
