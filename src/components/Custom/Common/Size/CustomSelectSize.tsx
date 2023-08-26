@@ -108,11 +108,11 @@ const St = {
   SizeWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
 
     width: 100%;
     min-height: calc(100dvh - 13.6rem);
-    /* padding: 4.6rem 0 11.9rem 0; */
+    padding: 0 2rem;
   `,
 
   SizeInfoContainer: styled.article`
@@ -120,7 +120,7 @@ const St = {
     flex-direction: column;
     gap: 1.2rem;
 
-    margin: 4.6rem 0 3rem 0;
+    margin: 5.6rem 0 3rem 0;
   `,
 
   InfoMainText: styled.h2`
@@ -144,8 +144,7 @@ const St = {
     grid-template-rows: repeat(2, 1fr);
     gap: 1.5rem;
 
-    width: 33.5rem;
-    height: 43.3rem;
+    width: 100%;
     margin-bottom: 4.9rem;
   `,
 };

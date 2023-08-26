@@ -28,9 +28,9 @@ const St = {
   CustomImgWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     width: 100%;
     min-height: calc(100dvh - 13.6rem);
+    padding: 0 2rem;
   `,
 };
