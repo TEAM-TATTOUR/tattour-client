@@ -1,7 +1,7 @@
 import ic_check from '../../assets/icon/ic_check.svg';
 import ic_check_selected from '../../assets/icon/ic_check_selected.svg';
 import { styled } from 'styled-components';
-import { IcArrowRightDark } from '../../assets/icon';
+import { IcArrowRightGray4 } from '../../assets/icon';
 import { useState } from 'react';
 import PublicBottomSheet from './PublicBottomSheet';
 
@@ -30,7 +30,7 @@ const MakePublic: React.FC<MakePublicProps> = ({ isPublic, setIsPublic }) => {
 
         <St.PublicAgreeTouchArea onClick={() => setBottomOpen(true)}>
           <St.PublicAgreeText>커스텀 도안 공개하고 단가 낮출래요</St.PublicAgreeText>
-          <IcArrowRightDark />
+          <IcArrowRightGray4 />
         </St.PublicAgreeTouchArea>
       </St.MakePublicWrapper>
       <St.PublicAgreeSubtext>
