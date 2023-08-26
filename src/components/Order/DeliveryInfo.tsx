@@ -120,9 +120,11 @@ const St = {
       border-radius: 0.5rem;
       ${({ theme }) => theme.fonts.body_medium_16};
       color: ${({ theme }) => theme.colors.gray5};
+      -webkit-text-fill-color: ${({ theme }) => theme.colors.gray5};
 
       &::placeholder {
         color: ${({ theme }) => theme.colors.gray2};
+        -webkit-text-fill-color: ${({ theme }) => theme.colors.gray2};
       }
 
       &:focus {
