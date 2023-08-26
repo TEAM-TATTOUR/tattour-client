@@ -5,7 +5,7 @@ import CustomSizeLayout from '../../../components/Custom/Common/Size/CustomSizeL
 const CommonCustomPage = () => {
   const [step, setStep] = useState(0);
 
-  // step 0 : SelectPage - noDesign인지, haveDesgin인지 상황 판단 플래그 state
+  // step 0 : SelectPage - noDesign인지, haveDesign인지 상황 판단 플래그 state
   const [haveDesign, setHaveDesign] = useState(true);
   const [customId, setCustomId] = useState<number>();
 
