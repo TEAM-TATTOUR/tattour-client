@@ -139,10 +139,11 @@ const St = {
   CustomRequestWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
 
     width: 100%;
     min-height: calc(100dvh - 13.6rem);
+    padding: 0 2rem;
   `,
 
   RequestNameContainer: styled.article`
@@ -150,17 +151,18 @@ const St = {
     flex-direction: column;
     gap: 1.2rem;
 
-    /* position: relative; */
-
-    margin: 5.6rem 2rem 0 2.2rem;
+    margin-top: 5.6rem;
   `,
 
   RequestNameTitle: styled.h2`
+    padding-left: 0.2rem;
+
     color: ${({ theme }) => theme.colors.gray8};
     ${({ theme }) => theme.fonts.title_semibold_20};
   `,
 
   RequestNameDetail: styled.p`
+    padding-left: 0.2rem;
     margin-bottom: 0.8rem;
 
     color: ${({ theme }) => theme.colors.gray3};
@@ -168,12 +170,14 @@ const St = {
   `,
 
   RequestNameInput: styled.input`
-    width: 29.5rem;
-    height: 2.1rem;
+    /* width: 29.5rem; */
+    /* width: 100%; */
+    height: 4.8rem;
 
     /* position: relative; */
 
-    padding: 1.2rem 2rem;
+    /* padding: 1.2rem 2rem; */
+    padding: 0 2rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
     color: ${({ theme }) => theme.colors.gray5};
@@ -185,8 +189,6 @@ const St = {
     border-radius: 0.5rem;
 
     &::placeholder {
-      height: fit-content;
-
       color: ${({ theme }) => theme.colors.gray2};
       ${({ theme }) => theme.fonts.body_medium_16};
     }
@@ -201,7 +203,7 @@ const St = {
     flex-direction: column;
     gap: 0.5rem;
 
-    width: fit-content;
+    /* width: fit-content; */
   `,
 
   RequestDemandContainer: styled.article`
@@ -210,8 +212,7 @@ const St = {
     gap: 1.2rem;
 
     /* position: relative; */
-
-    padding: 4rem 2rem 13rem 2.2rem;
+    padding: 1.9rem 0 13rem 0;
   `,
 
   RequestDemandTitleBox: styled.div`
@@ -221,6 +222,8 @@ const St = {
   `,
 
   RequestDemandTitle: styled.h2`
+    padding-left: 0.2rem;
+
     color: ${({ theme }) => theme.colors.gray8};
     ${({ theme }) => theme.fonts.title_semibold_20};
   `,
@@ -231,12 +234,14 @@ const St = {
   `,
 
   RequestDemandDetail: styled.p`
+    padding-left: 0.2rem;
+
     color: ${({ theme }) => theme.colors.gray3};
     ${({ theme }) => theme.fonts.body_medium_14};
   `,
 
   RequestDemandTextArea: styled.textarea`
-    width: 29.5rem;
+    /* width: 29.5rem; */
     height: 14.6rem;
 
     margin-top: 0.8rem;
@@ -270,6 +275,7 @@ const St = {
     /* bottom: 0; */
     /* justify-self: flex-end; */
     margin-left: auto;
+    margin-right: 0.4rem;
 
     color: ${({ theme }) => theme.colors.gray2};
     ${({ theme }) => theme.fonts.detail_medium_12};

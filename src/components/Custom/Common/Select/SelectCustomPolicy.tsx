@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { IcArrowRightDark } from '../../../../assets/icon';
+import { IcArrowRightGray4 } from '../../../../assets/icon';
 import SelectCustomPolicyBottom from './SelectCustomPolicyBottom';
 import { useState } from 'react';
 
@@ -10,7 +10,7 @@ const SelectCustomPolicy = () => {
     <St.SelectCustomPolicyWrapper>
       <St.PolicyAgreeTouchArea onClick={() => setSheetOpen(true)}>
         <St.PolicyAgreeMainText>커스텀 도안 환불 정책에 동의합니다</St.PolicyAgreeMainText>
-        <IcArrowRightDark />
+        <IcArrowRightGray4 />
       </St.PolicyAgreeTouchArea>
       <St.PolicyAgreeSubTextBox>
         <St.PolicyAgreeSubText>
@@ -35,7 +35,7 @@ const St = {
     gap: 1rem;
 
     height: 12.2rem;
-    padding: 2.6rem 0 2.9rem 4.95rem;
+    padding: 2.6rem 0 2.9rem 2.4rem;
   `,
 
   PolicyAgreeTouchArea: styled.article`
@@ -47,7 +47,7 @@ const St = {
 
   PolicyAgreeMainText: styled.p`
     color: ${({ theme }) => theme.colors.gray4};
-    ${({ theme }) => theme.fonts.body_medium_16};
+    ${({ theme }) => theme.fonts.title_semibold_16};
   `,
 
   PolicyAgreeSubTextBox: styled.div`

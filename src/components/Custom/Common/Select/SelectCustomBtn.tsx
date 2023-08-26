@@ -42,8 +42,11 @@ const St = {
     align-items: center;
     gap: 0.8rem;
 
-    width: 16rem;
-    height: 16.8rem;
+    /* width: 16rem; */
+    width: 47.7%;
+    /* width: 100%; */
+    aspect-ratio: 160 / 168;
+    /* height: 16.8rem; */
     padding: 0.8rem 0 3rem;
 
     border-radius: 0.5rem;
