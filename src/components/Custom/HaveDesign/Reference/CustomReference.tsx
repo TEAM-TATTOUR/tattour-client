@@ -8,8 +8,8 @@ interface CustomReferenceProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   handDrawingImage: File | null;
   setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
-  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
-  customImages: FileList | null;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | undefined>>;
+  customImages: FileList | undefined;
   setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;
   previewURL: string[];
   drawingImageUrl: string | null;

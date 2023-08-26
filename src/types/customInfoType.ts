@@ -1,5 +1,5 @@
 export interface customInfoType {
-  customId?: number;
+  customId: number;
   size?: string;
   isColored?: boolean;
   themes?: number[];
@@ -21,7 +21,7 @@ export interface resCustomInfoType {
   themes: Array<string>;
   styles: Array<string>;
   mainImageUrl: string;
-  handDrawingImageUrl: string;
+  handDrawingImageUrl: File | null;
   images: Array<string>;
   haveDesign: boolean;
   size: string;

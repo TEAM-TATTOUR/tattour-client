@@ -11,9 +11,10 @@ import { resCustomInfoType } from '../../../../types/customInfoType';
 
 interface ReceiptLayoutProps {
   receiptData: resCustomInfoType | undefined;
+  haveDesign: boolean;
 }
 
-const ReceiptLayout = ({ receiptData }: ReceiptLayoutProps) => {
+const ReceiptLayout = ({ receiptData, haveDesign }: ReceiptLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
 
   const renderReceiptLayoutHeader = () => {
@@ -36,7 +37,7 @@ const ReceiptLayout = ({ receiptData }: ReceiptLayoutProps) => {
   return (
     <PageLayout renderHeader={renderReceiptLayoutHeader} footer={<ReceiptFooter />}>
       <Submitted />
-      <ReceiptDetail receiptData={receiptData} />
+      <ReceiptDetail receiptData={receiptData} haveDesign={haveDesign} />
     </PageLayout>
   );
 };

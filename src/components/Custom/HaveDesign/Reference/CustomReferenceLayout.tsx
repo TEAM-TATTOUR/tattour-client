@@ -10,8 +10,8 @@ import CustomReference from './CustomReference';
 
 interface CustomReferenceLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
-  customImages: FileList | null;
-  setCustomImages: React.Dispatch<React.SetStateAction<FileList | null>>;
+  customImages: FileList | undefined;
+  setCustomImages: React.Dispatch<React.SetStateAction<FileList | undefined>>;
   handDrawingImage: File | null;
   setHandDrawingImage: React.Dispatch<React.SetStateAction<File | null>>;
   setPreviewURL: React.Dispatch<React.SetStateAction<string[]>>;

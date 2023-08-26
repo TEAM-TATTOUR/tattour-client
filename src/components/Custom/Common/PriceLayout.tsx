@@ -18,7 +18,14 @@ interface PriceLayoutProps {
 
   customInfo: customInfoType;
   customImages: FileList | undefined;
-  handDrawingImage?: string;
+  handDrawingImage?: File | null;
+
+  count: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+  isPublic: boolean;
+  setIsPublic: React.Dispatch<React.SetStateAction<boolean>>;
+  price: number;
+  setPrice: React.Dispatch<React.SetStateAction<number>>;
 
   setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
 }
@@ -29,24 +36,23 @@ const PriceLayout = ({
   customInfo,
   customImages,
   handDrawingImage,
+  count,
+  setCount,
+  isPublic,
+  setIsPublic,
+  price,
+  setPrice,
   setReceiptData,
 }: PriceLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
-  const [isPublic, setIsPublic] = useState(false);
-  const [count, setCount] = useState(1);
-  const [isCompletedState, setIsCompletedState] = useState(true); //이거 왜 꼭 state로 쓰는지 궁금합니다! 꼭 필요한 부분인가요?
 
-  const handleCompletedState = () => {
-    //이 코드의 역할이 궁금합니다! 꼭 필요한 함수인가요?
-    setIsCompletedState(true);
-  };
-
+  //isPublic 여부에 따라 바꿔줘야 할듯
   const updatedCustomInfo = {
     ...customInfo,
     count: count,
     isPublic: isPublic,
     isCompleted: true,
-    price: 0, //price 최상단(여기 layout 컴포넌트)에서 관리할 수 있게 + 할인 로직까지 포함해서 수정 부탁해용 !!
+    price: price,
     viewCount: step,
   };
 
@@ -74,10 +80,8 @@ const PriceLayout = ({
       footer={
         <PriceFooter
           customInfo={updatedCustomInfo}
-          handDrawingImage={handDrawingImage ? handDrawingImage : ''}
+          handDrawingImage={handDrawingImage ? handDrawingImage : null}
           customImages={customImages}
-          handleCompletedState={handleCompletedState}
-          isCompletedState={isCompletedState}
           setStep={setStep}
           setReceiptData={setReceiptData}
         />
@@ -85,7 +89,13 @@ const PriceLayout = ({
     >
       <St.TopWrapper>
         <PriceHeading />
-        <CountPrice isPublic={isPublic} setCount={setCount} size={customInfo.size} />
+        <CountPrice
+          price={price}
+          setPrice={setPrice}
+          isPublic={isPublic}
+          setCount={setCount}
+          size={customInfo.size}
+        />
       </St.TopWrapper>
       <MakePublic isPublic={isPublic} setIsPublic={setIsPublic} />
     </PageLayout>

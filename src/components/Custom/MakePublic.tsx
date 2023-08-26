@@ -7,7 +7,7 @@ import PublicBottomSheet from './PublicBottomSheet';
 
 interface MakePublicProps {
   isPublic: boolean;
-  setIsPublic: (value: boolean) => void;
+  setIsPublic: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const MakePublic: React.FC<MakePublicProps> = ({ isPublic, setIsPublic }) => {
