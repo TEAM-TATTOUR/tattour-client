@@ -141,7 +141,10 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
 
   return (
     <St.CustomReferenceWrapper>
-      <St.PreviewSection>
+      <St.PreviewSection
+        id='preview-section'
+        style={{ justifyContent: previewURL.length > 1 ? 'flex-end' : 'center' }}
+      >
         {Array.isArray(previewURL) && previewURL.length > 0 ? (
           previewURL.map((url, index) => (
             <St.ImgPreviewContainer key={index}>
@@ -211,9 +214,11 @@ const St = {
   `,
   PreviewSection: styled.div`
     display: flex;
+    /* justify-content: flex-start; */
+
     gap: 1rem;
 
-    width: 33.5rem;
+    width: 100%;
     height: 24.6rem;
     margin-bottom: 2rem;
 
