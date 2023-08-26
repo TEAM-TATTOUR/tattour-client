@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../../api';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface AllListItemProps {
   id: number;
@@ -21,6 +22,8 @@ interface AllListResponse {
 }
 
 const useGetAllList = (buttonName: string[]) => {
+  const navigate = useNavigate();
+
   let sort = 'popularity';
   switch (buttonName[0]) {
     case '정렬':
@@ -54,6 +57,7 @@ const useGetAllList = (buttonName: string[]) => {
       })
       .catch((err) => {
         setError(err);
+        navigate('/error');
       })
       .finally(() => {
         setLoading(false);

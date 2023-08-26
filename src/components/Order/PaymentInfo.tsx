@@ -1,24 +1,24 @@
 import styled from 'styled-components';
 import PaymentMini from './PaymentMini';
 import {
-  getOrderAmountResProps,
-  getUserOrderPointResProps,
+  orderAmountInfoProps,
+  userPointAfterOrderInfoProps,
 } from '../../libs/hooks/order/useGetOrdersheet';
 
 const PaymentInfo = ({
-  getOrderAmountRes,
-  getUserOrderPointRes,
+  orderAmountInfo,
+  userPointAfterOrderInfo,
 }: {
-  getOrderAmountRes: getOrderAmountResProps;
-  getUserOrderPointRes: getUserOrderPointResProps;
+  orderAmountInfo: orderAmountInfoProps;
+  userPointAfterOrderInfo: userPointAfterOrderInfoProps;
 }) => {
-  const { userPoint, resultPoint } = getUserOrderPointRes;
+  const { userPoint, resultPoint } = userPointAfterOrderInfo;
 
   return (
     <div>
       <St.PriceContainer>
         <St.Title>결제 정보</St.Title>
-        <PaymentMini getOrderAmountRes={getOrderAmountRes} />
+        <PaymentMini orderAmountInfo={orderAmountInfo} />
       </St.PriceContainer>
       <St.LightLine />
       <St.PointContainer>

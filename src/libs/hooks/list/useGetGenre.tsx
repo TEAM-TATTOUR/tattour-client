@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../../api';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface GenreItemProps {
   id: number;
@@ -16,6 +17,8 @@ interface GenreResponse {
 }
 
 const useGetGenre = () => {
+  const navigate = useNavigate();
+
   const [genreResponse, setResponse] = useState<GenreItemProps[]>([]);
   const [genreError, setError] = useState<AxiosError>();
   const [genreLoading, setLoading] = useState(true);
@@ -29,6 +32,7 @@ const useGetGenre = () => {
       })
       .catch((err) => {
         setError(err);
+        navigate('/error');
       })
       .finally(() => {
         setLoading(false);
