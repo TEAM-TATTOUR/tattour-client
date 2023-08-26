@@ -64,7 +64,7 @@ const CustomTheme = ({
     if (e.target.value === '') {
       setNameInputCount(0);
       setIsActiveNext(false);
-    } else if (nameInputCount && descriptionTextAreaCount) {
+    } else if (nameInputCount > 0 && descriptionTextAreaCount > 0) {
       setIsActiveNext(true);
     }
 
@@ -79,7 +79,7 @@ const CustomTheme = ({
     if (e.target.value === '') {
       setDescriptionTextAreaCount(0);
       setIsActiveNext(false);
-    } else if (nameInputCount && descriptionTextAreaCount) {
+    } else if (nameInputCount > 0 && descriptionTextAreaCount > 0) {
       setIsActiveNext(true);
     }
 
