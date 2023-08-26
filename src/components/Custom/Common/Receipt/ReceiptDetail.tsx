@@ -151,6 +151,11 @@ const St = {
     width: 33.5rem;
 
     background-color: ${({ theme }) => theme.colors.gray0};
+    & > img {
+      width: 33.5rem;
+      height: 18rem;
+      object-fit: contain;
+    }
   `,
 
   Image: styled.article`
