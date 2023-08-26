@@ -21,7 +21,7 @@ const ChargePointCompleteModal = ({
   const { response, error, loading } = useGetUserProfile();
 
   useEffect(() => {
-    if (response) setCurrPoint(response.point);
+    if (response) setCurrPoint(response.homeUserInfo.point);
   }, [response]);
 
   const handleNavigateBtn = () => {
