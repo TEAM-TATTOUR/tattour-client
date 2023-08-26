@@ -37,7 +37,7 @@ export default PointTransferFooter;
 
 const St = {
   TransferFooter: styled.footer<{ $isActiveNext: boolean }>`
-    position: sticky;
+    position: fixed;
     bottom: 0;
 
     display: flex;
