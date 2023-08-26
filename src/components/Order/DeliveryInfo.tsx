@@ -113,7 +113,8 @@ const St = {
     }
     & input {
       width: 100%;
-      padding: 1.2rem 2rem;
+      height: 4.8rem;
+      padding-left: 2rem;
       background-color: ${({ theme }) => theme.colors.bg};
       border-width: 0rem;
       border-radius: 0.5rem;
