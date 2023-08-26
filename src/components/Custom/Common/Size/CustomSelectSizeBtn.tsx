@@ -41,10 +41,10 @@ export default CustomSelectSizeBtn;
 
 // 버튼 스타일 확장을 위한 styled component 템플릿
 const SizeBtnImgBoxTemplate = styled.div<{ $imgURL: string }>`
-  height: 16rem;
+  aspect-ratio: 160 / 144;
   width: 100%;
 
-  background: ${({ $imgURL }) => `url(${$imgURL})`} no-repeat center;
+  background: ${({ $imgURL }) => `url(${$imgURL})`};
   background-size: cover;
 
   & > svg {
@@ -59,12 +59,16 @@ const St = {
     display: flex;
     flex-direction: column;
 
-    width: 16rem;
-    height: 20.9rem;
+    /* width: 16rem; */
+    width: 100%;
+    aspect-ratio: 160 / 209;
+    /* height: 20.9rem; */
+    /* height: 100%; */
     padding: 0;
 
     &.isSelected {
-      border: 0.1rem solid ${({ theme }) => theme.colors.pink5};
+      box-shadow: 0 0 0 0.1rem ${({ theme }) => theme.colors.pink5};
+      /* border: 0.1rem solid ${({ theme }) => theme.colors.pink5}; */
       border-radius: 0.5rem;
     }
   `,
@@ -76,17 +80,18 @@ const St = {
   `,
 
   SelectedSizeBtnImgBox: styled(SizeBtnImgBoxTemplate)`
-    border-radius: 0.4rem 0.4rem 0 0;
+    border-radius: 0.5rem 0.5rem 0 0;
   `,
 
   SizeBtnTextBox: styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 0.3rem;
 
     width: 100%;
-    height: 6.5rem;
+    aspect-ratio: 160 / 65;
 
     border-radius: 0 0 0.5rem 0.5rem;
 
