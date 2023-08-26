@@ -21,12 +21,12 @@ export default CompleteFooter;
 
 const St = {
   footer: styled.footer`
-    position: sticky;
+    position: fixed;
     bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    min-width: 43rem;
     height: 7rem;
 
     background-color: ${({ theme }) => theme.colors.gray9};

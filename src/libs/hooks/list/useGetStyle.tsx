@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../../api';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface StyleItemProps {
   id: number;
@@ -16,6 +17,8 @@ interface StyleResponse {
 }
 
 const useGetStyle = () => {
+  const navigate = useNavigate();
+
   const [styleResponse, setResponse] = useState<StyleItemProps[]>([]);
   const [styleError, setError] = useState<AxiosError>();
   const [styleLoading, setLoading] = useState(true);
@@ -29,6 +32,7 @@ const useGetStyle = () => {
       })
       .catch((err) => {
         setError(err);
+        navigate('/error');
       })
       .finally(() => {
         setLoading(false);

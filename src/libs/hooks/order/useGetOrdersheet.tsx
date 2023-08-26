@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../../api';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface OrderSheetRequest {
   stickerId: number;
@@ -8,7 +9,7 @@ export interface OrderSheetRequest {
   shippingFee: number;
 }
 
-export interface getOrderSheetStickerInfoProps {
+export interface readOrderSheetStickerInfoProps {
   mainImageUrl: string;
   name: string;
   price: number;
@@ -16,13 +17,13 @@ export interface getOrderSheetStickerInfoProps {
   count: number;
 }
 
-export interface getOrderAmountResProps {
+export interface orderAmountInfoProps {
   totalAmount: number;
   productAmount: number;
   shippingFee: number;
 }
 
-export interface getUserOrderPointResProps {
+export interface userPointAfterOrderInfoProps {
   userPoint: number;
   resultPoint: number;
   lacked: boolean;
@@ -33,11 +34,10 @@ export interface getUserProfileInfoProps {
   name: string;
   phoneNumber: string;
 }
-
 export interface OrderSheetProps {
-  getOrderSheetStickerInfo: getOrderSheetStickerInfoProps;
-  getOrderAmountRes: getOrderAmountResProps;
-  getUserOrderPointRes: getUserOrderPointResProps;
+  readOrderSheetStickerInfo: readOrderSheetStickerInfoProps;
+  orderAmountInfo: orderAmountInfoProps;
+  userPointAfterOrderInfo: userPointAfterOrderInfoProps;
   userProfileInfo: getUserProfileInfoProps;
 }
 
@@ -48,6 +48,8 @@ interface OrderSheetResponse {
 }
 
 const useGetOrdersheet = ({ stickerId, count, shippingFee }: OrderSheetRequest) => {
+  const navigate = useNavigate();
+
   const [response, setResponse] = useState<OrderSheetProps>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
@@ -61,6 +63,7 @@ const useGetOrdersheet = ({ stickerId, count, shippingFee }: OrderSheetRequest) 
       })
       .catch((err) => {
         setError(err);
+        navigate('/error');
       })
       .finally(() => {
         setLoading(false);

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { getOrderSheetStickerInfoProps } from '../../libs/hooks/order/useGetOrdersheet';
+import { readOrderSheetStickerInfoProps } from '../../libs/hooks/order/useGetOrdersheet';
 
 const ProductInfo = ({
-  getOrderSheetStickerInfo,
+  readOrderSheetStickerInfo,
 }: {
-  getOrderSheetStickerInfo: getOrderSheetStickerInfoProps;
+  readOrderSheetStickerInfo: readOrderSheetStickerInfoProps;
 }) => {
-  const { mainImageUrl, name, price, discountedPrice, count } = getOrderSheetStickerInfo;
+  const { mainImageUrl, name, price, discountedPrice, count } = readOrderSheetStickerInfo;
 
   return (
     <St.Wrapper>
