@@ -7,16 +7,27 @@ import CustomImg from './CustomImg';
 import NoDesignFooter from '../NoDesignFooter';
 import Header from '../../../Header';
 import PageLayout from '../../../PageLayout';
+import { customInfoType } from '../../../../types/customInfoType';
 
 interface CustomImgLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   customImages: FileList | undefined;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | undefined>>;
+  customInfo: customInfoType;
+  previewURL: string;
+  setPreviewURL: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const CustomImgLayout = ({ setStep, customImages, setCustomImages }: CustomImgLayoutProps) => {
+const CustomImgLayout = ({
+  setStep,
+  customImages,
+  setCustomImages,
+  customInfo,
+  previewURL,
+  setPreviewURL,
+}: CustomImgLayoutProps) => {
   // const CUSTOM_VIEW_COUNT = 2;
-
+  console.log('customInfo: ', customInfo);
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
@@ -31,7 +42,7 @@ const CustomImgLayout = ({ setStep, customImages, setCustomImages }: CustomImgLa
           <CancelBtn
             modalOn={modalOn}
             setModalOn={setModalOn}
-            targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
+            targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} customInfo={customInfo} />}
           />
         }
         progressBar={<ProgressBar curStep={2} maxStep={4} />}
@@ -48,6 +59,8 @@ const CustomImgLayout = ({ setStep, customImages, setCustomImages }: CustomImgLa
         setIsActiveNext={setIsActiveNext}
         setCustomImages={setCustomImages}
         attachedImg={attachedImg}
+        previewURL={previewURL}
+        setPreviewURL={setPreviewURL}
       />
     </PageLayout>
   );

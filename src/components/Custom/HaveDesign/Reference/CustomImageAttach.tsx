@@ -56,6 +56,8 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
   //손그림 있을 시 파일로 바꿔서 저장
   useEffect(() => {
     if (!drawingImageUrl) return;
+    // if drawingImageUrl is present on S3 return immediately
+    if (drawingImageUrl.includes('https://')) return;
     const blob = dataURItoBlob(drawingImageUrl);
     const file = new File([blob], 'image.png', {
       type: blob.type,
@@ -143,24 +145,8 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
     <St.CustomReferenceWrapper>
       <St.PreviewSection
         id='preview-section'
-        style={{ justifyContent: previewURL.length > 1 ? 'flex-end' : 'center' }}
+        style={{ justifyContent: previewURL.length > 1 ? 'flex-start' : 'center' }}
       >
-        {Array.isArray(previewURL) && previewURL.length > 0 ? (
-          previewURL.map((url, index) => (
-            <St.ImgPreviewContainer key={index}>
-              <St.ImgPreviewDelBtn type='button' onClick={() => handleClickPreviewDelBtn(index)}>
-                <IcCancelDark />
-              </St.ImgPreviewDelBtn>
-              <St.Image>
-                <img src={url} alt='첨부-이미지-미리보기' />
-              </St.Image>
-            </St.ImgPreviewContainer>
-          ))
-        ) : (
-          <St.Image>
-            <St.ImageDescription> 필수 1장 첨부, 최대 3장 첨부 가능합니다.</St.ImageDescription>
-          </St.Image>
-        )}
         {drawingImageUrl ? (
           <St.ImgPreviewContainer>
             <St.ImgPreviewDelBtn type='button' onClick={() => handleClickFreeDrawDelBtn()}>
@@ -170,6 +156,24 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
               {drawingImageUrl && <img src={drawingImageUrl} alt='첨부-이미지-미리보기' />}
             </St.Image>
           </St.ImgPreviewContainer>
+        ) : (
+          ''
+        )}
+        {previewURL.length === 0 && !drawingImageUrl ? (
+          <St.Image>
+            <St.ImageDescription> 필수 1장 첨부, 최대 3장 첨부 가능합니다.</St.ImageDescription>
+          </St.Image>
+        ) : Array.isArray(previewURL) && previewURL.length > 0 ? (
+          previewURL.reverse().map((url, index) => (
+            <St.ImgPreviewContainer key={index}>
+              <St.ImgPreviewDelBtn type='button' onClick={() => handleClickPreviewDelBtn(index)}>
+                <IcCancelDark />
+              </St.ImgPreviewDelBtn>
+              <St.Image>
+                <img src={url} alt='첨부-이미지-미리보기' />
+              </St.Image>
+            </St.ImgPreviewContainer>
+          ))
         ) : (
           ''
         )}

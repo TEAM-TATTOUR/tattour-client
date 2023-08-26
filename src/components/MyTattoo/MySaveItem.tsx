@@ -21,6 +21,7 @@ export interface CustomDetailItemProps {
   isCompleted: boolean;
   process?: string;
   viewCount: number;
+  handDrawingImageUrl?: string;
 }
 
 const MySaveItem = ({ id, name, imageUrl }: { id: number; name: string; imageUrl: string }) => {
@@ -43,59 +44,158 @@ const MySaveItem = ({ id, name, imageUrl }: { id: number; name: string; imageUrl
     haveDesign: boolean,
     response: CustomDetailItemProps,
   ) => {
+    console.log(response);
     switch (viewCount) {
-      case 1:
-        navigate('/custom-size', {
+      case 0:
+        navigate('/custom', {
           state: {
-            customInfo: {
-              size: response.size,
-            },
+            step: 1,
+            haveDesign: haveDesign,
+            customId: response.id,
           },
         });
         break;
+      case 1:
+        if (haveDesign) {
+          navigate('/haveDesign', {
+            state: {
+              step: 1,
+              haveDesign: haveDesign,
+              customId: response.id,
+              size: response.size,
+              handDrawingImageUrl: response.handDrawingImageUrl,
+              mainImageUrl: response.mainImageUrl,
+              images: response.images,
+            },
+          });
+        } else {
+          navigate('/noDesign', {
+            state: {
+              step: 1,
+              size: response.size,
+              haveDesign: haveDesign,
+              customId: response.id,
+            },
+          });
+        }
+        break;
       case 2:
-        haveDesign
-          ? navigate(`/custom-reference`, {
-              state: {},
-            })
-          : navigate(`/custom-img`, {
-              state: {
-                customInfo: {
-                  size: response.size,
-                },
-                customMainImage: response.mainImageUrl,
-              },
-            });
+        if (haveDesign) {
+          navigate('/haveDesign', {
+            state: {
+              step: 2,
+              haveDesign: haveDesign,
+              customId: response.id,
+              size: response.size,
+              handDrawingImageUrl: response.handDrawingImageUrl,
+              mainImageUrl: response.mainImageUrl,
+              images: response.images,
+              isColored: response.isColored,
+            },
+          });
+        } else {
+          navigate('/noDesign', {
+            state: {
+              step: 2,
+              size: response.size,
+              name: response.name,
+              demand: response.demand,
+              haveDesign: haveDesign,
+              customId: response.id,
+              customImages: response.images,
+              mainImageUrl: response.mainImageUrl,
+            },
+          });
+        }
         break;
       case 3:
-        haveDesign
-          ? navigate(`/styling-color`)
-          : navigate(`/custom-request`, {
-              state: {
-                customInfo: {
-                  size: response.size,
-                  name: response.name,
-                  demand: response.demand,
-                },
-                customMainImage: response.mainImageUrl,
-              },
-            });
+        if (haveDesign) {
+          navigate('/haveDesign', {
+            state: {
+              step: 3,
+              haveDesign: haveDesign,
+              customId: response.id,
+              size: response.size,
+              handDrawingImageUrl: response.handDrawingImageUrl,
+              mainImageUrl: response.mainImageUrl,
+              images: response.images,
+              isColored: response.isColored,
+              themes: response.themes,
+              styles: response.styles,
+            },
+          });
+        } else {
+          navigate('/noDesign', {
+            state: {
+              step: 3,
+              name: response.name,
+              demand: response.demand,
+              size: response.size,
+              haveDesign: haveDesign,
+              customId: response.id,
+              customImages: response.images,
+              mainImageUrl: response.mainImageUrl,
+            },
+          });
+        }
         break;
       case 4:
-        haveDesign ? navigate(`/select-keyword`) : navigate(`/price`);
+        navigate('/haveDesign', {
+          state: {
+            step: 4,
+            haveDesign: haveDesign,
+            customId: response.id,
+            size: response.size,
+            handDrawingImageUrl: response.handDrawingImageUrl,
+            mainImageUrl: response.mainImageUrl,
+            images: response.images,
+            isColored: response.isColored,
+            themes: response.themes,
+            styles: response.styles,
+            name: response.name,
+            description: response.description,
+          },
+        });
         break;
       case 5:
-        navigate('/custom-theme');
+        navigate('/haveDesign', {
+          state: {
+            step: 5,
+            haveDesign: haveDesign,
+            customId: response.id,
+            size: response.size,
+            handDrawingImageUrl: response.handDrawingImageUrl,
+            mainImageUrl: response.mainImageUrl,
+            images: response.images,
+            isColored: response.isColored,
+            themes: response.themes,
+            styles: response.styles,
+            name: response.name,
+            description: response.description,
+            demand: response.demand,
+          },
+        });
         break;
       case 6:
-        navigate('/additional-request');
-        break;
-      case 7:
-        navigate('/price');
-        break;
-      default:
-        navigate('/custom-size');
-        break;
+        navigate('/haveDesign', {
+          state: {
+            step: 6,
+            haveDesign: haveDesign,
+            customId: response.id,
+            size: response.size,
+            handDrawingImageUrl: response.handDrawingImageUrl,
+            mainImageUrl: response.mainImageUrl,
+            images: response.images,
+            isColored: response.isColored,
+            themes: response.themes,
+            styles: response.styles,
+            name: response.name,
+            description: response.description,
+            demand: response.demand,
+            count: response.count,
+            isPublic: response.isPublic,
+          },
+        });
     }
   };
 

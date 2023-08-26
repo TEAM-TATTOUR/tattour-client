@@ -7,6 +7,7 @@ import Header from '../../../Header';
 import PageLayout from '../../../PageLayout';
 import HaveDesignFooter from '../HaveDesignFooter';
 import CustomReference from './CustomReference';
+import { customInfoType } from '../../../../types/customInfoType';
 
 interface CustomReferenceLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -18,6 +19,7 @@ interface CustomReferenceLayoutProps {
   previewURL: string[];
   drawingImageUrl: string | null;
   setDrawingImageUrl: React.Dispatch<React.SetStateAction<string | null>>;
+  customInfo: customInfoType;
 }
 
 const CustomReferenceLayout = ({
@@ -30,6 +32,7 @@ const CustomReferenceLayout = ({
   previewURL,
   drawingImageUrl,
   setDrawingImageUrl,
+  customInfo,
 }: CustomReferenceLayoutProps) => {
   // 모달 사용할 때  활용
   const [modalOn, setModalOn] = useState(false);
@@ -45,7 +48,14 @@ const CustomReferenceLayout = ({
           <CancelBtn
             modalOn={modalOn}
             setModalOn={setModalOn}
-            targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
+            targetModal={
+              <CustomSizeEscapeModal
+                setModalOn={setModalOn}
+                customImages={customImages}
+                handDrawingImage={handDrawingImage}
+                customInfo={customInfo}
+              />
+            }
           />
         }
         progressBar={<ProgressBar curStep={2} maxStep={7} />}

@@ -6,15 +6,17 @@ interface CustomImgAttachProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | undefined>>;
   attachedImg: FileList | null;
+  previewURL: string[];
+  setPreviewURL: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CustomImgAttach = ({
   setIsActiveNext,
   setCustomImages,
   attachedImg,
+  previewURL,
+  setPreviewURL,
 }: CustomImgAttachProps) => {
-  const [previewURL, setPreviewURL] = useState('');
-
   useEffect(() => {
     previewURL ? setIsActiveNext(true) : setIsActiveNext(false);
   }, [previewURL, setIsActiveNext]);

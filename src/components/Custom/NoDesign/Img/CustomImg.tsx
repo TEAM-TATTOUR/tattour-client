@@ -7,9 +7,17 @@ interface CustomImgProps {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomImages: React.Dispatch<React.SetStateAction<FileList | undefined>>;
   attachedImg: FileList | null;
+  previewURL: string;
+  setPreviewURL: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const CustomImg = ({ setIsActiveNext, setCustomImages, attachedImg }: CustomImgProps) => {
+const CustomImg = ({
+  setIsActiveNext,
+  setCustomImages,
+  attachedImg,
+  previewURL,
+  setPreviewURL,
+}: CustomImgProps) => {
   return (
     <St.CustomImgWrapper>
       <CustomImgHeader />
@@ -17,6 +25,8 @@ const CustomImg = ({ setIsActiveNext, setCustomImages, attachedImg }: CustomImgP
         setIsActiveNext={setIsActiveNext}
         attachedImg={attachedImg}
         setCustomImages={setCustomImages}
+        previewURL={previewURL}
+        setPreviewURL={setPreviewURL}
       />
     </St.CustomImgWrapper>
   );

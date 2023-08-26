@@ -23,13 +23,14 @@ export default HaveDesignFooter;
 
 const St = {
   HaveDesignFooter: styled.footer<{ $isActiveNext: boolean }>`
-    position: sticky;
+    position: fixed;
     bottom: 0;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
+    max-width: 43rem;
     width: 100%;
     height: 7rem;
 
