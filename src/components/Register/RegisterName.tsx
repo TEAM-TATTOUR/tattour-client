@@ -47,7 +47,7 @@ const St = {
 
   InputContent: styled.input`
     width: 100%;
-    height: 4.5rem;
+    height: 4.8rem;
     padding-left: 2rem;
 
     border: none;

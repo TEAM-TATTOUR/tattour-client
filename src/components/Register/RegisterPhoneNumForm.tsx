@@ -210,7 +210,7 @@ const St = {
 
   InputContent: styled.input`
     width: calc(100% - 9.7rem);
-    height: 4.5rem;
+    height: 4.8rem;
     padding-left: 2rem;
 
     border: none;
