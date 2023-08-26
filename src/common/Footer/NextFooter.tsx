@@ -21,9 +21,6 @@ const NextFooter = ({
 }: NextFooterProps) => {
   const navigate = useNavigate();
 
-  const location = useLocation();
-  console.log(location.state);
-
   const handleClickFooter = () => {
     {
       isActiveNext &&

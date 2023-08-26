@@ -136,15 +136,15 @@ const St = {
     flex-direction: column;
     align-items: center;
 
+    width: 100%;
     min-height: calc(100dvh - 13.6rem);
   `,
 
   RequestNameContainer: styled.article`
+    position: relative;
     display: flex;
     flex-direction: column;
     row-gap: 1.2rem;
-
-    position: relative;
 
     margin: 5.6rem 2rem 0 2rem;
   `,
@@ -164,10 +164,10 @@ const St = {
   `,
 
   RequestNameInput: styled.input`
-    width: 29.5rem;
-    height: 2.1rem;
-
-    padding: 1.2rem 2rem;
+    /* width: 29.5rem; */
+    height: 4.8rem;
+    /* padding: 1.2rem 2rem; */
+    padding: 0 2rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
     color: ${({ theme }) => theme.colors.gray5};
@@ -179,7 +179,7 @@ const St = {
     border-radius: 0.5rem;
 
     &::placeholder {
-      height: fit-content;
+      /* height: fit-content; */
 
       color: ${({ theme }) => theme.colors.gray2};
       ${({ theme }) => theme.fonts.body_medium_16};
@@ -188,6 +188,14 @@ const St = {
     &:focus {
       outline: 0;
     }
+  `,
+  RequestInputCount: styled.p`
+    position: absolute;
+    right: 0.4rem;
+    bottom: -2.1rem;
+
+    color: ${({ theme }) => theme.colors.gray2};
+    ${({ theme }) => theme.fonts.detail_medium_12};
   `,
 
   RequestEtcContainer: styled.article`
@@ -209,11 +217,11 @@ const St = {
   `,
 
   RequestEtcTextArea: styled.textarea`
-    width: 29.5rem;
+    /* width: 29.5rem; */
     height: 14.6rem;
 
     padding: 1.2rem 2rem;
-
+    /* padding: 0 2rem; */
     background-color: ${({ theme }) => theme.colors.bg};
     color: ${({ theme }) => theme.colors.gray5};
 
@@ -233,14 +241,5 @@ const St = {
     &:focus {
       outline: 0;
     }
-  `,
-
-  RequestInputCount: styled.p`
-    position: absolute;
-    right: 0.4rem;
-    bottom: -2.1rem;
-
-    color: ${({ theme }) => theme.colors.gray2};
-    ${({ theme }) => theme.fonts.detail_medium_12};
   `,
 };
