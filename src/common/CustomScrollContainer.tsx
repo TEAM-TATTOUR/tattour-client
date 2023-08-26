@@ -36,6 +36,7 @@ const CustomScrollContainer = ({
 
 const St = {
   CustomScrollWrapper: styled.section`
+    padding-bottom: 7rem;
     background-color: ${({ theme }) => theme.colors.white};
   `,
 

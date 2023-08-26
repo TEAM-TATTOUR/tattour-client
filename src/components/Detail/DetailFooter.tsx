@@ -122,7 +122,7 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    position: sticky;
+    position: fixed;
     bottom: 0;
 
     width: 100%;
