@@ -99,6 +99,7 @@ const St = {
 
     width: 100%;
     min-height: calc(100dvh - 13.6rem);
+    padding: 0 2rem;
   `,
 
   SelectInfoContainer: styled.article`
@@ -107,7 +108,7 @@ const St = {
     align-items: start;
     gap: 1.2rem;
 
-    margin: 5.6rem 0 0 2.2rem;
+    margin: 5.6rem 0 0 0.2rem;
   `,
 
   InfoMainText: styled.h2`
@@ -119,16 +120,17 @@ const St = {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
+    width: 100%;
 
     min-height: calc(100dvh - 28.8rem);
   `,
 
   SelectBtnContainer: styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
-    gap: 1.5rem;
+    /* gap: 1.5rem; */
   `,
 };
