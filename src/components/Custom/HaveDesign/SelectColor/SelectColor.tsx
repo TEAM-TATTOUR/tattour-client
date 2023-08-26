@@ -38,7 +38,28 @@ const SelectColor = ({
     if (isColoredState) {
       setSelectedColorMode(isColoredState ? 'color' : 'black');
     }
-    console.log(selectedColorMode, '??');
+
+    // // 버튼 하나씩만 누를 수 있도록
+    // CASE_BTN_DATA.forEach((btn) => {
+    //   if (btn.id === selectedColorMode) {
+    //     btn.isSelected = true;
+    //   } else {
+    //     btn.isSelected = false;
+    //   }
+    // });
+
+    // if (selectedColorMode === 'black') {
+    //   setIsColored(false);
+    // } else {
+    //   setIsColored(true);
+    // }
+
+    // if (selectedColorMode) {
+    //   setIsActiveNext(true);
+    // }
+  }, [isColoredState]);
+
+  useEffect(() => {
     // 버튼 하나씩만 누를 수 있도록
     CASE_BTN_DATA.forEach((btn) => {
       if (btn.id === selectedColorMode) {
@@ -48,22 +69,14 @@ const SelectColor = ({
       }
     });
 
-    // if (selectedColorMode === 'black') {
-    //   setIsColored(false);
-    // } else {
-    //   setIsColored(true);
-    // }
-
-    if (selectedColorMode) {
-      setIsActiveNext(true);
-    }
-  }, [isColoredState]);
-
-  useEffect(() => {
     if (selectedColorMode === 'black') {
       setIsColored(false);
     } else {
       setIsColored(true);
+    }
+
+    if (selectedColorMode) {
+      setIsActiveNext(true);
     }
   }, [selectedColorMode]);
 
