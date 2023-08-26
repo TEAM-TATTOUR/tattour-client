@@ -46,9 +46,6 @@ const DetailBottom = ({
       : setLack(false);
   }, [count, loading]);
 
-  useEffect(() => {
-    console.log(isLack);
-  }, [isLack]);
   return (
     <CustomSheet
       isOpen={isSheetOpen}
