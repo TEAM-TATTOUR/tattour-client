@@ -131,7 +131,8 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
         })
         .then((res: resProps) => {
           // 인증 성공 여부를 나타내는 변수
-          const isVerified = res.data.data.isVerified;
+          // const isVerified = res.data.data.isVerified;
+          const isVerified = res.data.data;
 
           if (isVerified) {
             dispatch({ type: 'VERIFIED_NOT_FAILED' });

@@ -30,8 +30,6 @@ export default AccountCopy;
 const St = {
   TransferAccountContainer: styled.article`
     width: 100%;
-    display: flex;
-    justify-content: center;
   `,
 
   AccountBox: styled.div`
@@ -41,9 +39,8 @@ const St = {
     align-items: center;
     gap: 1.6rem;
 
-    width: 33.5rem;
+    width: 100%;
     height: 12.2rem;
-    margin: 0 2rem 0 2rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
 

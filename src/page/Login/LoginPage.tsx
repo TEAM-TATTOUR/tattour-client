@@ -27,6 +27,7 @@ const LoginPage = () => {
   const renderLoginPageHeader = () => {
     return (
       <Header
+        fixed={true}
         transparent={true}
         leftSection={
           <IcBackDark
@@ -36,7 +37,6 @@ const LoginPage = () => {
             }}
           />
         }
-        fixed={true}
       />
     );
   };
@@ -44,6 +44,7 @@ const LoginPage = () => {
   const renderRegisterNamePageHeader = () => {
     return (
       <Header
+        fixed={true}
         leftSection={<St.BlankSection></St.BlankSection>}
         title='회원가입'
         rightSection={
@@ -62,6 +63,7 @@ const LoginPage = () => {
   const renderRegisterPhoneNumPageHeader = () => {
     return (
       <Header
+        fixed={true}
         leftSection={<BackBtn step={step} setStep={setStep} />}
         title='회원가입'
         rightSection={
@@ -113,7 +115,6 @@ const LoginPage = () => {
     switch (step) {
       case 0:
         return <LoginFooter />;
-        
 
       case 1:
         return <RegisterNameFooter userName={userName} setStep={setStep} />;
@@ -127,7 +128,7 @@ const LoginPage = () => {
       default:
         return <></>;
     }
-  }
+  };
 
   return (
     <PageLayout renderHeader={renderHeader} footer={renderFooter()}>
