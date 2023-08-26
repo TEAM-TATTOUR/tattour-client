@@ -36,7 +36,7 @@ const St = {
     color: ${({ theme }) => theme.colors.gray7};
   `,
   SheetText: styled.p`
-    ${({ theme }) => theme.fonts.body_medium_16};
+    ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray3};
 
     overflow: auto;
