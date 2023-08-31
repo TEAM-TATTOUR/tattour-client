@@ -21,7 +21,7 @@ const St = {
     align-items: center;
 
     position: fixed;
-    min-height: calc(100dvh - 7rem);;
+    min-height: calc(100dvh - 7rem);
     width: 100%;
     max-width: 43rem;
 
