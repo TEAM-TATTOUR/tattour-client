@@ -43,6 +43,7 @@ const DetailPage = () => {
   } = useGetRelated(Number(id));
 
   useEffect(() => {
+    console.log(response);
     response && setLike(response.productLiked);
   }, [response]);
 

@@ -31,6 +31,7 @@ const DetailFooter = ({
   const [toast, setToast] = useState(false);
 
   const handleClickButton = () => {
+    console.log(like);
     if (like === null) {
       // 로그인 상태가 아닌 경우
       setToast(true);

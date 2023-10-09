@@ -36,7 +36,6 @@ const useGetRelated = (id: number) => {
       })
       .catch((err) => {
         setError(err);
-        navigate('/complete');
       })
       .finally(() => {
         setLoading(false);

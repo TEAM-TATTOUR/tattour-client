@@ -53,7 +53,6 @@ const DetailBottom = ({
       detent='content-height'
       disableDrag={true}
     >
-      {}
       <Sheet.Container>
         <Sheet.Header disableDrag={true}>
           <St.Title>수량</St.Title>
