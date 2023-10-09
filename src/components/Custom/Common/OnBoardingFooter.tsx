@@ -88,12 +88,12 @@ const St = {
     width: 100%;
     height: 7rem;
 
-    background-color: ${({ theme }) => theme.colors.gray9};
+    background-color: ${({ theme }) => theme.colors.pink5};
     z-index: 2;
   `,
 
   FooterText: styled.p`
-    color: ${({ theme }) => theme.colors.pink5};
+    color: ${({ theme }) => theme.colors.gray9};
     ${({ theme }) => theme.fonts.title_semibold_18};
   `,
 };
