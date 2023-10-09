@@ -15,23 +15,8 @@ interface ReceiptLayoutProps {
 }
 
 const ReceiptLayout = ({ receiptData, haveDesign }: ReceiptLayoutProps) => {
-  const [modalOn, setModalOn] = useState(false);
-
   const renderReceiptLayoutHeader = () => {
-    return (
-      <Header
-        leftSection={<BackBtn />}
-        title='커스텀 타투'
-        rightSection={
-          <CancelBtn
-            modalOn={modalOn}
-            setModalOn={setModalOn}
-            targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
-          />
-        }
-        transparent={true}
-      />
-    );
+    return <Header title='커스텀 타투' transparent={true} />;
   };
 
   return (
