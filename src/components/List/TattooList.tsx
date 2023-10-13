@@ -7,6 +7,7 @@ import {
 import { useState, useEffect } from 'react';
 import useGetAllList from '../../libs/hooks/list/useGetAllList';
 import { useNavigate } from 'react-router-dom';
+import Skeleton from './Skeleton';
 
 interface TattooListProps {
   setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
@@ -60,6 +61,7 @@ const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) 
         전체 <span>{response.length}</span>개
       </St.CountText>
       <St.CardContainer>
+        <Skeleton />
         {!loading &&
           !error &&
           response.map(({ id, name, imageUrl, price, discountRate, discountPrice, isCustom }) => {
