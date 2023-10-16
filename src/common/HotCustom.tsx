@@ -3,6 +3,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import { useNavigate } from 'react-router-dom';
 import { IcArrowRightDark, LabelCustomSmall } from '../assets/icon';
 import useGetHotCustom from '../libs/hooks/useGetHotCustom';
+import HotSkeleton from './Skeleton/HotSkeleton';
 
 const HotCustom = ({ isList }: { isList: boolean }) => {
   const navigate = useNavigate();
@@ -26,40 +27,48 @@ const HotCustom = ({ isList }: { isList: boolean }) => {
         </St.HotCustomButton>
       </St.Header>
       <St.HotCustomWrapper>
-        <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
-          {!loading &&
-            !error &&
-            response.map(({ id, name, imageUrl, discountRate, discountPrice, price }) => {
-              return (
-                <St.HotCustomItem key={id} onClick={handleClickSticker(id)}>
-                  <St.labelWrapper>
-                    <St.HotCustomLabel>
-                      <LabelCustomSmall />
-                    </St.HotCustomLabel>
-                    <St.ImgWrapper>
-                      <St.HotCustomImage src={imageUrl} />
-                    </St.ImgWrapper>
-                  </St.labelWrapper>
-                  <St.HotCustomItemTitle>
-                    <p>{name}</p>
-                    <span>NEW!</span>
-                  </St.HotCustomItemTitle>
-                  <St.HotCustomItemPriceWrapper>
-                    <St.HotCustomItemDiscountRate>
-                      {discountRate ? discountRate : 5}%
-                    </St.HotCustomItemDiscountRate>
-                    <St.HotCustomItemPrice>
-                      {discountPrice ? discountPrice.toLocaleString() : '4,000'}
-                      <span>원</span>
-                    </St.HotCustomItemPrice>
-                  </St.HotCustomItemPriceWrapper>
-                  <St.HotCustomItemOriginPrice>
-                    {price.toLocaleString()}원
-                  </St.HotCustomItemOriginPrice>
-                </St.HotCustomItem>
-              );
-            })}
-        </ScrollContainer>
+        {loading ? (
+          <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
+            <HotSkeleton />
+            <HotSkeleton />
+            <HotSkeleton />
+          </ScrollContainer>
+        ) : (
+          <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
+            {!loading &&
+              !error &&
+              response.map(({ id, name, imageUrl, discountRate, discountPrice, price }) => {
+                return (
+                  <St.HotCustomItem key={id} onClick={handleClickSticker(id)}>
+                    <St.labelWrapper>
+                      <St.HotCustomLabel>
+                        <LabelCustomSmall />
+                      </St.HotCustomLabel>
+                      <St.ImgWrapper>
+                        <St.HotCustomImage src={imageUrl} />
+                      </St.ImgWrapper>
+                    </St.labelWrapper>
+                    <St.HotCustomItemTitle>
+                      <p>{name}</p>
+                      <span>NEW!</span>
+                    </St.HotCustomItemTitle>
+                    <St.HotCustomItemPriceWrapper>
+                      <St.HotCustomItemDiscountRate>
+                        {discountRate ? discountRate : 5}%
+                      </St.HotCustomItemDiscountRate>
+                      <St.HotCustomItemPrice>
+                        {discountPrice ? discountPrice.toLocaleString() : '4,000'}
+                        <span>원</span>
+                      </St.HotCustomItemPrice>
+                    </St.HotCustomItemPriceWrapper>
+                    <St.HotCustomItemOriginPrice>
+                      {price.toLocaleString()}원
+                    </St.HotCustomItemOriginPrice>
+                  </St.HotCustomItem>
+                );
+              })}
+          </ScrollContainer>
+        )}
       </St.HotCustomWrapper>
     </>
   );
@@ -104,6 +113,7 @@ const St = {
     flex-direction: row;
     gap: 1.2rem;
     justify-content: space-between;
+    width: fit-content;
 
     .scroll-container {
       display: flex;
