@@ -1553,6 +1553,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-lottie@^1.2.7":
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/@types/react-lottie/-/react-lottie-1.2.7.tgz#96e08b0fb253deb09d95f46755707b5c5412b373"
+  integrity sha512-Pu4V8W1c4sb9VaUcZOBhGCgjGmev9fde2cNXgwKi6GFLpyLi44weP/oOTVzDtsXgSyo5/P5lC8ktFL+fWEOjgg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-query@^1.2.9":
   version "1.2.9"
   resolved "https://registry.yarnpkg.com/@types/react-query/-/react-query-1.2.9.tgz#61df5a0594ea4b90234f9c0fdd8f12a06e331fed"

@@ -21,6 +21,7 @@
   "dependencies": {
     "@types/lodash": "^4.14.195",
     "@types/react-copy-to-clipboard": "^5.0.4",
+    "@types/react-lottie": "^1.2.7",
     "@types/react-query": "^1.2.9",
     "@types/styled-components": "^5.1.26",
     "axios": "^1.4.0",
