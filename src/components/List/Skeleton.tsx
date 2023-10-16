@@ -5,7 +5,6 @@ const Skeleton = () => (
     speed={2}
     width='100%'
     height='28.3rem'
-    viewBox='0 0 18.7rem 28.3rem'
     backgroundColor='#f3f3f3'
     foregroundColor='#ecebeb'
   >
