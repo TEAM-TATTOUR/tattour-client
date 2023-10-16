@@ -29,6 +29,7 @@
     "framer-motion": "^10.12.18",
     "grapheme-splitter": "^1.0.4",
     "lodash": "^4.17.21",
+    "lottie-react": "^2.4.0",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-content-loader": "^6.2.1",
