@@ -7,7 +7,7 @@ import {
 import { useState, useEffect } from 'react';
 import useGetAllList from '../../libs/hooks/list/useGetAllList';
 import { useNavigate } from 'react-router-dom';
-import Skeleton from './Skeleton';
+import Skeleton from '../../common/Skeleton/Skeleton';
 
 interface TattooListProps {
   setSheetOpen: React.Dispatch<React.SetStateAction<number>>;

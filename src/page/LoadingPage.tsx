@@ -1,8 +1,12 @@
-import Lottie from 'react-lottie';
-import * as animationData from './pinjump.json';
+import Lottie from 'lottie-react';
+import * as animationData from '../assets/video/tattour_loading.json';
 
 const LoadingPage = () => {
-  return <div>LoadingPage</div>;
+  return (
+    <div>
+      <Lottie animationData={animationData} />
+    </div>
+  );
 };
 
 export default LoadingPage;
