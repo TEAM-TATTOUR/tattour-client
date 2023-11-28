@@ -67,13 +67,14 @@ const St = {
     margin-top: 2.2rem;
     margin-right: 1.2rem;
 
-    width: max-content;
+    width: 100%;
+    overflow: scroll;
 
     .scroll-container {
       display: flex;
       flex-direction: row;
       gap: 1.2rem;
-      width: 100%;
+      width: fit-content;
     }
   `,
 

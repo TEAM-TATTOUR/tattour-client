@@ -109,11 +109,8 @@ const St = {
   `,
 
   HotCustomWrapper: styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 1.2rem;
-    justify-content: space-between;
-    width: fit-content;
+    width: 100%;
+    overflow: scroll;
 
     .scroll-container {
       display: flex;
@@ -121,7 +118,7 @@ const St = {
       gap: 1.2rem;
 
       height: 28rem;
-      width: 100%;
+      width: fit-content;
 
       padding: 0rem 2rem;
     }
