@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import useGetThemeCard from '../../libs/hooks/useGetThemeCard';
 import { useNavigate } from 'react-router-dom';
+import MainSkeleton from '../../common/Skeleton/MainSkeleton';
 
 const MainTheme = () => {
   const { response, error, loading } = useGetThemeCard();
@@ -23,17 +24,24 @@ const MainTheme = () => {
         <St.MainThemeTitle>THEME</St.MainThemeTitle>
       </St.MainThemeHeader>
       <St.MainThemeWrapper>
-        <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
-          {!loading &&
-            !error &&
-            response.map(({ id, name, imageUrl }) => {
-              return (
-                <St.MainThemeItem key={id} onClick={handleClickCard(name)}>
-                  <St.MainThemeItemImage src={imageUrl} />
-                </St.MainThemeItem>
-              );
-            })}
-        </ScrollContainer>
+        {!loading ? (
+          <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
+            <MainSkeleton />
+            <MainSkeleton />
+            <MainSkeleton />
+          </ScrollContainer>
+        ) : (
+          <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
+            {!error &&
+              response.map(({ id, name, imageUrl }) => {
+                return (
+                  <St.MainThemeItem key={id} onClick={handleClickCard(name)}>
+                    <St.MainThemeItemImage src={imageUrl} />
+                  </St.MainThemeItem>
+                );
+              })}
+          </ScrollContainer>
+        )}
       </St.MainThemeWrapper>
     </St.MainThemeSection>
   );
@@ -58,6 +66,8 @@ const St = {
   MainThemeWrapper: styled.div`
     margin-top: 2.2rem;
     margin-right: 1.2rem;
+
+    width: max-content;
 
     .scroll-container {
       display: flex;

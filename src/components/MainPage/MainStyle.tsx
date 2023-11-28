@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import useGetStyleCard from '../../libs/hooks/useGetStyleCard';
 import { useNavigate } from 'react-router-dom';
-import StyleSkeleton from '../../common/Skeleton/StyleSkeleton';
+import MainSkeleton from '../../common/Skeleton/MainSkeleton';
 
 const MainStyle = () => {
   const { response, error, loading } = useGetStyleCard();
@@ -26,9 +26,9 @@ const MainStyle = () => {
       <St.MainStyleWrapper>
         {!loading ? (
           <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
-            <StyleSkeleton />
-            <StyleSkeleton />
-            <StyleSkeleton />
+            <MainSkeleton />
+            <MainSkeleton />
+            <MainSkeleton />
           </ScrollContainer>
         ) : (
           <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>

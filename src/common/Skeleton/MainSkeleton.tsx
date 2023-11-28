@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader';
 
-const StyleSkeleton = () => (
+const MainSkeleton = () => (
   <ContentLoader
     speed={2}
     width='15.3rem'
@@ -13,4 +13,4 @@ const StyleSkeleton = () => (
     <rect x='0.5rem' y='13.1rem' rx='0.3rem' ry='0.3rem' width='10.6rem' height='1.2rem' />
   </ContentLoader>
 );
-export default StyleSkeleton;
+export default MainSkeleton;
