@@ -24,7 +24,7 @@ const MainTheme = () => {
         <St.MainThemeTitle>THEME</St.MainThemeTitle>
       </St.MainThemeHeader>
       <St.MainThemeWrapper>
-        {!loading ? (
+        {loading ? (
           <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
             <MainSkeleton />
             <MainSkeleton />

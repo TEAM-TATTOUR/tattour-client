@@ -24,7 +24,7 @@ const MainStyle = () => {
         <St.MainStyleTitle>STYLE</St.MainStyleTitle>
       </St.MainStyleHeader>
       <St.MainStyleWrapper>
-        {!loading ? (
+        {loading ? (
           <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
             <MainSkeleton />
             <MainSkeleton />
