@@ -70,6 +70,10 @@ const St = {
     width: 100%;
     overflow: scroll;
 
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
     .scroll-container {
       display: flex;
       flex-direction: row;
