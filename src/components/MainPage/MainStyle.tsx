@@ -67,19 +67,13 @@ const St = {
   MainStyleWrapper: styled.div`
     margin-top: 2.2rem;
     margin-right: 1.2rem;
-
     width: 100%;
-    overflow: scroll;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
 
     .scroll-container {
       display: flex;
       flex-direction: row;
       gap: 1.2rem;
-      width: fit-content;
+      width: 100%;
     }
   `,
 
