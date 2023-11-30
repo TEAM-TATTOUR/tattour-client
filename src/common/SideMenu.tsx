@@ -44,6 +44,13 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
       text: '내 타투',
       clickHandler: handleClickMyTattooButton,
     },
+    {
+      icon: <IcInformation />,
+      text: '장바구니',
+      clickHandler: () => {
+        navigate('/cart');
+      },
+    },
   ];
 
   useEffect(() => {
