@@ -10,7 +10,7 @@ const CustomDirectDeposit = ({
 }) => {
   return (
     <St.CustomDirectDepositPageWrapper>
-      <DepositInfo chargeAmount={5000}>
+      <DepositInfo depositAmount={5000}>
         <CustomDepositInfo />
       </DepositInfo>
       <AccountCopy setIsActiveNext={setIsActiveNext} />

@@ -1,11 +1,11 @@
 import { styled } from 'styled-components';
 
 interface DepositInfoProps {
-  chargeAmount: number;
+  depositAmount: number;
   children: React.ReactNode;
 }
 
-const DepositInfo = ({ chargeAmount, children }: DepositInfoProps) => {
+const DepositInfo = ({ depositAmount, children }: DepositInfoProps) => {
   return (
     <St.TransferMainWrapper>
       <St.TransferInfoContainer>
@@ -13,7 +13,7 @@ const DepositInfo = ({ chargeAmount, children }: DepositInfoProps) => {
         <St.InfoPriceMain>
           <St.InfoPriceLeft>결제 금액</St.InfoPriceLeft>
           <St.InfoPriceRight>
-            <St.RightPrice>{chargeAmount.toLocaleString()}</St.RightPrice>
+            <St.RightPrice>{depositAmount.toLocaleString()}</St.RightPrice>
             <St.RightUnit>원</St.RightUnit>
           </St.InfoPriceRight>
         </St.InfoPriceMain>
