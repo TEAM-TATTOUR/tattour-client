@@ -32,6 +32,7 @@ const CustomDirectDepositLayout = () => {
 
   const handleClickFooter = () => {
     {
+      //임시로 navigate로 넣었는데, 이 부분 필요에 따라 수정해주세요
       isActiveNext && navigate('/');
     }
   };
