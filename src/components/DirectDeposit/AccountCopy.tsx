@@ -6,7 +6,7 @@ import Toast from '../../common/ToastMessage/Toast';
 const AccountCopy = ({
   setIsActiveNext,
 }: {
-  setIsActiveNext: React.Dispatch<SetStateAction<boolean>>;
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const ACCOUNT_INFO = '우리은행 1002259752313';
 
