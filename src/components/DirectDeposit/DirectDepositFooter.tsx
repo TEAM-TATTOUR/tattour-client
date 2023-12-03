@@ -8,7 +8,7 @@ interface DirectDepositFooterProps {
 const DirectDepositFooter = ({ isActiveNext, handleClickFooter }: DirectDepositFooterProps) => {
   return (
     <St.DirectDepositFooter $isActiveNext={isActiveNext} onClick={handleClickFooter}>
-      <St.FooterText>다음</St.FooterText>
+      <St.FooterText>송금했어요</St.FooterText>
     </St.DirectDepositFooter>
   );
 };
