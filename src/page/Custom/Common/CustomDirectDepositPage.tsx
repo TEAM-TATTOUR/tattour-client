@@ -1,10 +1,12 @@
 import AccountCopy from '../../../components/DirectDeposit/AccountCopy';
-import DepositMain from '../../../components/DirectDeposit/DepositMain';
+import DepositInfo from '../../../components/DirectDeposit/DepositInfo';
 
 const CustomDirectDepositPage = () => {
   return (
     <>
-      <DepositMain chargeAmount={5000} />
+      <DepositInfo chargeAmount={5000}>
+        <div>신청서를~</div>
+      </DepositInfo>
       <AccountCopy />
     </>
   );

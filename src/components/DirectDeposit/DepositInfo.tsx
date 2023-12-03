@@ -1,45 +1,47 @@
 import { styled } from 'styled-components';
-import AccountCopy from './AccountCopy';
 
-const DepositMain = ({ chargeAmount }: { chargeAmount: number }) => {
+interface DepositInfoProps {
+  chargeAmount: number;
+  children: React.ReactNode;
+}
+
+const DepositInfo = ({ chargeAmount, children }: DepositInfoProps) => {
   return (
     <St.TransferMainWrapper>
       <St.TransferInfoContainer>
-        <St.InfoMsgHeader>
+        {/* <St.InfoMsgHeader>
           <St.InfoMsgTitle>아래 계좌로 금액을 송금해주세요</St.InfoMsgTitle>
           <St.InfoMsgDetail>
             정확하게 송금하지 않을 시 추후에 주문이 취소될 수 있어요
           </St.InfoMsgDetail>
-        </St.InfoMsgHeader>
+        </St.InfoMsgHeader> */}
+        {children}
         <St.InfoPriceMain>
-          <St.InfoPriceLeft>충전 금액</St.InfoPriceLeft>
+          <St.InfoPriceLeft>결제 금액</St.InfoPriceLeft>
           <St.InfoPriceRight>
             <St.RightPrice>{chargeAmount.toLocaleString()}</St.RightPrice>
             <St.RightUnit>원</St.RightUnit>
           </St.InfoPriceRight>
         </St.InfoPriceMain>
-        <AccountCopy />
       </St.TransferInfoContainer>
     </St.TransferMainWrapper>
   );
 };
 
-export default DepositMain;
+export default DepositInfo;
 
 const St = {
   TransferMainWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    padding: 0 2.2rem;
-
-    height: calc(100dvh - 21.6rem);
+    padding: 0 0.2rem;
   `,
 
   TransferInfoContainer: styled.article`
     display: flex;
     flex-direction: column;
 
-    padding-top: 5.6rem;
+    padding-top: 6rem;
   `,
 
   InfoMsgHeader: styled.header`
@@ -65,7 +67,7 @@ const St = {
     justify-content: space-between;
     align-items: center;
 
-    margin: 3.4rem 0 3.7rem 0;
+    margin: 3.4rem 0 rem 0;
   `,
 
   InfoPriceLeft: styled.p`
