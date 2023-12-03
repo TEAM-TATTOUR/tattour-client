@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useState } from 'react';
-import Toast from '../../../common/ToastMessage/Toast';
+import Toast from '../../common/ToastMessage/Toast';
 
 const AccountCopy = () => {
   const ACCOUNT_INFO = '우리은행 1002259752313';

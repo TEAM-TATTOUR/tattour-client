@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import DepositInfo from '../../../components/DirectDeposit/Common/DepositInfo';
-import AccountCopy from '../../../components/DirectDeposit/Common/AccountCopy';
-import CustomDepositInfo from '../../../components/DirectDeposit/Custom/CustomDepositInfo';
+import CustomDepositInfo from './CustomDirectDepositInfo';
+import DepositInfo from '../../../DirectDeposit/DepositInfo';
+import AccountCopy from '../../../DirectDeposit/AccountCopy';
 
-const CustomDirectDepositPage = () => {
+const CustomDirectDeposit = () => {
   return (
     <St.CustomDirectDepositPageWrapper>
       <DepositInfo chargeAmount={5000}>
@@ -14,7 +14,7 @@ const CustomDirectDepositPage = () => {
   );
 };
 
-export default CustomDirectDepositPage;
+export default CustomDirectDeposit;
 
 const St = {
   CustomDirectDepositPageWrapper: styled.main`
