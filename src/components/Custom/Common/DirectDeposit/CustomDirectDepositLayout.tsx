@@ -5,9 +5,14 @@ import CancelBtn from '../../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import PageLayout from '../../../PageLayout';
 import CustomDirectDeposit from './CustomDirectDeposit';
+import DirectDepositFooter from '../../../DirectDeposit/DirectDepositFooter';
+import { useNavigate } from 'react-router-dom';
 
 const CustomDirectDepositLayout = () => {
   const [modalOn, setModalOn] = useState(false);
+  const [isActiveNext, setIsActiveNext] = useState(false);
+
+  const navigate = useNavigate();
 
   const renderCustomDirectDepositPageHeader = () => {
     return (
@@ -25,9 +30,20 @@ const CustomDirectDepositLayout = () => {
     );
   };
 
+  const handleClickFooter = () => {
+    {
+      isActiveNext && navigate('/');
+    }
+  };
+
   return (
-    <PageLayout renderHeader={renderCustomDirectDepositPageHeader}>
-      <CustomDirectDeposit />
+    <PageLayout
+      renderHeader={renderCustomDirectDepositPageHeader}
+      footer={
+        <DirectDepositFooter isActiveNext={isActiveNext} handleClickFooter={handleClickFooter} />
+      }
+    >
+      <CustomDirectDeposit setIsActiveNext={setIsActiveNext} />
     </PageLayout>
   );
 };

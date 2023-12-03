@@ -2,14 +2,19 @@ import styled from 'styled-components';
 import CustomDepositInfo from './CustomDirectDepositInfo';
 import DepositInfo from '../../../DirectDeposit/DepositInfo';
 import AccountCopy from '../../../DirectDeposit/AccountCopy';
+import { SetStateAction } from 'react';
 
-const CustomDirectDeposit = () => {
+const CustomDirectDeposit = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<SetStateAction<boolean>>;
+}) => {
   return (
     <St.CustomDirectDepositPageWrapper>
       <DepositInfo chargeAmount={5000}>
         <CustomDepositInfo />
       </DepositInfo>
-      <AccountCopy />
+      <AccountCopy setIsActiveNext={setIsActiveNext} />
     </St.CustomDirectDepositPageWrapper>
   );
 };
