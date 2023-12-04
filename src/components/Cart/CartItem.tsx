@@ -19,7 +19,6 @@ const CartItem = ({
   count: number;
   handleClickQuantityButton: (price: number) => void;
 }) => {
-  console.log(count);
   const [quantity, setQuantity] = useState(count);
 
   const handleClickPlusButton = (price: number) => {
