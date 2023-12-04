@@ -5,7 +5,6 @@ import { AxiosError } from "axios";
 export interface UserProfileProps {
     homeUserInfo: {
         name: string;
-        point: number;
     }
 }
 
@@ -24,6 +23,7 @@ const useGetUserProfile = () => {
         await api.get('/user/profile')
             .then(res => {
                 const data: UserProfileResponse = res.data;
+                console.log(data.data);
                 setResponse(data.data);
             })
             .catch(err => {
