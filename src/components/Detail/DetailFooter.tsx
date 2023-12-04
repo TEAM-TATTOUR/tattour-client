@@ -46,6 +46,20 @@ const DetailFooter = ({
     }
   };
 
+  const postCart = async () => {
+    await api
+      .post('/cart/items', {
+        stickerId: id,
+        count: count,
+      })
+      // 성공 시 navigate
+      .then(() => console.log('카트에 추가 성공'))
+      .catch((err) => {
+        console.log(err);
+        // 에러뷰로 navigate
+      });
+  };
+
   // 좋아요 추가 통신
   const postLiked = async () => {
     await api
@@ -87,10 +101,19 @@ const DetailFooter = ({
     }
   };
 
+  const handleCartButton = () => {
+    if (like === null) {
+      // 로그인 상태가 아닌 경우
+      setToast(true);
+      return;
+    }
+    postCart();
+  };
+
   return (
     <St.Footer>
       {isSecond && (
-        <St.Button type='button' $isSecond={isSecond}>
+        <St.Button type='button' onClick={handleCartButton} $isSecond={isSecond}>
           장바구니
         </St.Button>
       )}
