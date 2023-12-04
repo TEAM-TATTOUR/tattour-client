@@ -92,7 +92,6 @@ const DetailBottom = ({
             id={id}
             setSheetOpen={setSheetOpen}
             isSecond={true}
-            text='구매하기'
             like={like}
             setLike={setLike}
             count={count} // API연결 시 필요해서 전달
