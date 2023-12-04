@@ -30,10 +30,14 @@ const CartPage = () => {
 
   const { response, error, loading } = useGetCartList();
 
-  const [orderAmountDetailRes, setOrderAmountDetailRes] = useState<OrderAmountDetailProps>();
+  const [orderAmountDetailRes, setOrderAmountDetailRes] = useState<OrderAmountDetailProps>(
+    {} as OrderAmountDetailProps,
+  );
 
   useEffect(() => {
-    setOrderAmountDetailRes(response?.orderAmountDetailRes);
+    if (response) {
+      setOrderAmountDetailRes(response.orderAmountDetailRes);
+    }
   }, [response]);
 
   // add price to orderAmountDetailRes
@@ -41,7 +45,8 @@ const CartPage = () => {
     setOrderAmountDetailRes((prev) => {
       return {
         ...prev,
-        totalAmount: prev?.totalAmount + price,
+        totalAmount: prev.totalAmount + price,
+        productAmount: prev.productAmount + price,
       };
     });
   };

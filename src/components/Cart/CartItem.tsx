@@ -22,12 +22,12 @@ const CartItem = ({
   console.log(count);
   const [quantity, setQuantity] = useState(count);
 
-  const handleClickPlusButton = (price) => {
+  const handleClickPlusButton = (price: number) => {
     handleClickQuantityButton(price);
     setQuantity((prev) => prev + 1);
   };
 
-  const handleClickMinusButton = (price) => {
+  const handleClickMinusButton = (price: number) => {
     handleClickQuantityButton(-price);
     setQuantity((prev) => prev - 1);
   };

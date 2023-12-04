@@ -29,7 +29,7 @@ interface CartListResponse {
 }
 
 const useGetCartList = () => {
-    const [response, setResponse] = useState<CartListProps>();
+    const [response, setResponse] = useState<CartListProps>({} as CartListProps);
     const [error, setError] = useState<AxiosError>();
     const [loading, setLoading] = useState(true);
 
