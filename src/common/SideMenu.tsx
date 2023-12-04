@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { IcCustom, IcShop, IcMy } from '../assets/icon';
+import { IcCustom, IcShop, IcMy, IcCart } from '../assets/icon';
 import { useEffect } from 'react';
 import SideMenuUserInfo from './SideMenuUserInfo';
 import { useNavigate } from 'react-router-dom';
@@ -43,6 +43,13 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
       icon: <IcMy />,
       text: '내 타투',
       clickHandler: handleClickMyTattooButton,
+    },
+    {
+      icon: <IcCart />,
+      text: '장바구니',
+      clickHandler: () => {
+        navigate('/cart');
+      },
     },
   ];
 
