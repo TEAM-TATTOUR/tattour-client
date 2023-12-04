@@ -28,7 +28,7 @@ const DetailBottom = ({
   // 사용자가 보유한 포인트, 상품1개 수량, 배송비
 
   const [count, setCount] = useState(1);
-  const [isLack, setLack] = useState(false);
+  // const [isLack, setLack] = useState(false);
 
   // 사용자 포인트 가져오는 서버 통신
   const { response, error, loading } = useGetPoint();
@@ -37,14 +37,14 @@ const DetailBottom = ({
     setCount(1);
   }, [isSheetOpen]);
 
-  useEffect(() => {
-    !error &&
-    !loading &&
-    response &&
-    response.homeUserInfo.point < count * discountPrice + shippingCost
-      ? setLack(true)
-      : setLack(false);
-  }, [count, loading]);
+  // useEffect(() => {
+  //   !error &&
+  //   !loading &&
+  //   response &&
+  //   response.homeUserInfo.point < count * discountPrice + shippingCost
+  //     ? setLack(true)
+  //     : setLack(false);
+  // }, [count, loading]);
 
   return (
     <CustomSheet
@@ -81,19 +81,18 @@ const DetailBottom = ({
               <St.Line />
               <St.FinalPriceContainer>
                 <St.PriceText>결제 금액</St.PriceText>
-                <St.FinalPrice $isLack={isLack}>
+                <St.FinalPrice>
                   {(count * discountPrice + shippingCost).toLocaleString()}
                 </St.FinalPrice>
                 <St.PriceText>원</St.PriceText>
               </St.FinalPriceContainer>
-              <St.LackText $isLack={isLack}>보유 포인트가 부족합니다</St.LackText>
             </St.FullBox>
           )}
           <DetailFooter
             id={id}
             setSheetOpen={setSheetOpen}
             isSecond={true}
-            text={isLack ? '충전하기' : '구매하기'}
+            text='구매하기'
             like={like}
             setLike={setLike}
             count={count} // API연결 시 필요해서 전달
@@ -176,16 +175,9 @@ const St = {
     ${({ theme }) => theme.fonts.body_medium_14};
     color: ${({ theme }) => theme.colors.gray4};
   `,
-  FinalPrice: styled.span<{ $isLack: boolean }>`
+  FinalPrice: styled.span`
     ${({ theme }) => theme.fonts.title_extrabold_24};
-    color: ${({ theme, $isLack }) => ($isLack ? theme.colors.red : theme.colors.gray7)};
-  `,
-  LackText: styled.p<{ $isLack: boolean }>`
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 2.2rem;
-    ${({ theme }) => theme.fonts.detail_medium_12};
-    color: ${({ theme, $isLack }) => ($isLack ? theme.colors.red : theme.colors.white)};
+    color: ${({ theme }) => theme.colors.gray7};
   `,
 };
 
