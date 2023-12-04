@@ -1,13 +1,41 @@
 import styled from 'styled-components';
 import { IcCancelDark, IcMinus, IcMinusOneunder, IcPlus } from '../../assets/icon';
 import { useState } from 'react';
-const CartItem = ({ id, name, price, originalPrice }) => {
-  const [count, setCount] = useState(1);
+
+const CartItem = ({
+  id,
+  mainImageUrl,
+  name,
+  price,
+  originalPrice,
+  count,
+  handleClickQuantityButton,
+}: {
+  id: number;
+  mainImageUrl: string;
+  name: string;
+  price: number;
+  originalPrice: number;
+  count: number;
+  handleClickQuantityButton: (price: number) => void;
+}) => {
+  console.log(count);
+  const [quantity, setQuantity] = useState(count);
+
+  const handleClickPlusButton = (price) => {
+    handleClickQuantityButton(price);
+    setQuantity((prev) => prev + 1);
+  };
+
+  const handleClickMinusButton = (price) => {
+    handleClickQuantityButton(-price);
+    setQuantity((prev) => prev - 1);
+  };
 
   return (
     <St.Item>
       <St.ItemInformation>
-        <St.TattooImage src='https://github.com/TEAM-TATTOUR/tattour-client/assets/51692363/cf89d9ff-a11c-4a8f-8bf7-5d29a3c7bb9e' />
+        <St.TattooImage src={mainImageUrl} />
         <St.TitleSection>
           <St.TattooTitle>{name}</St.TattooTitle>
           <St.ItemPriceBox>
@@ -21,13 +49,13 @@ const CartItem = ({ id, name, price, originalPrice }) => {
       <St.ButtonSection>
         <IcCancelDark />
         <St.Stepper>
-          {count === 1 ? (
+          {quantity === 1 ? (
             <IcMinusOneunder />
           ) : (
-            <IcMinus onClick={() => setCount((prev) => prev - 1)} />
+            <IcMinus onClick={() => handleClickMinusButton(price)} />
           )}
-          <span>{count}</span>
-          <IcPlus onClick={() => setCount((prev) => prev + 1)} />
+          <span>{quantity}</span>
+          <IcPlus onClick={() => handleClickPlusButton(price)} />
         </St.Stepper>
       </St.ButtonSection>
     </St.Item>
@@ -60,6 +88,7 @@ const St = {
     width: 8.4rem;
     height: 8.4rem;
     object-fit: cover;
+    background-color: ${({ theme }) => theme.colors.gray0};
   `,
 
   TitleSection: styled.div`
