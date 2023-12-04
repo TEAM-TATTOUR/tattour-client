@@ -100,6 +100,8 @@ const DetailFooter = ({
 
   return (
     <St.Footer>
+      <St.Button type='button'>장바구니</St.Button>
+      <St.Line />
       <St.Button type='button' onClick={handleClickButton}>
         {text}
       </St.Button>
@@ -128,10 +130,14 @@ const St = {
   `,
 
   Button: styled.button`
-    width: calc(100% - 7rem);
+    width: calc((100% - 7rem) / 2);
     height: 100%;
     color: ${({ theme }) => theme.colors.pink5};
     ${({ theme }) => theme.fonts.title_semibold_18};
+
+    &:first-child {
+      color: ${({ theme }) => theme.colors.white};
+    }
   `,
   Line: styled.div`
     width: 0.1rem;
