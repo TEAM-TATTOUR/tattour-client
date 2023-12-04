@@ -3,7 +3,6 @@ import Sheet from 'react-modal-sheet';
 import { IcCancelDark, IcMinus, IcMinusOneunder, IcPlus } from '../../assets/icon';
 import DetailFooter from './DetailFooter';
 import { useEffect, useState } from 'react';
-import useGetPoint from '../../libs/hooks/detail/useGetPoint';
 
 interface DetailBottomProps {
   id: number;
