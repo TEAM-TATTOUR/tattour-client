@@ -38,7 +38,6 @@ const DetailFooter = ({
         state: {
           stickerId: id,
           count: count,
-          shippingFee: shippingFee,
         },
       });
     } else {
