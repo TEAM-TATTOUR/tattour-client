@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import api from '../../libs/api';
 import { useState } from 'react';
 import Toast from '../../common/ToastMessage/Toast';
@@ -9,7 +9,6 @@ interface DetailFooterProp {
   id: number;
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isSecond: boolean;
-  text: string;
   like: boolean | null;
   setLike: React.Dispatch<React.SetStateAction<boolean | null>>;
   count: number;
@@ -19,15 +18,12 @@ const DetailFooter = ({
   id,
   setSheetOpen,
   isSecond,
-  text,
   like,
   setLike,
   count,
   shippingFee,
 }: DetailFooterProp) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const currURL = location.pathname;
   const [toast, setToast] = useState(false);
 
   const handleClickButton = () => {
@@ -36,14 +32,7 @@ const DetailFooter = ({
       setToast(true);
       return;
     }
-    if (text === '충전하기') {
-      // state 하나 넘겨줘야함. 추후 추가 예정
-      navigate('/point-charge', {
-        state: {
-          redirectURL: currURL,
-        },
-      });
-    } else if (isSecond) {
+    if (isSecond) {
       // state로 OrderPage에서 필요한 정보 넘겨주기
       navigate(`/order`, {
         state: {
@@ -55,6 +44,20 @@ const DetailFooter = ({
     } else {
       setSheetOpen(true);
     }
+  };
+
+  const postCart = async () => {
+    await api
+      .post('/cart/items', {
+        stickerId: id,
+        count: count,
+      })
+      // 성공 시 navigate
+      .then(() => console.log('카트에 추가 성공'))
+      .catch((err) => {
+        console.log(err);
+        // 에러뷰로 navigate
+      });
   };
 
   // 좋아요 추가 통신
@@ -98,10 +101,25 @@ const DetailFooter = ({
     }
   };
 
+  const handleCartButton = () => {
+    if (like === null) {
+      // 로그인 상태가 아닌 경우
+      setToast(true);
+      return;
+    }
+    postCart();
+  };
+
   return (
     <St.Footer>
-      <St.Button type='button' onClick={handleClickButton}>
-        {text}
+      {isSecond && (
+        <St.Button type='button' onClick={handleCartButton} $isSecond={isSecond}>
+          장바구니
+        </St.Button>
+      )}
+      <St.Line />
+      <St.Button type='button' onClick={handleClickButton} $isSecond={isSecond}>
+        구매하기
       </St.Button>
       <St.Line />
       <St.Like onClick={handleClickLike}>{like ? <IcHeartLight /> : <IcHeartDark />}</St.Like>
@@ -127,11 +145,15 @@ const St = {
     background-color: ${({ theme }) => theme.colors.gray9};
   `,
 
-  Button: styled.button`
-    width: calc(100% - 7rem);
+  Button: styled.button<{ $isSecond: boolean }>`
+    width: ${({ $isSecond }) => ($isSecond ? `calc((100% - 7rem) / 2)` : `calc(100% - 7rem)`)};
     height: 100%;
     color: ${({ theme }) => theme.colors.pink5};
     ${({ theme }) => theme.fonts.title_semibold_18};
+
+    &:first-child {
+      color: ${({ theme }) => theme.colors.white};
+    }
   `,
   Line: styled.div`
     width: 0.1rem;
