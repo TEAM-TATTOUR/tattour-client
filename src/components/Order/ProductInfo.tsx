@@ -4,25 +4,31 @@ import { readOrderSheetStickerInfoProps } from '../../libs/hooks/order/useGetOrd
 const ProductInfo = ({
   readOrderSheetStickerInfo,
 }: {
-  readOrderSheetStickerInfo: readOrderSheetStickerInfoProps;
+  readOrderSheetStickerInfo: readOrderSheetStickerInfoProps[];
 }) => {
-  const { mainImageUrl, name, price, discountedPrice, count } = readOrderSheetStickerInfo;
+  // const { mainImageUrl, name, price, discountedPrice, count } = readOrderSheetStickerInfo;
 
   return (
-    <St.Wrapper>
-      <St.Image>
-        <img src={mainImageUrl} />
-      </St.Image>
-      <St.InfoContainer>
-        <St.Name>{name}</St.Name>
-        <St.Description>
-          <St.ItemPrice>{discountedPrice && discountedPrice.toLocaleString()}원</St.ItemPrice>
-          <St.OriginalPrice>{price && price.toLocaleString()}원</St.OriginalPrice>
-          <St.Line></St.Line>
-          <St.Count>{count}개</St.Count>
-        </St.Description>
-      </St.InfoContainer>
-    </St.Wrapper>
+    <>
+      {readOrderSheetStickerInfo.map((item) => (
+        <St.Wrapper>
+          <St.Image>
+            <img src={item.mainImageUrl} />
+          </St.Image>
+          <St.InfoContainer>
+            <St.Name>{item.name}</St.Name>
+            <St.Description>
+              <St.ItemPrice>
+                {item.discountedPrice && item.discountedPrice.toLocaleString()}원
+              </St.ItemPrice>
+              <St.OriginalPrice>{item.price && item.price.toLocaleString()}원</St.OriginalPrice>
+              <St.Line></St.Line>
+              <St.Count>{item.count}개</St.Count>
+            </St.Description>
+          </St.InfoContainer>
+        </St.Wrapper>
+      ))}
+    </>
   );
 };
 

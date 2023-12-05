@@ -7,12 +7,12 @@ import {
 
 const PaymentInfo = ({
   orderAmountInfo,
-  userPointAfterOrderInfo,
-}: {
+}: // userPointAfterOrderInfo,
+{
   orderAmountInfo: orderAmountInfoProps;
-  userPointAfterOrderInfo: userPointAfterOrderInfoProps;
+  // userPointAfterOrderInfo: userPointAfterOrderInfoProps;
 }) => {
-  const { userPoint, resultPoint } = userPointAfterOrderInfo;
+  // const { userPoint, resultPoint } = userPointAfterOrderInfo;
 
   return (
     <div>
@@ -20,7 +20,7 @@ const PaymentInfo = ({
         <St.Title>결제 정보</St.Title>
         <PaymentMini orderAmountInfo={orderAmountInfo} />
       </St.PriceContainer>
-      <St.LightLine />
+      {/* <St.LightLine />
       <St.PointContainer>
         <St.PointText>
           <St.MainText>보유 포인트</St.MainText>
@@ -36,7 +36,7 @@ const PaymentInfo = ({
             <span>P</span>
           </St.MainText>
         </St.PointText>
-      </St.PointContainer>
+      </St.PointContainer> */}
     </div>
   );
 };

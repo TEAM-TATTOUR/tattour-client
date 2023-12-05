@@ -37,6 +37,7 @@ const useGetCartList = () => {
         await api.get('/cart/items')
             .then(res => {
                 const data: CartListResponse = res.data;
+                console.log(data);
                 setResponse(data.data);
             })
             .catch(err => {

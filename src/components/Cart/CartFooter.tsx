@@ -5,7 +5,7 @@ const CartFooter = () => {
   const navigate = useNavigate();
 
   const handleClickButton = () => {
-    navigate('/order');
+    navigate('/cartorder');
   };
 
   return (

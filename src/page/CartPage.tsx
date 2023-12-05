@@ -8,6 +8,7 @@ import CartItemSection from '../components/Cart/CartItemSection';
 import useGetCartList, { OrderAmountDetailProps } from '../libs/hooks/useGetCartList';
 import EmptyView from '../components/Cart/EmptyView';
 import { useEffect, useState } from 'react';
+import { orderAmountInfoProps } from '../libs/hooks/order/useGetOrdersheet';
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -30,8 +31,8 @@ const CartPage = () => {
 
   const { response, error, loading } = useGetCartList();
 
-  const [orderAmountDetailRes, setOrderAmountDetailRes] = useState<OrderAmountDetailProps>(
-    {} as OrderAmountDetailProps,
+  const [orderAmountDetailRes, setOrderAmountDetailRes] = useState<orderAmountInfoProps>(
+    {} as orderAmountInfoProps,
   );
 
   useEffect(() => {
