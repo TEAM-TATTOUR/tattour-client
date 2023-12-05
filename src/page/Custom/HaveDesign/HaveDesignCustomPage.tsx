@@ -9,6 +9,7 @@ import SelectKeywordLayout from '../../../components/Custom/HaveDesign/SelectKey
 import { useLocation } from 'react-router-dom';
 import { resCustomInfoType } from '../../../types/customInfoType';
 import CustomSizeLayout from '../../../components/Custom/Common/Size/CustomSizeLayout';
+import CustomDirectDepositLayout from '../../../components/Custom/Common/DirectDeposit/CustomDirectDepositLayout';
 
 // import CustomSizePage from '../Common/CustomSizePage';
 
@@ -200,6 +201,9 @@ const HaveDesignCustomPage = () => {
       );
 
     case 7:
+      return <CustomDirectDepositLayout setStep={setStep} />;
+
+    case 8:
       return <ReceiptLayout receiptData={receiptData} haveDesign={haveDesign} />;
   }
 };

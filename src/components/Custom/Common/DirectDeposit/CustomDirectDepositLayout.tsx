@@ -6,13 +6,17 @@ import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSi
 import PageLayout from '../../../PageLayout';
 import CustomDirectDeposit from './CustomDirectDeposit';
 import DirectDepositFooter from '../../../DirectDeposit/DirectDepositFooter';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
-const CustomDirectDepositLayout = () => {
+interface DepositLayoutProps {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const CustomDirectDepositLayout = ({ setStep }: DepositLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const renderCustomDirectDepositPageHeader = () => {
     return (
@@ -33,7 +37,7 @@ const CustomDirectDepositLayout = () => {
   const handleClickFooter = () => {
     {
       //임시로 navigate로 넣었는데, 이 부분 필요에 따라 수정해주세요
-      isActiveNext && navigate('/');
+      isActiveNext && setStep((prev) => prev + 1);
     }
   };
 
