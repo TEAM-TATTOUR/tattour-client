@@ -24,6 +24,8 @@ const St = {
     color: ${({ theme }) => theme.colors.gray8};
   `,
   LightBorder: styled.hr`
+    width: 100%;
+    max-width: 43rem;
     height: 1.3rem;
     border: none;
     background-color: ${({ theme }) => theme.colors.gray0};
@@ -33,6 +35,7 @@ const St = {
     position: fixed;
     bottom: 7rem;
     width: 100%;
+    max-width: 43rem;
   `,
 };
 
