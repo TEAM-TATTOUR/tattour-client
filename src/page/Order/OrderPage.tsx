@@ -99,8 +99,9 @@ const OrderPage = () => {
     >
       {!error && !loading && response && (
         <>
-          <ProductInfo orderSheetSticker={response.orderSheetStickersRes[0]} />
-          {/*  추후 장바구니 구매와 통합된다면 [0]이 아닌 OrderPage에서 orderSheetStickersRes에 대해 ProductInfo를 mapping돌리면 될 것으로 보임 */}
+          {response.orderSheetStickersRes.map((_, idx) => (
+            <ProductInfo orderSheetSticker={response.orderSheetStickersRes[idx]} />
+          ))}
           <St.Line />
           <DeliveryInfo
             handleModal={handleModal}
