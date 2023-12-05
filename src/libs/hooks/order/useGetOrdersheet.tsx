@@ -8,7 +8,7 @@ export interface OrderSheetRequest {
   count: number;
 }
 
-export interface orderSheetStickerResProps {
+export interface orderSheetStickersResProps {
   mainImageUrl: string;
   name: string;
   price: number;
@@ -28,7 +28,7 @@ export interface userProfileResProps {
   phoneNumber: string;
 }
 export interface OrderSheetProps {
-  orderSheetStickerRes: orderSheetStickerResProps[];
+  orderSheetStickersRes: orderSheetStickersResProps[];
   orderAmountDetailRes: orderAmountDetailResProps;
   userProfileRes: userProfileResProps;
 }
