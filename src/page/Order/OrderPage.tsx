@@ -12,6 +12,7 @@ import RefundBottom from '../../components/Order/RefundBottom';
 import BackBtn from '../../common/Header/BackBtn';
 import { useLocation } from 'react-router-dom';
 import useGetOrdersheet from '../../libs/hooks/order/useGetOrdersheet';
+import PayMethodInfo from '../../components/Order/PayMethodInfo';
 
 interface dataProps {
   address: string;
@@ -112,6 +113,8 @@ const OrderPage = () => {
             detailAddress={detailAddress}
             setDetailAddress={setDetailAddress}
           />
+          <St.Line />
+          <PayMethodInfo />
           <St.Line />
           <PaymentInfo orderAmountDetailRes={response.orderAmountDetailRes} />
           <St.Line />
