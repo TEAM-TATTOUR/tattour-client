@@ -20,7 +20,7 @@ interface dataProps {
 
 const OrderPage = () => {
   const location = useLocation();
-  const state = location.state as { stickerId: number; count: number };
+  const state = location.state as { stickerId: number; count: number; shippingFee: number };
   const { response, error, loading } = useGetOrdersheet(state);
 
   const [isPostOpen, setIsPostOpen] = useState(false);
