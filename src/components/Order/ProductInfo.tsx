@@ -1,23 +1,21 @@
 import styled from 'styled-components';
 import { orderSheetStickerResProps } from '../../libs/hooks/order/useGetOrdersheet';
 
-const ProductInfo = ({
-  orderSheetStickerRes,
-}: {
-  orderSheetStickerRes: orderSheetStickerResProps;
-}) => {
-  //const { mainImageUrl, name, price, discountPrice, count } = orderSheetStickerRes;
+const ProductInfo = ({ orderSheetSticker }: { orderSheetSticker: orderSheetStickerResProps }) => {
+  const { mainImageUrl, name, price, discountPrice, count } = orderSheetSticker;
 
   return (
     <St.Wrapper>
-      <St.Image>{/* <img src={mainImageUrl} /> */}</St.Image>
+      <St.Image>
+        <img src={mainImageUrl} />
+      </St.Image>
       <St.InfoContainer>
-        {/* <St.Name>{name}</St.Name> */}
+        <St.Name>{name}</St.Name>
         <St.Description>
-          {/* <St.ItemPrice>{discountPrice && discountPrice.toLocaleString()}원</St.ItemPrice> */}
-          {/* <St.OriginalPrice>{price && price.toLocaleString()}원</St.OriginalPrice> */}
+          <St.ItemPrice>{discountPrice && discountPrice.toLocaleString()}원</St.ItemPrice>
+          <St.OriginalPrice>{price && price.toLocaleString()}원</St.OriginalPrice>
           <St.Line></St.Line>
-          {/* <St.Count>{count}개</St.Count> */}
+          <St.Count>{count}개</St.Count>
         </St.Description>
       </St.InfoContainer>
     </St.Wrapper>

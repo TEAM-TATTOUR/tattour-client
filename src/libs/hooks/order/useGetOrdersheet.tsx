@@ -28,7 +28,7 @@ export interface userProfileResProps {
   phoneNumber: string;
 }
 export interface OrderSheetProps {
-  orderSheetStickerRes: orderSheetStickerResProps;
+  orderSheetStickerRes: orderSheetStickerResProps[];
   orderAmountDetailRes: orderAmountDetailResProps;
   userProfileRes: userProfileResProps;
 }
