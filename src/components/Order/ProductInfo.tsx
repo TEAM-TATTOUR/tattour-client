@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { orderSheetStickerResProps } from '../../libs/hooks/order/useGetOrdersheet';
+import { orderSheetStickersResProps } from '../../libs/hooks/order/useGetOrdersheet';
 
-const ProductInfo = ({ orderSheetSticker }: { orderSheetSticker: orderSheetStickerResProps }) => {
+const ProductInfo = ({ orderSheetSticker }: { orderSheetSticker: orderSheetStickersResProps }) => {
   const { mainImageUrl, name, price, discountPrice, count } = orderSheetSticker;
 
   return (
