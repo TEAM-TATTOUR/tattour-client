@@ -58,7 +58,7 @@ const PriceFooter = ({
   return (
     <St.CustomFooter>
       <St.FooterButton type='button' onClick={handleClickFooterBtn}>
-        접수 완료하기
+        신청서 작성 완료하기
       </St.FooterButton>
     </St.CustomFooter>
   );
