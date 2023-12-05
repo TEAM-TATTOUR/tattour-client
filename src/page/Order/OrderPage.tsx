@@ -40,7 +40,7 @@ const OrderPage = () => {
     stickerId: state.stickerId,
     productCount: state.count,
     shippingFee: state.shippingFee,
-    totalAmount: response?.orderAmountInfo.totalAmount,
+    totalAmount: response?.orderAmountDetailRes.totalAmount,
     recipientName: input,
     contact: phone,
     mailingAddress: address,
@@ -90,7 +90,7 @@ const OrderPage = () => {
       footer={
         <OrderFooter
           isComplete={isComplete}
-          price={response && response.orderAmountInfo.totalAmount}
+          price={response && response.orderAmountDetailRes.totalAmount}
           postData={postData}
           response={response}
         />
@@ -98,7 +98,7 @@ const OrderPage = () => {
     >
       {!error && !loading && response && (
         <>
-          <ProductInfo readOrderSheetStickerInfo={response.readOrderSheetStickerInfo} />
+          <ProductInfo orderSheetStickerRes={response.orderSheetStickerRes} />
           <St.Line />
           <DeliveryInfo
             handleModal={handleModal}
@@ -113,10 +113,7 @@ const OrderPage = () => {
             setDetailAddress={setDetailAddress}
           />
           <St.Line />
-          <PaymentInfo
-            orderAmountInfo={response.orderAmountInfo}
-            userPointAfterOrderInfo={response.userPointAfterOrderInfo}
-          />
+          <PaymentInfo orderAmountDetailRes={response.orderAmountDetailRes} />
           <St.Line />
           <RefundInfo setSheetOpen={setSheetOpen} setAgree={setAgree} />
           {isPostOpen && (

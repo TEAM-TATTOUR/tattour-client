@@ -45,8 +45,8 @@ const useGetOrdersheet = ({ stickerId, count }: OrderSheetRequest) => {
       .get(`/order/ordersheet?stickerId=${stickerId}&count=${count}`)
       .then((res) => {
         console.log(res.data.data);
-        //const data: OrderSheetResponse = res.data;
-        //setResponse(data.data);
+        const data = res.data;
+        setResponse(data.data);
       })
       .catch((err) => {
         setError(err);

@@ -1,42 +1,18 @@
 import styled from 'styled-components';
 import PaymentMini from './PaymentMini';
-import {
-  orderAmountInfoProps,
-  userPointAfterOrderInfoProps,
-} from '../../libs/hooks/order/useGetOrdersheet';
+import { orderAmountDetailResProps } from '../../libs/hooks/order/useGetOrdersheet';
 
 const PaymentInfo = ({
-  orderAmountInfo,
-  userPointAfterOrderInfo,
+  orderAmountDetailRes,
 }: {
-  orderAmountInfo: orderAmountInfoProps;
-  userPointAfterOrderInfo: userPointAfterOrderInfoProps;
+  orderAmountDetailRes: orderAmountDetailResProps;
 }) => {
-  const { userPoint, resultPoint } = userPointAfterOrderInfo;
-
   return (
     <div>
       <St.PriceContainer>
         <St.Title>결제 정보</St.Title>
-        <PaymentMini orderAmountInfo={orderAmountInfo} />
+        <PaymentMini orderAmountDetailRes={orderAmountDetailRes} />
       </St.PriceContainer>
-      <St.LightLine />
-      <St.PointContainer>
-        <St.PointText>
-          <St.MainText>보유 포인트</St.MainText>
-          <St.MainText>
-            <span>{userPoint && userPoint.toLocaleString()}</span>
-            <span>P</span>
-          </St.MainText>
-        </St.PointText>
-        <St.PointText>
-          <St.MainText>결제 후 남는 포인트</St.MainText>
-          <St.MainText>
-            <span>{resultPoint && resultPoint.toLocaleString()}</span>
-            <span>P</span>
-          </St.MainText>
-        </St.PointText>
-      </St.PointContainer>
     </div>
   );
 };
