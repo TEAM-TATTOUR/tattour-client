@@ -6,48 +6,34 @@ import { useNavigate } from 'react-router-dom';
 export interface OrderSheetRequest {
   stickerId: number;
   count: number;
-  shippingFee: number;
 }
 
-export interface readOrderSheetStickerInfoProps {
+export interface orderSheetStickerResProps {
   mainImageUrl: string;
   name: string;
   price: number;
-  discountedPrice: number;
+  discountPrice: number;
   count: number;
 }
 
-export interface orderAmountInfoProps {
+export interface orderAmountDetailResProps {
   totalAmount: number;
   productAmount: number;
   shippingFee: number;
 }
 
-export interface userPointAfterOrderInfoProps {
-  userPoint: number;
-  resultPoint: number;
-  lacked: boolean;
-}
-
-export interface getUserProfileInfoProps {
+export interface userProfileResProps {
   id: number;
   name: string;
   phoneNumber: string;
 }
 export interface OrderSheetProps {
-  readOrderSheetStickerInfo: readOrderSheetStickerInfoProps;
-  orderAmountInfo: orderAmountInfoProps;
-  userPointAfterOrderInfo: userPointAfterOrderInfoProps;
-  userProfileInfo: getUserProfileInfoProps;
+  orderSheetStickerRes: orderSheetStickerResProps;
+  orderAmountDetailRes: orderAmountDetailResProps;
+  userProfileRes: userProfileResProps;
 }
 
-interface OrderSheetResponse {
-  data: OrderSheetProps;
-  code: number;
-  message: string;
-}
-
-const useGetOrdersheet = ({ stickerId, count, shippingFee }: OrderSheetRequest) => {
+const useGetOrdersheet = ({ stickerId, count }: OrderSheetRequest) => {
   const navigate = useNavigate();
 
   const [response, setResponse] = useState<OrderSheetProps>();
@@ -56,10 +42,11 @@ const useGetOrdersheet = ({ stickerId, count, shippingFee }: OrderSheetRequest) 
 
   const fetchData = async () => {
     await api
-      .get(`/order/ordersheet?stickerId=${stickerId}&count=${count}&shippingFee=${shippingFee}`)
+      .get(`/order/ordersheet?stickerId=${stickerId}&count=${count}`)
       .then((res) => {
-        const data: OrderSheetResponse = res.data;
-        setResponse(data.data);
+        console.log(res.data.data);
+        //const data: OrderSheetResponse = res.data;
+        //setResponse(data.data);
       })
       .catch((err) => {
         setError(err);
