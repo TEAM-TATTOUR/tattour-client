@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import api from '../api';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface CustomSaveItemProps {
   id: number;
@@ -17,6 +18,7 @@ interface CustomSaveResponse {
 }
 
 const useGetCustomSaveList = () => {
+  const navigate = useNavigate();
   const [response, setResponse] = useState<CustomSaveItemProps[]>([]);
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
@@ -30,6 +32,7 @@ const useGetCustomSaveList = () => {
       })
       .catch((err) => {
         setError(err);
+        navigate('/error');
       })
       .finally(() => {
         setLoading(false);
