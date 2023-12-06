@@ -8,7 +8,6 @@ import CartItemSection from '../components/Cart/CartItemSection';
 import useGetCartList, { OrderAmountDetailProps } from '../libs/hooks/useGetCartList';
 import EmptyView from '../components/Cart/EmptyView';
 import { useEffect, useState } from 'react';
-import { orderAmountInfoProps } from '../libs/hooks/order/useGetOrdersheet';
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -31,19 +30,18 @@ const CartPage = () => {
 
   const { response, error, loading } = useGetCartList();
 
-  const [orderAmountDetailRes, setOrderAmountDetailRes] = useState<orderAmountInfoProps>(
-    {} as orderAmountInfoProps,
+  const [orderAmountDetailRes, setOrderAmountDetailRes] = useState<OrderAmountDetailProps>(
+    {} as OrderAmountDetailProps,
   );
 
   useEffect(() => {
-    if (response) {
+    if (response.orderAmountDetailRes) {
       setOrderAmountDetailRes(response.orderAmountDetailRes);
     }
   }, [response]);
 
-  // add price to orderAmountDetailRes
   const handleClickQuantityButton = (price: number) => {
-    setOrderAmountDetailRes((prev) => {
+    setOrderAmountDetailRes((prev: OrderAmountDetailProps) => {
       return {
         ...prev,
         totalAmount: prev.totalAmount + price,
