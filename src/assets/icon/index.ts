@@ -48,6 +48,7 @@ export { ReactComponent as IcBtnStepperMinusLight } from './ic_btn_minus_light.s
 export { ReactComponent as IcBtnStepperMinusDark } from './ic_btn_minus_dark.svg';
 export { ReactComponent as ImgWelcomeLogo } from './img_welcome_logo.svg';
 export { ReactComponent as IcCart } from './ic_cart.svg';
+export { ReactComponent as IcRadio } from './ic_radio.svg';
 
 // brush
 export { ReactComponent as IcBrushBoldSelected } from './ic_brush_bold_selected.svg';

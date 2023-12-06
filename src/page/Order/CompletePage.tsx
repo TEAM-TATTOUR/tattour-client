@@ -20,7 +20,7 @@ const CompletePage = () => {
       <St.Container>
         <Result
           mainText={'결제가 완료되었어요'}
-          description={'3일 내에 배송이 시작되며, 문자로 안내드려요'}
+          description={'7일 내에 배송이 시작되며, 문자로 안내드려요'}
         />
         <St.Line />
         <St.Title>주문 정보</St.Title>

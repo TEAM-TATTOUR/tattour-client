@@ -35,7 +35,8 @@ import CommonCustomPage from './page/Custom/Common/CommonCustomPage';
 import ErrorPage from './page/Error/ErrorPage';
 import MagazinePage from './page/MagazinePage';
 import CartPage from './page/CartPage';
-import CartOrderPage from './page/CartOrderPage';
+import CustomDirectDepositLayout from './components/Custom/Common/DirectDeposit/CustomDirectDepositLayout';
+import ExpirationPage from './page/Expiration/ExpirationPage';
 
 const Router = () => {
   return (
@@ -73,6 +74,7 @@ const Router = () => {
         <Route path='/noDesign' element={<NoDesignCustomPage />} />
         <Route path='/custom' element={<CommonCustomPage />} />
         <Route path='/error' element={<ErrorPage />} />
+        <Route path='/expired' element={<ExpirationPage />} />
         <Route path='/article/:id' element={<MagazinePage />} />
         <Route path='/cart' element={<CartPage />} />
         <Route path='/cartorder' element={<CartOrderPage />} />

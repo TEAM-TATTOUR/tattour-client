@@ -41,6 +41,7 @@ const OrderFooter = ({
       })
       .catch((err) => {
         console.log(err);
+        navigate('/error');
       });
   };
 
