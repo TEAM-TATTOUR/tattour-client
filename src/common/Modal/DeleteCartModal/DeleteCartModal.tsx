@@ -15,7 +15,6 @@ const DeleteCartModal = ({ setModalOn, id }: DeleteCartModalProps) => {
     await api
       .delete(`/cart/${id}`)
       .then(() => {
-        console.log('카트 삭제 성공');
         setModalOn(false);
         window.location.reload();
       })
