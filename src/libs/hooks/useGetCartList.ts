@@ -9,7 +9,7 @@ interface CartListProps {
 
 export interface CartItemProps {
     stickerId: number;
-    cartId: number;
+    id: number;
     mainImageUrl: string;
     name: string;
     price: number;

@@ -41,7 +41,9 @@ const OrderPage = () => {
   const [firstAddress, setFirstAddress] = useState<string>(''); // 첫주소
   const [detailAddress, setDetailAddress] = useState<string>(''); // 세부주소
   const [agree, setAgree] = useState<boolean>(false);
-  const [orderAmountDetailRes, setOrderAmountDetailRes] = useState<orderAmountDetailResProps>({});
+  const [orderAmountDetailRes, setOrderAmountDetailRes] = useState<orderAmountDetailResProps>(
+    {} as orderAmountDetailResProps,
+  );
 
   const postData = {
     productAmount: orderAmountDetailRes.productAmount,

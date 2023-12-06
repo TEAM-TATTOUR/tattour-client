@@ -6,6 +6,10 @@ import ProductInfo from '../../components/Order/ProductInfo';
 import PaymentMini from '../../components/Order/PaymentMini';
 import CompleteFooter from '../../components/Complete/CompleteFooter';
 import { useLocation } from 'react-router-dom';
+import {
+  orderSheetStickersResProps,
+  orderAmountDetailResProps,
+} from '../../libs/hooks/order/useGetOrdersheet';
 
 const CompletePage = () => {
   const renderCompletePageHeader = () => {
@@ -13,7 +17,6 @@ const CompletePage = () => {
   };
 
   const location = useLocation();
-  console.log(location.state);
   const { orderSheetStickersRes, orderAmountDetailRes } = location.state as {
     orderSheetStickersRes: orderSheetStickersResProps[];
     orderAmountDetailRes: orderAmountDetailResProps;

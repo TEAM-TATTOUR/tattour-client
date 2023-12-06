@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IcCancelDark, IcMinus, IcMinusOneunder, IcPlus } from '../../assets/icon';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import DeleteCartModal from '../../common/Modal/DeleteCartModal/DeleteCartModal';
 import { debounce } from 'lodash';
 import api from '../../libs/api';
@@ -27,13 +27,13 @@ const CartItem = ({
   const [modalOn, setModalOn] = useState(false);
   const navigate = useNavigate();
 
-  const fetchData = async () => {
+  const fetchData = async (newQuantity: number) => {
     await api
       .patch(`/cart`, {
         cartCountReqs: [
           {
             cartId: id,
-            count: quantity + 1,
+            count: newQuantity,
           },
         ],
       })
@@ -43,27 +43,31 @@ const CartItem = ({
       });
   };
 
-  const [debouncedFetchData, setDebouncedFetchData] = useState(() => debounce(fetchData, 300));
+  // useCallback을 사용하여 debouncedFetchData 함수 생성
+  const debouncedFetchData = useCallback(
+    debounce((newQuantity) => fetchData(newQuantity), 300),
+    [],
+  );
 
   useEffect(() => {
-    // quantity가 변경될 때마다 debouncedFetchData를 새로 설정
-    setDebouncedFetchData(() => debounce(fetchData, 300));
     return () => {
-      debouncedFetchData.cancel(); // 컴포넌트가 언마운트 될 때 debounce를 취소합니다
+      debouncedFetchData.cancel(); // 컴포넌트가 언마운트 될 때 debounce를 취소
     };
-  }, [quantity]); // 의존성 배열에 quantity 추가
+  }, [debouncedFetchData]);
 
   const handleClickPlusButton = (price: number) => {
+    const newQuantity = quantity + 1;
     handleClickQuantityButton(price);
-    setQuantity((prev) => prev + 1);
-    debouncedFetchData();
+    setQuantity(newQuantity);
+    debouncedFetchData(newQuantity);
   };
 
   const handleClickMinusButton = (price: number) => {
     if (quantity > 1) {
+      const newQuantity = quantity - 1;
       handleClickQuantityButton(-price);
-      setQuantity((prev) => prev - 1);
-      debouncedFetchData();
+      setQuantity(newQuantity);
+      debouncedFetchData(newQuantity);
     }
   };
 
