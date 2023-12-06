@@ -44,7 +44,6 @@ const useGetOrdersheet = ({ stickerId, count }: OrderSheetRequest) => {
     await api
       .get(`/order/ordersheet?stickerId=${stickerId}&count=${count}`)
       .then((res) => {
-        console.log(res.data.data);
         const data = res.data;
         setResponse(data.data);
       })
