@@ -41,7 +41,7 @@ const useGetSticker = (id: number) => {
       })
       .catch((err) => {
         setError(err);
-        navigate('/complete');
+        navigate('/error');
       })
       .finally(() => {
         setLoading(false);

@@ -56,7 +56,7 @@ const DetailFooter = ({
       .then(() => console.log('카트에 추가 성공'))
       .catch((err) => {
         console.log(err);
-        // 에러뷰로 navigate
+        navigate('/error');
       });
   };
 
@@ -82,7 +82,7 @@ const DetailFooter = ({
         console.log('좋아요 삭제');
       })
       .catch((err) => {
-        console.log(err);
+        navigate('/error');
       });
   };
 
