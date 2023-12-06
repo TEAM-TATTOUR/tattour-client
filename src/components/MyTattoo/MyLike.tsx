@@ -9,11 +9,11 @@ const MyLike = () => {
     <CustomScrollContainer title={'LIKE'}>
       {!error &&
         !loading &&
-        response.map(({ id, mainImageUrl, name, price, discountPrice, discountRate }) => {
+        response.map(({ stickerId, mainImageUrl, name, price, discountPrice, discountRate }) => {
           return (
             <SmallTattooCard
-              key={id}
-              id={id}
+              key={stickerId}
+              stickerId={stickerId}
               img={mainImageUrl}
               title={name}
               price={discountPrice}

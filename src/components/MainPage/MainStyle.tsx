@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import useGetStyleCard from '../../libs/hooks/useGetStyleCard';
 import { useNavigate } from 'react-router-dom';
+import MainSkeleton from '../../common/Skeleton/MainSkeleton';
 
 const MainStyle = () => {
   const { response, error, loading } = useGetStyleCard();
@@ -23,17 +24,24 @@ const MainStyle = () => {
         <St.MainStyleTitle>STYLE</St.MainStyleTitle>
       </St.MainStyleHeader>
       <St.MainStyleWrapper>
-        <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
-          {!loading &&
-            !error &&
-            response.map(({ id, name, imageUrl }) => {
-              return (
-                <St.MainStyleItem key={id} onClick={handleClickCard(name)}>
-                  <St.MainStyleImage src={imageUrl} />
-                </St.MainStyleItem>
-              );
-            })}
-        </ScrollContainer>
+        {loading ? (
+          <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
+            <MainSkeleton />
+            <MainSkeleton />
+            <MainSkeleton />
+          </ScrollContainer>
+        ) : (
+          <ScrollContainer className='scroll-container' vertical={false} hideScrollbars={true}>
+            {!error &&
+              response.map(({ id, name, imageUrl }) => {
+                return (
+                  <St.MainStyleItem key={id} onClick={handleClickCard(name)}>
+                    <St.MainStyleImage src={imageUrl} />
+                  </St.MainStyleItem>
+                );
+              })}
+          </ScrollContainer>
+        )}
       </St.MainStyleWrapper>
     </St.MainStyleSection>
   );
@@ -59,6 +67,7 @@ const St = {
   MainStyleWrapper: styled.div`
     margin-top: 2.2rem;
     margin-right: 1.2rem;
+    width: 100%;
 
     .scroll-container {
       display: flex;

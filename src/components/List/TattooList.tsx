@@ -7,6 +7,7 @@ import {
 import { useState, useEffect } from 'react';
 import useGetAllList from '../../libs/hooks/list/useGetAllList';
 import { useNavigate } from 'react-router-dom';
+import Skeleton from '../../common/Skeleton/Skeleton';
 
 interface TattooListProps {
   setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
@@ -59,29 +60,37 @@ const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) 
       <St.CountText>
         전체 <span>{response.length}</span>개
       </St.CountText>
-      <St.CardContainer>
-        {!loading &&
-          !error &&
-          response.map(({ id, name, imageUrl, price, discountRate, discountPrice, isCustom }) => {
-            return (
-              <St.Card key={id} onClick={() => handleClickCard(id)}>
-                <St.CardImg>
-                  {isCustom && <LabelCustomSmall />}
-                  <img src={imageUrl} />
-                </St.CardImg>
-                <h2>{name}</h2>
-                <div>
-                  <St.CardDiscount>{discountRate}%</St.CardDiscount>
-                  <St.CardPrice>
-                    {discountPrice && discountPrice.toLocaleString()}
-                    <span>원</span>
-                  </St.CardPrice>
-                </div>
-                <p>{price.toLocaleString()}원</p>
-              </St.Card>
-            );
-          })}
-      </St.CardContainer>
+      {loading ? (
+        <St.CardContainer>
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+        </St.CardContainer>
+      ) : (
+        <St.CardContainer>
+          {!error &&
+            response.map(({ id, name, imageUrl, price, discountRate, discountPrice, isCustom }) => {
+              return (
+                <St.Card key={id} onClick={() => handleClickCard(id)}>
+                  <St.CardImg>
+                    {isCustom && <LabelCustomSmall />}
+                    <img src={imageUrl} />
+                  </St.CardImg>
+                  <h2>{name}</h2>
+                  <div>
+                    <St.CardDiscount>{discountRate}%</St.CardDiscount>
+                    <St.CardPrice>
+                      {discountPrice && discountPrice.toLocaleString()}
+                      <span>원</span>
+                    </St.CardPrice>
+                  </div>
+                  <p>{price.toLocaleString()}원</p>
+                </St.Card>
+              );
+            })}
+        </St.CardContainer>
+      )}
     </St.Wrapper>
   );
 };

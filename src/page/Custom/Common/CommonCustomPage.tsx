@@ -15,7 +15,6 @@ const CommonCustomPage = () => {
   const [customId, setCustomId] = useState<number>(
     state && state.customId !== undefined ? state.customId : 0,
   );
-  console.log('customId', customId);
 
   // step 1: SizePage - 선택한 타투 스티거 사이즈 state
   const [size, setSize] = useState('');

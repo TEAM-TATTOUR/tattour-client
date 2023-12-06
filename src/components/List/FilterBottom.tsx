@@ -196,7 +196,7 @@ const St = {
     }
   `,
   Footer: styled.footer`
-    position: sticky;
+    position: fixed;
     bottom: 0;
 
     display: flex;
@@ -204,7 +204,6 @@ const St = {
     align-items: center;
     width: 100%;
     height: 7rem;
-    margin-top: 4rem;
 
     background-color: ${({ theme }) => theme.colors.gray9};
   `,
@@ -223,6 +222,7 @@ const CustomSheet = styled(Sheet)`
   }
   .react-modal-sheet-container {
     border-radius: 1rem !important;
+    padding-bottom: 11rem;
   }
   .react-modal-sheet-header {
     height: 1.6rem !important;
