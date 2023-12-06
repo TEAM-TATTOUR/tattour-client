@@ -22,6 +22,7 @@ const St = {
     position: fixed;
     bottom: 0;
     width: 100%;
+    max-width: 43rem;
     height: 7rem;
   `,
 

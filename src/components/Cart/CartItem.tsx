@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { IcCancelDark, IcMinus, IcMinusOneunder, IcPlus } from '../../assets/icon';
 import { useState } from 'react';
+import DeleteCartModal from '../../common/Modal/DeleteCartModal/DeleteCartModal';
+
+const CartItem = ({ id, name, price, originalPrice }) => {
+  const [count, setCount] = useState(1);
+  const [modalOn, setModalOn] = useState(false);
 
 const CartItem = ({
   id,
@@ -46,7 +51,8 @@ const CartItem = ({
         </St.TitleSection>
       </St.ItemInformation>
       <St.ButtonSection>
-        <IcCancelDark />
+        <IcCancelDark onClick={() => setModalOn(true)} />
+        {modalOn && <DeleteCartModal setModalOn={setModalOn} />}
         <St.Stepper>
           {quantity === 1 ? (
             <IcMinusOneunder />

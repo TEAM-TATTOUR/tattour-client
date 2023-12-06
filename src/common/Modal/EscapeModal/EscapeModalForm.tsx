@@ -26,10 +26,21 @@ const EscapeModalForm = ({
 }: EscapeModalFormProps) => {
   const navigate = useNavigate();
 
+  const handleClickContinueBtn = () => {
+    onClose();
+    switch (pageName) {
+      case 'CartPage':
+        // 아이템 삭제 로직 추가
+        break;
+
+      default:
+        break;
+    }
+  };
+
   const handleClickStopBtn = () => {
     onClose();
     switch (pageName) {
-      // 페이지 이름과 라우팅 주소는 나중에 보고 수정
       case 'LoginPage':
         navigate('/');
         removeAccessToken();
@@ -41,6 +52,10 @@ const EscapeModalForm = ({
 
       case 'CustomSizePage':
         navigate('/onboarding');
+        break;
+
+      case 'CartPage':
+        navigate('/cart');
         break;
 
       default:
@@ -60,7 +75,7 @@ const EscapeModalForm = ({
         </St.ModalTitleWrapper>
 
         <St.BtnWrapper>
-          <St.ContinueBtn onClick={onClose}>{continueBtn}</St.ContinueBtn>
+          <St.ContinueBtn onClick={handleClickContinueBtn}>{continueBtn}</St.ContinueBtn>
           <St.StopBtn onClick={handleClickStopBtn}>{stopBtn}</St.StopBtn>
         </St.BtnWrapper>
       </St.ModalContent>
