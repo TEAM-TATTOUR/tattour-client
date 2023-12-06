@@ -4,8 +4,8 @@ import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export interface OrderSheetRequest {
-  stickerId: number;
-  count: number;
+  stickerId?: number;
+  count?: number;
 }
 
 export interface orderSheetStickersResProps {
@@ -40,9 +40,14 @@ const useGetOrdersheet = ({ stickerId, count }: OrderSheetRequest) => {
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
 
+  const url =
+    stickerId && count
+      ? `/order/ordersheet?stickerId=${stickerId}&count=${count}`
+      : '/order/ordersheet';
+
   const fetchData = async () => {
     await api
-      .get(`/order/ordersheet?stickerId=${stickerId}&count=${count}`)
+      .get(url)
       .then((res) => {
         const data = res.data;
         setResponse(data.data);

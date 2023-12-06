@@ -9,6 +9,7 @@ interface CartListProps {
 
 export interface CartItemProps {
     stickerId: number;
+    cartId: number;
     mainImageUrl: string;
     name: string;
     price: number;
@@ -34,7 +35,7 @@ const useGetCartList = () => {
     const [loading, setLoading] = useState(true);
 
     const fetchData = async () => {
-        await api.get('/cart/items')
+        await api.get('/cart')
             .then(res => {
                 const data: CartListResponse = res.data;
                 console.log(data);
