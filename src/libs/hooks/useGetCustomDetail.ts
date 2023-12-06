@@ -42,7 +42,6 @@ const useGetCustomDetail = (id: string) => {
       .get(`/user/custom/${id}`)
       .then((res) => {
         const data: CustomDetailResponse = res.data;
-        console.log('data', data);
         setResponse(data.data);
       })
       .catch((err) => {
