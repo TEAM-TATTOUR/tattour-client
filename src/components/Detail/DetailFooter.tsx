@@ -48,7 +48,7 @@ const DetailFooter = ({
 
   const postCart = async () => {
     await api
-      .post('/cart/items', {
+      .post('/cart', {
         stickerId: id,
         count: count,
       })
