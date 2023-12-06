@@ -12,6 +12,7 @@ import RefundBottom from '../../components/Order/RefundBottom';
 import BackBtn from '../../common/Header/BackBtn';
 import { useLocation } from 'react-router-dom';
 import useGetOrdersheet from '../../libs/hooks/order/useGetOrdersheet';
+import PayMethodInfo from '../../components/Order/PayMethodInfo';
 
 interface dataProps {
   address: string;
@@ -40,7 +41,7 @@ const OrderPage = () => {
     stickerId: state.stickerId,
     productCount: state.count,
     shippingFee: state.shippingFee,
-    totalAmount: response?.orderAmountInfo.totalAmount,
+    totalAmount: response?.orderAmountDetailRes.totalAmount,
     recipientName: input,
     contact: phone,
     mailingAddress: address,
@@ -50,9 +51,9 @@ const OrderPage = () => {
 
   useEffect(() => {
     if (!response) return;
-    setInput(response.userProfileInfo.name);
+    setInput(response.userProfileRes.name);
     setPhone(
-      response.userProfileInfo.phoneNumber
+      response.userProfileRes.phoneNumber
         .replace(/[^0-9]/g, '')
         .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
         .replace(/(-{1,2})$/g, ''),
@@ -90,7 +91,7 @@ const OrderPage = () => {
       footer={
         <OrderFooter
           isComplete={isComplete}
-          price={response && response.orderAmountInfo.totalAmount}
+          price={response && response.orderAmountDetailRes.totalAmount}
           postData={postData}
           response={response}
         />
@@ -98,7 +99,9 @@ const OrderPage = () => {
     >
       {!error && !loading && response && (
         <>
-          <ProductInfo readOrderSheetStickerInfo={response.readOrderSheetStickerInfo} />
+          {response.orderSheetStickersRes.map((_, idx) => (
+            <ProductInfo orderSheetSticker={response.orderSheetStickersRes[idx]} />
+          ))}
           <St.Line />
           <DeliveryInfo
             handleModal={handleModal}
@@ -113,10 +116,9 @@ const OrderPage = () => {
             setDetailAddress={setDetailAddress}
           />
           <St.Line />
-          <PaymentInfo
-            orderAmountInfo={response.orderAmountInfo}
-            userPointAfterOrderInfo={response.userPointAfterOrderInfo}
-          />
+          <PayMethodInfo />
+          <St.Line />
+          <PaymentInfo orderAmountDetailRes={response.orderAmountDetailRes} />
           <St.Line />
           <RefundInfo setSheetOpen={setSheetOpen} setAgree={setAgree} />
           {isPostOpen && (
