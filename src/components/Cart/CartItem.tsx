@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import { IcCancelDark, IcMinus, IcMinusOneunder, IcPlus } from '../../assets/icon';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DeleteCartModal from '../../common/Modal/DeleteCartModal/DeleteCartModal';
-
-const CartItem = ({ id, name, price, originalPrice }) => {
-  const [count, setCount] = useState(1);
-  const [modalOn, setModalOn] = useState(false);
+import { debounce } from 'lodash';
+import api from '../../libs/api';
+import { useNavigate } from 'react-router-dom';
 
 const CartItem = ({
   id,
@@ -25,15 +24,47 @@ const CartItem = ({
   handleClickQuantityButton: (price: number) => void;
 }) => {
   const [quantity, setQuantity] = useState(count);
+  const [modalOn, setModalOn] = useState(false);
+  const navigate = useNavigate();
+
+  const fetchData = async () => {
+    await api
+      .patch(`/cart`, {
+        cartCountReqs: [
+          {
+            cartId: id,
+            count: quantity + 1,
+          },
+        ],
+      })
+      .then()
+      .catch((err) => {
+        navigate('/error');
+      });
+  };
+
+  const [debouncedFetchData, setDebouncedFetchData] = useState(() => debounce(fetchData, 300));
+
+  useEffect(() => {
+    // quantity가 변경될 때마다 debouncedFetchData를 새로 설정
+    setDebouncedFetchData(() => debounce(fetchData, 300));
+    return () => {
+      debouncedFetchData.cancel(); // 컴포넌트가 언마운트 될 때 debounce를 취소합니다
+    };
+  }, [quantity]); // 의존성 배열에 quantity 추가
 
   const handleClickPlusButton = (price: number) => {
     handleClickQuantityButton(price);
     setQuantity((prev) => prev + 1);
+    debouncedFetchData();
   };
 
   const handleClickMinusButton = (price: number) => {
-    handleClickQuantityButton(-price);
-    setQuantity((prev) => prev - 1);
+    if (quantity > 1) {
+      handleClickQuantityButton(-price);
+      setQuantity((prev) => prev - 1);
+      debouncedFetchData();
+    }
   };
 
   return (
@@ -52,7 +83,7 @@ const CartItem = ({
       </St.ItemInformation>
       <St.ButtonSection>
         <IcCancelDark onClick={() => setModalOn(true)} />
-        {modalOn && <DeleteCartModal setModalOn={setModalOn} />}
+        {modalOn && <DeleteCartModal setModalOn={setModalOn} id={id} />}
         <St.Stepper>
           {quantity === 1 ? (
             <IcMinusOneunder />
