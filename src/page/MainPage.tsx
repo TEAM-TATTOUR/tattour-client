@@ -13,7 +13,6 @@ import SideMenu from '../common/SideMenu';
 import HotCustom from '../common/HotCustom';
 import Toast from '../common/ToastMessage/Toast';
 import { useLocation } from 'react-router';
-import WelcomeModal from '../common/Modal/WelcomeModal/WelcomeModal';
 import ChargePointCompleteModal from '../common/Modal/ChargePointModal/ChargePointCompleteModal';
 import MainArticle from '../components/MainPage/MainArticle';
 
@@ -26,9 +25,6 @@ const MainPage = () => {
 
   const location = useLocation();
 
-  const [isWelcomeModalOpen, setIsWelcomeModalOpen] = useState(
-    location.state?.isWellcomeModalOpen || false,
-  );
   const [isPointModalOpen, setIsPointModalOpen] = useState(
     location.state?.isPointModalOpen || false,
   );
@@ -76,7 +72,6 @@ const MainPage = () => {
       renderHeader={reanderMainPageHeader}
       footer={<MainFooter isFooterVisible={isFooterVisible} />}
     >
-      {isWelcomeModalOpen && <WelcomeModal setModalOn={setIsWelcomeModalOpen} />}
       <MainBanner />
       <HotCustom isList={false} />
       <MainEventBanner setToast={setToast} />
