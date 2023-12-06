@@ -14,7 +14,7 @@ const CartItemSection = ({
       {items.map((item) => (
         <CartItem
           key={item.stickerId}
-          id={item.stickerId}
+          id={item.id}
           name={item.name}
           price={item.discountPrice}
           originalPrice={item.price}

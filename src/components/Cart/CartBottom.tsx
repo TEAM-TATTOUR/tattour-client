@@ -8,7 +8,7 @@ const CartBottom = ({ orderAmountInfo }: { orderAmountInfo: OrderAmountDetailPro
       <St.LightBorder />
       <St.PriceContainer>
         <St.Title>결제 정보</St.Title>
-        {orderAmountInfo && <PaymentMini orderAmountInfo={orderAmountInfo} />}
+        {orderAmountInfo && <PaymentMini orderAmountDetailRes={orderAmountInfo} />}
       </St.PriceContainer>
     </St.CartBottom>
   );
