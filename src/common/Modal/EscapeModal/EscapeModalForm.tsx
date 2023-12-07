@@ -5,6 +5,7 @@ import { removeAccessToken } from '../../../libs/api';
 
 interface EscapeModalFormProps {
   redirectURL?: string;
+  setIsActiveNext?: React.Dispatch<React.SetStateAction<boolean>>;
   onClose: () => void;
   pageName: string;
   title: string;
@@ -16,6 +17,7 @@ interface EscapeModalFormProps {
 
 const EscapeModalForm = ({
   redirectURL,
+  setIsActiveNext,
   onClose,
   pageName,
   title,
@@ -31,6 +33,10 @@ const EscapeModalForm = ({
     switch (pageName) {
       case 'CartPage':
         // 아이템 삭제 로직 추가
+        break;
+
+      case 'OrderPage':
+        navigate('/complete');
         break;
 
       default:
@@ -54,12 +60,11 @@ const EscapeModalForm = ({
         navigate('/onboarding');
         break;
 
-      case 'CartPage':
-        navigate('/cart');
+      case 'OrderPage':
+        setIsActiveNext && setIsActiveNext(false);
         break;
 
       default:
-        navigate('/');
         break;
     }
   };
