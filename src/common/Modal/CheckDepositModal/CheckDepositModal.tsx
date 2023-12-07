@@ -12,7 +12,7 @@ const CheckDepositModal = ({ setModalOn, setIsActiveNext, state }: CheckDepositM
     <ModalPortal>
       <EscapeModalForm
         onClose={() => setModalOn(false)}
-        pageName={'OrderPage'}
+        pageName={'DepositPage'}
         title={'입금을 완료하셨나요?'}
         subTitle={'입금을 하지 않으면 주문이 반려될 수 있어요'}
         subTitle2={'해당 계좌로 입금을 진행해주세요'}

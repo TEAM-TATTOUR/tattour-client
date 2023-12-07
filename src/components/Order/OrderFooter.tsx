@@ -40,7 +40,7 @@ const OrderFooter = ({
         contact: postData.contact.replace(/-/g, ''),
       })
       .then(() => {
-        navigate('/custom-direct-deposit', {
+        navigate('/order-deposit', {
           state: response,
         });
       })
