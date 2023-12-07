@@ -6,7 +6,7 @@ import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSi
 import PageLayout from '../../../PageLayout';
 import CustomDirectDeposit from './CustomDirectDeposit';
 import DirectDepositFooter from '../../../DirectDeposit/DirectDepositFooter';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import CheckDepositModal from '../../../../common/Modal/CheckDepositModal/CheckDepositModal';
 
 const CustomDirectDepositLayout = () => {
@@ -14,7 +14,7 @@ const CustomDirectDepositLayout = () => {
   const [depositModalOn, setDepositModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
-  const navigate = useNavigate();
+  const location = useLocation();
 
   const renderCustomDirectDepositPageHeader = () => {
     return (
@@ -46,7 +46,7 @@ const CustomDirectDepositLayout = () => {
       }
     >
       {depositModalOn && (
-        <CheckDepositModal setModalOn={setDepositModalOn} setIsActiveNext={setIsActiveNext} />
+        <CheckDepositModal setModalOn={setDepositModalOn} setIsActiveNext={setIsActiveNext} state={location}/>
       )}
       <CustomDirectDeposit setIsActiveNext={setIsActiveNext} />
     </PageLayout>

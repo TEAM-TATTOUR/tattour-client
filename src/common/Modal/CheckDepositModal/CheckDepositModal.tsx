@@ -4,9 +4,10 @@ import EscapeModalForm from '../EscapeModal/EscapeModalForm';
 interface CheckDepositModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  state: object;
 }
 
-const CheckDepositModal = ({ setModalOn, setIsActiveNext }: CheckDepositModalProps) => {
+const CheckDepositModal = ({ setModalOn, setIsActiveNext, state }: CheckDepositModalProps) => {
   return (
     <ModalPortal>
       <EscapeModalForm
@@ -18,6 +19,7 @@ const CheckDepositModal = ({ setModalOn, setIsActiveNext }: CheckDepositModalPro
         continueBtn={'입금했어요'}
         stopBtn={'돌아가기'}
         setIsActiveNext={setIsActiveNext}
+        state={state}
       />
     </ModalPortal>
   );
