@@ -7,9 +7,11 @@ import PageLayout from '../../../PageLayout';
 import CustomDirectDeposit from './CustomDirectDeposit';
 import DirectDepositFooter from '../../../DirectDeposit/DirectDepositFooter';
 import { useNavigate } from 'react-router-dom';
+import CheckDepositModal from '../../../../common/Modal/CheckDepositModal/CheckDepositModal';
 
 const CustomDirectDepositLayout = () => {
   const [modalOn, setModalOn] = useState(false);
+  const [depositModalOn, setDepositModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
   const navigate = useNavigate();
@@ -32,8 +34,7 @@ const CustomDirectDepositLayout = () => {
 
   const handleClickFooter = () => {
     {
-      //임시로 navigate로 넣었는데, 이 부분 필요에 따라 수정해주세요
-      isActiveNext && navigate('/');
+      isActiveNext && setDepositModalOn(true);
     }
   };
 
@@ -44,6 +45,9 @@ const CustomDirectDepositLayout = () => {
         <DirectDepositFooter isActiveNext={isActiveNext} handleClickFooter={handleClickFooter} />
       }
     >
+      {depositModalOn && (
+        <CheckDepositModal setModalOn={setDepositModalOn} setIsActiveNext={setIsActiveNext} />
+      )}
       <CustomDirectDeposit setIsActiveNext={setIsActiveNext} />
     </PageLayout>
   );
