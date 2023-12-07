@@ -54,7 +54,6 @@ const DetailPage = () => {
           id={Number(id)}
           setSheetOpen={setSheetOpen}
           isSecond={false}
-          text='구매하기'
           like={like}
           setLike={setLike}
           count={1}
