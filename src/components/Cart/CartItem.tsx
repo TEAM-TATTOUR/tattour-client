@@ -38,7 +38,7 @@ const CartItem = ({
         ],
       })
       .then()
-      .catch((err) => {
+      .catch(() => {
         navigate('/error');
       });
   };

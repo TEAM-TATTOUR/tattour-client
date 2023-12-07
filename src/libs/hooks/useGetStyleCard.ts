@@ -19,7 +19,7 @@ interface MainStyleResponse {
 }
 
 const useGetStyleCard = () => {
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
   const [response, setResponse] = useState<MainStyleItemProps[]>([]);
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
