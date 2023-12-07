@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Header from '../../../Header';
-import { IcBackDark } from '../../../../assets/icon';
 import CancelBtn from '../../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import PageLayout from '../../../PageLayout';
@@ -8,6 +7,7 @@ import CustomDirectDeposit from './CustomDirectDeposit';
 import DirectDepositFooter from '../../../DirectDeposit/DirectDepositFooter';
 import { useLocation } from 'react-router-dom';
 import CheckDepositModal from '../../../../common/Modal/CheckDepositModal/CheckDepositModal';
+import BackBtn from '../../../../common/Header/BackBtn';
 
 const CustomDirectDepositLayout = () => {
   const [modalOn, setModalOn] = useState(false);
@@ -19,7 +19,7 @@ const CustomDirectDepositLayout = () => {
   const renderCustomDirectDepositPageHeader = () => {
     return (
       <Header
-        leftSection={<IcBackDark />}
+        leftSection={<BackBtn />}
         title='커스텀 타투'
         rightSection={
           <CancelBtn
