@@ -26,7 +26,6 @@ const useGetUserProfile = () => {
       .get('/user/profile')
       .then((res) => {
         const data: UserProfileResponse = res.data;
-        console.log(data.data);
         setResponse(data.data);
       })
       .catch((err) => {

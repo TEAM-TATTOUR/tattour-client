@@ -12,6 +12,7 @@ interface EscapeModalFormProps {
   subTitle2: string;
   continueBtn: string;
   stopBtn: string;
+  continueBtnFunc?: () => void;
 }
 
 const EscapeModalForm = ({
@@ -23,6 +24,7 @@ const EscapeModalForm = ({
   subTitle2,
   continueBtn,
   stopBtn,
+  continueBtnFunc,
 }: EscapeModalFormProps) => {
   const navigate = useNavigate();
 
@@ -30,7 +32,9 @@ const EscapeModalForm = ({
     onClose();
     switch (pageName) {
       case 'CartPage':
-        // 아이템 삭제 로직 추가
+        if (continueBtnFunc) {
+          continueBtnFunc();
+        }
         break;
 
       default:

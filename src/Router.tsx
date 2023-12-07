@@ -77,7 +77,6 @@ const Router = () => {
         <Route path='/expired' element={<ExpirationPage />} />
         <Route path='/article/:id' element={<MagazinePage />} />
         <Route path='/cart' element={<CartPage />} />
-        <Route path='/custom-direct-deposit' element={<CustomDirectDepositLayout />} />
       </Routes>
     </BrowserRouter>
   );

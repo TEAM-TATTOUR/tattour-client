@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import PaymentMini from '../Order/PaymentMini';
+import { OrderAmountDetailProps } from '../../libs/hooks/useGetCartList';
 
-const CartBottom = ({ orderAmountInfo }: { orderAmountInfo: OrderAmountInfo }) => {
+const CartBottom = ({ orderAmountInfo }: { orderAmountInfo: OrderAmountDetailProps }) => {
   return (
     <St.CartBottom>
       <St.LightBorder />
       <St.PriceContainer>
         <St.Title>결제 정보</St.Title>
-        <PaymentMini orderAmountInfo={orderAmountInfo} />
+        {orderAmountInfo && <PaymentMini orderAmountDetailRes={orderAmountInfo} />}
       </St.PriceContainer>
     </St.CartBottom>
   );

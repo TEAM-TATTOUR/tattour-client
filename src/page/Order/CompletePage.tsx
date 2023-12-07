@@ -6,6 +6,10 @@ import ProductInfo from '../../components/Order/ProductInfo';
 import PaymentMini from '../../components/Order/PaymentMini';
 import CompleteFooter from '../../components/Complete/CompleteFooter';
 import { useLocation } from 'react-router-dom';
+import {
+  orderSheetStickersResProps,
+  orderAmountDetailResProps,
+} from '../../libs/hooks/order/useGetOrdersheet';
 
 const CompletePage = () => {
   const renderCompletePageHeader = () => {
@@ -13,7 +17,10 @@ const CompletePage = () => {
   };
 
   const location = useLocation();
-  const { readOrderSheetStickerInfo, orderAmountInfo } = location.state;
+  const { orderSheetStickersRes, orderAmountDetailRes } = location.state as {
+    orderSheetStickersRes: orderSheetStickersResProps[];
+    orderAmountDetailRes: orderAmountDetailResProps;
+  };
 
   return (
     <PageLayout renderHeader={renderCompletePageHeader} footer={<CompleteFooter />}>
@@ -24,10 +31,12 @@ const CompletePage = () => {
         />
         <St.Line />
         <St.Title>주문 정보</St.Title>
-        <ProductInfo readOrderSheetStickerInfo={readOrderSheetStickerInfo} />
+        {orderSheetStickersRes.map((item) => {
+          return <ProductInfo key={item.name} orderSheetSticker={item} />;
+        })}
         <St.LightLine />
         <St.PriceContainer>
-          <PaymentMini orderAmountInfo={orderAmountInfo} />
+          <PaymentMini orderAmountDetailRes={orderAmountDetailRes} />
         </St.PriceContainer>
       </St.Container>
     </PageLayout>
