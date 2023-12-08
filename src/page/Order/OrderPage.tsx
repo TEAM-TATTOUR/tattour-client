@@ -54,6 +54,7 @@ const OrderPage = () => {
     mailingAddress: address,
     baseAddress: firstAddress,
     detailAddress: detailAddress,
+    stickerId: state ? state.stickerId : 0,
   };
 
   useEffect(() => {
@@ -115,7 +116,7 @@ const OrderPage = () => {
       {!error && !loading && response && (
         <>
           {response.orderSheetStickersRes.map((_, idx) => (
-            <ProductInfo orderSheetSticker={response.orderSheetStickersRes[idx]} />
+            <ProductInfo orderSheetSticker={response.orderSheetStickersRes[idx]} key={idx}/>
           ))}
           <St.Line />
           <DeliveryInfo

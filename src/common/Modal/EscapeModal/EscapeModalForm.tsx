@@ -5,6 +5,10 @@ import { removeAccessToken } from '../../../libs/api';
 
 interface EscapeModalFormProps {
   redirectURL?: string;
+  setIsActiveNext?: React.Dispatch<React.SetStateAction<boolean>>;
+
+  state?: object;
+
   onClose: () => void;
   pageName: string;
   title: string;
@@ -17,6 +21,8 @@ interface EscapeModalFormProps {
 
 const EscapeModalForm = ({
   redirectURL,
+  setIsActiveNext,
+  state,
   onClose,
   pageName,
   title,
@@ -35,6 +41,10 @@ const EscapeModalForm = ({
         if (continueBtnFunc) {
           continueBtnFunc();
         }
+        break;
+
+      case 'DepositPage':
+        navigate('/complete', { state: state && state });
         break;
 
       default:
@@ -58,12 +68,11 @@ const EscapeModalForm = ({
         navigate('/onboarding');
         break;
 
-      case 'CartPage':
-        navigate('/cart');
+      case 'DepositPage':
+        setIsActiveNext && setIsActiveNext(false);
         break;
 
       default:
-        navigate('/');
         break;
     }
   };

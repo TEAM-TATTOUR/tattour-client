@@ -19,7 +19,7 @@ interface MainThemeResponse {
 }
 
 const useGetThemeCard = () => {
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
   const [response, setResponse] = useState<MainThemeItemProps[]>([]);
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);

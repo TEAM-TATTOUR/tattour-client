@@ -81,7 +81,7 @@ const DetailFooter = ({
         // 좋아요 삭제
         console.log('좋아요 삭제');
       })
-      .catch((err) => {
+      .catch(() => {
         navigate('/error');
       });
   };
