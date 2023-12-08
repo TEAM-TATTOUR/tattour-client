@@ -11,8 +11,6 @@ import { resCustomInfoType } from '../../../types/customInfoType';
 import CustomSizeLayout from '../../../components/Custom/Common/Size/CustomSizeLayout';
 import CustomDirectDepositLayout from '../../../components/Custom/Common/DirectDeposit/CustomDirectDepositLayout';
 
-// import CustomSizePage from '../Common/CustomSizePage';
-
 const HaveDesignCustomPage = () => {
   const location = useLocation();
 
@@ -74,9 +72,7 @@ const HaveDesignCustomPage = () => {
   // 앞부분 임시 통합한 곳에서 state 불러오기. 최종 통합 때 제거 예정
   const [size, setSize] = useState(location.state ? location.state.size : null);
   const customId = location.state ? location.state.customId : null;
-  // const haveDesign = location.state ? location.state.haveDesign : null;
   const haveDesign = true;
-  //통합하면 이 부분 넘겨받는 걸로 수정하기!
 
   //patch에 보낼 정보들 객체로 모으기
   const customInfo = {
@@ -93,11 +89,6 @@ const HaveDesignCustomPage = () => {
 
   // patch 통신 response = receipt 뷰에 넘겨줘야 하는 정보들
   const [receiptData, setReceiptData] = useState<resCustomInfoType>();
-
-  // //customSizePage 이후 시작하도록 일시적으로 추가한 코드.
-  // useEffect(() => {
-  //   setStep(1);
-  // }, []);
 
   switch (step) {
     case 0:

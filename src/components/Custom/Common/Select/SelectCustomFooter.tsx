@@ -1,6 +1,4 @@
 import { styled } from 'styled-components';
-// import ChargePointModal from '../../../../common/Modal/ChargePointModal/ChargePointModal';
-// import React, { useState } from 'react';
 
 interface SelectCustomFooterProps {
   isActiveNext: boolean;
@@ -9,17 +7,9 @@ interface SelectCustomFooterProps {
   setCustomId: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const SelectCustomFooter = ({
-  isActiveNext,
-  // haveDesign,
-  // setStep,
-  // setCustomId,
-}: SelectCustomFooterProps) => {
-  // const [modalOn, setModalOn] = useState(false);
-
+const SelectCustomFooter = ({ isActiveNext }: SelectCustomFooterProps) => {
   const handleClickFooter = () => {
     if (!isActiveNext) return;
-    // setModalOn(true);
   };
 
   return (
@@ -27,14 +17,6 @@ const SelectCustomFooter = ({
       <St.SelectCustomFooter $isActiveNext={isActiveNext} onClick={handleClickFooter}>
         <St.FooterText>다음</St.FooterText>
       </St.SelectCustomFooter>
-      {/* {modalOn && (
-        <ChargePointModal
-          setModalOn={setModalOn}
-          haveDesign={haveDesign}
-          setStep={setStep}
-          setCustomId={setCustomId}
-        />
-      )} */}
     </>
   );
 };
