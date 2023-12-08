@@ -5,8 +5,6 @@ import LoginPage from './page/Login/LoginPage';
 import DetailPage from './page/DetailPage';
 import MyTattoo from './page/MyTattoo';
 import MyTattooDetail from './page/MyTattooDetail';
-import ChargePage from './page/PointCharge/ChargePage';
-import TransferPage from './page/PointCharge/TransferPage';
 // import SelectCustomLayout from './components/Custom/Common/Select/SelectCustomLayout';
 import CompletePage from './page/Order/CompletePage';
 import OrderPage from './page/Order/OrderPage';
@@ -55,8 +53,6 @@ const Router = () => {
         <Route path='/search' element={<SearchPage />}>
           <Route path=':keyword' element={<SearchResultPage />} />
         </Route>
-        <Route path='/point-charge' element={<ChargePage />} />
-        <Route path='/point-transfer' element={<TransferPage />} />
         {/* <Route path='/select' element={<SelectCustomLayout />} /> */}
         {/* <Route path='/styling-color' element={<StylingColorLayout />} /> */}
         {/* <Route path='/select-keyword' element={<SelectKeywordLayout />} /> */}
