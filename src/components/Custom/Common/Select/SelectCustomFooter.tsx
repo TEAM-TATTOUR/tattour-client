@@ -1,4 +1,6 @@
 import { styled } from 'styled-components';
+import api from '../../../../libs/api';
+import { useNavigate } from 'react-router-dom';
 // import ChargePointModal from '../../../../common/Modal/ChargePointModal/ChargePointModal';
 // import React, { useState } from 'react';
 
@@ -11,31 +13,33 @@ interface SelectCustomFooterProps {
 
 const SelectCustomFooter = ({
   isActiveNext,
-  // haveDesign,
-  // setStep,
-  // setCustomId,
+  haveDesign,
+  setStep,
+  setCustomId,
 }: SelectCustomFooterProps) => {
-  // const [modalOn, setModalOn] = useState(false);
+  const navigate = useNavigate();
+
+  const postCustomApply = async () => {
+    try {
+      const { data } = await api.post('/custom/apply', {
+        haveDesign: haveDesign,
+      });
+      setCustomId(data.data.customId);
+    } catch (err) {
+      navigate('/error');
+    }
+  };
 
   const handleClickFooter = () => {
     if (!isActiveNext) return;
-    // setModalOn(true);
+    postCustomApply();
+    setStep((prev) => prev + 1);
   };
 
   return (
-    <>
-      <St.SelectCustomFooter $isActiveNext={isActiveNext} onClick={handleClickFooter}>
-        <St.FooterText>다음</St.FooterText>
-      </St.SelectCustomFooter>
-      {/* {modalOn && (
-        <ChargePointModal
-          setModalOn={setModalOn}
-          haveDesign={haveDesign}
-          setStep={setStep}
-          setCustomId={setCustomId}
-        />
-      )} */}
-    </>
+    <St.SelectCustomFooter $isActiveNext={isActiveNext} onClick={handleClickFooter}>
+      <St.FooterText>다음</St.FooterText>
+    </St.SelectCustomFooter>
   );
 };
 
