@@ -25,7 +25,6 @@ const usePostCustomApply = (haveDesign: boolean) => {
       const { data } = await api.post('/custom/apply', {
         haveDesign: haveDesign,
       });
-      console.log(data.data);
       setResponse(data.data);
     } catch (err) {
       if (isAxiosError(err)) {
