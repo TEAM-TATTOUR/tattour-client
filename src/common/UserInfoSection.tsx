@@ -1,19 +1,19 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+// import { useLocation, useNavigate } from 'react-router-dom';
 import useGetUserProfile from '../libs/hooks/useGetUserProfile';
 import { styled } from 'styled-components';
 
 const UserInfoSection = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const currURL = location.pathname;
+  // const navigate = useNavigate();
+  // const location = useLocation();
+  // const currURL = location.pathname;
 
-  const handleClickChargeBtn = () => {
-    navigate('/point-charge', {
-      state: {
-        redirectURL: currURL,
-      },
-    });
-  };
+  // const handleClickChargeBtn = () => {
+  //   navigate('/point-charge', {
+  //     state: {
+  //       redirectURL: currURL,
+  //     },
+  //   });
+  // };
 
   const { response, error, loading } = useGetUserProfile();
 

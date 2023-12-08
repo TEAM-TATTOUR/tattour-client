@@ -3,7 +3,7 @@ import { IcError } from '../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 
 const EmptyView = () => {
-  const navigete = useNavigate();
+  const navigate = useNavigate();
 
   const handleClickBackButton = () => {
     navigate('/list');

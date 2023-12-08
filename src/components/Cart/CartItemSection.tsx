@@ -1,61 +1,26 @@
+import { CartItemProps } from '../../libs/hooks/useGetCartList';
 import CartItem from './CartItem';
 import styled from 'styled-components';
 
-const CartItemSection = () => {
-  const dummyData = [
-    {
-      id: 1,
-      name: '우리집고양이츄르',
-      price: 2500,
-      originalPrice: 4000,
-    },
-    {
-      id: 1,
-      name: '우리집고양이츄르',
-      price: 2500,
-      originalPrice: 4000,
-    },
-    {
-      id: 1,
-      name: '우리집고양이츄르',
-      price: 2500,
-      originalPrice: 4000,
-    },
-    {
-      id: 1,
-      name: '우리집고양이츄르',
-      price: 2500,
-      originalPrice: 4000,
-    },
-    {
-      id: 1,
-      name: '우리집고양이츄르',
-      price: 2500,
-      originalPrice: 4000,
-    },
-    {
-      id: 1,
-      name: '우리집고양이츄르',
-      price: 2500,
-      originalPrice: 4000,
-    },
-    {
-      id: 1,
-      name: '우리집고양이츄르',
-      price: 2500,
-      originalPrice: 4000,
-    },
-  ];
-
+const CartItemSection = ({
+  items,
+  handleClickQuantityButton,
+}: {
+  items: CartItemProps[];
+  handleClickQuantityButton: (price: number) => void;
+}) => {
   return (
     <St.ItemSection>
-      {dummyData.map((item, idx) => (
+      {items.map((item) => (
         <CartItem
-          key={idx}
+          key={item.stickerId}
           id={item.id}
           name={item.name}
-          price={item.price}
-          originalPrice={item.originalPrice}
+          price={item.discountPrice}
+          originalPrice={item.price}
+          mainImageUrl={item.mainImageUrl}
+          count={item.count}
+          handleClickQuantityButton={handleClickQuantityButton}
         />
       ))}
     </St.ItemSection>
