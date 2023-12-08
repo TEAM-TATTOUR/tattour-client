@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import api from '../../../../libs/api';
 import { useNavigate } from 'react-router-dom';
+import usePostCustomApply from '../../../../libs/hooks/usePostCustomApply';
 // import ChargePointModal from '../../../../common/Modal/ChargePointModal/ChargePointModal';
 // import React, { useState } from 'react';
 
@@ -17,23 +18,15 @@ const SelectCustomFooter = ({
   setStep,
   setCustomId,
 }: SelectCustomFooterProps) => {
-  const navigate = useNavigate();
-
-  const postCustomApply = async () => {
-    try {
-      const { data } = await api.post('/custom/apply', {
-        haveDesign: haveDesign,
-      });
-      setCustomId(data.data.customId);
-    } catch (err) {
-      navigate('/error');
-    }
-  };
+  const { response } = usePostCustomApply(haveDesign);
 
   const handleClickFooter = () => {
     if (!isActiveNext) return;
-    postCustomApply();
-    setStep((prev) => prev + 1);
+
+    if (response) {
+      setCustomId(response.customId);
+      setStep((prev) => prev + 1);
+    }
   };
 
   return (
