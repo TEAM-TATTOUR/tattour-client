@@ -1,9 +1,5 @@
 import { styled } from 'styled-components';
-import api from '../../../../libs/api';
-import { useNavigate } from 'react-router-dom';
 import usePostCustomApply from '../../../../libs/hooks/usePostCustomApply';
-// import ChargePointModal from '../../../../common/Modal/ChargePointModal/ChargePointModal';
-// import React, { useState } from 'react';
 
 interface SelectCustomFooterProps {
   isActiveNext: boolean;
