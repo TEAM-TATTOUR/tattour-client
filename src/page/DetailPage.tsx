@@ -47,6 +47,7 @@ const DetailPage = () => {
     response && setLike(response.productLiked);
   }, [response]);
 
+  // test
   useEffect(() => {
     console.log(cartToast);
   }, [cartToast]);
@@ -99,6 +100,7 @@ const DetailPage = () => {
           setLike={setLike}
           discountPrice={response.discountPrice}
           shippingCost={response.shippingCost}
+          setCartToast={setCartToast}
         />
       )}
       {cartToast && <Toast setToast={setCartToast} text='장바구니에 상품이 담겼습니다' />}

@@ -55,8 +55,7 @@ const DetailFooter = ({
         count: count,
       })
       .then(() => {
-        console.log('카트에 잘 담김');
-        //setCartToast(true); 이부분 문제
+        setCartToast(true);
         setSheetOpen(false);
       })
       .catch((err) => {
@@ -82,7 +81,6 @@ const DetailFooter = ({
     await api
       .delete(`/user/productliked/sticker/${id}/delete`)
       .then(() => {
-        // setResponse(res.data.data);
         // 좋아요 삭제
         console.log('좋아요 삭제');
       })
