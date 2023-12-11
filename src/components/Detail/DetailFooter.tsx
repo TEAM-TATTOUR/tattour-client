@@ -25,6 +25,7 @@ const DetailFooter = ({
 }: DetailFooterProp) => {
   const navigate = useNavigate();
   const [toast, setToast] = useState(false);
+  const [cartToast, setCartToast] = useState(false);
 
   const handleClickButton = () => {
     if (like === null) {
@@ -53,7 +54,9 @@ const DetailFooter = ({
         count: count,
       })
       // 성공 시 navigate
-      .then(() => console.log('카트에 추가 성공'))
+      .then(() => {
+        console.log('카트에 추가 성공');
+      })
       .catch((err) => {
         console.log(err);
         navigate('/error');
