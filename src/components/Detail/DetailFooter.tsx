@@ -13,6 +13,7 @@ interface DetailFooterProp {
   setLike: React.Dispatch<React.SetStateAction<boolean | null>>;
   count: number;
   shippingFee: number;
+  setCartToast: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const DetailFooter = ({
   id,
@@ -22,10 +23,10 @@ const DetailFooter = ({
   setLike,
   count,
   shippingFee,
+  setCartToast,
 }: DetailFooterProp) => {
   const navigate = useNavigate();
   const [toast, setToast] = useState(false);
-  const [cartToast, setCartToast] = useState(false);
 
   const handleClickButton = () => {
     if (like === null) {
@@ -53,10 +54,9 @@ const DetailFooter = ({
         stickerId: id,
         count: count,
       })
-      // 성공 시 navigate
       .then(() => {
-        console.log('카트에 추가 성공');
-        setCartToast(true);
+        console.log('카트에 잘 담김');
+        //setCartToast(true); 이부분 문제
         setSheetOpen(false);
       })
       .catch((err) => {
@@ -129,7 +129,6 @@ const DetailFooter = ({
       <St.Line />
       <St.Like onClick={handleClickLike}>{like ? <IcHeartLight /> : <IcHeartDark />}</St.Like>
       {toast && <Toast setToast={setToast} text='로그인이 필요합니다.' />}
-      {cartToast && <Toast setToast={setCartToast} text='장바구니에 상품이 담겼습니다' />}
     </St.Footer>
   );
 };

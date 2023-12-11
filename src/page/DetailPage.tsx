@@ -11,14 +11,15 @@ import { useParams, useNavigate } from 'react-router-dom';
 import useGetSticker from '../libs/hooks/detail/useGetSticker';
 import useGetRelated from '../libs/hooks/detail/useGetRelated';
 import { IcBackDark } from '../assets/icon';
+import Toast from '../common/ToastMessage/Toast';
 
 const DetailPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
   const [isSheetOpen, setSheetOpen] = useState(false);
-
   const [like, setLike] = useState<boolean | null>(false);
+  const [cartToast, setCartToast] = useState<boolean>(false);
 
   const renderDetailPageHeader = () => {
     return (
@@ -46,6 +47,10 @@ const DetailPage = () => {
     response && setLike(response.productLiked);
   }, [response]);
 
+  useEffect(() => {
+    console.log(cartToast);
+  }, [cartToast]);
+
   return (
     <PageLayout
       renderHeader={renderDetailPageHeader}
@@ -58,6 +63,7 @@ const DetailPage = () => {
           setLike={setLike}
           count={1}
           shippingFee={3000}
+          setCartToast={setCartToast}
         />
       }
     >
@@ -95,6 +101,7 @@ const DetailPage = () => {
           shippingCost={response.shippingCost}
         />
       )}
+      {cartToast && <Toast setToast={setCartToast} text='장바구니에 상품이 담겼습니다' />}
     </PageLayout>
   );
 };
