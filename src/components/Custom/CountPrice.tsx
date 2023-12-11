@@ -55,7 +55,7 @@ const CountPrice = ({ isPublic, setCount, size, setTotalPrice }: CountPriceProps
         </St.DetailGroup>
         <St.Line />
         <St.TotalPriceWrapper>
-          <St.TotalPriceText>총 결제 금액</St.TotalPriceText>
+          <St.TotalPriceText>예상 결제 금액</St.TotalPriceText>
           <St.TotalPriceGroup>
             {isPublic ? (
               <>
