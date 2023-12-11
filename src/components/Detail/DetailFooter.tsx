@@ -57,6 +57,7 @@ const DetailFooter = ({
       .then(() => {
         console.log('카트에 추가 성공');
         setCartToast(true);
+        setSheetOpen(false);
       })
       .catch((err) => {
         console.log(err);
