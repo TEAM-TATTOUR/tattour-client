@@ -56,6 +56,7 @@ const DetailFooter = ({
       // 성공 시 navigate
       .then(() => {
         console.log('카트에 추가 성공');
+        setCartToast(true);
       })
       .catch((err) => {
         console.log(err);
@@ -127,6 +128,7 @@ const DetailFooter = ({
       <St.Line />
       <St.Like onClick={handleClickLike}>{like ? <IcHeartLight /> : <IcHeartDark />}</St.Like>
       {toast && <Toast setToast={setToast} text='로그인이 필요합니다.' />}
+      {cartToast && <Toast setToast={setCartToast} text='장바구니에 상품이 담겼습니다' />}
     </St.Footer>
   );
 };
