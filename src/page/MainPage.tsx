@@ -72,10 +72,9 @@ const MainPage = () => {
       renderHeader={reanderMainPageHeader}
       footer={<MainFooter isFooterVisible={isFooterVisible} />}
     >
-      {isWelcomeModalOpen && <WelcomeModal setModalOn={setIsWelcomeModalOpen} />}
-      {/* <MainBanner /> 임시 삭제*/}
+      <MainBanner />
       <HotCustom isList={false} />
-      <MainEventBanner setToast={setToast} />
+      {/* <MainEventBanner setToast={setToast} /> */}
       <MainTheme />
       <MainStyle />
       <MainArticle />
