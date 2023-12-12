@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import usePostCustomApply from '../../../../libs/hooks/usePostCustomApply';
 
 interface SelectCustomFooterProps {
   isActiveNext: boolean;
@@ -7,17 +8,27 @@ interface SelectCustomFooterProps {
   setCustomId: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const SelectCustomFooter = ({ isActiveNext }: SelectCustomFooterProps) => {
+const SelectCustomFooter = ({
+  isActiveNext,
+  haveDesign,
+  setStep,
+  setCustomId,
+}: SelectCustomFooterProps) => {
+  const { response } = usePostCustomApply(haveDesign);
+
   const handleClickFooter = () => {
     if (!isActiveNext) return;
+
+    if (response) {
+      setCustomId(response.customId);
+      setStep((prev) => prev + 1);
+    }
   };
 
   return (
-    <>
-      <St.SelectCustomFooter $isActiveNext={isActiveNext} onClick={handleClickFooter}>
-        <St.FooterText>다음</St.FooterText>
-      </St.SelectCustomFooter>
-    </>
+    <St.SelectCustomFooter $isActiveNext={isActiveNext} onClick={handleClickFooter}>
+      <St.FooterText>다음</St.FooterText>
+    </St.SelectCustomFooter>
   );
 };
 

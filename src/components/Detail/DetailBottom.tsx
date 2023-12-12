@@ -12,6 +12,7 @@ interface DetailBottomProps {
   setLike: React.Dispatch<React.SetStateAction<boolean | null>>;
   discountPrice: number;
   shippingCost: number;
+  setCartToast: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DetailBottom = ({
@@ -22,6 +23,7 @@ const DetailBottom = ({
   setLike,
   discountPrice,
   shippingCost,
+  setCartToast,
 }: DetailBottomProps) => {
   const [count, setCount] = useState(1);
 
@@ -77,6 +79,7 @@ const DetailBottom = ({
             setLike={setLike}
             count={count} // API연결 시 필요해서 전달
             shippingFee={3000} // 배송비도 여기에 추가하기
+            setCartToast={setCartToast}
           />
         </Sheet.Content>
       </Sheet.Container>

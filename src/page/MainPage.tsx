@@ -74,7 +74,7 @@ const MainPage = () => {
     >
       <MainBanner />
       <HotCustom isList={false} />
-      <MainEventBanner setToast={setToast} />
+      {/* <MainEventBanner setToast={setToast} /> */}
       <MainTheme />
       <MainStyle />
       <MainArticle />
