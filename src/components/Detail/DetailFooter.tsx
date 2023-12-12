@@ -13,6 +13,7 @@ interface DetailFooterProp {
   setLike: React.Dispatch<React.SetStateAction<boolean | null>>;
   count: number;
   shippingFee: number;
+  setCartToast: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const DetailFooter = ({
   id,
@@ -22,6 +23,7 @@ const DetailFooter = ({
   setLike,
   count,
   shippingFee,
+  setCartToast,
 }: DetailFooterProp) => {
   const navigate = useNavigate();
   const [toast, setToast] = useState(false);
@@ -52,8 +54,10 @@ const DetailFooter = ({
         stickerId: id,
         count: count,
       })
-      // 성공 시 navigate
-      .then(() => console.log('카트에 추가 성공'))
+      .then(() => {
+        setCartToast(true);
+        setSheetOpen(false);
+      })
       .catch((err) => {
         console.log(err);
         navigate('/error');
@@ -77,7 +81,6 @@ const DetailFooter = ({
     await api
       .delete(`/user/productliked/sticker/${id}/delete`)
       .then(() => {
-        // setResponse(res.data.data);
         // 좋아요 삭제
         console.log('좋아요 삭제');
       })
