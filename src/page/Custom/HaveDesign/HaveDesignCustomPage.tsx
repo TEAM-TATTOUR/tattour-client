@@ -68,6 +68,10 @@ const HaveDesignCustomPage = () => {
   const [count, setCount] = useState(1);
   const [isPublic, setIsPublic] = useState(false);
   const [price, setPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const handleTotalPriceChange = (newTotalPrice: number) => {
+    setTotalPrice(newTotalPrice);
+  };
 
   // 앞부분 임시 통합한 곳에서 state 불러오기. 최종 통합 때 제거 예정
   const [size, setSize] = useState(location.state ? location.state.size : null);
@@ -188,11 +192,14 @@ const HaveDesignCustomPage = () => {
           setIsPublic={setIsPublic}
           price={price}
           setPrice={setPrice}
+          totalPrice={totalPrice}
+          setTotalPrice={handleTotalPriceChange}
         />
       );
 
     case 7:
-      return <CustomDirectDepositLayout setStep={setStep} />;
+      console.log('location.state', location.state);
+      return <CustomDirectDepositLayout setStep={setStep} totalPrice={totalPrice} />;
 
     case 8:
       return <ReceiptLayout receiptData={receiptData} haveDesign={haveDesign} />;

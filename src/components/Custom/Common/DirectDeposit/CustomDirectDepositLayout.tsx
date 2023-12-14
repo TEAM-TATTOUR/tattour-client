@@ -11,15 +11,15 @@ import CustomCheckDepositModal from '../../../../common/Modal/CheckDepositModal/
 
 interface DepositLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  totalPrice: number;
 }
 
-const CustomDirectDepositLayout = ({ setStep }: DepositLayoutProps) => {
+const CustomDirectDepositLayout = ({ setStep, totalPrice }: DepositLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [depositModalOn, setDepositModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
   const location = useLocation();
-
   const renderCustomDirectDepositPageHeader = () => {
     return (
       <Header
@@ -57,7 +57,7 @@ const CustomDirectDepositLayout = ({ setStep }: DepositLayoutProps) => {
           setStep={setStep}
         />
       )}
-      <CustomDirectDeposit setIsActiveNext={setIsActiveNext} />
+      <CustomDirectDeposit setIsActiveNext={setIsActiveNext} totalPrice={totalPrice} />
     </PageLayout>
   );
 };
