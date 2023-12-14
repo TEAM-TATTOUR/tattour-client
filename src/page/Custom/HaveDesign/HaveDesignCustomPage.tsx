@@ -67,7 +67,6 @@ const HaveDesignCustomPage = () => {
   //step 6: 주문 관련 state
   const [count, setCount] = useState(1);
   const [isPublic, setIsPublic] = useState(false);
-  const [price, setPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const handleTotalPriceChange = (newTotalPrice: number) => {
     setTotalPrice(newTotalPrice);
@@ -190,8 +189,6 @@ const HaveDesignCustomPage = () => {
           handDrawingImage={handDrawingImage}
           isPublic={isPublic}
           setIsPublic={setIsPublic}
-          price={price}
-          setPrice={setPrice}
           totalPrice={totalPrice}
           setTotalPrice={handleTotalPriceChange}
         />
