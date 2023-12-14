@@ -6,8 +6,8 @@ import PageLayout from '../../../PageLayout';
 import CustomDirectDeposit from './CustomDirectDeposit';
 import DirectDepositFooter from '../../../DirectDeposit/DirectDepositFooter';
 import { useLocation } from 'react-router-dom';
-import CheckDepositModal from '../../../../common/Modal/CheckDepositModal/CheckDepositModal';
 import BackBtn from '../../../../common/Header/BackBtn';
+import CustomCheckDepositModal from '../../../../common/Modal/CheckDepositModal/CustomCheckDepositModal';
 
 interface DepositLayoutProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -50,10 +50,11 @@ const CustomDirectDepositLayout = ({ setStep }: DepositLayoutProps) => {
       }
     >
       {depositModalOn && (
-        <CheckDepositModal
+        <CustomCheckDepositModal
           setModalOn={setDepositModalOn}
           setIsActiveNext={setIsActiveNext}
           state={location}
+          setStep={setStep}
         />
       )}
       <CustomDirectDeposit setIsActiveNext={setIsActiveNext} />
