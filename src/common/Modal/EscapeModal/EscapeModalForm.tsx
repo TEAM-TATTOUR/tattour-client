@@ -17,6 +17,8 @@ interface EscapeModalFormProps {
   continueBtn: string;
   stopBtn: string;
   continueBtnFunc?: () => void;
+
+  setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const EscapeModalForm = ({
@@ -31,6 +33,7 @@ const EscapeModalForm = ({
   continueBtn,
   stopBtn,
   continueBtnFunc,
+  setStep,
 }: EscapeModalFormProps) => {
   const navigate = useNavigate();
 
@@ -45,6 +48,10 @@ const EscapeModalForm = ({
 
       case 'DepositPage':
         navigate('/complete', { state: state && state });
+        break;
+
+      case 'CustomDepositPage':
+        setStep((prev) => prev + 1);
         break;
 
       default:

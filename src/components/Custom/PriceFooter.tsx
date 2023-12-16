@@ -2,7 +2,6 @@ import { styled } from 'styled-components';
 import { customInfoType, resCustomInfoType } from '../../types/customInfoType';
 import api from '../../libs/api';
 import React from 'react';
-// import { useNavigate } from 'react-router-dom';
 
 interface PriceFooterProps {
   haveDesign?: boolean;
@@ -20,8 +19,6 @@ const PriceFooter = ({
   setStep,
   setReceiptData,
 }: PriceFooterProps) => {
-  // const navigate = useNavigate();
-
   const handleClickFooterBtn = async () => {
     const formData = new FormData();
     try {

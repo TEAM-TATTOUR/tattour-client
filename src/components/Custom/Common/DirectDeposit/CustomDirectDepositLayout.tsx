@@ -6,16 +6,20 @@ import PageLayout from '../../../PageLayout';
 import CustomDirectDeposit from './CustomDirectDeposit';
 import DirectDepositFooter from '../../../DirectDeposit/DirectDepositFooter';
 import { useLocation } from 'react-router-dom';
-import CheckDepositModal from '../../../../common/Modal/CheckDepositModal/CheckDepositModal';
 import BackBtn from '../../../../common/Header/BackBtn';
+import CustomCheckDepositModal from '../../../../common/Modal/CheckDepositModal/CustomCheckDepositModal';
 
-const CustomDirectDepositLayout = () => {
+interface DepositLayoutProps {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  totalPrice: number;
+}
+
+const CustomDirectDepositLayout = ({ setStep, totalPrice }: DepositLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [depositModalOn, setDepositModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
   const location = useLocation();
-
   const renderCustomDirectDepositPageHeader = () => {
     return (
       <Header
@@ -46,9 +50,14 @@ const CustomDirectDepositLayout = () => {
       }
     >
       {depositModalOn && (
-        <CheckDepositModal setModalOn={setDepositModalOn} setIsActiveNext={setIsActiveNext} state={location}/>
+        <CustomCheckDepositModal
+          setModalOn={setDepositModalOn}
+          setIsActiveNext={setIsActiveNext}
+          state={location}
+          setStep={setStep}
+        />
       )}
-      <CustomDirectDeposit setIsActiveNext={setIsActiveNext} />
+      <CustomDirectDeposit setIsActiveNext={setIsActiveNext} totalPrice={totalPrice} />
     </PageLayout>
   );
 };

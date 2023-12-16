@@ -9,8 +9,7 @@ import SelectKeywordLayout from '../../../components/Custom/HaveDesign/SelectKey
 import { useLocation } from 'react-router-dom';
 import { resCustomInfoType } from '../../../types/customInfoType';
 import CustomSizeLayout from '../../../components/Custom/Common/Size/CustomSizeLayout';
-
-// import CustomSizePage from '../Common/CustomSizePage';
+import CustomDirectDepositLayout from '../../../components/Custom/Common/DirectDeposit/CustomDirectDepositLayout';
 
 const HaveDesignCustomPage = () => {
   const location = useLocation();
@@ -68,14 +67,15 @@ const HaveDesignCustomPage = () => {
   //step 6: 주문 관련 state
   const [count, setCount] = useState(1);
   const [isPublic, setIsPublic] = useState(false);
-  const [price, setPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const handleTotalPriceChange = (newTotalPrice: number) => {
+    setTotalPrice(newTotalPrice);
+  };
 
   // 앞부분 임시 통합한 곳에서 state 불러오기. 최종 통합 때 제거 예정
   const [size, setSize] = useState(location.state ? location.state.size : null);
   const customId = location.state ? location.state.customId : null;
-  // const haveDesign = location.state ? location.state.haveDesign : null;
   const haveDesign = true;
-  //통합하면 이 부분 넘겨받는 걸로 수정하기!
 
   //patch에 보낼 정보들 객체로 모으기
   const customInfo = {
@@ -92,11 +92,6 @@ const HaveDesignCustomPage = () => {
 
   // patch 통신 response = receipt 뷰에 넘겨줘야 하는 정보들
   const [receiptData, setReceiptData] = useState<resCustomInfoType>();
-
-  // //customSizePage 이후 시작하도록 일시적으로 추가한 코드.
-  // useEffect(() => {
-  //   setStep(1);
-  // }, []);
 
   switch (step) {
     case 0:
@@ -194,12 +189,16 @@ const HaveDesignCustomPage = () => {
           handDrawingImage={handDrawingImage}
           isPublic={isPublic}
           setIsPublic={setIsPublic}
-          price={price}
-          setPrice={setPrice}
+          totalPrice={totalPrice}
+          setTotalPrice={handleTotalPriceChange}
         />
       );
 
     case 7:
+      console.log('location.state', location.state);
+      return <CustomDirectDepositLayout setStep={setStep} totalPrice={totalPrice} />;
+
+    case 8:
       return <ReceiptLayout receiptData={receiptData} haveDesign={haveDesign} />;
   }
 };

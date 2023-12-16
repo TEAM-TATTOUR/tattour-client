@@ -5,12 +5,14 @@ import AccountCopy from '../../../DirectDeposit/AccountCopy';
 
 const CustomDirectDeposit = ({
   setIsActiveNext,
+  totalPrice,
 }: {
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+  totalPrice: number;
 }) => {
   return (
     <St.CustomDirectDepositPageWrapper>
-      <DepositInfo depositAmount={5000}>
+      <DepositInfo depositAmount={totalPrice}>
         <CustomDepositInfo />
       </DepositInfo>
       <AccountCopy setIsActiveNext={setIsActiveNext} />

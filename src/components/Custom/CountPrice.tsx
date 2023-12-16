@@ -11,7 +11,7 @@ interface CountPriceProps {
   isPublic: boolean;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   size: string | undefined;
-  setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
+  setTotalPrice: (newTotalPrice: number) => void;
 }
 
 const CountPrice = ({ isPublic, setCount, size, setTotalPrice }: CountPriceProps) => {
