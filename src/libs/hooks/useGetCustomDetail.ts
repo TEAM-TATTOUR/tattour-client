@@ -11,6 +11,7 @@ export interface CustomDetailItemProps {
   styles: string[];
   // default 값 존재
   mainImageUrl: string;
+  // handDrawingImageUrl: string; 누락
   images: string[];
   haveDesign: boolean;
   size?: string;
@@ -21,6 +22,7 @@ export interface CustomDetailItemProps {
   isColored?: boolean;
   isPublic?: boolean;
   isCompleted: boolean;
+  // price: number; 누락
   process?: string;
   viewCount: number;
 }
