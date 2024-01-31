@@ -18,7 +18,7 @@ interface EscapeModalFormProps {
   stopBtn: string;
   continueBtnFunc?: () => void;
 
-  setStep: React.Dispatch<React.SetStateAction<number>>;
+  setStep?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const EscapeModalForm = ({
@@ -51,6 +51,7 @@ const EscapeModalForm = ({
         break;
 
       case 'CustomDepositPage':
+        if (!setStep) break; //setStep optional props라서 추가
         setStep((prev) => prev + 1);
         break;
 
