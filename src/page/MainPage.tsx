@@ -7,7 +7,7 @@ import { throttle } from 'lodash';
 import { ImgLogoDark, ImgLogoLight } from '../assets/icon';
 import MainHeaderButton from '../components/MainPage/MainHeaderButton';
 import MainTheme from '../components/MainPage/MainTheme';
-import MainEventBanner from '../components/MainPage/MainEventBanner';
+// import MainEventBanner from '../components/MainPage/MainEventBanner';
 import MainStyle from '../components/MainPage/MainStyle';
 import SideMenu from '../common/SideMenu';
 import HotCustom from '../common/HotCustom';

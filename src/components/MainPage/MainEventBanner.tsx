@@ -13,7 +13,7 @@ const MainEventBanner = ({
 
   return (
     <St.MainEventBanner>
-      {/* <St.BannerImg onClick={handleClickEventBanner} src={imgHomeBanner} alt='메인 이벤트 배너' /> */}
+      <St.BannerImg onClick={handleClickEventBanner} src={imgHomeBanner} alt='메인 이벤트 배너' />
     </St.MainEventBanner>
   );
 };
