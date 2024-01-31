@@ -47,11 +47,6 @@ const DetailPage = () => {
     response && setLike(response.productLiked);
   }, [response]);
 
-  // test
-  useEffect(() => {
-    console.log(cartToast);
-  }, [cartToast]);
-
   return (
     <PageLayout
       renderHeader={renderDetailPageHeader}
