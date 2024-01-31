@@ -110,13 +110,13 @@ const NoDesignCustomPage = () => {
           setCount={setCount}
           isPublic={isPublic}
           setIsPublic={setIsPublic}
-          price={price}
-          setPrice={setPrice}
+          totalPrice={price}
+          setTotalPrice={setPrice}
         />
       );
 
     case 4:
-      return <CustomDirectDepositLayout setStep={setStep} />;
+      return <CustomDirectDepositLayout setStep={setStep} totalPrice={price} />;
 
     case 5:
       return <ReceiptLayout receiptData={receiptData} haveDesign={haveDesign} />; //haveDesign 임의로 추가해서 넘겨줬습니다

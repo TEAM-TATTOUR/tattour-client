@@ -7,11 +7,11 @@ interface CustomApplyResponseData {
   customId: number;
 }
 
-interface CustomApplyResponse {
-  data: CustomApplyResponseData;
-  code: number;
-  message: string;
-}
+// interface CustomApplyResponse {
+//   data: CustomApplyResponseData;
+//   code: number;
+//   message: string;
+// }
 
 const usePostCustomApply = (haveDesign: boolean) => {
   const navigate = useNavigate();
