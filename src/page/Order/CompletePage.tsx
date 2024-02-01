@@ -6,6 +6,10 @@ import ProductInfo from '../../components/Order/ProductInfo';
 import PaymentMini from '../../components/Order/PaymentMini';
 import CompleteFooter from '../../components/Complete/CompleteFooter';
 import { useLocation } from 'react-router-dom';
+import {
+  orderSheetStickersResProps,
+  orderAmountDetailResProps,
+} from '../../libs/hooks/order/useGetOrdersheet';
 
 const CompletePage = () => {
   const renderCompletePageHeader = () => {
@@ -13,21 +17,28 @@ const CompletePage = () => {
   };
 
   const location = useLocation();
-  const { getOrderSheetStickerInfo, getOrderAmountRes } = location.state;
+  const { orderSheetStickersRes, orderAmountDetailRes } = location.state as {
+    orderSheetStickersRes: orderSheetStickersResProps[];
+    orderAmountDetailRes: orderAmountDetailResProps;
+  };
 
   return (
     <PageLayout renderHeader={renderCompletePageHeader} footer={<CompleteFooter />}>
-      <Result
-        mainText={'결제가 완료되었어요'}
-        description={'3일 내에 배송이 시작되며, 문자로 안내드려요'}
-      />
-      <St.Line />
-      <St.Title>주문 정보</St.Title>
-      <ProductInfo getOrderSheetStickerInfo={getOrderSheetStickerInfo} />
-      <St.LightLine />
-      <St.PriceContainer>
-        <PaymentMini getOrderAmountRes={getOrderAmountRes} />
-      </St.PriceContainer>
+      <St.Container>
+        <Result
+          mainText={'결제가 완료되었어요'}
+          description={'7일 내에 배송이 시작되며, 문자로 안내드려요'}
+        />
+        <St.Line />
+        <St.Title>주문 정보</St.Title>
+        {orderSheetStickersRes.map((item) => {
+          return <ProductInfo key={item.name} orderSheetSticker={item} />;
+        })}
+        <St.LightLine />
+        <St.PriceContainer>
+          <PaymentMini orderAmountDetailRes={orderAmountDetailRes} />
+        </St.PriceContainer>
+      </St.Container>
     </PageLayout>
   );
 };
@@ -35,6 +46,9 @@ const CompletePage = () => {
 export default CompletePage;
 
 const St = {
+  Container: styled.section`
+    height: calc(100vh - 12.6rem);
+  `,
   Line: styled.hr`
     height: 1.3rem;
 
@@ -53,6 +67,6 @@ const St = {
     border-width: 0rem;
   `,
   PriceContainer: styled.article`
-    padding: 2.8rem 2.2rem 7.5rem 2.2rem;
+    padding: 2.8rem 2.2rem 14.5rem 2.2rem;
   `,
 };

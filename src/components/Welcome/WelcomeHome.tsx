@@ -20,8 +20,11 @@ const St = {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
+
+    position: fixed;
     min-height: 100dvh;
+    max-width: 43rem;
+    width: 100%;
   `,
 
   ContentsWrapper: styled.article`

@@ -1,59 +1,60 @@
 import { useEffect, useState } from 'react';
 import api from '../../api';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface OrderSheetRequest {
-  stickerId: number;
-  count: number;
-  shippingFee: number;
+  stickerId?: number;
+  count?: number;
 }
 
-export interface getOrderSheetStickerInfoProps {
+export interface orderSheetStickersResProps {
   mainImageUrl: string;
   name: string;
   price: number;
-  discountedPrice: number;
+  discountPrice: number;
   count: number;
 }
 
-export interface getOrderAmountResProps {
+export interface orderAmountDetailResProps {
   totalAmount: number;
   productAmount: number;
   shippingFee: number;
 }
 
-export interface getUserOrderPointResProps {
-  userPoint: number;
-  resultPoint: number;
-  lacked: boolean;
+export interface userProfileResProps {
+  id: number;
+  name: string;
+  phoneNumber: string;
 }
-
 export interface OrderSheetProps {
-  getOrderSheetStickerInfo: getOrderSheetStickerInfoProps;
-  getOrderAmountRes: getOrderAmountResProps;
-  getUserOrderPointRes: getUserOrderPointResProps;
+  orderSheetStickersRes: orderSheetStickersResProps[];
+  orderAmountDetailRes: orderAmountDetailResProps;
+  userProfileRes: userProfileResProps;
 }
 
-interface OrderSheetResponse {
-  data: OrderSheetProps;
-  code: number;
-  message: string;
-}
+const useGetOrdersheet = ({ stickerId, count }: OrderSheetRequest) => {
+  const navigate = useNavigate();
 
-const useGetOrdersheet = ({ stickerId, count, shippingFee }: OrderSheetRequest) => {
   const [response, setResponse] = useState<OrderSheetProps>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
 
+  const url =
+    stickerId && count
+      ? `/order/ordersheet?stickerId=${stickerId}&count=${count}`
+      : '/order/ordersheet';
+
   const fetchData = async () => {
     await api
-      .get(`/order/ordersheet?stickerId=${stickerId}&count=${count}&shippingFee=${shippingFee}`)
+      .get(url)
       .then((res) => {
-        const data: OrderSheetResponse = res.data;
+        const data = res.data;
         setResponse(data.data);
       })
       .catch((err) => {
         setError(err);
+        navigate('/error');
       })
       .finally(() => {
         setLoading(false);

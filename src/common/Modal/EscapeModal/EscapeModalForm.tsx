@@ -1,36 +1,71 @@
 import styled from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
+import { removeAccessToken } from '../../../libs/api';
 
 interface EscapeModalFormProps {
   redirectURL?: string;
+  setIsActiveNext?: React.Dispatch<React.SetStateAction<boolean>>;
+
+  state?: object;
+
   onClose: () => void;
   pageName: string;
   title: string;
   subTitle: string;
+  subTitle2: string;
   continueBtn: string;
   stopBtn: string;
+  continueBtnFunc?: () => void;
+
+  setStep?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const EscapeModalForm = ({
   redirectURL,
+  setIsActiveNext,
+  state,
   onClose,
   pageName,
   title,
   subTitle,
+  subTitle2,
   continueBtn,
   stopBtn,
+  continueBtnFunc,
+  setStep,
 }: EscapeModalFormProps) => {
   const navigate = useNavigate();
-  // const location = useLocation();
-  // const patchStates = location.state;
+
+  const handleClickContinueBtn = () => {
+    onClose();
+    switch (pageName) {
+      case 'CartPage':
+        if (continueBtnFunc) {
+          continueBtnFunc();
+        }
+        break;
+
+      case 'DepositPage':
+        navigate('/complete', { state: state && state });
+        break;
+
+      case 'CustomDepositPage':
+        if (!setStep) break; //setStep optional props라서 추가
+        setStep((prev) => prev + 1);
+        break;
+
+      default:
+        break;
+    }
+  };
 
   const handleClickStopBtn = () => {
     onClose();
     switch (pageName) {
-      // 페이지 이름과 라우팅 주소는 나중에 보고 수정
       case 'LoginPage':
-        navigate('/login');
+        navigate('/');
+        removeAccessToken();
         break;
 
       case 'ChargePage':
@@ -41,8 +76,11 @@ const EscapeModalForm = ({
         navigate('/onboarding');
         break;
 
+      case 'DepositPage':
+        setIsActiveNext && setIsActiveNext(false);
+        break;
+
       default:
-        navigate('/');
         break;
     }
   };
@@ -54,10 +92,11 @@ const EscapeModalForm = ({
           <IcCancelDark onClick={onClose} />
           <St.ModalTitle>{title}</St.ModalTitle>
           <St.ModalSubTitle>{subTitle}</St.ModalSubTitle>
+          <St.ModalSubTitle>{subTitle2}</St.ModalSubTitle>
         </St.ModalTitleWrapper>
 
         <St.BtnWrapper>
-          <St.ContinueBtn onClick={onClose}>{continueBtn}</St.ContinueBtn>
+          <St.ContinueBtn onClick={handleClickContinueBtn}>{continueBtn}</St.ContinueBtn>
           <St.StopBtn onClick={handleClickStopBtn}>{stopBtn}</St.StopBtn>
         </St.BtnWrapper>
       </St.ModalContent>
@@ -78,6 +117,8 @@ const St = {
     height: 100vh;
 
     background: rgba(0, 0, 0, 0.6);
+
+    z-index: 30;
   `,
 
   ModalContent: styled.div`
@@ -99,7 +140,7 @@ const St = {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 4.7rem;
+    margin-top: 4.9rem;
 
     & > svg {
       position: absolute;
@@ -109,14 +150,13 @@ const St = {
   `,
 
   ModalTitle: styled.h2`
+    margin-bottom: 1.4rem;
     color: ${({ theme }) => theme.colors.gray7};
 
     ${({ theme }) => theme.fonts.title_semibold_20};
   `,
 
   ModalSubTitle: styled.p`
-    padding: 1.6rem 2.6rem 4rem 2.6rem;
-
     text-align: center;
     color: ${({ theme }) => theme.colors.gray3};
 
@@ -133,6 +173,7 @@ const St = {
     align-items: flex-end;
     width: 100%;
     padding: 0;
+    margin-top: 4rem;
   `,
 
   ContinueBtn: styled.button`

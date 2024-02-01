@@ -5,8 +5,9 @@ import api, { setAccessToken } from '../api';
 interface resProps {
   data: {
     data: {
+      // userId: number; 누락
       accessToken: string;
-      isUserExist: boolean;
+      isUserSignUpCompleted: boolean;
     };
   };
 }
@@ -34,14 +35,14 @@ const useKakaoLogin = () => {
         )
         .then((res: resProps) => {
           // accessToken 값 저장
-          const { accessToken, isUserExist } = res.data.data;
+          const { accessToken, isUserSignUpCompleted } = res.data.data;
 
           setAccessToken(accessToken);
 
-          isUserExist ? navigate('/') : navigate('/register');
+          isUserSignUpCompleted ? navigate('/') : navigate('/login', { state: { step: 1 } });
         })
-        .catch((Error: object) => {
-          console.log(Error);
+        .catch(() => {
+          navigate('/error');
         });
     }
   }, []);

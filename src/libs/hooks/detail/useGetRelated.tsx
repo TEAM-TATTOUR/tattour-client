@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../../api';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface RelatedItemProps {
   id: number;
@@ -21,6 +22,7 @@ interface RelatedResponse {
 }
 
 const useGetRelated = (id: number) => {
+  const navigate = useNavigate();
   const [response, setResponse] = useState<RelatedItemProps[]>([]);
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
@@ -34,6 +36,7 @@ const useGetRelated = (id: number) => {
       })
       .catch((err) => {
         setError(err);
+        navigate('/error');
       })
       .finally(() => {
         setLoading(false);
@@ -42,7 +45,7 @@ const useGetRelated = (id: number) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   return { response, error, loading };
 };

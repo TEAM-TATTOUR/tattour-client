@@ -77,7 +77,7 @@ const St = {
         width: 2rem;
         height: 2rem;
         margin-top: 0.3rem;
-        margin-right: 0.8rem;
+        margin-right: 0.3rem;
         background: url(${ic_arrow_right_gray}) no-repeat;
         background-position: center;
         background-size: auto;
@@ -86,7 +86,7 @@ const St = {
         width: 2rem;
         height: 2rem;
         margin-top: 0.3rem;
-        margin-left: 0.8rem;
+        margin-left: 0.3rem;
         background: url(${ic_arrow_left_gray}) no-repeat;
         background-position: center;
         background-size: auto;
@@ -129,7 +129,7 @@ const St = {
     flex-direction: column;
     gap: 2rem;
     width: fit-content;
-    margin: 2rem 0 1.8rem 3.6rem;
+    margin: 2rem 0 4.8rem 3.6rem;
   `,
 
   SwiperHeaderBanner: styled.div`
@@ -164,9 +164,13 @@ const St = {
   SwiperImgContainer: styled.div`
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0 2.4rem;
     & > img {
-      max-width: 100%;
+      width: 100%;
       height: auto;
+      padding: 0 1.1rem;
     }
   `,
 };

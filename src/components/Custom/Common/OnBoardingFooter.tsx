@@ -58,7 +58,7 @@ const OnBoardingFooter = ({ isLogin }: { isLogin: boolean }) => {
   }, [response]);
 
   const handleClickFooter = () => {
-    isModalOpen ? setModalOn(true) : navgiate('/select');
+    isModalOpen ? setModalOn(true) : navgiate('/custom');
   };
 
   return (
@@ -66,7 +66,7 @@ const OnBoardingFooter = ({ isLogin }: { isLogin: boolean }) => {
     !loading && (
       <>
         <St.OnBoardingFooter onClick={handleClickFooter}>
-          <St.FooterText>990P 내고 신청서 작성하기</St.FooterText>
+          <St.FooterText>신청서 작성하기</St.FooterText>
         </St.OnBoardingFooter>
         {isModalOpen && modalOn && <TempSaveModal setModalOn={setModalOn} />}
       </>

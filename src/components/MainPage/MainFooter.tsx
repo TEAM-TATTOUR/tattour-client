@@ -19,11 +19,12 @@ const MainFooter = ({ isFooterVisible }: { isFooterVisible: boolean }) => {
 
 const St = {
   footer: styled.footer<{ $isFooterVisible: boolean }>`
-    position: sticky;
+    position: fixed;
     bottom: 0;
     display: ${({ $isFooterVisible }) => ($isFooterVisible ? 'flex' : 'none')};
     justify-content: center;
     align-items: center;
+    max-width: 43rem;
     width: 100%;
     height: 7rem;
 

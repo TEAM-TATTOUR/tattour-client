@@ -47,9 +47,11 @@ const St = {
 
   Video: styled.video`
     position: relative;
-    width: 37.5rem;
+    width: 100%;
     height: 34rem;
     margin-top: 7rem;
+
+    object-fit: fill;
   `,
 
   SubWrapper: styled.div`

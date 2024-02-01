@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import sliceMaxLength from '../../utils/sliceMaxLength';
 
 interface DeliveryInfoProps {
   handleModal: () => void;
@@ -23,14 +24,6 @@ const DeliveryInfo = ({
   detailAddress,
   setDetailAddress,
 }: DeliveryInfoProps) => {
-  // 자동 하이픈
-  const sliceMaxLength = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.value = e.target.value
-      .replace(/[^0-9]/g, '')
-      .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
-      .replace(/(-{1,2})$/g, '');
-  };
-
   return (
     <St.Wrapper>
       <St.Title>배송 정보</St.Title>
@@ -41,7 +34,6 @@ const DeliveryInfo = ({
             type='text'
             id='receiver'
             name='receiver'
-            placeholder='김타투'
             value={input}
             onChange={(e) => {
               setInput(e.target.value);
@@ -54,10 +46,9 @@ const DeliveryInfo = ({
             type='tel'
             id='phone'
             name='phone'
-            placeholder='010-0000-0000'
             maxLength={13}
             value={phone}
-            onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e)} // 자동 하이픈
+            onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
             onChange={(e) => {
               setPhone(e.target.value);
             }}
@@ -114,22 +105,26 @@ const St = {
   `,
   Info: styled.li`
     & > label {
-      margin: 2rem 0rem 1rem 0rem;
+      display: block;
+      margin-bottom: 1rem;
 
       ${({ theme }) => theme.fonts.body_medium_14};
       color: ${({ theme }) => theme.colors.gray3};
     }
     & input {
       width: 100%;
-      padding: 1.2rem 2rem;
-      margin-top: 1rem;
+      height: 4.8rem;
+      padding-left: 2rem;
       background-color: ${({ theme }) => theme.colors.bg};
       border-width: 0rem;
       border-radius: 0.5rem;
       ${({ theme }) => theme.fonts.body_medium_16};
+      color: ${({ theme }) => theme.colors.gray5};
+      -webkit-text-fill-color: ${({ theme }) => theme.colors.gray5};
 
       &::placeholder {
         color: ${({ theme }) => theme.colors.gray2};
+        -webkit-text-fill-color: ${({ theme }) => theme.colors.gray2};
       }
 
       &:focus {
@@ -149,8 +144,9 @@ const St = {
     gap: 1.2rem;
   `,
   SearchBtn: styled.button`
-    padding: 1.3rem 1.6rem;
-    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     background-color: ${({ theme }) => theme.colors.gray7};
     border-radius: 0.6rem;

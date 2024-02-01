@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { IcArrowRightDark, LabelCustomSmall } from '../assets/icon';
 import useGetHotCustom from '../libs/hooks/useGetHotCustom';
 
-const HotCustom = () => {
+const HotCustom = ({ isList }: { isList: boolean }) => {
   const navigate = useNavigate();
 
   const handleClickHotCustom = () => {
@@ -18,11 +18,11 @@ const HotCustom = () => {
   const { response, error, loading } = useGetHotCustom();
 
   return (
-    <St.HotCustomSection>
+    <>
       <St.Header>
         <St.HotCustomButton type='button' onClick={handleClickHotCustom}>
           <St.HotCustomTitle>HOT CUSTOM</St.HotCustomTitle>
-          <IcArrowRightDark />
+          {!isList && <IcArrowRightDark />}
         </St.HotCustomButton>
       </St.Header>
       <St.HotCustomWrapper>
@@ -49,7 +49,8 @@ const HotCustom = () => {
                       {discountRate ? discountRate : 5}%
                     </St.HotCustomItemDiscountRate>
                     <St.HotCustomItemPrice>
-                      {discountPrice ? discountPrice.toLocaleString() : '4,000'}원
+                      {discountPrice ? discountPrice.toLocaleString() : '4,000'}
+                      <span>원</span>
                     </St.HotCustomItemPrice>
                   </St.HotCustomItemPriceWrapper>
                   <St.HotCustomItemOriginPrice>
@@ -60,15 +61,12 @@ const HotCustom = () => {
             })}
         </ScrollContainer>
       </St.HotCustomWrapper>
-    </St.HotCustomSection>
+    </>
   );
 };
 
 const St = {
-  HotCustomSection: styled.section`
-    padding-left: 2rem;
-  `,
-
+  // HotCustomSection padding-left 삭제로, 스타일컴포넌트 아예 삭제
   Header: styled.header`
     display: flex;
     justify-content: start;
@@ -90,6 +88,8 @@ const St = {
   `,
 
   HotCustomTitle: styled.h2`
+    margin-left: 2rem;
+
     ${({ theme }) => theme.fonts.title_eng_bold_20};
     color: ${({ theme }) => theme.colors.gray8};
   `,
@@ -104,7 +104,6 @@ const St = {
     flex-direction: row;
     gap: 1.2rem;
     justify-content: space-between;
-    margin-right: 1.2rem;
 
     .scroll-container {
       display: flex;
@@ -113,6 +112,8 @@ const St = {
 
       height: 28rem;
       width: 100%;
+
+      padding: 0rem 2rem;
     }
   `,
 
@@ -176,6 +177,10 @@ const St = {
   `,
   HotCustomItemPrice: styled.p`
     ${({ theme }) => theme.fonts.title_extrabold_16};
+
+    & > span {
+      ${({ theme }) => theme.fonts.title_semibold_16};
+    }
   `,
   HotCustomItemOriginPrice: styled.span`
     margin-top: 0.1rem;

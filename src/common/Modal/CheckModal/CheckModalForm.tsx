@@ -1,37 +1,44 @@
 import styled from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
-
+import { useNavigate } from 'react-router-dom';
 import api from '../../../libs/api';
 
 interface CheckModalFormProps {
   onClose: () => void;
   title: string;
   subTitle: string;
+  subTitle2: string;
   continueBtn: string;
   chargeAmount: number;
-  setIsOpenCompleteModal: React.Dispatch<React.SetStateAction<boolean>>;
+  redirectURL: string;
 }
 
 const CheckModalForm = ({
   onClose,
   title,
   subTitle,
+  subTitle2,
   continueBtn,
   chargeAmount,
-  setIsOpenCompleteModal,
+  redirectURL,
 }: CheckModalFormProps) => {
+  const navigate = useNavigate();
   const handleClickContinueBtn = async () => {
     //포인트 충전
     try {
       await api.post('/user/point/charge', {
         chargeAmount: chargeAmount,
       });
-      setIsOpenCompleteModal(true);
       onClose();
-      // navigate(redirectURL);
+      navigate('/', {
+        state: {
+          isPointModalOpen: true,
+          chargeAmount: chargeAmount,
+          redirectURL: redirectURL,
+        },
+      });
     } catch (err) {
-      // console.log(err); //추후 삭제 예정(에러 페이지 라우팅 하면)
-      // navigate("/error")
+      navigate('/error');
     }
   };
 
@@ -42,6 +49,7 @@ const CheckModalForm = ({
           <IcCancelDark onClick={onClose} />
           <St.ModalTitle>{title}</St.ModalTitle>
           <St.ModalSubTitle>{subTitle}</St.ModalSubTitle>
+          <St.ModalSubTitle>{subTitle2}</St.ModalSubTitle>
         </St.ModalTitleWrapper>
 
         <St.BtnWrapper>
@@ -65,6 +73,8 @@ const St = {
     height: 100vh;
 
     background: rgba(0, 0, 0, 0.6);
+
+    z-index: 30;
   `,
 
   ModalContent: styled.div`
@@ -72,6 +82,7 @@ const St = {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     position: relative;
     width: 33.5rem;
     height: 24.1rem;
@@ -96,14 +107,14 @@ const St = {
   `,
 
   ModalTitle: styled.h2`
+    margin-bottom: 1.4rem;
+
     color: ${({ theme }) => theme.colors.gray7};
 
     ${({ theme }) => theme.fonts.title_semibold_20};
   `,
 
   ModalSubTitle: styled.p`
-    padding: 1.6rem 7.25rem 4rem 7.25rem;
-
     text-align: center;
     color: ${({ theme }) => theme.colors.gray3};
 
@@ -126,6 +137,7 @@ const St = {
     align-items: center;
     width: 100%;
     height: 7rem;
+    margin-top: 4rem;
 
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;

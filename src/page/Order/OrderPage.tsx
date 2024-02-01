@@ -11,7 +11,11 @@ import OrderFooter from '../../components/Order/OrderFooter';
 import RefundBottom from '../../components/Order/RefundBottom';
 import BackBtn from '../../common/Header/BackBtn';
 import { useLocation } from 'react-router-dom';
-import useGetOrdersheet from '../../libs/hooks/order/useGetOrdersheet';
+import useGetOrdersheet, {
+  OrderSheetRequest,
+  orderAmountDetailResProps,
+} from '../../libs/hooks/order/useGetOrdersheet';
+import PayMethodInfo from '../../components/Order/PayMethodInfo';
 
 interface dataProps {
   address: string;
@@ -21,7 +25,9 @@ interface dataProps {
 const OrderPage = () => {
   const location = useLocation();
   const state = location.state as { stickerId: number; count: number; shippingFee: number };
-  const { response, error, loading } = useGetOrdersheet(state);
+  const { response, error, loading } = useGetOrdersheet(
+    state ? state : ({ stickerId: 0, count: 0 } as OrderSheetRequest),
+  );
 
   const [isPostOpen, setIsPostOpen] = useState(false);
   const addressRef = useRef<HTMLInputElement | null>(null);
@@ -35,18 +41,38 @@ const OrderPage = () => {
   const [firstAddress, setFirstAddress] = useState<string>(''); // 첫주소
   const [detailAddress, setDetailAddress] = useState<string>(''); // 세부주소
   const [agree, setAgree] = useState<boolean>(false);
+  const [orderAmountDetailRes, setOrderAmountDetailRes] = useState<orderAmountDetailResProps>(
+    {} as orderAmountDetailResProps,
+  );
 
   const postData = {
-    stickerId: state.stickerId,
-    productCount: state.count,
-    shippingFee: state.shippingFee,
-    totalAmount: response?.getOrderAmountRes.totalAmount,
+    productAmount: orderAmountDetailRes.productAmount,
+    shippingFee: state ? state.shippingFee : 3000,
+    totalAmount: orderAmountDetailRes.totalAmount,
     recipientName: input,
     contact: phone,
     mailingAddress: address,
     baseAddress: firstAddress,
     detailAddress: detailAddress,
+    stickerId: state ? state.stickerId : 0,
   };
+
+  useEffect(() => {
+    if (!response) return;
+    setInput(response.userProfileRes.name);
+    setPhone(
+      response.userProfileRes.phoneNumber
+        .replace(/[^0-9]/g, '')
+        .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
+        .replace(/(-{1,2})$/g, ''),
+    );
+  }, [response]);
+
+  useEffect(() => {
+    if (response?.orderAmountDetailRes) {
+      setOrderAmountDetailRes(response.orderAmountDetailRes);
+    }
+  }, [response]);
 
   useEffect(() => {
     if (input === '' || phone === '' || address === '' || detailAddress === '' || agree === false) {
@@ -79,15 +105,19 @@ const OrderPage = () => {
       footer={
         <OrderFooter
           isComplete={isComplete}
-          price={response && response.getOrderAmountRes.totalAmount}
+          price={response && response.orderAmountDetailRes.totalAmount}
           postData={postData}
           response={response}
+          stickerId={state ? state.stickerId : 0}
+          count={state ? state.count : 0}
         />
       }
     >
       {!error && !loading && response && (
         <>
-          <ProductInfo getOrderSheetStickerInfo={response.getOrderSheetStickerInfo} />
+          {response.orderSheetStickersRes.map((_, idx) => (
+            <ProductInfo orderSheetSticker={response.orderSheetStickersRes[idx]} key={idx}/>
+          ))}
           <St.Line />
           <DeliveryInfo
             handleModal={handleModal}
@@ -102,10 +132,9 @@ const OrderPage = () => {
             setDetailAddress={setDetailAddress}
           />
           <St.Line />
-          <PaymentInfo
-            getOrderAmountRes={response.getOrderAmountRes}
-            getUserOrderPointRes={response.getUserOrderPointRes}
-          />
+          <PayMethodInfo />
+          <St.Line />
+          <PaymentInfo orderAmountDetailRes={response.orderAmountDetailRes} />
           <St.Line />
           <RefundInfo setSheetOpen={setSheetOpen} setAgree={setAgree} />
           {isPostOpen && (
@@ -146,7 +175,7 @@ const St = {
     z-index: 1;
 
     & > div {
-      //height: 46.8rem !important;
+      max-width: 43rem;
     }
 
     & #region_name {

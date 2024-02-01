@@ -4,30 +4,28 @@ import {
   IcArrowBottomSmallLight,
   LabelCustomSmall,
 } from '../../assets/icon';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import useGetAllList from '../../libs/hooks/list/useGetAllList';
 import { useNavigate } from 'react-router-dom';
 
 interface TattooListProps {
-  setSortOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setGenreOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setStyleOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
   buttonName: string[];
+  defaultName: string[];
 }
 
-const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: TattooListProps) => {
-  const [selectedFilter, setSelectedFilter] = useState([false, false, false]); // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
+const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) => {
+  // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
+  const [selectedFilter, setSelectedFilter] = useState([false, false, false]);
 
   const navigate = useNavigate();
-  const filterRef = useRef(null);
-  const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
 
   useEffect(() => {
     const newSelectedFilter = [...selectedFilter];
     buttonName.forEach((btn, idx) => {
-      if (btn !== DEFAULT_BUTTON_NAME[idx]) {
+      if (btn !== defaultName[idx]) {
         newSelectedFilter[idx] = true;
-      } else if (btn === DEFAULT_BUTTON_NAME[idx]) {
+      } else if (btn === defaultName[idx]) {
         newSelectedFilter[idx] = false;
       }
     });
@@ -43,23 +41,14 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
   return (
     <St.Wrapper>
       <St.Header>ALL</St.Header>
-      <St.BtnContainer ref={filterRef}>
+      <St.BtnContainer>
         {buttonName.map((el, idx) => (
           <St.FilterBtn
             key={el}
             $selected={selectedFilter[idx]}
             onClick={() => {
-              switch (idx) {
-                case 0:
-                  setSortOpen(true);
-                  break;
-                case 1:
-                  setGenreOpen(true);
-                  break;
-                case 2:
-                  setStyleOpen(true);
-                  break;
-              }
+              // 필터 버튼을 클릭하여 바텀시트를 켜는 부분
+              setSheetOpen(idx); // 어떤 필터 버튼을 클릭했는지에 따라 isSheetOpen 값이 0, 1, 2로 바뀜
             }}
           >
             {el}
@@ -67,7 +56,9 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
           </St.FilterBtn>
         ))}
       </St.BtnContainer>
-      <St.CountText>전체 {response.length}개</St.CountText>
+      <St.CountText>
+        전체 <span>{response.length}</span>개
+      </St.CountText>
       <St.CardContainer>
         {!loading &&
           !error &&
@@ -81,7 +72,10 @@ const TattooList = ({ setSortOpen, setGenreOpen, setStyleOpen, buttonName }: Tat
                 <h2>{name}</h2>
                 <div>
                   <St.CardDiscount>{discountRate}%</St.CardDiscount>
-                  <St.CardPrice>{discountPrice && discountPrice.toLocaleString()}원</St.CardPrice>
+                  <St.CardPrice>
+                    {discountPrice && discountPrice.toLocaleString()}
+                    <span>원</span>
+                  </St.CardPrice>
                 </div>
                 <p>{price.toLocaleString()}원</p>
               </St.Card>
@@ -126,11 +120,16 @@ const St = {
     margin: 2.8rem 0rem 1.6rem 2.2rem;
     color: ${({ theme }) => theme.colors.gray4};
     ${({ theme }) => theme.fonts.body_medium_14};
+
+    & > span {
+      ${({ theme }) => theme.fonts.body_semibold_14};
+    }
   `,
   CardContainer: styled.section`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.1rem;
+    padding-bottom: 1.4rem;
   `,
   Card: styled.article`
     display: flex;
@@ -140,7 +139,7 @@ const St = {
     & > h2 {
       margin: 1.5rem 0rem 0rem 2rem;
       color: ${({ theme }) => theme.colors.gray7};
-      ${({ theme }) => theme.fonts.title_semibold_16};
+      ${({ theme }) => theme.fonts.body_medium_16};
     }
 
     & > p {
@@ -183,5 +182,9 @@ const St = {
 
     color: ${({ theme }) => theme.colors.gray7};
     ${({ theme }) => theme.fonts.title_extrabold_16};
+
+    & > span {
+      ${({ theme }) => theme.fonts.title_semibold_16};
+    }
   `,
 };

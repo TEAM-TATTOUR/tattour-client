@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 import { IcError } from '../../assets/icon';
 import { useNavigate } from 'react-router-dom';
+import { removeAccessToken } from '../../libs/api';
 
 interface PreventAccessProps {
   title: string;
   btnContents: string;
-  // 에러 페이지에서 쓰일건지, 만료 페이지에서 쓰일건지 구분
-  isError?: boolean;
 }
 
-const PreventAccess = ({ title, btnContents, isError }: PreventAccessProps) => {
+const PreventAccess = ({ title, btnContents }: PreventAccessProps) => {
   const navigate = useNavigate();
 
   const handleClickButton = () => {
-    isError ? window.location.reload() : navigate('/');
+    navigate('/');
+    removeAccessToken();
   };
 
   return (

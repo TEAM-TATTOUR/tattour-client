@@ -47,6 +47,8 @@ export { ReactComponent as IcBtnStepperPlusDark } from './ic_btn_plus_dark.svg';
 export { ReactComponent as IcBtnStepperMinusLight } from './ic_btn_minus_light.svg';
 export { ReactComponent as IcBtnStepperMinusDark } from './ic_btn_minus_dark.svg';
 export { ReactComponent as ImgWelcomeLogo } from './img_welcome_logo.svg';
+export { ReactComponent as IcCart } from './ic_cart.svg';
+export { ReactComponent as IcRadio } from './ic_radio.svg';
 
 // brush
 export { ReactComponent as IcBrushBoldSelected } from './ic_brush_bold_selected.svg';
@@ -78,3 +80,4 @@ export { ReactComponent as ImgStorage } from './img_storage.svg';
 export { ReactComponent as ImgPointCoupon } from './img_point_coupon.svg';
 export { ReactComponent as ImgHomeBanner } from './img_home_banner.svg';
 export { ReactComponent as IcInformation } from './ic_information.svg';
+export { ReactComponent as ImgTattourLogin } from './img_tattour_login.svg';

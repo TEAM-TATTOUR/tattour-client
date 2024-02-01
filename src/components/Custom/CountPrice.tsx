@@ -10,10 +10,11 @@ import { PRICE } from '../../assets/data/PRICE';
 interface CountPriceProps {
   isPublic: boolean;
   setCount: React.Dispatch<React.SetStateAction<number>>;
-  size: string;
+  size: string | undefined;
+  setTotalPrice: (newTotalPrice: number) => void;
 }
 
-const CountPrice = ({ isPublic, setCount, size }: CountPriceProps) => {
+const CountPrice = ({ isPublic, setCount, size, setTotalPrice }: CountPriceProps) => {
   const price = PRICE.find((item) => item.size === size)?.price;
   const discount = PRICE.find((item) => item.size === size)?.discount;
   const [quantity, setQuantity] = useState(1);
@@ -22,13 +23,21 @@ const CountPrice = ({ isPublic, setCount, size }: CountPriceProps) => {
     setCount(quantity);
   }, [quantity, setCount]);
 
+  useEffect(() => {
+    if (isPublic) {
+      setTotalPrice(quantity * (price || 0) - (discount || 0));
+    } else {
+      setTotalPrice(quantity * (price || 0));
+    }
+  }, [quantity, price, discount, isPublic, setTotalPrice]);
+
   return (
     <St.CountPriceWrapper>
       <St.ShowPrice>
         <St.DetailGroup className='price-group'>
           <St.Subject>가격</St.Subject>
           <St.PriceDetail>
-            <St.Price>{price}</St.Price>
+            <St.Price>{price && price.toLocaleString()}</St.Price>
             <St.Unit>원</St.Unit>
           </St.PriceDetail>
         </St.DetailGroup>
@@ -46,11 +55,11 @@ const CountPrice = ({ isPublic, setCount, size }: CountPriceProps) => {
         </St.DetailGroup>
         <St.Line />
         <St.TotalPriceWrapper>
-          <St.TotalPriceText>총 결제 금액</St.TotalPriceText>
+          <St.TotalPriceText>예상 결제 금액</St.TotalPriceText>
           <St.TotalPriceGroup>
             {isPublic ? (
               <>
-                <St.Discount>{discount}</St.Discount>
+                <St.Discount>{discount?.toLocaleString()}</St.Discount>
                 <St.TotalPrice>
                   {(quantity * (price || 0) - (discount || 0)).toLocaleString()}
                 </St.TotalPrice>

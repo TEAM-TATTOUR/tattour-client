@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../../api';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface StickerItemProps {
   id: number;
@@ -15,7 +16,8 @@ export interface StickerItemProps {
   shippingCost: number;
   stickerThemes: string[];
   stickerStyles: string[];
-  images: string[];
+  mainImage: string;
+  detailImages: string[];
   productLiked: boolean | null;
 }
 
@@ -26,6 +28,7 @@ interface StickerResponse {
 }
 
 const useGetSticker = (id: number) => {
+  const navigate = useNavigate();
   const [response, setResponse] = useState<StickerItemProps>();
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
@@ -39,6 +42,7 @@ const useGetSticker = (id: number) => {
       })
       .catch((err) => {
         setError(err);
+        navigate('/error');
       })
       .finally(() => {
         setLoading(false);
