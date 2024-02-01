@@ -16,7 +16,8 @@ export interface StickerItemProps {
   shippingCost: number;
   stickerThemes: string[];
   stickerStyles: string[];
-  images: string[];
+  mainImage: string;
+  detailImages: string[];
   productLiked: boolean | null;
 }
 

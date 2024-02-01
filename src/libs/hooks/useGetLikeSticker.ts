@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export interface LikeStickerProps {
   id: number;
+  stickerId: number;
   name: string;
   price: number;
   discountRate: number;
