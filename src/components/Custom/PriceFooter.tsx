@@ -2,7 +2,6 @@ import { styled } from 'styled-components';
 import { customInfoType, resCustomInfoType } from '../../types/customInfoType';
 import api from '../../libs/api';
 import React from 'react';
-// import { useNavigate } from 'react-router-dom';
 
 interface PriceFooterProps {
   haveDesign?: boolean;
@@ -20,8 +19,6 @@ const PriceFooter = ({
   setStep,
   setReceiptData,
 }: PriceFooterProps) => {
-  // const navigate = useNavigate();
-
   const handleClickFooterBtn = async () => {
     const formData = new FormData();
     try {
@@ -58,7 +55,7 @@ const PriceFooter = ({
   return (
     <St.CustomFooter>
       <St.FooterButton type='button' onClick={handleClickFooterBtn}>
-        접수 완료하기
+        신청서 작성 완료하기
       </St.FooterButton>
     </St.CustomFooter>
   );

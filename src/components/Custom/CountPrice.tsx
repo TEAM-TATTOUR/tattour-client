@@ -11,7 +11,7 @@ interface CountPriceProps {
   isPublic: boolean;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   size: string | undefined;
-  setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
+  setTotalPrice: (newTotalPrice: number) => void;
 }
 
 const CountPrice = ({ isPublic, setCount, size, setTotalPrice }: CountPriceProps) => {
@@ -55,7 +55,7 @@ const CountPrice = ({ isPublic, setCount, size, setTotalPrice }: CountPriceProps
         </St.DetailGroup>
         <St.Line />
         <St.TotalPriceWrapper>
-          <St.TotalPriceText>총 결제 금액</St.TotalPriceText>
+          <St.TotalPriceText>예상 결제 금액</St.TotalPriceText>
           <St.TotalPriceGroup>
             {isPublic ? (
               <>

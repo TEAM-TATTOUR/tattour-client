@@ -5,7 +5,7 @@ import { OrderSheetProps } from '../../libs/hooks/order/useGetOrdersheet';
 
 interface OrderRequest {
   stickerId: number;
-  productCount: number;
+  productAmount: number;
   shippingFee: number;
   totalAmount: number | undefined;
   recipientName: string;
@@ -20,27 +20,33 @@ const OrderFooter = ({
   price,
   postData,
   response,
+  stickerId,
+  count,
 }: {
   isComplete: boolean;
   price: number | undefined;
   postData: OrderRequest;
   response: OrderSheetProps | undefined;
+  stickerId: number;
+  count: number;
 }) => {
   const navigate = useNavigate();
+  const url = stickerId && count ? `/order?stickerId=${stickerId}&count=${count}` : '/order';
 
   const fetchData = async () => {
     await api
-      .post(`/order`, {
+      .post(url, {
         ...postData,
         contact: postData.contact.replace(/-/g, ''),
       })
       .then(() => {
-        navigate('/complete', {
+        navigate('/order-deposit', {
           state: response,
         });
       })
       .catch((err) => {
         console.log(err);
+        navigate('/error');
       });
   };
 

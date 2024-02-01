@@ -5,6 +5,7 @@ import api, { setAccessToken } from '../api';
 interface resProps {
   data: {
     data: {
+      // userId: number; 누락
       accessToken: string;
       isUserSignUpCompleted: boolean;
     };

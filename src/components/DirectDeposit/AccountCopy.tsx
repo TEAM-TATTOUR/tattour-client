@@ -3,13 +3,18 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useState } from 'react';
 import Toast from '../../common/ToastMessage/Toast';
 
-const AccountCopy = () => {
+const AccountCopy = ({
+  setIsActiveNext,
+}: {
+  setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const ACCOUNT_INFO = '우리은행 1002259752313';
 
   const [toast, setToast] = useState(false);
 
   const handleCopyClipboard = () => {
     setToast(true);
+    setIsActiveNext(true);
   };
 
   return (
