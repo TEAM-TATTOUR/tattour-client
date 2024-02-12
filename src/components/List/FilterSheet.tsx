@@ -20,7 +20,7 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
   const { styleResponse } = useGetStyle();
 
   // 필터(바텀시트)의 각 태그명
-  const DATA = [
+  const tags = [
     SORT_TAGS,
     genreResponse.map((genre: GenreItemProps) => genre.name),
     styleResponse.map((style: StyleItemProps) => style.name),
@@ -89,7 +89,7 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
           <Sheet.Container>
             <Sheet.Header disableDrag={true} />
             <Sheet.Content>
-              {DATA[isSheetOpen].map((el, idx) => (
+              {tags[isSheetOpen].map((el, idx) => (
                 <St.TagBox
                   key={idx}
                   onClick={() => handleClickTag(el, idx)}
