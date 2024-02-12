@@ -1,12 +1,8 @@
 import styled from 'styled-components';
-import {
-  IcArrowBottomSmallGray,
-  IcArrowBottomSmallLight,
-  LabelCustomSmall,
-} from '../../assets/icon';
+import { IcArrowBottomSmallGray, IcArrowBottomSmallLight } from '../../assets/icon';
 import { useState, useEffect } from 'react';
 import useGetAllList from '../../libs/hooks/list/useGetAllList';
-import { useNavigate } from 'react-router-dom';
+import TattooCard from './TattooCard';
 
 interface TattooListProps {
   setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
@@ -17,9 +13,6 @@ interface TattooListProps {
 const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) => {
   // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
   const [selectedFilter, setSelectedFilter] = useState([false, false, false]);
-
-  const navigate = useNavigate();
-
   useEffect(() => {
     const newSelectedFilter = [...selectedFilter];
     buttonName.forEach((btn, idx) => {
@@ -33,10 +26,6 @@ const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) 
   }, [buttonName]);
 
   const { response, error, loading } = useGetAllList(buttonName);
-
-  const handleClickCard = (id: number) => {
-    navigate(`/detail/${id}`);
-  };
 
   return (
     <St.Wrapper>
@@ -60,27 +49,7 @@ const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) 
         전체 <span>{response.length}</span>개
       </St.CountText>
       <St.CardContainer>
-        {!loading &&
-          !error &&
-          response.map(({ id, name, imageUrl, price, discountRate, discountPrice, isCustom }) => {
-            return (
-              <St.Card key={id} onClick={() => handleClickCard(id)}>
-                <St.CardImg>
-                  {isCustom && <LabelCustomSmall />}
-                  <img src={imageUrl} />
-                </St.CardImg>
-                <h2>{name}</h2>
-                <div>
-                  <St.CardDiscount>{discountRate}%</St.CardDiscount>
-                  <St.CardPrice>
-                    {discountPrice && discountPrice.toLocaleString()}
-                    <span>원</span>
-                  </St.CardPrice>
-                </div>
-                <p>{price.toLocaleString()}원</p>
-              </St.Card>
-            );
-          })}
+        {!loading && !error && response.map((data, idx) => <TattooCard data={data} key={idx} />)}
       </St.CardContainer>
     </St.Wrapper>
   );
@@ -130,61 +99,5 @@ const St = {
     grid-template-columns: 1fr 1fr;
     gap: 0.1rem;
     padding-bottom: 1.4rem;
-  `,
-  Card: styled.article`
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 2.2rem;
-
-    & > h2 {
-      margin: 1.5rem 0rem 0rem 2rem;
-      color: ${({ theme }) => theme.colors.gray7};
-      ${({ theme }) => theme.fonts.body_medium_16};
-    }
-
-    & > p {
-      margin: 0.4rem 0rem 0rem 2rem;
-      color: ${({ theme }) => theme.colors.gray1};
-      ${({ theme }) => theme.fonts.body_line_medium_14};
-    }
-
-    & > div {
-      margin: 0.3rem 0rem 0rem 2rem;
-    }
-  `,
-  CardImg: styled.i`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: relative;
-
-    height: 20.1rem;
-    background-color: ${({ theme }) => theme.colors.gray0};
-
-    & > img {
-      width: 18.3rem;
-      height: 18.3rem;
-    }
-
-    & > svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  `,
-  CardDiscount: styled.span`
-    color: ${({ theme }) => theme.colors.pink5};
-    ${({ theme }) => theme.fonts.title_extrabold_16};
-  `,
-  CardPrice: styled.span`
-    margin-left: 0.5rem;
-
-    color: ${({ theme }) => theme.colors.gray7};
-    ${({ theme }) => theme.fonts.title_extrabold_16};
-
-    & > span {
-      ${({ theme }) => theme.fonts.title_semibold_16};
-    }
   `,
 };

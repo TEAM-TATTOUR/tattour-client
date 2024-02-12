@@ -13,6 +13,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const ListPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  // ✅ MainPage의 장르/스타일을 선택했을 때 List로 넘어오는 경우 state로 넘겨줌
   const state = location.state;
   const type = state && (state as { type: string }).type;
   const name = state && (state as { name: string }).name;
