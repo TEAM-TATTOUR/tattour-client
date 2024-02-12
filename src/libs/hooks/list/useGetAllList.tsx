@@ -3,6 +3,7 @@ import api from '../../api';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { buttonType } from '../../../page/ListPage';
+import { FILTER_DEFAULT, SORT_TAGS } from '../../../constants/ListInfo';
 
 export interface AllListItemProps {
   id: number;
@@ -27,19 +28,20 @@ const useGetAllList = (buttons: buttonType[]) => {
 
   let sort = 'popularity';
   switch (buttons[0].value) {
-    case '정렬':
+    case FILTER_DEFAULT.SORT:
       sort = 'popularity';
       break;
-    case '인기 순':
+    case SORT_TAGS[0]:
       sort = 'popularity';
       break;
-    case '가격 낮은 순':
+    case SORT_TAGS[1]:
       sort = 'price_low';
       break;
-    case '가격 높은 순':
+    case SORT_TAGS[2]:
       sort = 'price_high';
       break;
   }
+  // ✅ reduce 메소드로 줄일 수 있음
   const genre = buttons[1].value === buttons[1].default ? null : buttons[1].value;
   const style = buttons[2].value === buttons[2].default ? null : buttons[2].value;
   // ✅배열 구조분해 할당으로 한줄로 줄일 수 있음

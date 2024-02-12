@@ -6,6 +6,7 @@ import ic_check_small_pink from '../../assets/icon/ic_check_small_pink.svg';
 import useGetGenre, { GenreItemProps } from '../../libs/hooks/list/useGetGenre';
 import useGetStyle, { StyleItemProps } from '../../libs/hooks/list/useGetStyle';
 import { buttonType } from '../../page/ListPage';
+import { SORT_TAGS } from '../../constants/ListInfo';
 
 interface FilterSheetProps {
   isSheetOpen: number;
@@ -24,7 +25,7 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
 
   // 필터(바텀시트)의 각 태그명
   const DATA = [
-    ['인기 순', '가격 낮은 순', '가격 높은 순'],
+    SORT_TAGS,
     genreResponse.map((genre: GenreItemProps) => genre.name),
     styleResponse.map((style: StyleItemProps) => style.name),
   ];

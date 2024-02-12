@@ -9,6 +9,7 @@ import MainHeaderButton from '../common/MainHeaderButton';
 import SideMenu from '../common/SideMenu';
 import { useLocation, useNavigate } from 'react-router-dom';
 import FilterSheet from '../components/List/FilterSheet';
+import { FILTER_DEFAULT } from '../constants/ListInfo';
 
 export interface buttonType {
   default: string;
@@ -16,6 +17,7 @@ export interface buttonType {
 }
 
 const ListPage = () => {
+  const { SORT, GENRE, STYLE } = FILTER_DEFAULT;
   const navigate = useNavigate();
   const location = useLocation();
   // ✅ MainPage의 장르/스타일을 선택했을 때 List로 넘어오는 경우 state로 넘겨줌
@@ -25,16 +27,16 @@ const ListPage = () => {
 
   const [buttons, setButtons] = useState<buttonType[]>([
     {
-      default: '정렬',
-      value: '정렬',
+      default: SORT,
+      value: SORT,
     },
     {
-      default: '장르',
-      value: state && type === '장르' ? name : '장르',
+      default: GENRE,
+      value: state && type === GENRE ? name : GENRE,
     },
     {
-      default: '스타일',
-      value: state && type === '스타일' ? name : '스타일',
+      default: STYLE,
+      value: state && type === STYLE ? name : STYLE,
     },
   ]);
   const [isSheetOpen, setSheetOpen] = useState(-1); // -1이 바텀시트 off 상태
