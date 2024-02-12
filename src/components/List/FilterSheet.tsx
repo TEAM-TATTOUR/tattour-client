@@ -6,7 +6,7 @@ import ic_check_small_pink from '../../assets/icon/ic_check_small_pink.svg';
 import useGetGenre, { GenreItemProps } from '../../libs/hooks/list/useGetGenre';
 import useGetStyle, { StyleItemProps } from '../../libs/hooks/list/useGetStyle';
 import { buttonType } from '../../page/ListPage';
-import { SORT_TAGS } from '../../constants/ListInfo';
+import { INDEX, SORT_TAGS } from '../../constants/ListInfo';
 
 interface FilterSheetProps {
   isSheetOpen: number;
@@ -16,10 +16,6 @@ interface FilterSheetProps {
 }
 
 const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterSheetProps) => {
-  const SORT_INDEX = 0;
-  const GENRE_INDEX = 1;
-  const STYLE_INDEX = 2;
-
   const { genreResponse } = useGetGenre();
   const { styleResponse } = useGetStyle();
 
@@ -32,9 +28,9 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
   const arr = buttons.map((el) => el.value); // 임시 buttonName 대용
   const [selectedTag, setSelectedTag] = useState(arr);
   const [filterTag, setFilterTag] = useState([
-    new Array(DATA[SORT_INDEX].length).fill(false),
-    new Array(DATA[GENRE_INDEX].length).fill(false),
-    new Array(DATA[STYLE_INDEX].length).fill(false),
+    new Array(DATA[INDEX.SORT].length).fill(false),
+    new Array(DATA[INDEX.GENRE].length).fill(false),
+    new Array(DATA[INDEX.STYLE].length).fill(false),
   ]);
 
   // 바텀시트 내 각 태그 ref
@@ -100,12 +96,12 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
 
   useEffect(() => {
     const newFilterTag = [...filterTag];
-    newFilterTag[SORT_INDEX] = [false, false, false];
-    newFilterTag[GENRE_INDEX] = genreResponse.map(
-      (item) => buttons[GENRE_INDEX].value === item.name,
+    newFilterTag[INDEX.SORT] = [false, false, false];
+    newFilterTag[INDEX.GENRE] = genreResponse.map(
+      (item) => buttons[INDEX.GENRE].value === item.name,
     );
-    newFilterTag[STYLE_INDEX] = styleResponse.map(
-      (item) => buttons[STYLE_INDEX].value === item.name,
+    newFilterTag[INDEX.STYLE] = styleResponse.map(
+      (item) => buttons[INDEX.STYLE].value === item.name,
     );
     setFilterTag(newFilterTag);
   }, [genreResponse, styleResponse]);

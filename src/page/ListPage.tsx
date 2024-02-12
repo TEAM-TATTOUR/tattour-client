@@ -39,9 +39,9 @@ const ListPage = () => {
       value: state && type === STYLE ? name : STYLE,
     },
   ]);
-  const [isSheetOpen, setSheetOpen] = useState(-1); // -1이 바텀시트 off 상태
+  // ✅ value 초기화 식 분리
 
-  // 사이드 메뉴 관리 상태
+  const [isSheetOpen, setSheetOpen] = useState(-1);
   const [isSideMenuOpen, setSideMenuOpen] = useState(false);
 
   const renderListPageHeader = () => {
