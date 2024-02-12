@@ -6,7 +6,7 @@ import ic_check_small_pink from '../../assets/icon/ic_check_small_pink.svg';
 import useGetGenre, { GenreItemProps } from '../../libs/hooks/list/useGetGenre';
 import useGetStyle, { StyleItemProps } from '../../libs/hooks/list/useGetStyle';
 
-interface FilterBottomProps {
+interface FilterSheetProps {
   isSheetOpen: number;
   setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
   buttonName: string[];
@@ -14,13 +14,13 @@ interface FilterBottomProps {
   defaultName: string[];
 }
 
-const FilterBottom = ({
+const FilterSheet = ({
   isSheetOpen,
   setSheetOpen,
   buttonName,
   setButtonName,
   defaultName,
-}: FilterBottomProps) => {
+}: FilterSheetProps) => {
   const SORT_INDEX = 0;
   const GENRE_INDEX = 1;
   const STYLE_INDEX = 2;
@@ -151,7 +151,7 @@ const FilterBottom = ({
   );
 };
 
-export default FilterBottom;
+export default FilterSheet;
 
 const St = {
   Wrapper: styled.section`

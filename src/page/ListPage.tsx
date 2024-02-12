@@ -1,4 +1,3 @@
-import FilterBottom from '../components/List/FilterBottom';
 import TattooList from '../components/List/TattooList';
 import styled from 'styled-components';
 import { useState } from 'react';
@@ -9,6 +8,7 @@ import HotCustom from '../common/HotCustom';
 import MainHeaderButton from '../common/MainHeaderButton';
 import SideMenu from '../common/SideMenu';
 import { useLocation, useNavigate } from 'react-router-dom';
+import FilterSheet from '../components/List/FilterSheet';
 
 const ListPage = () => {
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ const ListPage = () => {
         buttonName={buttonName}
         defaultName={DEFAULT_BUTTON_NAME}
       />
-      <FilterBottom
+      <FilterSheet
         isSheetOpen={isSheetOpen}
         setSheetOpen={setSheetOpen}
         buttonName={buttonName}
