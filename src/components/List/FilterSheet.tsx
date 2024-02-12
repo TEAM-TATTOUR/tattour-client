@@ -25,8 +25,9 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
     genreResponse.map((genre: GenreItemProps) => genre.name),
     styleResponse.map((style: StyleItemProps) => style.name),
   ];
-  const arr = buttons.map((el) => el.value); // 임시 buttonName 대용
-  const [selectedTag, setSelectedTag] = useState(arr);
+  const [selectedTag, setSelectedTag] = useState(
+    isSheetOpen === -1 ? '' : buttons[isSheetOpen].value,
+  );
   const [filterTag, setFilterTag] = useState([
     new Array(DATA[INDEX.SORT].length).fill(false),
     new Array(DATA[INDEX.GENRE].length).fill(false),
@@ -46,19 +47,15 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
 
     const trueIdx = filterTag[isSheetOpen].indexOf(true);
 
-    const newSelectedTag = [...selectedTag];
-    newSelectedTag[isSheetOpen] = DATA[isSheetOpen][trueIdx];
-    setSelectedTag(newSelectedTag);
+    setSelectedTag(DATA[isSheetOpen][trueIdx]);
   };
 
-  const handleClickTag = (tag: string, index: number, filterIdx: number) => {
-    const newSelectedTag = [...selectedTag];
-    if (selectedTag[filterIdx] === tag) {
-      newSelectedTag[filterIdx] = buttons[isSheetOpen].default;
+  const handleClickTag = (tag: string, index: number) => {
+    if (selectedTag === tag) {
+      setSelectedTag(buttons[isSheetOpen].default);
     } else {
-      newSelectedTag[filterIdx] = tag;
+      setSelectedTag(tag);
     }
-    setSelectedTag(newSelectedTag);
 
     tagRefs.current.forEach((el: HTMLParagraphElement) => {
       if (!el) return;
@@ -80,17 +77,17 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
     setSheetOpen(-1);
 
     const newTag = [...filterTag];
-    if (selectedTag[filterIdx] === buttons[isSheetOpen].default) {
+    if (selectedTag === buttons[isSheetOpen].default) {
       newTag[filterIdx] = DATA[filterIdx].map(() => false);
     } else {
       newTag[filterIdx] = DATA[filterIdx].map((_, idx) => {
-        return idx === DATA[filterIdx].indexOf(selectedTag[filterIdx]);
+        return idx === DATA[filterIdx].indexOf(selectedTag);
       });
     }
     setFilterTag(newTag);
 
     const newButtons = [...buttons];
-    newButtons[filterIdx].value = selectedTag[filterIdx];
+    newButtons[filterIdx].value = selectedTag;
     setButtons(newButtons);
   };
 
@@ -123,7 +120,7 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
               {DATA[isSheetOpen].map((el, idx) => (
                 <St.TagBox
                   key={idx}
-                  onClick={() => handleClickTag(el, idx, isSheetOpen)}
+                  onClick={() => handleClickTag(el, idx)}
                   ref={(refEl: HTMLParagraphElement) => (tagRefs.current[idx] = refEl)}
                   className={filterTag[isSheetOpen][idx] ? 'checked' : ''}
                 >
