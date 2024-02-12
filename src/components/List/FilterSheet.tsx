@@ -6,7 +6,7 @@ import ic_check_small_pink from '../../assets/icon/ic_check_small_pink.svg';
 import useGetGenre, { GenreItemProps } from '../../libs/hooks/list/useGetGenre';
 import useGetStyle, { StyleItemProps } from '../../libs/hooks/list/useGetStyle';
 import { buttonType } from '../../page/ListPage';
-import { INDEX, SORT_TAGS } from '../../constants/ListInfo';
+import { SORT_TAGS } from '../../constants/ListInfo';
 
 interface FilterSheetProps {
   isSheetOpen: number;
@@ -26,27 +26,18 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
     styleResponse.map((style: StyleItemProps) => style.name),
   ];
   const [selectedTag, setSelectedTag] = useState('');
-  // sheet 켤때마다 selectedTag 초기화 (끌 경우 isSheetOpen이 -1이라서 indexError 발생)
+
+  // sheet 켤때마다 selectedTag, filterTag 초기화 (끌 경우 isSheetOpen이 -1이라서 indexError 발생)
   useEffect(() => {
     if (isSheetOpen === -1) return;
     setSelectedTag(buttons[isSheetOpen].value);
   }, [isSheetOpen, buttons]);
 
-  const [filterTag, setFilterTag] = useState([
-    new Array(DATA[INDEX.SORT].length).fill(false),
-    new Array(DATA[INDEX.GENRE].length).fill(false),
-    new Array(DATA[INDEX.STYLE].length).fill(false),
-  ]);
-
   // 바텀시트 내 각 태그 ref
   const tagRefs = useRef<HTMLParagraphElement[]>([]);
 
   // backdrop 클릭 시 바텀시트 꺼지는 함수
-  const onTapBack = (filter: boolean[]) => {
-    const newFilterTag = [...filterTag];
-    newFilterTag[isSheetOpen] = filter;
-    setFilterTag(newFilterTag);
-
+  const onTapBack = () => {
     // backdrop 클릭 시 선택했던 태그 적용 X (이전 데이터로 selectedTag 되돌리기)
     setSelectedTag(buttons[isSheetOpen].value);
     setSheetOpen(-1);
@@ -76,16 +67,6 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
   };
 
   const handleClickButton = (filterIdx: number) => {
-    const newTag = [...filterTag];
-    if (selectedTag === buttons[isSheetOpen].default) {
-      newTag[filterIdx] = DATA[filterIdx].map(() => false);
-    } else {
-      newTag[filterIdx] = DATA[filterIdx].map((_, idx) => {
-        return idx === DATA[filterIdx].indexOf(selectedTag);
-      });
-    }
-    setFilterTag(newTag);
-
     //buttons[filterIdx] 값 업데이트하기
     const newButtons = [...buttons];
     newButtons[filterIdx].value = selectedTag;
@@ -93,18 +74,6 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
 
     setSheetOpen(-1);
   };
-
-  useEffect(() => {
-    const newFilterTag = [...filterTag];
-    newFilterTag[INDEX.SORT] = [false, false, false];
-    newFilterTag[INDEX.GENRE] = genreResponse.map(
-      (item) => buttons[INDEX.GENRE].value === item.name,
-    );
-    newFilterTag[INDEX.STYLE] = styleResponse.map(
-      (item) => buttons[INDEX.STYLE].value === item.name,
-    );
-    setFilterTag(newFilterTag);
-  }, [genreResponse, styleResponse]);
 
   return (
     <St.Wrapper>
@@ -125,7 +94,7 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
                   key={idx}
                   onClick={() => handleClickTag(el, idx)}
                   ref={(refEl: HTMLParagraphElement) => (tagRefs.current[idx] = refEl)}
-                  className={filterTag[isSheetOpen][idx] ? 'checked' : ''}
+                  className={buttons[isSheetOpen].value === el ? 'checked' : ''}
                 >
                   <span></span>
                   {el}
@@ -140,7 +109,7 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
               </St.Footer>
             </Sheet.Content>
           </Sheet.Container>
-          <Sheet.Backdrop onTap={() => onTapBack(filterTag[isSheetOpen])} />
+          <Sheet.Backdrop onTap={() => onTapBack()} />
         </CustomSheet>
       )}
     </St.Wrapper>
