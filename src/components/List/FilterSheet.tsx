@@ -25,9 +25,13 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
     genreResponse.map((genre: GenreItemProps) => genre.name),
     styleResponse.map((style: StyleItemProps) => style.name),
   ];
-  const [selectedTag, setSelectedTag] = useState(
-    isSheetOpen === -1 ? '' : buttons[isSheetOpen].value,
-  );
+  const [selectedTag, setSelectedTag] = useState('');
+  // sheet 켤때마다 selectedTag 초기화 (끌 경우 isSheetOpen이 -1이라서 indexError 발생)
+  useEffect(() => {
+    if (isSheetOpen === -1) return;
+    setSelectedTag(buttons[isSheetOpen].value);
+  }, [isSheetOpen, buttons]);
+
   const [filterTag, setFilterTag] = useState([
     new Array(DATA[INDEX.SORT].length).fill(false),
     new Array(DATA[INDEX.GENRE].length).fill(false),
@@ -43,11 +47,9 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
     newFilterTag[isSheetOpen] = filter;
     setFilterTag(newFilterTag);
 
+    // backdrop 클릭 시 선택했던 태그 적용 X (이전 데이터로 selectedTag 되돌리기)
+    setSelectedTag(buttons[isSheetOpen].value);
     setSheetOpen(-1);
-
-    const trueIdx = filterTag[isSheetOpen].indexOf(true);
-
-    setSelectedTag(DATA[isSheetOpen][trueIdx]);
   };
 
   const handleClickTag = (tag: string, index: number) => {
@@ -74,8 +76,6 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
   };
 
   const handleClickButton = (filterIdx: number) => {
-    setSheetOpen(-1);
-
     const newTag = [...filterTag];
     if (selectedTag === buttons[isSheetOpen].default) {
       newTag[filterIdx] = DATA[filterIdx].map(() => false);
@@ -86,9 +86,12 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
     }
     setFilterTag(newTag);
 
+    //buttons[filterIdx] 값 업데이트하기
     const newButtons = [...buttons];
     newButtons[filterIdx].value = selectedTag;
     setButtons(newButtons);
+
+    setSheetOpen(-1);
   };
 
   useEffect(() => {
