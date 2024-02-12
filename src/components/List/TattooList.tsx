@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
 import useGetAllList from '../../libs/hooks/list/useGetAllList';
 import TattooCard from './TattooCard';
 import FilterButton from './FilterButton';
@@ -11,20 +10,6 @@ interface TattooListProps {
 }
 
 const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) => {
-  // 각 버튼의 선택 여부 (색이 바뀌어야하는 여부)를 저장하는 state
-  const [selectedFilter, setSelectedFilter] = useState([false, false, false]);
-  useEffect(() => {
-    const newSelectedFilter = [...selectedFilter];
-    buttonName.forEach((btn, idx) => {
-      if (btn !== defaultName[idx]) {
-        newSelectedFilter[idx] = true;
-      } else if (btn === defaultName[idx]) {
-        newSelectedFilter[idx] = false;
-      }
-    });
-    setSelectedFilter(newSelectedFilter);
-  }, [buttonName]);
-
   const { response, error, loading } = useGetAllList(buttonName);
 
   return (
@@ -36,8 +21,8 @@ const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) 
             key={el}
             idx={idx}
             button={el}
-            selectedFilter={selectedFilter}
             setSheetOpen={setSheetOpen}
+            defaultName={defaultName}
           />
         ))}
       </St.BtnContainer>

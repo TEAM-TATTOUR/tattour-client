@@ -4,20 +4,21 @@ import { IcArrowBottomSmallGray, IcArrowBottomSmallLight } from '../../assets/ic
 interface FilterButtonProps {
   idx: number;
   button: string;
-  selectedFilter: boolean[];
   setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
+  defaultName: string[];
 }
-const FilterButton = ({ idx, button, selectedFilter, setSheetOpen }: FilterButtonProps) => {
+const FilterButton = ({ idx, button, setSheetOpen, defaultName }: FilterButtonProps) => {
+  const isSelectedFilter: boolean = button !== defaultName[idx];
   return (
     <St.FilterBtn
       key={button}
-      $selected={selectedFilter[idx]}
+      $selected={isSelectedFilter}
       onClick={() => {
         setSheetOpen(idx); // 어떤 필터 버튼을 클릭했는지에 따라 isSheetOpen 값이 0, 1, 2로 바뀜
       }}
     >
       {button}
-      {selectedFilter[idx] ? <IcArrowBottomSmallLight /> : <IcArrowBottomSmallGray />}
+      {isSelectedFilter ? <IcArrowBottomSmallLight /> : <IcArrowBottomSmallGray />}
     </St.FilterBtn>
   );
 };
