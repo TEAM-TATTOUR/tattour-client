@@ -4,21 +4,20 @@ import { buttonType } from '../../page/ListPage';
 
 interface FilterButtonProps {
   idx: number;
-  button: string;
+  button: buttonType;
   setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
-  buttons: buttonType[];
 }
-const FilterButton = ({ idx, button, setSheetOpen, buttons }: FilterButtonProps) => {
-  const isSelectedFilter: boolean = buttons[idx].default !== buttons[idx].value;
+const FilterButton = ({ idx, button, setSheetOpen }: FilterButtonProps) => {
+  const isSelectedFilter: boolean = button.default !== button.value;
   return (
     <St.FilterBtn
-      key={button}
+      key={button.value}
       $selected={isSelectedFilter}
       onClick={() => {
         setSheetOpen(idx); // 어떤 필터 버튼을 클릭했는지에 따라 isSheetOpen 값이 0, 1, 2로 바뀜
       }}
     >
-      {button}
+      {button.value}
       {isSelectedFilter ? <IcArrowBottomSmallLight /> : <IcArrowBottomSmallGray />}
     </St.FilterBtn>
   );

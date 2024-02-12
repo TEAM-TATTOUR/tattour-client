@@ -39,12 +39,6 @@ const ListPage = () => {
   ]);
   const [isSheetOpen, setSheetOpen] = useState(-1); // -1이 바텀시트 off 상태
 
-  const [buttonName, setButtonName] = useState([
-    buttons[0].value,
-    buttons[1].value,
-    buttons[2].value,
-  ]);
-
   // 사이드 메뉴 관리 상태
   const [isSideMenuOpen, setSideMenuOpen] = useState(false);
 
@@ -64,13 +58,12 @@ const ListPage = () => {
     <PageLayout renderHeader={renderListPageHeader}>
       <HotCustom isList={true} />
       <St.Line />
-      <TattooList setSheetOpen={setSheetOpen} buttonName={buttonName} buttons={buttons} />
+      <TattooList setSheetOpen={setSheetOpen} buttons={buttons} />
       <FilterSheet
         isSheetOpen={isSheetOpen}
         setSheetOpen={setSheetOpen}
-        buttonName={buttonName}
-        setButtonName={setButtonName}
         buttons={buttons}
+        setButtons={setButtons}
       />
       <SideMenu isSideMenuOpen={isSideMenuOpen} setIsSideMenuOpen={setSideMenuOpen} />
     </PageLayout>

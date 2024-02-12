@@ -10,18 +10,11 @@ import { buttonType } from '../../page/ListPage';
 interface FilterSheetProps {
   isSheetOpen: number;
   setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
-  buttonName: string[];
-  setButtonName: React.Dispatch<React.SetStateAction<string[]>>;
   buttons: buttonType[];
+  setButtons: React.Dispatch<React.SetStateAction<buttonType[]>>;
 }
 
-const FilterSheet = ({
-  isSheetOpen,
-  setSheetOpen,
-  buttonName,
-  setButtonName,
-  buttons,
-}: FilterSheetProps) => {
+const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterSheetProps) => {
   const SORT_INDEX = 0;
   const GENRE_INDEX = 1;
   const STYLE_INDEX = 2;
@@ -35,7 +28,8 @@ const FilterSheet = ({
     genreResponse.map((genre: GenreItemProps) => genre.name),
     styleResponse.map((style: StyleItemProps) => style.name),
   ];
-  const [selectedTag, setSelectedTag] = useState(buttonName); // 필터 버튼명(선택한 태그명)을 임시로 관리하는 state
+  const arr = buttons.map((el) => el.value); // 임시 buttonName 대용
+  const [selectedTag, setSelectedTag] = useState(arr);
   const [filterTag, setFilterTag] = useState([
     new Array(DATA[SORT_INDEX].length).fill(false),
     new Array(DATA[GENRE_INDEX].length).fill(false),
@@ -98,16 +92,20 @@ const FilterSheet = ({
     }
     setFilterTag(newTag);
 
-    const newButtonName = [...buttonName];
-    newButtonName[filterIdx] = selectedTag[filterIdx];
-    setButtonName(newButtonName);
+    const newButtons = [...buttons];
+    newButtons[filterIdx].value = selectedTag[filterIdx];
+    setButtons(newButtons);
   };
 
   useEffect(() => {
     const newFilterTag = [...filterTag];
     newFilterTag[SORT_INDEX] = [false, false, false];
-    newFilterTag[GENRE_INDEX] = genreResponse.map((item) => buttonName[GENRE_INDEX] === item.name);
-    newFilterTag[STYLE_INDEX] = styleResponse.map((item) => buttonName[STYLE_INDEX] === item.name);
+    newFilterTag[GENRE_INDEX] = genreResponse.map(
+      (item) => buttons[GENRE_INDEX].value === item.name,
+    );
+    newFilterTag[STYLE_INDEX] = styleResponse.map(
+      (item) => buttons[STYLE_INDEX].value === item.name,
+    );
     setFilterTag(newFilterTag);
   }, [genreResponse, styleResponse]);
 

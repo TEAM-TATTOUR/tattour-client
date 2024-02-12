@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import api from '../../api';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { buttonType } from '../../../page/ListPage';
 
 export interface AllListItemProps {
   id: number;
@@ -21,11 +22,11 @@ interface AllListResponse {
   message: string;
 }
 
-const useGetAllList = (buttonName: string[]) => {
+const useGetAllList = (buttons: buttonType[]) => {
   const navigate = useNavigate();
 
   let sort = 'popularity';
-  switch (buttonName[0]) {
+  switch (buttons[0].value) {
     case '정렬':
       sort = 'popularity';
       break;
@@ -39,8 +40,10 @@ const useGetAllList = (buttonName: string[]) => {
       sort = 'price_high';
       break;
   }
-  const genre = buttonName[1] === '장르' ? null : buttonName[1];
-  const style = buttonName[2] === '스타일' ? null : buttonName[2];
+  const genre = buttons[1].value === buttons[1].default ? null : buttons[1].value;
+  const style = buttons[2].value === buttons[2].default ? null : buttons[2].value;
+  // ✅배열 구조분해 할당으로 한줄로 줄일 수 있음
+
   const [response, setResponse] = useState<AllListItemProps[]>([]);
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
@@ -66,7 +69,7 @@ const useGetAllList = (buttonName: string[]) => {
 
   useEffect(() => {
     fetchData();
-  }, [buttonName]);
+  }, [buttons]);
 
   return { response, error, loading };
 };

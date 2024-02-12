@@ -6,25 +6,18 @@ import { buttonType } from '../../page/ListPage';
 
 interface TattooListProps {
   setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
-  buttonName: string[];
   buttons: buttonType[];
 }
 
-const TattooList = ({ setSheetOpen, buttonName, buttons }: TattooListProps) => {
-  const { response, error, loading } = useGetAllList(buttonName);
+const TattooList = ({ setSheetOpen, buttons }: TattooListProps) => {
+  const { response, error, loading } = useGetAllList(buttons);
 
   return (
     <St.Wrapper>
       <St.Header>ALL</St.Header>
       <St.BtnContainer>
-        {buttonName.map((el, idx) => (
-          <FilterButton
-            key={el}
-            idx={idx}
-            button={el}
-            setSheetOpen={setSheetOpen}
-            buttons={buttons}
-          />
+        {buttons.map((button, idx) => (
+          <FilterButton key={button.value} idx={idx} button={button} setSheetOpen={setSheetOpen} />
         ))}
       </St.BtnContainer>
       <St.CountText>
