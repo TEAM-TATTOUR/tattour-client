@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { IcArrowBottomSmallGray, IcArrowBottomSmallLight } from '../../assets/icon';
 import { useState, useEffect } from 'react';
 import useGetAllList from '../../libs/hooks/list/useGetAllList';
 import TattooCard from './TattooCard';
+import FilterButton from './FilterButton';
 
 interface TattooListProps {
   setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
@@ -32,17 +32,13 @@ const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) 
       <St.Header>ALL</St.Header>
       <St.BtnContainer>
         {buttonName.map((el, idx) => (
-          <St.FilterBtn
+          <FilterButton
             key={el}
-            $selected={selectedFilter[idx]}
-            onClick={() => {
-              // 필터 버튼을 클릭하여 바텀시트를 켜는 부분
-              setSheetOpen(idx); // 어떤 필터 버튼을 클릭했는지에 따라 isSheetOpen 값이 0, 1, 2로 바뀜
-            }}
-          >
-            {el}
-            {selectedFilter[idx] ? <IcArrowBottomSmallLight /> : <IcArrowBottomSmallGray />}
-          </St.FilterBtn>
+            idx={idx}
+            button={el}
+            selectedFilter={selectedFilter}
+            setSheetOpen={setSheetOpen}
+          />
         ))}
       </St.BtnContainer>
       <St.CountText>
@@ -70,20 +66,6 @@ const St = {
     display: flex;
     gap: 1rem;
     margin-left: 2rem;
-  `,
-  FilterBtn: styled.button<{ $selected: boolean }>`
-    display: flex;
-    padding: 0.6rem 0.7rem 0.6rem 1.3rem;
-    justify-content: center;
-    align-items: center;
-    gap: 0.3rem;
-
-    border-radius: 0.5rem;
-    background-color: ${({ theme, $selected }) =>
-      $selected ? theme.colors.gray7 : theme.colors.bg};
-
-    color: ${({ theme, $selected }) => ($selected ? theme.colors.white : theme.colors.gray3)};
-    ${({ theme }) => theme.fonts.body_medium_14};
   `,
   CountText: styled.p`
     margin: 2.8rem 0rem 1.6rem 2.2rem;
