@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import { IcArrowBottomSmallGray, IcArrowBottomSmallLight } from '../../assets/icon';
+import { buttonType } from '../../page/ListPage';
 
 interface FilterButtonProps {
   idx: number;
   button: string;
   setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
-  defaultName: string[];
+  buttons: buttonType[];
 }
-const FilterButton = ({ idx, button, setSheetOpen, defaultName }: FilterButtonProps) => {
-  const isSelectedFilter: boolean = button !== defaultName[idx];
+const FilterButton = ({ idx, button, setSheetOpen, buttons }: FilterButtonProps) => {
+  const isSelectedFilter: boolean = buttons[idx].default !== buttons[idx].value;
   return (
     <St.FilterBtn
       key={button}

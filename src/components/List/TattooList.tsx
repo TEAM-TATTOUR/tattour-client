@@ -2,14 +2,15 @@ import styled from 'styled-components';
 import useGetAllList from '../../libs/hooks/list/useGetAllList';
 import TattooCard from './TattooCard';
 import FilterButton from './FilterButton';
+import { buttonType } from '../../page/ListPage';
 
 interface TattooListProps {
   setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
   buttonName: string[];
-  defaultName: string[];
+  buttons: buttonType[];
 }
 
-const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) => {
+const TattooList = ({ setSheetOpen, buttonName, buttons }: TattooListProps) => {
   const { response, error, loading } = useGetAllList(buttonName);
 
   return (
@@ -22,7 +23,7 @@ const TattooList = ({ setSheetOpen, buttonName, defaultName }: TattooListProps) 
             idx={idx}
             button={el}
             setSheetOpen={setSheetOpen}
-            defaultName={defaultName}
+            buttons={buttons}
           />
         ))}
       </St.BtnContainer>

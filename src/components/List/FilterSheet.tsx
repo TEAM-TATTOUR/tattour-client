@@ -5,13 +5,14 @@ import ic_check_small_light from '../../assets/icon/ic_check_small_light.svg';
 import ic_check_small_pink from '../../assets/icon/ic_check_small_pink.svg';
 import useGetGenre, { GenreItemProps } from '../../libs/hooks/list/useGetGenre';
 import useGetStyle, { StyleItemProps } from '../../libs/hooks/list/useGetStyle';
+import { buttonType } from '../../page/ListPage';
 
 interface FilterSheetProps {
   isSheetOpen: number;
   setSheetOpen: React.Dispatch<React.SetStateAction<number>>;
   buttonName: string[];
   setButtonName: React.Dispatch<React.SetStateAction<string[]>>;
-  defaultName: string[];
+  buttons: buttonType[];
 }
 
 const FilterSheet = ({
@@ -19,7 +20,7 @@ const FilterSheet = ({
   setSheetOpen,
   buttonName,
   setButtonName,
-  defaultName,
+  buttons,
 }: FilterSheetProps) => {
   const SORT_INDEX = 0;
   const GENRE_INDEX = 1;
@@ -62,7 +63,7 @@ const FilterSheet = ({
   const handleClickTag = (tag: string, index: number, filterIdx: number) => {
     const newSelectedTag = [...selectedTag];
     if (selectedTag[filterIdx] === tag) {
-      newSelectedTag[filterIdx] = defaultName[isSheetOpen];
+      newSelectedTag[filterIdx] = buttons[isSheetOpen].default;
     } else {
       newSelectedTag[filterIdx] = tag;
     }
@@ -88,7 +89,7 @@ const FilterSheet = ({
     setSheetOpen(-1);
 
     const newTag = [...filterTag];
-    if (selectedTag[filterIdx] === defaultName[isSheetOpen]) {
+    if (selectedTag[filterIdx] === buttons[isSheetOpen].default) {
       newTag[filterIdx] = DATA[filterIdx].map(() => false);
     } else {
       newTag[filterIdx] = DATA[filterIdx].map((_, idx) => {
