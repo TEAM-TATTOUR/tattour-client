@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import TempSaveModal from '../../../common/Modal/TempSaveModal/TempSaveModal';
 import { useNavigate } from 'react-router-dom';
-import api from '../../../libs/api';
+import { api } from '../../../libs/api';
 import { AxiosError } from 'axios';
 
 export interface CustomSaveItemProps {

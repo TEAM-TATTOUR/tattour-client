@@ -3,7 +3,7 @@ import { IcCancelDark, IcMinus, IcMinusOneunder, IcPlus } from '../../assets/ico
 import { useState, useEffect, useCallback } from 'react';
 import DeleteCartModal from '../../common/Modal/DeleteCartModal/DeleteCartModal';
 import { debounce } from 'lodash';
-import api from '../../libs/api';
+import { api } from '../../libs/api';
 import { useNavigate } from 'react-router-dom';
 
 const CartItem = ({

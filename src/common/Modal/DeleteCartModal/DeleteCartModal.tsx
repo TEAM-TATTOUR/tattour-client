@@ -1,6 +1,6 @@
 import ModalPortal from '../ModalPortal';
 import EscapeModalForm from '../EscapeModal/EscapeModalForm';
-import api from '../../../libs/api';
+import { api } from '../../../libs/api';
 import { useNavigate } from 'react-router-dom';
 
 interface DeleteCartModalProps {

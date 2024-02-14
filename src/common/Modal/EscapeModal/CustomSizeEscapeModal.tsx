@@ -3,7 +3,7 @@ import ModalPortal from '../ModalPortal';
 import { IcCancelDark } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 import { customInfoType } from '../../../types/customInfoType';
-import api from '../../../libs/api';
+import { api } from '../../../libs/api';
 
 interface CustomSizeEscapeModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
 import { useNavigate } from 'react-router-dom';
-import api from '../../libs/api';
+import { api } from '../../libs/api';
 import { useState } from 'react';
 import Toast from '../../common/ToastMessage/Toast';
 
