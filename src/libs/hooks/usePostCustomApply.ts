@@ -1,7 +1,7 @@
 import { AxiosError, isAxiosError } from 'axios';
 import { useEffect, useState } from 'react';
-import api from '../api';
 import { useNavigate } from 'react-router-dom';
+import { api } from '../api';
 
 interface CustomApplyResponseData {
   customId: number;

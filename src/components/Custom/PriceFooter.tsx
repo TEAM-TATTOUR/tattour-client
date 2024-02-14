@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { customInfoType, resCustomInfoType } from '../../types/customInfoType';
-import api from '../../libs/api';
 import React from 'react';
+import { api } from '../../libs/api';
 
 interface PriceFooterProps {
   haveDesign?: boolean;
