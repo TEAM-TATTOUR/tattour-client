@@ -20,7 +20,6 @@ const ListPage = () => {
   const { SORT, GENRE, STYLE } = FILTER_DEFAULT;
   const navigate = useNavigate();
   const location = useLocation();
-  // ✅ MainPage의 장르/스타일을 선택했을 때 List로 넘어오는 경우 state로 넘겨줌
   const state = location.state;
   const type = state && (state as { type: string }).type;
   const name = state && (state as { name: string }).name;
@@ -39,7 +38,6 @@ const ListPage = () => {
       value: state && type === STYLE ? name : STYLE,
     },
   ]);
-  // ✅ value 초기화 식 분리
 
   const [isSheetOpen, setSheetOpen] = useState(-1);
   const [isSideMenuOpen, setSideMenuOpen] = useState(false);

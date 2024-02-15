@@ -15,22 +15,17 @@ interface FilterSheetProps {
 }
 
 const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterSheetProps) => {
+  // 바텀시트 활성화 시간동안 사용자가 선택한 태그
+  const [selectedTag, setSelectedTag] = useState('');
   const { genreResponse } = useGetGenre();
   const { styleResponse } = useGetStyle();
 
-  // 필터(바텀시트)의 각 태그명
+  // 필터의 각 태그 배열
   const tags = [
     SORT_TAGS,
     genreResponse.map((genre: GenreItemProps) => genre.name),
     styleResponse.map((style: StyleItemProps) => style.name),
   ];
-  const [selectedTag, setSelectedTag] = useState('');
-
-  // sheet 켤때마다 selectedTag, filterTag 초기화 (끌 경우 isSheetOpen이 -1이라서 indexError 발생)
-  useEffect(() => {
-    if (isSheetOpen === -1) return;
-    setSelectedTag(buttons[isSheetOpen].value);
-  }, [isSheetOpen, buttons]);
 
   // backdrop 클릭 시 바텀시트 꺼지는 함수
   const onTapBack = () => {
@@ -51,6 +46,12 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
 
     setSheetOpen(-1);
   };
+
+  // sheet 켤때마다 selectedTag, filterTag 초기화 (끌 경우 isSheetOpen이 -1이라서 indexError 발생)
+  useEffect(() => {
+    if (isSheetOpen === -1) return;
+    setSelectedTag(buttons[isSheetOpen].value);
+  }, [isSheetOpen, buttons]);
 
   return (
     <St.Wrapper>
