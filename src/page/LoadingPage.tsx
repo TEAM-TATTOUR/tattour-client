@@ -13,7 +13,12 @@ const LoadingPage = () => {
 
   return (
     <div>
-      <Lottie options={defaultOptions} height='8rem' width='8rem' isClickToPauseDisabled={true} />
+      <Lottie
+        options={defaultOptions}
+        height='9.6rem'
+        width='9.6rem'
+        isClickToPauseDisabled={true}
+      />
     </div>
   );
 };
