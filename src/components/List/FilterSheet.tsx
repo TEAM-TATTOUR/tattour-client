@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import Sheet from 'react-modal-sheet';
 import { useRef, useState, useEffect } from 'react';
-import ic_check_small_light from '../../assets/icon/ic_check_small_light.svg';
-import ic_check_small_pink from '../../assets/icon/ic_check_small_pink.svg';
 import useGetGenre, { GenreItemProps } from '../../libs/hooks/list/useGetGenre';
 import useGetStyle, { StyleItemProps } from '../../libs/hooks/list/useGetStyle';
 import { buttonType } from '../../page/ListPage';
 import { SORT_TAGS } from '../../constants/ListInfo';
+import { IcCheckSmallLight, IcCheckSmallPink } from '../../assets/icon';
 
 interface FilterSheetProps {
   isSheetOpen: number;
@@ -98,7 +97,7 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
                 >
                   <span></span>
                   {el}
-                  <i></i>
+                  {selectedTag === el ? <IcCheckSmallPink /> : <IcCheckSmallLight />}
                 </St.TagBox>
               ))}
 
@@ -125,6 +124,7 @@ const St = {
   TagBox: styled.p`
     display: flex;
     justify-content: center;
+    gap: 0.3rem;
     text-align: center;
     padding: 1.7rem 0rem;
     color: ${({ theme }) => theme.colors.gray4};
@@ -137,27 +137,9 @@ const St = {
       height: 2rem;
     }
 
-    & > i {
-      display: inline-block;
-      margin: 0rem 0.3rem;
-      width: 2rem;
-      height: 2rem;
-
-      background: url(${ic_check_small_light});
-    }
-
     &.checked {
       ${({ theme }) => theme.fonts.title_semibold_18};
       color: ${({ theme }) => theme.colors.gray8};
-
-      & > i {
-        display: inline-block;
-        margin: 0rem 0.3rem;
-        width: 2rem;
-        height: 2rem;
-
-        background: url(${ic_check_small_pink});
-      }
     }
   `,
   Footer: styled.footer`
