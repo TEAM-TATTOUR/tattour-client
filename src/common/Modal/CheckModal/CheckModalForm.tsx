@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
-import api from '../../../libs/api';
+import { api } from '../../../libs/api';
 
 interface CheckModalFormProps {
   onClose: () => void;

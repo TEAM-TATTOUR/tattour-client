@@ -1,8 +1,10 @@
 import { AxiosError } from 'axios';
-import api from '../api';
+import { api } from '../api';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export interface LikeStickerProps {
+  id: number;
   stickerId: number;
   name: string;
   price: number;
@@ -20,6 +22,7 @@ interface LikeStickerResponse {
 }
 
 const useGetLikeSticker = () => {
+  const navigate = useNavigate();
   const [response, setResponse] = useState<LikeStickerProps[]>([]);
   const [error, setError] = useState<AxiosError>();
   const [loading, setLoading] = useState(true);
@@ -33,6 +36,7 @@ const useGetLikeSticker = () => {
       })
       .catch((err) => {
         setError(err);
+        navigate('/error');
       })
       .finally(() => {
         setLoading(false);

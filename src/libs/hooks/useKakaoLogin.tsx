@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api, { setAccessToken } from '../api';
+import { api, setAccessToken } from '../api';
 
 interface resProps {
   data: {
     data: {
+      // userId: number; 누락
       accessToken: string;
       isUserSignUpCompleted: boolean;
     };

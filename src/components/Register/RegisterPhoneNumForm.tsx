@@ -1,13 +1,12 @@
 import { styled } from 'styled-components';
 import React, { SetStateAction, useReducer, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import api from '../../libs/api';
 import { reducer } from '../../libs/reducers/registerReducer';
 import sliceMaxLength from '../../utils/sliceMaxLength';
 import Toast from '../../common/ToastMessage/Toast';
 import Timer from './Timer';
 import ErrorMessage from './ErrorMessage';
+import { api, baseAxios } from '../../libs/api';
 
 interface RegisterPhoneNumFormProps {
   setStep: React.Dispatch<SetStateAction<number>>;
@@ -80,23 +79,12 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
 
   // 클릭 시, 인증번호를 받을 수 있는 버튼
   const handleClickSendMessageBtn = () => {
-    const ACCESS_TOKEN_KEY = 'accesstoken';
-    const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
-
     // 전화번호가 제대로 입력된 경우에만 인증번호를 받을 수 있음
     if (phoneNum.length === 11) {
-      axios
-        .post(
-          `https://dev.tattour.shop/sms/send/verification-code`,
-          {
-            phoneNumber: `${phoneNum}`,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          },
-        )
+      baseAxios
+        .post(`/sms/send/verification-code`, {
+          phoneNumber: `${phoneNum}`,
+        })
         .then(() => {
           dispatch({ type: 'SHOW_CERTIFICATION_FORM' });
           setToast(true);
@@ -123,8 +111,8 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
   const checkCertificationNum = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 인증번호 6자리를 모두 입력했을 경우에만 서버와 소통
     if (e.target.value.length === 6) {
-      api
-        .get(`/user/phonenumber/verification`, {
+      baseAxios
+        .get(`/api/v1/user/phonenumber/verification`, {
           params: {
             verificationCode: `${e.target.value}`,
           },

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import CustomSizePage from '../Common/CustomSizePage';
 import CustomImgLayout from '../../../components/Custom/NoDesign/Img/CustomImgLayout';
 import CustomRequestLayout from '../../../components/Custom/NoDesign/Request/CustomRequestLayout';
 import PriceLayout from '../../../components/Custom/Common/PriceLayout';
@@ -7,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import ReceiptLayout from '../../../components/Custom/Common/Receipt/ReceiptLayout';
 import { resCustomInfoType } from '../../../types/customInfoType';
 import CustomSizeLayout from '../../../components/Custom/Common/Size/CustomSizeLayout';
+import CustomDirectDepositLayout from '../../../components/Custom/Common/DirectDeposit/CustomDirectDepositLayout';
 
 const NoDesignCustomPage = () => {
   const location = useLocation();
@@ -110,12 +110,15 @@ const NoDesignCustomPage = () => {
           setCount={setCount}
           isPublic={isPublic}
           setIsPublic={setIsPublic}
-          price={price}
-          setPrice={setPrice}
+          totalPrice={price}
+          setTotalPrice={setPrice}
         />
       );
 
     case 4:
+      return <CustomDirectDepositLayout setStep={setStep} totalPrice={price} />;
+
+    case 5:
       return <ReceiptLayout receiptData={receiptData} haveDesign={haveDesign} />; //haveDesign 임의로 추가해서 넘겨줬습니다
   }
 };

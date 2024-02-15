@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
-import { useLocation, useNavigate } from 'react-router-dom';
-import api from '../../libs/api';
+import { useNavigate } from 'react-router-dom';
+import { api } from '../../libs/api';
 import { useState } from 'react';
 import Toast from '../../common/ToastMessage/Toast';
 
@@ -9,25 +9,23 @@ interface DetailFooterProp {
   id: number;
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isSecond: boolean;
-  text: string;
   like: boolean | null;
   setLike: React.Dispatch<React.SetStateAction<boolean | null>>;
   count: number;
   shippingFee: number;
+  setCartToast: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const DetailFooter = ({
   id,
   setSheetOpen,
   isSecond,
-  text,
   like,
   setLike,
   count,
   shippingFee,
+  setCartToast,
 }: DetailFooterProp) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const currURL = location.pathname;
   const [toast, setToast] = useState(false);
 
   const handleClickButton = () => {
@@ -36,14 +34,7 @@ const DetailFooter = ({
       setToast(true);
       return;
     }
-    if (text === '충전하기') {
-      // state 하나 넘겨줘야함. 추후 추가 예정
-      navigate('/point-charge', {
-        state: {
-          redirectURL: currURL,
-        },
-      });
-    } else if (isSecond) {
+    if (isSecond) {
       // state로 OrderPage에서 필요한 정보 넘겨주기
       navigate(`/order`, {
         state: {
@@ -55,6 +46,22 @@ const DetailFooter = ({
     } else {
       setSheetOpen(true);
     }
+  };
+
+  const postCart = async () => {
+    await api
+      .post('/cart', {
+        stickerId: id,
+        count: count,
+      })
+      .then(() => {
+        setCartToast(true);
+        setSheetOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate('/error');
+      });
   };
 
   // 좋아요 추가 통신
@@ -74,12 +81,11 @@ const DetailFooter = ({
     await api
       .delete(`/user/productliked/sticker/${id}/delete`)
       .then(() => {
-        // setResponse(res.data.data);
         // 좋아요 삭제
         console.log('좋아요 삭제');
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        navigate('/error');
       });
   };
 
@@ -98,10 +104,25 @@ const DetailFooter = ({
     }
   };
 
+  const handleCartButton = () => {
+    if (like === null) {
+      // 로그인 상태가 아닌 경우
+      setToast(true);
+      return;
+    }
+    postCart();
+  };
+
   return (
     <St.Footer>
-      <St.Button type='button' onClick={handleClickButton}>
-        {text}
+      {isSecond && (
+        <St.Button type='button' onClick={handleCartButton} $isSecond={isSecond}>
+          장바구니
+        </St.Button>
+      )}
+      <St.Line />
+      <St.Button type='button' onClick={handleClickButton} $isSecond={isSecond}>
+        구매하기
       </St.Button>
       <St.Line />
       <St.Like onClick={handleClickLike}>{like ? <IcHeartLight /> : <IcHeartDark />}</St.Like>
@@ -127,11 +148,15 @@ const St = {
     background-color: ${({ theme }) => theme.colors.gray9};
   `,
 
-  Button: styled.button`
-    width: calc(100% - 7rem);
+  Button: styled.button<{ $isSecond: boolean }>`
+    width: ${({ $isSecond }) => ($isSecond ? `calc((100% - 7rem) / 2)` : `calc(100% - 7rem)`)};
     height: 100%;
     color: ${({ theme }) => theme.colors.pink5};
     ${({ theme }) => theme.fonts.title_semibold_18};
+
+    &:first-child {
+      color: ${({ theme }) => theme.colors.white};
+    }
   `,
   Line: styled.div`
     width: 0.1rem;

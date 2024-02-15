@@ -5,6 +5,10 @@ import { removeAccessToken } from '../../../libs/api';
 
 interface EscapeModalFormProps {
   redirectURL?: string;
+  setIsActiveNext?: React.Dispatch<React.SetStateAction<boolean>>;
+
+  state?: object;
+
   onClose: () => void;
   pageName: string;
   title: string;
@@ -12,10 +16,15 @@ interface EscapeModalFormProps {
   subTitle2: string;
   continueBtn: string;
   stopBtn: string;
+  continueBtnFunc?: () => void;
+
+  setStep?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const EscapeModalForm = ({
   redirectURL,
+  setIsActiveNext,
+  state,
   onClose,
   pageName,
   title,
@@ -23,13 +32,37 @@ const EscapeModalForm = ({
   subTitle2,
   continueBtn,
   stopBtn,
+  continueBtnFunc,
+  setStep,
 }: EscapeModalFormProps) => {
   const navigate = useNavigate();
+
+  const handleClickContinueBtn = () => {
+    onClose();
+    switch (pageName) {
+      case 'CartPage':
+        if (continueBtnFunc) {
+          continueBtnFunc();
+        }
+        break;
+
+      case 'DepositPage':
+        navigate('/complete', { state: state && state });
+        break;
+
+      case 'CustomDepositPage':
+        if (!setStep) break; //setStep optional props라서 추가
+        setStep((prev) => prev + 1);
+        break;
+
+      default:
+        break;
+    }
+  };
 
   const handleClickStopBtn = () => {
     onClose();
     switch (pageName) {
-      // 페이지 이름과 라우팅 주소는 나중에 보고 수정
       case 'LoginPage':
         navigate('/');
         removeAccessToken();
@@ -43,8 +76,11 @@ const EscapeModalForm = ({
         navigate('/onboarding');
         break;
 
+      case 'DepositPage':
+        setIsActiveNext && setIsActiveNext(false);
+        break;
+
       default:
-        navigate('/');
         break;
     }
   };
@@ -60,7 +96,7 @@ const EscapeModalForm = ({
         </St.ModalTitleWrapper>
 
         <St.BtnWrapper>
-          <St.ContinueBtn onClick={onClose}>{continueBtn}</St.ContinueBtn>
+          <St.ContinueBtn onClick={handleClickContinueBtn}>{continueBtn}</St.ContinueBtn>
           <St.StopBtn onClick={handleClickStopBtn}>{stopBtn}</St.StopBtn>
         </St.BtnWrapper>
       </St.ModalContent>

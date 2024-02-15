@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import api from '../../libs/api';
+import { api } from '../../libs/api';
 
 export interface CustomDetailItemProps {
   id: number;

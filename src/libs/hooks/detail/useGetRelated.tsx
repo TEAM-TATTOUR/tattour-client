@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import api from '../../api';
+import { api } from '../../api';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -36,7 +36,7 @@ const useGetRelated = (id: number) => {
       })
       .catch((err) => {
         setError(err);
-        navigate('/complete');
+        navigate('/error');
       })
       .finally(() => {
         setLoading(false);

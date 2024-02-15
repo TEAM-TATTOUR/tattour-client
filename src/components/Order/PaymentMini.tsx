@@ -1,8 +1,12 @@
 import styled from 'styled-components';
-import { orderAmountInfoProps } from '../../libs/hooks/order/useGetOrdersheet';
+import { orderAmountDetailResProps } from '../../libs/hooks/order/useGetOrdersheet';
 
-const PaymentMini = ({ orderAmountInfo }: { orderAmountInfo: orderAmountInfoProps }) => {
-  const { totalAmount, productAmount, shippingFee } = orderAmountInfo;
+const PaymentMini = ({
+  orderAmountDetailRes,
+}: {
+  orderAmountDetailRes: orderAmountDetailResProps;
+}) => {
+  const { totalAmount, productAmount, shippingFee } = orderAmountDetailRes;
   return (
     <>
       <St.TextBox>

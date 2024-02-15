@@ -9,20 +9,22 @@ const MyLike = () => {
     <CustomScrollContainer title={'LIKE'}>
       {!error &&
         !loading &&
-        response.map(({ stickerId, mainImageUrl, name, price, discountPrice, discountRate }) => {
-          return (
-            <SmallTattooCard
-              key={stickerId}
-              stickerId={stickerId}
-              img={mainImageUrl}
-              title={name}
-              price={discountPrice}
-              originalPrice={price}
-              discountRate={discountRate}
-              isCustom={false}
-            />
-          );
-        })}
+        response.map(
+          ({ id, stickerId, mainImageUrl, name, price, discountPrice, discountRate }) => {
+            return (
+              <SmallTattooCard
+                key={id}
+                id={stickerId}
+                img={mainImageUrl}
+                title={name}
+                price={discountPrice}
+                originalPrice={price}
+                discountRate={discountRate}
+                isCustom={false}
+              />
+            );
+          },
+        )}
     </CustomScrollContainer>
   );
 };

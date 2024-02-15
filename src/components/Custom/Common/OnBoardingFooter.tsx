@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import TempSaveModal from '../../../common/Modal/TempSaveModal/TempSaveModal';
 import { useNavigate } from 'react-router-dom';
-import api from '../../../libs/api';
+import { api } from '../../../libs/api';
 import { AxiosError } from 'axios';
 
 export interface CustomSaveItemProps {
@@ -66,7 +66,7 @@ const OnBoardingFooter = ({ isLogin }: { isLogin: boolean }) => {
     !loading && (
       <>
         <St.OnBoardingFooter onClick={handleClickFooter}>
-          <St.FooterText>990P 내고 신청서 작성하기</St.FooterText>
+          <St.FooterText>신청서 작성하기</St.FooterText>
         </St.OnBoardingFooter>
         {isModalOpen && modalOn && <TempSaveModal setModalOn={setModalOn} />}
       </>
