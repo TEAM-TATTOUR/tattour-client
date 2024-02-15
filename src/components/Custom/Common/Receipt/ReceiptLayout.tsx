@@ -1,7 +1,3 @@
-import { useState } from 'react';
-import BackBtn from '../../../../common/Header/BackBtn';
-import CancelBtn from '../../../../common/Header/CancelBtn';
-import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import Header from '../../../Header';
 import PageLayout from '../../../PageLayout';
 import ReceiptDetail from './ReceiptDetail';

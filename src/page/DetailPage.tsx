@@ -76,7 +76,7 @@ const DetailPage = () => {
           relatedResponse.map((el) => (
             <SmallTattooCard
               key={el.id}
-              stickerId={el.id}
+              id={el.id}
               img={el.imageUrl}
               title={el.name}
               discountRate={el.discountRate}
