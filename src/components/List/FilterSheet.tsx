@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Sheet from 'react-modal-sheet';
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useGetGenre, { GenreItemProps } from '../../libs/hooks/list/useGetGenre';
 import useGetStyle, { StyleItemProps } from '../../libs/hooks/list/useGetStyle';
 import { buttonType } from '../../page/ListPage';
@@ -32,9 +32,6 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
     setSelectedTag(buttons[isSheetOpen].value);
   }, [isSheetOpen, buttons]);
 
-  // 바텀시트 내 각 태그 ref
-  const tagRefs = useRef<HTMLParagraphElement[]>([]);
-
   // backdrop 클릭 시 바텀시트 꺼지는 함수
   const onTapBack = () => {
     // backdrop 클릭 시 선택했던 태그 적용 X (이전 데이터로 selectedTag 되돌리기)
@@ -42,27 +39,8 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
     setSheetOpen(-1);
   };
 
-  const handleClickTag = (tag: string, index: number) => {
-    if (selectedTag === tag) {
-      setSelectedTag(buttons[isSheetOpen].default);
-    } else {
-      setSelectedTag(tag);
-    }
-
-    tagRefs.current.forEach((el: HTMLParagraphElement) => {
-      if (!el) return;
-      if (tagRefs.current.indexOf(el) === index) {
-        if (tagRefs.current[index].classList.contains('checked')) {
-          tagRefs.current[index].classList.remove('checked');
-        } else {
-          tagRefs.current[index].classList.add('checked');
-        }
-      } else {
-        if (el.classList.contains('checked')) {
-          el.classList.remove('checked');
-        }
-      }
-    });
+  const handleClickTag = (tag: string) => {
+    setSelectedTag(selectedTag === tag ? buttons[isSheetOpen].default : tag);
   };
 
   const handleClickButton = (filterIdx: number) => {
@@ -88,12 +66,11 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
           <Sheet.Container>
             <Sheet.Header disableDrag={true} />
             <Sheet.Content>
-              {tags[isSheetOpen].map((el, idx) => (
+              {tags[isSheetOpen].map((el) => (
                 <St.TagBox
-                  key={idx}
-                  onClick={() => handleClickTag(el, idx)}
-                  ref={(refEl: HTMLParagraphElement) => (tagRefs.current[idx] = refEl)}
-                  className={buttons[isSheetOpen].value === el ? 'checked' : ''}
+                  key={el}
+                  onClick={() => handleClickTag(el)}
+                  $isChecked={selectedTag === el}
                 >
                   <span></span>
                   {el}
@@ -121,25 +98,21 @@ const St = {
   Wrapper: styled.section`
     height: 100%;
   `,
-  TagBox: styled.p`
+  TagBox: styled.p<{ $isChecked: boolean }>`
     display: flex;
     justify-content: center;
     gap: 0.3rem;
     text-align: center;
     padding: 1.7rem 0rem;
-    color: ${({ theme }) => theme.colors.gray4};
-    ${({ theme }) => theme.fonts.title_medium_18};
+    color: ${({ theme, $isChecked }) => ($isChecked ? theme.colors.gray8 : theme.colors.gray4)};
+    ${({ theme, $isChecked }) =>
+      $isChecked ? theme.fonts.title_semibold_18 : theme.fonts.title_medium_18};
 
     & > span {
       display: inline-block;
       margin: 0rem 0.3rem;
       width: 2rem;
       height: 2rem;
-    }
-
-    &.checked {
-      ${({ theme }) => theme.fonts.title_semibold_18};
-      color: ${({ theme }) => theme.colors.gray8};
     }
   `,
   Footer: styled.footer`
