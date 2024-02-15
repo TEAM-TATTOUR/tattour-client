@@ -65,7 +65,7 @@ const DetailPage = () => {
     >
       {!error && !loading && response && (
         <>
-          <DetailCarousel isCustom={response.isCustom} images={response.detailImages} />
+          <DetailCarousel isCustom={response.isCustom} image={response.mainImage} />
           <DetailInfo response={response} />
         </>
       )}
