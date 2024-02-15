@@ -55,7 +55,7 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
   return (
     <St.Wrapper>
       {isSheetOpen !== -1 && (
-        <CustomSheet
+        <Sheet
           isOpen={isSheetOpen !== -1}
           onClose={() => {
             setSheetOpen(-1);
@@ -63,30 +63,32 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
           detent='content-height'
           disableDrag={true}
         >
-          <Sheet.Container>
-            <Sheet.Header disableDrag={true} />
-            <Sheet.Content>
-              {tags[isSheetOpen].map((el) => (
-                <St.TagBox
-                  key={el}
-                  onClick={() => handleClickTag(el)}
-                  $isChecked={selectedTag === el}
-                >
-                  <span></span>
-                  {el}
-                  {selectedTag === el ? <IcCheckSmallPink /> : <IcCheckSmallLight />}
-                </St.TagBox>
-              ))}
+          <St.SheetWrapper>
+            <Sheet.Container>
+              <Sheet.Header disableDrag={true} />
+              <Sheet.Content>
+                {tags[isSheetOpen].map((el) => (
+                  <St.TagBox
+                    key={el}
+                    onClick={() => handleClickTag(el)}
+                    $isChecked={selectedTag === el}
+                  >
+                    <span></span>
+                    {el}
+                    {selectedTag === el ? <IcCheckSmallPink /> : <IcCheckSmallLight />}
+                  </St.TagBox>
+                ))}
 
-              <St.Footer>
-                <St.Button type='button' onClick={() => handleClickButton(isSheetOpen)}>
-                  적용하기
-                </St.Button>
-              </St.Footer>
-            </Sheet.Content>
-          </Sheet.Container>
-          <Sheet.Backdrop onTap={() => onTapBack()} />
-        </CustomSheet>
+                <St.Footer>
+                  <St.Button type='button' onClick={() => handleClickButton(isSheetOpen)}>
+                    적용하기
+                  </St.Button>
+                </St.Footer>
+              </Sheet.Content>
+            </Sheet.Container>
+            <Sheet.Backdrop onTap={() => onTapBack()} />
+          </St.SheetWrapper>
+        </Sheet>
       )}
     </St.Wrapper>
   );
@@ -135,19 +137,18 @@ const St = {
     color: ${({ theme }) => theme.colors.white};
     ${({ theme }) => theme.fonts.title_semibold_18};
   `,
+  SheetWrapper: styled.div`
+    .react-modal-sheet-backdrop {
+      background-color: rgba(0, 0, 0, 0.6) !important;
+    }
+    .react-modal-sheet-container {
+      border-radius: 1rem !important;
+    }
+    .react-modal-sheet-header {
+      height: 1.6rem !important;
+    }
+    .react-modal-sheet-drag-indicator {
+      display: none;
+    }
+  `,
 };
-
-const CustomSheet = styled(Sheet)`
-  .react-modal-sheet-backdrop {
-    background-color: rgba(0, 0, 0, 0.6) !important;
-  }
-  .react-modal-sheet-container {
-    border-radius: 1rem !important;
-  }
-  .react-modal-sheet-header {
-    height: 1.6rem !important;
-  }
-  .react-modal-sheet-drag-indicator {
-    display: none;
-  }
-`;
