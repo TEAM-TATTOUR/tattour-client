@@ -54,20 +54,20 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
 
   return (
     <St.Wrapper>
-      {isSheetOpen !== -1 && (
-        <Sheet
-          isOpen={isSheetOpen !== -1}
-          onClose={() => {
-            setSheetOpen(-1);
-          }}
-          detent='content-height'
-          disableDrag={true}
-        >
-          <St.SheetWrapper>
-            <Sheet.Container>
-              <Sheet.Header disableDrag={true} />
-              <Sheet.Content>
-                {tags[isSheetOpen].map((el) => (
+      <Sheet
+        isOpen={isSheetOpen !== -1}
+        onClose={() => {
+          setSheetOpen(-1);
+        }}
+        detent='content-height'
+        disableDrag={true}
+      >
+        <St.SheetWrapper>
+          <Sheet.Container>
+            <Sheet.Header disableDrag={true} />
+            <Sheet.Content>
+              {isSheetOpen !== -1 &&
+                tags[isSheetOpen].map((el) => (
                   <St.TagBox
                     key={el}
                     onClick={() => handleClickTag(el)}
@@ -79,17 +79,20 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
                   </St.TagBox>
                 ))}
 
-                <St.Footer>
-                  <St.Button type='button' onClick={() => handleClickButton(isSheetOpen)}>
-                    적용하기
-                  </St.Button>
-                </St.Footer>
-              </Sheet.Content>
-            </Sheet.Container>
-            <Sheet.Backdrop onTap={() => onTapBack()} />
-          </St.SheetWrapper>
-        </Sheet>
-      )}
+              <St.Footer>
+                <St.Button type='button' onClick={() => handleClickButton(isSheetOpen)}>
+                  적용하기
+                </St.Button>
+              </St.Footer>
+            </Sheet.Content>
+          </Sheet.Container>
+          <Sheet.Backdrop
+            onTap={() => {
+              onTapBack();
+            }}
+          />
+        </St.SheetWrapper>
+      </Sheet>
     </St.Wrapper>
   );
 };
