@@ -8,18 +8,23 @@ import { LabelCustomSmall } from '../../assets/icon';
 
 // 테스트 이미지
 
-const DetailCarousel = ({ isCustom, images }: { isCustom: boolean; images: string[] }) => {
+const DetailCarousel = ({ isCustom, image }: { isCustom: boolean; image: string }) => {
   return (
     <St.Wrapper>
       {isCustom && <LabelCustomSmall />}
       <Swiper modules={[Pagination]} pagination={{ clickable: true }} slidesPerView={1} loop={true}>
-        {images.map((src, idx) => (
+        {/* {image.map((src, idx) => (
           <SwiperSlide key={idx}>
             <St.Card>
               <img src={src} />
             </St.Card>
           </SwiperSlide>
-        ))}
+        ))} */}
+        <SwiperSlide>
+          <St.Card>
+            <img src={image} />
+          </St.Card>
+        </SwiperSlide>
       </Swiper>
     </St.Wrapper>
   );
