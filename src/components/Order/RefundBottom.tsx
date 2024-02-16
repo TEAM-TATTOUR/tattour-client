@@ -10,26 +10,55 @@ interface RefundBottomProps {
 
 const RefundBottom = ({ isSheetOpen, setSheetOpen }: RefundBottomProps) => {
   return (
-    <CustomSheet isOpen={isSheetOpen} onClose={() => setSheetOpen(false)} disableDrag={true}>
-      <Sheet.Container>
-        <Sheet.Header disableDrag={false}>
-          <St.Title>환불 정책</St.Title>
-          <IcCancelDark onClick={() => setSheetOpen(false)} />
-        </Sheet.Header>
-        <Sheet.Content>
-          <Sheet.Scroller>
-            <St.Text>{REFUND_ORDER_POLICY}</St.Text>
-          </Sheet.Scroller>
-        </Sheet.Content>
-      </Sheet.Container>
-      <Sheet.Backdrop onTap={() => setSheetOpen(false)} />
-    </CustomSheet>
+    <Sheet isOpen={isSheetOpen} onClose={() => setSheetOpen(false)} disableDrag={true}>
+      <St.SheetWrapper>
+        <Sheet.Container>
+          <Sheet.Header disableDrag={false}>
+            <St.Title>환불 정책</St.Title>
+            <IcCancelDark onClick={() => setSheetOpen(false)} />
+          </Sheet.Header>
+          <Sheet.Content>
+            <Sheet.Scroller>
+              <St.Text>{REFUND_ORDER_POLICY}</St.Text>
+            </Sheet.Scroller>
+          </Sheet.Content>
+        </Sheet.Container>
+        <Sheet.Backdrop onTap={() => setSheetOpen(false)} />
+      </St.SheetWrapper>
+    </Sheet>
   );
 };
 
 export default RefundBottom;
 
 const St = {
+  SheetWrapper: styled.div`
+    .react-modal-sheet-backdrop {
+      background-color: rgba(0, 0, 0, 0.6) !important;
+    }
+    .react-modal-sheet-container {
+      padding: 2.5rem 2.4rem 0rem 2.4rem;
+      // 모달 높이 낮추기
+      height: calc(100% - 10.6rem) !important;
+      left: initial !important;
+      max-width: 43rem;
+
+      border-radius: 1rem 1rem 0rem 0rem !important;
+    }
+
+    .react-modal-sheet-container > div {
+      display: flex;
+      justify-content: space-between !important;
+    }
+
+    .react-modal-sheet-scroller {
+      padding-bottom: 6rem;
+    }
+
+    .react-modal-sheet-drag-indicator {
+      display: none;
+    }
+  `,
   Title: styled.h2`
     margin-bottom: 2.8rem;
     ${({ theme }) => theme.fonts.title_semibold_20};
@@ -42,34 +71,3 @@ const St = {
     white-space: pre-wrap;
   `,
 };
-
-const CustomSheet = styled(Sheet)`
-  display: flex;
-  justify-content: center;
-
-  .react-modal-sheet-backdrop {
-    background-color: rgba(0, 0, 0, 0.6) !important;
-  }
-  .react-modal-sheet-container {
-    padding: 2.5rem 2.4rem 0rem 2.4rem;
-    // 모달 높이 낮추기
-    height: calc(100% - 10.6rem) !important;
-    left: initial !important;
-    max-width: 43rem;
-
-    border-radius: 1rem 1rem 0rem 0rem !important;
-  }
-
-  .react-modal-sheet-container > div {
-    display: flex;
-    justify-content: space-between !important;
-  }
-
-  .react-modal-sheet-scroller {
-    padding-bottom: 6rem;
-  }
-
-  .react-modal-sheet-drag-indicator {
-    display: none;
-  }
-`;
