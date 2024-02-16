@@ -33,7 +33,6 @@ const DeliveryInfo = ({
           <input
             type='text'
             id='receiver'
-            name='receiver'
             value={input}
             onChange={(e) => {
               setInput(e.target.value);
@@ -45,7 +44,6 @@ const DeliveryInfo = ({
           <input
             type='tel'
             id='phone'
-            name='phone'
             maxLength={13}
             value={phone}
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
@@ -57,20 +55,13 @@ const DeliveryInfo = ({
         <St.Info>
           <label>배송지</label>
           <St.AddressBox>
-            <input type='text' name='postcode' value={zoneCode} placeholder='우편번호' disabled />
+            <input type='text' value={zoneCode} placeholder='우편번호' disabled />
             <St.SearchBtn type='button' onClick={handleModal}>
               우편번호 검색
             </St.SearchBtn>
-            <St.InputAddress
-              type='text'
-              name='address'
-              placeholder='주소'
-              value={address}
-              disabled
-            />
+            <St.InputAddress type='text' placeholder='주소' value={address} disabled />
             <St.InputDetail
               type='text'
-              name='detail'
               placeholder='상세주소'
               value={detailAddress}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
