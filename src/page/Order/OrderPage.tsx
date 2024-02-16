@@ -23,6 +23,10 @@ interface dataProps {
   zonecode: string;
 }
 
+const renderOrderPageHeader = () => {
+  return <Header leftSection={<BackBtn />} title='주문하기' />;
+};
+
 const OrderPage = () => {
   const location = useLocation();
   const state = location.state as { stickerId: number; count: number; shippingFee: number };
@@ -68,25 +72,16 @@ const OrderPage = () => {
         .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
         .replace(/(-{1,2})$/g, ''),
     );
-  }, [response]);
-
-  useEffect(() => {
     if (response?.orderAmountDetailRes) {
       setOrderAmountDetailRes(response.orderAmountDetailRes);
     }
   }, [response]);
 
   useEffect(() => {
-    if (input === '' || phone === '' || address === '' || detailAddress === '' || agree === false) {
-      setComplete(false);
-    } else {
-      setComplete(true);
-    }
+    setComplete(
+      input !== '' && phone.length === 13 && address !== '' && detailAddress !== '' && agree,
+    );
   }, [input, phone, address, detailAddress, agree]);
-
-  const renderOrderPageHeader = () => {
-    return <Header leftSection={<BackBtn />} title='주문하기' />;
-  };
 
   const handleModal = () => {
     setIsPostOpen(true);
