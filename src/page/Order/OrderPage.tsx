@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ProductInfo from '../../components/Order/ProductInfo';
 import DeliveryInfo from '../../components/Order/DeliveryInfo';
@@ -36,8 +36,6 @@ const OrderPage = () => {
 
   const [orderLoading, setOrderLoading] = useState(false);
   const [isPostOpen, setIsPostOpen] = useState(false);
-  const addressRef = useRef<HTMLInputElement | null>(null);
-  const postcodeRef = useRef<HTMLInputElement | null>(null);
   const [isSheetOpen, setSheetOpen] = useState(false);
 
   const [isComplete, setComplete] = useState(false);
@@ -88,7 +86,6 @@ const OrderPage = () => {
   };
 
   const handleAddress = (data: dataProps) => {
-    if (!addressRef.current || !postcodeRef.current) return;
     setZoneCode(data.zonecode);
     setAddress(data.address);
     setDetailAddress('');
@@ -120,13 +117,13 @@ const OrderPage = () => {
           <St.Line />
           <DeliveryInfo
             handleModal={handleModal}
-            addressRef={addressRef}
-            postcodeRef={postcodeRef}
             setComplete={setComplete}
             input={input}
             setInput={setInput}
             phone={phone}
             setPhone={setPhone}
+            zoneCode={zoneCode}
+            address={address}
             detailAddress={detailAddress}
             setDetailAddress={setDetailAddress}
           />

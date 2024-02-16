@@ -3,24 +3,24 @@ import sliceMaxLength from '../../utils/sliceMaxLength';
 
 interface DeliveryInfoProps {
   handleModal: () => void;
-  addressRef: React.MutableRefObject<HTMLInputElement | null>;
-  postcodeRef: React.MutableRefObject<HTMLInputElement | null>;
   setComplete: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
   phone: string;
   setPhone: React.Dispatch<React.SetStateAction<string>>;
+  zoneCode: string;
+  address: string;
   detailAddress: string;
   setDetailAddress: React.Dispatch<React.SetStateAction<string>>;
 }
 const DeliveryInfo = ({
   handleModal,
-  addressRef,
-  postcodeRef,
   input,
   setInput,
   phone,
+  zoneCode,
   setPhone,
+  address,
   detailAddress,
   setDetailAddress,
 }: DeliveryInfoProps) => {
@@ -57,7 +57,7 @@ const DeliveryInfo = ({
         <St.Info>
           <label>배송지</label>
           <St.AddressBox>
-            <input type='text' name='postcode' placeholder='우편번호' ref={postcodeRef} disabled />
+            <input type='text' name='postcode' value={zoneCode} placeholder='우편번호' disabled />
             <St.SearchBtn type='button' onClick={handleModal}>
               우편번호 검색
             </St.SearchBtn>
@@ -65,7 +65,7 @@ const DeliveryInfo = ({
               type='text'
               name='address'
               placeholder='주소'
-              ref={addressRef}
+              value={address}
               disabled
             />
             <St.InputDetail
