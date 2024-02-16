@@ -55,7 +55,7 @@ const LoginPage = () => {
             }}
           />
         }
-        progressBar={<ProgressBar curStep={1} maxStep={3} />}
+        progressBar={<ProgressBar curStep={1} maxStep={2} />}
       />
     );
   };
@@ -73,7 +73,7 @@ const LoginPage = () => {
             targetModal={<LoginEscapeModal setModalOn={setModalOn} />}
           />
         }
-        progressBar={<ProgressBar curStep={2} maxStep={3} />}
+        progressBar={<ProgressBar curStep={1} maxStep={2} />}
       />
     );
   };
@@ -85,7 +85,7 @@ const LoginPage = () => {
         leftSection={<St.BlankSection></St.BlankSection>}
         title='회원가입'
         rightSection={<St.BlankSection></St.BlankSection>}
-        progressBar={<ProgressBar curStep={3} maxStep={3} />}
+        progressBar={<ProgressBar curStep={2} maxStep={2} />}
       />
     );
   };
