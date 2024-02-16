@@ -43,8 +43,8 @@ const OrderPage = () => {
   const [isComplete, setComplete] = useState(false);
   const [input, setInput] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
-  const [address, setAddress] = useState<string>(''); // 우편번호
-  const [firstAddress, setFirstAddress] = useState<string>(''); // 첫주소
+  const [zoneCode, setZoneCode] = useState<string>(''); // 우편번호
+  const [address, setAddress] = useState<string>(''); // 기본주소
   const [detailAddress, setDetailAddress] = useState<string>(''); // 세부주소
   const [agree, setAgree] = useState<boolean>(false);
   const [orderAmountDetailRes, setOrderAmountDetailRes] = useState<orderAmountDetailResProps>(
@@ -57,8 +57,8 @@ const OrderPage = () => {
     totalAmount: orderAmountDetailRes.totalAmount,
     recipientName: input,
     contact: phone,
-    mailingAddress: address,
-    baseAddress: firstAddress,
+    mailingAddress: zoneCode,
+    baseAddress: address,
     detailAddress: detailAddress,
     stickerId: state ? state.stickerId : 0,
   };
@@ -79,9 +79,9 @@ const OrderPage = () => {
 
   useEffect(() => {
     setComplete(
-      input !== '' && phone.length === 13 && address !== '' && detailAddress !== '' && agree,
+      input !== '' && phone.length === 13 && zoneCode !== '' && detailAddress !== '' && agree,
     );
-  }, [input, phone, address, detailAddress, agree]);
+  }, [input, phone, zoneCode, detailAddress, agree]);
 
   const handleModal = () => {
     setIsPostOpen(true);
@@ -89,10 +89,9 @@ const OrderPage = () => {
 
   const handleAddress = (data: dataProps) => {
     if (!addressRef.current || !postcodeRef.current) return;
-    addressRef.current.value = data.address; // 첫번쨰 주소
-    postcodeRef.current.value = data.zonecode; // 우편번호
-    setAddress(data.zonecode);
-    setFirstAddress(data.address);
+    setZoneCode(data.zonecode);
+    setAddress(data.address);
+    setDetailAddress('');
     setIsPostOpen(false);
   };
 
