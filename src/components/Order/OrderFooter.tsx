@@ -22,6 +22,7 @@ const OrderFooter = ({
   response,
   stickerId,
   count,
+  setOrderLoading,
 }: {
   isComplete: boolean;
   price: number | undefined;
@@ -29,17 +30,20 @@ const OrderFooter = ({
   response: OrderSheetProps | undefined;
   stickerId: number;
   count: number;
+  setOrderLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const navigate = useNavigate();
   const url = stickerId && count ? `/order?stickerId=${stickerId}&count=${count}` : '/order';
 
   const fetchData = async () => {
+    setOrderLoading(true);
     await api
       .post(url, {
         ...postData,
         contact: postData.contact.replace(/-/g, ''),
       })
       .then(() => {
+        setOrderLoading(false);
         navigate('/order-deposit', {
           state: response,
         });

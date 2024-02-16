@@ -16,6 +16,7 @@ import useGetOrdersheet, {
   orderAmountDetailResProps,
 } from '../../libs/hooks/order/useGetOrdersheet';
 import PayMethodInfo from '../../components/Order/PayMethodInfo';
+import LoadingPage from '../LoadingPage';
 
 interface dataProps {
   address: string;
@@ -29,6 +30,7 @@ const OrderPage = () => {
     state ? state : ({ stickerId: 0, count: 0 } as OrderSheetRequest),
   );
 
+  const [orderLoading, setOrderLoading] = useState(false);
   const [isPostOpen, setIsPostOpen] = useState(false);
   const addressRef = useRef<HTMLInputElement | null>(null);
   const postcodeRef = useRef<HTMLInputElement | null>(null);
@@ -99,7 +101,9 @@ const OrderPage = () => {
     setIsPostOpen(false);
   };
 
-  return (
+  return orderLoading ? (
+    <LoadingPage />
+  ) : (
     <PageLayout
       renderHeader={renderOrderPageHeader}
       footer={
@@ -110,13 +114,14 @@ const OrderPage = () => {
           response={response}
           stickerId={state ? state.stickerId : 0}
           count={state ? state.count : 0}
+          setOrderLoading={setOrderLoading}
         />
       }
     >
       {!error && !loading && response && (
         <>
           {response.orderSheetStickersRes.map((_, idx) => (
-            <ProductInfo orderSheetSticker={response.orderSheetStickersRes[idx]} key={idx}/>
+            <ProductInfo orderSheetSticker={response.orderSheetStickersRes[idx]} key={idx} />
           ))}
           <St.Line />
           <DeliveryInfo
