@@ -4,7 +4,7 @@ import ModalPortal from '../ModalPortal';
 interface CheckDepositModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-  depositModalHandler: () => Promise<void>;
+  depositModalHandler: () => void | Promise<void>;
 }
 
 const CheckDepositModal = ({
