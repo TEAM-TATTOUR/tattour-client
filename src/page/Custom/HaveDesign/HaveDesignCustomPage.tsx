@@ -11,6 +11,7 @@ import StylingColorLayout from '../../../components/Custom/HaveDesign/SelectColo
 import SelectKeywordLayout from '../../../components/Custom/HaveDesign/SelectKeyword/SelectKeywordLayout';
 import { api } from '../../../libs/api';
 import { resCustomInfoType } from '../../../types/customInfoType';
+import LoadingPage from '../../LoadingPage';
 
 const HaveDesignCustomPage = () => {
   const location = useLocation();
@@ -100,6 +101,9 @@ const HaveDesignCustomPage = () => {
   // patch 통신 response = receipt 뷰에 넘겨줘야 하는 정보들
   const [receiptData, setReceiptData] = useState<resCustomInfoType>();
 
+  // 이미지 용량 이슈로 receipt 페이지로 넘어갈 때, 데이터 통신 완료 이전 로딩 스피너 보여주기 위해 쓰이는 플래그
+  const [receiptLoading, setReceiptLoading] = useState(false);
+
   const handleClickCustomDepositBtn = async () => {
     const formData = new FormData();
 
@@ -108,6 +112,8 @@ const HaveDesignCustomPage = () => {
       ...customInfo,
       isCompleted: true,
     };
+
+    setReceiptLoading(true);
 
     try {
       // 1. handDrawingImage(손 그림) append
@@ -133,8 +139,11 @@ const HaveDesignCustomPage = () => {
         },
       });
 
-      setReceiptData(data.data);
-      setStep((prev: number) => prev + 1);
+      if (data) {
+        setReceiptLoading(false);
+        setReceiptData(data.data);
+        setStep((prev: number) => prev + 1);
+      }
     } catch (err) {
       navigate('/error');
     }
@@ -242,7 +251,9 @@ const HaveDesignCustomPage = () => {
       );
 
     case 7:
-      return (
+      return receiptLoading ? (
+        <LoadingPage />
+      ) : (
         <CustomDirectDepositLayout
           setStep={setStep}
           totalPrice={price}
