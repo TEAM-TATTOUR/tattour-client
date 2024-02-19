@@ -56,6 +56,7 @@ const FilterSheet = ({ isSheetOpen, setSheetOpen, buttons, setButtons }: FilterS
   return (
     <St.Wrapper>
       <Sheet
+        className='react-modal-sheet-wrapper'
         isOpen={isSheetOpen !== -1}
         onClose={() => {
           setSheetOpen(-1);
