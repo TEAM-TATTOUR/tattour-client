@@ -8,13 +8,11 @@ import PageLayout from '../../../PageLayout';
 import CustomDirectDeposit from './CustomDirectDeposit';
 
 interface DepositLayoutProps {
-  setStep: React.Dispatch<React.SetStateAction<number>>;
   totalPrice: number;
   handleClickCustomDepositBtn: () => Promise<void>;
 }
 
 const CustomDirectDepositLayout = ({
-  setStep,
   totalPrice,
   handleClickCustomDepositBtn,
 }: DepositLayoutProps) => {

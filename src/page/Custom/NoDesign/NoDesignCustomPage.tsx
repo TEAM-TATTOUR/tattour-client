@@ -162,7 +162,6 @@ const NoDesignCustomPage = () => {
         <LoadingPage />
       ) : (
         <CustomDirectDepositLayout
-          setStep={setStep}
           totalPrice={price}
           handleClickCustomDepositBtn={handleClickCustomDepositBtn}
         />
