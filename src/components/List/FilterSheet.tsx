@@ -144,14 +144,13 @@ const St = {
   `,
   SheetWrapper: styled.div`
     .react-modal-sheet-backdrop {
-      max-width: 43rem !important;
+      max-width: 43rem;
       left: auto !important;
       background-color: rgba(0, 0, 0, 0.6) !important;
     }
     .react-modal-sheet-container {
-      max-width: 43rem !important;
-      left: auto !important;
-      border-radius: 1rem !important;
+      max-width: 43rem;
+      border-radius: 1rem;
     }
     .react-modal-sheet-header {
       height: 1.6rem !important;
