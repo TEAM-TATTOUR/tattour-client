@@ -8,6 +8,7 @@ import CustomImgLayout from '../../../components/Custom/NoDesign/Img/CustomImgLa
 import CustomRequestLayout from '../../../components/Custom/NoDesign/Request/CustomRequestLayout';
 import { api } from '../../../libs/api';
 import { resCustomInfoType } from '../../../types/customInfoType';
+import LoadingPage from '../../LoadingPage';
 
 const NoDesignCustomPage = () => {
   const location = useLocation();
@@ -69,6 +70,8 @@ const NoDesignCustomPage = () => {
   //   setStep(1);
   // }, []);
 
+  const [receiptLoading, setReceiptLoading] = useState(false);
+
   // 무통장 입금에서 '송금했어요' 버튼 클릭시의 핸들러
   const handleClickCustomDepositBtn = async () => {
     const formData = new FormData();
@@ -78,6 +81,8 @@ const NoDesignCustomPage = () => {
       ...customInfo,
       isCompleted: true,
     };
+
+    setReceiptLoading(true);
 
     try {
       // 1. customInfo(커스텀 정보들) append
@@ -99,7 +104,10 @@ const NoDesignCustomPage = () => {
       });
 
       setReceiptData(data.data);
-      setStep((prev: number) => prev + 1);
+      if (data) {
+        setReceiptLoading(false);
+        setStep((prev: number) => prev + 1);
+      }
     } catch (err) {
       navigate('/error');
     }
@@ -158,7 +166,9 @@ const NoDesignCustomPage = () => {
       );
 
     case 4:
-      return (
+      return receiptLoading ? (
+        <LoadingPage />
+      ) : (
         <CustomDirectDepositLayout
           setStep={setStep}
           totalPrice={price}
