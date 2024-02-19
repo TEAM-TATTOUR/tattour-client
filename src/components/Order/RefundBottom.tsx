@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Sheet from 'react-modal-sheet';
 import { IcCancelDark } from '../../assets/icon';
 import { REFUND_ORDER_POLICY } from '../../assets/data/REFUND_ORDER_POLICY';
+import { useEffect } from 'react';
 
 interface RefundBottomProps {
   isSheetOpen: boolean;
@@ -9,6 +10,9 @@ interface RefundBottomProps {
 }
 
 const RefundBottom = ({ isSheetOpen, setSheetOpen }: RefundBottomProps) => {
+  useEffect(() => {
+    console.log('RefundButtom 리렌더링');
+  });
   return (
     <Sheet isOpen={isSheetOpen} onClose={() => setSheetOpen(false)} disableDrag={true}>
       <St.SheetWrapper>

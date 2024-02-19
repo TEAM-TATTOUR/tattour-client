@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { IcRadio } from '../../assets/icon';
+import { useEffect } from 'react';
 
 const PayMethodInfo = () => {
+  useEffect(() => {
+    console.log('PayMethodInfo 리렌더링');
+  });
   return (
     <div>
       <St.PriceContainer>

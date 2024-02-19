@@ -28,6 +28,9 @@ const renderOrderPageHeader = () => {
 };
 
 const OrderPage = () => {
+  useEffect(() => {
+    console.log('✅ OrderPage 리렌더링');
+  });
   const location = useLocation();
   const state = location.state as { stickerId: number; count: number; shippingFee: number };
   const { response, error, loading } = useGetOrdersheet(

@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import { orderSheetStickersResProps } from '../../libs/hooks/order/useGetOrdersheet';
+import { useEffect } from 'react';
 
 const ProductInfo = ({ orderSheetSticker }: { orderSheetSticker: orderSheetStickersResProps }) => {
   const { mainImageUrl, name, price, discountPrice, count } = orderSheetSticker;
-
+  useEffect(() => {
+    console.log('ProductInfo 리렌더링');
+  });
   return (
     <St.Wrapper>
       <St.Image>

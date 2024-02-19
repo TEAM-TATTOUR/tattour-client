@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import sliceMaxLength from '../../utils/sliceMaxLength';
+import { useEffect } from 'react';
 
 interface DeliveryInfoProps {
   handleModal: () => void;
@@ -24,6 +25,9 @@ const DeliveryInfo = ({
   detailAddress,
   setDetailAddress,
 }: DeliveryInfoProps) => {
+  useEffect(() => {
+    console.log('DeliveryInfo 리렌더링');
+  });
   return (
     <St.Wrapper>
       <St.Title>배송 정보</St.Title>

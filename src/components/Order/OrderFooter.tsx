@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../libs/api';
 import { OrderSheetProps } from '../../libs/hooks/order/useGetOrdersheet';
+import { useEffect } from 'react';
 
 interface OrderRequest {
   stickerId: number;
@@ -32,6 +33,10 @@ const OrderFooter = ({
   count: number;
   setOrderLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  useEffect(() => {
+    console.log('OrderFooter 리렌더링');
+  });
+
   const navigate = useNavigate();
   const url = stickerId && count ? `/order?stickerId=${stickerId}&count=${count}` : '/order';
 
