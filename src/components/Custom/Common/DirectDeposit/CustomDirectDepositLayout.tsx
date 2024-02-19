@@ -2,7 +2,6 @@ import { useState } from 'react';
 import BackBtn from '../../../../common/Header/BackBtn';
 import CancelBtn from '../../../../common/Header/CancelBtn';
 import CheckDepositModal from '../../../../common/Modal/CheckDepositModal/CheckDepositModal';
-import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import DirectDepositFooter from '../../../DirectDeposit/DirectDepositFooter';
 import Header from '../../../Header';
 import PageLayout from '../../../PageLayout';
@@ -33,7 +32,13 @@ const CustomDirectDepositLayout = ({
           <CancelBtn
             modalOn={modalOn}
             setModalOn={setModalOn}
-            targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
+            targetModal={
+              <CheckDepositModal
+                setModalOn={setModalOn}
+                setIsActiveNext={setIsActiveNext}
+                depositModalHandler={handleClickCustomDepositBtn}
+              />
+            }
           />
         }
       />
