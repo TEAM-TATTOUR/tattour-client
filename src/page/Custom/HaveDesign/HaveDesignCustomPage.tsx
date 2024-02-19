@@ -1,18 +1,20 @@
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import CustomDirectDepositLayout from '../../../components/Custom/Common/DirectDeposit/CustomDirectDepositLayout';
 import PriceLayout from '../../../components/Custom/Common/PriceLayout';
+import ReceiptLayout from '../../../components/Custom/Common/Receipt/ReceiptLayout';
+import CustomSizeLayout from '../../../components/Custom/Common/Size/CustomSizeLayout';
 import AdditionalRequestLayout from '../../../components/Custom/HaveDesign/AdditionalRequest/AdditionalRequestLayout';
 import CustomThemeLayout from '../../../components/Custom/HaveDesign/CustomTheme/CustomThemeLayout';
-import ReceiptLayout from '../../../components/Custom/Common/Receipt/ReceiptLayout';
 import CustomReferenceLayout from '../../../components/Custom/HaveDesign/Reference/CustomReferenceLayout';
 import StylingColorLayout from '../../../components/Custom/HaveDesign/SelectColor/StylingColorLayout';
 import SelectKeywordLayout from '../../../components/Custom/HaveDesign/SelectKeyword/SelectKeywordLayout';
-import { useLocation } from 'react-router-dom';
+import { api } from '../../../libs/api';
 import { resCustomInfoType } from '../../../types/customInfoType';
-import CustomSizeLayout from '../../../components/Custom/Common/Size/CustomSizeLayout';
-import CustomDirectDepositLayout from '../../../components/Custom/Common/DirectDeposit/CustomDirectDepositLayout';
 
 const HaveDesignCustomPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [step, setStep] = useState(
     location.state && location.state.step !== undefined ? location.state.step : 1,
@@ -67,9 +69,10 @@ const HaveDesignCustomPage = () => {
   //step 6: 주문 관련 state
   const [count, setCount] = useState(1);
   const [isPublic, setIsPublic] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [price, setPrice] = useState(0);
+
   const handleTotalPriceChange = (newTotalPrice: number) => {
-    setTotalPrice(newTotalPrice);
+    setPrice(newTotalPrice);
   };
 
   // 앞부분 임시 통합한 곳에서 state 불러오기. 최종 통합 때 제거 예정
@@ -88,10 +91,54 @@ const HaveDesignCustomPage = () => {
     viewCount: step,
     themes: themes,
     styles: styles,
+    count: count, //수량
+    isPublic: isPublic, //도안 공개 여부
+    price: price, //최종 가격
+    haveDesign: haveDesign,
   };
 
   // patch 통신 response = receipt 뷰에 넘겨줘야 하는 정보들
   const [receiptData, setReceiptData] = useState<resCustomInfoType>();
+
+  const handleClickCustomDepositBtn = async () => {
+    const formData = new FormData();
+
+    // 무통장 입금 핸들러가 실행 될 때는 모든 커스텀 신청 플로우를 마쳤을 때이므로, customInfo에 isCompleted 플래그를 true로 바꿔 통신한다.
+    const updatedCustomInfo = {
+      ...customInfo,
+      isCompleted: true,
+    };
+
+    try {
+      // 1. handDrawingImage(손 그림) append
+      if (handDrawingImage) {
+        formData.append('handDrawingImage', handDrawingImage);
+      }
+
+      // 2. customInfo(커스텀 정보들) append
+      const json = JSON.stringify(updatedCustomInfo);
+      const blob = new Blob([json], { type: 'application/json' });
+      formData.append('customInfo', blob);
+
+      // 3. customImage(도안 이미지) append
+      if (customImages) {
+        for (let i = 0; i < customImages.length; i++) {
+          formData.append('customImages', customImages.item(i) as File);
+        }
+      }
+
+      const { data } = await api.patch('/custom/update', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      setReceiptData(data.data);
+      setStep((prev: number) => prev + 1);
+    } catch (err) {
+      navigate('/error');
+    }
+  };
 
   switch (step) {
     case 0:
@@ -181,22 +228,27 @@ const HaveDesignCustomPage = () => {
         <PriceLayout
           step={step}
           setStep={setStep}
-          count={count}
+          // count={count}
           setCount={setCount}
           customInfo={customInfo}
           customImages={customImages}
-          setReceiptData={setReceiptData}
-          handDrawingImage={handDrawingImage}
+          // setReceiptData={setReceiptData}
+          // handDrawingImage={handDrawingImage}
           isPublic={isPublic}
           setIsPublic={setIsPublic}
-          totalPrice={totalPrice}
+          // totalPrice={price}
           setTotalPrice={handleTotalPriceChange}
         />
       );
 
     case 7:
-      console.log('location.state', location.state);
-      return <CustomDirectDepositLayout setStep={setStep} totalPrice={totalPrice} />;
+      return (
+        <CustomDirectDepositLayout
+          setStep={setStep}
+          totalPrice={price}
+          handleClickCustomDepositBtn={handleClickCustomDepositBtn}
+        />
+      );
 
     case 8:
       return <ReceiptLayout receiptData={receiptData} haveDesign={haveDesign} />;

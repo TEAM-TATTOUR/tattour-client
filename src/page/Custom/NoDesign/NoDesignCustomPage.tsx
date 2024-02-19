@@ -58,6 +58,7 @@ const NoDesignCustomPage = () => {
     count: count, //수량
     isPublic: isPublic, //도안 공개 여부
     price: price, //최종 가격
+    haveDesign: haveDesign,
   };
 
   // patch 통신 response = receipt 뷰에 넘겨줘야 하는 정보들
@@ -68,6 +69,7 @@ const NoDesignCustomPage = () => {
   //   setStep(1);
   // }, []);
 
+  // 무통장 입금에서 '송금했어요' 버튼 클릭시의 핸들러
   const handleClickCustomDepositBtn = async () => {
     const formData = new FormData();
 
