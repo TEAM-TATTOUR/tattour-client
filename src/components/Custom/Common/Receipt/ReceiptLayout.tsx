@@ -1,7 +1,3 @@
-import { useState } from 'react';
-import BackBtn from '../../../../common/Header/BackBtn';
-import CancelBtn from '../../../../common/Header/CancelBtn';
-import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import Header from '../../../Header';
 import PageLayout from '../../../PageLayout';
 import ReceiptDetail from './ReceiptDetail';
@@ -15,23 +11,8 @@ interface ReceiptLayoutProps {
 }
 
 const ReceiptLayout = ({ receiptData, haveDesign }: ReceiptLayoutProps) => {
-  const [modalOn, setModalOn] = useState(false);
-
   const renderReceiptLayoutHeader = () => {
-    return (
-      <Header
-        leftSection={<BackBtn />}
-        title='커스텀 타투'
-        rightSection={
-          <CancelBtn
-            modalOn={modalOn}
-            setModalOn={setModalOn}
-            targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
-          />
-        }
-        transparent={true}
-      />
-    );
+    return <Header title='커스텀 타투' transparent={true} />;
   };
 
   return (

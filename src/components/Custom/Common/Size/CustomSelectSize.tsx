@@ -113,6 +113,7 @@ const St = {
     width: 100%;
     min-height: calc(100dvh - 13.6rem);
     padding: 0 2rem;
+    margin-bottom: 7rem;
   `,
 
   SizeInfoContainer: styled.article`

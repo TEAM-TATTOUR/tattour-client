@@ -27,7 +27,6 @@ const CustomImgLayout = ({
   setPreviewURL,
 }: CustomImgLayoutProps) => {
   // const CUSTOM_VIEW_COUNT = 2;
-  console.log('customInfo: ', customInfo);
   const [modalOn, setModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 

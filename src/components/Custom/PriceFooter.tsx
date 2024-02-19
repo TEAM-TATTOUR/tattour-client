@@ -63,7 +63,7 @@ const PriceFooter = ({
 
 const St = {
   CustomFooter: styled.footer`
-    position: sticky;
+    position: fixed;
     bottom: 0;
 
     display: flex;
@@ -71,6 +71,7 @@ const St = {
     align-items: center;
 
     width: 100%;
+    max-width: 43rem;
     height: 7rem;
 
     background-color: ${({ theme }) => theme.colors.gray9};
