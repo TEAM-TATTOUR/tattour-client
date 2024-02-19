@@ -1,4 +1,3 @@
-import FilterBottom from '../components/List/FilterBottom';
 import TattooList from '../components/List/TattooList';
 import styled from 'styled-components';
 import { useState } from 'react';
@@ -9,26 +8,38 @@ import HotCustom from '../common/HotCustom';
 import MainHeaderButton from '../common/MainHeaderButton';
 import SideMenu from '../common/SideMenu';
 import { useLocation, useNavigate } from 'react-router-dom';
+import FilterSheet from '../components/List/FilterSheet';
+import { FILTER_DEFAULT } from '../constants/ListInfo';
+
+export interface buttonType {
+  default: string;
+  value: string;
+}
 
 const ListPage = () => {
+  const { SORT, GENRE, STYLE } = FILTER_DEFAULT;
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state;
   const type = state && (state as { type: string }).type;
   const name = state && (state as { name: string }).name;
 
-  const DEFAULT_BUTTON_NAME = ['정렬', '장르', '스타일'];
-  const [isSheetOpen, setSheetOpen] = useState(-1); // -1이 바텀시트 off 상태
-
-  // state && : 선택된 필터가 있을 경우
-  // state.type이 장르일 때 버튼명을 state.name 값으로, 아니면 '장르'
-  // state.type이 스타일일 때 버튼명을 state.name 값으로, 아니면 '스타일'
-  const [buttonName, setButtonName] = useState([
-    '정렬',
-    `${state && type === '장르' ? name : '장르'}`,
-    `${state && type === '스타일' ? name : '스타일'}`,
+  const [buttons, setButtons] = useState<buttonType[]>([
+    {
+      default: SORT,
+      value: SORT,
+    },
+    {
+      default: GENRE,
+      value: state && type === GENRE ? name : GENRE,
+    },
+    {
+      default: STYLE,
+      value: state && type === STYLE ? name : STYLE,
+    },
   ]);
-  // 사이드 메뉴 관리 상태
+
+  const [isSheetOpen, setSheetOpen] = useState(-1);
   const [isSideMenuOpen, setSideMenuOpen] = useState(false);
 
   const renderListPageHeader = () => {
@@ -47,17 +58,12 @@ const ListPage = () => {
     <PageLayout renderHeader={renderListPageHeader}>
       <HotCustom isList={true} />
       <St.Line />
-      <TattooList
-        setSheetOpen={setSheetOpen}
-        buttonName={buttonName}
-        defaultName={DEFAULT_BUTTON_NAME}
-      />
-      <FilterBottom
+      <TattooList setSheetOpen={setSheetOpen} buttons={buttons} />
+      <FilterSheet
         isSheetOpen={isSheetOpen}
         setSheetOpen={setSheetOpen}
-        buttonName={buttonName}
-        setButtonName={setButtonName}
-        defaultName={DEFAULT_BUTTON_NAME}
+        buttons={buttons}
+        setButtons={setButtons}
       />
       <SideMenu isSideMenuOpen={isSideMenuOpen} setIsSideMenuOpen={setSideMenuOpen} />
     </PageLayout>
