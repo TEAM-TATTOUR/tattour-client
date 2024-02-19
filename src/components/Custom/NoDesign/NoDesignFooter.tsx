@@ -42,7 +42,7 @@ export default NoDesignFooter;
 
 const St = {
   NoDesignFooter: styled.footer<{ $isActiveNext: boolean }>`
-    position: sticky;
+    position: fixed;
     bottom: 0;
 
     display: flex;
@@ -50,6 +50,7 @@ const St = {
     align-items: center;
 
     width: 100%;
+    max-width: 43rem;
     height: 7rem;
 
     background-color: ${({ $isActiveNext, theme }) =>
