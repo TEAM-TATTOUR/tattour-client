@@ -78,7 +78,7 @@ export default OnBoardingFooter;
 
 const St = {
   OnBoardingFooter: styled.footer`
-    position: sticky;
+    position: fixed;
     bottom: 0;
 
     display: flex;
@@ -86,14 +86,15 @@ const St = {
     align-items: center;
 
     width: 100%;
+    max-width: 43rem;
     height: 7rem;
 
-    background-color: ${({ theme }) => theme.colors.gray9};
+    background-color: ${({ theme }) => theme.colors.pink5};
     z-index: 2;
   `,
 
   FooterText: styled.p`
-    color: ${({ theme }) => theme.colors.pink5};
+    color: ${({ theme }) => theme.colors.gray9};
     ${({ theme }) => theme.fonts.title_semibold_18};
   `,
 };
