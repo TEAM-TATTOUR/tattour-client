@@ -65,11 +65,6 @@ const NoDesignCustomPage = () => {
   // patch 통신 response = receipt 뷰에 넘겨줘야 하는 정보들
   const [receiptData, setReceiptData] = useState<resCustomInfoType>();
 
-  //customSizePage가 공통으로 쓰여 아직 처리를 못해줘, step이 1부터 시작하도록 useEffect로 테스트 코드 추가. 추후 삭제 예정
-  // useEffect(() => {
-  //   setStep(1);
-  // }, []);
-
   const [receiptLoading, setReceiptLoading] = useState(false);
 
   // 무통장 입금에서 '송금했어요' 버튼 클릭시의 핸들러
@@ -155,12 +150,9 @@ const NoDesignCustomPage = () => {
           setStep={setStep}
           customInfo={customInfo}
           customImages={customImages}
-          // setReceiptData={setReceiptData}
-          // count={count} //여기부터 수정하면서 필요해진 props 임시로 추가했습니다!
           setCount={setCount}
           isPublic={isPublic}
           setIsPublic={setIsPublic}
-          // totalPrice={price}
           setTotalPrice={setPrice}
         />
       );
