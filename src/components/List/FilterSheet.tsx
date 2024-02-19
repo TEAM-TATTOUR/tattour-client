@@ -150,7 +150,7 @@ const St = {
     }
     .react-modal-sheet-container {
       max-width: 43rem;
-      border-radius: 1rem;
+      border-radius: 1rem 1rem 0 0;
     }
     .react-modal-sheet-header {
       height: 1.6rem !important;
