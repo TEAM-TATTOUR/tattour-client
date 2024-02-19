@@ -1,15 +1,17 @@
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import CustomDirectDepositLayout from '../../../components/Custom/Common/DirectDeposit/CustomDirectDepositLayout';
+import PriceLayout from '../../../components/Custom/Common/PriceLayout';
+import ReceiptLayout from '../../../components/Custom/Common/Receipt/ReceiptLayout';
+import CustomSizeLayout from '../../../components/Custom/Common/Size/CustomSizeLayout';
 import CustomImgLayout from '../../../components/Custom/NoDesign/Img/CustomImgLayout';
 import CustomRequestLayout from '../../../components/Custom/NoDesign/Request/CustomRequestLayout';
-import PriceLayout from '../../../components/Custom/Common/PriceLayout';
-import { useLocation } from 'react-router-dom';
-import ReceiptLayout from '../../../components/Custom/Common/Receipt/ReceiptLayout';
+import { api } from '../../../libs/api';
 import { resCustomInfoType } from '../../../types/customInfoType';
-import CustomSizeLayout from '../../../components/Custom/Common/Size/CustomSizeLayout';
-import CustomDirectDepositLayout from '../../../components/Custom/Common/DirectDeposit/CustomDirectDepositLayout';
 
 const NoDesignCustomPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   //커스텀 신청서 플로우에 따른 각 단계별 컴포넌트 렌더링 플래그
   const [step, setStep] = useState(
@@ -48,11 +50,14 @@ const NoDesignCustomPage = () => {
 
   //patch에 보낼 정보들 객체로 모으기
   const customInfo = {
-    customId: customId,
-    size: size,
-    name: name === '' ? '임시저장' : name,
-    demand: demand,
-    viewCount: step,
+    customId: customId, //id
+    size: size, //타투 사이즈
+    name: name === '' ? '임시저장' : name, //이름
+    demand: demand, //요청사항
+    viewCount: step, //뷰카운트(임시저장용)
+    count: count, //수량
+    isPublic: isPublic, //도안 공개 여부
+    price: price, //최종 가격
   };
 
   // patch 통신 response = receipt 뷰에 넘겨줘야 하는 정보들
@@ -62,6 +67,41 @@ const NoDesignCustomPage = () => {
   // useEffect(() => {
   //   setStep(1);
   // }, []);
+
+  const handleClickCustomDepositBtn = async () => {
+    const formData = new FormData();
+
+    // 무통장 입금 핸들러가 실행 될 때는 모든 커스텀 신청 플로우를 마쳤을 때이므로, customInfo에 isCompleted 플래그를 true로 바꿔 통신한다.
+    const updatedCustomInfo = {
+      ...customInfo,
+      isCompleted: true,
+    };
+
+    try {
+      // 1. customInfo(커스텀 정보들) append
+      const json = JSON.stringify(updatedCustomInfo);
+      const blob = new Blob([json], { type: 'application/json' });
+      formData.append('customInfo', blob);
+
+      // 2. customImage(도안 이미지) append
+      if (customImages) {
+        for (let i = 0; i < customImages.length; i++) {
+          formData.append('customImages', customImages.item(i) as File);
+        }
+      }
+
+      const { data } = await api.patch('/custom/update', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      setReceiptData(data.data);
+      setStep((prev: number) => prev + 1);
+    } catch (err) {
+      navigate('/error');
+    }
+  };
 
   switch (step) {
     case 0:
@@ -105,18 +145,24 @@ const NoDesignCustomPage = () => {
           setStep={setStep}
           customInfo={customInfo}
           customImages={customImages}
-          setReceiptData={setReceiptData}
-          count={count} //여기부터 수정하면서 필요해진 props 임시로 추가했습니다!
+          // setReceiptData={setReceiptData}
+          // count={count} //여기부터 수정하면서 필요해진 props 임시로 추가했습니다!
           setCount={setCount}
           isPublic={isPublic}
           setIsPublic={setIsPublic}
-          totalPrice={price}
+          // totalPrice={price}
           setTotalPrice={setPrice}
         />
       );
 
     case 4:
-      return <CustomDirectDepositLayout setStep={setStep} totalPrice={price} />;
+      return (
+        <CustomDirectDepositLayout
+          setStep={setStep}
+          totalPrice={price}
+          handleClickCustomDepositBtn={handleClickCustomDepositBtn}
+        />
+      );
 
     case 5:
       return <ReceiptLayout receiptData={receiptData} haveDesign={haveDesign} />; //haveDesign 임의로 추가해서 넘겨줬습니다
