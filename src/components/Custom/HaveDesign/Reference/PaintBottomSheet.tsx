@@ -62,11 +62,7 @@ const St = {
     padding: 2.5rem 2rem 2.8rem 2rem;
     width: 100%;
   `,
-  ContentWrapper: styled.div`
-    /* height: 100%;
-    width: 100%; */
-    /* overflow-y: auto; */
-  `,
+  ContentWrapper: styled.div``,
   Footer: styled.footer`
     display: flex;
     justify-content: center;

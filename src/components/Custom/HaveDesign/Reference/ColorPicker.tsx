@@ -147,8 +147,6 @@ const St = {
     display: flex;
     width: 100%;
     justify-content: space-between;
-
-    /* gap: 4rem; */
   `,
 
   SelectColorWrapper: styled.div``,
