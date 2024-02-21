@@ -1,9 +1,9 @@
+import { resCustomInfoType } from '../../../../types/customInfoType';
 import Header from '../../../Header';
 import PageLayout from '../../../PageLayout';
 import ReceiptDetail from './ReceiptDetail';
 import ReceiptFooter from './ReceiptFooter';
 import Submitted from './Submitted';
-import { resCustomInfoType } from '../../../../types/customInfoType';
 
 interface ReceiptLayoutProps {
   receiptData: resCustomInfoType | undefined;
