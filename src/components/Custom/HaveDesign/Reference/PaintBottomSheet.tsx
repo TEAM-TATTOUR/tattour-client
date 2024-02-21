@@ -27,7 +27,7 @@ const PaintBottomSheet = ({
   const onClickSubmitImage = () => {
     // 캔버스 저장 후 전달
     if (!canvasState) return;
-    setDrawingImageUrl(canvasState?.toDataURL());
+    setDrawingImageUrl(canvasState.toDataURL());
     setBottomOpen(false);
   };
 
@@ -63,9 +63,9 @@ const St = {
     width: 100%;
   `,
   ContentWrapper: styled.div`
-    height: 100%;
-    width: 100%;
-    overflow-y: auto;
+    /* height: 100%;
+    width: 100%; */
+    /* overflow-y: auto; */
   `,
   Footer: styled.footer`
     display: flex;

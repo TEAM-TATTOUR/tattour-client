@@ -110,27 +110,32 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
           </St.BrushIconWrapper>
         ))}
       </St.SelectLine>
-      <St.SelectColor>
-        {COLOR_ICONS.map(({ color, Icon }) => (
-          <St.ColorIconWrapper key={color} isSelected={selectedSuggestedColor === color}>
-            <Icon onClick={() => handleChangeSuggestedColor(color)} />
-          </St.ColorIconWrapper>
-        ))}
-        <St.ColorPickerWrapper selectedColor={selectedColor}>
-          <St.ColorPicker
-            src={selectedColor || IcColorRainbow}
-            alt='색상선택'
-            type='color'
-            onChange={handleChange}
-            onClick={handleChangeRainbowColor}
-          />
-          {isColorPickerSelected && (
-            <St.SelectedIcon isSelected={isColorPickerSelected} onClick={handleChangeRainbowColor}>
-              <IcColorSelectedLine />
-            </St.SelectedIcon>
-          )}
-        </St.ColorPickerWrapper>
-      </St.SelectColor>
+      <St.SelectColorWrapper>
+        <St.SelectColor>
+          {COLOR_ICONS.map(({ color, Icon }) => (
+            <St.ColorIconWrapper key={color} isSelected={selectedSuggestedColor === color}>
+              <Icon onClick={() => handleChangeSuggestedColor(color)} />
+            </St.ColorIconWrapper>
+          ))}
+          <St.ColorPickerWrapper selectedColor={selectedColor}>
+            <St.ColorPicker
+              src={selectedColor || IcColorRainbow}
+              alt='색상선택'
+              type='color'
+              onChange={handleChange}
+              onClick={handleChangeRainbowColor}
+            />
+            {isColorPickerSelected && (
+              <St.SelectedIcon
+                isSelected={isColorPickerSelected}
+                onClick={handleChangeRainbowColor}
+              >
+                <IcColorSelectedLine />
+              </St.SelectedIcon>
+            )}
+          </St.ColorPickerWrapper>
+        </St.SelectColor>
+      </St.SelectColorWrapper>
     </St.OptionBox>
   );
 };
@@ -141,13 +146,16 @@ const St = {
   OptionBox: styled.section`
     display: flex;
     width: 100%;
+    justify-content: space-between;
 
-    gap: 4rem;
+    /* gap: 4rem; */
   `,
+
+  SelectColorWrapper: styled.div``,
+
   ColorPickerWrapper: styled.div<ColorPickerWrapperProps>`
     position: relative;
-    /* width: 2.2rem; */
-    width: 3rem;
+    width: 2.2rem;
     height: 2.2rem;
     border-radius: 0.5rem;
 
@@ -172,6 +180,7 @@ const St = {
     opacity: 0;
     cursor: pointer;
   `,
+
   SelectLine: styled.div`
     display: flex;
     justify-content: center;
@@ -188,8 +197,8 @@ const St = {
   `,
   SelectColor: styled.div`
     display: flex;
-    justify-content: center;
-    gap: 1.8rem;
+    justify-content: space-between;
+
     align-items: center;
     padding: 0;
 

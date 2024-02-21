@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { fabric } from 'fabric';
 import ColorPicker from './ColorPicker';
 import styled from 'styled-components';
@@ -10,31 +10,51 @@ interface CanvasProps {
 const Canvas: React.FC<CanvasProps> = ({ setCanvasState }: CanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
+  const [containerWidth, setContainerWidth] = useState<number | undefined>(undefined);
 
+  // 화면 비율 바뀌면 캔버스 크기도 그에 맞게 변경해주기
   useEffect(() => {
-    //새 캔버스 만들기
-    const canvas = new fabric.Canvas(canvasRef.current, {
-      isDrawingMode: true,
-      width: 380,
-      height: 313,
-      allowTouchScrolling: true, //얘도 좀 의심해봐야 할 것 같다..!
-    });
-
-    // 그리기 설정
-    canvas.freeDrawingBrush.color = '#0C0D11';
-    canvas.freeDrawingBrush.width = 4;
-
-    fabricCanvasRef.current = canvas;
-
-    setCanvasState(canvasRef.current);
-
-    return () => {
-      setCanvasState(canvasRef.current);
-      if (fabricCanvasRef.current) {
-        fabricCanvasRef.current.dispose();
+    const handleResize = () => {
+      if (canvasRef.current?.parentElement?.parentElement) {
+        setContainerWidth(canvasRef.current.parentElement.parentElement.clientWidth);
       }
     };
-  }, [setCanvasState]);
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // 새 캔버스 만들기 혹은 그려놓은 것이 있다면 유지하면서 캔버스 크기만 조정
+  useEffect(() => {
+    if (!canvasRef.current || containerWidth === undefined) return;
+
+    if (!fabricCanvasRef.current) {
+      //새 캔버스 만들기
+      const canvas = new fabric.Canvas(canvasRef.current, {
+        isDrawingMode: true,
+        width: containerWidth || 335,
+        height: 313,
+        allowTouchScrolling: true,
+      });
+
+      // 그리기 설정
+      canvas.freeDrawingBrush.color = '#0C0D11';
+      canvas.freeDrawingBrush.width = 4;
+
+      fabricCanvasRef.current = canvas;
+
+      setCanvasState(canvasRef.current);
+    } else {
+      if (fabricCanvasRef.current) {
+        fabricCanvasRef.current.setDimensions({ width: containerWidth, height: 313 });
+      }
+    }
+  }, [containerWidth, setCanvasState]);
 
   //ColorPicker 색상 변경
   const handleColorChange = (color: string) => {
@@ -56,7 +76,7 @@ const Canvas: React.FC<CanvasProps> = ({ setCanvasState }: CanvasProps) => {
   };
 
   return (
-    <div>
+    <St.CanvasWrapper>
       <St.CleanButton type='button' value='삭제' onClick={handleDelete}>
         전체 삭제하기
       </St.CleanButton>
@@ -64,13 +84,14 @@ const Canvas: React.FC<CanvasProps> = ({ setCanvasState }: CanvasProps) => {
         <canvas ref={canvasRef} />
       </St.Canvas>
       <ColorPicker onColorChange={handleColorChange} onBrushChange={handleBrushChange} />
-    </div>
+    </St.CanvasWrapper>
   );
 };
 
 export default Canvas;
 
 const St = {
+  CanvasWrapper: styled.div``,
   CleanButton: styled.button`
     width: 7.6rem;
     height: 1.8rem;
@@ -81,8 +102,6 @@ const St = {
     font: ${({ theme }) => theme.fonts.body_underline_medium_14};
   `,
   Canvas: styled.div`
-    width: 38rem;
-    height: 31.3rem;
     margin-bottom: 1.6rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
