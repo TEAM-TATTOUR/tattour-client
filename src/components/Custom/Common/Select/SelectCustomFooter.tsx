@@ -1,5 +1,6 @@
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import usePostCustomApply from '../../../../libs/hooks/usePostCustomApply';
+import { api } from '../../../../libs/api';
 
 interface SelectCustomFooterProps {
   isActiveNext: boolean;
@@ -14,15 +15,26 @@ const SelectCustomFooter = ({
   setStep,
   setCustomId,
 }: SelectCustomFooterProps) => {
-  const { response } = usePostCustomApply(haveDesign);
+  const navigate = useNavigate();
+
+  // 선택된 커스텀 타투 플로우 케이스 값(haveDesign)이 있을 때, 통신을 해주기 위한 함수
+  const fetchCustomApply = async () => {
+    try {
+      const { data } = await api.post('/custom/apply', {
+        haveDesign: haveDesign,
+      });
+      setCustomId(data.data.customId);
+    } catch (err) {
+      navigate('/error');
+    }
+  };
 
   const handleClickFooter = () => {
     if (!isActiveNext) return;
 
-    if (response) {
-      setCustomId(response.customId);
-      setStep((prev) => prev + 1);
-    }
+    // 선택 된 값 있음 === isActiveNext일 때 custom/apply post 통신
+    fetchCustomApply();
+    setStep((prev) => prev + 1);
   };
 
   return (
