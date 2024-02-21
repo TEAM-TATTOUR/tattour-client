@@ -27,7 +27,7 @@ const PaintBottomSheet = ({
   const onClickSubmitImage = () => {
     // 캔버스 저장 후 전달
     if (!canvasState) return;
-    setDrawingImageUrl(canvasState?.toDataURL());
+    setDrawingImageUrl(canvasState.toDataURL());
     setBottomOpen(false);
   };
 
@@ -62,11 +62,7 @@ const St = {
     padding: 2.5rem 2rem 2.8rem 2rem;
     width: 100%;
   `,
-  ContentWrapper: styled.div`
-    height: 100%;
-    width: 100%;
-    overflow-y: auto;
-  `,
+  ContentWrapper: styled.div``,
   Footer: styled.footer`
     display: flex;
     justify-content: center;
@@ -86,6 +82,8 @@ const St = {
 };
 
 const CustomSheet = styled(Sheet)`
+  max-width: 43rem;
+  margin: 0 auto;
   .react-modal-sheet-backdrop {
     background-color: rgba(0, 0, 0, 0.6) !important;
   }
