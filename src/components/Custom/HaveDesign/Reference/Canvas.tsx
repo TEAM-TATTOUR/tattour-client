@@ -12,25 +12,8 @@ const Canvas: React.FC<CanvasProps> = ({ setCanvasState }: CanvasProps) => {
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
   const [containerWidth, setContainerWidth] = useState<number | undefined>(undefined);
 
-  // 화면 비율 바뀌면 캔버스 크기도 그에 맞게 변경해주기
-  useEffect(() => {
-    const handleResize = () => {
-      if (canvasRef.current?.parentElement?.parentElement) {
-        setContainerWidth(canvasRef.current.parentElement.parentElement.clientWidth);
-      }
-    };
-
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   // 새 캔버스 만들기 혹은 그려놓은 것이 있다면 유지하면서 캔버스 크기만 조정
-  useEffect(() => {
+  const initializeCanvas = () => {
     if (!canvasRef.current || containerWidth === undefined) return;
 
     if (!fabricCanvasRef.current) {
@@ -54,6 +37,22 @@ const Canvas: React.FC<CanvasProps> = ({ setCanvasState }: CanvasProps) => {
         fabricCanvasRef.current.setDimensions({ width: containerWidth, height: 313 });
       }
     }
+  };
+
+  const handleResize = () => {
+    if (canvasRef.current?.parentElement?.parentElement) {
+      setContainerWidth(canvasRef.current.parentElement.parentElement.clientWidth);
+    }
+  };
+
+  // 화면 비율 바뀌면 캔버스 크기도 그에 맞게 변경해주기
+  useEffect(() => {
+    handleResize();
+    initializeCanvas();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, [containerWidth, setCanvasState]);
 
   //ColorPicker 색상 변경
