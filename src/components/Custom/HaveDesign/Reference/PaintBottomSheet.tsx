@@ -82,6 +82,8 @@ const St = {
 };
 
 const CustomSheet = styled(Sheet)`
+  max-width: 43rem;
+  margin: 0 auto;
   .react-modal-sheet-backdrop {
     background-color: rgba(0, 0, 0, 0.6) !important;
   }
