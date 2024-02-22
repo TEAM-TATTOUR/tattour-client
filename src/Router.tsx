@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ListPage from './page/ListPage';
-import MainPage from './page/MainPage';
-import LoginPage from './page/Login/LoginPage';
 import DetailPage from './page/DetailPage';
+import ListPage from './page/ListPage';
+import LoginPage from './page/Login/LoginPage';
+import MainPage from './page/MainPage';
 import MyTattoo from './page/MyTattoo';
 import MyTattooDetail from './page/MyTattooDetail';
 import CompletePage from './page/Order/CompletePage';
@@ -10,19 +10,20 @@ import OrderPage from './page/Order/OrderPage';
 
 import OnBoardingPage from './page/Custom/Common/OnBoardingPage';
 
+import LoginCallback from './components/Login/LoginCallback';
+import ScrollToTop from './libs/hooks/ScrollTop';
+import CartPage from './page/CartPage';
+import CommonCustomPage from './page/Custom/Common/CommonCustomPage';
+
+import HaveDesignCustomPage from './page/Custom/HaveDesign/HaveDesignCustomPage';
+import NoDesignCustomPage from './page/Custom/NoDesign1/NoDesignCustomPage';
+import ErrorPage from './page/Error/ErrorPage';
+import ExpirationPage from './page/Expiration/ExpirationPage';
+import MagazinePage from './page/MagazinePage';
+import OrderDepositPage from './page/Order/OrderDepositPage';
+import SavePage from './page/SavePage';
 import SearchPage from './page/Search/SearchPage';
 import SearchResultPage from './page/Search/SearchResultPage';
-import ScrollToTop from './libs/hooks/ScrollTop';
-import LoginCallback from './components/Login/LoginCallback';
-import SavePage from './page/SavePage';
-import NoDesignCustomPage from './page/Custom/NoDesign/NoDesignCustomPage';
-import HaveDesignCustomPage from './page/Custom/HaveDesign/HaveDesignCustomPage';
-import CommonCustomPage from './page/Custom/Common/CommonCustomPage';
-import ErrorPage from './page/Error/ErrorPage';
-import MagazinePage from './page/MagazinePage';
-import CartPage from './page/CartPage';
-import ExpirationPage from './page/Expiration/ExpirationPage';
-import OrderDepositPage from './page/Order/OrderDepositPage';
 
 const Router = () => {
   return (
