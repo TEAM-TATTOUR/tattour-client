@@ -196,7 +196,7 @@ const CustomImageAttach: React.FC<CustomImageAttachProps> = ({
           className={drawingImageUrl ? 'disabled' : ''}
         >
           <IcDraw />
-          대충 그리기
+          간단 스케치
         </St.ReferenceButton>
       </St.ButtonWrapper>
       {toast && <Toast setToast={setToast} text='이미지를 3장 이상 첨부할 수 없습니다' />}

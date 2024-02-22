@@ -15,7 +15,7 @@ const SideMenuUserInfo = ({ isLogin }: { isLogin: boolean }) => {
   ) : (
     <St.SideMenuAnonymousSection>
       <St.SideMenuLoginButton onClick={handleClickLoginButton}>
-        <St.SideMenuAnoymousTitle>로그인이 필요합니다</St.SideMenuAnoymousTitle>
+        <St.SideMenuAnoymousTitle>로그인이 필요해요</St.SideMenuAnoymousTitle>
         <IcArrowRightLight />
       </St.SideMenuLoginButton>
     </St.SideMenuAnonymousSection>
@@ -37,7 +37,7 @@ const St = {
   `,
 
   SideMenuAnoymousTitle: styled.h2`
-    font: ${({ theme }) => theme.fonts.title_semibold_16};
+    ${({ theme }) => theme.fonts.title_bold_16};
     color: ${({ theme }) => theme.colors.gray1};
   `,
 };

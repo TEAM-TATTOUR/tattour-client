@@ -1,13 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { IcCancelDark } from '../../../assets/icon';
-import { useNavigate } from 'react-router-dom';
 import { removeAccessToken } from '../../../libs/api';
 
 interface EscapeModalFormProps {
   redirectURL?: string;
   setIsActiveNext?: React.Dispatch<React.SetStateAction<boolean>>;
 
-  state?: object;
+  // state?: object;
 
   onClose: () => void;
   pageName: string;
@@ -16,15 +16,15 @@ interface EscapeModalFormProps {
   subTitle2: string;
   continueBtn: string;
   stopBtn: string;
-  continueBtnFunc?: () => void;
+  continueBtnFunc?: () => void | Promise<void>;
 
-  setStep?: React.Dispatch<React.SetStateAction<number>>;
+  // setStep?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const EscapeModalForm = ({
   redirectURL,
   setIsActiveNext,
-  state,
+
   onClose,
   pageName,
   title,
@@ -33,7 +33,6 @@ const EscapeModalForm = ({
   continueBtn,
   stopBtn,
   continueBtnFunc,
-  setStep,
 }: EscapeModalFormProps) => {
   const navigate = useNavigate();
 
@@ -41,19 +40,21 @@ const EscapeModalForm = ({
     onClose();
     switch (pageName) {
       case 'CartPage':
-        if (continueBtnFunc) {
-          continueBtnFunc();
-        }
+        continueBtnFunc && continueBtnFunc();
         break;
 
       case 'DepositPage':
-        navigate('/complete', { state: state && state });
+        continueBtnFunc && continueBtnFunc();
         break;
 
-      case 'CustomDepositPage':
-        if (!setStep) break; //setStep optional props라서 추가
-        setStep((prev) => prev + 1);
-        break;
+      // case 'DepositPage':
+      //   navigate('/complete', { state: state && state });
+      //   break;
+
+      // case 'CustomDepositPage':
+      //   if (!setStep) break; //setStep optional props라서 추가
+      //   setStep((prev) => prev + 1);
+      //   break;
 
       default:
         break;

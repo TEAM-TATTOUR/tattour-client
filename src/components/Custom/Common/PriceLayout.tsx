@@ -4,13 +4,13 @@ import { IcBackDark } from '../../../assets/icon';
 import CancelBtn from '../../../common/Header/CancelBtn';
 import CustomSizeEscapeModal from '../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
 import ProgressBar from '../../../common/ProgressBar';
+import { customInfoType } from '../../../types/customInfoType';
+import Header from '../../Header';
+import PageLayout from '../../PageLayout';
 import CountPrice from '../CountPrice';
 import MakePublic from '../MakePublic';
 import PriceFooter from '../PriceFooter';
 import PriceHeading from '../PriceHeading';
-import Header from '../../Header';
-import PageLayout from '../../PageLayout';
-import { customInfoType, resCustomInfoType } from '../../../types/customInfoType';
 
 interface PriceLayoutProps {
   step: number;
@@ -18,15 +18,15 @@ interface PriceLayoutProps {
 
   customInfo: customInfoType;
   customImages: FileList | undefined;
-  handDrawingImage?: File | null;
+  // handDrawingImage?: File | null;
 
-  count: number;
+  // count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   isPublic: boolean;
   setIsPublic: React.Dispatch<React.SetStateAction<boolean>>;
 
-  setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
-  totalPrice: number;
+  // setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
+  // totalPrice: number;
   setTotalPrice: (newTotalPrice: number) => void;
 }
 
@@ -35,26 +35,26 @@ const PriceLayout = ({
   setStep,
   customInfo,
   customImages,
-  handDrawingImage,
-  count,
+  // handDrawingImage,
+  // count,
   setCount,
   isPublic,
   setIsPublic,
-  setReceiptData,
-  totalPrice,
+  // setReceiptData,
+  // totalPrice,
   setTotalPrice,
 }: PriceLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
 
   //isPublic 여부에 따라 바꿔줘야 할듯
-  const updatedCustomInfo = {
-    ...customInfo,
-    count: count,
-    isPublic: isPublic,
-    isCompleted: true,
-    price: totalPrice,
-    viewCount: step,
-  };
+  // const updatedCustomInfo = {
+  //   ...customInfo,
+  //   count: count,
+  //   isPublic: isPublic,
+  //   isCompleted: true,
+  //   price: totalPrice,
+  //   viewCount: step,
+  // };
 
   const renderPriceLayoutHeader = () => {
     return (
@@ -85,11 +85,11 @@ const PriceLayout = ({
       renderHeader={renderPriceLayoutHeader}
       footer={
         <PriceFooter
-          customInfo={updatedCustomInfo}
-          handDrawingImage={handDrawingImage ? handDrawingImage : null}
-          customImages={customImages}
+          // customInfo={updatedCustomInfo}
+          // handDrawingImage={handDrawingImage ? handDrawingImage : null}
+          // customImages={customImages}
           setStep={setStep}
-          setReceiptData={setReceiptData}
+          // setReceiptData={setReceiptData}
         />
       }
     >

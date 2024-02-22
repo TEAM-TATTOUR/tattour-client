@@ -12,7 +12,7 @@ const PaintBottomHeader = ({ onClose }: PaintBottomHeaderProps) => {
 
   return (
     <St.HeaderWrapper>
-      <St.PaintTitle>대충 그려보기</St.PaintTitle>
+      <St.PaintTitle>간단 스케치</St.PaintTitle>
       <St.SheetClose>
         <IcCancelDark onClick={handleClose} />
       </St.SheetClose>
