@@ -6,19 +6,22 @@ import styled from 'styled-components';
 interface BottomSheetProps {
   isOpen: boolean;
   onClose: () => void;
-  detent: SheetDetent | undefined;
+  detent?: SheetDetent;
   disableDrag: boolean;
   children: ReactNode;
 }
 
-const Header = ({ disableDrag }: { disableDrag: boolean }) => {
-  return <Sheet.Header disableDrag={disableDrag}></Sheet.Header>;
+const Header = ({ disableDrag, children }: { disableDrag: boolean; children?: ReactNode }) => {
+  return <Sheet.Header disableDrag={disableDrag}>{children}</Sheet.Header>;
 };
 const Content = ({ children }: { children: ReactNode }) => {
   return <Sheet.Content>{children}</Sheet.Content>;
 };
-const Container = ({ children }: { children: ReactNode }) => {
-  return <Sheet.Container>{children}</Sheet.Container>;
+const Container = ({ children, className }: { children: ReactNode; className?: string }) => {
+  return <Sheet.Container className={className}>{children}</Sheet.Container>;
+};
+const Scroller = ({ children }: { children: ReactNode }) => {
+  return <Sheet.Scroller>{children}</Sheet.Scroller>;
 };
 const Backdrop = ({ onTap }: { onTap: () => void }) => {
   return <Sheet.Backdrop onTap={onTap} />;
@@ -42,6 +45,7 @@ export const CustomSheet = Object.assign(BottomSheet, {
   Content,
   Container,
   Backdrop,
+  Scroller,
 });
 
 const St = {
@@ -55,8 +59,20 @@ const St = {
       max-width: 43rem;
       border-radius: 1rem 1rem 0 0;
     }
+    .public-bottom-sheet {
+      padding: 2.5rem 2.4rem 0rem 2.4rem;
+      height: calc(100% - 10.6rem) !important;
+      left: initial !important;
+    }
     .react-modal-sheet-header {
       height: 1.6rem !important;
+    }
+    .react-modal-sheet-container > div:first-child {
+      display: flex;
+      justify-content: space-between !important;
+    }
+    .react-modal-sheet-scroller {
+      padding-bottom: 6rem;
     }
     .react-modal-sheet-drag-indicator {
       display: none;
