@@ -11,7 +11,7 @@ interface PublicBottomProps {
 const PublicBottomSheet = ({ isSheetOpen, setSheetOpen }: PublicBottomProps) => {
   return (
     <CustomSheet isOpen={isSheetOpen} onClose={() => setSheetOpen(false)} disableDrag={true}>
-      <CustomSheet.Container className='public-bottom-sheet'>
+      <CustomSheet.Container className='text-bottom-sheet'>
         <CustomSheet.Header disableDrag={false}>
           <St.Title>저작권 정책</St.Title>
           <IcCancelDark onClick={() => setSheetOpen(false)} />

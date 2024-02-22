@@ -59,9 +59,10 @@ const St = {
       max-width: 43rem;
       border-radius: 1rem 1rem 0 0;
     }
-    .public-bottom-sheet {
+    .text-bottom-sheet {
       padding: 2.5rem 2.4rem 0rem 2.4rem;
       height: calc(100% - 10.6rem) !important;
+
       left: initial !important;
     }
     .react-modal-sheet-header {
