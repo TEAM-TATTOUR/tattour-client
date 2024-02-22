@@ -65,6 +65,17 @@ const St = {
 
       left: initial !important;
     }
+    .detail-bottom-sheet {
+      padding: 2.5rem 0rem 7rem 0rem;
+      left: initial !important;
+
+      & > div:first-child {
+        display: flex;
+        justify-content: space-between !important;
+        margin-bottom: 2.8rem;
+        padding: 0rem 2.4rem 0rem 2.4rem;
+      }
+    }
     .react-modal-sheet-header {
       height: 1.6rem !important;
     }

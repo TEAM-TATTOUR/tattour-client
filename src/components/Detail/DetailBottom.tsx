@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import Sheet from 'react-modal-sheet';
 import { IcCancelDark, IcMinus, IcMinusOneunder, IcPlus } from '../../assets/icon';
 import DetailFooter from './DetailFooter';
 import { useEffect, useState } from 'react';
+import { CustomSheet } from '../../common/BottomSheet';
 
 interface DetailBottomProps {
   id: number;
@@ -38,13 +38,12 @@ const DetailBottom = ({
       detent='content-height'
       disableDrag={true}
     >
-      {}
-      <Sheet.Container>
-        <Sheet.Header disableDrag={true}>
+      <CustomSheet.Container className='detail-bottom-sheet'>
+        <CustomSheet.Header disableDrag={true}>
           <St.Title>수량</St.Title>
           <IcCancelDark onClick={() => setSheetOpen(false)} />
-        </Sheet.Header>
-        <Sheet.Content>
+        </CustomSheet.Header>
+        <CustomSheet.Content>
           <St.FullBox>
             <St.Wrapper>
               <St.Stepper>
@@ -81,9 +80,9 @@ const DetailBottom = ({
             shippingFee={3000} // 배송비도 여기에 추가하기
             setCartToast={setCartToast}
           />
-        </Sheet.Content>
-      </Sheet.Container>
-      <Sheet.Backdrop onTap={() => setSheetOpen(false)} />
+        </CustomSheet.Content>
+      </CustomSheet.Container>
+      <CustomSheet.Backdrop onTap={() => setSheetOpen(false)} />
     </CustomSheet>
   );
 };
@@ -164,28 +163,28 @@ const St = {
   `,
 };
 
-const CustomSheet = styled(Sheet)`
-  height: 100%;
-  display: flex;
-  justify-content: center;
+// const CustomSheet = styled(Sheet)`
+//   height: 100%;
+//   display: flex;
+//   justify-content: center;
 
-  .react-modal-sheet-backdrop {
-    background-color: rgba(0, 0, 0, 0.6) !important;
-  }
-  .react-modal-sheet-container {
-    padding: 2.5rem 0rem 7rem 0rem;
-    border-radius: 1rem !important;
-    left: initial !important;
-    max-width: 43rem;
-  }
-  // .react-modal-sheet-header
-  .react-modal-sheet-container > div:nth-child(1) {
-    display: flex;
-    justify-content: space-between !important;
-    margin-bottom: 2.8rem;
-    padding: 0rem 2.4rem 0rem 2.4rem;
-  }
-  .react-modal-sheet-drag-indicator {
-    display: none;
-  }
-`;
+//   .react-modal-sheet-backdrop {
+//     background-color: rgba(0, 0, 0, 0.6) !important;
+//   }
+//   .react-modal-sheet-container {
+//     padding: 2.5rem 0rem 7rem 0rem;
+//     border-radius: 1rem !important;
+//     left: initial !important;
+//     max-width: 43rem;
+//   }
+//   // .react-modal-sheet-header
+//   .react-modal-sheet-container > div:nth-child(1) {
+//     display: flex;
+//     justify-content: space-between !important;
+//     margin-bottom: 2.8rem;
+//     padding: 0rem 2.4rem 0rem 2.4rem;
+//   }
+//   .react-modal-sheet-drag-indicator {
+//     display: none;
+//   }
+// `;
