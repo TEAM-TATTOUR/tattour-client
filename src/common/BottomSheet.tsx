@@ -64,6 +64,11 @@ const St = {
       height: calc(100% - 10.6rem) !important;
 
       left: initial !important;
+
+      & > div:first-child {
+        display: flex;
+        justify-content: space-between !important;
+      }
     }
     .detail-bottom-sheet {
       padding: 2.5rem 0rem 7rem 0rem;
@@ -78,10 +83,6 @@ const St = {
     }
     .react-modal-sheet-header {
       height: 1.6rem !important;
-    }
-    .react-modal-sheet-container > div:first-child {
-      display: flex;
-      justify-content: space-between !important;
     }
     .react-modal-sheet-scroller {
       padding-bottom: 6rem;
