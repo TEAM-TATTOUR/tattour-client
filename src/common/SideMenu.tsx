@@ -25,7 +25,11 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
   };
 
   const handleClickMyTattooButton = () => {
-    navigate('/my-tattoo');
+    isLogin ? navigate('/my-tattoo') : navigate('/login');
+  };
+
+  const handleClickCartButton = () => {
+    isLogin ? navigate('/cart') : navigate('/login');
   };
 
   const NAV_MENU_ITEM = [
@@ -47,9 +51,7 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
     {
       icon: <IcCart />,
       text: '장바구니',
-      clickHandler: () => {
-        navigate('/cart');
-      },
+      clickHandler: handleClickCartButton,
     },
   ];
 

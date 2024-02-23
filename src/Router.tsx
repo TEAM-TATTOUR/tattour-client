@@ -23,10 +23,12 @@ import MagazinePage from './page/MagazinePage';
 import CartPage from './page/CartPage';
 import ExpirationPage from './page/Expiration/ExpirationPage';
 import OrderDepositPage from './page/Order/OrderDepositPage';
+import Interceptors from './libs/hooks/Interceptors';
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <Interceptors />
       <ScrollToTop />
       <Routes>
         <Route path='/list' element={<ListPage />} />
