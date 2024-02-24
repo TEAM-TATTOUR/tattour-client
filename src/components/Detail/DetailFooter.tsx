@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
 import { useNavigate } from 'react-router-dom';
-import { api, getAccessToken } from '../../libs/api';
+import { getAccessToken } from '../../libs/api';
 import { useState } from 'react';
 import Toast from '../../common/ToastMessage/Toast';
+import usePostCart from '../../libs/hooks/detail/usePostCart';
+import usePostLiked from '../../libs/hooks/detail/usePostLiked';
 
 interface DetailFooterProp {
   id: number;
@@ -52,47 +54,7 @@ const DetailFooter = ({
     }
   };
 
-  const postCart = async () => {
-    await api
-      .post('/cart', {
-        stickerId: id,
-        count: count,
-      })
-      .then(() => {
-        setCartToast(true);
-        setSheetOpen(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        navigate('/error');
-      });
-  };
-
-  // 좋아요 추가 통신
-  const postLiked = async () => {
-    await api
-      .post(`/user/productliked/save`, {
-        stickerId: id,
-      })
-      .catch((err) => {
-        console.log(err);
-        navigate('/error');
-      });
-  };
-
-  // 좋아요 삭제 통신
-  const postDisliked = async () => {
-    await api
-      .delete(`/user/productliked/sticker/${id}/delete`)
-      .then(() => {
-        // 좋아요 삭제
-        console.log('좋아요 삭제');
-      })
-      .catch(() => {
-        navigate('/error');
-      });
-  };
-
+  const { postLiked, postDisliked } = usePostLiked(id);
   const handleClickLike = () => {
     if (!checkLogin()) return;
     if (like) {
@@ -106,6 +68,7 @@ const DetailFooter = ({
     }
   };
 
+  const postCart = usePostCart({ id, count, setCartToast, setSheetOpen });
   const handleCartButton = () => {
     postCart();
   };
