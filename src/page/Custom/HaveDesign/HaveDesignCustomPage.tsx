@@ -4,11 +4,8 @@ import CustomDirectDepositLayout from '../../../components/Custom/Common/DirectD
 import PriceLayout from '../../../components/Custom/Common/PriceLayout';
 import ReceiptLayout from '../../../components/Custom/Common/Receipt/ReceiptLayout';
 import CustomSizeLayout from '../../../components/Custom/Common/Size/CustomSizeLayout';
-import AdditionalRequestLayout from '../../../components/Custom/HaveDesign/AdditionalRequest/AdditionalRequestLayout';
-import CustomThemeLayout from '../../../components/Custom/HaveDesign/CustomTheme/CustomThemeLayout';
-import CustomReferenceLayout from '../../../components/Custom/HaveDesign/Reference/CustomReferenceLayout';
-import StylingColorLayout from '../../../components/Custom/HaveDesign/SelectColor/StylingColorLayout';
-import SelectKeywordLayout from '../../../components/Custom/HaveDesign/SelectKeyword/SelectKeywordLayout';
+import CustomImgLayout from '../../../components/Custom/NoDesign/Img/CustomImgLayout';
+import CustomRequestLayout from '../../../components/Custom/NoDesign/Request/CustomRequestLayout';
 import { api } from '../../../libs/api';
 import { resCustomInfoType } from '../../../types/customInfoType';
 import LoadingPage from '../../LoadingPage';
@@ -17,93 +14,59 @@ const HaveDesignCustomPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  //커스텀 신청서 플로우에 따른 각 단계별 컴포넌트 렌더링 플래그
   const [step, setStep] = useState(
     location.state && location.state.step !== undefined ? location.state.step : 1,
   );
 
-  //step 1: 이미지 첨부하기 관련 state
-  const [customImages, setCustomImages] = useState<FileList | undefined>();
-  const [handDrawingImage, setHandDrawingImage] = useState<File | null>(null);
-  const [previewURL, setPreviewURL] = useState<string[]>(
-    location.state &&
-      location.state.mainImageUrl !== undefined &&
-      location.state.images !== undefined
-      ? [location.state.mainImageUrl, ...location.state.images]
-      : [],
-  );
-  const [drawingImageUrl, setDrawingImageUrl] = useState<string | null>(
-    location.state &&
-      location.state.handDrawingImageUrl !== undefined &&
-      location.state.handDrawingImageUrl !== null
-      ? location.state.handDrawingImageUrl
+  //step 1: CustomImg - 그려둔 도안 이미지 state
+  const [customImages, setCustomImages] = useState<FileList>();
+  const [previewURL, setPreviewURL] = useState(
+    location.state && location.state.mainImageUrl !== undefined
+      ? location.state.mainImageUrl
       : null,
   );
 
-  //step 2: 색상 선택 state
-  const [isColoredState, setIsColored] = useState(
-    location.state && location.state.isColored !== undefined ? location.state.isColored : false,
-  );
-  const [selectedColorMode, setSelectedColorMode] = useState('');
-
-  //step 3: 키워드 선택 state
-  const [styles, setStyles] = useState<number[]>([]);
-  const [themes, setThemes] = useState<number[]>([]);
-
-  const stylesKeyword =
-    location.state && location.state.styles !== undefined ? location.state.styles : [];
-  const themesKeyword =
-    location.state && location.state.themes !== undefined ? location.state.themes : [];
-
-  //step 4: 타투 이름 입력 관련 state
+  //step 2: CustomRequest
+  //타투 이름 state
   const [name, setName] = useState(
     location.state && location.state.name !== undefined ? location.state.name : '',
   );
-  const [description, setDescription] = useState(
-    location.state && location.state.description !== undefined ? location.state.description : '',
-  );
 
-  //step 5: 추가 요구사항 관련 state
+  //요청사항 state
   const [demand, setDemand] = useState(
     location.state && location.state.demand !== undefined ? location.state.demand : '',
   );
 
-  //step 6: 주문 관련 state
+  //step 3: 주문 관련 state -> 이 부분 나중에 같이 논의 필요합니다
   const [count, setCount] = useState(1);
   const [isPublic, setIsPublic] = useState(false);
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(0); //수정하면서 임의로 추가했습니다!
 
-  const handleTotalPriceChange = (newTotalPrice: number) => {
-    setPrice(newTotalPrice);
-  };
-
-  // 앞부분 임시 통합한 곳에서 state 불러오기. 최종 통합 때 제거 예정
+  // 앞에 size + customId 통합 해놓은거에서 우선 navigate state로 관련 정보 불러옴 추후 통합시 제거 예정
   const [size, setSize] = useState(location.state ? location.state.size : null);
+  // const size = location.state ? location.state.size : null;
   const customId = location.state ? location.state.customId : null;
-  const haveDesign = true;
+  const haveDesign = location.state ? location.state.haveDesign : null; //영수증 뷰 다르게 띄워주기 위해서 임시 추가했습니다
 
   //patch에 보낼 정보들 객체로 모으기
   const customInfo = {
-    customId: customId,
-    size: size,
-    isColored: isColoredState,
-    name: name === '' ? '임시 저장' : name,
-    description: description,
-    demand: demand,
-    viewCount: step,
-    themes: themes,
-    styles: styles,
+    customId: customId, //id
+    size: size, //타투 사이즈
+    name: name === '' ? '임시저장' : name, //이름
+    demand: demand, //요청사항
+    viewCount: step, //뷰카운트(임시저장용)
     count: count, //수량
     isPublic: isPublic, //도안 공개 여부
     price: price, //최종 가격
-    haveDesign: haveDesign,
   };
 
   // patch 통신 response = receipt 뷰에 넘겨줘야 하는 정보들
   const [receiptData, setReceiptData] = useState<resCustomInfoType>();
 
-  // 이미지 용량 이슈로 receipt 페이지로 넘어갈 때, 데이터 통신 완료 이전 로딩 스피너 보여주기 위해 쓰이는 플래그
   const [receiptLoading, setReceiptLoading] = useState(false);
 
+  // 무통장 입금에서 '송금했어요' 버튼 클릭시의 핸들러
   const handleClickCustomDepositBtn = async () => {
     const formData = new FormData();
 
@@ -116,17 +79,12 @@ const HaveDesignCustomPage = () => {
     setReceiptLoading(true);
 
     try {
-      // 1. handDrawingImage(손 그림) append
-      if (handDrawingImage) {
-        formData.append('handDrawingImage', handDrawingImage);
-      }
-
-      // 2. customInfo(커스텀 정보들) append
+      // 1. customInfo(커스텀 정보들) append
       const json = JSON.stringify(updatedCustomInfo);
       const blob = new Blob([json], { type: 'application/json' });
       formData.append('customInfo', blob);
 
-      // 3. customImage(도안 이미지) append
+      // 2. customImage(도안 이미지) append
       if (customImages) {
         for (let i = 0; i < customImages.length; i++) {
           formData.append('customImages', customImages.item(i) as File);
@@ -139,9 +97,9 @@ const HaveDesignCustomPage = () => {
         },
       });
 
+      setReceiptData(data.data);
       if (data) {
         setReceiptLoading(false);
-        setReceiptData(data.data);
         setStep((prev: number) => prev + 1);
       }
     } catch (err) {
@@ -162,95 +120,43 @@ const HaveDesignCustomPage = () => {
       );
     case 1:
       return (
-        <CustomReferenceLayout
+        <CustomImgLayout
           setStep={setStep}
           customImages={customImages}
           setCustomImages={setCustomImages}
-          handDrawingImage={handDrawingImage}
-          setHandDrawingImage={setHandDrawingImage}
-          setPreviewURL={setPreviewURL}
-          previewURL={previewURL}
-          drawingImageUrl={drawingImageUrl}
-          setDrawingImageUrl={setDrawingImageUrl}
           customInfo={customInfo}
+          previewURL={previewURL}
+          setPreviewURL={setPreviewURL}
         />
       );
-
     case 2:
       return (
-        <StylingColorLayout
+        <CustomRequestLayout
           setStep={setStep}
-          isColoredState={isColoredState}
-          setIsColored={setIsColored}
-          selectedColorMode={selectedColorMode}
-          setSelectedColorMode={setSelectedColorMode}
+          name={name}
+          setName={setName}
+          demand={demand}
+          setDemand={setDemand}
           customInfo={customInfo}
           customImages={customImages}
-          handDrawingImage={handDrawingImage}
         />
       );
 
     case 3:
       return (
-        <SelectKeywordLayout
+        <PriceLayout
+          step={step}
           setStep={setStep}
-          styles={styles}
-          setStyles={setStyles}
-          themes={themes}
-          setThemes={setThemes}
-          stylesKeyword={stylesKeyword}
-          themesKeyword={themesKeyword}
           customInfo={customInfo}
           customImages={customImages}
-          handDrawingImage={handDrawingImage}
+          setCount={setCount}
+          isPublic={isPublic}
+          setIsPublic={setIsPublic}
+          setTotalPrice={setPrice}
         />
       );
 
     case 4:
-      return (
-        <CustomThemeLayout
-          setStep={setStep}
-          name={name}
-          setName={setName}
-          description={description}
-          customInfo={customInfo}
-          customImages={customImages}
-          handDrawingImage={handDrawingImage}
-          setDescription={setDescription}
-        />
-      );
-
-    case 5:
-      return (
-        <AdditionalRequestLayout
-          setStep={setStep}
-          demand={demand}
-          setDemand={setDemand}
-          customInfo={customInfo}
-          customImages={customImages}
-          handDrawingImage={handDrawingImage}
-        />
-      );
-
-    case 6:
-      return (
-        <PriceLayout
-          step={step}
-          setStep={setStep}
-          // count={count}
-          setCount={setCount}
-          customInfo={customInfo}
-          customImages={customImages}
-          // setReceiptData={setReceiptData}
-          // handDrawingImage={handDrawingImage}
-          isPublic={isPublic}
-          setIsPublic={setIsPublic}
-          // totalPrice={price}
-          setTotalPrice={handleTotalPriceChange}
-        />
-      );
-
-    case 7:
       return receiptLoading ? (
         <LoadingPage />
       ) : (
@@ -260,8 +166,8 @@ const HaveDesignCustomPage = () => {
         />
       );
 
-    case 8:
-      return <ReceiptLayout receiptData={receiptData} haveDesign={haveDesign} />;
+    case 5:
+      return <ReceiptLayout receiptData={receiptData} haveDesign={haveDesign} />; //haveDesign 임의로 추가해서 넘겨줬습니다
   }
 };
 
