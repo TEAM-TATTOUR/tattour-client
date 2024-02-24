@@ -25,7 +25,11 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
   };
 
   const handleClickMyTattooButton = () => {
-    navigate('/my-tattoo');
+    isLogin ? navigate('/my-tattoo') : navigate('/login');
+  };
+
+  const handleClickCartButton = () => {
+    isLogin ? navigate('/cart') : navigate('/login');
   };
 
   const NAV_MENU_ITEM = [
@@ -47,9 +51,7 @@ const SideMenu = ({ isSideMenuOpen, setIsSideMenuOpen }: SideMenuProps) => {
     {
       icon: <IcCart />,
       text: '장바구니',
-      clickHandler: () => {
-        navigate('/cart');
-      },
+      clickHandler: handleClickCartButton,
     },
   ];
 
@@ -181,7 +183,7 @@ const St = {
     justify-content: space-between;
     width: 100%;
     padding-left: 3rem;
-    padding-right: 2.4rem;
+    padding-right: 1.8rem;
 
     text-align: center;
 
@@ -196,19 +198,21 @@ const St = {
   `,
 
   SideMenuCSButton: styled.button`
-    ${({ theme }) => theme.fonts.body_medium_14};
+    ${({ theme }) => theme.fonts.body_bold_14};
     color: ${({ theme }) => theme.colors.gray3};
+    padding-right: 1.2rem;
   `,
 
   Delimeter: styled.div`
     width: 0.1rem;
     height: 1.4rem;
-    border: 0.1rem solid ${({ theme }) => theme.colors.gray1};
+    border: 0.01rem solid ${({ theme }) => theme.colors.gray1};
   `,
 
   SideMenuLogOutButton: styled.button`
-    ${({ theme }) => theme.fonts.body_medium_14};
+    ${({ theme }) => theme.fonts.body_bold_14};
     color: ${({ theme }) => theme.colors.gray3};
+    padding-left: 1.2rem;
   `,
 };
 

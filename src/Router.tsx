@@ -11,12 +11,12 @@ import OrderPage from './page/Order/OrderPage';
 import OnBoardingPage from './page/Custom/Common/OnBoardingPage';
 
 import LoginCallback from './components/Login/LoginCallback';
+import Interceptors from './libs/hooks/Interceptors';
 import ScrollToTop from './libs/hooks/ScrollTop';
 import CartPage from './page/CartPage';
 import CommonCustomPage from './page/Custom/Common/CommonCustomPage';
-
 import HaveDesignCustomPage from './page/Custom/HaveDesign/HaveDesignCustomPage';
-import NoDesignCustomPage from './page/Custom/NoDesign1/NoDesignCustomPage';
+import NoDesignCustomPage from './page/Custom/NoDesign/NoDesignCustomPage';
 import ErrorPage from './page/Error/ErrorPage';
 import ExpirationPage from './page/Expiration/ExpirationPage';
 import MagazinePage from './page/MagazinePage';
@@ -28,6 +28,7 @@ import SearchResultPage from './page/Search/SearchResultPage';
 const Router = () => {
   return (
     <BrowserRouter>
+      <Interceptors />
       <ScrollToTop />
       <Routes>
         <Route path='/list' element={<ListPage />} />
