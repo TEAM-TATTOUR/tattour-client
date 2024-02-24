@@ -1,16 +1,12 @@
 import styled from 'styled-components';
 import PaymentMini from './PaymentMini';
 import { orderAmountDetailResProps } from '../../libs/hooks/order/useGetOrdersheet';
-import { useEffect } from 'react';
 
 const PaymentInfo = ({
   orderAmountDetailRes,
 }: {
   orderAmountDetailRes: orderAmountDetailResProps;
 }) => {
-  useEffect(() => {
-    console.log('PaymentInfo 리렌더링');
-  });
   return (
     <div>
       <St.PriceContainer>
