@@ -37,6 +37,7 @@ const St = {
     bottom: 7rem;
     width: 100%;
     max-width: 43rem;
+    z-index: 10;
   `,
 };
 

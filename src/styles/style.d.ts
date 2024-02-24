@@ -30,12 +30,14 @@ declare module 'styled-components' {
       title_regular_20: SerializedStyles;
       title_semibold_18: SerializedStyles;
       title_semibold_16: SerializedStyles;
+      title_bold_16: SerializedStyles;
       title_medium_18: SerializedStyles;
       title_line_medium_18: SerializedStyles;
       title_line_medium_16: SerializedStyles;
       title_semibold_16: SerializedStyles;
       body_medium_16: SerializedStyles;
       body_semibold_14: SerializedStyles;
+      body_bold_14: SerializedStyles;
       body_medium_14: SerializedStyles;
       body_line_medium_14: SerializedStyles;
       body_underline_medium_14: SerializedStyles;

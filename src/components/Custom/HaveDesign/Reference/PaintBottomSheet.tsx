@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import Sheet from 'react-modal-sheet';
 import { styled } from 'styled-components';
 import Canvas from './Canvas';
 import PaintBottomHeader from './PaintBottomHeader';
+import { CustomSheet } from '../../../../common/BottomSheet';
 
 interface PaintBottomProps {
   isBottomOpen: boolean;
@@ -12,6 +12,7 @@ interface PaintBottomProps {
 }
 
 const PaintBottomSheet = ({
+  isBottomOpen,
   setBottomOpen,
   setDrawingImageUrl,
   drawingImageUrl,
@@ -27,30 +28,35 @@ const PaintBottomSheet = ({
   const onClickSubmitImage = () => {
     // 캔버스 저장 후 전달
     if (!canvasState) return;
-    setDrawingImageUrl(canvasState?.toDataURL());
+    setDrawingImageUrl(canvasState.toDataURL());
     setBottomOpen(false);
   };
 
   return (
-    <CustomSheet isOpen={true} onClose={closeBottom} detent='content-height' disableDrag={true}>
-      <Sheet.Container>
+    <CustomSheet
+      isOpen={isBottomOpen}
+      onClose={closeBottom}
+      detent='content-height'
+      disableDrag={true}
+    >
+      <CustomSheet.Container>
         <St.BottomSheetWrapper>
-          <Sheet.Header disableDrag={true}>
+          <CustomSheet.Header disableDrag={true}>
             <PaintBottomHeader onClose={closeBottom} />
-          </Sheet.Header>
-          <Sheet.Content>
+          </CustomSheet.Header>
+          <CustomSheet.Content>
             <St.ContentWrapper>
               <Canvas setCanvasState={setCanvasState} />
             </St.ContentWrapper>
-          </Sheet.Content>
+          </CustomSheet.Content>
         </St.BottomSheetWrapper>
         <St.Footer>
           <St.Button type='button' onClick={onClickSubmitImage}>
             레퍼런스로 제출하기
           </St.Button>
         </St.Footer>
-      </Sheet.Container>
-      <Sheet.Backdrop onTap={closeBottom} />
+      </CustomSheet.Container>
+      <CustomSheet.Backdrop onTap={closeBottom} />
     </CustomSheet>
   );
 };
@@ -62,11 +68,7 @@ const St = {
     padding: 2.5rem 2rem 2.8rem 2rem;
     width: 100%;
   `,
-  ContentWrapper: styled.div`
-    height: 100%;
-    width: 100%;
-    overflow-y: auto;
-  `,
+  ContentWrapper: styled.div``,
   Footer: styled.footer`
     display: flex;
     justify-content: center;
@@ -84,20 +86,5 @@ const St = {
     ${({ theme }) => theme.fonts.title_semibold_18};
   `,
 };
-
-const CustomSheet = styled(Sheet)`
-  .react-modal-sheet-backdrop {
-    background-color: rgba(0, 0, 0, 0.6) !important;
-  }
-  .react-modal-sheet-container {
-    border-radius: 1rem !important;
-  }
-  .react-modal-sheet-header {
-    height: 1.6rem !important;
-  }
-  .react-modal-sheet-drag-indicator {
-    display: none;
-  }
-`;
 
 export default PaintBottomSheet;

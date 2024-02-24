@@ -1,13 +1,17 @@
-import ModalPortal from '../ModalPortal';
 import EscapeModalForm from '../EscapeModal/EscapeModalForm';
+import ModalPortal from '../ModalPortal';
 
 interface CheckDepositModalProps {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
   setIsActiveNext: React.Dispatch<React.SetStateAction<boolean>>;
-  state: object;
+  depositModalHandler: () => void | Promise<void>;
 }
 
-const CheckDepositModal = ({ setModalOn, setIsActiveNext, state }: CheckDepositModalProps) => {
+const CheckDepositModal = ({
+  setModalOn,
+  setIsActiveNext,
+  depositModalHandler,
+}: CheckDepositModalProps) => {
   return (
     <ModalPortal>
       <EscapeModalForm
@@ -19,7 +23,7 @@ const CheckDepositModal = ({ setModalOn, setIsActiveNext, state }: CheckDepositM
         continueBtn={'입금했어요'}
         stopBtn={'돌아가기'}
         setIsActiveNext={setIsActiveNext}
-        state={state}
+        continueBtnFunc={() => depositModalHandler()}
       />
     </ModalPortal>
   );
