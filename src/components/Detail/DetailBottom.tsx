@@ -162,29 +162,3 @@ const St = {
     color: ${({ theme }) => theme.colors.gray7};
   `,
 };
-
-// const CustomSheet = styled(Sheet)`
-//   height: 100%;
-//   display: flex;
-//   justify-content: center;
-
-//   .react-modal-sheet-backdrop {
-//     background-color: rgba(0, 0, 0, 0.6) !important;
-//   }
-//   .react-modal-sheet-container {
-//     padding: 2.5rem 0rem 7rem 0rem;
-//     border-radius: 1rem !important;
-//     left: initial !important;
-//     max-width: 43rem;
-//   }
-//   // .react-modal-sheet-header
-//   .react-modal-sheet-container > div:nth-child(1) {
-//     display: flex;
-//     justify-content: space-between !important;
-//     margin-bottom: 2.8rem;
-//     padding: 0rem 2.4rem 0rem 2.4rem;
-//   }
-//   .react-modal-sheet-drag-indicator {
-//     display: none;
-//   }
-// `;
