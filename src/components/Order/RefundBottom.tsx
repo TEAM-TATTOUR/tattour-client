@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { IcCancelDark } from '../../assets/icon';
 import { REFUND_ORDER_POLICY } from '../../assets/data/REFUND_ORDER_POLICY';
 import { CustomSheet } from '../../common/BottomSheet';
-import { useEffect } from 'react';
 
 interface RefundBottomProps {
   isSheetOpen: boolean;
@@ -10,9 +9,6 @@ interface RefundBottomProps {
 }
 
 const RefundBottom = ({ isSheetOpen, setSheetOpen }: RefundBottomProps) => {
-  useEffect(() => {
-    console.log('RefundButtom 리렌더링');
-  });
   return (
     <CustomSheet isOpen={isSheetOpen} onClose={() => setSheetOpen(false)} disableDrag={true}>
       <CustomSheet.Container className='text-bottom-sheet'>
@@ -46,34 +42,3 @@ const St = {
     white-space: pre-wrap;
   `,
 };
-
-const CustomSheet = styled(Sheet)`
-  display: flex;
-  justify-content: center;
-
-  .react-modal-sheet-backdrop {
-    background-color: rgba(0, 0, 0, 0.6) !important;
-  }
-  .react-modal-sheet-container {
-    padding: 2.5rem 2.4rem 0rem 2.4rem;
-    // 모달 높이 낮추기
-    height: calc(100% - 10.6rem) !important;
-    left: initial !important;
-    max-width: 43rem;
-
-    border-radius: 1rem 1rem 0rem 0rem !important;
-  }
-
-  .react-modal-sheet-container > div {
-    display: flex;
-    justify-content: space-between !important;
-  }
-
-  .react-modal-sheet-scroller {
-    padding-bottom: 6rem;
-  }
-
-  .react-modal-sheet-drag-indicator {
-    display: none;
-  }
-`;

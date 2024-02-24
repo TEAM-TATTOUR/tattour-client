@@ -32,8 +32,8 @@ const DetailFooter = ({
     if (!getAccessToken()) {
       // 로그인 상태가 아닌 경우
       setToast(true);
-      return false;
     }
+    return getAccessToken();
   };
 
   const handleClickButton = () => {

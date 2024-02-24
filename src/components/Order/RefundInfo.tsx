@@ -2,16 +2,12 @@ import styled from 'styled-components';
 import { IcArrowRightGray4 } from '../../assets/icon';
 import ic_check from '../../assets/icon/ic_check.svg';
 import ic_check_selected from '../../assets/icon/ic_check_selected.svg';
-import { useEffect } from 'react';
 
 interface RefundInfoProps {
   setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setAgree: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const RefundInfo = ({ setSheetOpen, setAgree }: RefundInfoProps) => {
-  useEffect(() => {
-    console.log('RefundInfo 리렌더링');
-  });
   return (
     <St.Wrapper>
       <St.Checkbox type='checkbox' id='agree' onClick={() => setAgree((prev) => !prev)} />
