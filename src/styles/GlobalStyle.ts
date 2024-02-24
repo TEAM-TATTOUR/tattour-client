@@ -190,6 +190,13 @@ input, textarea,button {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
 }
+
+// react-modal-sheet 라이브러리 Sheet 컴포넌트 최상위 스타일 
+.react-modal-sheet-wrapper {
+  inset : 0px auto !important;
+  width: 100% !important;
+  overflow: visible !important;
+}
 `;
 
 export default GlobalStyle;
