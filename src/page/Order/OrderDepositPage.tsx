@@ -7,16 +7,60 @@ import DirectDepositFooter from '../../components/DirectDeposit/DirectDepositFoo
 import Header from '../../components/Header';
 import OrderDeposit from '../../components/Order/Deposit/OrderDeposit';
 import PageLayout from '../../components/PageLayout';
+import { useNavigate } from 'react-router-dom';
+import { api } from '../../libs/api';
+import CancelBtn from '../../common/Header/CancelBtn';
+import { orderAmountDetailResProps } from '../../libs/hooks/order/useGetOrdersheet';
+
+interface OrderRequest {
+  stickerId: number;
+  productAmount: number;
+  shippingFee: number;
+  totalAmount: number | undefined;
+  recipientName: string;
+  contact: string;
+  mailingAddress: string;
+  baseAddress: string;
+  detailAddress: string;
+}
 
 const OrderDepositPage = () => {
   const [depositModalOn, setDepositModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
+  const navigate = useNavigate();
   const location = useLocation();
 
-  const renderCustomDirectDepositPageHeader = () => {
-    return <Header leftSection={<BackBtn />} title='무통장 입금' rightSection={<IcCancelDark />} />;
+  const { postData, stickerId, count } = location.state as {
+    postData: OrderRequest;
+    stickerId: number;
+    count: number;
+    orderAmountDetailRes: orderAmountDetailResProps;
   };
+
+  const renderCustomDirectDepositPageHeader = () => {
+    return (
+      <Header
+        leftSection={<BackBtn />}
+        title='무통장 입금'
+        rightSection={
+          <CancelBtn
+            modalOn={depositModalOn}
+            setModalOn={setDepositModalOn}
+            targetModal={
+              <CheckDepositModal
+                setModalOn={setDepositModalOn}
+                setIsActiveNext={setIsActiveNext}
+                depositModalHandler={() => handleClickOrderDepositBtn()}
+              />
+            }
+          />
+        }
+      />
+    );
+  };
+
+  const url = stickerId && count ? `/order?stickerId=${stickerId}&count=${count}` : '/order';
 
   const handleClickFooter = () => {
     {
@@ -24,8 +68,23 @@ const OrderDepositPage = () => {
     }
   };
 
+  const fetchData = async () => {
+    await api
+      .post(url, {
+        ...postData,
+        contact: postData.contact.replace(/-/g, ''),
+      })
+      .then(() => {
+        navigate('/');
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate('/error');
+      });
+  };
+
   const handleClickOrderDepositBtn = () => {
-    //@구 여기에 orderPage에서 무통장 입금 후 '송금했어요' 버튼 눌렀을 때의 액션(navigate, data fetching)을 작성 해주시면 됩니다.
+    fetchData();
   };
 
   return (
