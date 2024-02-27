@@ -1,6 +1,5 @@
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../../libs/api';
+import styled from 'styled-components';
 import { OrderSheetProps } from '../../libs/hooks/order/useGetOrdersheet';
 
 interface OrderRequest {
@@ -29,29 +28,19 @@ const OrderFooter = ({
   response: OrderSheetProps | undefined;
   stickerId: number;
   count: number;
+  setOrderLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const navigate = useNavigate();
-  const url = stickerId && count ? `/order?stickerId=${stickerId}&count=${count}` : '/order';
-
-  const fetchData = async () => {
-    await api
-      .post(url, {
-        ...postData,
-        contact: postData.contact.replace(/-/g, ''),
-      })
-      .then(() => {
-        navigate('/order-deposit', {
-          state: response,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        navigate('/error');
-      });
-  };
 
   const handleClickButton = () => {
-    fetchData();
+    navigate('/order-deposit', {
+      state: {
+        postData: postData,
+        stickerId: stickerId,
+        count: count,
+        orderAmountDetailRes: response?.orderAmountDetailRes,
+      },
+    });
   };
 
   return (

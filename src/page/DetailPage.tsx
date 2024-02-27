@@ -27,7 +27,7 @@ const DetailPage = () => {
         leftSection={
           <IcBackDark
             onClick={() => {
-              navigate('/list');
+              navigate(-1);
             }}
           />
         }
@@ -75,7 +75,7 @@ const DetailPage = () => {
             relatedResponse.map((el) => (
               <SmallTattooCard
                 key={el.id}
-                id={el.id}
+                stickerId={el.id}
                 img={el.imageUrl}
                 title={el.name}
                 discountRate={el.discountRate}

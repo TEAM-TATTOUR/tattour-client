@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ProductInfo from '../../components/Order/ProductInfo';
 import DeliveryInfo from '../../components/Order/DeliveryInfo';
@@ -16,11 +16,16 @@ import useGetOrdersheet, {
   orderAmountDetailResProps,
 } from '../../libs/hooks/order/useGetOrdersheet';
 import PayMethodInfo from '../../components/Order/PayMethodInfo';
+import LoadingPage from '../LoadingPage';
 
 interface dataProps {
   address: string;
   zonecode: string;
 }
+
+const renderOrderPageHeader = () => {
+  return <Header leftSection={<BackBtn />} title='주문하기' />;
+};
 
 const OrderPage = () => {
   const location = useLocation();
@@ -29,16 +34,15 @@ const OrderPage = () => {
     state ? state : ({ stickerId: 0, count: 0 } as OrderSheetRequest),
   );
 
+  const [orderLoading, setOrderLoading] = useState(false);
   const [isPostOpen, setIsPostOpen] = useState(false);
-  const addressRef = useRef<HTMLInputElement | null>(null);
-  const postcodeRef = useRef<HTMLInputElement | null>(null);
   const [isSheetOpen, setSheetOpen] = useState(false);
 
   const [isComplete, setComplete] = useState(false);
   const [input, setInput] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
-  const [address, setAddress] = useState<string>(''); // 우편번호
-  const [firstAddress, setFirstAddress] = useState<string>(''); // 첫주소
+  const [zoneCode, setZoneCode] = useState<string>(''); // 우편번호
+  const [address, setAddress] = useState<string>(''); // 기본주소
   const [detailAddress, setDetailAddress] = useState<string>(''); // 세부주소
   const [agree, setAgree] = useState<boolean>(false);
   const [orderAmountDetailRes, setOrderAmountDetailRes] = useState<orderAmountDetailResProps>(
@@ -51,8 +55,8 @@ const OrderPage = () => {
     totalAmount: orderAmountDetailRes.totalAmount,
     recipientName: input,
     contact: phone,
-    mailingAddress: address,
-    baseAddress: firstAddress,
+    mailingAddress: zoneCode,
+    baseAddress: address,
     detailAddress: detailAddress,
     stickerId: state ? state.stickerId : 0,
   };
@@ -66,40 +70,31 @@ const OrderPage = () => {
         .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
         .replace(/(-{1,2})$/g, ''),
     );
-  }, [response]);
-
-  useEffect(() => {
     if (response?.orderAmountDetailRes) {
       setOrderAmountDetailRes(response.orderAmountDetailRes);
     }
   }, [response]);
 
   useEffect(() => {
-    if (input === '' || phone === '' || address === '' || detailAddress === '' || agree === false) {
-      setComplete(false);
-    } else {
-      setComplete(true);
-    }
-  }, [input, phone, address, detailAddress, agree]);
-
-  const renderOrderPageHeader = () => {
-    return <Header leftSection={<BackBtn />} title='주문하기' />;
-  };
+    setComplete(
+      input !== '' && phone.length === 13 && zoneCode !== '' && detailAddress !== '' && agree,
+    );
+  }, [input, phone, zoneCode, detailAddress, agree]);
 
   const handleModal = () => {
     setIsPostOpen(true);
   };
 
   const handleAddress = (data: dataProps) => {
-    if (!addressRef.current || !postcodeRef.current) return;
-    addressRef.current.value = data.address; // 첫번쨰 주소
-    postcodeRef.current.value = data.zonecode; // 우편번호
-    setAddress(data.zonecode);
-    setFirstAddress(data.address);
+    setZoneCode(data.zonecode);
+    setAddress(data.address);
+    setDetailAddress('');
     setIsPostOpen(false);
   };
 
-  return (
+  return orderLoading ? (
+    <LoadingPage />
+  ) : (
     <PageLayout
       renderHeader={renderOrderPageHeader}
       footer={
@@ -110,24 +105,25 @@ const OrderPage = () => {
           response={response}
           stickerId={state ? state.stickerId : 0}
           count={state ? state.count : 0}
+          setOrderLoading={setOrderLoading}
         />
       }
     >
       {!error && !loading && response && (
         <>
           {response.orderSheetStickersRes.map((_, idx) => (
-            <ProductInfo orderSheetSticker={response.orderSheetStickersRes[idx]} key={idx}/>
+            <ProductInfo orderSheetSticker={response.orderSheetStickersRes[idx]} key={idx} />
           ))}
           <St.Line />
           <DeliveryInfo
             handleModal={handleModal}
-            addressRef={addressRef}
-            postcodeRef={postcodeRef}
             setComplete={setComplete}
             input={input}
             setInput={setInput}
             phone={phone}
             setPhone={setPhone}
+            zoneCode={zoneCode}
+            address={address}
             detailAddress={detailAddress}
             setDetailAddress={setDetailAddress}
           />

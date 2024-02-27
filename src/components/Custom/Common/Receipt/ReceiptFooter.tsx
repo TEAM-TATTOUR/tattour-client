@@ -22,10 +22,11 @@ const St = {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: sticky;
+    position: fixed;
     bottom: 0;
 
     width: 100%;
+    max-width: 43rem;
     height: 7rem;
 
     background-color: ${({ theme }) => theme.colors.gray9};

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 import SelectCustomBtn from './SelectCustomBtn';
 
@@ -10,14 +10,14 @@ interface SelectCustomProps {
 const SelectCustom = ({ setIsActiveNext, setHaveDesign }: SelectCustomProps) => {
   const CASE_BTN_DATA = [
     {
-      id: 'noDesign',
+      id: 'haveDesign',
       firstTitle: '내 도안',
       secondTitle: '그대로 만들기',
       firstDetail: '이미지 파일',
       secondDetail: '그대로 제작해드려요',
     },
     {
-      id: 'haveDesign',
+      id: 'noDesign',
       firstTitle: '타투어에게',
       secondTitle: '도안 의뢰하기',
       firstDetail: '참고 이미지, 간단 스케치를',

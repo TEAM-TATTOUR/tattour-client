@@ -1,25 +1,26 @@
 import { useState } from 'react';
-import Header from '../../../Header';
+import BackBtn from '../../../../common/Header/BackBtn';
 import CancelBtn from '../../../../common/Header/CancelBtn';
-import CustomSizeEscapeModal from '../../../../common/Modal/EscapeModal/CustomSizeEscapeModal';
+import CheckDepositModal from '../../../../common/Modal/CheckDepositModal/CheckDepositModal';
+import DirectDepositFooter from '../../../DirectDeposit/DirectDepositFooter';
+import Header from '../../../Header';
 import PageLayout from '../../../PageLayout';
 import CustomDirectDeposit from './CustomDirectDeposit';
-import DirectDepositFooter from '../../../DirectDeposit/DirectDepositFooter';
-import { useLocation } from 'react-router-dom';
-import BackBtn from '../../../../common/Header/BackBtn';
-import CustomCheckDepositModal from '../../../../common/Modal/CheckDepositModal/CustomCheckDepositModal';
 
 interface DepositLayoutProps {
-  setStep: React.Dispatch<React.SetStateAction<number>>;
   totalPrice: number;
+  handleClickCustomDepositBtn: () => Promise<void>;
 }
 
-const CustomDirectDepositLayout = ({ setStep, totalPrice }: DepositLayoutProps) => {
+const CustomDirectDepositLayout = ({
+  totalPrice,
+  handleClickCustomDepositBtn,
+}: DepositLayoutProps) => {
   const [modalOn, setModalOn] = useState(false);
   const [depositModalOn, setDepositModalOn] = useState(false);
   const [isActiveNext, setIsActiveNext] = useState(false);
 
-  const location = useLocation();
+  // const location = useLocation();
   const renderCustomDirectDepositPageHeader = () => {
     return (
       <Header
@@ -29,7 +30,13 @@ const CustomDirectDepositLayout = ({ setStep, totalPrice }: DepositLayoutProps) 
           <CancelBtn
             modalOn={modalOn}
             setModalOn={setModalOn}
-            targetModal={<CustomSizeEscapeModal setModalOn={setModalOn} />}
+            targetModal={
+              <CheckDepositModal
+                setModalOn={setModalOn}
+                setIsActiveNext={setIsActiveNext}
+                depositModalHandler={handleClickCustomDepositBtn}
+              />
+            }
           />
         }
       />
@@ -50,11 +57,10 @@ const CustomDirectDepositLayout = ({ setStep, totalPrice }: DepositLayoutProps) 
       }
     >
       {depositModalOn && (
-        <CustomCheckDepositModal
+        <CheckDepositModal
           setModalOn={setDepositModalOn}
           setIsActiveNext={setIsActiveNext}
-          state={location}
-          setStep={setStep}
+          depositModalHandler={handleClickCustomDepositBtn}
         />
       )}
       <CustomDirectDeposit setIsActiveNext={setIsActiveNext} totalPrice={totalPrice} />

@@ -99,6 +99,7 @@ const St = {
     display: flex;
     flex-direction: column;
     padding-bottom: 5.8rem;
+    margin-bottom: 7rem;
 
     min-height: calc(100dvh - 36.92rem);
   `,

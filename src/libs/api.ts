@@ -14,15 +14,15 @@ export const api: AxiosInstance = axios.create({
 const ACCESS_TOKEN_KEY = 'accesstoken';
 
 export const getAccessToken = () => {
-  return localStorage.getItem(ACCESS_TOKEN_KEY);
+  return sessionStorage.getItem(ACCESS_TOKEN_KEY);
 };
 
 export const setAccessToken = (token: string) => {
-  localStorage.setItem(ACCESS_TOKEN_KEY, token);
+  sessionStorage.setItem(ACCESS_TOKEN_KEY, token);
 };
 
 export const removeAccessToken = () => {
-  localStorage.removeItem(ACCESS_TOKEN_KEY);
+  sessionStorage.removeItem(ACCESS_TOKEN_KEY);
 };
 
 baseAxios.interceptors.request.use((config) => {

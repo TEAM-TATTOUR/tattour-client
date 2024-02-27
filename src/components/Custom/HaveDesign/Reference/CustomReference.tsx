@@ -60,8 +60,8 @@ const St = {
   PageWrapper: styled.div`
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     min-height: calc(100dvh - 13.6rem);
+    margin-bottom: 7rem;
   `,
 };
 

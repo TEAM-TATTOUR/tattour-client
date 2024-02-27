@@ -32,7 +32,7 @@ const St = {
     padding-top: 5.6rem;
     padding-left: 2.2rem;
     padding-right: 2.2rem;
-    height: calc(100vh - 30.2rem);
+    height: calc(100dvh - 30.2rem);
     overflow: scroll;
     &::-webkit-scrollbar {
       display: none;

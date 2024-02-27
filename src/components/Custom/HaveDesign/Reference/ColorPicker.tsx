@@ -24,10 +24,6 @@ interface ColorPickerProps {
   onBrushChange: (brush: number) => void;
 }
 
-interface ColorPickerWrapperProps {
-  selectedColor: string;
-}
-
 const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange }) => {
   const COLOR_RED = '#FF4444';
   const COLOR_BLUE = '#449AFF';
@@ -105,32 +101,37 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange 
     <St.OptionBox>
       <St.SelectLine>
         {BRUSH_ICONS.map(({ brush, Icon }) => (
-          <St.BrushIconWrapper key={brush} isSelected={selectedBrush === brush}>
+          <St.BrushIconWrapper key={brush} $isSelected={selectedBrush === brush}>
             <Icon onClick={() => handleChangeBrush(brush)} />
           </St.BrushIconWrapper>
         ))}
       </St.SelectLine>
-      <St.SelectColor>
-        {COLOR_ICONS.map(({ color, Icon }) => (
-          <St.ColorIconWrapper key={color} isSelected={selectedSuggestedColor === color}>
-            <Icon onClick={() => handleChangeSuggestedColor(color)} />
-          </St.ColorIconWrapper>
-        ))}
-        <St.ColorPickerWrapper selectedColor={selectedColor}>
-          <St.ColorPicker
-            src={selectedColor || IcColorRainbow}
-            alt='색상선택'
-            type='color'
-            onChange={handleChange}
-            onClick={handleChangeRainbowColor}
-          />
-          {isColorPickerSelected && (
-            <St.SelectedIcon isSelected={isColorPickerSelected} onClick={handleChangeRainbowColor}>
-              <IcColorSelectedLine />
-            </St.SelectedIcon>
-          )}
-        </St.ColorPickerWrapper>
-      </St.SelectColor>
+      <St.SelectColorWrapper>
+        <St.SelectColor>
+          {COLOR_ICONS.map(({ color, Icon }) => (
+            <St.ColorIconWrapper key={color} $isSelected={selectedSuggestedColor === color}>
+              <Icon onClick={() => handleChangeSuggestedColor(color)} />
+            </St.ColorIconWrapper>
+          ))}
+          <St.ColorPickerWrapper $selectedColor={selectedColor}>
+            <St.ColorPicker
+              src={selectedColor || IcColorRainbow}
+              alt='색상선택'
+              type='color'
+              onChange={handleChange}
+              onClick={handleChangeRainbowColor}
+            />
+            {isColorPickerSelected && (
+              <St.SelectedIcon
+                $isSelected={isColorPickerSelected}
+                onClick={handleChangeRainbowColor}
+              >
+                <IcColorSelectedLine />
+              </St.SelectedIcon>
+            )}
+          </St.ColorPickerWrapper>
+        </St.SelectColor>
+      </St.SelectColorWrapper>
     </St.OptionBox>
   );
 };
@@ -141,19 +142,21 @@ const St = {
   OptionBox: styled.section`
     display: flex;
     width: 100%;
-
-    gap: 4rem;
+    justify-content: space-between;
   `,
-  ColorPickerWrapper: styled.div<ColorPickerWrapperProps>`
+
+  SelectColorWrapper: styled.div``,
+
+  ColorPickerWrapper: styled.div<{ $selectedColor: string }>`
     position: relative;
-    /* width: 2.2rem; */
-    width: 3rem;
+    width: 2.2rem;
     height: 2.2rem;
     border-radius: 0.5rem;
 
-    background-image: ${({ selectedColor }) => (selectedColor ? 'none' : `url(${IcColorRainbow})`)};
-    background-color: ${({ selectedColor }) => (selectedColor ? selectedColor : 'transparent')};
-    background-size: ${({ selectedColor }) => (selectedColor ? 'contain' : '100% 100%')};
+    background-image: ${({ $selectedColor }) =>
+      $selectedColor ? 'none' : `url(${IcColorRainbow})`};
+    background-color: ${({ $selectedColor }) => ($selectedColor ? $selectedColor : 'transparent')};
+    background-size: ${({ $selectedColor }) => ($selectedColor ? 'contain' : '100% 100%')};
   `,
 
   ColorPicker: styled.input`
@@ -172,6 +175,7 @@ const St = {
     opacity: 0;
     cursor: pointer;
   `,
+
   SelectLine: styled.div`
     display: flex;
     justify-content: center;
@@ -188,8 +192,8 @@ const St = {
   `,
   SelectColor: styled.div`
     display: flex;
-    justify-content: center;
-    gap: 1.8rem;
+    justify-content: space-between;
+
     align-items: center;
     padding: 0;
 
@@ -201,7 +205,7 @@ const St = {
 
     border-radius: 0.5rem;
   `,
-  BrushIconWrapper: styled.div<{ isSelected: boolean }>`
+  BrushIconWrapper: styled.div<{ $isSelected: boolean }>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -213,7 +217,7 @@ const St = {
       height: 3rem;
     }
   `,
-  ColorIconWrapper: styled.div<{ isSelected: boolean }>`
+  ColorIconWrapper: styled.div<{ $isSelected: boolean }>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -226,7 +230,7 @@ const St = {
       height: 2.2rem;
     }
   `,
-  SelectedIcon: styled.div<{ isSelected: boolean }>`
+  SelectedIcon: styled.div<{ $isSelected: boolean }>`
     cursor: pointer;
 
     svg {

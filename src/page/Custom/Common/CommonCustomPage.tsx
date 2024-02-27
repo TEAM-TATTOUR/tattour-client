@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import SelectCustomLayout from '../../../components/Custom/Common/Select/SelectCustomLayout';
 import CustomSizeLayout from '../../../components/Custom/Common/Size/CustomSizeLayout';
-import { useLocation } from 'react-router-dom';
 
 const CommonCustomPage = () => {
   const location = useLocation();
@@ -10,7 +10,7 @@ const CommonCustomPage = () => {
   const [step, setStep] = useState(state ? state.step : 0);
   // step 0 : SelectPage - noDesign인지, haveDesign인지 상황 판단 플래그 state
   const [haveDesign, setHaveDesign] = useState(
-    state && state.haveDesign !== undefined ? state.haveDesign : false,
+    state && state.haveDesign !== undefined ? state.haveDesign : true,
   );
   const [customId, setCustomId] = useState<number>(
     state && state.customId !== undefined ? state.customId : 0,

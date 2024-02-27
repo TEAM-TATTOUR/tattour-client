@@ -1,60 +1,58 @@
-import { styled } from 'styled-components';
-import { customInfoType, resCustomInfoType } from '../../types/customInfoType';
 import React from 'react';
-import { api } from '../../libs/api';
+import { styled } from 'styled-components';
 
 interface PriceFooterProps {
   haveDesign?: boolean;
-  customInfo: customInfoType;
-  handDrawingImage?: File | null;
-  customImages: FileList | undefined;
+  // customInfo: customInfoType;
+  // handDrawingImage?: File | null;
+  // customImages: FileList | undefined;
   setStep: React.Dispatch<React.SetStateAction<number>>;
-  setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
+  // setReceiptData: React.Dispatch<React.SetStateAction<resCustomInfoType | undefined>>;
 }
 
 const PriceFooter = ({
-  customInfo,
-  handDrawingImage,
-  customImages,
+  // customInfo,
+  // handDrawingImage,
+  // customImages,
   setStep,
-  setReceiptData,
-}: PriceFooterProps) => {
-  const handleClickFooterBtn = async () => {
-    const formData = new FormData();
-    try {
-      // 1. handDrawingImage(손 그림) append
-      if (handDrawingImage) {
-        formData.append('handDrawingImage', handDrawingImage);
-      }
+}: // setReceiptData,
+PriceFooterProps) => {
+  // const handleClickFooterBtn = async () => {
+  //   const formData = new FormData();
+  //   try {
+  //     // 1. handDrawingImage(손 그림) append
+  //     if (handDrawingImage) {
+  //       formData.append('handDrawingImage', handDrawingImage);
+  //     }
 
-      // 2. customInfo(커스텀 정보들) append
-      const json = JSON.stringify(customInfo);
-      const blob = new Blob([json], { type: 'application/json' });
-      formData.append('customInfo', blob);
+  //     // 2. customInfo(커스텀 정보들) append
+  //     const json = JSON.stringify(customInfo);
+  //     const blob = new Blob([json], { type: 'application/json' });
+  //     formData.append('customInfo', blob);
 
-      // 3. customImage(도안 이미지) append
-      if (customImages) {
-        for (let i = 0; i < customImages.length; i++) {
-          formData.append('customImages', customImages.item(i) as File);
-        }
-      }
+  //     // 3. customImage(도안 이미지) append
+  //     if (customImages) {
+  //       for (let i = 0; i < customImages.length; i++) {
+  //         formData.append('customImages', customImages.item(i) as File);
+  //       }
+  //     }
 
-      const { data } = await api.patch('/custom/update', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+  //     const { data } = await api.patch('/custom/update', formData, {
+  //       headers: {
+  //         'Content-Type': 'multipart/form-data',
+  //       },
+  //     });
 
-      setReceiptData(data.data);
-      setStep((prev) => prev + 1);
-    } catch (err) {
-      console.log('Error', err);
-    }
-  };
+  //     setReceiptData(data.data);
+  //     setStep((prev) => prev + 1);
+  //   } catch (err) {
+  //     console.log('Error', err);
+  //   }
+  // };
 
   return (
     <St.CustomFooter>
-      <St.FooterButton type='button' onClick={handleClickFooterBtn}>
+      <St.FooterButton type='button' onClick={() => setStep((prev) => prev + 1)}>
         신청서 작성 완료하기
       </St.FooterButton>
     </St.CustomFooter>
@@ -63,7 +61,7 @@ const PriceFooter = ({
 
 const St = {
   CustomFooter: styled.footer`
-    position: sticky;
+    position: fixed;
     bottom: 0;
 
     display: flex;
@@ -71,6 +69,7 @@ const St = {
     align-items: center;
 
     width: 100%;
+    max-width: 43rem;
     height: 7rem;
 
     background-color: ${({ theme }) => theme.colors.gray9};

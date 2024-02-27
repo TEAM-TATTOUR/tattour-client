@@ -143,7 +143,6 @@ export const GlobalStyle = createGlobalStyle`
 
 ${reset}
 
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css");
 @font-face {
   font-family: 'title_eng_bold_20';
   src: url('./fonts/Surt-Expanded-Bold/student/Surt-Expanded-Bold.woff') format('woff');
@@ -190,6 +189,13 @@ input, textarea,button {
     border-radius: 0;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
+}
+
+// react-modal-sheet 라이브러리 Sheet 컴포넌트 최상위 스타일 
+.react-modal-sheet-wrapper {
+  inset : 0px auto !important;
+  width: 100% !important;
+  overflow: visible !important;
 }
 `;
 
