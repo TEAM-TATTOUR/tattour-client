@@ -116,7 +116,7 @@ const OrderPage = () => {
       {!error && !loading && response && (
         <>
           {response.orderSheetStickersRes.map((_, idx) => (
-            <ProductInfo orderSheetSticker={response.orderSheetStickersRes[idx]} key={idx}/>
+            <ProductInfo orderSheetSticker={response.orderSheetStickersRes[idx]} key={idx} />
           ))}
           <St.Line />
           <DeliveryInfo

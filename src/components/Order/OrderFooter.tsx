@@ -31,27 +31,16 @@ const OrderFooter = ({
   count: number;
 }) => {
   const navigate = useNavigate();
-  const url = stickerId && count ? `/order?stickerId=${stickerId}&count=${count}` : '/order';
-
-  const fetchData = async () => {
-    await api
-      .post(url, {
-        ...postData,
-        contact: postData.contact.replace(/-/g, ''),
-      })
-      .then(() => {
-        navigate('/order-deposit', {
-          state: response,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        navigate('/error');
-      });
-  };
 
   const handleClickButton = () => {
-    fetchData();
+    navigate('/order-deposit', {
+      state: {
+        postData: postData,
+        stickerId: stickerId,
+        count: count,
+        orderAmountDetailRes: response?.orderAmountDetailRes,
+      },
+    });
   };
 
   return (
