@@ -1,15 +1,13 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { IcCancelDark } from '../../assets/icon';
+import { useLocation, useNavigate } from 'react-router-dom';
 import BackBtn from '../../common/Header/BackBtn';
+import CancelBtn from '../../common/Header/CancelBtn';
 import CheckDepositModal from '../../common/Modal/CheckDepositModal/CheckDepositModal';
 import DirectDepositFooter from '../../components/DirectDeposit/DirectDepositFooter';
 import Header from '../../components/Header';
 import OrderDeposit from '../../components/Order/Deposit/OrderDeposit';
 import PageLayout from '../../components/PageLayout';
-import { useNavigate } from 'react-router-dom';
 import { api } from '../../libs/api';
-import CancelBtn from '../../common/Header/CancelBtn';
 import { orderAmountDetailResProps } from '../../libs/hooks/order/useGetOrdersheet';
 
 interface OrderRequest {

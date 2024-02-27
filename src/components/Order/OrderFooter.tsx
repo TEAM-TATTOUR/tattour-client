@@ -1,6 +1,5 @@
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../../libs/api';
+import styled from 'styled-components';
 import { OrderSheetProps } from '../../libs/hooks/order/useGetOrdersheet';
 
 interface OrderRequest {
@@ -22,7 +21,6 @@ const OrderFooter = ({
   response,
   stickerId,
   count,
-  setOrderLoading,
 }: {
   isComplete: boolean;
   price: number | undefined;
