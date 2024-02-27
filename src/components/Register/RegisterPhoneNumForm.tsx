@@ -27,6 +27,7 @@ interface usePatchProfileProps {
 const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
   const navigate = useNavigate();
   const MINUTES_IN_MS = 5 * 60 * 1000;
+  const [isDisabled, setIsDisabled] = useState(false);
   const [toast, setToast] = useState(false);
   const [isTimeout, setIsTimeout] = useState(false);
   const [inputData, setInputData] = useState({
@@ -86,12 +87,18 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
           phoneNumber: `${phoneNum}`,
         })
         .then(() => {
+          setIsDisabled(true);
           dispatch({ type: 'SHOW_CERTIFICATION_FORM' });
           setToast(true);
           setIsTimeout(false);
         })
         .catch(() => {
           navigate('/error');
+        })
+        .finally(() => {
+          setTimeout(() => {
+            setIsDisabled(false);
+          }, 7000);
         });
     }
     dispatch({ type: 'HIDE_CERTIFICATION_FORM' });
@@ -149,6 +156,7 @@ const RegisterPhoneNumForm = ({ setStep }: RegisterPhoneNumFormProps) => {
         <St.SendMessageBtn
           type='button'
           $length={phoneNum.length}
+          disabled={isDisabled}
           onClick={handleClickSendMessageBtn}
         >
           {registerState.isVisible && phoneNum.length === 11 ? '재인증' : '인증하기'}
@@ -219,7 +227,7 @@ const St = {
     }
   `,
 
-  SendMessageBtn: styled.button<{ $length: number }>`
+  SendMessageBtn: styled.button<{ $length: number; disabled: boolean }>`
     width: 9.2rem;
     height: 4.5rem;
 
@@ -228,8 +236,8 @@ const St = {
 
     color: ${({ theme }) => theme.colors.white};
 
-    background-color: ${({ theme, $length }) =>
-      $length === 11 ? theme.colors.gray7 : theme.colors.gray3};
+    background-color: ${({ theme, $length, disabled }) =>
+      !disabled && $length === 11 ? theme.colors.gray7 : theme.colors.gray3};
 
     ${({ theme }) => theme.fonts.title_semibold_16};
   `,

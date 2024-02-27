@@ -22,6 +22,7 @@ const OrderFooter = ({
   response,
   stickerId,
   count,
+  setOrderLoading,
 }: {
   isComplete: boolean;
   price: number | undefined;
@@ -29,6 +30,7 @@ const OrderFooter = ({
   response: OrderSheetProps | undefined;
   stickerId: number;
   count: number;
+  setOrderLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const navigate = useNavigate();
 

@@ -3,7 +3,6 @@ import { orderSheetStickersResProps } from '../../libs/hooks/order/useGetOrdersh
 
 const ProductInfo = ({ orderSheetSticker }: { orderSheetSticker: orderSheetStickersResProps }) => {
   const { mainImageUrl, name, price, discountPrice, count } = orderSheetSticker;
-
   return (
     <St.Wrapper>
       <St.Image>
