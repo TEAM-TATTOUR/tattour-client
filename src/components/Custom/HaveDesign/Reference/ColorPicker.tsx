@@ -24,10 +24,6 @@ interface ColorPickerProps {
   onBrushChange: (brush: number) => void;
 }
 
-interface ColorPickerWrapperProps {
-  $selectedColor: string;
-}
-
 const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, onBrushChange }) => {
   const COLOR_RED = '#FF4444';
   const COLOR_BLUE = '#449AFF';
@@ -151,7 +147,7 @@ const St = {
 
   SelectColorWrapper: styled.div``,
 
-  ColorPickerWrapper: styled.div<ColorPickerWrapperProps>`
+  ColorPickerWrapper: styled.div<{ $selectedColor: string }>`
     position: relative;
     width: 2.2rem;
     height: 2.2rem;
