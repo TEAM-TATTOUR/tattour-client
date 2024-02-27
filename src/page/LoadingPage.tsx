@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import Lottie from 'react-lottie';
 import tattour_loading from '../assets/video/tattour_loading.json';
 
@@ -12,15 +13,30 @@ const LoadingPage = () => {
   };
 
   return (
-    <div>
+    <St.Wrapper>
       <Lottie
         options={defaultOptions}
         height='9.6rem'
         width='9.6rem'
         isClickToPauseDisabled={true}
       />
-    </div>
+    </St.Wrapper>
   );
 };
 
 export default LoadingPage;
+
+const St = {
+  Wrapper: styled.div`
+    display: flex;
+    justify-content: center;
+
+    position: fixed;
+    top: 0;
+    width: 100%;
+    max-width: 43rem;
+    height: 100dvh;
+
+    padding-top: 23rem;
+  `,
+};

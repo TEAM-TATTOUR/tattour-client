@@ -1,26 +1,25 @@
 import styled from 'styled-components';
 import sliceMaxLength from '../../utils/sliceMaxLength';
-
 interface DeliveryInfoProps {
   handleModal: () => void;
-  addressRef: React.MutableRefObject<HTMLInputElement | null>;
-  postcodeRef: React.MutableRefObject<HTMLInputElement | null>;
   setComplete: React.Dispatch<React.SetStateAction<boolean>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
   phone: string;
   setPhone: React.Dispatch<React.SetStateAction<string>>;
+  zoneCode: string;
+  address: string;
   detailAddress: string;
   setDetailAddress: React.Dispatch<React.SetStateAction<string>>;
 }
 const DeliveryInfo = ({
   handleModal,
-  addressRef,
-  postcodeRef,
   input,
   setInput,
   phone,
+  zoneCode,
   setPhone,
+  address,
   detailAddress,
   setDetailAddress,
 }: DeliveryInfoProps) => {
@@ -33,7 +32,6 @@ const DeliveryInfo = ({
           <input
             type='text'
             id='receiver'
-            name='receiver'
             value={input}
             onChange={(e) => {
               setInput(e.target.value);
@@ -45,7 +43,6 @@ const DeliveryInfo = ({
           <input
             type='tel'
             id='phone'
-            name='phone'
             maxLength={13}
             value={phone}
             onInput={(e: React.ChangeEvent<HTMLInputElement>) => sliceMaxLength(e, 13, 'phoneNum')}
@@ -57,20 +54,13 @@ const DeliveryInfo = ({
         <St.Info>
           <label>배송지</label>
           <St.AddressBox>
-            <input type='text' name='postcode' placeholder='우편번호' ref={postcodeRef} disabled />
+            <input type='text' value={zoneCode} placeholder='우편번호' disabled />
             <St.SearchBtn type='button' onClick={handleModal}>
               우편번호 검색
             </St.SearchBtn>
-            <St.InputAddress
-              type='text'
-              name='address'
-              placeholder='주소'
-              ref={addressRef}
-              disabled
-            />
+            <St.InputAddress type='text' placeholder='주소' value={address} disabled />
             <St.InputDetail
               type='text'
-              name='detail'
               placeholder='상세주소'
               value={detailAddress}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
