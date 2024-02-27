@@ -12,7 +12,6 @@ interface AdditionalRequestProps {
 const AdditionalRequest = ({ setIsActiveNext, demand, setDemand }: AdditionalRequestProps) => {
   //count 될 maxCount 수
   const MAX_ETC_COUNT = 100;
-  setIsActiveNext(true);
 
   //글자 수 세기 관련 state
   const [demandTextAreaCount, setDemandTextAreaCount] = useState(0);
@@ -58,6 +57,10 @@ const AdditionalRequest = ({ setIsActiveNext, demand, setDemand }: AdditionalReq
     setDemandTextAreaCount(demand.length);
     setDemand(demand);
   }, [demand]);
+
+  useEffect(() => {
+    setIsActiveNext(true);
+  }, []);
 
   return (
     <St.CustomRequestWrapper>
