@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IcHeartDark, IcHeartLight } from '../../assets/icon';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../../libs/api';
+import { api, getAccessToken } from '../../libs/api';
 import { useState } from 'react';
 import Toast from '../../common/ToastMessage/Toast';
 
@@ -28,12 +28,16 @@ const DetailFooter = ({
   const navigate = useNavigate();
   const [toast, setToast] = useState(false);
 
-  const handleClickButton = () => {
-    if (like === null) {
+  const checkLogin = () => {
+    if (!getAccessToken()) {
       // 로그인 상태가 아닌 경우
       setToast(true);
-      return;
+      return false;
     }
+  };
+
+  const handleClickButton = () => {
+    if (!checkLogin()) return;
     if (isSecond) {
       // state로 OrderPage에서 필요한 정보 넘겨주기
       navigate(`/order`, {
@@ -90,10 +94,8 @@ const DetailFooter = ({
   };
 
   const handleClickLike = () => {
-    if (like === null) {
-      // 로그인 상태가 아닌 경우
-      setToast(true);
-    } else if (like) {
+    if (!checkLogin()) return;
+    if (like) {
       // 로그인 상태인 경우
       // 만약 원래 좋아요가 눌린 상태면
       postDisliked();
@@ -105,11 +107,6 @@ const DetailFooter = ({
   };
 
   const handleCartButton = () => {
-    if (like === null) {
-      // 로그인 상태가 아닌 경우
-      setToast(true);
-      return;
-    }
     postCart();
   };
 
