@@ -27,7 +27,7 @@ const DetailPage = () => {
         leftSection={
           <IcBackDark
             onClick={() => {
-              navigate('/list');
+              navigate(-1);
             }}
           />
         }
