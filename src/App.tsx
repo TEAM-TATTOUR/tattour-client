@@ -48,7 +48,7 @@ function App() {
         <RecoilRoot>
           <ThemeProvider theme={theme}>
             <GlobalStyle />
-            <Suspense fallback={<div></div>}>
+            <Suspense fallback={<LoadingPage/>}>
               <Router />
             </Suspense>
           </ThemeProvider>
