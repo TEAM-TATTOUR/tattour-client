@@ -1,29 +1,31 @@
+import { lazy } from 'react';
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import DetailPage from './page/DetailPage';
-import ListPage from './page/ListPage';
-import LoginPage from './page/Login/LoginPage';
 import MainPage from './page/MainPage';
-import MyTattoo from './page/MyTattoo';
-import MyTattooDetail from './page/MyTattooDetail';
-import CompletePage from './page/Order/CompletePage';
-import OrderPage from './page/Order/OrderPage';
 
-import OnBoardingPage from './page/Custom/Common/OnBoardingPage';
+const DetailPage = lazy(() => import('./page/DetailPage'));
+const ListPage = lazy(() => import('./page/ListPage'));
+const LoginPage = lazy(() => import('./page/Login/LoginPage'));
+const MyTattoo = lazy(()=>import('./page/MyTattoo'));
+const MyTattooDetail = lazy(()=>import('./page/MyTattooDetail'));
+const CompletePage = lazy(()=>import('./page/Order/CompletePage'));
+const OrderPage = lazy(()=>import('./page/Order/OrderPage'));
+const OnBoardingPage = lazy(() => import('./page/Custom/Common/OnBoardingPage'));
 
-import LoginCallback from './components/Login/LoginCallback';
-import Interceptors from './libs/hooks/Interceptors';
-import ScrollToTop from './libs/hooks/ScrollTop';
-import CartPage from './page/CartPage';
-import CommonCustomPage from './page/Custom/Common/CommonCustomPage';
-import HaveDesignCustomPage from './page/Custom/HaveDesign/HaveDesignCustomPage';
-import NoDesignCustomPage from './page/Custom/NoDesign/NoDesignCustomPage';
-import ErrorPage from './page/Error/ErrorPage';
-import ExpirationPage from './page/Expiration/ExpirationPage';
-import MagazinePage from './page/MagazinePage';
-import OrderDepositPage from './page/Order/OrderDepositPage';
-import SavePage from './page/SavePage';
-import SearchPage from './page/Search/SearchPage';
-import SearchResultPage from './page/Search/SearchResultPage';
+const LoginCallback = lazy(() => import('./components/Login/LoginCallback'));
+const Interceptors = lazy(() => import('./libs/hooks/Interceptors'));
+const ScrollToTop = lazy(() => import('./libs/hooks/ScrollTop'));
+const CartPage = lazy(() => import('./page/CartPage'));
+const CommonCustomPage = lazy(() => import('./page/Custom/Common/CommonCustomPage'));
+const HaveDesignCustomPage = lazy(() => import('./page/Custom/HaveDesign/HaveDesignCustomPage'));
+const NoDesignCustomPage = lazy(() => import('./page/Custom/NoDesign/NoDesignCustomPage'));
+const ErrorPage = lazy(() => import('./page/Error/ErrorPage'));
+const ExpirationPage = lazy(()=>import('./page/Expiration/ExpirationPage'));
+const MagazinePage = lazy(() => import('./page/MagazinePage'));
+const OrderDepositPage = lazy(() => import('./page/Order/OrderDepositPage'));
+const SavePage = lazy(() => import('./page/SavePage'));
+const SearchPage = lazy(() => import('./page/Search/SearchPage'));
+const SearchResultPage = lazy(() => import('./page/Search/SearchResultPage'));
 
 const Router = () => {
   return (

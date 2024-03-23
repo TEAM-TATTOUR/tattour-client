@@ -3,9 +3,10 @@ import { RecoilRoot } from 'recoil';
 import { ThemeProvider, styled } from 'styled-components';
 import theme from './styles/theme';
 import GlobalStyle from './styles/GlobalStyle';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import Router from './Router';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import LoadingPage from './page/LoadingPage';
 
 const Wrapper = styled.div`
   background-color: white;
@@ -47,7 +48,9 @@ function App() {
         <RecoilRoot>
           <ThemeProvider theme={theme}>
             <GlobalStyle />
-            <Router />
+            <Suspense fallback={<div></div>}>
+              <Router />
+            </Suspense>
           </ThemeProvider>
         </RecoilRoot>
       </QueryClientProvider>
