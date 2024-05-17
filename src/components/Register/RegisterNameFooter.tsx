@@ -1,6 +1,6 @@
-import { styled } from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import { SetStateAction } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { styled } from 'styled-components';
 import { api } from '../../libs/api';
 
 interface RegisterNameFooterProps {
@@ -17,6 +17,7 @@ const RegisterNameFooter = ({ userName, setStep }: RegisterNameFooterProps) => {
         `/user/profile`,
         {
           name: `${userName}`,
+          // 임시로 넣어둔 데이터, 추후 삭제할 예정 !
           phoneNumber: `0`,
         },
         {},
