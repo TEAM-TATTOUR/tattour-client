@@ -1,25 +1,20 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import LoginHome from '../../components/Login/LoginHome';
-import LoginFooter from '../../components/Login/LoginFooter';
-import Header from '../../components/Header';
-import BackBtn from '../../common/Header/BackBtn';
-import CancelBtn from '../../common/Header/CancelBtn';
-import PageLayout from '../../components/PageLayout';
+import { IcBackDark, IcCancelDark } from '../../assets/icon';
 import ProgressBar from '../../common/ProgressBar';
+import Header from '../../components/Header';
+import LoginFooter from '../../components/Login/LoginFooter';
+import LoginHome from '../../components/Login/LoginHome';
+import PageLayout from '../../components/PageLayout';
 import RegisterName from '../../components/Register/RegisterName';
 import RegisterNameFooter from '../../components/Register/RegisterNameFooter';
-import RegisterPhoneNum from '../../components/Register/RegisterPhoneNum';
-import WelcomeHome from '../../components/Welcome/WelcomeHome';
 import WelcomeFooter from '../../components/Welcome/WelcomeFooter';
-import LoginEscapeModal from '../../common/Modal/EscapeModal/LoginEscapeModal';
-import { IcBackDark, IcCancelDark } from '../../assets/icon';
+import WelcomeHome from '../../components/Welcome/WelcomeHome';
 import { removeAccessToken } from '../../libs/api';
 
 const LoginPage = () => {
   const [userName, setUserName] = useState('');
-  const [modalOn, setModalOn] = useState(false);
   const navigate = useNavigate();
   const { state } = useLocation();
   const [step, setStep] = useState(state?.step ? state.step : 0);
@@ -60,24 +55,6 @@ const LoginPage = () => {
     );
   };
 
-  const renderRegisterPhoneNumPageHeader = () => {
-    return (
-      <Header
-        fixed={true}
-        leftSection={<BackBtn step={step} setStep={setStep} />}
-        title='회원가입'
-        rightSection={
-          <CancelBtn
-            modalOn={modalOn}
-            setModalOn={setModalOn}
-            targetModal={<LoginEscapeModal setModalOn={setModalOn} />}
-          />
-        }
-        progressBar={<ProgressBar curStep={1} maxStep={2} />}
-      />
-    );
-  };
-
   const renderWelcomePageHeader = () => {
     return (
       <Header
@@ -100,9 +77,6 @@ const LoginPage = () => {
         return renderRegisterNamePageHeader();
 
       case 2:
-        return renderRegisterPhoneNumPageHeader();
-
-      case 3:
         return renderWelcomePageHeader();
 
       default:
@@ -120,9 +94,6 @@ const LoginPage = () => {
         return <RegisterNameFooter userName={userName} setStep={setStep} />;
 
       case 2:
-        return <></>;
-
-      case 3:
         return <WelcomeFooter />;
 
       default:
@@ -134,8 +105,7 @@ const LoginPage = () => {
     <PageLayout renderHeader={renderHeader} footer={renderFooter()}>
       {step === 0 && <LoginHome />}
       {step === 1 && <RegisterName setUserName={setUserName} />}
-      {step === 2 && <RegisterPhoneNum setStep={setStep} />}
-      {step === 3 && <WelcomeHome />}
+      {step === 2 && <WelcomeHome />}
     </PageLayout>
   );
 };
