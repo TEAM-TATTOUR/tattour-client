@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { SetStateAction } from 'react';
+import { api } from '../../libs/api';
 
 interface RegisterNameFooterProps {
   userName: string;
@@ -10,10 +11,27 @@ interface RegisterNameFooterProps {
 const RegisterNameFooter = ({ userName, setStep }: RegisterNameFooterProps) => {
   const navigate = useNavigate();
 
+  const patchProfile = () => {
+    api
+      .patch(
+        `/user/profile`,
+        {
+          name: `${userName}`,
+          phoneNumber: `0`,
+        },
+        {},
+      )
+      .then(() => {
+        setStep(2);
+      })
+      .catch(() => {
+        navigate('/error');
+      });
+  };
+
   const handleClickFooter = () => {
     if (userName) {
-      navigate('/login', { state: { userName: userName } });
-      setStep(2);
+      patchProfile();
     }
   };
 
